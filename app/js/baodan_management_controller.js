@@ -29,7 +29,7 @@ bdControllers.controller('ybwxbaodanManageSiteCtrl', ['$scope', '$routeParams', 
 			$location.path('/bd_pic').search();
 
 		}
-		$scope.type="";
+		$scope.type = "";
 		$scope.init = function() {
 			var openId = sessionStorage.getItem("openId");
 			$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_policies_list'] + "?open_id=" + openId, {}, function(res) {
@@ -44,9 +44,9 @@ bdControllers.controller('ybwxbaodanManageSiteCtrl', ['$scope', '$routeParams', 
 		$scope.init();
 
 		$scope.filterFn = function(policy) {
-			if($scope.type){
-				return policy.insurance_type==$scope.type;
-			}else{
+			if ($scope.type) {
+				return policy.insurance_type == $scope.type;
+			} else {
 				return true;
 			}
 		};
@@ -63,17 +63,33 @@ bdControllers.controller('ybwxbaodanManageSiteCtrl', ['$scope', '$routeParams', 
 bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
-
+		$scope.isTest = true;
 		$scope.init = function() {
-			var openId = sessionStorage.getItem("openId");
-			var parameters = {
-				'open_id':openId,
-				'policy_id':$routeParams.policy_id
+			if ($routeParams.policy_id && $routeParams.policy_id != 'test') {
+				$scope.isTest = false;
+				var openId = sessionStorage.getItem("openId");
+				var parameters = {
+					'open_id': openId,
+					'policy_id': $routeParams.policy_id
+				}
+				$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_policy_detail'] + "?" + util.genParameters(parameters), {}, function(res) {
+					$scope.data = res.data.data;
+					console.log(res.data.data);
+
+				})
 			}
-			$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_policy_detail'] + "?"+util.genParameters(parameters), {}, function(res) {
-				$scope.data = res.data.data;
-				console.log(res.data.data);
-			})
+			util.uploadImgConfig(function() {
+				//alert("choose...");
+
+			});
+
+		}
+
+		$scope.preview = function() {
+			wx.previewImage({
+				current: $scope.data.image_urls[0], // 当前显示图片的http链接
+				urls: $scope.data.image_urls // 需要预览的图片http链接列表
+			});
 		}
 		$scope.init();
 

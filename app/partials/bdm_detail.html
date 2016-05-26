@@ -68,8 +68,10 @@
 	.bd_th{
 	 	background-color: #f5f5f5;
 	}
+	
 	.bd_tr{
-	  border-bottom:1px solid #e2e2e2;text-align: left;
+	  border-bottom:1px solid #e2e2e2;
+	  text-align: left;
 	}
 	.right-border{
 		border-right:1px solid #e2e2e2;
@@ -131,7 +133,7 @@
 		background-color: #f0f0f0;
 	}
 </style>
-
+<div ng-if="isTest == false">
 <div class="wrapper ">
 	<img src="img/yiyanzhen.png" style="position: absolute;top:9px;right:11px;width:70px;z-index: 5;display: none">
 	<div class="container">
@@ -142,7 +144,6 @@
 				</p>
 				{{data.name}}
 			</div>
-			<div class="example" style="display:none">示例保单</div>
 			<div>
 				<div class="bd-number">
 					<span class="gray">保单号：</span>
@@ -170,16 +171,6 @@
 						
 					</td>
 				</tr>	
-				<!--
-				<tr class="bd_tr">
-					<td><span class="gray">综合意外</span></td>
-					<td  class="right-border blue">80000000</td>
-				</tr>
-				<tr class="bd_tr">
-					<td><span class="gray">综合意外</span></td>
-					<td  class="right-border blue">80000000</td>
-				</tr>
-				-->
 				<tr class="bd_tr">
 					<td><span class="gray">保障期限</span></td>
 					<td colspan="2">{{data.coverageDate}}</td>
@@ -191,30 +182,13 @@
 					<th style="text-align: left;">被保人信息</th>
 				</tr>
 				<tr ng-repeat="(key, value) in data.insured_info"  > <td><span class="gray">{{key}}:</span>{{value}}</td> </tr>
-				<!--
-				<tr > <td><span class="gray">被保人:</span>诺小贝</td> </tr>
-				<tr > <td><span class="gray">性别:</span>男</td> </tr>
-				<tr > <td><span class="gray">生日:</span>1984-10-27</td> </tr>
-				<tr > <td><span class="gray">电话:</span>158****0018</td> </tr>
-				<tr > <td><span class="gray">证件类型:</span>身份证</td> </tr>
-				<tr > <td><span class="gray">证件号:</span>4324323423****32423</td> </tr>
-				-->
 			</table>
-			
-
-
 			<table >
 				<tr class="bd_th">
 					<th style="text-align: left;">其他信息</th>
 				</tr>
 				<tr ng-repeat="(key, value) in data.extra_info"  > <td><span class="gray">{{key}}:</span>{{value}}</td> </tr>
-				<!--
-				<tr > <td><span class="gray">被保人:</span>诺小贝</td> </tr>
-				<tr > <td><span class="gray">电话:</span>15638332323423</td> </tr>
-				<tr > <td><span class="gray">受益人:</span>诺大北(法定)</td> </tr>
-				-->
 			</table>
-			<!---->
 			<table >
 				<tr class="bd_th">
 					<th style="text-align: left;">销售信息</th>
@@ -229,12 +203,11 @@
 
 <div class="bd-wrapper">
 	<div  class="bd-name">保单照片</div>
-	<div class="bd-pic-container">
+	<div class="bd-pic-container"  ng-click="preview()">
 		<img ng-src="{{data.image_urls[0]}}"  />
 		<div class="number">{{data.image_urls.length}}张</div>
 	</div>
 </div>
-
 <div class="tail-container">
 		<div class="cell ">
 					<div class="cell_hd cell_primary">
@@ -254,6 +227,125 @@
 						<div>发送</div>
 					</div>
 				</div>
+</div>
+</div>
+
+
+
+<div ng-if="isTest">
+<div class="wrapper ">
+	<img src="img/yiyanzhen.png" style="position: absolute;top:9px;right:11px;width:70px;z-index: 5;display: none">
+	<div class="container">
+		<div class="sub-container">
+			<div class="title">
+				<p class="logo">
+					<img style="width:50px" src="img/picc_logo.jpg"/>
+				</p>
+				平安7天意外险
+			</div>
+			<div class="example">示例保单</div>
+			<div>
+				<div class="bd-number">
+					<span class="gray">保单号：</span>
+					10020200120342
+				</div>
+				<div class="insured-name">
+					<span class="gray">被保人：</span>
+					诺小贝
+					<div class="score">8分</div>
+				</div>
+			</div>
+
+			<table >
+				<tr class="bd_th">
+					<th style="text-align: left;width:40%;">保障项目</th>
+					<th style="text-align: left;">保额(元)</th>
+					<th style="text-align: center;">保费(元)</th>
+				</tr>
+				<tr class="bd_tr">
+					<td><span class="gray">综合意外</span></td>
+					<td  class="right-border blue">80000000.00</td>
+					<td  rowspan="3" class="blue" style="vertical-align: middle;text-align: center;">
+						128.00
+						<br/>
+						1年
+					</td>
+				</tr>
+				<tr class="bd_tr">
+					<td><span class="gray">航空意外</span></td>
+					<td  class="right-border blue">200000000.00</td>
+				</tr>
+				<tr class="bd_tr">
+					<td><span class="gray">火车意外</span></td>
+					<td  class="right-border blue">60000.00</td>
+				</tr>
+
+				<tr class="bd_tr">
+					<td><span class="gray">保障期限</span><div style="position: relative;"> <img src="img/cover.png" style="position: absolute;top:0.1rem;left:0.5rem;width:0.8rem;" /></div></td>
+					<td colspan="2">2016.05.06 00:00:00-2020.05.05 24:00:00  </td>
+				</tr>
+			</table>
+
+			<table style="margin-top: 0.2rem;">
+				<tr class="bd_th">
+					<th style="text-align: left;">被保人信息</th>
+				</tr>
+				<tr > <td><span class="gray">被保人:</span>诺小贝</td> </tr>
+				<tr > <td><span class="gray">性别:</span>男</td> </tr>
+				<tr > <td><span class="gray">生日:</span>1984-10-27</td> </tr>
+				<tr > <td><span class="gray">电话:</span>158****0018</td> </tr>
+				<tr > <td><span class="gray">证件类型:</span>身份证</td> </tr>
+				<tr > <td><span class="gray">证件号:</span>4324323423****32423</td> </tr>
+			</table>
+			<table >
+				<tr class="bd_th">
+					<th style="text-align: left;">其他信息</th>
+				</tr>
+				<tr > <td><span class="gray">被保人:</span>诺小贝</td> </tr>
+				<tr > <td><span class="gray">电话:</span>15638332323423</td> </tr>
+				<tr > <td><span class="gray">受益人:</span>诺大北(法定)</td> </tr>
+			</table>
+			<table >
+				<tr class="bd_th">
+					<th style="text-align: left;">销售信息</th>
+				</tr>
+				<tr > <td><span class="gray">销售机构:</span>中国平安保险</td> </tr>
+				<tr > <td><span class="gray">业务员(代码):</span>马三 901029812737</td> </tr>
+
+			</table>
+			
+
+	</div>
+</div>
+</div>
+
+<div class="bd-wrapper">
+	<div  class="bd-name">保单照片</div>
+	<div class="bd-pic-container">
+		<img src="img/pic.jpg"  />
+		<div class="number">88张</div>
+	</div>
+</div>
+<div class="tail-container">
+		<div class="cell ">
+					<div class="cell_hd cell_primary">
+						<div class="img-box"><img src="img/qian1.png"/></div>
+						<div>理赔</div>
+					</div>
+					<div class="cell_hd cell_primary" >
+						<div  class="img-box"><img src="img/tiaokuan.png"/></div>
+						<div>条款</div>
+					</div>
+					<div class="cell_hd cell_primary" >
+						<div  class="img-box"><img src="img/baodan.png"/></div>
+						<div>电子保单</div>
+					</div>
+					<div class="cell_hd cell_primary" >
+						<div  class="img-box"><img src="img/fenxiang.png"/></div>
+						<div>发送</div>
+					</div>
+				</div>
+</div>
 </div>
 
 
