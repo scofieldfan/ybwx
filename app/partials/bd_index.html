@@ -1,0 +1,60 @@
+<style>
+.bd_container,.bd_tail_container{
+	padding:0 0.26rem;
+}
+.bd_container{
+	margin-top:0.51rem;
+	margin-bottom:0.51rem;
+}
+.bd_tail_container{
+	
+	margin-bottom: 0.5rem;
+	text-align: center;
+	border-top: 1px solid #e2e2e2;
+}
+.bd_tail_container >div {
+	border:1px solid #1e4e8e;
+	border-radius: 3px;
+	padding:0.26rem 0.13rem;
+	background-color: #fff;
+}
+.bd_tail_container .title{
+	color:#555555;
+	font-size:0.2rem;
+	line-height: 0.8;
+}
+.bd_tail_container .subtitle{
+	color:#ff5c00;
+	font-size:0.13rem;
+	line-height: 0.3;
+}
+.special-btn{
+	border:1px solid #cccccc;
+	background-color:#fff;
+	color:#1e4e8e;
+	height:0.65rem;
+	line-height: 0.65rem;
+}
+.big-btn{
+	height:0.65rem;
+	line-height: 0.65rem;
+}
+
+
+</style>
+
+<div class="bd_container" >
+	<div class="cell ">
+		<a href="javascript:void(0)" id="chooseImage" ng-click="goUpload('1')" class="btn btn_dark_primary big-btn" >上传我的保单照片</a>
+	</div>
+	<div class="cell " style="margin-top: 0.26rem">
+		<a href="javascript:void(0)" id="chooseImage" ng-click="goUpload('2')" class="btn special-btn" >上传他人保单照片</a>
+	</div>
+</div>
+<div class="bd_tail_container" >
+	<p class="title" >如何拍照</p>
+	<p class="subtitle">注：请拍清保单下的以下信息</p>
+	<div >
+		<img src="img/baodan.jpg" style="width:100%;">		
+	</div>
+</div>

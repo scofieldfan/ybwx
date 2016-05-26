@@ -1,0 +1,31 @@
+<link rel="stylesheet" type="text/css" href="wx_share/css/coupon.css?rev=37d34aaafad2afafae14782a">
+<div id="wrapper" class="wrapper">
+    <ul class="ul_container" style="background-color:#f3f3f3;margin-top:0;padding-left:0;display:none">
+
+      <li class="list_item"  style="" ng-click="goDetail(coupon.coupon_no,coupon.coupon_status,coupon.order_no,coupon.coupon_id,coupon.expiry_date)"   ng-repeat="coupon in coupons" >
+
+        <div style="padding:30px 20px 20px;">
+           <div class="fl">
+               <img src="wx_share/img/ta_logo.png" class="logo_img" ng-if="coupon.coupon_id==1">
+               <img src="wx_share/img/pingan_logo.jpg" class="logo_img" ng-if="coupon.coupon_id==2">
+            </div>
+            <div class="fl coupon_text" style="z-index:10;"  ng-if="coupon.coupon_id==1">
+              <p >天安100万航空意外险 </p>
+              <p style="font-size:11px;">限本人使用</p>
+              <p style="color:#b8b8ba;font-size:11px;">有效期至:{{coupon.expiry_date |  date:'yyyy-MM-dd'}}</p>
+              <div class="fl tag {{coupon.imgClass}}" > </div>
+            </div>
+                 <div class="fl coupon_text" style="z-index:10;"  ng-if="coupon.coupon_id==2">
+              <p >平安500万航空意外险 </p>
+              <p style="font-size:11px;">限本人使用 请至少提前一天投保</p>
+              <p style="color:#b8b8ba;font-size:11px;">有效期至:{{coupon.expiry_date |  date:'yyyy-MM-dd'}}</p>
+              <div class="fl tag {{coupon.imgClass}}" > </div>
+            </div>
+        </div>
+      </li>
+    </ul>
+
+    <p class="default_text" id="reason_container">暂时没有保险劵</p>
+
+
+  </div>

@@ -1,0 +1,181 @@
+<link rel="stylesheet" type="text/css" href="css/ring.css?rev=55cfbbd104713178b84c048e8d78ecc9">
+
+<div  class="wrapper"  data-ng-init="init()" style="overflow: hidden;">
+
+	<div style="" class="head-container">
+		<div class="cell_hd">
+			<a href="javascript:void(0)"   class="btn btn_n_primary " >个性定制</a>
+		</div>
+		<div class="cell_hd">
+			<a href="javascript:void(0)"  style="border-radius: 0;" class="btn btn_unchoose"  ng-click="goJingzhun()">直接购买</a>
+		</div>
+	</div>
+
+	<div  class="bt_container">
+		<span class="blue" style="font-size: 17px;">1</span>
+		选择保障范围
+	</div>
+	<div style="position: relative;" id="clockContainer">
+		<div class="score_container" >
+			<p >
+				<span id="fanwei_score">{{fanweiScore}}</span>
+			</p>
+			<p>
+				<span style="font-size:0.14rem;">分</span>
+			</p>
+			<img src="wx_share/img/help.jpg" class="help_img" ng-click="showIntrod()"></div>
+		<canvas id="bgchartContainer" ></canvas>
+		<canvas id="chartContainer"  style="background:transparent;position:absolute;left:0;top:0;" ></canvas>
+		<div  id = "chartTextContainer" class="canvas_text"   style = "position:absolute;">
+			<!---->
+			<p  style="position:absolute;left:0.1rem;margin:0;top:0.4rem;font-size:0.20rem;text-align: center;color:#4e4e4d;" id="default_text">顺时针滑动提升分数</p>
+
+			<div  style="position:relative;left:0.3rem;opacity: 0"  class="small">&nbsp;&nbsp;</div>
+			<div  style="position:relative;left:-0.1rem;font-size:0.22rem;opacity: 0">&nbsp;&nbsp;</div>
+			<div  style="position:relative;font-size:0.26rem;text-align: center;opacity: 1">&nbsp;&nbsp;</div>
+			<div  style="position:relative;left:0.3rem;opacity: 0;font-size:0.16rem" >&nbsp;&nbsp;</div>
+			<div  style="position:relative;left:-0.2rem;opacity: 0;" class="small" >&nbsp;&nbsp;</div>
+		</div>
+	</div>
+
+	<div  class="bt_container">
+
+		<div style="">
+			<span class="blue"  style="font-size: 17px;">2</span>
+			选择保障金额
+		</div>
+		<!--
+		<a href="javascript:void(0)"   class="btn btn_n_primary"  ng-click="showCompute()">保额测算</a>
+	-->
+</div>
+
+<div  class="bottom_container" id="customerSlider" >
+	<div class="score_container" style="top:-0.25rem; ">
+		<p>
+			<span id="money_score">0</span>
+		</p>
+		<p>
+			<span style="font-size:0.14rem;">分</span>
+		</p>
+	</div>
+	<div style="left:0.05rem;top:0.46rem;position: absolute;color:#535353;font-size:0.12px;z-index:100;">
+			<p>平均保额</p>
+	</div>
+	<div class="left_button"></div>
+	<div class="weui_progress_bar" >
+		<div class="weui_progress_inner_bar" id="bar" style="width: 16px;">
+			<div style="background:transparent;" id="zhizhen">
+				<img src="img/btn.png?v=1" id="btnCircle" class="bar_btn" style=""></div>
+		</div>
+		
+		<div  class="kedu" style="left:20%;">
+			<div class="zz"></div>
+			<p>20万</p>
+		</div>
+		<div  class="kedu" style="left:40%;">
+			<div class="zz"></div>
+			<p>50万</p>
+		</div>
+		<div  class="kedu" style="left:60%;">
+			<div class="zz"></div>
+			<div class="top-word">
+				6分
+				<div >基本</div>
+			</div>
+			<p>100万</p>
+		</div>
+
+		<div  class="kedu" style="left:80%;">
+			<div class="zz"></div>
+			<div class="top-word">
+				8分
+				<div >推荐</div>
+			</div>
+			<p>200万</p>
+		</div>
+
+		<div  class="kedu" style="left:100%;">
+			<div class="top-word" style="left:-0.39rem;">
+				10分
+				<div>无忧</div>
+			</div>
+			<p  style="left:-0.35rem;">500万</p>
+		</div>
+
+	</div>
+
+	<div class="ring"></div>
+
+</div>
+
+<div  class="word_container" style="margin-bottom: 80px;line-height:1;">
+
+	<div  >
+		综合保障评分：
+		<span class="score blue" id="sum_score">10</span>
+		<span class="">分</span>
+	</div>
+	<div  >
+		预估保费：
+		<span class="score red" id="estimateMoneyContainer">{{estimateMoney}}</span>
+		<span class=" red">元/年</span>
+	</div>
+
+</div>
+
+<div class="fix_container">
+	<a href="javascript:void(0)" class="btn btn_n_primary_default " id="dzSbButton" ng-click="goBz()">生成方案</a>
+</div>
+
+</div>
+
+<div class="mask" id="baozhang_popup" style="display: none;">
+<div class="toast" >
+	<div class="close">
+		<img src="img/close.jpg" ></div>
+	<h4 >保障范围评分标准</h4>
+	<img  ng-src="img/introd_0{{type}}.png" style="width:100%"></div>
+</div>
+
+<div class="mask" id="baozhang_compute" style="display: none;">
+<div class="toast" >
+	<div class="close">
+		<img src="img/close.jpg" ></div>
+	<h3 >保额测算</h3>
+	<h5 >根据收入和负债精准测算保额</h5>
+
+	<div class="cell cell_container ">
+		<div class="cell_hd" >
+			<img src="img/salary.jpg" class="logo" ></div>
+		<div class="cell_hd word">收&nbsp;&nbsp;入</div>
+		<div class="cell_hd  cell_primary " style="height:40px;padding:0 10px;" >
+			<input type="text" class="ipt "    name="salary" min="1951-01-01"  max="2016-12-31"  ng-model="salary"  required></div>
+		<div class="cell_hd danwei" >元/月</div>
+	</div>
+
+	<div class="cell cell_container ">
+		<div class="cell_hd" >
+			<img src="img/home.jpg" class="logo" ></div>
+		<div class="cell_hd word">房&nbsp;&nbsp;贷</div>
+		<div class="cell_hd  cell_primary " style="height:40px;padding:0 10px;" >
+			<input type="text" class="ipt "    name="houseloan" min="1951-01-01"  max="2016-12-31"  ng-model="houseloan"  required></div>
+		<div class="cell_hd danwei" >元/月</div>
+	</div>
+
+	<div class="cell cell_container ">
+		<div class="cell_hd" >
+			<img src="img/car.jpg" class="logo" ></div>
+		<div class="cell_hd word">车&nbsp;&nbsp;贷</div>
+		<div class="cell_hd  cell_primary " style="height:40px;padding:0 10px;" >
+			<input type="text" class="ipt "    name="carloan" min="1951-01-01"  max="2016-12-31"  ng-model="carloan"  required></div>
+		<div class="cell_hd danwei" >元/月</div>
+	</div>
+
+	<div class="cell" style="margin-top:20px;">
+		<a href="javascript:void(0)" class="btn btn_n_primary " >测算</a>
+	</div>
+
+</div>
+</div>
+<script src="js/slider.js?rev=afafafafafafafafsaffafaa"></script>
+<script src="js/select.js?rev=avaafafafafsdfafafafaags"></script>

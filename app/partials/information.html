@@ -1,0 +1,34 @@
+
+<div  class="infocontainer"  data-ng-init="init()"  style="margin-bottom: 80px;" cg-busy="myPromise">
+
+	<h3>投保须知</h3>
+	<h5 ng-show="data.age_restrictions.length>0">年龄限制</h5>
+	<p  ng-repeat="restriction in data.age_restrictions">
+		{{restriction}}	
+	</p>
+
+
+	<!---->
+	<h5  ng-show="data.health_restrictions.length>0">健康限制</h5>
+	<p ng-repeat="restriction in data.health_restrictions">
+		{{restriction}}	
+	</p>
+
+
+	<h5  ng-show="data.locale_restrictions.length>0">区域限制</h5>
+	<p ng-repeat="restriction in data.locale_restrictions">
+		{{restriction}}	
+	</p>
+	
+
+	<h5 ng-show="data.extra_restrictions.length>0">其他限制</h5>
+	<p ng-repeat="restriction in data.extra_restrictions">
+		{{restriction}}	
+	</p>
+
+	<div class="cell"  style="margin-bottom: 20px;">
+		<a href="javascript:void(0)" class="btn btn_n_primary " ng-click="goToubao()" >以上情况全无</a>
+	</div>
+	<div style="text-align: center;text-decoration: underline;color:#737373" ng-click="showTip()">部分情况有</div>
+</div>
+

@@ -1,0 +1,95 @@
+<style>
+.ed-head{
+	background-color: #f4ae54;color:#fff;text-align: center;
+	font-size: 17px;
+	padding:10px 0;
+	margin-top:10px;
+}
+.ed-head p {
+	margin:0;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+table td{
+  padding: 0.07rem;
+  font-size:0.15rem;
+}
+.bd_tr{
+  border-bottom:1px solid #e0e0e0;
+  text-align: left;
+  line-height: 30px;
+}
+.ed-container{
+	 font-size:0.15rem;
+}
+.ed-container h4{
+	color: #247ad1;
+	font-size: 0.17rem;
+}
+.ed-container img{
+	width:100%;
+	max-height: 4rem;	
+}
+
+</style>
+
+<div class="wrapper" data-ng-init="init()"  style="margin-bottom: 80px;">
+	<div  >
+		<div class="ed-head" cg-busy="myPromise" >
+			<p  ng-if="type=='2'">当前健康保障评分</p>
+			<p  ng-if="type=='3'">当前人寿保障评分</p>
+			<p  ng-if="type=='4'">当前意外保障评分</p>
+			<p>
+				<span style="font-size: 40px;">{{data.aggregate_score}}</span>
+				分
+			</p>
+		</div>
+		<table>
+			<tr class="bd_tr" ng-repeat="item in data.analysis">
+				<td>
+					<img src="img/li_style_01.jpg" style="width:15px;"></td>
+				<td>{{item.name}}</td>
+				<td>保额{{processMoney(item.sum_insured)}}</td>
+				<td>{{item.score}}分</td>
+			</tr>
+		</table>
+		<div class="fr" style="color:#f4ae54" ng-click="goBdList()">保障详情&gt;</div>
+	</div>
+
+	
+	<div class="ed-container"  ng-if="type=='2'">
+		<h4>重大疾病发生率</h4>
+		<img src="img/ed_cancer.png">
+		<img src="img/ed_cancer_chart.png">
+		<h4>保障额度</h4>
+		<img src="img/ed_cancer_money.png">
+	</div>
+	<div class="ed-container"  ng-if="type=='3'">
+		<h4>经验生命表</h4>
+		<img src="img/eduction_income.png">
+		<h4>保障额度</h4>
+		<img src="img/ed_ed.jpg">
+	</div>
+	<div class="ed-container"  ng-if="type=='4'">
+		<h4>常见意外发生及死亡率</h4>
+		<img src="img/ed_tw.png">
+		<h4>意外导致后果概率</h4>
+		<img src="img/ed_gl.png">
+		<h4>保障额度</h4>
+		<p>建议为年收入加负债的2-10倍</p>
+	</div>
+	
+	
+</div>
+
+<div class="fix_container" ng-show="type==2">
+	<a href="javascript:void(0)" class="btn btn_n_primary"  ng-click="goDingzhi()" id="submitButton" style="">提升健康保障</a>
+</div>
+<div class="fix_container" ng-show="type==3">
+	<a href="javascript:void(0)" class="btn btn_n_primary"  ng-click="goDingzhi()" id="submitButton" style="">提升人寿保障</a>
+</div>
+<div class="fix_container" ng-show="type==4">
+	<a href="javascript:void(0)" class="btn btn_n_primary"  ng-click="goDingzhi()" id="submitButton" style="">提升意外保障</a>
+</div>

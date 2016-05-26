@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en" ng-app="wxShareApp">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport"content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>诺贝</title>
+  <script>
+
+    function getParameterByName(name) {
+      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+          results = regex.exec(location.search);
+      return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+    function redirectWeChatUrl(){
+      var qd = getParameterByName("qd");
+      if(!qd){
+        qd="default";
+      }
+       var WE_CHAT_URL="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri=http%3a%2f%2fweb.youbaowuxian.com%2fwx_share.html%3fqd%3d"+qd+"&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
+       console.log(WE_CHAT_URL);
+       var  openId = sessionStorage.getItem("openId");
+       if(!openId && location.href.indexOf("code")==-1){
+            window.location.href=WE_CHAT_URL;
+       }
+       
+    }
+    redirectWeChatUrl();
+
+    var _hmt = _hmt || [];
+    _hmt.push(['_setAutoPageview', false]);
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?7735ab379e0c352fd0fcfeb3f9248b59";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+
+    </script>
+  <link rel="stylesheet" type="text/css" href="wx_share/css/wx_share.min.css?rev=9560a9bd635e26affe715992a9a17dd7">
+  <!--
+   <link rel="stylesheet" type="text/css" href="bower_components/normalize-css/normalize.css">
+  <link rel="stylesheet" href="wx_share/css/style.css?rev=58f3a71761dc23d83e5d56ecf7338f9c">--></head>
+<body  ontouchstart="">
+  <main class="content" ng-view></main>
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+  <script src="wx_share/js/output/wx_application.min.js?rev=7768dfaa5dad93dd86319e2c9950657c"></script>
+  <!--
+  <script src="wx_share/js/util.js?rev=56c068a5e13fd8e6df99a8a57a50da5f"></script>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-route/angular-route.min.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+<script src="bower_components/angular-resource/angular-resource.min.js"></script>
+<script src="wx_share/js/app.js?rev=5c1a453954b0c24e4d8071d6d5dad2bb"></script>
+<script src="wx_share/js/controllers.js?rev=a3046ded34480162f372be65069695ca"></script>
+<script src="wx_share/js/directives.js?rev=1233a98e94d099705e9032f7a4b13f19"></script>
+<script src="wx_share/js/wxShare.js?rev=257c306cf024953094973e4156c46ec1"></script>
+-->
+<div class="mask" id="share">
+  <div class="wx-tip"></div>
+</div>
+<div class="mask" id="loading">
+  <div class="sk-fading-circle">
+    <div class="sk-circle1 sk-circle"></div>
+    <div class="sk-circle2 sk-circle"></div>
+    <div class="sk-circle3 sk-circle"></div>
+    <div class="sk-circle4 sk-circle"></div>
+    <div class="sk-circle5 sk-circle"></div>
+    <div class="sk-circle6 sk-circle"></div>
+    <div class="sk-circle7 sk-circle"></div>
+    <div class="sk-circle8 sk-circle"></div>
+    <div class="sk-circle9 sk-circle"></div>
+    <div class="sk-circle10 sk-circle"></div>
+    <div class="sk-circle11 sk-circle"></div>
+    <div class="sk-circle12 sk-circle"></div>
+  </div>
+</div>
+<div id="toast" style="display: none;">
+  <div class="weui_mask_transparent"></div>
+  <div class="weui_toast" style="display: table;width:200px;height:100px;left:40%;">
+    <p class="weui_toast_content" style="display:table-cell;vertical-align:middle;">{{server_reason}}</p>
+  </div>
+</div>
+
+<div id="loadingToast" class="weui_loading_toast" style=" display:none; ">
+  <div class="weui_mask_transparent"></div>
+  <div class="weui_toast">
+    <div class="weui_loading">
+      <div class="weui_loading_leaf weui_loading_leaf_0"></div>
+      <div class="weui_loading_leaf weui_loading_leaf_1"></div>
+      <div class="weui_loading_leaf weui_loading_leaf_2"></div>
+      <div class="weui_loading_leaf weui_loading_leaf_3"></div>
+      <div class="weui_loading_leaf weui_loading_leaf_4"></div>
+      <div class="weui_loading_leaf weui_loading_leaf_5"></div>
+      <div class="weui_loading_leaf weui_loading_leaf_6"></div>
+      <div class="weui_loading_leaf weui_loading_leaf_7"></div>
+      <div class="weui_loading_leaf weui_loading_leaf_8"></div>
+      <div class="weui_loading_leaf weui_loading_leaf_9"></div>
+      <div class="weui_loading_leaf weui_loading_leaf_10"></div>
+      <div class="weui_loading_leaf weui_loading_leaf_11"></div>
+    </div>
+    <p class="weui_toast_content">正在投保，请耐心等待</p>
+  </div>
+</div>
+
+<div id="loadingToastCommon" class="weui_loading_toast" style=" display:none; ">
+  <div class="weui_mask_transparent"></div>
+  <div class="weui_toast">
+    <div class="weui_loading">
+      <div class="weui_loading_leaf weui_loading_leaf_0"></div>
+      <div class="weui_loading_leaf weui_loading_leaf_1"></div>
+      <div class="weui_loading_leaf weui_loading_leaf_2"></div>
+      <div class="weui_loading_leaf weui_loading_leaf_3"></div>
+      <div class="weui_loading_leaf weui_loading_leaf_4"></div>
+      <div class="weui_loading_leaf weui_loading_leaf_5"></div>
+      <div class="weui_loading_leaf weui_loading_leaf_6"></div>
+      <div class="weui_loading_leaf weui_loading_leaf_7"></div>
+      <div class="weui_loading_leaf weui_loading_leaf_8"></div>
+      <div class="weui_loading_leaf weui_loading_leaf_9"></div>
+      <div class="weui_loading_leaf weui_loading_leaf_10"></div>
+      <div class="weui_loading_leaf weui_loading_leaf_11"></div>
+    </div>
+    <p class="weui_toast_content">正在加载，请耐心等待</p>
+  </div>
+</div>
+<script type="text/javascript" >
+   $(function(){
+       $("#share").click(function(){
+          _hmt.push(['_trackEvent', 'wx_share', 'wx_share_closemask']);
+          $("#share").hide();
+       })
+   })
+  </script>
+</body>
+</html>

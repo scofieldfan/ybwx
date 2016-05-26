@@ -1,0 +1,254 @@
+<style>
+	header{
+		padding:20px;
+	}
+
+	header .left{
+		float:left;
+		width:65px;
+		height:65px;
+		border-radius: 100%;
+		background-color: #f0f0f0;
+		text-align: center;
+	}
+	
+	header .left img{
+		width:25px;
+		margin-top: 18px;
+	}/**/
+	header .right{
+		margin:9px 0 0 80px;
+	}
+	header .title{
+		font-size:0.18rem;font-weight: bold;
+	}
+	header .subtitle{
+		font-size:0.15rem;margin-top:8px;
+	}
+	header span{
+			font-weight: bold;
+	}
+	.container{
+		padding: 0.1rem;
+		background-color: #f5f5f5;
+		margin-bottom: 80px;
+	}
+	.nav{
+		border-top:1px solid #e2e2e2;
+		border-bottom:1px solid #e2e2e2;
+		font-size:0.16rem;
+	}
+	.cell_hd{
+		text-align: center;
+	}
+	.cell_hd.select{
+			color:#588dd4 !important;
+			border-bottom: 3px solid #588dd4;
+	}
+	.cell_hd span{
+		vertical-align: super;
+		color:#999999;
+	}
+	.container li {
+		position: relative;
+		box-shadow: 1px 1px 1px #ccc;
+		overflow: hidden;
+	}
+	.container .wrapper {
+		position: relative;
+		background-color: #fff;
+		padding:0.05rem 0.13rem;
+	}
+	.container .bg{
+		position:absolute;left:0;top:0;bottom:0;background-color:#588dd4;width:0.13rem;
+	}
+	.container .title{
+		color:#555555;
+		font-size:0.2rem;
+		height:0.5rem;
+		line-height: 0.5rem;
+		padding-left: 0.15rem;
+	}
+	.container .des{
+
+		border-bottom:1px solid #e2e2e2;
+		border-top:1px solid #e2e2e2;
+		padding:0.2rem 0.2rem 0.1rem 0.15rem;
+		position: relative;
+	}
+	.container .status{
+		position: absolute;
+		right:0.1rem;
+		bottom:0.15rem;
+		width:1rem;
+		height:0.4rem;
+	}
+	.success{
+		background: #fff url('img/cover.png?v=32') no-repeat center;
+		background-size:1rem;
+	}
+	.container .des .logo{
+		float:right;
+		width:0.8rem;
+	}
+	.container .product{
+		font-size: 0.2rem;
+		font-weight: bold;
+	}
+	.container .time{
+		line-height: 0.5rem;
+		height:0.5rem;
+		color:#999999;
+	}
+	.container .time img{
+		width:14px;
+		vertical-align: text-bottom;
+	}
+	.container .cover{
+		position: absolute;
+		right:10px;
+		top:20%;
+	}
+	.sub-container{
+		position: relative;
+		color:#588dd4;
+		font-size:0.15rem;
+		padding:0.15rem;
+		overflow: hidden;
+	}
+	.sub-container span{
+		font-size:0.25rem;
+		font-weight: bold;
+	}
+	.pei_button{
+		  display:inline-block;
+		  float:right;
+		  padding:5px 22px;
+		  border-radius: 3px;
+		  border:1px solid #ff5c00;
+		  background-color: #fff;
+		  color:#ff5c00;
+		  font-size: 0.2rem;
+	}
+	.bottom{
+		border-top:1px solid #d2d2d2;
+		border-bottom:1px solid #d2d2d2;
+		height:8px;
+		background-color: #fff;
+		position: absolute;
+		bottom:0px;
+		width:100%;
+		left:4px;
+	}
+	.bottom>div{
+		border-top:1px solid #d2d2d2;
+		border-bottom:1px solid #d2d2d2;
+		background-color: #fff;
+		height:2px;
+		margin:2px 0 ;
+	}
+	.example{
+		font-size: 0.25rem;color:#ff5c00;float:right;
+	}
+	.pay_container{
+	  overflow: hidden;position: fixed;bottom:0;width:100%;
+	  border-top: 1px solid #e2e2e2;
+	}
+</style>
+
+<header>
+	<div class="left">
+		<!--
+		<img src="../img/toubao_type.jpg"  />
+		-->
+			<img src="../img/ren.png"  />
+	
+	</div>
+	<div class="right">
+		<div class="title">游客</div>
+		<div class="subtitle">
+			总保费 {{data.total_premium}}元 &emsp;综合评分
+			<span class="blue">{{data.total_score}}</span>
+		</div>
+	</div>
+</header>
+<div class="cell nav" style="color:#4A4A4A">
+	<div class="cell_hd  cell_primary "  ng-class='{"select":type=="4"}' ng-click='type="4"' >
+		意外
+		<span>{{typeGroup[4].length}}</span>
+	</div>
+	<div class="cell_hd  cell_primary "   ng-class='{"select":type=="3"}' ng-click='type="3"' >
+		人寿
+		<span>{{typeGroup[3].length}}</span>
+	</div>
+	<div class="cell_hd  cell_primary "  ng-class='{"select":type=="2"}' ng-click='type="2"'  >
+		健康
+		<span>{{typeGroup[2].length}}</span>
+	</div>
+	<div class="cell_hd  cell_primary "  ng-class='{"select":type=="5"}' ng-click='type="5"' >
+		财产
+		<span>{{typeGroup[5].length}}</span>
+	</div>
+</div>
+
+<div class="container">
+	<ul >
+		<li ng-click="goDetail(policy.id)"   ng-repeat="policy in filtered = (data.policies |filter:filterFn )">
+			<div class="wrapper">
+				<div class="bg"></div>
+				<div class="title">保单号:{{policy.policy_no}} <!--<span class="example">示例保单</span>--></div>
+				<div class="des ">
+					<!--<img class="logo" src="img/picc_logo.jpg"   />-->
+					<div style="margin-right: 1rem;">
+						<div class="product">{{policy.name}}</div>
+						<div class="time"><img src="img/clock.jpg"/>2016.03.03-2016.04.05</div>
+					</div>
+					<div style="clear:both;"></div>
+					<!--
+					<div class="status success"></div>
+					-->
+				</div>
+				<div class="sub-container">
+					<span>{{policy.score}}</span>
+					分
+					<div class="pei_button" >理赔</div>
+				</div>
+			</div>
+			<div class="bottom">
+				<div>
+				</div>
+			</div>
+		</li>
+	<!--
+		<li ng-click="goDetail()">
+			<div class="wrapper">
+				<div class="bg"></div>
+				<div class="title">保单号:231312312312 <span class="example">示例保单</span></div>
+				<div class="des ">
+					<img class="logo" src="img/picc_logo.jpg" />
+					<div style="margin-right: 1rem;">
+						<div class="product">中国人保|爱心天使7天综合意外险</div>
+						<div class="time"><img src="img/clock.jpg"/>2016.03.03-2016.04.05</div>
+					</div>
+					<div style="clear:both;"></div>
+					<div class="status success"></div>
+				</div>
+				<div class="sub-container">
+					<span>0.2</span>
+					分
+					<div class="pei_button" >理赔</div>
+				</div>
+			</div>
+			<div class="bottom">
+				<div>
+				</div>
+			</div>
+		</li>
+	 -->
+	</ul>
+</div>
+
+<div class="cell pay_container">
+  <a href="javascript:void(0)" class="btn btn_dark_2_primary" ng-click="goBdUpload();" style="border-radius: 0px;">上传保单</a>
+</div>
+

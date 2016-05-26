@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="css/product_list.css?rev=003aa643faaf5ce64cfdc7070190f3fe"> 
+
+
+ <ul class="ul_container"  data-ng-init="init()"   cg-busy="listPromise" >
+
+      <li class="list_item" ng-click="goDetail(item.id)"   ng-repeat="item in list">
+        <div  class="img_box">
+          <img ng-src="{{item.insurance_image_url}}" class="order_img"></div>
+        <div class="small_container" style="background:url({{item.company_image_url}}) no-repeat top right/50px" >
+          <p class="h_title">{{item.name}}</p>
+          <p class="desc">{{item.description}}</p>
+          <div class="bottom_container">
+            <div class="money_container"  >
+              <span class="money">{{item.front_price}}</span>
+            </div>
+            <div class="small_btn">立即投保</div>
+          </div>
+        </div>
+      </li>
+    </ul>

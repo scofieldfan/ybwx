@@ -1,0 +1,1 @@
+wintool\optipng app\img\*.png

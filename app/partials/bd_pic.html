@@ -1,0 +1,106 @@
+<style>
+
+body{
+	background-color: #f5f5f5;
+}
+.pic-container{
+
+	padding:15px 0 15px 0 ;
+	text-align: center;
+	background-color: #fff;
+}
+.pic-container ul{
+	width:300px;
+	margin: 0 auto;
+	overflow: hidden;
+	text-align: left;
+	padding-bottom:0.2rem;
+}
+.pic-container li{
+	float:left;
+	margin:13px 2px  0  2px;
+	overflow: hidden;
+	width:70px;
+	height:70px;
+}
+
+.pic-container .add{
+	background: url('../img/add_upload.jpg') no-repeat center;
+	background-size:100%;
+}
+.pic-container .add:active{
+	background: url('../img/plus_active.png') no-repeat center;
+	background-size:100%;
+}
+
+.pic-container img{
+	width:100%;
+	height:100%;
+}
+.pic-container .title{
+	font-size:0.16rem;
+}
+.pic-container .subtitle{
+	color:#cccccc;line-height: 0.5;
+}
+.bd-tail-container{
+	background-color: #f5f5f5;
+	margin-bottom: 0.5rem;
+	text-align: center;
+	border-top: 1px solid #e2e2e2;
+	padding:0 0.26rem;
+}
+.toast{
+	text-align: center;font-size:0.15rem;color:#555555;
+}
+.toast .title{
+	color:#588dd4;font-size:20px;
+}
+.toast .title img{
+	width:30px;height:30px;vertical-align: middle;
+}
+.toast .text{
+	padding:0 20px;margin-top: 20px;
+}
+.big-btn{
+	height:0.65rem;line-height: 0.65rem;
+}
+</style>
+<div class="mask" id="success_popup" >
+	<div class="toast" style="">
+		<div  class="title" style=""><img src="img/right.jpg">&nbsp;上传成功！</div>
+		<div class="text">我们将尽快核实您的保单，请耐心等待</div>
+		<div class="cell " style="margin-top: 0.5rem;">
+		<a href="javascript:void(0)"   class="btn btn_dark_2_primary"  ng-click="goBdM();" >查看保单</a>
+	</div>
+	</div>
+</div>
+<div class="pic-container">
+	<div class="title" >添加保险合同中的保单照片</div>
+	<div class="subtitle" >(图片大小不能超过10M)</div>
+	<ul id="pre_view_image_container">
+		<!--
+		<li ><img src="img/upload_demo.jpg"></li>
+		<li ><img src="img/upload_demo.jpg"></li>
+		<li ><img src="img/upload_demo.jpg"></li>
+		<li ><img src="img/upload_demo.jpg"></li>
+		<li ><img src="img/upload_demo.jpg"></li>
+		<li ><img src="img/upload_demo.jpg"></li>
+		-->
+			<!--
+		<li ng-click="chooseImg()">
+			<div style="text-align:center;width:70px;height:70px;line-height:70px;font-size: 0.8rem;background-color: #fff;border: 1px solid #000;box-sizing: border-box;font-weight: lighter;">
+		     +
+			</div>	
+		</li>
+			-->
+		<li ng-click="chooseImg()" class="add"></li>
+		
+	</ul>
+
+</div>
+<div class="bd-tail-container" >
+	<div class="cell " style="margin-top: 2.7rem;">
+		<a href="javascript:void(0)" ng-click="uploadImg()"  class="btn btn_dark_2_primary big-btn" >上传</a>
+	</div>
+</div>

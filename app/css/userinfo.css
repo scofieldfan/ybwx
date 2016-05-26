@@ -1,0 +1,214 @@
+.user-container {
+	text-align: center;
+}
+.title {
+	color: #20456c;
+	font-size: 0.2rem;
+	font-weight: bold;
+	margin-top: 0.35rem;
+}
+.text {
+	color: #555555;
+	width: 1.8rem;
+	margin: 0 auto;
+}
+.sub-title {
+	color: #20456c;
+	font-size: 0.19rem;
+}
+.switch {
+	position: relative;
+	display: block;
+	vertical-align: top;
+	width: 172px;
+	height: 62px;
+	padding: 3px;
+	margin: 0 auto;
+	outline: none;	/*background: linear-gradient(to bottom, #eeeeee, #FFFFFF 25px);*/
+
+	/*background-image: -webkit-linear-gradient(top, #eeeeee, #FFFFFF 25px);*/
+	border-radius: 31px;	/*box-shadow: inset 0 -1px white, inset 0 1px 1px rgba(0, 0, 0, 0.05);*/
+	cursor: pointer;
+	border: none;	/*border:1px solid #e2e2e2;*/
+}
+.switch-input {
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.switch-label {
+	position: relative;
+	display: block;
+	height: inherit;
+	font-size: 20px;
+	text-transform: uppercase;
+	background: #f0f0f0;
+	border-radius: inherit;
+	border:1px solid #e2e2e2;
+	/*box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.12), inset 0 0 1px rgba(0, 0, 0, 0.15);*/
+	font-family: Arial, Microsoft YaHei, SimHei, Helvetica, sans-serif;
+}
+.switch-label:before, .switch-label:after {
+	position: absolute;
+	top: 50%;
+	margin-top: -.5em;
+	line-height: 1;
+	-webkit-transition: inherit;
+	-moz-transition: inherit;
+	-o-transition: inherit;
+	transition: inherit;
+}
+.switch-label:before {
+	content: attr(data-off);
+	right: 42px;
+	color: #ff5c00;
+	/*text-shadow: 0 1px rgba(255, 255, 255, 0.5);*/
+}
+.switch-label:after {
+	content: attr(data-on);
+	left: 38px;
+	color: #ff5c00;
+	/*text-shadow: 0 1px rgba(0, 0, 0, 0.2);*/
+	opacity: 0;
+}
+.switch-input:checked ~ .switch-label {
+	background: #f0f0f0;
+	/*box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 0 3px rgba(0, 0, 0, 0.2);*/
+}
+.switch-input:checked ~ .switch-label:before {
+	opacity: 0;
+}
+.switch-input:checked ~ .switch-label:after {
+	opacity: 1;
+}
+.switch-handle {
+	position: absolute;
+	top: 4px;
+	left: 3px;
+	width: 100px;
+	height: 62px;
+	background-color: #ff5c00;	/*background: linear-gradient(to bottom, #FFFFFF 40%, #f0f0f0);*/
+
+	/*background-image: -webkit-linear-gradient(top, #FFFFFF 40%, #f0f0f0);*/
+	border-radius: 44px;
+	/*box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);*/
+}
+.switch-handle:before {
+	content: "男";
+	position: absolute;
+	color: #fff;
+	font-size: 20px;
+	top: 50%;
+	left: 50%;
+	margin: -16px 0 0 -9px;
+	width: 12px;
+	height: 12px;
+	font-family: Arial, Microsoft YaHei, SimHei, Helvetica, sans-serif;	/*background: linear-gradient(to bottom, #eeeeee, #FFFFFF);*/
+
+	/*background-image: -webkit-linear-gradient(top, #eeeeee, #FFFFFF);*/
+
+	/*border-radius: 6px;*/
+
+	/*box-shadow: inset 0 1px rgba(0, 0, 0, 0.02);*/
+}
+.switch-input:checked ~ .switch-handle:before {
+	content: "女";
+}
+
+/*
+.switch-handle:before {
+content: "";
+position: absolute;
+top: 50%;
+left: 50%;
+margin: -6px 0 0 -6px;
+width: 12px;
+height: 12px;
+background: linear-gradient(to bottom, #eeeeee, #FFFFFF);
+background-image: -webkit-linear-gradient(top, #eeeeee, #FFFFFF);
+border-radius: 6px;
+box-shadow: inset 0 1px rgba(0, 0, 0, 0.02);
+}*/
+.switch-input:checked ~ .switch-handle {
+
+	/*left: 74px;*/
+	-webkit-transform: translateX(74px);
+	-moz-transform: translateX(74px);
+	-ms-transform: translateX(74px);
+	-o-transform: translateX(74px);
+	transform: translateX(74px);
+	/*box-shadow: -1px 1px 5px rgba(0, 0, 0, 0.2);*/
+}
+
+/* Transition
+========================== */
+.switch-label, .switch-handle {
+	transition: All 0.3s ease;
+	-webkit-transition: All 0.3s ease;
+	-moz-transition: All 0.3s ease;
+	-o-transition: All 0.3s ease;
+}
+.age-container {
+	width: 300px;
+	height: 150px;
+	margin: 0 auto;
+	position: relative;
+	overflow: hidden;
+	text-align: left;	/*-webkit-mask:-webkit-gradient(linear,50% 0%, 100% 0%, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));*/
+	-webkit-mask: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+}
+.age-container	a {
+	border-left: 1px solid #346290;
+	display: inline-block;
+	margin-left: -1px;
+	padding: 0px 0px 0px 3px;
+	width: 15px;
+	height: 10px;
+	vertical-align: top;
+	color: #20456c;
+}
+.age-container .high {
+	height: 20px;
+	text-align: center;
+	position:relative;
+}
+.age-container .high span {
+	position: absolute;
+	left: -7px;
+	top: 30px;
+}
+#bg {
+	width: 5000px;
+	position: absolute;
+	transition: All 0.05s ease;
+	-webkit-transition: All 0.05s ease;
+	-moz-transition: All 0.01s ease;
+	-o-transition: All 0.01s ease;
+}
+/*#bg {
+	transition: All 0.01s ease;
+	-webkit-transition: All 0.01s ease;
+	-moz-transition: All 0.01s ease;
+	-o-transition: All 0.01s ease;
+}*/
+.cell-fix-bottom {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+.needle {
+	position: relative;
+	top: 0px;
+}
+.needle a {
+	border-left-color: #ff750f;
+	height: 27px;
+	border-width: 3px;
+}
+.age-title{
+	margin: 0 0 0.1rem  0;
+	font-size:0.3rem;
+	font-weight: bold;
+}
