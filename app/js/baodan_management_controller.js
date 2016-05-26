@@ -26,20 +26,28 @@ bdControllers.controller('ybwxbaodanManageSiteCtrl', ['$scope', '$routeParams', 
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
 		$scope.goBdUpload = function() {
-			$location.path('/bd_pic').search();
+			$location.path('/bd_index').search();
 
 		}
 		$scope.type = "";
 		$scope.init = function() {
-			var openId = sessionStorage.getItem("openId");
-			$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_policies_list'] + "?open_id=" + openId, {}, function(res) {
-				$scope.data = res.data.data;
-				$scope.typeGroup = _.groupBy(res.data.data.policies, function(item) {
-					return item.insurance_type;
-				});
-				console.log($scope.typeGroup);
-				console.log(res.data.data);
+			
+			var code = util.getParameterByName("code");
+			if (!code) {
+				code = $routeParams.code;
+			}
+			util.getOpenId(code).then(function() {
+				var openId = sessionStorage.getItem("openId");
+				$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_policies_list'] + "?open_id=" + openId, {}, function(res) {
+					$scope.data = res.data.data;
+					$scope.typeGroup = _.groupBy(res.data.data.policies, function(item) {
+						return item.insurance_type;
+					});
+					console.log($scope.typeGroup);
+					console.log(res.data.data);
+				})
 			})
+
 		}
 		$scope.init();
 
