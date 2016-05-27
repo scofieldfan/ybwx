@@ -28,7 +28,8 @@ var api = {
 		'set_user_info': '/ybwx-web/user/info/update',
 		'upload_policy_image': '/ybwx-web/api/upload_policy_image',
 		'get_policies_list':'/ybwx-web/api/policies',
-		'get_policy_detail':'/ybwx-web/api/policy'
+		'get_policy_detail':'/ybwx-web/api/policy',
+		'signature': '/ybwx-diplomat/wechat/js_signature'
 	}
 	//测试开始，为了测试做的适配
 
