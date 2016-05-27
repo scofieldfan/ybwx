@@ -27,11 +27,6 @@ bdControllers.controller('ybwxclaim_informationCtrl', ['$scope', '$routeParams',
 		
 	}
 ]);
-bdControllers.controller('ybwxbd_detail_tlCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
-	function($scope, $routeParams, $location, $http, $rootScope) {
-		
-	}
-]);
 bdControllers.controller('ybwxtb_notivelCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 		
