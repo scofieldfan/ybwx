@@ -1,5 +1,36 @@
 .ta_50 {
 	text-decoration: none;
 	color: #555;
-	font-size: .15rem;
+	font-size: .16rem;
 }
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+.cut_container {
+	overflow: hidden;position: fixed;bottom:0;width:100%;
+	border-top: 1px solid #e2e2e2;
+}
+.cut_cell {
+	height: .56rem;
+	width: 2.06rem;
+	text-decoration: none;
+	display: inline-block;
+	color: #555;
+	font-size: .19rem;
+	line-height: .56rem;
+	text-align: center;
+	background: #fff;
+}
+.cut_cell:nth-child(2) {
+	background: #1e4e8e;
+	color: #fff;
+}
+.ajax_data_font {
+	height: auto;
+	padding: 0 .19rem;
+}
+
+
