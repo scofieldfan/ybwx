@@ -39,6 +39,12 @@ ybwxApp.config(['$routeProvider',
     }).when('/list', {
       templateUrl: 'partials/list.html',
       controller: 'wxListCtrl'
+    }).when('/claim_information', {
+      templateUrl: 'partials/claim_information.html',
+      controller: 'ybwxclaim_informationCtrl'
+    }).when('/tb_notive', {
+      templateUrl: 'partials/tb_notive.html',
+      controller: 'ybwxtb_notivelCtrl'
     }).when('/detail', {
       templateUrl: 'partials/detail.html',
       controller: 'wxDetailCtrl'

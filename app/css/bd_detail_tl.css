@@ -1,0 +1,21 @@
+*{ margin: 0;padding: 0;}
+
+.mian {
+	padding: 12.9px;
+	height: auto;
+	background: #f5f5f5;
+}
+ul {
+	height: 100px;
+	padding: 7px;
+	background: #fff;
+	box-shadow: 1px 1px 1px 1px  #e2e2e2;
+	}
+li {
+	height: auto;
+	border: .05rem solid #c3d7f2;
+	padding: 36px 10px 0 10px;
+}
+.bd_top {
+	
+}

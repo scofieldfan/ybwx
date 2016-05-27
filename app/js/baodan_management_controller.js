@@ -22,6 +22,23 @@ bdControllers.controller('ybwxBdEducationCtrl', ['$scope', '$routeParams', '$loc
 
 	}
 ]);
+bdControllers.controller('ybwxclaim_informationCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $routeParams, $location, $http, $rootScope) {
+		
+	}
+]);
+bdControllers.controller('ybwxbd_detail_tlCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $routeParams, $location, $http, $rootScope) {
+		
+	}
+]);
+bdControllers.controller('ybwxtb_notivelCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $routeParams, $location, $http, $rootScope) {
+		
+	}
+]);
+
+
 bdControllers.controller('ybwxbaodanManageSiteCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
