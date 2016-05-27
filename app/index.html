@@ -32,10 +32,10 @@
       opacity: 1 !important;    /* */
     }
 </style>
- <link rel="stylesheet" href="css/output/application.min.css?rev=0dc8e3ce33e397349b75a9a3f70408f1">
+ <link rel="stylesheet" href="css/output/application.min.css?rev=ca9bdf1dfeb6de4ae7edfa96b61d3009">
 <!--
   <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/globe.css?rev=ae2b269a94818c741e944a6d2a8b816f">
+  <link rel="stylesheet" href="css/globe.css?rev=83ac0a6394af70618862e6b635e7a995">
   <link rel="stylesheet" href="css/app.css?rev=5a256568e36e1b53714d98abec1e1ac0">
   <link rel="stylesheet" href="css/angular-busy.min.css?rev=382a25599fb5b0b2e9efc9af00041c17">
   -->
@@ -44,7 +44,9 @@
 
   <main class="content" ng-view></main>
   <!-- /content -->
-
+<div class="mask" id="share">
+  <div class="wx-tip"></div>
+</div>
   <div id="toast" style="display: none;">
     <div class="weui_mask_transparent"></div>
     <div class="toast" style="background:rgba(40,40,40,.75);color:#fff;max-width:400px;width:65%;margin:auto;z-index:100000;padding:0.2rem;text-align: center;">
