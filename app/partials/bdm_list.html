@@ -1,14 +1,14 @@
-<link rel="stylesheet" type="text/css" href="css/baodan_manage_list.css?rev=aec10a661ebeaae1d6eade7e7cbe1d10">
+<link rel="stylesheet" type="text/css" href="css/baodan_manage_list.css?rev=3cc70e3837a9c889e97970a313e222b6">
 <header>
 	<div class="left">
 		<!--
 		<img src="../img/toubao_type.jpg"  />
-		-->
 			<img src="../img/nuo.png"  />
-	
+		-->
+		<img ng-src="{{data.image}}"  />
 	</div>
 	<div class="right">
-		<div class="title">诺贝用户</div>
+		<div class="title">{{data.nickname}}</div>
 		<div class="subtitle">
 			总保费 {{data.total_premium}}元 &emsp;综合评分
 			<span class="money">{{data.total_score | number:2}}</span>
@@ -54,9 +54,9 @@
 			</div>
 		</li>
 
-		<li ng-click="goDetail(policy.id)"   ng-repeat="policy in filtered = (data.policies |filter:filterFn )">
-			<div class="wrapper">
+		<li class="default-li" ng-click="goDetail(policy.id)"   ng-repeat="policy in filtered = (data.policies |filter:filterFn )">
 				<div class="bg"></div>
+			<div class="wrapper">
 				<div class="shadow"></div>
 				<div class="title">保单号:{{policy.policy_no}} <!--<span class="example">示例保单</span>--></div>
 				<div class="des ">
@@ -84,8 +84,10 @@
 				</div>
 			</div>
 			<div class="bottom">
+				<!---->
 				<div class="linebox">
 				</div>
+				
 			</div>
 		</li>
 	

@@ -8,15 +8,12 @@ header {
 }
 header .left {
 	float: left;
-	width: 0.65rem;
-	height: 0.65rem;
-	border-radius: 100%;
-	background-color: #f0f0f0;
 	text-align: center;
 }
 header .left img {
-	width: .35rem;
-	margin-top: .16rem;
+	width: 0.65rem;
+	height: 0.65rem;
+	border-radius: 100%;
 }
 
 /**/
@@ -81,7 +78,6 @@ header .subtitle {
 .container li {
 	position: relative;
 	margin-bottom: 0.12rem;
-	overflow: hidden;
 }
 .
 .container li:last-child{
@@ -89,17 +85,18 @@ header .subtitle {
 }
 .container .wrapper {
 	position: relative;
-	background-color: #fff;
-	padding: 0.05rem 0 0 0.13rem;
+	padding: 0.05rem 0 0.05rem 0.13rem;
 	overflow: hidden;
+	background-color: #fff;
 }
 .container .bg {
 	position: absolute;
 	left: 0;
 	top: 0;
-	bottom: 0;
+	bottom: -2px;
 	background-color: #588dd4;
 	width: 0.13rem;
+	z-index: 4;
 }
 .container .shadow{
 	position: absolute;
@@ -198,23 +195,27 @@ header .subtitle {
 	margin-right: 0.13rem;
 }
 .bottom {
-	border-top: 1px solid #d2d2d2;		/*border-bottom:1px solid #d2d2d2;*/
-	height: 0.08rem;
+	/*background: url('../img/xiaotiao.png') repeat-x center;*/
+	/*background-size: 100% 0.1rem;*/
+	border-top: 1px solid #d2d2d2;
+	height: 8px;
 	background-color: #fff;
 	position: absolute;
-	bottom: 0.02rem;
-	width: 100%;
-	left:0.05rem;
+	bottom: 0;
+	right:0;
+	width: 99%;
+	/*left:0.05rem;*/
+	z-index: 5;
 	/*box-shadow:0px 8px 15px 1px #d2d2d2;*/
-	box-shadow:0px 4px 6px -2px #d2d2d2;
+	/*box-shadow:0px 4px 6px -2px #d2d2d2;*/
 	/*background: -webkit-linear-gradient(top,white 90%, #dadada 95%);*/
 }
 .bottom .linebox {
 	border-top: 1px solid #d2d2d2;
 	border-bottom: 1px solid #d2d2d2;
 	background-color: #fff;
-	height: 0.02rem;
-	margin: 0.02rem 0;
+	height: 2px;
+	margin: 2px 0;
 }
 
 .example {
@@ -228,6 +229,7 @@ header .subtitle {
 	bottom: 0;
 	width: 100%;
 	border-top: 1px solid #e2e2e2;
+	z-index: 100;
 }
 .blue {
 	color: #588dd4

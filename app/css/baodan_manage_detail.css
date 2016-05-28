@@ -30,12 +30,13 @@
 		font-size:0.18rem;
 		text-align: center;
 		position: relative;
+		overflow: hidden;
 	}
 	.logo{
-		position: absolute;
-		top:50%;
+		top:0;
 		left:0rem;
-		margin-top: -9px;
+		float:left;
+		margin: 0;
 	}
 	.logo >img{
 		width:0.65rem;
@@ -148,3 +149,4 @@
 	.cell_hd:active{
 		background-color: #f0f0f0;
 	}
+	
