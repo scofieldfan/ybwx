@@ -10,22 +10,23 @@ body{
 }
 	
 p{
-	/*padding-left: 38px;*/
-	/*background: url(img/claim_information/logo.jpg) no-repeat;*/
 	color: #555;
 	font-size: .17rem;
 	font-weight: bold;
 }
 span {
-	font-size: .19rem;
+	font-size: .18rem;
 	display: inline;
 	color: #555;
-	padding-left: 10px;
+	padding-left: .06rem;
 	font-weight: bold;
+	vertical-align: middle;
+	
 }
 img{
-	width: .19rem;
-	height: .19rem;
+	width: .2rem;
+	height: .2rem;
+	vertical-align: middle;
 }
 a{
 	color: #588dd4;

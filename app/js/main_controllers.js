@@ -29,7 +29,9 @@ var api = {
 		'upload_policy_image': '/ybwx-web/api/upload_policy_image',
 		'get_policies_list':'/ybwx-web/api/policies',
 		'get_policy_detail':'/ybwx-web/api/policy',
-		'signature': '/ybwx-diplomat/wechat/js_signature'
+		'signature': '/ybwx-diplomat/wechat/js_signature',
+		'get_claim_info':'/ybwx-web/api/claim_info/{id}'
+
 	}
 	//测试开始，为了测试做的适配
 
