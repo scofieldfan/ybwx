@@ -269,7 +269,7 @@ bdControllers.controller('ybwxBDPicCtrl', ['$scope', '$routeParams', '$location'
 
 					$scope.images.localIds = res.localIds;
 					//$scope.localIds = res.localIds;
-					alert("成功选择" + res.localIds.length + "张图片");
+					// alert("成功选择" + res.localIds.length + "张图片");
 					//console.log("choose.....");
 					//console.log($scope.localIds);
 					//console.log($scope.images);
