@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="css/baodan_manage_list.css?rev=99c4bac69e153a2b298c33b5bb5c240e">
+<link rel="stylesheet" type="text/css" href="css/baodan_manage_list.css?rev=4f85e7410378e0ec9e868a7af76ce7a0">
 <header>
 	<div class="left">
 		<!--
@@ -10,12 +10,12 @@
 	<div class="right">
 		<div class="title">诺贝用户</div>
 		<div class="subtitle">
-			总保费 {{data.total_premium}}元 &emsp;综合评分
-			<span class="blue">{{data.total_score}}</span>
+			总保费 {{data.total_premium}}<span class="yuan">元</span> &emsp;综合评分
+			<span class="money">{{data.total_score}}</span>
 		</div>
 	</div>
 </header>
-<div class="cell nav" style="color:#4A4A4A">
+<div class="cell nav" style="color:#555555">
 	<div class="cell_hd  cell_primary "  ng-class='{"select":type=="4"}' ng-click='type="4"' >
 		意外
 		<span>{{typeGroup[4].length}}</span>
@@ -38,7 +38,7 @@
 	</div>
 </div>
 
-<div class="container">
+<div class="container"  cg-busy="loadingPromise">
 	<ul >
 
 		<li  ng-if="data.un_settled_policies_amount > 0" style="">
@@ -57,6 +57,7 @@
 		<li ng-click="goDetail(policy.id)"   ng-repeat="policy in filtered = (data.policies |filter:filterFn )">
 			<div class="wrapper">
 				<div class="bg"></div>
+				<div class="shadow"></div>
 				<div class="title">保单号:{{policy.policy_no}} <!--<span class="example">示例保单</span>--></div>
 				<div class="des ">
 					<img class="logo" ng-src="{{policy.icon}}"   />
@@ -70,13 +71,15 @@
 					-->
 				</div>
 				<div class="sub-container">
-					<span>{{policy.score}}</span>
-					分
+					<div class="bd-score">
+						<span>{{policy.score}}</span>
+						分
+					</div>
 					<div class="pei_button" >理赔</div>
 				</div>
 			</div>
 			<div class="bottom">
-				<div>
+				<div class="linebox">
 				</div>
 			</div>
 		</li>
@@ -96,8 +99,10 @@
 					<div class="status success"></div>
 				</div>
 				<div class="sub-container">
-					<span>0.2</span>
-					分
+					<div class="bd-score">
+						<span>0.2</span>
+						分
+					</div>
 					<div class="pei_button" >理赔</div>
 				</div>
 			</div>

@@ -40,7 +40,7 @@
             onSelection: function() {},
             className: null,
             elementStyle: null,
-            selectedColor: '#87DDEA',
+            selectedColor: '#e0e0e0',
             backgroundColor: '#f4f4f4',
             disablebackgroundColor: '#F2F2F2',
             parentElement: 'body'
@@ -147,7 +147,7 @@
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 // Draw segments
                 for (var i = 0; i < options.pieConfig.length; i++) {
-                    setSelectedColor(ctx, i, i === highlight, options);
+                   // setSelectedColor(ctx, i, i === highlight, options);
                     drawSlice(ctx, radius, i, nSegments, center);
                 }
 
@@ -356,12 +356,19 @@
                 var centerY = center + Math.sin(middleAngle) * pianX;
 
                 //绘画基础扇形
-                drawSector(ctx,"#ebebeb", centerX,centerY,startA,endA,options.closeRadius-pianX,bigRadius);
+                console.log(" highlight:"+ highlight);
+                console.log(" n:"+ n);
+                var pieColor = highlight===n?options.selectedColor:"#ebebeb";
+                console.log(" pieColor:"+ pieColor);
+                drawSector(ctx,pieColor, centerX,centerY,startA,endA,options.closeRadius-pianX,bigRadius);
                
                 //绘画灰色分数扇形 
                 var innerRadius = bigRadius +5;
                 var outterRadius = bigRadius + 40;
+                 // ctx.fillStyle = (isSelected ? options.selectedColor : options.backgroundColor);
+           
                 drawSector(ctx,"#f0f0f0", centerX,centerY,startA,endA,innerRadius,outterRadius);
+                //drawSector(ctx,"#f0f0f0", centerX,centerY,startA,endA,innerRadius,outterRadius);
 
                 //绘画带颜色的分数扇形 
                 var anglePercent = (endA  - startA)*options.pieConfig[n].percent + startA;

@@ -50,7 +50,7 @@ bdControllers.controller('ybwxbaodanManageSiteCtrl', ['$scope', '$routeParams', 
 			}
 			util.getOpenId(code).then(function() {
 				var openId = sessionStorage.getItem("openId");
-				$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_policies_list'] + "?open_id=" + openId, {}, function(res) {
+				$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_policies_list'] + "?open_id=" + openId, {}, function(res) {
 					$scope.data = res.data.data;
 					$scope.typeGroup = _.groupBy(res.data.data.policies, function(item) {
 						return item.insurance_type;
@@ -102,9 +102,10 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 						'open_id': openId,
 						'policy_id': $routeParams.policy_id
 					}
-					$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_policy_detail'] + "?" + util.genParameters(parameters), {}, function(res) {
+					$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_policy_detail'] + "?" + util.genParameters(parameters), {}, function(res) {
 						$scope.data = res.data.data;
 						console.log(res.data.data);
+						$(".bd-wrapper").show();
 					})
 				}
 				$scope.shareConfig();
@@ -112,7 +113,17 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 			//util.uploadImgConfig(function() {
 			//alert("choose...");
 			//});
+		}
+		
 
+		$scope.getChargePeroidTypeAbbre = function(type){
+			return chargePeriodTypeAbbreMap[type];
+		}
+		$scope.getChargePeroidType = function(type){
+			return chargePeriodTypeMap[type];
+		}
+		$scope.showTip = function(){
+			$("#share").show();
 		}
 		$scope.shareConfig = function() {
 			var openId = sessionStorage.getItem("openId");
