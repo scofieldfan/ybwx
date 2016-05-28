@@ -131,6 +131,7 @@ header .subtitle {
 .container .product {
 	font-size: 0.2rem;
 	font-weight: bold;
+	color:#222222;
 }
 .container .time {
 	line-height: 0.5rem;
@@ -152,7 +153,6 @@ header .subtitle {
 	font-size: 0.15rem;
 	padding: 0.1rem 0 0.17rem 0;
 	overflow: hidden;
-
 }
 
 .sub-container .bd-score{
@@ -168,9 +168,9 @@ header .subtitle {
 	float: right;
 	padding: 0.05rem 0.24rem;
 	border-radius: 3px;
-	border: 1px solid #ff5c00;
+	border: 1px solid #588dd4;
 	background-color: #fff;
-	color: #ff5c00;
+	color: #588dd4;
 	font-size: 0.17rem;
 	margin-right: 0.2rem;
 }

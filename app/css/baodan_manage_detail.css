@@ -37,6 +37,9 @@
 		left:0rem;
 		margin-top: -9px;
 	}
+	.logo >img{
+		width:0.65rem;
+	}
 	.example{
 		font-size: 0.2rem;
 		color:#ff5c00;
