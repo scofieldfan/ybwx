@@ -113,17 +113,22 @@ bdControllers.controller('ybwxbaodanManageSiteCtrl', ['$scope', '$routeParams', 
 bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
-		$scope.isTest = true;
+		$scope.isTest = false;
 		$scope.init = function() {
 
 			var code = util.getParameterByName("code");
 			if (!code) {
 				code = $routeParams.code;
 			}
+			if($routeParams.policy_id && $routeParams.policy_id == 'test'){
+				$scope.isTest = true;
+				$("#test_baodan").show();
+			}else{
+				$("#my_baodan").show();
+			}
 			util.getOpenId(code).then(function() {
 
-				if ($routeParams.policy_id && $routeParams.policy_id != 'test') {
-					$scope.isTest = false;
+				if (!$scope.isTest) {
 					var openId = sessionStorage.getItem("openId");
 					if($routeParams.share_id){
 						openId = $routeParams.share_id;
@@ -183,7 +188,7 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 					var shareTitle = "我的保单";
 					var shareLink = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri=' + encodeURIComponent(shareUrl) + '&response_type=code&scope=snsapi_base&state=123#wechat_redirect';
 					//var shareLink = shareUrl;
-					var shareDesc = "这是我在诺贝保险管家的保单。诺贝保险管家,保险本该如此!";
+					var shareDesc = "这是我在诺贝保险管家的保单。诺贝保险管家，保险本该如此!";
 					var shareImg = "http://web.youbaowuxian.com/img/icon.jpg";
 
 					wx.onMenuShareTimeline({
