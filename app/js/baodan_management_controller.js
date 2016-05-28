@@ -115,7 +115,11 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 			//alert("choose...");
 			//});
 		}
-		
+		$scope.goClaimInfo = function(claimId){
+			$location.path('/bdm_detail').search({
+				'claim_id': claimId
+			});
+		}	
 
 		$scope.getChargePeroidTypeAbbre = function(type){
 			return chargePeriodTypeAbbreMap[type];
