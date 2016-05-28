@@ -139,9 +139,9 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 			//alert("choose...");
 			//});
 		}
-		$scope.goClaimInfo = function(claimId){
-			$location.path('/bdm_detail').search({
-				'claim_id': claimId
+		$scope.goClaimInfo = function(claim_id){
+			$location.path('/claim_information').search({
+				'claim_id': claim_id
 			});
 		}	
 
