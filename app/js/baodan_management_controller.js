@@ -16,7 +16,6 @@ bdControllers.controller('ybwxBDIndexCtrl', ['$scope', '$routeParams', '$locatio
 ]);
 
 
-
 bdControllers.controller('ybwxBdEducationCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
@@ -25,10 +24,12 @@ bdControllers.controller('ybwxBdEducationCtrl', ['$scope', '$routeParams', '$loc
 bdControllers.controller('ybwxclaim_informationCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
+		
 	}
 ]);
 bdControllers.controller('ybwxtb_notivelCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
+		
 
 	}
 ]);

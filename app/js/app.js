@@ -45,6 +45,9 @@ ybwxApp.config(['$routeProvider',
     }).when('/tb_notive', {
       templateUrl: 'partials/tb_notive.html',
       controller: 'ybwxtb_notivelCtrl'
+    }).when('/my_bd', {
+      templateUrl: 'partials/my_bd.html',
+      controller: 'ybwxmy_bdlCtrl'
     }).when('/detail', {
       templateUrl: 'partials/detail.html',
       controller: 'wxDetailCtrl'
