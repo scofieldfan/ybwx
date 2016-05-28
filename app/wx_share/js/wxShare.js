@@ -65,7 +65,7 @@
        var shareTitle = "送你一份500万的航空意外险，买机票时至少可省30元！";
        var shareLink = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri=' + encodeURIComponent(shareUrl + '?rec_id=' + openId) + '&response_type=code&scope=snsapi_base&state=123#wechat_redirect';
        var shareDesc = "小伙伴快来一起领！每人一份500万，最高可领12份哦~";
-       var shareImg = "http://web.youbaowuxian.com/wx_share/img/share.jpg";
+       var shareImg = "http://web.youbaowuxian.com/wx_share/img/share61.jpg";
 
        wx.onMenuShareTimeline({
          title: shareTitle,

@@ -1,236 +1,145 @@
-<style>
-	.wrapper{
-		background-color: #f5f5f5;
-		padding:0.13rem;
-		position: relative;
-		color:#555555;
-	}
-	.yanzhen{
-		background: url(img/yiyanzhen.png) no-repeat right top;
-		background-size:100px;
-	}
-	.blue{
-		color:#588dd4;
-	}
-	.gray{
-		color:#999999;
-	}
-	.container{
-		border: 1px solid #e2e2e2;
-		padding: 0.05rem;
-		background-color: #fff;
-		box-shadow: 0 0 1px 1px #e2e2e2;
-	}
-	.sub-container{
-		border: 5px solid #c3d7f2;
-		padding: 0.05rem;
-	}
-	.title{
-		color:#000;
-		font-weight: bold;
-		font-size:0.18rem;
-		text-align: center;
-		position: relative;
-	}
-	.logo{
-		position: absolute;
-		top:50%;
-		left:0.15rem;
-		margin-top: -9px;
-	}
-	.example{
-		font-size: 0.2rem;
-		color:#ff5c00;
-		text-align: center;
-		border-bottom: 1px solid #588dd4;
-	}
-	.bd-number{
-		margin-top: 0.2rem;
-	}
-	.insured-name{
-		overflow: hidden;line-height: 0.5rem;height:0.5rem;
-	}
-	.score{
-		float:right;
-		font-size: 0.25rem;
-		color:#1e4e8e;
-	}
-
-	table {
-	  width: 100%;
-	  border-collapse: collapse;
-	}
-	table td, table th {
-	  padding: 0.07rem;
-	  vertical-align:top;
-	  font-weight: normal;
-	}
-	.bd_th{
-	 	background-color: #f5f5f5;
-	}
-	
-	.bd_tr{
-	  border-bottom:1px solid #e2e2e2;
-	  text-align: left;
-	}
-	.right-border{
-		border-right:1px solid #e2e2e2;
-	}
-
-	.bd-wrapper{
-		background-color: #fff;
-		/*padding:0.13rem;*/
-		border-bottom:1px solid #e2e2e2;
-	}
-	.bd-name{
-		height:0.3rem;
-		line-height: 0.3rem;
-		padding:0.13rem;
-		border-bottom:1px solid #e2e2e2;
-	}
-	.bd-pic-container{
-		background-color: #fff;
-		margin:15px;
-		padding:3px;
-		width:120px;
-		height:150px;
-		overflow: hidden;
-		border:1px solid #efefef;
-		box-shadow: 0 0 1px 2px #efefef;
-		position: relative;
-	}
-	.bd-pic-container .number{
-		background-color: rgba(0,0,0,0.5);
-		color:#fff;
-		position: absolute;
-		bottom:3px;
-		right:3px;
-		width:35px;
-		text-align: center;
-	}
-	.bd-pic-container img{
-		width:100%;
-		height:150px;
-	}
-	.tail-container {
-		background-color: #f5f5f5;
-		color:#555;
-	}
-	.cell{
-		background-color: #fff;
-	}
-	.cell_hd{
-		text-align: center;
-		height:65px ;
-	}
-	.cell_hd .img-box{
-		height: 25px;
-	}
-	.cell_hd img{
-		width:20px;
-	}
-	.cell_hd:active{
-		background-color: #f0f0f0;
-	}
-</style>
-<div ng-if="isTest == false">
-<div class="wrapper ">
-	<img src="img/yiyanzhen.png" style="position: absolute;top:9px;right:11px;width:70px;z-index: 5;display: none">
-	<div class="container">
-		<div class="sub-container">
-			<div class="title">
-				<p class="logo">
-					<img style="width:50px" src="img/picc_logo.jpg"/>
-				</p>
-				{{data.name}}
-			</div>
-			<div>
-				<div class="bd-number">
-					<span class="gray">保单号：</span>
-					{{data.policy_no}}
+<link rel="stylesheet" type="text/css" href="css/baodan_manage_detail.css?rev=241f39b5905859509965874645d8cb88">
+<div ng-if="isTest == false"  cg-busy="loadingPromise">
+	<div class="wrapper ">
+		<img src="img/yiyanzhen.png" style="position: absolute;top:9px;right:11px;width:70px;z-index: 5;display: none">
+		<div class="container"  >
+			<div class="sub-container">
+				<div class="title">
+					<p class="logo">
+						<img style="width:50px" ng-src="{{data.icon}}"/>
+					</p>
+					{{data.name}}
 				</div>
-				<div class="insured-name">
-					<span class="gray">被保人：</span>
-					{{data.insured_people_name}}
-					<div class="score">{{data.score}}分</div>
+				<div>
+					<div class="insured-item">
+						<span class="gray">保单号：</span>
+						{{data.policy_no}}
+					</div>
+					<div class="insured-item">
+						<span class="gray">被保人：</span>
+						{{data.insured_people_name}}
+						<div class="score">{{data.score}}分</div>
+					</div>
+					<div class="insured-item">
+						<span class="gray">缴费方式</span>
+						{{getChargePeroidType(data.charge_period_type)}}
+					</div>
+					<div class="insured-item">
+						<span class="gray">缴费期间</span>
+						{{data.charge_period}}{{getChargePeroidTypeAbbre(data.charge_period_type)}}
+					</div>
+					<div class="insured-item">
+						<span class="gray">缴费时间</span>
+						{{data.charge_date}}
+					</div>
+
 				</div>
+
+				<table >
+					<tr class="bd_th">
+						<th style="text-align: left;width:40%;">保障项目</th>
+						<th style="text-align: left;">保额(元)</th>
+						<th style="text-align: center;">保费(元)</th>
+					</tr>
+					<tr class="bd_tr" ng-repeat="item in data.coverages">
+						<td>
+							<span class="gray">{{item.name}}</span>
+						</td>
+						<td class="right-border blue">{{item.sum_insured}}</td>
+						<td ng-if="$index==0" rowspan="{{data.coverages.length}}" class="blue" style="vertical-align: middle;text-align: center;">
+							{{data.premium}}
+							<br/>
+
+						</td>
+					</tr>
+					<tr class="bd_tr">
+						<td>
+							<span class="gray">保障期限</span>
+						</td>
+						<td colspan="2">{{data.coverageDate}}</td>
+					</tr>
+				</table>
+
+				<table style="margin-top: 0.2rem;">
+					<tr class="bd_th">
+						<th style="text-align: left;">被保人信息</th>
+					</tr>
+					<tr ng-repeat="(key, value) in data.insured_info"  >
+						<td>
+							<span class="gray">{{key}}:</span>
+							{{value}}
+						</td>
+					</tr>
+				</table>
+				<table >
+					<tr class="bd_th">
+						<th style="text-align: left;">其他信息</th>
+					</tr>
+					<tr ng-repeat="(key, value) in data.extra_info"  >
+						<td>
+							<span class="gray">{{key}}:</span>
+							{{value}}
+						</td>
+					</tr>
+				</table>
+				<table >
+					<tr class="bd_th">
+						<th style="text-align: left;">销售信息</th>
+					</tr>
+					<tr ng-repeat="(key, value) in data.sale_info"  >
+						<td>
+							<span class="gray">{{key}}:</span>
+							{{value}}
+						</td>
+					</tr>
+				</table>
+
 			</div>
+		</div>
+	</div>
 
-			<table >
-				<tr class="bd_th">
-					<th style="text-align: left;width:40%;">保障项目</th>
-					<th style="text-align: left;">保额(元)</th>
-					<th style="text-align: center;">保费(元)</th>
-				</tr>
-				<tr class="bd_tr" ng-repeat="item in data.coverages">
-					<td><span class="gray">{{item.name}}</span></td>
-					<td class="right-border blue">{{item.sum_insured}}</td>
-					<td ng-if="$index==0" rowspan="{{data.coverages.length}}" class="blue" style="vertical-align: middle;text-align: center;">
-						{{data.premium}}
-						<br/>
-						
-					</td>
-				</tr>	
-				<tr class="bd_tr">
-					<td><span class="gray">保障期限</span></td>
-					<td colspan="2">{{data.coverageDate}}</td>
-				</tr>
-			</table>
-
-			<table style="margin-top: 0.2rem;">
-				<tr class="bd_th">
-					<th style="text-align: left;">被保人信息</th>
-				</tr>
-				<tr ng-repeat="(key, value) in data.insured_info"  > <td><span class="gray">{{key}}:</span>{{value}}</td> </tr>
-			</table>
-			<table >
-				<tr class="bd_th">
-					<th style="text-align: left;">其他信息</th>
-				</tr>
-				<tr ng-repeat="(key, value) in data.extra_info"  > <td><span class="gray">{{key}}:</span>{{value}}</td> </tr>
-			</table>
-			<table >
-				<tr class="bd_th">
-					<th style="text-align: left;">销售信息</th>
-				</tr>
-				<tr ng-repeat="(key, value) in data.sale_info"  >  <td><span class="gray">{{key}}:</span>{{value}}</td> </tr>
-			</table>
-			
-
+	<div class="bd-wrapper">
+		<div  class="bd-name">保单照片</div>
+		<div class="bd-pic-container"  ng-click="preview()">
+			<img ng-src="{{data.image_urls[0]}}"  />
+			<div class="number">{{data.image_urls.length}}张</div>
+		</div>
 	</div>
 </div>
-</div>
-
-<div class="bd-wrapper">
-	<div  class="bd-name">保单照片</div>
-	<div class="bd-pic-container"  ng-click="preview()">
-		<img ng-src="{{data.image_urls[0]}}"  />
-		<div class="number">{{data.image_urls.length}}张</div>
-	</div>
-</div>
-<div class="tail-container">
+<div>
+	<div class="tail-container">
 		<div class="cell ">
-					<div class="cell_hd cell_primary">
-							<div class="img-box"><img src="img/qian1.png"/></div>
-							<div>理赔</div>
-					</div>
-					<div class="cell_hd cell_primary" >
-						<div  class="img-box"><img src="img/tiaokuan.png"/></div>
-						<div>条款</div>
-					</div>
-					<div class="cell_hd cell_primary" >
-						<div  class="img-box"><img src="img/baodan.png"/></div>
-						<div>电子保单</div>
-					</div>
-					<div class="cell_hd cell_primary" >
-						<div  class="img-box"><img src="img/fenxiang.png"/></div>
-						<div>发送</div>
-					</div>
+			<div class="cell_hd cell_primary" ng-click="goClaimInfo(data.claim_info_id )">
+				<div class="img-box">
+					<img src="img/qian1.png"/>
 				</div>
+				<div>理赔</div>
+			</div>
+			<div class="cell_hd cell_primary" >
+				<a href="/ybwx-web/api/web_page/{{data.provision_id}}" style="color:#555;">
+					<div  class="img-box">
+						<img src="img/tiaokuan.png"/>
+					</div>
+					<div>条款</div>
+				</a>
+			</div>
+			<!--
+					<div class="cell_hd cell_primary" >
+			<div  class="img-box">
+				<img src="img/baodan.png"/>
+			</div>
+			<div>电子保单</div>
+		</div>
+		-->
+		<div class="cell_hd cell_primary" ng-click="showTip()">
+			<div  class="img-box">
+				<img src="img/fenxiang.png"/>
+			</div>
+			<div>发送</div>
+		</div>
+	</div>
 </div>
 </div>
-
-
 
 <div ng-if="isTest">
 <div class="wrapper ">
@@ -263,7 +172,9 @@
 					<th style="text-align: center;">保费(元)</th>
 				</tr>
 				<tr class="bd_tr">
-					<td><span class="gray">综合意外</span></td>
+					<td>
+						<span class="gray">综合意外</span>
+					</td>
 					<td  class="right-border blue">80000000.00</td>
 					<td  rowspan="3" class="blue" style="vertical-align: middle;text-align: center;">
 						128.00
@@ -272,17 +183,26 @@
 					</td>
 				</tr>
 				<tr class="bd_tr">
-					<td><span class="gray">航空意外</span></td>
+					<td>
+						<span class="gray">航空意外</span>
+					</td>
 					<td  class="right-border blue">200000000.00</td>
 				</tr>
 				<tr class="bd_tr">
-					<td><span class="gray">火车意外</span></td>
+					<td>
+						<span class="gray">火车意外</span>
+					</td>
 					<td  class="right-border blue">60000.00</td>
 				</tr>
 
 				<tr class="bd_tr">
-					<td><span class="gray">保障期限</span><div style="position: relative;"> <img src="img/cover.png" style="position: absolute;top:0.1rem;left:0.5rem;width:0.8rem;" /></div></td>
-					<td colspan="2">2016.05.06 00:00:00-2020.05.05 24:00:00  </td>
+					<td>
+						<span class="gray">保障期限</span>
+						<div style="position: relative;">
+							<img src="img/cover.png" style="position: absolute;top:0.1rem;left:0.5rem;width:0.8rem;" />
+						</div>
+					</td>
+					<td colspan="2">2016.05.06 00:00:00-2020.05.05 24:00:00</td>
 				</tr>
 			</table>
 
@@ -290,33 +210,87 @@
 				<tr class="bd_th">
 					<th style="text-align: left;">被保人信息</th>
 				</tr>
-				<tr > <td><span class="gray">被保人:</span>诺小贝</td> </tr>
-				<tr > <td><span class="gray">性别:</span>男</td> </tr>
-				<tr > <td><span class="gray">生日:</span>1984-10-27</td> </tr>
-				<tr > <td><span class="gray">电话:</span>158****0018</td> </tr>
-				<tr > <td><span class="gray">证件类型:</span>身份证</td> </tr>
-				<tr > <td><span class="gray">证件号:</span>4324323423****32423</td> </tr>
+				<tr >
+					<td>
+						<span class="gray">被保人:</span>
+						诺小贝
+					</td>
+				</tr>
+				<tr >
+					<td>
+						<span class="gray">性别:</span>
+						男
+					</td>
+				</tr>
+				<tr >
+					<td>
+						<span class="gray">生日:</span>
+						1984-10-27
+					</td>
+				</tr>
+				<tr >
+					<td>
+						<span class="gray">电话:</span>
+						158****0018
+					</td>
+				</tr>
+				<tr >
+					<td>
+						<span class="gray">证件类型:</span>
+						身份证
+					</td>
+				</tr>
+				<tr >
+					<td>
+						<span class="gray">证件号:</span>
+						4324323423****32423
+					</td>
+				</tr>
 			</table>
 			<table >
 				<tr class="bd_th">
 					<th style="text-align: left;">其他信息</th>
 				</tr>
-				<tr > <td><span class="gray">被保人:</span>诺小贝</td> </tr>
-				<tr > <td><span class="gray">电话:</span>15638332323423</td> </tr>
-				<tr > <td><span class="gray">受益人:</span>诺大北(法定)</td> </tr>
+				<tr >
+					<td>
+						<span class="gray">被保人:</span>
+						诺小贝
+					</td>
+				</tr>
+				<tr >
+					<td>
+						<span class="gray">电话:</span>
+						15638332323423
+					</td>
+				</tr>
+				<tr >
+					<td>
+						<span class="gray">受益人:</span>
+						诺大北(法定)
+					</td>
+				</tr>
 			</table>
 			<table >
 				<tr class="bd_th">
 					<th style="text-align: left;">销售信息</th>
 				</tr>
-				<tr > <td><span class="gray">销售机构:</span>中国平安保险</td> </tr>
-				<tr > <td><span class="gray">业务员(代码):</span>马三 901029812737</td> </tr>
+				<tr >
+					<td>
+						<span class="gray">销售机构:</span>
+						中国平安保险
+					</td>
+				</tr>
+				<tr >
+					<td>
+						<span class="gray">业务员(代码):</span>
+						马三 901029812737
+					</td>
+				</tr>
 
 			</table>
-			
 
+		</div>
 	</div>
-</div>
 </div>
 
 <div class="bd-wrapper">
@@ -327,32 +301,31 @@
 	</div>
 </div>
 <div class="tail-container">
-		<div class="cell ">
-					<div class="cell_hd cell_primary">
-						<div class="img-box"><img src="img/qian1.png"/></div>
-						<div>理赔</div>
-					</div>
-					<div class="cell_hd cell_primary" >
-						<div  class="img-box"><img src="img/tiaokuan.png"/></div>
-						<div>条款</div>
-					</div>
-					<div class="cell_hd cell_primary" >
-						<div  class="img-box"><img src="img/baodan.png"/></div>
-						<div>电子保单</div>
-					</div>
-					<div class="cell_hd cell_primary" >
-						<div  class="img-box"><img src="img/fenxiang.png"/></div>
-						<div>发送</div>
-					</div>
-				</div>
+	<div class="cell ">
+		<div class="cell_hd cell_primary">
+			<div class="img-box">
+				<img src="img/qian1.png"/>
+			</div>
+			<div>理赔</div>
+		</div>
+		<div class="cell_hd cell_primary" >
+			<div  class="img-box">
+				<img src="img/tiaokuan.png"/>
+			</div>
+			<div>条款</div>
+		</div>
+		<div class="cell_hd cell_primary" >
+			<div  class="img-box">
+				<img src="img/baodan.png"/>
+			</div>
+			<div>电子保单</div>
+		</div>
+		<div class="cell_hd cell_primary" >
+			<div  class="img-box">
+				<img src="img/fenxiang.png"/>
+			</div>
+			<div>发送</div>
+		</div>
+	</div>
 </div>
 </div>
-
-
-
-
-
-
-
-
-

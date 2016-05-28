@@ -1,57 +1,19 @@
-* { margin: 0;padding: 0; }
-html {
-	
+* {margin: 0;padding: 0;}
+body {
+	background: #fef3d7;
 }
-body { background: #fef3d7; }
 .my_bd_controller {
 	height: auto;
-	padding: .38rem;
+	padding: .26rem;
 }
-
 .layout {
 	overflow: auto;
 }
-
 .ul_contrl li:nth-child(1){
-	float: right;
+	float: left;
 	width: 2.45rem;
 	border-bottom: 7px solid #e52f62;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
 .ul_contrl li:nth-child(1) p{
 	display: inline-block;
 	font-size: .17rem;
@@ -69,8 +31,8 @@ body { background: #fef3d7; }
 	border-bottom: 7px solid #003756;
 	font-size: .17rem;
 	color: #003756;
-}*/
-/*.logo_controller {
+}
+.logo_controller {
 	margin-top: 28px;
 	width: 100%;
 	height: 2.9rem;
@@ -173,4 +135,4 @@ img  {
 	float: right;
 	width: 2.45rem;
 	border-bottom: 7px solid #e52f62;
-}*/
+}

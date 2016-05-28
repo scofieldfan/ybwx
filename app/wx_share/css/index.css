@@ -1,22 +1,58 @@
 * {margin: 0;padding: 0;}
+/* <=320的奇葩手机 */
+@media  (max-width:320px) {
+  html {
+    font-size: 100px;
+  }
+}
+
+/* iphone 4, iphone5 */
+@media only screen and (min-device-width:320px) and (max-device-width:568px) {
+  html {
+    font-size: 100px;
+  }
+}
+
+/* iphone 6 */
+@media only screen and (min-device-width:375px) and (max-device-width:667px) {
+  html {
+    font-size: 117.18px;
+  }
+}
+
+/* iphone6 plus */
+@media only screen and (min-device-width:414px) and (max-device-width:736px) {
+  html {
+    font-size: 129.37px;
+  }
+}
 body {
 	background: #fef3d7;
 }
 .my_bd_controller {
 	height: auto;
-	padding: .26rem;
+	padding: .2rem;
 }
 .layout {
 	overflow: auto;
 }
 .ul_contrl li:nth-child(1){
 	float: left;
-	width: 2.45rem;
+	width: 1.9rem;
 	border-bottom: 7px solid #e52f62;
+	padding-bottom: .07rem;
+}
+.ul_contrl li:nth-child(2){
+	float: right;
+	width: .83rem;
+	border-bottom: 7px solid #003756;
+	font-size: .13rem;
+	color: #003756;
+	padding-bottom: .07rem;
 }
 .ul_contrl li:nth-child(1) p{
 	display: inline-block;
-	font-size: .17rem;
+	font-size: .13rem;
 }
 .ul_contrl li:nth-child(1) p:nth-child(1){
 	color: #003756;
@@ -25,17 +61,11 @@ body {
 .ul_contrl li:nth-child(1) p:nth-child(2){
 	color: #e52f62;
 }
-.ul_contrl li:nth-child(2){
-	float: right;
-	width: 1.08rem;
-	border-bottom: 7px solid #003756;
-	font-size: .17rem;
-	color: #003756;
-}
+
 .logo_controller {
-	margin-top: 28px;
+	margin-top: .15rem;
 	width: 100%;
-	height: 2.9rem;
+	height: 2.25rem;
 	background: url(../img/my_bd/logo.png) no-repeat ;
 	background-size: 100% 100%;
 	position: relative;
@@ -43,8 +73,8 @@ body {
 .button_contr {
 	position: absolute;
 	left: 0;
-	top: 1.9rem;
-	padding:0 0 0 .27rem;
+	top: 1.5rem;
+	padding:0 0 0 .18rem;
 }
 .logo_controller img {
 	width: 100%;
@@ -52,73 +82,86 @@ body {
 }
 input {
 	border: none;
-	width: 1.41rem;
-	height: .51rem;
+	width: 1.09rem;
+	height: .39rem;
 	border-radius: 5px;
 	color: #fff;
-	padding-left: .2rem;
-	font-size: .16rem;
+	padding-left: .15rem;
+	font-size: .12rem;
 }
 .input_1 {
-	background: #e52f62;
+	background: #e42f62;
 }
 .input_2 {
-	margin: 0 0 0 .19rem;
-	background: #c1af84;
+	margin: 0 0 0 .14rem;
+	background: #c2b085;
 }
 .money {
 	position: relative;
 }
-.money_song li:nth-child(1){
+.money_song li {
 	list-style: none;
-	width: .21rem;
-	height: .21rem;
+	width: .16rem;
+	height: .16rem;
 	position: absolute;
-	top: .16rem;
-	left: .48rem;
+	top: .12rem;
+}
+.money_song li:nth-child(1){
+	left: .37rem;
 }
 .money_song li:nth-child(2){
 	list-style: none;
-	width: .21rem;
-	height: .21rem;
+	width: .16rem;
+	height: .16rem;
 	position: absolute;
-	top: .16rem;
-	left: 2.11rem;
+	top: .12rem;
+	left: 1.63rem;
 }
 img  {
 	width: 100%;
 	height: 100%;
 }
 .font_controller {
-	padding: .25rem 0 .08rem 0;
+	padding: .19rem 0 0 0;
 	position: relative;
 }
 .font_controller li{
 	list-style: none;
 	color: #a08f66;
-	font-size: .14rem;
+	font-size: 12px;
+}
+.font_controller p{
+	list-style: none;
+	color: #a08f66;
+	font-size: .08rem;
+	padding-bottom: .1rem;
 }
 .font_controller img{
-	width: .17rem;
-	height: .17rem;
+	width: .13rem;
+	height: .13rem;
+	/*vertical-align: middle;*/
 }
-.font_controller p {
+.font_controller span {
 	display: inline-block;
-	font-size: .16rem;
+	font-size: .13rem;
 	color: #e52f62;
-	margin-left: .06rem;
+	margin-left: .04rem;
+	/*font-weight: bold;*/
+}
+.paddBtn_20 {
+	padding-bottom: .2rem;
 }
 .main_font {
-	width: 2.32rem;
-	height: .96rem;
+	padding-bottom: .17rem; 
+	line-height: .17rem;
 }
-
 .two_code {
-	width: .96rem;
-	height: .96rem;
+	width: .75rem;
+	height: .75rem;
 	position: absolute;
-	left: 2.64rem;
-	top: 1.22rem;
+	left: 2.05rem;
+	top: 1.3rem;
+	overflow: auto;
 }
 .two_code img {
 	width: 100%;
@@ -126,13 +169,13 @@ img  {
 }
 .footer_border li:nth-child(1) {
 	float: left;
-	width: 1.08rem;
+	width: .83rem;
 	border-bottom: 7px solid #003756;
-	font-size: .17rem;
+	font-size: .13rem;
 	color: #003756;
 }
 .footer_border li:nth-child(2) {
 	float: right;
-	width: 2.45rem;
+	width: 1.89rem;
 	border-bottom: 7px solid #e52f62;
 }

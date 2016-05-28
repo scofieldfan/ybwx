@@ -29,7 +29,9 @@ var api = {
 		'upload_policy_image': '/ybwx-web/api/upload_policy_image',
 		'get_policies_list':'/ybwx-web/api/policies',
 		'get_policy_detail':'/ybwx-web/api/policy',
+		'signature': '/ybwx-diplomat/wechat/js_signature',
 		'get_claim_info':'/ybwx-web/api/claim_info/{id}'
+
 	}
 	//测试开始，为了测试做的适配
 
@@ -60,7 +62,22 @@ var insuranceMap = {
 		'8': '保障中',
 		'9': '已失效'
 	}
+var chargePeriodTypeMap = {
+	'1':'趸交',
+	'2':'按月缴',
+	'3':'按年缴',
+	'4':'趸交和按月缴',
+	'5':'趸交和按年缴'
+}
+var chargePeriodTypeAbbreMap = {
+	'1':'趸交',
+	'2':'月',
+	'3':'年',
+	'4':'趸交和按月缴',
+	'5':'趸交和按年缴'
+}
 	/*
+}
 var insuranceMap = {
 	'1': '投保中',
 	'6': '投保成功',
@@ -348,7 +365,7 @@ function initPieConfig(sumScore, scores) {
 			"img": "img/feiji.png",
 			"isDisable": true,
 			"color": "#f0d8dc",
-			"textColor": "#c14141",
+			"textColor": "#ea8094",
 			"hoverColor": "#fffafa"
 		}, {
 			"text": "人寿",
@@ -357,7 +374,7 @@ function initPieConfig(sumScore, scores) {
 			"img": "img/yiliao.png",
 			"isDisable": true,
 			"color": "#d1e5f3",
-			"textColor": "#106491",
+			"textColor": "#60bd9b",
 			"hoverColor": "#fffefa"
 		}, {
 			"text": "健康",
@@ -366,7 +383,7 @@ function initPieConfig(sumScore, scores) {
 			"icon": "\uf1b9",
 			"img": "img/jiankang.png",
 			"color": "#c6e7db",
-			"textColor": "#719e2d",
+			"textColor": "#5796c3",
 			"hoverColor": "#fafffc"
 		}, {
 			"text": "家庭",
@@ -375,7 +392,7 @@ function initPieConfig(sumScore, scores) {
 			"icon": "\uf072",
 			"img": "img/jiating.png",
 			"color": "#e0d4e8",
-			"textColor": "#a32761",
+			"textColor": "#ac80c9",
 			"hoverColor": "#fbfdff"
 		}, {
 			"text": "财产",
@@ -384,7 +401,7 @@ function initPieConfig(sumScore, scores) {
 			"img": "img/qian.png",
 			"isDisable": true,
 			"color": "#e2dccb",
-			"textColor": "#daa013",
+			"textColor": "#d4bd78",
 			"hoverColor": "#fdfcff"
 		}
 	];

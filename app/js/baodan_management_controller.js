@@ -1,7 +1,7 @@
 var bdControllers = angular.module('baodanControllers', []);
-var api = {
-		'get_claim_info':'/ybwx-web/api/claim_info/{id}'
-	}
+
+
+
 bdControllers.controller('ybwxBDIndexCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
@@ -16,7 +16,6 @@ bdControllers.controller('ybwxBDIndexCtrl', ['$scope', '$routeParams', '$locatio
 ]);
 
 
-
 bdControllers.controller('ybwxBdEducationCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
@@ -24,6 +23,7 @@ bdControllers.controller('ybwxBdEducationCtrl', ['$scope', '$routeParams', '$loc
 ]);
 bdControllers.controller('ybwxclaim_informationCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
+
 		$scope.init = function() {
 
 			$scope.claimPromise = $http({
@@ -48,16 +48,13 @@ bdControllers.controller('ybwxclaim_informationCtrl', ['$scope', '$routeParams',
 
 
 		}
+
 	}
 ]);
 bdControllers.controller('ybwxtb_notivelCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 		
-	}
-]);
-bdControllers.controller('ybwxmy_bdlCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
-	function($scope, $routeParams, $location, $http, $rootScope) {
-		
+
 	}
 ]);
 
@@ -71,14 +68,14 @@ bdControllers.controller('ybwxbaodanManageSiteCtrl', ['$scope', '$routeParams', 
 		}
 		$scope.type = "";
 		$scope.init = function() {
-			
+
 			var code = util.getParameterByName("code");
 			if (!code) {
 				code = $routeParams.code;
 			}
 			util.getOpenId(code).then(function() {
 				var openId = sessionStorage.getItem("openId");
-				$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_policies_list'] + "?open_id=" + openId, {}, function(res) {
+				$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_policies_list'] + "?open_id=" + openId, {}, function(res) {
 					$scope.data = res.data.data;
 					$scope.typeGroup = _.groupBy(res.data.data.policies, function(item) {
 						return item.insurance_type;
@@ -113,26 +110,97 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 
 		$scope.isTest = true;
 		$scope.init = function() {
-			if ($routeParams.policy_id && $routeParams.policy_id != 'test') {
-				$scope.isTest = false;
-				var openId = sessionStorage.getItem("openId");
-				var parameters = {
-					'open_id': openId,
-					'policy_id': $routeParams.policy_id
-				}
-				$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_policy_detail'] + "?" + util.genParameters(parameters), {}, function(res) {
-					$scope.data = res.data.data;
-					console.log(res.data.data);
 
-				})
+			var code = util.getParameterByName("code");
+			if (!code) {
+				code = $routeParams.code;
 			}
-			util.uploadImgConfig(function() {
-				//alert("choose...");
+			util.getOpenId(code).then(function() {
 
+				if ($routeParams.policy_id && $routeParams.policy_id != 'test') {
+					$scope.isTest = false;
+					var openId = sessionStorage.getItem("openId");
+					if($routeParams.share_id){
+						openId = $routeParams.share_id;
+					}
+					var parameters = {
+						'open_id': openId,
+						'policy_id': $routeParams.policy_id
+					}
+					$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_policy_detail'] + "?" + util.genParameters(parameters), {}, function(res) {
+						$scope.data = res.data.data;
+						console.log(res.data.data);
+						$(".bd-wrapper").show();
+					})
+				}
+				$scope.shareConfig();
 			});
-
+			//util.uploadImgConfig(function() {
+			//alert("choose...");
+			//});
 		}
+		$scope.goClaimInfo = function(claim_id){
+			$location.path('/claim_information').search({
+				'claim_id': claim_id
+			});
+		}	
 
+		$scope.getChargePeroidTypeAbbre = function(type){
+			return chargePeriodTypeAbbreMap[type];
+		}
+		$scope.getChargePeroidType = function(type){
+			return chargePeriodTypeMap[type];
+		}
+		$scope.showTip = function(){
+			$("#share").show();
+		}
+		$scope.shareConfig = function() {
+			var openId = sessionStorage.getItem("openId");
+			var params = {
+				'policy_id': $routeParams.policy_id,
+				'share_id': openId
+			}
+			var paramStr = util.genParameters(params);
+			var shareUrl = "http://web.youbaowuxian.com/#bdm_detail?" + paramStr;
+			$scope.thirdPromise = getHttpPromise($http, $rootScope, 'GET', api['signature'] + "?url=" + encodeURIComponent(location.href.split('#')[0]), {}, function(res) {
+				console.log(res);
+				wx.config({
+					debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+					appId: res.data.data["app_id"], // 必填，公众号的唯一标识
+					timestamp: res.data.data["timestamp"], // 必填，生成签名的时间戳
+					nonceStr: res.data.data["noncestr"], // 必填，生成签名的随机串
+					signature: res.data.data["signature"], // 必填，签名，见附录1
+					jsApiList: ['previewImage', 'onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone']
+				});
+				wx.ready(function() {
+					console.log("wexin success....")
+					// config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+					var shareTitle = "我的保单";
+					var shareLink = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri=' + encodeURIComponent(shareUrl) + '&response_type=code&scope=snsapi_base&state=123#wechat_redirect';
+					//var shareLink = shareUrl;
+					var shareDesc = "这是我在诺贝保险管家的保单";
+					var shareImg = "http://web.youbaowuxian.com/img/icon.jpg";
+
+					wx.onMenuShareTimeline({
+						title: shareTitle,
+						link: shareLink,
+						imgUrl: shareImg,
+						success: function() {},
+						cancel: function() {}
+					});
+					wx.onMenuShareAppMessage({
+						title: shareTitle,
+						desc: shareDesc,
+						link: shareLink,
+						imgUrl: shareImg,
+						dataUrl: '',
+						success: function() {},
+						cancel: function() {}
+					});
+				});
+
+			})
+		}
 		$scope.preview = function() {
 			wx.previewImage({
 				current: $scope.data.image_urls[0], // 当前显示图片的http链接

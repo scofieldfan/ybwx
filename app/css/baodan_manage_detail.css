@@ -1,0 +1,141 @@
+.wrapper{
+		padding:0.13rem;
+		position: relative;
+		color:#555555;
+		
+	}
+	.yanzhen{
+		background: url(img/yiyanzhen.png) no-repeat right top;
+		background-size:100px;
+	}
+	.blue{
+		color:#588dd4;
+	}
+	.gray{
+		color:#999999;
+	}
+	.contai-er{
+		border: 1px solid #e2e2e2;
+		padding: 0.05rem;
+		background-color: #fff;
+		box-shadow: 0 0 1px 1px #e2e2e2;
+	}
+	.sub-container{
+		border: 5px solid #c3d7f2;
+		padding: 0.05rem;
+	}
+	.title{
+		color:#000;
+		font-weight: bold;
+		font-size:0.18rem;
+		text-align: center;
+		position: relative;
+	}
+	.logo{
+		position: absolute;
+		top:50%;
+		left:0rem;
+		margin-top: -9px;
+	}
+	.example{
+		font-size: 0.2rem;
+		color:#ff5c00;
+		text-align: center;
+		border-bottom: 1px solid #588dd4;
+	}
+	.bd-number{
+		margin-top: 0.2rem;
+	}
+	.insured-name{
+		overflow: hidden;line-height: 0.3rem;height:0.3rem;
+	}
+	.insured-item{
+		line-height: 0.3rem;height:0.3rem;
+	}
+	.score{
+		float:right;
+		font-size: 0.25rem;
+		color:#1e4e8e;
+	}
+
+	table {
+	  width: 100%;
+	  border-collapse: collapse;
+	}
+	table td, table th {
+	  padding: 0.07rem;
+	  vertical-align:top;
+	  font-weight: normal;
+	}
+	.bd_th{
+	 	background-color: #f5f5f5;
+	}
+	
+	.bd_tr{
+	  border-bottom:1px solid #e2e2e2;
+	  text-align: left;
+	}
+	.right-border{
+		border-right:1px solid #e2e2e2;
+	}
+
+	.bd-wrapper{
+		background-color: #fff;
+		/*padding:0.13rem;*/
+		border-bottom:1px solid #e2e2e2;
+		margin-bottom:70px;
+
+	}
+	.bd-name{
+		height:0.3rem;
+		line-height: 0.3rem;
+		padding:0.13rem;
+		border-bottom:1px solid #e2e2e2;
+	}
+	.bd-pic-container{
+		background-color: #fff;
+		margin:15px;
+		padding:3px;
+		width:120px;
+		height:150px;
+		overflow: hidden;
+		border:1px solid #efefef;
+		box-shadow: 0 0 1px 2px #efefef;
+		position: relative;
+	}
+	.bd-pic-container .number{
+		background-color: rgba(0,0,0,0.5);
+		color:#fff;
+		position: absolute;
+		bottom:3px;
+		right:3px;
+		width:35px;
+		text-align: center;
+	}
+	.bd-pic-container img{
+		width:100%;
+		height:150px;
+	}
+	.tail-container {
+		position: fixed;
+		bottom:0;
+		background-color: #f5f5f5;
+		color:#555;
+		z-index: 200000;
+	}
+	.cell{
+		background-color: #fff;
+	}
+	.cell_hd{
+		text-align: center;
+		height:65px ;
+	}
+	.cell_hd .img-box{
+		height: 25px;
+	}
+	.cell_hd img{
+		width:20px;
+	}
+	.cell_hd:active{
+		background-color: #f0f0f0;
+	}

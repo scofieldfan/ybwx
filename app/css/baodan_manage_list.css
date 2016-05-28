@@ -24,14 +24,18 @@ header .right {
 	margin: .09rem 0 0 .8rem;
 }
 header .title {
-	font-size: 0.18rem;
+	font-size: 0.19rem;
 	font-weight: bold;
 }
 header .subtitle {
 	font-size: 0.15rem;
 	margin-top: 8px;
 }
-header span {
+.subtitle .yuan{
+	font-size: 0.19rem;
+}
+.subtitle .money{
+	color:#588dd4;
 	font-weight: bold;
 }
 .container {
@@ -68,13 +72,12 @@ header span {
 .container li {
 	position: relative;
 	box-shadow: 1px 0px 1px #ccc;
-	overflow: hidden;
 	margin-bottom: 0.12rem;
 }
 .container .wrapper {
 	position: relative;
 	background-color: #fff;
-	padding: 0.05rem 0.13rem;
+	padding: 0.05rem 0 0 0.13rem;
 	overflow: hidden;
 }
 .container .bg {
@@ -85,6 +88,17 @@ header span {
 	background-color: #588dd4;
 	width: 0.13rem;
 }
+.container .shadow{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	height:5px;
+	background-color: #588dd4;
+	width:100%;
+	z-index: -1;
+	background: -webkit-linear-gradient(top, #dadada,#f1f1f1 );
+}
+
 .container .title {
 	color: #555555;
 	font-size: 0.2rem;
@@ -135,10 +149,16 @@ header span {
 	position: relative;
 	color: #588dd4;
 	font-size: 0.15rem;
-	padding: 0.13rem;
+	padding: 0.1rem 0 0.17rem 0;
 	overflow: hidden;
+
 }
-.sub-container span {
+
+.sub-container .bd-score{
+	float:left;
+	padding-left: 0.13rem;
+}
+.sub-container .bd-score span{
 	font-size: 0.25rem;
 	font-weight: bold;
 }
@@ -151,23 +171,26 @@ header span {
 	background-color: #fff;
 	color: #ff5c00;
 	font-size: 0.17rem;
+	margin-right: 0.2rem;
 }
 .bottom {
 	border-top: 1px solid #d2d2d2;		/*border-bottom:1px solid #d2d2d2;*/
-	height: 8px;
+	height: 0.08rem;
 	background-color: #fff;
 	position: absolute;
-	bottom: 2px;
-	width: 100%;
-	left: 4px;
+	bottom: 0.02rem;
+	width: 99%;
+	left: 1%;
+	/*background: -webkit-linear-gradient(top,white 90%, #dadada 95%);*/
 }
-.bottom>div {
+.bottom .linebox {
 	border-top: 1px solid #d2d2d2;
 	border-bottom: 1px solid #d2d2d2;
 	background-color: #fff;
-	height: 2px;
-	margin: 2px 0;
+	height: 0.02rem;
+	margin: 0.02rem 0;
 }
+
 .example {
 	font-size: 0.25rem;
 	color: #ff5c00;

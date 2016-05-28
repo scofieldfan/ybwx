@@ -227,10 +227,6 @@ ybwxControllers.controller('ybwxPaySelectNewCtrl', ['$scope', '$filter', '$route
     $scope.insurance_plan_name = $routeParams.insurance_plan_name;
     $scope.order_amount = $routeParams.order_amount;
 
-
-
-
-
     $scope.plans =  JSON.parse(sessionStorage.getItem("sell_plan"));
 
     console.log($scope.plans);
@@ -246,16 +242,13 @@ ybwxControllers.controller('ybwxPaySelectNewCtrl', ['$scope', '$filter', '$route
       $scope.order_amount = 1;
     }
 
-
-
-
     //$scope.order_amount = 1;
     $scope.order_id = $routeParams.order_id;
     $scope.order_no = $routeParams.order_no;
 
     $scope.submit = function() {
       //console.log("submit....");
-      _hmt.push(['_trackEvent', 'pay_subBtn']);
+      _hmt.push(['_trackEvent', 'pay', 'pay_subBtn']);
       var channelType = $(".pay_container").find(".choose").attr("data-channel-type");
 
       if (channelType == "1") { //银行卡支付
@@ -281,7 +274,7 @@ ybwxControllers.controller('ybwxPaySelectNewCtrl', ['$scope', '$filter', '$route
       }
       var openId = sessionStorage.getItem("openId");
       var channelType = $(".pay_container").find(".choose").attr("data-channel-type");
-      _hmt.push(['_trackEvent', 'pay_select_' + channelType]);
+      _hmt.push(['_trackEvent', 'pay', 'pay_select'+channelType]);
       if (channelType == "1" && $scope.redirectUrl) {
         return;
       }
@@ -320,6 +313,8 @@ ybwxControllers.controller('ybwxPaySelectNewCtrl', ['$scope', '$filter', '$route
   }
 ]);
 
+
+/*
 ybwxControllers.controller('ybwxPaySelectCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
   function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 
@@ -328,14 +323,11 @@ ybwxControllers.controller('ybwxPaySelectCtrl', ['$scope', '$filter', '$routePar
     $scope.insurance_plan_name = $routeParams.insurance_plan_name;
     $scope.order_amount = $routeParams.order_amount;
 
-
     //测试
     var isTest =  sessionStorage.getItem("is_test");
     if (isTest === 'true' ) {
       $scope.order_amount = 1;
     }
-
-
 
     //$scope.order_amount = 1;
     $scope.order_id = $routeParams.order_id;
@@ -359,7 +351,6 @@ ybwxControllers.controller('ybwxPaySelectCtrl', ['$scope', '$filter', '$routePar
       }
 
     }
-
     $scope.pay = function($event) {
       //获取支付信息
       if ($event) {
@@ -407,6 +398,8 @@ ybwxControllers.controller('ybwxPaySelectCtrl', ['$scope', '$filter', '$routePar
     $scope.pay();
   }
 ]);
+
+*/
 
 
 ybwxControllers.controller('ybwxSuccessCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
