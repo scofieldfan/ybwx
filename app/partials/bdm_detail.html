@@ -21,15 +21,15 @@
 						<div class="score">{{data.score | number:2}}分</div>
 					</div>
 					<div class="insured-item">
-						<span class="gray">缴费方式</span>
+						<span class="gray">缴费方式：</span>
 						{{getChargePeroidType(data.charge_period_type)}}
 					</div>
 					<div class="insured-item" ng-if="data.charge_period">
-						<span class="gray">缴费期间</span>
+						<span class="gray">缴费期间：</span>
 						{{data.charge_period}}{{getChargePeroidTypeAbbre(data.charge_period_type)}}
 					</div>
 					<div class="insured-item" ng-if="data.charge_date">
-						<span class="gray">缴费时间</span>
+						<span class="gray">缴费时间：</span>
 						{{data.charge_date}}
 					</div>
 
