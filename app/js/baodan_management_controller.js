@@ -146,11 +146,11 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 				wx.ready(function() {
 					console.log("wexin success....")
 					// config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
-					var shareTitle = "诺贝保险管家！";
+					var shareTitle = "我的保单";
 					var shareLink = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri=' + encodeURIComponent(shareUrl) + '&response_type=code&scope=snsapi_base&state=123#wechat_redirect';
 					//var shareLink = shareUrl;
-					var shareDesc = "诺贝保险管家，我的保单！";
-					var shareImg = "http://web.youbaowuxian.com/wx_share/img/share.jpg";
+					var shareDesc = "这是我在诺贝保险管家的保单";
+					var shareImg = "http://web.youbaowuxian.com/img/icon.jpg";
 
 					wx.onMenuShareTimeline({
 						title: shareTitle,
