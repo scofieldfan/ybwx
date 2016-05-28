@@ -73,6 +73,7 @@ header .subtitle {
 	position: relative;
 	box-shadow: 1px 0px 1px #ccc;
 	margin-bottom: 0.12rem;
+	overflow: hidden;
 }
 .container .wrapper {
 	position: relative;
@@ -179,8 +180,8 @@ header .subtitle {
 	background-color: #fff;
 	position: absolute;
 	bottom: 0.02rem;
-	width: 99%;
-	left: 1%;
+	width: 100%;
+	left:0.05rem;
 	/*background: -webkit-linear-gradient(top,white 90%, #dadada 95%);*/
 }
 .bottom .linebox {
