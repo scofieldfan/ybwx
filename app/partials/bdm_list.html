@@ -20,7 +20,7 @@
 		意外
 		<span>{{typeGroup[4].length}}</span>
 	</div>
-	<div class="cell_hd  cell_primary "   ng-class='{"select":type=="3"}' ng-click='type="3"' >
+	<div class="cell_hd  cell_primary "   ng-class='{"select":type=="3"}' ng-click='type=3' >
 		人寿
 		<span>{{typeGroup[3].length}}</span>
 	</div>
@@ -30,7 +30,7 @@
 	</div>
 	<div class="cell_hd  cell_primary "  ng-class='{"select":type=="1"}' ng-click='type="1"'  >
 		家庭	
-		<span>{{typeGroup[2].length}}</span>
+		<span>{{typeGroup[1].length}}</span>
 	</div>
 	<div class="cell_hd  cell_primary "  ng-class='{"select":type=="5"}' ng-click='type="5"' >
 		财产
@@ -75,7 +75,7 @@
 						<span>{{policy.score | number:2}}</span>
 						分
 					</div>
-					<div class="pei_button" >理赔</div>
+					<div class="pei_button" ng-click="goClaimInfo(policy.claim_info_id )">理赔</div>
 				</div>
 			</div>
 			<div class="bottom">

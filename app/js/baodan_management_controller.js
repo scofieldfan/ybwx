@@ -37,7 +37,7 @@ bdControllers.controller('ybwxclaim_informationCtrl', ['$scope', '$routeParams',
 				if (res && res.data && res.data.data) {
 					$scope.data = res.data.data;
 					$scope.data.items.forEach(function(item){
-						item.processData = item.data.split("\r\n");
+						item.processData = item.data.split("\|");
 					})
 					// 一行显示
 				}
@@ -95,6 +95,11 @@ bdControllers.controller('ybwxbaodanManageSiteCtrl', ['$scope', '$routeParams', 
 				return true;
 			}
 		};
+		$scope.goClaimInfo = function(claim_id){
+			$location.path('/claim_information').search({
+				'claim_id': claim_id
+			});
+		}	
 		$scope.goDetail = function(id) {
 			$location.path('/bdm_detail').search({
 				policy_id: id
