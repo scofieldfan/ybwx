@@ -9,8 +9,8 @@
 	</ul>
 	<div class="logo_controller">
 		<div class="button_contr">
-			<input class="input_1" type="button" value="免费领取">
-			<input class="input_2" type="button" value="送给好友">
+			<input class="input_1" ng-click="addCoupon()"type="button" value="免费领取">
+			<input class="input_2" ng-click="showShareTip()" type="button" value="送给好友">
 			<div class="money_song">
 				<li><img src="img/my_bd/money.png"></li>
 				<li><img src="img/my_bd/song.png"></li>
@@ -19,7 +19,7 @@
 	</div>
 	<div class="font_controller">
 		<img src="img/my_bd/bx_logo.jpg"><p>最高可领12份</span></p>
-		<li>每送给3个好友，可再免费领取1份，最高可领取12份。(已有20位好友已成功领取)</li>
+		<li>每送给3个好友，可再免费领取1份，最高可领取12份。(已有<span class="recommend_times">{{data.recommend_items}}</span>位好友已成功领取)</li>
 		<img src="img/my_bd/bx_logo.jpg"><p>领取后请前微信号 [诺贝] 投保</p>
 		<div class=" main_font left">
 			<li>1.长按右侧二维码关注 [诺贝]</li>

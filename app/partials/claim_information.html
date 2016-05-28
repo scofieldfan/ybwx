@@ -1,20 +1,8 @@
 <link rel="stylesheet" href="css/claim_information.css">
 
-<ul class="claim_controller">
-	<li>
-		<p><img src="img/claim_information/logo.jpg" alt="">官网</p>
-		<a href="###">中国平安保险网</a>
-	</li>
-	<li>
-		<p><img src="img/claim_information/logo.jpg" alt="">协会</p>
-		<a href="###">中国保险行业协会官网</a>
-	</li>
-	<li>
-		<p><img src="img/claim_information/logo.jpg" alt="">协议</p>
-		<a class="content" href="###">保险利益是指投保险标的具有的法律上承认的利益。通常投保人会因为保险标的的损害或者丧失早熟经济上的损失。</a>
-	</li>
-	<li>
-		<p><img src="img/claim_information/logo.jpg" alt="">客服</p>
-		<a href="###">中国平安保险客服</a>
+<ul class="claim_controller" data-ng-init="init()" >
+	<li ng-repeat="item in data.items">
+		<p><img src="img/claim_information/logo.jpg" ><span>{{item.title}}</span></p>
+		<a  ng-class='{"content":!item.url}' href="javascript:void(0)" ng-repeat="description in item.processData">{{description}}</a>
 	</li>
 </ul>

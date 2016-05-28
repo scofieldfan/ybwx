@@ -1,7 +1,7 @@
 var bdControllers = angular.module('baodanControllers', []);
-
-
-
+var api = {
+		'get_claim_info':'/ybwx-web/api/claim_info/{id}'
+	}
 bdControllers.controller('ybwxBDIndexCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
@@ -24,7 +24,30 @@ bdControllers.controller('ybwxBdEducationCtrl', ['$scope', '$routeParams', '$loc
 ]);
 bdControllers.controller('ybwxclaim_informationCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
-		
+		$scope.init = function() {
+
+			$scope.claimPromise = $http({
+				method: 'GET',
+				headers: {
+					"Content-Type": "application/json;charset:UTF-8"
+				},
+				url: api['get_claim_info'].replace("{id}",$routeParams.claim_id)
+			}).then(function(res) {
+				console.log(res);
+				if (res && res.data && res.data.data) {
+					$scope.data = res.data.data;
+					$scope.data.items.forEach(function(item){
+						item.processData = item.data.split("\r\n");
+					})
+					// 一行显示
+				}
+			}, function(res) {
+				console.log(res);
+				util.showToast($rootScope, "服务器错误");
+			});
+
+
+		}
 	}
 ]);
 bdControllers.controller('ybwxtb_notivelCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
