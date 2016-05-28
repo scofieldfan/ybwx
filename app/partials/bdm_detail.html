@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="css/baodan_manage_detail.css?rev=97c84b3f77a893807ff5d77ab4acbbc8">
+<link rel="stylesheet" type="text/css" href="css/baodan_manage_detail.css?rev=84a58209fb913ce483314a096d15119d">
 <div ng-if="isTest == false"  cg-busy="loadingPromise" style="margin-bottom:70px;">
 	<div class="wrapper " id="my_baodan">
 		<img src="img/yiyanzhen.png" style="position: absolute;top:9px;right:11px;width:70px;z-index: 5;display: none">
@@ -45,7 +45,7 @@
 						<td>
 							<span class="gray">{{item.name}}</span>
 						</td>
-						<td class="right-border blue">{{item.sum_insured}}</td>
+						<td class="right-border blue">{{processMoney(item.sum_insured)}}</td>
 						<td ng-if="$index==0" rowspan="{{data.coverages.length}}" class="blue" style="vertical-align: middle;text-align: center;">
 							{{data.premium}}
 							<br/>
@@ -55,8 +55,15 @@
 					<tr class="bd_tr">
 						<td>
 							<span class="gray">保障期限</span>
+							<div class="bd-effective">
+								<img src="img/cover.png"  ng-show="data.effective" />
+								<img src="img/shixiao.png"   ng-show="!data.effective" />
+							</div>
 						</td>
-						<td colspan="2">{{data.coverageDate}}</td>
+						<td colspan="2">
+						{{data.coverageDate}}
+						
+						</td>
 					</tr>
 				</table>
 
@@ -300,8 +307,7 @@
 			<div class="number">88张</div>
 		</div>
 	</div>
-</div>
-<div class="tail-container">
+	<div class="tail-container">
 	<div class="cell ">
 		<div class="cell_hd cell_primary">
 			<div class="img-box">
@@ -328,4 +334,6 @@
 			<div>发送</div>
 		</div>
 	</div>
+</div>
+
 </div>

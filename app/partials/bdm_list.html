@@ -1,17 +1,17 @@
-<link rel="stylesheet" type="text/css" href="css/baodan_manage_list.css?rev=ddc954bb0a58c108eefb60a155d578ff">
+<link rel="stylesheet" type="text/css" href="css/baodan_manage_list.css?rev=aec10a661ebeaae1d6eade7e7cbe1d10">
 <header>
 	<div class="left">
 		<!--
 		<img src="../img/toubao_type.jpg"  />
 		-->
-			<img src="../img/ren.png"  />
+			<img src="../img/nuo.png"  />
 	
 	</div>
 	<div class="right">
 		<div class="title">诺贝用户</div>
 		<div class="subtitle">
-			总保费 {{data.total_premium}}<span class="yuan">元</span> &emsp;综合评分
-			<span class="money">{{data.total_score}}</span>
+			总保费 {{data.total_premium}}元 &emsp;综合评分
+			<span class="money">{{data.total_score | number:2}}</span>
 		</div>
 	</div>
 </header>
@@ -41,7 +41,7 @@
 <div class="container"  cg-busy="loadingPromise">
 	<ul >
 
-		<li  ng-if="data.un_settled_policies_amount > 0" style="">
+		<li class="default-li"  ng-if="data.un_settled_policies_amount > 0">
 			<div class="wrapper" style="padding:0.2rem 0">
 				<div class="bg"></div>
 				<div class="process-container-left">
@@ -63,9 +63,14 @@
 					<img class="logo" ng-src="{{policy.icon}}"   />
 					<div style="margin-right: 1rem;">
 						<div class="product">{{policy.name}}</div>
-						<div class="time"><img src="img/clock.jpg"/>2016.03.03-2016.04.05</div>
+						<div class="time"><img src="img/clock.jpg"/> 2016.03.03-2016.04.05</div>
 					</div>
 					<div style="clear:both;"></div>
+
+					<div class="bd-effective">
+								<img src="img/cover.png"  ng-show="policy.effective" />
+								<img src="img/shixiao.png"   ng-show="!policy.effective" />
+					</div>
 					<!--
 					<div class="status success"></div>
 					-->

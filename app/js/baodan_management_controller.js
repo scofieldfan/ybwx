@@ -114,6 +114,10 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
 		$scope.isTest = false;
+		
+		$scope.processMoney = function(money) {
+			return util.processSpecialMoney(money);
+		}
 		$scope.init = function() {
 
 			var code = util.getParameterByName("code");
