@@ -6,7 +6,7 @@
 			<div class="sub-container">
 				<div class="title">
 					<p class="logo">
-						<img style="width:50px" ng-src="{{data.icon}}"/>
+						<img  ng-src="{{data.icon}}"/>
 					</p>
 					{{data.name}}
 				</div>
@@ -18,7 +18,7 @@
 					<div class="insured-item">
 						<span class="gray">被保人：</span>
 						{{data.insured_people_name}}
-						<div class="score">{{data.score}}分</div>
+						<div class="score">{{data.score | number:2}}分</div>
 					</div>
 					<div class="insured-item">
 						<span class="gray">缴费方式</span>
