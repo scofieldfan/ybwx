@@ -25,7 +25,6 @@ bdControllers.controller('ybwxclaim_informationCtrl', ['$scope', '$routeParams',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
 		$scope.init = function() {
-
 			$scope.claimPromise = $http({
 				method: 'GET',
 				headers: {
@@ -39,19 +38,22 @@ bdControllers.controller('ybwxclaim_informationCtrl', ['$scope', '$routeParams',
 					$scope.data.items.forEach(function(item){
 						item.processData = item.data.split("\r\n");
 					})
-					// 一行显示
+					// 折行显示
 				}
 			}, function(res) {
 				console.log(res);
 				util.showToast($rootScope, "服务器错误");
 			});
-
-
 		}
-
 	}
 ]);
 bdControllers.controller('ybwxtb_notivelCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $routeParams, $location, $http, $rootScope) {
+		
+
+	}
+]);
+bdControllers.controller('ybwxflexCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 		
 
