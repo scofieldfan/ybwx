@@ -460,6 +460,7 @@ overflow: hidden;
   bottom: 1rem;
   z-index: 1000000;
 }
+/*
 .wx-tip {
     position: absolute;
     position: fixed;
@@ -468,7 +469,19 @@ overflow: hidden;
     bottom: 0;
     left: 0;
     right: 0;
-    background: url("../../img/share_word.png") no-repeat;
+    background: url("../../img/share_tip.png") no-repeat;
+    -webkit-background-size: 100% auto;
+    -moz-background-size: 100% auto;
+    background-size: 100% auto;
+}
+*/
+.wx-tip {
+    margin:0 auto;
+    z-index: 10000;
+    top: 20px;
+    width:200px;
+    height:103px;
+    background: url("../../img/share_tip.png") no-repeat center;
     -webkit-background-size: 100% auto;
     -moz-background-size: 100% auto;
     background-size: 100% auto;

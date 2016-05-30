@@ -90,10 +90,13 @@ ybwxApp.config(['$routeProvider',
     }).when('/bd_pic', {
       templateUrl: 'partials/bd_pic.html',
       controller: 'ybwxBDPicCtrl'
-    }).when('/test', {
+    })
+    /*
+    .when('/test', {
       templateUrl: 'partials/test.html',
       controller: 'ybwxTestCtrl'
-    }).when('/bd_education', {
+    })*/
+    .when('/bd_education', {
       templateUrl: 'partials/bd_education.html',
       controller: 'ybwxBdEducationCtrl'
     }).when('/offical', {
@@ -101,7 +104,7 @@ ybwxApp.config(['$routeProvider',
       controller: 'ybwxOfficalSiteCtrl'
     }).when('/bdm_list', {
       templateUrl: 'partials/bdm_list.html',
-      controller: 'ybwxbaodanManageSiteCtrl'
+      controller: 'ybwxbaodanManageListCtrl'
     }).when('/bdm_detail', {
       templateUrl: 'partials/bdm_detail.html',
       controller: 'ybwxbaodanMDetailSiteCtrl'
@@ -110,6 +113,28 @@ ybwxApp.config(['$routeProvider',
     });
   }
 ]);
+/*
+ybwxApp.service('payInfo', function() {
+    var data = {};
+
+    var setPayInfo = function (orderId,channelType,info) {
+        if(!data[orderId]){
+           data[orderId] = {};
+        }
+        data[orderId][channelType] = info;
+    }
+    var getPayInfo = function(orderId,channelType){
+        if(data[orderId]){
+            return data[orderId][channelType];
+        }else{
+          return {};
+        }
+    }
+    return {
+        setPayInfo:setPayInfo,
+        getPayInfo:getPayInfo
+    }
+});*/
 /*
     .when('/tb', {
       templateUrl: 'partials/toubao.html?v=123',

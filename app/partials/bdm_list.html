@@ -1,38 +1,38 @@
-<link rel="stylesheet" type="text/css" href="css/baodan_manage_list.css?rev=4f85e7410378e0ec9e868a7af76ce7a0">
+<link rel="stylesheet" type="text/css" href="css/baodan_manage_list.css?rev=3cc70e3837a9c889e97970a313e222b6">
 <header>
 	<div class="left">
 		<!--
 		<img src="../img/toubao_type.jpg"  />
+			<img src="../img/nuo.png"  />
 		-->
-			<img src="../img/ren.png"  />
-	
+		<img ng-src="{{data.image}}"  />
 	</div>
 	<div class="right">
-		<div class="title">诺贝用户</div>
+		<div class="title">{{data.nickname}}</div>
 		<div class="subtitle">
-			总保费 {{data.total_premium}}<span class="yuan">元</span> &emsp;综合评分
-			<span class="money">{{data.total_score}}</span>
+			总保费 {{data.total_premium}}元 &emsp;综合评分
+			<span class="money">{{data.total_score | number:2}}</span>
 		</div>
 	</div>
 </header>
 <div class="cell nav" style="color:#555555">
-	<div class="cell_hd  cell_primary "  ng-class='{"select":type=="4"}' ng-click='type="4"' >
+	<div class="cell_hd  cell_primary "  ng-class='{"select":type=="4"}' ng-click='setType("4")' >
 		意外
 		<span>{{typeGroup[4].length}}</span>
 	</div>
-	<div class="cell_hd  cell_primary "   ng-class='{"select":type=="3"}' ng-click='type="3"' >
+	<div class="cell_hd  cell_primary "   ng-class='{"select":type=="3"}' ng-click='setType("3")' >
 		人寿
 		<span>{{typeGroup[3].length}}</span>
 	</div>
-	<div class="cell_hd  cell_primary "  ng-class='{"select":type=="2"}' ng-click='type="2"'  >
+	<div class="cell_hd  cell_primary "  ng-class='{"select":type=="2"}' ng-click='setType("2")'  >
 		健康
 		<span>{{typeGroup[2].length}}</span>
 	</div>
-	<div class="cell_hd  cell_primary "  ng-class='{"select":type=="1"}' ng-click='type="1"'  >
+	<div class="cell_hd  cell_primary "  ng-class='{"select":type=="1"}' ng-click='setType("1")'  >
 		家庭	
-		<span>{{typeGroup[2].length}}</span>
+		<span>{{typeGroup[1].length}}</span>
 	</div>
-	<div class="cell_hd  cell_primary "  ng-class='{"select":type=="5"}' ng-click='type="5"' >
+	<div class="cell_hd  cell_primary "  ng-class='{"select":type=="5"}' ng-click='setType("5")' >
 		财产
 		<span>{{typeGroup[5].length}}</span>
 	</div>
@@ -41,7 +41,7 @@
 <div class="container"  cg-busy="loadingPromise">
 	<ul >
 
-		<li  ng-if="data.un_settled_policies_amount > 0" style="">
+		<li class="default-li"  ng-if="data.un_settled_policies_amount > 0">
 			<div class="wrapper" style="padding:0.2rem 0">
 				<div class="bg"></div>
 				<div class="process-container-left">
@@ -54,33 +54,40 @@
 			</div>
 		</li>
 
-		<li ng-click="goDetail(policy.id)"   ng-repeat="policy in filtered = (data.policies |filter:filterFn )">
-			<div class="wrapper">
+		<li class="default-li" ng-click="goDetail(policy.id)"   ng-repeat="policy in filtered = (data.policies |filter:filterFn )">
 				<div class="bg"></div>
+			<div class="wrapper">
 				<div class="shadow"></div>
 				<div class="title">保单号:{{policy.policy_no}} <!--<span class="example">示例保单</span>--></div>
 				<div class="des ">
 					<img class="logo" ng-src="{{policy.icon}}"   />
 					<div style="margin-right: 1rem;">
 						<div class="product">{{policy.name}}</div>
-						<div class="time"><img src="img/clock.jpg"/>2016.03.03-2016.04.05</div>
+						<div class="time"><img src="img/clock.jpg"/> 2016.03.03-2016.04.05</div>
 					</div>
 					<div style="clear:both;"></div>
+
+					<div class="bd-effective">
+								<img src="img/cover.png"  ng-show="policy.effective" />
+								<img src="img/shixiao.png"   ng-show="!policy.effective" />
+					</div>
 					<!--
 					<div class="status success"></div>
 					-->
 				</div>
 				<div class="sub-container">
 					<div class="bd-score">
-						<span>{{policy.score}}</span>
+						<span>{{policy.score | number:2}}</span>
 						分
 					</div>
-					<div class="pei_button" >理赔</div>
+					<div class="pei_button" ng-click="goClaimInfo(policy.claim_info_id )">理赔</div>
 				</div>
 			</div>
 			<div class="bottom">
+				<!---->
 				<div class="linebox">
 				</div>
+				
 			</div>
 		</li>
 	

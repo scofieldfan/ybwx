@@ -30,12 +30,16 @@
 		font-size:0.18rem;
 		text-align: center;
 		position: relative;
+		overflow: hidden;
 	}
 	.logo{
-		position: absolute;
-		top:50%;
+		top:0;
 		left:0rem;
-		margin-top: -9px;
+		float:left;
+		margin: 0;
+	}
+	.logo >img{
+		width:0.65rem;
 	}
 	.example{
 		font-size: 0.2rem;
@@ -81,10 +85,16 @@
 
 	.bd-wrapper{
 		background-color: #fff;
-		/*padding:0.13rem;*/
 		border-bottom:1px solid #e2e2e2;
-		margin-bottom:70px;
-
+	}
+	.bd-effective{
+		position: relative;
+	}
+	.bd-effective img{
+		position: absolute;
+		top:0.1rem;
+		left:0.5rem;
+		width:0.8rem;
 	}
 	.bd-name{
 		height:0.3rem;

@@ -1,16 +1,21 @@
 <style>
-.bd_container,.bd_tail_container{
-	padding:0 0.26rem;
+body{
+	background-color: #f5f5f5;
 }
 .bd_container{
-	margin-top:0.51rem;
-	margin-bottom:0.51rem;
+	padding:0.51rem 0.26rem 0.31rem;
+	
+	/*background-color: #fff;*/
 }
 .bd_tail_container{
-	
-	margin-bottom: 0.5rem;
+	padding:0 0.26rem;
+}
+
+.bd_tail_container{
+	margin-bottom: 0.26rem;
 	text-align: center;
-	border-top: 1px solid #e2e2e2;
+	/*border-top: 1px solid #e2e2e2;*/
+	background-color: #f5f5f5;
 }
 .bd_tail_container >div {
 	border:1px solid #1e4e8e;
@@ -32,29 +37,31 @@
 	border:1px solid #cccccc;
 	background-color:#fff;
 	color:#1e4e8e;
-	height:0.65rem;
-	line-height: 0.65rem;
+	/*height:0.65rem;*/
+	/*line-height: 0.65rem;*/
 }
 .big-btn{
 	height:0.65rem;
 	line-height: 0.65rem;
 }
 
-
+.btn_up_primary{
+	background-color: #1e4e8e;
+	color: #fff;
+}
 </style>
-
 <div class="bd_container" >
 	<div class="cell ">
-		<a href="javascript:void(0)" id="chooseImage" ng-click="goUpload('1')" class="btn btn_dark_primary big-btn" >上传我的保单照片</a>
+		<a href="javascript:void(0)" id="chooseImage" ng-click="goUpload('1')" class="btn btn_up_primary " >上传我的保单照片</a>
 	</div>
 	<div class="cell " style="margin-top: 0.26rem">
-		<a href="javascript:void(0)" id="chooseImage" ng-click="goUpload('2')" class="btn special-btn" >上传他人保单照片</a>
+		<a href="javascript:void(0)" id="chooseImage" ng-click="goUpload('2')" class="btn special-btn" >上传家人保单照片</a>
 	</div>
 </div>
 <div class="bd_tail_container" >
-	<p class="title" >如何拍照</p>
-	<p class="subtitle">注：请拍清保单下的以下信息</p>
+	<p class="title" >如何拍摄保单照片</p>
+	<!-- <p class="subtitle">注：请拍清保单下的以下信息</p> -->
 	<div >
-		<img src="img/baodan.jpg" style="width:100%;">		
+		<img src="img/baodan_3.jpg" style="width:100%;">		
 	</div>
 </div>

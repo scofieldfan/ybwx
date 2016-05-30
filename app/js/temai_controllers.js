@@ -10,9 +10,9 @@ ybwxControllers.controller('wxListCtrl', ['$scope', '$routeParams', '$location',
   function($scope, $routeParams, $location, $http, $rootScope) {
     _hmt.push(['_trackPageview', $location.path()]);
 
-   
+
     setTest($routeParams.is_test);
-    
+
     $scope.init = function() {
       var code = util.getParameterByName("code");
       if (!code) {
@@ -218,29 +218,40 @@ ybwxControllers.controller('wxDetailCtrl', ['$scope', '$routeParams', '$location
   }
 ]);
 
+
 ybwxControllers.controller('ybwxPaySelectNewCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
   function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 
     _hmt.push(['_trackPageview', $location.path()]);
-     $scope.plans={};
+    $scope.plans = {};
     $scope.insurance_name = $routeParams.insurance_name;
     $scope.insurance_plan_name = $routeParams.insurance_plan_name;
     $scope.order_amount = $routeParams.order_amount;
 
-    $scope.plans =  JSON.parse(sessionStorage.getItem("sell_plan"));
+    $scope.plans = JSON.parse(sessionStorage.getItem("sell_plan"));
 
     console.log($scope.plans);
 
-    $scope.isHaveOffical = $scope.plans.some(function(item){
+    $scope.isHaveOffical = $scope.plans.some(function(item) {
       return !item.premium;
     });
-    console.log("offical:"+$scope.isHaveOffical); 
+    console.log("offical:" + $scope.isHaveOffical);
 
     //测试
+    /*
     var isTest =  sessionStorage.getItem("is_test");
     if (isTest === 'true' ) {
       $scope.order_amount = 1;
+    }*/
+
+    function setPayInfo(orderId, channelType, info) {
+      sessionStorage.setItem(orderId + "_" + channelType, JSON.stringify(info));
     }
+
+    function getPayInfo(orderId, channelType) {
+      return JSON.parse(sessionStorage.getItem(orderId + "_" + channelType));
+    }
+
 
     //$scope.order_amount = 1;
     $scope.order_id = $routeParams.order_id;
@@ -264,7 +275,28 @@ ybwxControllers.controller('ybwxPaySelectNewCtrl', ['$scope', '$filter', '$route
       }
 
     }
-
+    $scope.ajaxPayInfo = function(channelType) {
+      var openId = sessionStorage.getItem("openId");
+      $scope.payPromise = getHttpPromise($http, $rootScope, 'POST', api['pay'], {
+        open_id: openId,
+        order_id: $routeParams.order_id,
+        pay_channel_type: channelType,
+        order_amount: $routeParams.order_amount
+      }, function(res) {
+        console.log(res);
+        if (res && res.data && res.data.data && res.data.code === 0) {
+          if (channelType == "1") { //银行卡
+            $scope.redirectUrl = res.data.data.pp_response.pp_url;
+            setPayInfo($routeParams.order_id, "1", $scope.redirectUrl)
+          } else if (channelType == "3") { //现在支付微信
+            $scope.ipaynow_pay_request = res.data.data.ipaynow_pay_request;
+            setPayInfo($routeParams.order_id, "3", $scope.ipaynow_pay_request)
+          }
+        } else {
+          util.showToast($rootScope, res.data.reason);
+        }
+      })
+    }
     $scope.pay = function($event) {
       //获取支付信息
       if ($event) {
@@ -272,9 +304,12 @@ ybwxControllers.controller('ybwxPaySelectNewCtrl', ['$scope', '$filter', '$route
         $(".pay_item").removeClass("choose");
         $(element).addClass("choose");
       }
-      var openId = sessionStorage.getItem("openId");
       var channelType = $(".pay_container").find(".choose").attr("data-channel-type");
-      _hmt.push(['_trackEvent', 'pay', 'pay_select'+channelType]);
+      _hmt.push(['_trackEvent', 'pay', 'pay_select' + channelType]);
+
+      /*
+      
+      var openId = sessionStorage.getItem("openId");
       if (channelType == "1" && $scope.redirectUrl) {
         return;
       }
@@ -307,9 +342,21 @@ ybwxControllers.controller('ybwxPaySelectNewCtrl', ['$scope', '$filter', '$route
       }, function(res) {
         console.log(res);
         util.showToast($rootScope, res.description);
-      });
+      });*/
     }
-    $scope.pay();
+    console.log("payInfo......");
+    var url = getPayInfo($routeParams.order_id, "1");
+    var ipayNowRequest = getPayInfo($routeParams.order_id, "3")
+    if (url) {
+      $scope.redirectUrl = url;
+    } else {
+      $scope.ajaxPayInfo("1");
+    }
+    if (ipayNowRequest) {
+      $scope.ipaynow_pay_request = ipayNowRequest;
+    } else {
+      $scope.ajaxPayInfo("3");
+    }
   }
 ]);
 

@@ -8,6 +8,8 @@ body{
 	padding:15px 0 15px 0 ;
 	text-align: center;
 	background-color: #fff;
+
+	color:#222;
 }
 .pic-container ul{
 	width:300px;
@@ -25,7 +27,7 @@ body{
 }
 
 .pic-container .add{
-	background: url('../img/add_upload.jpg') no-repeat center;
+	background: url('../img/add_plus.png') no-repeat center;
 	background-size:100%;
 }
 .pic-container .add:active{
@@ -38,17 +40,27 @@ body{
 	height:100%;
 }
 .pic-container .title{
-	font-size:0.16rem;
+	font-size:0.18rem;
 }
 .pic-container .subtitle{
 	color:#cccccc;line-height: 0.5;
 }
 .bd-tail-container{
 	background-color: #f5f5f5;
-	margin-bottom: 0.5rem;
 	text-align: center;
 	border-top: 1px solid #e2e2e2;
-	padding:0 0.26rem;
+	position: fixed;
+	bottom: 0;
+}
+.fixed-btn-container {
+	overflow: hidden;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	border-top: 1px solid #e2e2e2;
+}
+.fixed-btn-container .btn{
+	border-radius: 0;
 }
 .toast{
 	text-align: center;font-size:0.15rem;color:#555555;
@@ -65,6 +77,7 @@ body{
 .big-btn{
 	height:0.65rem;line-height: 0.65rem;
 }
+
 </style>
 <div class="mask" id="success_popup" >
 	<div class="toast" style="">
@@ -77,7 +90,9 @@ body{
 </div>
 <div class="pic-container">
 	<div class="title" >添加保险合同中的保单照片</div>
+	<!--
 	<div class="subtitle" >(图片大小不能超过10M)</div>
+	-->
 	<ul id="pre_view_image_container">
 		<!--
 		<li ><img src="img/upload_demo.jpg"></li>
@@ -99,8 +114,8 @@ body{
 	</ul>
 
 </div>
-<div class="bd-tail-container" >
-	<div class="cell " style="margin-top: 2.7rem;">
-		<a href="javascript:void(0)" ng-click="uploadImg()"  class="btn btn_dark_2_primary big-btn" >上传</a>
+<div class="fixed-btn-container" >
+	<div class="cell " >
+		<a href="javascript:void(0)" ng-click="uploadImg()"  class="btn btn_dark_2_primary " >上传照片</a>
 	</div>
 </div>
