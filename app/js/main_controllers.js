@@ -433,7 +433,6 @@ function initPieConfig(sumScore, scores) {
 
 mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
-		 $rootScope.title="诺贝保险管家";
 		_hmt.push(['_trackPageview', $location.path()]);
 		$scope.data = {
 			aggregate_score: 0
@@ -772,7 +771,7 @@ mainControllers.controller('ybwxBzCtrl', ['$scope', '$routeParams', '$location',
 mainControllers.controller('ybwxEducationCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
-		 $rootScope.title="保险教育页";
+
 		_hmt.push(['_trackPageview', $location.path()]);
 
 		$scope.processMoney = function(money) {
