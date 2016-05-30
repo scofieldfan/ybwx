@@ -108,6 +108,28 @@ ybwxApp.config(['$routeProvider',
   }
 ]);
 /*
+ybwxApp.service('payInfo', function() {
+    var data = {};
+
+    var setPayInfo = function (orderId,channelType,info) {
+        if(!data[orderId]){
+           data[orderId] = {};
+        }
+        data[orderId][channelType] = info;
+    }
+    var getPayInfo = function(orderId,channelType){
+        if(data[orderId]){
+            return data[orderId][channelType];
+        }else{
+          return {};
+        }
+    }
+    return {
+        setPayInfo:setPayInfo,
+        getPayInfo:getPayInfo
+    }
+});*/
+/*
     .when('/tb', {
       templateUrl: 'partials/toubao.html?v=123',
       controller: 'ybwxToubaoCtrl'
