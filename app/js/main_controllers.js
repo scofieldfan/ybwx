@@ -442,6 +442,7 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 			$("#share").show();
 		}
 		$scope.goBdMange = function(){
+			_hmt.push(['_trackEvent', 'index', 'index_baodan_guanli']);
 			$location.path('/bdm_list').search();
 		}
 		$scope.init = function() {

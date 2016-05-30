@@ -4,8 +4,9 @@ var bdControllers = angular.module('baodanControllers', []);
 
 bdControllers.controller('ybwxBDIndexCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
-
+		_hmt.push(['_trackPageview', $location.path()]);
 		$scope.goUpload = function(source) {
+			_hmt.push(['_trackEvent', 'bd_uploadpic_index', 'goBdPic_'+source]);
 			$location.path('/bd_pic').search({
 				'source': source
 			});
@@ -23,6 +24,7 @@ bdControllers.controller('ybwxBdEducationCtrl', ['$scope', '$routeParams', '$loc
 ]);
 bdControllers.controller('ybwxclaim_informationCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
+		_hmt.push(['_trackPageview', $location.path()]);
 
 		$scope.init = function() {
 
@@ -59,12 +61,13 @@ bdControllers.controller('ybwxtb_notivelCtrl', ['$scope', '$routeParams', '$loca
 ]);
 
 
-bdControllers.controller('ybwxbaodanManageSiteCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+bdControllers.controller('ybwxbaodanManageListCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
+		_hmt.push(['_trackPageview', $location.path()]);
 		$scope.goBdUpload = function() {
+			_hmt.push(['_trackEvent', 'bdm_list', 'goUpload']);
 			$location.path('/bd_index').search();
-
 		}
 		$scope.type = "4";
 		$scope.init = function() {
@@ -86,6 +89,10 @@ bdControllers.controller('ybwxbaodanManageSiteCtrl', ['$scope', '$routeParams', 
 			})
 
 		}
+		$scope.setType = function(type){
+			_hmt.push(['_trackEvent', 'bdm_list', 'nav']);
+			$scope.type=type;
+		}
 		$scope.init();
 
 		$scope.filterFn = function(policy) {
@@ -96,11 +103,13 @@ bdControllers.controller('ybwxbaodanManageSiteCtrl', ['$scope', '$routeParams', 
 			}
 		};
 		$scope.goClaimInfo = function(claim_id){
+			_hmt.push(['_trackEvent', 'bdm_list', 'goClaimInfo']);
 			$location.path('/claim_information').search({
 				'claim_id': claim_id
 			});
 		}	
 		$scope.goDetail = function(id) {
+			_hmt.push(['_trackEvent', 'bdm_list', 'gobdm_detail']);
 			$location.path('/bdm_detail').search({
 				policy_id: id
 			});
@@ -113,7 +122,9 @@ bdControllers.controller('ybwxbaodanManageSiteCtrl', ['$scope', '$routeParams', 
 bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
-		$scope.isTest = false;
+		_hmt.push(['_trackPageview', $location.path()]);
+
+		$scope.isTest = false;//示例保单
 		
 		$scope.processMoney = function(money) {
 			return util.processSpecialMoney(money);
@@ -154,6 +165,7 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 			//});
 		}
 		$scope.goClaimInfo = function(claim_id){
+			_hmt.push(['_trackEvent', 'bdm_detail', 'goClaimInfo']);
 			$location.path('/claim_information').search({
 				'claim_id': claim_id
 			});
@@ -166,6 +178,7 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 			return chargePeriodTypeMap[type];
 		}
 		$scope.showTip = function(){
+			_hmt.push(['_trackEvent', 'bdm_detail', 'shareTip']);
 			$("#share").show();
 		}
 		$scope.shareConfig = function() {
@@ -216,6 +229,7 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 			})
 		}
 		$scope.preview = function() {
+			_hmt.push(['_trackEvent', 'bdm_detail', 'previewImg']);
 			wx.previewImage({
 				current: $scope.data.image_urls[0], // 当前显示图片的http链接
 				urls: $scope.data.image_urls // 需要预览的图片http链接列表
@@ -229,7 +243,7 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 
 bdControllers.controller('ybwxBDPicCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
-
+		_hmt.push(['_trackPageview', $location.path()]);
 		$scope.images = {
 			localIds: [],
 			serverIds: []
@@ -268,11 +282,13 @@ bdControllers.controller('ybwxBDPicCtrl', ['$scope', '$routeParams', '$location'
 
 
 		$scope.goBdM = function() {
+			_hmt.push(['_trackEvent', 'bdm_uploadpic', 'goBdmList']);
 			$location.path('/bdm_list').search();
 
 		}
 
 		$scope.chooseImg = function() {
+			_hmt.push(['_trackEvent', 'bdm_uploadpic', 'chooseImage']);
 			wx.chooseImage({
 				success: function(res) {
 
@@ -302,6 +318,7 @@ bdControllers.controller('ybwxBDPicCtrl', ['$scope', '$routeParams', '$location'
 
 
 		$scope.uploadImg = function() {
+			_hmt.push(['_trackEvent', 'bdm_uploadpic', 'uploadImage']);
 			if ($scope.images.localIds.length == 0) {
 				alert('请先选择图片');
 				return;
@@ -337,89 +354,6 @@ bdControllers.controller('ybwxBDPicCtrl', ['$scope', '$routeParams', '$location'
 			}
 			upload();
 		}
-
-
-
 	}
 ]);
 
-
-bdControllers.controller('ybwxTestCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
-	function($scope, $routeParams, $location, $http, $rootScope) {
-
-		$scope.images = {
-			localId: [],
-			serverId: []
-		};
-		util.uploadImgConfig(function() {
-
-
-
-		});
-
-		$scope.chooseImg = function() {
-
-			wx.chooseImage({
-				success: function(res) {
-
-					//$scope.images.localId = res.localIds;
-					//$scope.localIds = res.localIds;
-					alert("选择成功..." + res.localIds.length);
-					//console.log("choose.....");
-					//console.log($scope.localIds);
-					//console.log($scope.images);
-					//alert("test 23112");
-					var html = [];
-					res.localIds.forEach(function(element, index) {
-						html.push('<img src="' + element + '">');
-					});
-					$("#img_container").html(html.join(""));
-					uploadImg(res.localIds);
-					/*	
-					 $("#preview_img").attr('src',res.localIds[0]);
-   					var img = document.getElementById('preview_img');*/
-					$scope.$apply();
-					/*	
-					 */
-				}
-			});
-		}
-
-		function uploadImg(localIds) {
-			var i = 0;
-			var length = localIds.length;
-			var serverIds = [];
-
-			function upload() {
-				wx.uploadImage({
-					localId: localIds[i],
-					isShowProgressTips: 1,
-					success: function(res) {
-						i++;
-						// alert('已上传：' + i + '/' + length);
-						serverIds.push(res.serverId);
-
-						console.log(serverIds);
-						if (i < length) {
-							upload();
-						}
-					},
-					fail: function(res) {
-						alert(JSON.stringify(res));
-					}
-				});
-			}
-			upload();
-		}
-		/*
-		$scope.uploadImg = function() {
-			if (images.localId.length == 0) {
-				alert('请先使用 chooseImage 接口选择图片');
-				return;
-			}
-
-		}*/
-
-
-	}
-]);
