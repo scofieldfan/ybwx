@@ -168,8 +168,8 @@ input::-webkit-input-speech-button {
 }
 .btn {
   font-size: 0.20rem;
-  line-height: 50px;
-  height: 50px;
+  line-height: 0.567rem;
+  height: 0.567rem;
   bottom: 20px;    /*
               font-size: 18px;
               line-height: 2.33333333;*/
@@ -179,7 +179,7 @@ input::-webkit-input-speech-button {
   width: 100%;
   text-align: center;
   text-decoration: none;
-  border-radius: 2px;
+  /*border-radius: 2px;*/
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 .btn-fixed {
@@ -193,7 +193,8 @@ input::-webkit-input-speech-button {
 }
 .btn_n_primary {
   color: #fff;
-  background-color: #247ad1;
+  /*background-color: #247ad1;*/
+  background-color: #1e4e8e;
 }
 .btn_dark_primary {
   color: #fff;

@@ -44,6 +44,7 @@ gulp.task('deltmp', ['test'], function() {
 gulp.task('cssMin', function() {
 	return gulp.src([
 			'app/css/normalize.css',
+			'app/css/share.css',
 			'app/css/globe.css',
 			'app/css/app.css',
 			'app/css/angular-busy.min.css'
