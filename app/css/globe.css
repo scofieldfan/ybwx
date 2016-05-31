@@ -167,9 +167,9 @@ input::-webkit-input-speech-button {
   background: linear-gradient(top, #bbb, #eee, white 100%);
 }
 .btn {
-  font-size: 0.20rem;
-  line-height: 44px;
-  height: 44px;
+  font-size: 18px;
+  line-height: 48px;
+  height: 48px;
   bottom: 20px;    /*
               font-size: 18px;
               line-height: 2.33333333;*/
