@@ -5,7 +5,7 @@
     font-size: 100px;
   }
   .logo_controller {
-  	background: url(../img/my_bd/logo.png) no-repeat ;
+    background: url(../img/my_bd/logo.png) no-repeat ;
   }
 }
 
@@ -15,7 +15,7 @@
     font-size: 100px;
   }
    .logo_controller {
-  	background: url(../img/my_bd/logo.png) no-repeat ;
+    background: url(../img/my_bd/logo.png) no-repeat ;
   }
 }
 
@@ -25,7 +25,7 @@
     font-size: 117.18px;
   }
    .logo_controller {
-  	background: url(../img/my_bd/logo2.png) no-repeat ;
+    background: url(../img/my_bd/logo2.png) no-repeat ;
   }
 }
 
@@ -35,47 +35,257 @@
     font-size: 129.37px;
   }
    .logo_controller {
-  	background: url(../img/my_bd/logo2.png) no-repeat ;
+    background: url(../img/my_bd/logo2.png) no-repeat ;
   }
 }
-ul {
-	  display: -webkit-box;
-	  display: -webkit-flex;
-	  display: -ms-flexbox;
-	  display: flex;
-	  padding: .2rem;
+
+body {
+  background: #fef3d7;
 }
-ul li {
-    height: auto;
+.my_bd_controller {
+  height: auto;
+  padding: .2rem;
 }
-li:nth-child(1) {
-	/*width: 1.9rem;*/
-	-webkit-box-flex: 1;
-    -webkit-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-    border-bottom: 7px solid #e52f62;
+.layout {
+  overflow: auto;
 }
-li:nth-child(2) {
-	width: .06rem;
-	border-bottom: 7px solid #fff;
-	
+.ul_contrl {
+  display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+  display: -moz-box; /* 老版本语法: Firefox (buggy) */
+  display: -ms-flexbox; /* 混合版本语法: IE 10 */
+  display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+  display: flex;  
+  /*flex-flow: row;*/
+  /*display: -webkit-flex;*/
 }
-li:nth-child(3) {
-	width: .84rem;
-	border-bottom: 7px solid #003756;
-	font-size: .13rem;
-	color: #003756;
-	padding-bottom: .07rem;
+.ul_contrl li:nth-child(1) {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  border-bottom: 7px solid #e52f62;
+  padding-bottom: .07rem;
 }
-ul li:nth-child(1) p{
-	display: inline-block;
-	font-size: .13rem;
+.ul_contrl li:nth-child(2) {
+  width: .06rem;
 }
-ul li:nth-child(1) p:nth-child(1){
-	color: #003756;
-	font-weight: bold;
+.ul_contrl li:nth-child(3) {
+  width: .84rem;
+  border-bottom: 7px solid #003756;
+  font-size: .13rem;
+  color: #003756;
+  padding-bottom: .07rem;
 }
-ul li:nth-child(1) p:nth-child(2){
-	color: #e52f62;
+.ul_contrl li:nth-child(1) p{
+  display: inline-block;
+  font-size: .13rem;
+}
+.ul_contrl li:nth-child(1) p:nth-child(1){
+  color: #003756;
+  font-weight: bold;
+}
+.ul_contrl li:nth-child(1) p:nth-child(2){
+  color: #e52f62;
+}
+
+.logo_controller {
+  margin-top: .15rem;
+  width: 100%;
+  height: 2.25rem;
+  background: url(../img/my_bd/logo.png) no-repeat ;
+  background-size: 100% 100%;
+  position: relative;
+}
+
+.logo_controller img {
+  width: 100%;
+  height: 100%;
+}
+/*input {
+  border: none;
+  width: 1.09rem;
+  height: .39rem;
+  border-radius: 5px;
+  color: #fff;
+  padding-left: .15rem;
+  font-size: .12rem;
+}
+.input_1 {
+  background: #e42f62;
+}
+.kong_input {
+  width: .14rem;
+}
+.input_2 {
+  margin: 0 0 0 .14rem;
+  background: #c2b085;
+}*/
+
+.button_contr {
+  position: absolute;
+  left: 0;
+  top: 1.5rem;
+  width: 100%;
+  /*padding:0 0 0 .18rem;*/
+  display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+  display: -moz-box; /* 老版本语法: Firefox (buggy) */
+  display: -ms-flexbox; /* 混合版本语法: IE 10 */
+  display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+  display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+  flex-flow: row;
+}
+.button_contr p:nth-child(2),p:nth-child(4) {
+  display: inline-block;
+  /*width: 1.09rem;*/
+  box-flex: 1;
+  flex-grow: 1;
+  height: .39rem;
+  font-size: .12rem;
+  /*text-align: center;*/
+  border-radius: 5px;
+   display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+  display: -moz-box; /* 老版本语法: Firefox (buggy) */
+  display: -ms-flexbox; /* 混合版本语法: IE 10 */
+  display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+  display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+  flex-flow: row;
+  position: relative;
+}
+.button_contr p:nth-child(2) {
+  background: #e42f62;
+}
+.button_contr p:nth-child(4) {
+  background: #c3b086;
+}
+
+.button_contr p:nth-child(3) {
+  width: .19rem;
+  /*box-flex: 1;
+  flex-grow: 1;
+  background: yellow;*/
+}
+.kong_wid45 {
+  width: .29rem;
+  /*background: blue;*/
+}
+.imgwid {
+  display:inline-block;
+  width: .35rem;
+}
+.imgwid span {
+  display: inline-block;
+  width: .16rem;
+  height: .16rem;
+  position: absolute;
+  left: .15rem;
+  top: .12rem;
+}
+.imgwid span img {
+  width: 100%;
+  height: 100%;
+}
+.fontwid {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+  line-height: .39rem;
+  color: #fff;
+}
+/*
+.money {
+  position: relative;
+}
+.money_song li {
+  list-style: none;
+  width: .16rem;
+  height: .16rem;
+  position: absolute;
+  top: .12rem;
+}
+.money_song li:nth-child(1){
+  left: .37rem;
+}
+.money_song li:nth-child(2){
+  list-style: none;
+  width: .16rem;
+  height: .16rem;
+  position: absolute;
+  top: .12rem;
+  left: 1.63rem;
+}
+img  {
+  width: 100%;
+  height: 100%;
+}*/
+.font_controller {
+  padding: .19rem 0 0 0;
+  position: relative;
+}
+.font_controller li{
+  list-style: none;
+  color: #a08f66;
+  font-size: 12px;
+}
+.font_controller p{
+  list-style: none;
+  color: #a08f66;
+  font-size: .08rem;
+  padding-bottom: .1rem;
+}
+.font_controller img{
+  width: .13rem;
+  height: .13rem;
+  /*vertical-align: middle;*/
+}
+.font_controller span {
+  display: inline-block;
+  font-size: .13rem;
+  color: #e52f62;
+  margin-left: .04rem;
+  /*font-weight: bold;*/
+}
+.paddBtn_20 {
+  padding-bottom: .2rem;
+}
+.main_font {
+  padding-bottom: .17rem; 
+  line-height: .17rem;
+}
+.two_code {
+  width: .75rem;
+  height: .75rem;
+  position: absolute;
+  left: 2.05rem;
+  top: 1.3rem;
+  overflow: auto;
+}
+.two_code img {
+  width: 100%;
+  height: 100%;
+}
+.footer_border {
+  display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+  display: -moz-box; /* 老版本语法: Firefox (buggy) */
+  display: -ms-flexbox; /* 混合版本语法: IE 10 */
+  display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+  display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+  flex-flow: row;
+}
+.footer_border li:nth-child(1) {
+  width: .83rem;
+  border-bottom: 7px solid #003756;
+  font-size: .13rem;
+  color: #003756;
+}
+.footer_border li:nth-child(2) {
+   width: .06rem;
+}
+.footer_border li:nth-child(3) {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  border-bottom: 7px solid #e52f62;
+  padding-bottom: .07rem;
 }
