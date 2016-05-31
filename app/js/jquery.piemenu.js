@@ -86,7 +86,7 @@
             nSegments = options.pieConfig.length;
 
 
-        var width = $(document).width() - options.padding;
+        var width = $(document).width() - options.padding;//canvas 绘图区域的总宽度
         // var radio = $(document).width()/414;
 
         /*
@@ -98,11 +98,10 @@
       
 
        
-        //console.log("center:"+center);
-        canvas.setAttribute('width', width * options.dpr);
-        canvas.setAttribute('height', width * options.dpr);
+        canvas.setAttribute('width', width * options.dpr);//canvas的宽度
+        canvas.setAttribute('height', width * options.dpr);//canvas的高度
 
-        var center = canvas.width/2;
+        var center = canvas.width/2;//绘图的圆心
 
         radius = center; //一共可绘图的半径
         options.closeRadius = radius * 0.42;//内圆半径
@@ -110,9 +109,10 @@
         if (options.radio > 1) {
             options.radio = 1;
         }
-        $("#tip_text").width(center/2);
-        $("#tip_text").css("left", center / 2 );
-        $("#tip_text").css("margin-top", center / 2);
+        console.log("center:"+center);
+        $("#tip_text").width(width/2);
+        $("#tip_text").css("left", width / 2 );
+        $("#tip_text").css("margin-top", width / 2+10);
  
         if (options.className) {
             canvas.className = options.className;
@@ -171,7 +171,7 @@
 
                 ctx.beginPath();
                 //console.log("highlight:" + highlight);
-                ctx.arc(center, center, options.closeRadius-20, 0, 2 * Math.PI);
+                ctx.arc(center, center, options.closeRadius-25, 0, 2 * Math.PI);
                 ctx.fillStyle = (highlight === 'x' ? options.selectedColor : "#FFF");
                 ctx.fill();
 
@@ -350,7 +350,7 @@
                 ctx.lineTo(center+radius, center+10);
                 ctx.stroke();
                 */
-                var pianX = 10;//圆心偏移的距离
+                var pianX = 17;//圆心偏移的距离
 
                 var middleAngle = (startA+endA)/2;
 
@@ -365,8 +365,8 @@
                 drawSector(ctx,pieColor, centerX,centerY,startA,endA,options.closeRadius-pianX,bigRadius);
                
                 //绘画灰色分数扇形 
-                var innerRadius = bigRadius +5;
-                var outterRadius = bigRadius + 40;
+                var innerRadius = bigRadius +10*options.radio;
+                var outterRadius = bigRadius + 60*options.radio;
                  // ctx.fillStyle = (isSelected ? options.selectedColor : options.backgroundColor);
            
                 drawSector(ctx,"#f0f0f0", centerX,centerY,startA,endA,innerRadius,outterRadius);
