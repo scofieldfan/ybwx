@@ -1,38 +1,40 @@
-<link rel="stylesheet" type="text/css" href="css/baodan_manage_detail.css?rev=cee7d59c763c17c958c532c50c0d77af">
+<link rel="stylesheet" type="text/css" href="css/bdm_detail.css?rev=ddsfd">
 <div ng-if="isTest == false"  cg-busy="loadingPromise" style="margin-bottom:70px;">
 	<div class="wrapper " id="my_baodan">
 		<img src="img/yiyanzhen.png" style="position: absolute;top:9px;right:11px;width:70px;z-index: 5;display: none">
-		<div class="container"  >
+		<div class="container" >
 			<div class="sub-container">
-				<div class="title">
+				<div class="title ">
 					<p class="logo">
 						<img  ng-src="{{data.icon}}"/>
 					</p>
-					<div style="width:60%;margin:0 auto;">{{data.name}}</div>
+					<div class="gd">{{data.name}}</div>
 				</div>
+				<div class="btnline"> </div>
+				<div class="hei18"> </div>
 				<div style="padding-left: 0.07rem">
-					<div class="insured-item">
-						<span class="gray">保单号：</span>
+					<div class="insured-item ">
+						<span class="gray fontW">保单号</span><span>：</span>
 						{{data.policy_no}}
+						<div class="score">{{data.score | number:2}}<span class="colr">分</span></div>
 					</div>
 					<div class="insured-item">
-						<span class="gray">被保人：</span>
-						{{data.insured_people_name}}
-						<div class="score">{{data.score | number:2}}分</div>
+						<span class="gray fontW">被保人</span><span>：</span>
+						{{data.insured_people_name}}	
 					</div>
 					<div class="insured-item">
-						<span class="gray">缴费方式：</span>
+						<span class="gray">缴费方式</span><span style="padding-left: .07rem">：</span>
 						{{getChargePeroidType(data.charge_period_type)}}
 					</div>
 					<div class="insured-item" ng-if="data.charge_period">
-						<span class="gray">缴费期间：</span>
+						<span class="gray">缴费期间</span><span style="padding-left: .07rem">：</span>
 						{{data.charge_period}}{{getChargePeroidTypeAbbre(data.charge_period_type)}}
 					</div>
 					<div class="insured-item" ng-if="data.charge_date">
-						<span class="gray">缴费时间：</span>
+						<span class="gray">缴费时间</span><span style="padding-left: .07rem">：</span>
 						{{data.charge_date}}
 					</div>
-
+					<div class="hei18"> </div>
 				</div>
 
 				<table >
@@ -49,7 +51,6 @@
 						<td ng-if="$index==0" rowspan="{{data.coverages.length}}" class="blue" style="vertical-align: middle;text-align: center;">
 							{{data.premium}}
 							<br/>
-
 						</td>
 					</tr>
 					<tr class="bd_tr">
@@ -67,38 +68,44 @@
 					</tr>
 				</table>
 
-				<table style="margin-top: 0.2rem;">
+				<table style="margin-top: 0.25rem;">
 					<tr class="bd_th">
 						<th style="text-align: left;">被保人信息</th>
 					</tr>
+					<tr class="top20"></tr>
 					<tr ng-repeat="(key, value) in data.insured_info"  >
 						<td>
 							<span class="gray">{{key}}:</span>
 							{{value}}
 						</td>
 					</tr>
+					<tr class="btn40"></tr>
 				</table>
 				<table >
 					<tr class="bd_th">
 						<th style="text-align: left;">其他信息</th>
 					</tr>
+					<tr class="top20"></tr>
 					<tr ng-repeat="(key, value) in data.extra_info"  >
 						<td>
-							<span class="gray">{{key}}:</span>
+							<span class="gray" ng-class="'twowid':key.length==2">{{key}}:</span>
 							{{value}}
 						</td>
 					</tr>
+					<tr class="btn40"></tr>
 				</table>
 				<table >
 					<tr class="bd_th">
 						<th style="text-align: left;">销售信息</th>
 					</tr>
+					<tr class="top20"></tr>
 					<tr ng-repeat="(key, value) in data.sale_info"  >
 						<td>
 							<span class="gray">{{key}}:</span>
 							{{value}}
 						</td>
 					</tr>
+					<tr class="btn40"></tr>
 				</table>
 
 			</div>
@@ -113,6 +120,7 @@
 		</div>
 	</div>
 </div>
+
 <div>
 	<div class="tail-container">
 		<div class="cell ">
@@ -159,14 +167,15 @@
 					</p>
 					平安7天意外险
 				</div>
+				<!-- <div class="btnline"> </div> -->
 				<div class="example">示例保单</div>
 				<div>
 					<div class="bd-number">
-						<span class="gray">保单号：</span>
+						<span class="gray fontW">保单号：</span>
 						10020200120342
 					</div>
 					<div class="insured-name">
-						<span class="gray">被保人：</span>
+						<span class="gray fontW">被保人：</span>
 						诺小贝
 						<div class="score">8分</div>
 					</div>
@@ -219,25 +228,25 @@
 					</tr>
 					<tr >
 						<td>
-							<span class="gray">被保人:</span>
+							<span class="gray fontW">被保人</span><span>:</span>
 							诺小贝
 						</td>
 					</tr>
 					<tr >
 						<td>
-							<span class="gray">性别:</span>
+							<span class="gray twowid">性别:</span>
 							男
 						</td>
 					</tr>
 					<tr >
 						<td>
-							<span class="gray">生日:</span>
+							<span class="gray twowid">生日:</span>
 							1984-10-27
 						</td>
 					</tr>
 					<tr >
 						<td>
-							<span class="gray">电话:</span>
+							<span class="gray twowid">电话:</span>
 							158****0018
 						</td>
 					</tr>
@@ -249,7 +258,7 @@
 					</tr>
 					<tr >
 						<td>
-							<span class="gray">证件号:</span>
+							<span class="gray fontW">证件号:</span>
 							4324323423****32423
 						</td>
 					</tr>
@@ -260,19 +269,19 @@
 					</tr>
 					<tr >
 						<td>
-							<span class="gray">被保人:</span>
+							<span class="gray fontW">被保人:</span>
 							诺小贝
 						</td>
 					</tr>
 					<tr >
 						<td>
-							<span class="gray">电话:</span>
+							<span class="gray twowid">电话:</span>
 							15638332323423
 						</td>
 					</tr>
 					<tr >
 						<td>
-							<span class="gray">受益人:</span>
+							<span class="gray fontW">受益人:</span>
 							诺大北(法定)
 						</td>
 					</tr>
@@ -313,13 +322,13 @@
 			<div class="img-box">
 				<img src="img/qian1.png"/>
 			</div>
-			<div>理赔</div>
+			<div class="twowid">理赔</div>
 		</div>
 		<div class="cell_hd cell_primary" >
 			<div  class="img-box">
 				<img src="img/tiaokuan.png"/>
 			</div>
-			<div>条款</div>
+			<div class="twowid">条款</div>
 		</div>
 		<div class="cell_hd cell_primary" >
 			<div  class="img-box">
@@ -331,8 +340,10 @@
 			<div  class="img-box">
 				<img src="img/fenxiang.png"/>
 			</div>
-			<div>发送</div>
+			<div class="twowid">发送</div>
 		</div>
+	   <div class="btn40"></div>
+
 	</div>
 </div>
 

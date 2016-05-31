@@ -2,7 +2,7 @@
 		padding:0.13rem;
 		position: relative;
 		color:#555555;
-		
+		background: #f5f5f5;
 	}
 	.yanzhen{
 		background: url(img/yiyanzhen.png) no-repeat right top;
@@ -14,6 +14,11 @@
 	.gray{
 		color:#999999;
 	}
+	.container {
+		background: #fff;
+		border: 7px solid #fff;
+		box-shadow: 0 1px 1px #e2e2e2;
+	}
 	.contai-er{
 		border: 1px solid #e2e2e2;
 		padding: 0.05rem;
@@ -21,7 +26,7 @@
 		box-shadow: 0 0 1px 1px #e2e2e2;
 	}
 	.sub-container{
-		border: 5px solid #c3d7f2;
+		border: 8px solid #c3d7f2;
 		padding: 0.05rem;
 	}
 	.title{
@@ -31,12 +36,32 @@
 		text-align: center;
 		position: relative;
 		overflow: hidden;
+		padding: .23rem 0;
+		/*height:  .83rem;*/
+		/*display: table;*/
+
+	}
+	.gd {
+		/*vertical-align: middle;
+		display: table-cell;
+		width: 2000px;*/
+		/*width: 100%;*/
+		text-align: center;
+		padding:0 .83rem;
+	}
+	.btnline {
+		height: 1px;
+		width: 100%;
+		background: #588dd4;
+	}
+	.hei18 {
+		height: .19rem;
+		width: 100%;
 	}
 	.logo{
-		top:0;
-		left:0rem;
-		float:left;
-		margin: 0;
+		position: absolute;
+		left: 0;
+		top: 0;
 	}
 	.logo >img{
 		width:0.65rem;
@@ -54,22 +79,47 @@
 		overflow: hidden;line-height: 0.3rem;height:0.3rem;
 	}
 	.insured-item{
-		line-height: 0.3rem;height:0.3rem;
+		line-height: .27rem;/*height:0.3rem;*/
+	}
+	.fontW {
+		letter-spacing: .07rem;
+		width: .61rem;
+	}
+	b{
+		list-style: none;
 	}
 	.score{
 		float:right;
 		font-size: 0.25rem;
 		color:#1e4e8e;
 	}
-
+	.colr {
+		font-size: .18rem;
+		color: #999;
+	}
 	table {
 	  width: 100%;
 	  border-collapse: collapse;
 	}
-	table td, table th {
+	table th {
 	  padding: 0.07rem;
 	  vertical-align:top;
 	  font-weight: normal;
+	}
+	table td {
+		padding: 0 0.07rem;
+		line-height: .27rem;
+	}
+	.top20 {
+		display: block;
+		height: .12rem;
+	}
+	.btn40 {
+		display: block;
+		height: .25rem;
+	}
+	.twowid {
+		letter-spacing: .32rem;
 	}
 	.bd_th{
 	 	background-color: #f5f5f5;
