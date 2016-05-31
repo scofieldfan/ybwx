@@ -1,0 +1,11 @@
+.wx-tip {
+    margin-left: 147px;
+    z-index: 10000;
+    top: 20px;
+    width:200px;
+    height:103px;
+    background: url("../../img/share_tip.png") no-repeat;
+    -webkit-background-size: 100% auto;
+    -moz-background-size: 100% auto;
+    background-size: 100% auto;
+}

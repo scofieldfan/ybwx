@@ -448,8 +448,7 @@ overflow: hidden;
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(30,78, 142, .2);
   box-sizing: border-box;
   z-index: 10000;
 }
@@ -475,14 +474,3 @@ overflow: hidden;
     background-size: 100% auto;
 }
 */
-.wx-tip {
-    margin:0 auto;
-    z-index: 10000;
-    top: 20px;
-    width:200px;
-    height:103px;
-    background: url("../../img/share_tip.png") no-repeat center;
-    -webkit-background-size: 100% auto;
-    -moz-background-size: 100% auto;
-    background-size: 100% auto;
-}
