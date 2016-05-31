@@ -34,8 +34,8 @@
             outPadding: 1, //指针和外园之间的距离
             closePadding: 3,
             closeSymbolSize: 7,
-            imgWidth: 50, //图标半径大小
-            imgHeight: 50,
+            imgWidth: 80, //图标半径大小
+            imgHeight: 80,
             globalAlpha: 0.9,
             onSelection: function() {},
             className: null,
@@ -86,29 +86,34 @@
             nSegments = options.pieConfig.length;
 
 
-        var width = $(document).width() - options.padding;
+        var width = $(document).width() - options.padding;//canvas 绘图区域的总宽度
         // var radio = $(document).width()/414;
+
+        /*
         if (width > 500) {
             width = 500;
-        }
-        var center = width;
-        radius = width; //一共可绘图的半径
-        options.closeRadius = radius * 0.42;
+        }*/
+        //var dpr = 3;
+        options.dpr = 3;
+      
+
+       
+        canvas.setAttribute('width', width * options.dpr);//canvas的宽度
+        canvas.setAttribute('height', width * options.dpr);//canvas的高度
+
+        var center = canvas.width/2;//绘图的圆心
+
+        radius = center; //一共可绘图的半径
+        options.closeRadius = radius * 0.42;//内圆半径
         options.radio = $(document).width() / 414;
         if (options.radio > 1) {
             options.radio = 1;
         }
-        $("#tip_text").width(center/2);
-        $("#tip_text").css("left", center / 2 );
-        $("#tip_text").css("margin-top", center / 2);
-       // $("#tip_text").find(".pic").width(180 * options.radio);
-       // $("#tip_text").find(".word").width(30 * options.radio);
-       // $("#tip_text").find(".tip").width(150 * options.radio);
-
-        var dpr = 2;
-        //console.log("center:"+center);
-        canvas.setAttribute('width', width * dpr);
-        canvas.setAttribute('height', width * dpr);
+        console.log("center:"+center);
+        $("#tip_text").width(width/2);
+        $("#tip_text").css("left", width / 2 );
+        $("#tip_text").css("margin-top", width / 2+10);
+ 
         if (options.className) {
             canvas.className = options.className;
         }
@@ -166,29 +171,25 @@
 
                 ctx.beginPath();
                 //console.log("highlight:" + highlight);
-                ctx.arc(center, center, options.closeRadius-20, 0, 2 * Math.PI);
+                ctx.arc(center, center, options.closeRadius-25, 0, 2 * Math.PI);
                 ctx.fillStyle = (highlight === 'x' ? options.selectedColor : "#FFF");
                 ctx.fill();
 
 
 
 
-                var centerFontsize = options.radio * 120;
+                var centerFontsize = options.radio * 140;
                 ctx.textAlign = "center";
                 ctx.font = "normal " + centerFontsize + "px Arial,Microsoft YaHei";
                 ctx.fillStyle = "#1e4e8e";
-                ctx.fillText(options.sumScore, center, center + radius*0.1);
+                ctx.fillText(options.sumScore, center, center  + radius*0.05);
                 
 
-                ctx.font = "normal 25px Arial,Microsoft YaHei";
-                ctx.fillStyle = "#588dd4";
+                ctx.font = "normal 35px Arial,Microsoft YaHei";
                 // ctx.fillText("9单", center-radius*0.1, center -radius*0.2);
-
-                ctx.fillStyle = "#999999";
                 // ctx.fillText("保障中", center+radius*0.1, center -radius*0.2);
-
                 ctx.fillStyle = "#999999";
-                ctx.fillText("最高10分", center, center +radius*0.25);
+                ctx.fillText("最高10分", center, center +radius*0.2);
 
             },
             destroy = function() {
@@ -210,13 +211,14 @@
                 // console.log("y:" + e.pageY);
                 var x = e.pageX - posn.left,
                     y = e.pageY - posn.top;
-                x = x * dpr;
-                y = y * dpr;
+                x = x * options.dpr;
+                y = y * options.dpr;
                 var cX = canvas.width / 2,
                     cY = canvas.height / 2;
                 var centerDistance = Math.sqrt((cX - x) * (cX - x) + (cY - y) * (cY - y));
-                //console.log("centerDistance:"+centerDistance);
-                //console.log("radius:"+radius);
+                // console.log("centerDistance:"+centerDistance);
+                // console.log("width:"+width);
+                // console.log("radius:"+radius);
                 //console.log("highlight:"+highlight);
                 //console.log("prevHighlight:"+prevHighlight);
                 if (centerDistance < options.closeRadius) {
@@ -348,7 +350,7 @@
                 ctx.lineTo(center+radius, center+10);
                 ctx.stroke();
                 */
-                var pianX = 10;//圆心偏移的距离
+                var pianX = 17;//圆心偏移的距离
 
                 var middleAngle = (startA+endA)/2;
 
@@ -363,8 +365,8 @@
                 drawSector(ctx,pieColor, centerX,centerY,startA,endA,options.closeRadius-pianX,bigRadius);
                
                 //绘画灰色分数扇形 
-                var innerRadius = bigRadius +5;
-                var outterRadius = bigRadius + 40;
+                var innerRadius = bigRadius +10*options.radio;
+                var outterRadius = bigRadius + 60*options.radio;
                  // ctx.fillStyle = (isSelected ? options.selectedColor : options.backgroundColor);
            
                 drawSector(ctx,"#f0f0f0", centerX,centerY,startA,endA,innerRadius,outterRadius);
@@ -443,9 +445,9 @@
                         var iconY = Math.sin(midAngle) * iconCenterRadius - 20 * options.radio;
                         ctx.drawImage(this, center + iconX - iconW / 2, center + iconY - iconH / 2, iconW, iconH);
                         ctx.textAlign = "center";
-                        ctx.font = " normal  25px Arial,Microsoft YaHei";
+                        ctx.font = " normal  35px Arial,Microsoft YaHei";
                         ctx.fillStyle = "#6f6f6f";
-                        ctx.fillText(options.pieConfig[n].text, center + iconX, center + iconY + 60 * options.radio);
+                        ctx.fillText(options.pieConfig[n].text, center + iconX, center + iconY + 80 * options.radio);
                     })
 
                 }

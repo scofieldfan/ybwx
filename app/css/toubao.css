@@ -181,7 +181,7 @@ table td, table th {
   overflow: hidden;position: fixed;bottom:0;width:100%;
 }
 .pay_container .left{
-  background-color: #203161;margin-right:1.5rem;width:auto;border-radius: 0
+  margin-right:1.5rem;width:auto;border-radius: 0
 }
 .pay_container .right{
   background-color: #ff5c00;

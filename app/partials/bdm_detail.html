@@ -1,5 +1,5 @@
-<link rel="stylesheet" type="text/css" href="css/bdm_detail.css?rev=ddsfd">
-<div ng-if="isTest == false"  cg-busy="loadingPromise" style="margin-bottom:70px;">
+<link rel="stylesheet" type="text/css" href="css/bdm_detail.css?rev=eba82e9ba95050261263fa6f28639420">
+div ng-if="isTest == false"  cg-busy="loadingPromise" style="margin-bottom:70px;">
 	<div class="wrapper " id="my_baodan">
 		<img src="img/yiyanzhen.png" style="position: absolute;top:9px;right:11px;width:70px;z-index: 5;display: none">
 		<div class="container" >
@@ -126,34 +126,34 @@
 		<div class="cell ">
 			<div class="cell_hd cell_primary" ng-click="goClaimInfo(data.claim_info_id )">
 				<div class="img-box">
-					<img src="img/qian1.png"/>
+					<img src="img/tiaokuan.png"/>
 				</div>
-				<div>理赔</div>
+				<div>产品条款</div>
 			</div>
 			<div class="cell_hd cell_primary" >
 				<a href="/ybwx-web/api/web_page/{{data.provision_id}}" style="color:#555;">
 					<div  class="img-box">
-						<img src="img/tiaokuan.png"/>
+						<img src="img/baodan.png"/>
 					</div>
-					<div>条款</div>
+					<div>理赔资料</div>
 				</a>
 			</div>
-			<!--
-					<div class="cell_hd cell_primary" >
-			<div  class="img-box">
-				<img src="img/baodan.png"/>
+			<div class="cell_hd cell_primary" >
+				<a  class="rexian" href="tel:13764567708">
+					<div  class="img-box">
+						<img src="img/rexian.jpg"/>
+					</div>
+					<div>理赔热线</div>
+				</a>
 			</div>
-			<div>电子保单</div>
-		</div>
-		-->
-		<div class="cell_hd cell_primary" ng-click="showTip()">
-			<div  class="img-box">
-				<img src="img/fenxiang.png"/>
+			<div class="cell_hd cell_primary" ng-click="showTip()">
+				<div  class="img-box">
+					<img src="img/fenxiang.png"/>
+				</div>
+				<div>发送保单</div>
 			</div>
-			<div>发送</div>
 		</div>
 	</div>
-</div>
 </div>
 
 <div id="test_baodan" style="display: none">
@@ -322,27 +322,27 @@
 			<div class="img-box">
 				<img src="img/qian1.png"/>
 			</div>
-			<div class="twowid">理赔</div>
+			<div class="twowid">产品条款</div>
 		</div>
 		<div class="cell_hd cell_primary" >
 			<div  class="img-box">
 				<img src="img/tiaokuan.png"/>
 			</div>
-			<div class="twowid">条款</div>
+			<div class="twowid">理赔资料</div>
 		</div>
 		<div class="cell_hd cell_primary" >
 			<div  class="img-box">
 				<img src="img/baodan.png"/>
 			</div>
-			<div>电子保单</div>
+			<div class="twowid">理赔热线</div>
 		</div>
 		<div class="cell_hd cell_primary" >
 			<div  class="img-box">
 				<img src="img/fenxiang.png"/>
 			</div>
-			<div class="twowid">发送</div>
+			<div class="twowid">发送保单</div>
 		</div>
-	   <div class="btn40"></div>
+	   <!-- <div class="btn40"></div> -->
 
 	</div>
 </div>
