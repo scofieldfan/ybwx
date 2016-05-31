@@ -92,7 +92,7 @@ body {
   margin-top: .15rem;
   width: 100%;
   height: 2.25rem;
-  background: url(../img/my_bd/logo.png) no-repeat ;
+  /*background: url(../img/my_bd/logo.png) no-repeat ;*/
   background-size: 100% 100%;
   position: relative;
 }
@@ -248,16 +248,29 @@ img  {
 .paddBtn_20 {
   padding-bottom: .2rem;
 }
+.cell_code {
+  display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+  display: -moz-box; /* 老版本语法: Firefox (buggy) */
+  display: -ms-flexbox; /* 混合版本语法: IE 10 */
+  display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+  display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+  flex-flow: row;
+  width: 100%;
+}
 .main_font {
   padding-bottom: .17rem; 
   line-height: .17rem;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }
 .two_code {
   width: .75rem;
   height: .75rem;
-  position: absolute;
+  /*position: absolute;
   left: 2.05rem;
-  top: 1.3rem;
+  top: 1.3rem;*/
   overflow: auto;
 }
 .two_code img {
