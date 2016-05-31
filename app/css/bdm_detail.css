@@ -188,7 +188,7 @@
 	}
 	.cell_hd{
 		text-align: center;
-		height:65px ;
+		height: .56rem;
 	}
 	.cell_hd .img-box{
 		height: 25px;
@@ -198,4 +198,8 @@
 	}
 	.cell_hd:active{
 		background-color: #f0f0f0;
+	}
+	/*热线字体颜色修改*/
+	.rexian {
+	  color: #555;
 	}

@@ -1,0 +1,128 @@
+
+* {margin: 0;padding: 0;}
+/* <=320的奇葩手机 */
+@media  (max-width:320px) {
+  html {
+    font-size: 100px;
+  }
+}
+
+/* iphone 4, iphone5 */
+@media only screen and (min-device-width:320px) and (max-device-width:568px) {
+  html {
+    font-size: 100px;
+  }
+}
+
+/* iphone 6 */
+@media only screen and (min-device-width:375px) and (max-device-width:667px) {
+  html {
+    font-size: 117.18px;
+  }
+}
+
+/* iphone6 plus */
+@media only screen and (min-device-width:414px) and (max-device-width:736px) {
+  html {
+    font-size: 129.37px;
+  }
+}
+body {
+  background: #fef3d7;
+  padding: 0 20px;
+  font-family:"微软雅黑";
+  font-size: 12px;
+}
+.left {
+  float:left;
+}
+.right {
+  float: right;
+}
+.layout {
+  overflow: hidden;
+}
+.header {
+  border-bottom: 1px solid #003756;
+  padding: .1rem 0;
+}
+/*.header img {
+}*/
+.logo {
+  width: .65rem;
+  height: .2rem;
+  border-right: 1px solid #003756;
+}
+img{
+  width: 100%;
+  height: 100%;
+}
+.logo_font {
+  font-size: .125rem;
+  color: #003756;
+  line-height: .2rem;
+  padding-left: .1rem;
+}
+
+/*main*/
+.main {
+  padding: .4rem 0 0 0 ;
+}
+.frf_sal {
+  height: .21rem;
+  color: #003756;
+  font-size: .17rem;
+  font-weight: bold;
+  padding: .05rem 0 .33rem .42rem;
+  /*vertical-align: middle;*/
+  position: relative;
+}
+.font_red {
+  color: #e52f62;
+}
+/*.free_sale {
+  width: .47rem;
+  height: .84rem;
+}
+*/
+.free,.sale {
+  width: .47rem;
+  height: .26rem;
+}
+.free {
+ position: absolute;
+ left: .07rem;
+ top: 0;
+}
+.sale {
+ position: absolute;
+ left: .07rem;
+ top: 0;
+}
+.bigfont {
+}
+.share {
+  padding: .16rem .7rem .36rem .7rem;
+}
+/*.share_hezi {
+  width: 1.6rem;
+  height: 1.6rem;
+}*/
+.footer_font p {
+  height: .27rem;
+  font-size: .15rem;
+  color: #003756;
+  /*text-align: center;*/
+  line-height: .27rem;
+  padding-left: .35rem;
+}
+.anquan {
+  display: inline-block;
+  width: .165rem;
+  height: .15rem;
+}
+/*.anquan img {
+  width: .165rem;
+  height: .15rem;
+  vertical-align: middle;
+}*/

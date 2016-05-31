@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en" ng-app="ybwxApp">
+<head>
+  <meta charset="utf-8">
+  <!-- --><meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport"content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="bower_components/normalize-css/normalize.css">
+  <link rel="stylesheet" href="mobile.css?rev=fdgfdgf">
+  <script>
+  	var browser={
+    versions:function(){ 
+           var u = navigator.userAgent, app = navigator.appVersion; 
+           return {//移动终端浏览器版本信息 
+                trident: u.indexOf('Trident') > -1, //IE内核
+                presto: u.indexOf('Presto') > -1, //opera内核
+                webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                iPad: u.indexOf('iPad') > -1, //是否iPad  
+                webApp: u.indexOf('Safari') == -1, //是否web应该程序，没有头部与底部
+                weixin: u.indexOf('MicroMessenger') > -1, //是否微信 
+                qq: u.match(/\sQQ/i) == " qq" //是否QQ
+            };
+         }(),
+         language:(navigator.browserLanguage || navigator.language).toLowerCase()
+	} 
+
+  if(browser.versions.mobile || browser.versions.ios || browser.versions.android || 
+  	browser.versions.iPhone || browser.versions.iPad){  	
+   		// window.location = "http://m.zhaizhainv.com";	
+  }else{
+  		window.location = "http://nuobei.cn";
+  }
+  </script>
+</head>
+<body>
+	<div class="header layout">
+		<div class="logo left ">
+			<img src="img/logo.jpg">
+		</div>
+		<div class="logo_font left">您的私人保险管家</div>
+	</div>
+	<div class="main">
+		<div class="frf_sal">中国平安|<span class="bigfont">500万</span> 航意险<span class="font_red">免费领</span>
+			<div class="free">
+				<img src="img/free.png" >
+			</div>
+		</div>
+		<div class="frf_sal">国内外旅游险<span class="font_red">低至 9 元</span>起
+			<div class="sale">
+				<img src="img/sale.png" >
+			</div>
+		</div>
+		
+	</div>
+	<div class="share">
+		<div class="share_hezi">
+			<img src="img/share.jpg" >
+		</div>
+	</div>
+	<div class="footer_font">
+		<p>
+			<span class="anquan">
+				<img src="img/anquan.jpg">
+			</span>
+			保存图片用微信识别上方二维码
+		</p>
+		<p>
+			<span class="anquan">
+				<img src="img/anquan.jpg">
+			</span>
+			或在微信直接搜索 <span class="font_red">
+									[ 诺贝保险 ]
+							 </span>
+		</p>
+	</div>
+</body>
+</html>
