@@ -33,10 +33,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/pay_select.html?v=123',
       controller: 'ybwxPaySelectCtrl'
     })*/
-    .when('/flexbox', {
-      templateUrl: 'partials/flexbox.html',
-      controller: 'ybwxflexCtrl'
-    }).when('/pay_select', {
+    .when('/pay_select', {
       templateUrl: 'partials/pay_select_new.html?v=123',
       controller: 'ybwxPaySelectNewCtrl'
     }).when('/list', {
