@@ -3,7 +3,7 @@ body {
 }
 header {
 	background-color: #fff;
-	padding: .266rem .19rem;
+	padding: 20px 25px;
 	overflow: auto;
 }
 header .left {
@@ -11,22 +11,22 @@ header .left {
 	text-align: center;
 }
 header .left img {
-	width: 0.65rem;
-	height: 0.65rem;
+	width: 50px;
+	height: 50px;
 	border-radius: 100%;
 }
 
 /**/
 header .right {
-	margin: .02rem 0 0 .8rem;
+	margin: 1px 0 0 60px;
 }
 header .title {
-	font-size: 0.18rem;
+	font-size:  15px;
 	font-weight: bold;
 }
 header .subtitle {
-	font-size: 0.15rem;
-	margin-top: 8px;
+	font-size: 14px;
+	margin-top: 4px;
 }
 .subtitle .yuan{
 	font-size: 0.19rem;
@@ -44,7 +44,7 @@ header .subtitle {
 	background-color: #fff;
 	border-top: 1px solid #e2e2e2;
 	border-bottom: 1px solid #e2e2e2;
-	font-size: 0.18rem;
+	font-size: 16px;
 }
 .cell_hd {
 	text-align: center;
@@ -65,8 +65,8 @@ header .subtitle {
 .cell_hd span {
 	/*vertical-align: super;*/
 	position: absolute;
-	top:0.14rem;
-	font-size: 0.15rem;
+	top:14px;
+	font-size: 14px;
 	color: #999999;
 }
 .select span{
@@ -77,7 +77,7 @@ header .subtitle {
 }
 .container li {
 	position: relative;
-	margin-bottom: 0.12rem;
+	margin-bottom: 10px;
 }
 .
 .container li:last-child{
@@ -95,7 +95,7 @@ header .subtitle {
 	top: 0;
 	bottom: -2px;
 	background-color: #588dd4;
-	width: 0.13rem;
+	width: 10px;
 	z-index: 4;
 }
 .container .shadow{
@@ -111,27 +111,27 @@ header .subtitle {
 
 .container .title {
 	color: #555555;
-	font-size: 0.17rem;
-	height: 0.5rem;
-	line-height: 0.5rem;
-	padding-left: 0.15rem;
+	font-size: 15px;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 13px;
 }
 .container .des {
 	border-bottom: 1px solid #e2e2e2;
 	border-top: 1px solid #e2e2e2;
-	padding: 0.2rem 0.13rem 0.1rem 0.15rem;
+	padding: 15px 12px 8px 12px;
 	position: relative;
 }
 .container .status {
 	position: absolute;
-	right: 0.1rem;
-	bottom: 0.15rem;
-	width: 1rem;
-	height: 0.4rem;
+	right: 8px;
+	bottom: 13px;
+	width: 80px;
+	height: 35px;
 }
 .success {
 	background: #fff url('img/cover.png?v=32') no-repeat center;
-	background-size: 1rem;
+	background-size: 100px;
 }
 
 .bd-effective{
@@ -141,15 +141,15 @@ header .subtitle {
 	position: absolute;
 	right: 0;
 	bottom: 0.05rem;
-	width: 0.8rem;
+	width: 70px;
 }
 
 .container .des .logo {
 	float: right;
-	width: 0.8rem;
+	width: 70px;
 }
 .container .product {
-	font-size: 0.18rem;
+	font-size:15px;
 	font-weight: bold;
 	color:#222222;
 }
@@ -170,29 +170,29 @@ header .subtitle {
 .sub-container {
 	position: relative;
 	color: #588dd4;
-	font-size: 0.15rem;
-	padding: 0.1rem 0 0.17rem 0;
+	font-size: 13px;
+	padding: 9px 0 9px 0;
 	overflow: hidden;
 }
 
 .sub-container .bd-score{
 	float:left;
-	padding-left: 0.13rem;
+	padding-left: 12px;
 }
 .sub-container .bd-score span{
-	font-size: 0.25rem;
+	font-size: 20px;
 	font-weight: bold;
 }
 .pei_button {
 	display: inline-block;
 	float: right;
-	padding: 0.05rem 0.24rem;
+	padding: 2px 19px;
 	border-radius: 3px;
 	border: 1px solid #588dd4;
 	background-color: #fff;
 	color: #588dd4;
-	font-size: 0.17rem;
-	margin-right: 0.13rem;
+	font-size: 15px;
+	margin-right: 11px;
 }
 .bottom {
 	/*background: url('../img/xiaotiao.png') repeat-x center;*/
@@ -241,15 +241,15 @@ header .subtitle {
 .process-container-left img {
 	width: 70px;
 	height: 70px;
-	margin-left: 0.2rem;
+	margin-left: 18px;
 }
 .process-container-right {
 	float: left;
-	margin-left: 0.2rem;
+	margin-left: 18px;
 }
 .process-container-right .name {
 	color: #000;
-	font-size: 0.18rem;
+	font-size: 15px;
 	font-weight: bold;
 	line-height: 1;
 }
@@ -258,14 +258,14 @@ header .subtitle {
 	line-height: 1;
 }
 .cell_hd {
-	height: 0.57rem;
+	height: 50px;
 }
 .tip {
 	width: 100%;
 	text-align: center;
 	color: #555555;
 	position: fixed;
-	bottom: 0.6rem;
+	bottom: 50px;
 }
 .tip div {
 	padding-top: 0.1rem;
