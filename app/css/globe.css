@@ -168,8 +168,8 @@ input::-webkit-input-speech-button {
 }
 .btn {
   font-size: 0.20rem;
-  line-height: 0.567rem;
-  height: 0.567rem;
+  line-height: 44px;
+  height: 44px;
   bottom: 20px;    /*
               font-size: 18px;
               line-height: 2.33333333;*/
