@@ -46,6 +46,10 @@ header .subtitle {
 	border-bottom: 1px solid #e2e2e2;
 	font-size: 15px;
 }
+.hairlines .nav{
+	border-width:0.5px;
+}
+
 .cell_hd {
 	text-align: center;
 }
@@ -121,6 +125,9 @@ header .subtitle {
 	border-top: 1px solid #e2e2e2;
 	padding: 15px 12px 8px 12px;
 	position: relative;
+}
+.hairlines .des{
+	border-width:0.5px;
 }
 .container .status {
 	position: absolute;
@@ -198,6 +205,9 @@ header .subtitle {
 	margin:10px 11px;
 	line-height: 20px;
 }
+.hairlines .pei_button{
+	border-width:0.5px;
+}
 .bottom {
 	/*background: url('../img/xiaotiao.png') repeat-x center;*/
 	/*background-size: 100% 0.1rem;*/
@@ -221,7 +231,9 @@ header .subtitle {
 	height: 2px;
 	margin: 2px 0;
 }
-
+.hairlines .linebox{
+	border-width:0.5px;
+}
 .example {
 	font-size: 0.25rem;
 	color: #ff5c00;
