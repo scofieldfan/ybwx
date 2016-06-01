@@ -135,9 +135,9 @@ ybwxApp.config(['$routeProvider',
 ybwxApp.run(['$rootScope',
 function($rootScope) {
   $rootScope.$on('$routeChangeSuccess', function(event, current, previous) {
-      if (current.$$route) {
+      //if (current.$$route) {
         $rootScope.title = current.$$route.title;
-      }
+     // }
   });
 }]);
 

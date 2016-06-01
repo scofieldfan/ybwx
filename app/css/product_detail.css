@@ -92,7 +92,7 @@ table td, table th {
 }
 .help-img {
   height: 0.18rem;
-  vertical-align: bottom;
+  vertical-align: -0.02rem;
 }
 .introd-top {
   margin: 0.15rem 0;
