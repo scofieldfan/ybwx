@@ -132,38 +132,33 @@ ybwxApp.config(['$routeProvider',
   }
 ]);
 
-$.extend($, {
-    setWeixinTitle: function (title) {
-        document.title = title;
 
-        // hack在微信IOS webview中无法修改document.title的情况
-        if ($.isWeixin() && $.isIOS()) {
-            var $iframe = $('<iframe src="/st/images/icon144.png"></iframe>');
-            $iframe.on('load', function () {
-                setTimeout(function () {
-                    $iframe.off('load').remove();
-                }, 0);
-            }).appendTo('body');
-        }
-    }
-});
 
 ybwxApp.run(['$rootScope',
-function($rootScope) {
-  $rootScope.$on('$routeChangeSuccess', function(event, current, previous) {
+  function($rootScope) {
+    $rootScope.$on('$routeChangeSuccess', function(event, current, previous) {
       //if (current.$$route) {
-        /*
+      /*
         if (current.hasOwnProperty('$$route')) {
            $rootScope.title = current.$$route.title;
 
         }*/
-         if(current && current.title){
-            // document.title = current.title;
-            $.setWeixinTitle(current.title)
-         }
-     // }
-  });
-}]);
+      if (current && current.title) {
+        // document.title = current.title;
+        var $body = $('body');
+        document.title = 'title';
+        // hack在微信等webview中无法修改document.title的情况
+        var $iframe = $('<iframe src="/favicon.ico"></iframe>');
+        $iframe.on('load', function() {
+          setTimeout(function() {
+            $iframe.off('load').remove();
+          }, 0);
+        }).appendTo($body);
+      }
+      // }
+    });
+  }
+]);
 
 /*
 ybwxApp.service('payInfo', function() {
