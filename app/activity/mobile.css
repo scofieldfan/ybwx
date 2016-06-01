@@ -1,5 +1,9 @@
 
 * {margin: 0;padding: 0;}
+html {
+  font-size: 100px;
+  font-family: "微软雅黑";
+}
 /* <=320的奇葩手机 */
 @media  (max-width:320px) {
   html {
@@ -99,8 +103,7 @@ img{
  left: .07rem;
  top: 0;
 }
-.bigfont {
-}
+
 .share {
   padding: .16rem .7rem .36rem .7rem;
 }
@@ -109,17 +112,21 @@ img{
   height: 1.6rem;
 }*/
 .footer_font p {
-  height: .27rem;
-  font-size: .15rem;
+  height: .3rem;
+  font-size: .14rem;
   color: #003756;
   /*text-align: center;*/
-  line-height: .27rem;
+  line-height: .3rem;
   padding-left: .35rem;
+  /*width: 2.2rem;*/
 }
 .anquan {
   display: inline-block;
-  width: .165rem;
-  height: .15rem;
+  width: .14rem;
+  vertical-align: middle;
+}
+.font_weight_bold {
+  font-weight: bold;
 }
 /*.anquan img {
   width: .165rem;

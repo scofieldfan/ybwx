@@ -8,11 +8,11 @@ body{
 .claim_controller li {
 	padding-top: .38rem;
 }
-p{
+.claim_controller p{
 	color: #555;
 	font-weight: bold;
 }
-span {
+.claim_controller span {
 	font-size: 15px;
 	display: inline;
 	color: #555;
@@ -21,7 +21,7 @@ span {
 	vertical-align: middle;
 	
 }
-img{
+.claim_controller img{
 	width: .2rem;
 	height: .2rem;
 	vertical-align: middle;
