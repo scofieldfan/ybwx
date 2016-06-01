@@ -1,0 +1,69 @@
+*{margin:0;padding:0;}
+body{
+	background: #f5f5f5;
+}
+.claim_controller {
+	padding: 0 .19rem;
+}
+.claim_controller li {
+	padding-top: .38rem;
+}
+p{
+	color: #555;
+	font-weight: bold;
+}
+span {
+	font-size: 15px;
+	display: inline;
+	color: #555;
+	padding-left: .06rem;
+	/*font-weight: bold;*/
+	vertical-align: middle;
+	
+}
+img{
+	width: .2rem;
+	height: .2rem;
+	vertical-align: middle;
+}
+.content {
+	color: #999999;
+	text-decoration: none;
+	font-size: 13px;
+}	
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+.cut_container {
+	overflow: hidden;position: fixed;bottom:0;width:100%;
+	border-top: 1px solid #e2e2e2;
+	display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+	display: -moz-box; /* 老版本语法: Firefox (buggy) */
+	display: -ms-flexbox; /* 混合版本语法: IE 10 */
+	display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+	display: flex;  
+	flex-flow: row;
+	/*display: -webkit-flex;*/
+}
+.cut_cell {
+	height: 48px;
+	text-decoration: none;
+	display: inline-block;
+	color: #555;
+	font-size: .19rem;
+	line-height: 48px;
+	text-align: center;
+	background: #fff;
+	-webkit-box-flex: 1;
+ 	-webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+.cut_cell:nth-child(2) {
+	background: #1e4e8e;
+	color: #fff;
+}
+

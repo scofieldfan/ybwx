@@ -1,5 +1,5 @@
-<link rel="stylesheet" type="text/css" href="css/bdm_detail.css?rev=dfsdf">
-<div ng-if="isTest == false"  cg-busy="loadingPromise" style="margin-bottom:70px;">
+<link rel="stylesheet" type="text/css" href="css/bdm_detail.css?rev=gfhgfh">
+<div ng-if="isTest == false"  cg-busy="loadingPromise" style="margin-bottom:45px;">
 	<div class="wrapper " id="my_baodan">
 		<img src="img/yiyanzhen.png" style="position: absolute;top:9px;right:11px;width:70px;z-index: 5;display: none">
 		<div class="container" >
@@ -124,13 +124,13 @@
 <div>
 	<div class="tail-container">
 		<div class="cell ">
-			<div class="cell_hd cell_primary" ng-click="goClaimInfo(data.claim_info_id )">
+			<div class="cell_hd cell_primary">
 				<div class="img-box">
 					<img src="img/tiaokuan.png"/>
 				</div>
 				<div>产品条款</div>
 			</div>
-			<div class="cell_hd cell_primary" >
+			<div class="cell_hd cell_primary" ng-click="goClaimInfo(data.claim_info_id )">
 				<a href="/ybwx-web/api/web_page/{{data.provision_id}}" style="color:#555;">
 					<div  class="img-box">
 						<img src="img/baodan.png"/>
@@ -316,6 +316,8 @@
 			<div class="number">88张</div>
 		</div>
 	</div>
+	<div class="btn40" style="background:#f5f5f5"></div>
+
 	<div class="tail-container">
 	<div class="cell ">
 		<div class="cell_hd cell_primary">
@@ -342,7 +344,6 @@
 			</div>
 			<div class="twowid">发送保单</div>
 		</div>
-	   <!-- <div class="btn40"></div> -->
 
 	</div>
 </div>

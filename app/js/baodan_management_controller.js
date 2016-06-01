@@ -53,12 +53,6 @@ bdControllers.controller('ybwxclaim_informationCtrl', ['$scope', '$routeParams',
 
 	}
 ]);
-bdControllers.controller('ybwxtb_notivelCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
-	function($scope, $routeParams, $location, $http, $rootScope) {
-		
-
-	}
-]);
 
 
 bdControllers.controller('ybwxbaodanManageListCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
