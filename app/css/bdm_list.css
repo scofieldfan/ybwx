@@ -3,7 +3,7 @@ body {
 }
 header {
 	background-color: #fff;
-	padding: 20px 25px;
+	padding: 17px  25px;
 	overflow: auto;
 }
 header .left {
@@ -230,6 +230,9 @@ header .subtitle {
 	background-color: #fff;
 	height: 2px;
 	margin: 2px 0;
+}
+.hairlines .bottom{
+	border-width:0.5px;
 }
 .hairlines .linebox{
 	border-width:0.5px;
