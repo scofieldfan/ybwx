@@ -182,19 +182,23 @@
 		background-color: #f5f5f5;
 		color:#555;
 		z-index: 200000;
+		border-top: 1px solid #e2e2e2;
+		border-width: 1px;
 	}
 	.cell{
 		background-color: #fff;
 	}
 	.cell_hd{
 		text-align: center;
-		height: .56rem;
+		height: 48px;
 	}
-	.cell_hd .img-box{
-		height: 25px;
+	.img-box {
+		padding-top: 3px;
+        height: 22px;
 	}
 	.cell_hd img{
-		width:20px;
+		width:15px;
+		vertical-align: middle;
 	}
 	.cell_hd:active{
 		background-color: #f0f0f0;
