@@ -141,8 +141,9 @@ function($rootScope) {
            $rootScope.title = current.$$route.title;
 
         }*/
-
-          document.title = current.title;
+         if(current && current.title){
+            document.title = current.title;
+         }
      // }
   });
 }]);
