@@ -140,7 +140,7 @@ header .subtitle {
 .bd-effective img{
 	position: absolute;
 	right: 0;
-	bottom: 3px;
+	bottom: 0px;
 	width: 70px;
 }
 
