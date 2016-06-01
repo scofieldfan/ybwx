@@ -136,7 +136,13 @@ ybwxApp.run(['$rootScope',
 function($rootScope) {
   $rootScope.$on('$routeChangeSuccess', function(event, current, previous) {
       //if (current.$$route) {
-        $rootScope.title = current.$$route.title;
+        /*
+        if (current.hasOwnProperty('$$route')) {
+           $rootScope.title = current.$$route.title;
+
+        }*/
+
+          document.title = current.title;
      // }
   });
 }]);
