@@ -148,7 +148,7 @@ ybwxApp.run(['$rootScope',
         var $body = $('body');
         document.title = current.title;
         // hack在微信等webview中无法修改document.title的情况
-        var $iframe = $('<iframe src="/favicon.ico"></iframe>');
+        var $iframe = $('<iframe src="/favicon.ico" style="display:none"></iframe>');
         $iframe.on('load', function() {
           setTimeout(function() {
             $iframe.off('load').remove();

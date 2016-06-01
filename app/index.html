@@ -88,7 +88,7 @@
    -->
    
   <script src="js/util.js?rev=91947199cd48c924148968873efd1c1f"></script>
-  <script src="js/app.js?rev=c22c05613638759bf43c2acbc332c946"></script>
+  <script src="js/app.js?rev=92fc14c44e6ad0c1d012f4f894c3ce9b"></script>
   <script src="js/main_controllers.js?rev=c1c8e059b8349df2c8570c0a1a101e44"></script>
   <script src="js/temai_controllers.js?rev=46de522c461f8e24a5805c4c579a1c10"></script>
   <script src="js/baodan_management_controller.js?rev=fc529d76977aad22051362b6a0c724fe"></script>
@@ -107,6 +107,7 @@
    }) 
   $(function(){
 
+        //解决高清屏1px 边框的问题
         if (window.devicePixelRatio && devicePixelRatio > 1) {
             var testEle = document.createElement('div');
             testEle.style.border = '.5px solid transparent';
