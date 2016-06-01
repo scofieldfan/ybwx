@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="css/baodan_manage_list.css?rev=7abc9f1793c5989dbdab0db2f8e3e445">
+<link rel="stylesheet" type="text/css" href="css/bdm_list.css?rev=f34cc82a3004b72e16507582707b10fd">
 <header>
 	<div class="left">
 		<!--
@@ -80,7 +80,7 @@
 						<span>{{policy.score | number:2}}</span>
 						分
 					</div>
-					<div class="pei_button" ng-click="goClaimInfo(policy.claim_info_id )">理赔</div>
+					<div class="pei_button" ng-click="goClaimInfo(policy.claim_info_id )">理&nbsp;赔</div>
 				</div>
 			</div>
 			<div class="bottom">
@@ -127,6 +127,7 @@
 	<div></div>
 </div>
 <div class="cell pay_container">
-  <a href="javascript:void(0)" class="btn btn_dark_2_primary" ng-click="goBdUpload();" style="border-radius: 0px;">上传保单</a>
+  <a href="javascript:void(0)" class="btn btn_dark_2_primary" ng-click="goBdUpload();" style="border-radius: 0px;">
+<img src="img/upload.png">&nbsp;上传保单</a>
 </div>
 

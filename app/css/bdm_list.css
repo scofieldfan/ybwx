@@ -85,7 +85,7 @@ header .subtitle {
 }
 .container .wrapper {
 	position: relative;
-	padding: 0.05rem 0 0.05rem 0.13rem;
+	padding: 0.05rem 0 9px 0.13rem;
 	overflow: hidden;
 	background-color: #fff;
 }
@@ -139,9 +139,9 @@ header .subtitle {
 }
 .bd-effective img{
 	position: absolute;
-	right: 0;
+	right: 5px;
 	bottom: 0px;
-	width: 70px;
+	width: 60px;
 }
 
 .container .des .logo {
@@ -154,8 +154,8 @@ header .subtitle {
 	color:#222222;
 }
 .container .time {
-	line-height: 0.5rem;
-	height: 0.5rem;
+	line-height: 50px;
+	height: 50px;
 	color: #999999;
 	font-size: 13px;
 }
@@ -172,8 +172,10 @@ header .subtitle {
 	position: relative;
 	color: #588dd4;
 	font-size: 13px;
-	padding: 9px 0 9px 0;
+	/*padding: 9px 0 9px 0;*/
 	overflow: hidden;
+	height:50px;
+	line-height: 50px;
 }
 
 .sub-container .bd-score{
@@ -187,13 +189,14 @@ header .subtitle {
 .pei_button {
 	display: inline-block;
 	float: right;
-	padding: 2px 19px;
+	padding: 4px 19px;
 	border-radius: 3px;
 	border: 1px solid #588dd4;
 	background-color: #fff;
 	color: #588dd4;
-	font-size: 15px;
-	margin-right: 11px;
+	font-size: 13px;
+	margin:10px 11px;
+	line-height: 20px;
 }
 .bottom {
 	/*background: url('../img/xiaotiao.png') repeat-x center;*/
@@ -231,6 +234,10 @@ header .subtitle {
 	width: 100%;
 	border-top: 1px solid #e2e2e2;
 	z-index: 100;
+}
+.pay_container img{
+	width:14px;
+	vertical-align: -1.5px;
 }
 .blue {
 	color: #588dd4
