@@ -4,18 +4,12 @@
   html {
     font-size: 100px;
   }
-  .logo_controller {
-    /*background: url(../img/my_bd/logo.png) no-repeat center;*/
-  }
 }
 
 /* iphone 4, iphone5 */
 @media only screen and (min-device-width:320px) and (max-device-width:568px) {
   html {
     font-size: 100px;
-  }
-   .logo_controller {
-    /*background: url(../img/my_bd/logo.png) no-repeat center ;*/
   }
 }
 
@@ -24,18 +18,12 @@
   html {
     font-size: 117.18px;
   }
-   .logo_controller {
-   /* background: url(../img/my_bd/logo2.png) no-repeat center;*/
-  }
 }
 
 /* iphone6 plus */
 @media only screen and (min-device-width:414px) and (max-device-width:736px) {
   html {
     font-size: 129.37px;
-  }
-   .logo_controller {
-    /*background: url(../img/my_bd/logo2.png) no-repeat  center;*/
   }
 }
 
@@ -44,7 +32,7 @@ body {
 }
 .my_bd_controller {
   height: auto;
-  padding: .2rem;
+  padding: .15rem .2rem .15rem .2rem;
 }
 .layout {
   overflow: auto;
@@ -74,7 +62,7 @@ body {
   border-bottom: 5px solid #003756;
   font-size: .13rem;
   color: #003756;
-  /*padding-bottom: .07rem;*/
+  padding-bottom: 3px;
 }
 .ul_contrl li:nth-child(1) p{
   display: inline-block;
@@ -89,7 +77,7 @@ body {
 }
 
 .logo_controller {
-  margin-top: .15rem;
+  margin-top: .2rem;
   width: 100%;
   /*height: 2.6rem;*/
   position: relative;
@@ -189,6 +177,11 @@ body {
   left: .15rem;
   top: .12rem;*/
 }
+.song_imgwid {
+  width: .14rem;
+  height: .14rem;
+  vertical-align: middle;
+}
 .imgwid span img {
   width: 100%;
   height: 100%;
@@ -251,7 +244,7 @@ img  {
   /*font-weight: bold;*/
 }
 .paddBtn_20 {
-  padding-bottom: .2rem;
+  padding-bottom: .1rem;
 }
 .cell_code {
   display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
@@ -263,7 +256,7 @@ img  {
   width: 100%;
 }
 .main_font {
-  padding-bottom: .17rem; 
+  /*padding-bottom: 17px; */
   line-height: .17rem;
   -webkit-box-flex: 1;
   -webkit-flex: 1;
