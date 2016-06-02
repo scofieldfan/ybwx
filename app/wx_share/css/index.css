@@ -4,18 +4,12 @@
   html {
     font-size: 100px;
   }
-  .logo_controller {
-    background: url(../img/my_bd/logo.png) no-repeat ;
-  }
 }
 
 /* iphone 4, iphone5 */
 @media only screen and (min-device-width:320px) and (max-device-width:568px) {
   html {
     font-size: 100px;
-  }
-   .logo_controller {
-    background: url(../img/my_bd/logo.png) no-repeat ;
   }
 }
 
@@ -24,18 +18,12 @@
   html {
     font-size: 117.18px;
   }
-   .logo_controller {
-    background: url(../img/my_bd/logo2.png) no-repeat ;
-  }
 }
 
 /* iphone6 plus */
 @media only screen and (min-device-width:414px) and (max-device-width:736px) {
   html {
     font-size: 129.37px;
-  }
-   .logo_controller {
-    background: url(../img/my_bd/logo2.png) no-repeat ;
   }
 }
 
@@ -44,7 +32,7 @@ body {
 }
 .my_bd_controller {
   height: auto;
-  padding: .2rem;
+  padding: .15rem .2rem .15rem .2rem;
 }
 .layout {
   overflow: auto;
@@ -63,18 +51,18 @@ body {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  border-bottom: 7px solid #e52f62;
-  padding-bottom: .07rem;
+  border-bottom: 5px solid #e52f62;
+  /*padding-bottom: .07rem;*/
 }
 .ul_contrl li:nth-child(2) {
   width: .06rem;
 }
 .ul_contrl li:nth-child(3) {
   width: .84rem;
-  border-bottom: 7px solid #003756;
+  border-bottom: 5px solid #003756;
   font-size: .13rem;
   color: #003756;
-  padding-bottom: .07rem;
+  padding-bottom: 3px;
 }
 .ul_contrl li:nth-child(1) p{
   display: inline-block;
@@ -89,15 +77,12 @@ body {
 }
 
 .logo_controller {
-  margin-top: .15rem;
+  margin-top: .2rem;
   width: 100%;
-  height: 2.25rem;
-  /*background: url(../img/my_bd/logo.png) no-repeat ;*/
-  background-size: 100% 100%;
+  /*height: 2.6rem;*/
   position: relative;
 }
-
-.logo_controller img {
+ img {
   width: 100%;
   height: 100%;
 }
@@ -124,7 +109,8 @@ body {
 .button_contr {
   position: absolute;
   left: 0;
-  top: 1.5rem;
+  bottom:.45rem;
+  /*top: 1.5rem;*/
   width: 100%;
   /*padding:0 0 0 .18rem;*/
   display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
@@ -136,20 +122,26 @@ body {
 }
 .button_contr p:nth-child(2),p:nth-child(4) {
   display: inline-block;
-  /*width: 1.09rem;*/
-  box-flex: 1;
-  flex-grow: 1;
-  height: .39rem;
+  width: 1.1rem;
+  /* -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;*/
+  /*height: .39rem;*/
   font-size: .12rem;
-  /*text-align: center;*/
+  text-align: center;
   border-radius: 5px;
-   display: -webkit-box; 
+ /* display: -webkit-box; 
   display: -moz-box;
   display: -ms-flexbox; 
   display: -webkit-flex; 
   display: flex; 
-  flex-flow: row;
-  position: relative;
+  flex-flow: row;*/
+  /*position: relative;*/
+  color: #fff;
+  line-height: .4rem;
+
+
 }
 .button_contr p:nth-child(2) {
   background: #e42f62;
@@ -159,37 +151,42 @@ body {
 }
 
 .button_contr p:nth-child(3) {
-  width: .19rem;
+  width: .22rem;
   /*box-flex: 1;
   flex-grow: 1;
   background: yellow;*/
 }
 .kong_wid45 {
-  width: .29rem;
+  /*width: .29rem;*/
   /*background: blue;*/
+   -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }
 .imgwid {
-  display:inline-block;
-  width: .35rem;
+ /* display:inline-block;
+  width: .35rem;*/
+  vertical-align: middle;
 }
-.imgwid span {
+.imgwid{
   display: inline-block;
   width: .16rem;
   height: .16rem;
-  position: absolute;
+  /*position: absolute;
   left: .15rem;
-  top: .12rem;
+  top: .12rem;*/
+}
+.song_imgwid {
+  width: .14rem;
+  height: .14rem;
+  vertical-align: middle;
 }
 .imgwid span img {
   width: 100%;
   height: 100%;
 }
 .fontwid {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-  line-height: .39rem;
   color: #fff;
 }
 /*
@@ -226,12 +223,13 @@ img  {
   list-style: none;
   color: #a08f66;
   font-size: 12px;
+  line-height: .2rem;
 }
 .font_controller p{
   list-style: none;
   color: #a08f66;
   font-size: .08rem;
-  padding-bottom: .1rem;
+  padding-bottom: .05rem;
 }
 .font_controller img{
   width: .13rem;
@@ -246,7 +244,7 @@ img  {
   /*font-weight: bold;*/
 }
 .paddBtn_20 {
-  padding-bottom: .2rem;
+  padding-bottom: .1rem;
 }
 .cell_code {
   display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
@@ -258,7 +256,7 @@ img  {
   width: 100%;
 }
 .main_font {
-  padding-bottom: .17rem; 
+  /*padding-bottom: 17px; */
   line-height: .17rem;
   -webkit-box-flex: 1;
   -webkit-flex: 1;
@@ -287,7 +285,7 @@ img  {
 }
 .footer_border li:nth-child(1) {
   width: .83rem;
-  border-bottom: 7px solid #003756;
+  border-bottom: 5px solid #003756;
   font-size: .13rem;
   color: #003756;
 }
@@ -299,7 +297,7 @@ img  {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  border-bottom: 7px solid #e52f62;
+  border-bottom: 5px solid #e52f62;
   padding-bottom: .07rem;
 }
 
