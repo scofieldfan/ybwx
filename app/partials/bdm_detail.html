@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="css/bdm_detail.css?rev=eba82e9ba95050261263fa6f28639420">
+<link rel="stylesheet" type="text/css" href="css/bdm_detail.css?rev=67284dd91e685afa2bc0f88d7f1edc30">
 <div ng-if="isTest == false"  cg-busy="loadingPromise" style="margin-bottom:70px;">
 	<div class="wrapper " id="my_baodan">
 		<img src="img/yiyanzhen.png" style="position: absolute;top:9px;right:11px;width:70px;z-index: 5;display: none">
@@ -14,12 +14,12 @@
 				<div class="hei18"> </div>
 				<div style="padding-left: 0.07rem">
 					<div class="insured-item ">
-						<span class="gray fontW">保单号</span><span>：</span>
+						<span class="gray three_word">保单号</span><span>：</span>
 						{{data.policy_no}}
 						<div class="score">{{data.score | number:2}}<span class="colr">分</span></div>
 					</div>
 					<div class="insured-item">
-						<span class="gray fontW">被保人</span><span>：</span>
+						<span class="gray three_word">被保人</span><span>：</span>
 						{{data.insured_people_name}}	
 					</div>
 					<div class="insured-item">
@@ -62,47 +62,55 @@
 							</div>
 						</td>
 						<td colspan="2">
-						{{data.coverageDate}}
+						{{data.coverageDateHead}}-
+						<br/>
+						{{data.coverageDateTail}}
 						
 						</td>
 					</tr>
 				</table>
 
 				<table style="margin-top: 0.25rem;">
-					<tr class="bd_th">
-						<th style="text-align: left;">被保人信息</th>
+					<tr class="bd_th" >
+						<th style="text-align: left;" colspan="2">被保人信息</th>
 					</tr>
 					<tr class="top20"></tr>
 					<tr ng-repeat="(key, value) in data.insured_info"  >
+						<td class="word_justify" >
+							<span class="gray " >{{key}}</span>
+						</td>
 						<td>
-							<span class="gray">{{key}}:</span>
-							{{value}}
+							<span class="gray " >：</span>{{value}}
 						</td>
 					</tr>
 					<tr class="btn40"></tr>
 				</table>
 				<table >
 					<tr class="bd_th">
-						<th style="text-align: left;">其他信息</th>
+						<th style="text-align: left;"  colspan="2">其他信息</th>
 					</tr>
 					<tr class="top20"></tr>
 					<tr ng-repeat="(key, value) in data.extra_info"  >
+						<td class="word_justify" >
+							<span class="gray " >{{key}}</span>
+						</td>
 						<td>
-							<span class="gray" ng-class="'twowid':key.length==2">{{key}}:</span>
-							{{value}}
+							<span class="gray " >：</span>{{value}}
 						</td>
 					</tr>
 					<tr class="btn40"></tr>
 				</table>
 				<table >
 					<tr class="bd_th">
-						<th style="text-align: left;">销售信息</th>
+						<th style="text-align: left;"  colspan="2">销售信息</th>
 					</tr>
 					<tr class="top20"></tr>
 					<tr ng-repeat="(key, value) in data.sale_info"  >
+						<td class="word_justify" >
+							<span class="gray " >{{key}}</span>
+						</td>
 						<td>
-							<span class="gray">{{key}}:</span>
-							{{value}}
+							<span class="gray " >：</span>{{value}}
 						</td>
 					</tr>
 					<tr class="btn40"></tr>
@@ -124,22 +132,22 @@
 <div>
 	<div class="tail-container">
 		<div class="cell ">
-			<div class="cell_hd cell_primary" ng-click="goClaimInfo(data.claim_info_id )">
+			<div class="cell_hd cell_primary">
+				<a href="/ybwx-web/api/web_page/{{data.provision_id}}" style="color:#555;">
 				<div class="img-box">
 					<img src="img/tiaokuan.png"/>
 				</div>
 				<div>产品条款</div>
+				</a>
 			</div>
-			<div class="cell_hd cell_primary" >
-				<a href="/ybwx-web/api/web_page/{{data.provision_id}}" style="color:#555;">
+			<div class="cell_hd cell_primary" ng-click="goClaimInfo(data.claim_info_id )">
 					<div  class="img-box">
 						<img src="img/baodan.png"/>
 					</div>
 					<div>理赔资料</div>
-				</a>
 			</div>
 			<div class="cell_hd cell_primary" >
-				<a  class="rexian" href="tel:13764567708">
+				<a  class="rexian" href="tel:{{data.claim_line}}">
 					<div  class="img-box">
 						<img src="img/rexian.jpg"/>
 					</div>
@@ -316,6 +324,8 @@
 			<div class="number">88张</div>
 		</div>
 	</div>
+	<div class="btn40" style="background:#f5f5f5"></div>
+
 	<div class="tail-container">
 	<div class="cell ">
 		<div class="cell_hd cell_primary">
@@ -342,7 +352,6 @@
 			</div>
 			<div class="twowid">发送保单</div>
 		</div>
-	   <!-- <div class="btn40"></div> -->
 
 	</div>
 </div>

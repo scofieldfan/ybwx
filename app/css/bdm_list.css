@@ -3,7 +3,7 @@ body {
 }
 header {
 	background-color: #fff;
-	padding: 20px 25px;
+	padding: 17px  25px;
 	overflow: auto;
 }
 header .left {
@@ -44,8 +44,12 @@ header .subtitle {
 	background-color: #fff;
 	border-top: 1px solid #e2e2e2;
 	border-bottom: 1px solid #e2e2e2;
-	font-size: 14px;
+	font-size: 15px;
 }
+.hairlines .nav{
+	border-width:0.5px;
+}
+
 .cell_hd {
 	text-align: center;
 }
@@ -63,10 +67,10 @@ header .subtitle {
 	left: 0
 }
 .cell_hd span {
-	/*vertical-align: super;*/
-	position: absolute;
-	top:14px;
-	font-size: 14px;
+	vertical-align: 3px;
+	/*position: absolute;*/
+	/*top:14px;*/
+	font-size: 12px;
 	color: #999999;
 }
 .select span{
@@ -85,7 +89,7 @@ header .subtitle {
 }
 .container .wrapper {
 	position: relative;
-	padding: 0.05rem 0 0.05rem 0.13rem;
+	padding: 0.05rem 0 9px 0.13rem;
 	overflow: hidden;
 	background-color: #fff;
 }
@@ -111,7 +115,7 @@ header .subtitle {
 
 .container .title {
 	color: #555555;
-	font-size: 15px;
+	font-size: 13px;
 	height: 40px;
 	line-height: 40px;
 	padding-left: 13px;
@@ -119,8 +123,11 @@ header .subtitle {
 .container .des {
 	border-bottom: 1px solid #e2e2e2;
 	border-top: 1px solid #e2e2e2;
-	padding: 15px 12px 8px 12px;
+	padding: 15px 12px 5px 12px;
 	position: relative;
+}
+.hairlines .des{
+	border-width:0.5px;
 }
 .container .status {
 	position: absolute;
@@ -139,9 +146,9 @@ header .subtitle {
 }
 .bd-effective img{
 	position: absolute;
-	right: 0;
-	bottom: 3px;
-	width: 70px;
+	right: 5px;
+	bottom: 0px;
+	width: 60px;
 }
 
 .container .des .logo {
@@ -154,13 +161,14 @@ header .subtitle {
 	color:#222222;
 }
 .container .time {
-	line-height: 0.5rem;
-	height: 0.5rem;
+	line-height: 40px;
+	height: 40px;
 	color: #999999;
+	font-size: 13px;
 }
 .container .time img {
 	width: 14px;
-	vertical-align: text-bottom;
+	vertical-align: -2px;
 }
 .container .cover {
 	position: absolute;
@@ -171,8 +179,10 @@ header .subtitle {
 	position: relative;
 	color: #588dd4;
 	font-size: 13px;
-	padding: 9px 0 9px 0;
+	/*padding: 9px 0 9px 0;*/
 	overflow: hidden;
+	height:50px;
+	line-height: 50px;
 }
 
 .sub-container .bd-score{
@@ -186,13 +196,17 @@ header .subtitle {
 .pei_button {
 	display: inline-block;
 	float: right;
-	padding: 2px 19px;
+	padding: 4px 19px;
 	border-radius: 3px;
 	border: 1px solid #588dd4;
 	background-color: #fff;
 	color: #588dd4;
-	font-size: 15px;
-	margin-right: 11px;
+	font-size: 13px;
+	margin:10px 11px;
+	line-height: 20px;
+}
+.hairlines .pei_button{
+	border-width:0.5px;
 }
 .bottom {
 	/*background: url('../img/xiaotiao.png') repeat-x center;*/
@@ -217,7 +231,12 @@ header .subtitle {
 	height: 2px;
 	margin: 2px 0;
 }
-
+.hairlines .bottom{
+	border-width:0.5px;
+}
+.hairlines .linebox{
+	border-width:0.5px;
+}
 .example {
 	font-size: 0.25rem;
 	color: #ff5c00;
@@ -230,6 +249,10 @@ header .subtitle {
 	width: 100%;
 	border-top: 1px solid #e2e2e2;
 	z-index: 100;
+}
+.pay_container img{
+	width:14px;
+	vertical-align: -1.5px;
 }
 .blue {
 	color: #588dd4
@@ -256,9 +279,10 @@ header .subtitle {
 .process-container-right .subtitle {
 	color: #555555;
 	line-height: 1;
+	font-size: 13px;
 }
 .cell_hd {
-	height: 50px;
+	height: 44px;
 }
 .tip {
 	width: 100%;

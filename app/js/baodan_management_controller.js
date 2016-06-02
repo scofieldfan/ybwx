@@ -49,12 +49,6 @@ bdControllers.controller('ybwxclaim_informationCtrl', ['$scope', '$routeParams',
 		}
 	}
 ]);
-bdControllers.controller('ybwxtb_notivelCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
-	function($scope, $routeParams, $location, $http, $rootScope) {
-		
-
-	}
-]);
 
 
 bdControllers.controller('ybwxbaodanManageListCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
@@ -150,6 +144,10 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 					}
 					$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_policy_detail'] + "?" + util.genParameters(parameters), {}, function(res) {
 						$scope.data = res.data.data;
+						$scope.data.coverageDateHead =  res.data.data.coverageDate.substring(0,19).trim();
+						$scope.data.coverageDateTail =  res.data.data.coverageDate.substring(19).trim();
+						console.log($scope.data.coverageDateHead);
+						console.log($scope.data.coverageDateTail);
 						console.log(res.data.data);
 						$(".bd-wrapper").show();
 					})

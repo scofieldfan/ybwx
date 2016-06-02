@@ -167,12 +167,14 @@ input::-webkit-input-speech-button {
   background: linear-gradient(top, #bbb, #eee, white 100%);
 }
 .btn {
-  font-size: 14px;
+  font-size: 15px;
   line-height: 48px;
   height: 48px;
-  bottom: 20px;    /*
+  bottom: 20px;
+      /*
               font-size: 18px;
-              line-height: 2.33333333;*/
+              line-height: 2.33333333;
+   */
   display: block;
   overflow: hidden;
   box-sizing: border-box;

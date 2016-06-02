@@ -34,11 +34,11 @@
     }
 </style>
 
- <link rel="stylesheet" href="css/output/application.min.css?rev=6ca716ec57e2b0f027f832ed33dc49dc"> 
+ <link rel="stylesheet" href="css/output/application.min.css?rev=2e8d8e22512f6802a79dade64c7bd0d4"> 
 <!--
   <link rel="stylesheet" href="css/share.css">
   <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/globe.css?rev=e5f5ac5e2c195d6f6592fb9ebc08b059">
+  <link rel="stylesheet" href="css/globe.css?rev=113734b0c4a16e0525576503681b2af0">
   <link rel="stylesheet" href="css/app.css?rev=5a256568e36e1b53714d98abec1e1ac0">
   <link rel="stylesheet" href="css/angular-busy.min.css?rev=382a25599fb5b0b2e9efc9af00041c17">
  --> 
@@ -88,10 +88,10 @@
    -->
    
   <script src="js/util.js?rev=91947199cd48c924148968873efd1c1f"></script>
-  <script src="js/app.js?rev=543f3bb17285f0369b26c123968bda7d"></script>
+  <script src="js/app.js?rev=92fc14c44e6ad0c1d012f4f894c3ce9b"></script>
   <script src="js/main_controllers.js?rev=c1c8e059b8349df2c8570c0a1a101e44"></script>
   <script src="js/temai_controllers.js?rev=46de522c461f8e24a5805c4c579a1c10"></script>
-  <script src="js/baodan_management_controller.js?rev=fc529d76977aad22051362b6a0c724fe"></script>
+  <script src="js/baodan_management_controller.js?rev=15cea0562636a84da8d8f34fe8bc4719"></script>
   <script src="js/directives.js?rev=57d74af2016e6c30d8b9b057ef03947a"></script>
   <script src="js/jquery.piemenu.js?rev=f09dce5124a244699c8d4e5d1c60efa4"></script>
   <script src="js/angular-busy.min.js?rev=5e39cee156fc10cdfb02e35cbf2da5aa"></script>
@@ -106,6 +106,18 @@
          $(this).parents(".cell_hd").removeClass("cell_hd_foucs");
    }) 
   $(function(){
+
+        //解决高清屏1px 边框的问题
+        if (window.devicePixelRatio && devicePixelRatio > 1) {
+            var testEle = document.createElement('div');
+            testEle.style.border = '.5px solid transparent';
+            document.body.appendChild(testEle);
+            if (testEle.offsetHeight == 1) {
+                document.querySelector('html').classList.add('hairlines');
+            }
+            document.body.removeChild(testEle);
+        }
+
         $("body").on("click",".mask",function(){
           $(".mask").hide();
         });
