@@ -1,7 +1,7 @@
-<link rel="stylesheet" type="text/css" href="css/bdm_detail.css?rev=67284dd91e685afa2bc0f88d7f1edc30">
+<link rel="stylesheet" type="text/css" href="css/bdm_detail.css?rev=75fe350fed6698242b3d66dc664c7756">
 <div ng-if="isTest == false"  cg-busy="loadingPromise" style="margin-bottom:70px;">
 	<div class="wrapper " id="my_baodan">
-		<img src="img/yiyanzhen.png" style="position: absolute;top:9px;right:11px;width:70px;z-index: 5;display: none">
+		<img src="img/yiyanzhen.png"  ng-show="data.status==3" style="position: absolute;top:9px;right:11px;width:70px;z-index: 5;">
 		<div class="container" >
 			<div class="sub-container">
 				<div class="title ">
@@ -107,10 +107,10 @@
 					<tr class="top20"></tr>
 					<tr ng-repeat="(key, value) in data.sale_info"  >
 						<td class="word_justify" >
-							<span class="gray " >{{key}}</span>
+							<span class="gray" >{{key}}</span>
 						</td>
 						<td>
-							<span class="gray " >：</span>{{value}}
+							<span class="gray" >：</span>{{value}}
 						</td>
 					</tr>
 					<tr class="btn40"></tr>
@@ -121,7 +121,22 @@
 	</div>
 
 	<div class="bd-wrapper" ng-if="data.image_urls.length>0">
-		<div  class="bd-name">保单照片</div>
+		<div  class="bd-name">
+		保单照片
+		<div  class="yanzhen-btn fr " ng-class="{'fail':data.status==2}" ng-show="data.status==1" ng-click="policy_verfiy()">{{yanzhentext}}</div>
+		<div  class="yanzhen-btn fr success" ng-show="data.status==3">验真成功</div>
+		<div  class="yanzhen-btn fr fail" ng-show="data.status==4">验真失败</div>
+		<div  class="yanzhen-btn fr fail" ng-show="data.status==2">验真中</div>
+		</div>
+		<div class="fail-tip " ng-show="data.status==4">
+		   	未查到您的保单信息<br/>
+		   	请尝试其他方式验真
+		   	<div style="margin-top: 8px;">
+			   	<div class="yanzhen-btn">
+			   	  官网验真
+			   	</div>
+		   </div>
+		</div>
 		<div class="bd-pic-container"  ng-click="preview()">
 			<img ng-src="{{data.image_urls[0]}}"  />
 			<div class="number">{{data.image_urls.length}}张</div>
@@ -166,7 +181,7 @@
 
 <div id="test_baodan" style="display: none">
 	<div class="wrapper " >
-		<img src="img/yiyanzhen.png" style="position: absolute;top:9px;right:11px;width:70px;z-index: 5;display: none">
+		<img src="img/yiyanzhen.png" style="position: absolute;top:9px;right:11px;width:70px;z-index: 5;display: none;">
 		<div class="container">
 			<div class="sub-container">
 				<div class="title">

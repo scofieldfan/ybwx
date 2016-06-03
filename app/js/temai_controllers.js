@@ -69,68 +69,72 @@ ybwxControllers.controller('wxDetailCtrl', ['$scope', '$routeParams', '$location
     $scope.init = function() {
 
 
-      $scope.haveMask = false;
-      $scope.selectTable = 0;
+      var code = util.getParameterByName("code");
+      if (!code) {
+        code = $routeParams.code;
+      }
+      util.getOpenId(code).then(function() {
+
+        $scope.haveMask = false;
+        $scope.selectTable = 0;
+        $scope.maskPromise = getHttpPromise($http, $rootScope, 'GET', api['get_insurances_mask'].replace("{productId}", $routeParams.product_id), {}, function(res) {
+
+          if (res.data && res.data.data && res.data.data.plans) {
+            console.log(".................");
+            console.log(res.data.data.plans);
+            $scope.maskPlans = res.data.data.plans;
+            $scope.maskSelectPlan = $scope.maskPlans[Object.keys($scope.maskPlans)[0]];
+
+            $scope.coverage_period = $scope.maskSelectPlan.coverage_periods[0];
+            $scope.coverage_period_type = $scope.maskSelectPlan.coverage_period_type;
 
 
-      $scope.maskPromise = getHttpPromise($http, $rootScope, 'GET', api['get_insurances_mask'].replace("{productId}", $routeParams.product_id), {}, function(res) {
+            if ($scope.maskSelectPlan.charge_periods) {
+              $scope.charge_period = $scope.maskSelectPlan.charge_periods[0];
+            }
+            $scope.charge_period_type = $scope.maskSelectPlan.charge_period_type;
 
-        if (res.data && res.data.data && res.data.data.plans) {
-          console.log(".................");
-          console.log(res.data.data.plans);
-          $scope.maskPlans = res.data.data.plans;
-          $scope.maskSelectPlan = $scope.maskPlans[Object.keys($scope.maskPlans)[0]];
-
-          $scope.coverage_period = $scope.maskSelectPlan.coverage_periods[0];
-          $scope.coverage_period_type = $scope.maskSelectPlan.coverage_period_type;
-
-
-          if ($scope.maskSelectPlan.charge_periods) {
-            $scope.charge_period = $scope.maskSelectPlan.charge_periods[0];
+            $scope.haveMask = true;
+          } else {
+            $scope.haveMask = false;
           }
-          $scope.charge_period_type = $scope.maskSelectPlan.charge_period_type;
 
-          $scope.haveMask = true;
-        } else {
-          $scope.haveMask = false;
-        }
-
-      })
+        })
 
 
 
-      $scope.myPromise = $http({
-        method: 'POST',
-        headers: {
-          "Content-Type": "application/json;charset:UTF-8"
-        },
-        url: api['get_insurances_detail'],
-        data: {
-          "insurance_id": $routeParams.product_id
-        }
-      }).then(function(res) {
-        console.log(res);
-        if (res && res.data && res.data.data) {
-          for (var i = 0; i < res.data.data.insurance_plans.length; i++) {
-            var plan = res.data.data.insurance_plans[i];
-            for (var j = 0; j < plan.coverage_beans.length; j++) {
-              if (plan.coverage_beans[j].sum_insured.charAt(plan.coverage_beans[j].sum_insured.length - 1) === "d") {
-                plan.coverage_beans[j].danwei = "/天";
-                plan.coverage_beans[j].sum_insured = plan.coverage_beans[j].sum_insured.substring(0, plan.coverage_beans[j].sum_insured.length - 1);
+        $scope.myPromise = $http({
+          method: 'POST',
+          headers: {
+            "Content-Type": "application/json;charset:UTF-8"
+          },
+          url: api['get_insurances_detail'],
+          data: {
+            "insurance_id": $routeParams.product_id
+          }
+        }).then(function(res) {
+          console.log(res);
+          if (res && res.data && res.data.data) {
+            for (var i = 0; i < res.data.data.insurance_plans.length; i++) {
+              var plan = res.data.data.insurance_plans[i];
+              for (var j = 0; j < plan.coverage_beans.length; j++) {
+                if (plan.coverage_beans[j].sum_insured.charAt(plan.coverage_beans[j].sum_insured.length - 1) === "d") {
+                  plan.coverage_beans[j].danwei = "/天";
+                  plan.coverage_beans[j].sum_insured = plan.coverage_beans[j].sum_insured.substring(0, plan.coverage_beans[j].sum_insured.length - 1);
+                }
               }
             }
+            $scope.data = res.data.data;
+            $scope.money = res.data.data.insurance_plans[0].premium;
+            $scope.plan = res.data.data.insurance_plans[0];
+            $scope.danwei = genDuration($scope.plan.coverage_period_type);
           }
-          $scope.data = res.data.data;
-          $scope.money = res.data.data.insurance_plans[0].premium;
-          $scope.plan = res.data.data.insurance_plans[0];
-          $scope.danwei = genDuration($scope.plan.coverage_period_type);
-        }
-      }, function(res) {
-        console.log(res);
-        util.showToast($rootScope, "服务器错误");
+        }, function(res) {
+          console.log(res);
+          util.showToast($rootScope, "服务器错误");
+        })
+
       })
-
-
     }
 
     $scope.changeTaoCan = function($event, item) {

@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="css/bdm_list.css?rev=a33bd0b6f1a156fc1e39be3c7e9bd4d3">
+<link rel="stylesheet" type="text/css" href="css/bdm_list.css?rev=92ecb63d763fba363c7dc6e2f46cbb56">
 <header>
 	<div class="left">
 		<!--
@@ -63,7 +63,7 @@
 					<img class="logo" ng-src="{{policy.icon}}"   />
 					<div style="margin-right: 1rem;">
 						<div class="product">{{policy.name}}</div>
-						<div class="time"><img src="img/clock.jpg"/> 2016.03.03-2016.04.05</div>
+						<div class="time"><img src="img/clock.jpg"/> {{policy.coverageDate}}</div>
 					</div>
 					<div style="clear:both;"></div>
 
@@ -123,7 +123,7 @@
 </div>
 
 <div class="tip"  ng-if="data.policies.length == 0" >
-	点击上传 进行保单体检
+	点击上传 进行保单管理
 	<div></div>
 </div>
 <div class="cell pay_container">

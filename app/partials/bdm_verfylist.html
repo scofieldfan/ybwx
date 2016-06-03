@@ -1,0 +1,156 @@
+<link rel="stylesheet" type="text/css" href="css/bdm_list.css?rev=92ecb63d763fba363c7dc6e2f46cbb56">
+<style>
+
+.pei_button{
+	padding:7px 19px;
+	margin:8px 11px 5px;
+}
+.have-verify{
+	background-color: #ff5c00;
+	color:#fff;;
+	border-radius: 3px;
+	float: right;
+	line-height: 15px;
+	padding: 5px;
+	margin: 15px 10px 0 0;
+}
+.yanzhen-btn{
+	background-color:#fff;
+	color:#ff5c00;
+	border:1px solid #ff5c00;
+	border-radius: 3px;
+	padding: 2px 10px;
+	display: inline-block;
+	line-height: 25px;
+	margin:10px 10px 0 0;
+}
+.yanzhen-btn.success{
+	background-color:#f0f0f0;
+	color:#588dd4;
+	border:none;
+}
+.yanzhen-btn.fail{
+	background-color:#f0f0f0;
+	color:#999999;
+	border:none;
+}
+.yanzhen-btn.blue{
+	color:#588dd4;
+	border:1px solid #588dd4;
+}
+.fail-tip{
+	color:#555;
+	float:right;
+	margin:0.5rem 0.8rem 0 0;
+	text-align: center;
+}
+
+.daiyanzhen{
+	border-radius: 3px;
+	float: right;
+	line-height: 50px;
+	height:50px;
+	margin-right: 15px;
+}
+.daiyanzhen img {
+	width:60px;
+	vertical-align: middle;
+}
+.tip-text{
+	color:#555555
+}
+.default_tip{
+	text-align:center;
+	width:300px;
+	margin:1.5rem auto 0;
+	color:#555555;
+	font-size: 15px;
+}
+.default_tip div:nth-child(2){
+	color:#999999;
+	line-height: 30px;
+}
+
+.default_tip img{
+	width: 70px;
+}
+</style>
+<div class="container"  cg-busy="loadingPromise">
+	
+
+	
+	<div class="default_tip"  ng-if="data.policies.length==0">
+		<img src="img/verify.png">
+		<div >新买的保险不知道真假？</div>
+		<div>上传保单 立即验真</div>
+	</div>
+
+	<ul  ng-if="data.policies.length>0">
+		<li class="default-li"  ng-if="data.un_settled_policies_amount > 0">
+			<div class="wrapper" style="padding:0.2rem 0">
+				<div class="bg"></div>
+				<div class="process-container-left">
+					<img src="img/loadding.png" >
+				</div>	
+				<div class="process-container-right">
+					<p class="name"><span class="blue">{{data.un_settled_policies_amount}}</span>份保单待验真</p>
+					<p class="subtitle">正在识别中……</p>
+				</div>
+			</div>
+		</li>
+		<li class="default-li" ng-click="goDetail(policy.id)"   ng-repeat="policy in data.policies">
+				<div class="bg"></div>
+			<div class="wrapper">
+				<div class="shadow"></div>
+				<div class="title">保单号:{{policy.policy_no}} <!--<span class="example">示例保单</span>--></div>
+				<div class="des ">
+					<img class="logo" ng-src="{{policy.icon}}"   />
+					<div style="margin-right: 50px;">
+						<div class="product">{{policy.name}}</div>
+						<div class="time"><img src="img/clock.jpg"/>{{policy.coverageDate}}</div>
+						<div class="tip-text"  ng-show="policy.status==='4'" >未查到您的保单信息，请尝试其他方式验真</div>
+					</div>
+					<div style="clear:both;"></div>
+
+					<div class="bd-effective">
+								<img src="img/cover.png"  ng-show="policy.effective" />
+								<img src="img/shixiao.png"   ng-show="!policy.effective" />
+					</div>
+					<!--
+					<div class="status success"></div>
+					-->
+				</div>
+				<div class="sub-container">
+					<div class="bd-score">
+						<span>{{policy.score | number:2}}</span>
+						分
+					</div>
+					<!--
+					<div class="pei_button" ng-click="goClaimInfo(policy.claim_info_id )">理&nbsp;赔</div>
+						-->
+						<!--
+						<div class="daiyanzhen"  ng-show="policy.status=='1' "><img src="img/daiyanzhen.png" /></div>
+						<div class="daiyanzhen"  ng-show="policy.status=='2' "><img src="img/daiyanzhen.png" /></div>
+						-->
+					<div class="yanzhen-btn fr fail"  ng-show="policy.status=='1' ">待验真</div>
+					<div class="yanzhen-btn fr fail"  ng-show="policy.status=='2' ">待验真</div>
+					<div class="pei_button"  ng-show="policy.status===4" >官方验真</div>
+					<div class="have-verify"   ng-show="policy.status===3">已验真</div>
+				</div>
+			</div>
+			<div class="bottom">
+				<!---->
+				<div class="linebox">
+				</div>
+				
+			</div>
+		</li>
+	</ul>
+</div>
+
+
+<div class="cell pay_container">
+  <a href="javascript:void(0)" class="btn btn_dark_2_primary" ng-click="goBdUpload();" style="border-radius: 0px;">
+<img src="img/upload.png">&nbsp;上传保单</a>
+</div>
+

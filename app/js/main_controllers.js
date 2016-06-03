@@ -30,8 +30,10 @@ var api = {
 		'get_policies_list':'/ybwx-web/api/policies',
 		'get_policy_detail':'/ybwx-web/api/policy',
 		'signature': '/ybwx-diplomat/wechat/js_signature',
-		'get_claim_info':'/ybwx-web/api/claim_info/{id}'
-
+		'get_claim_info':'/ybwx-web/api/claim_info/{id}',
+		'get_verfiy_policy':'/ybwx-web/api/policies/verify',
+		'policy_verfiy':'/ybwx-web/api/verify',
+		'get_policy_verfiyinfo':'/ybwx-web/api/verify_info/{id}'
 	}
 	//测试开始，为了测试做的适配
 
@@ -444,6 +446,9 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 		$scope.goBdMange = function(){
 			_hmt.push(['_trackEvent', 'index', 'index_baodan_guanli']);
 			$location.path('/bdm_list').search();
+		}
+		$scope.goVerfiy = function(){
+			$location.path('/bd_verify_list').search();
 		}
 		$scope.init = function() {
 			//获得openId
