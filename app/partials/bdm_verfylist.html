@@ -133,8 +133,8 @@
 						<div class="daiyanzhen"  ng-show="policy.status=='2' "><img src="img/daiyanzhen.png" /></div>
 						-->
 					<div class="yanzhen-btn fr fail"  ng-show="policy.status=='1' ">待验真</div>
-					<div class="yanzhen-btn fr fail"  ng-show="policy.status=='2' ">待验真</div>
-					<div class="pei_button"  ng-show="policy.status===4" >官方验真</div>
+					<div class="yanzhen-btn fr fail"  ng-show="policy.status=='2' ">验真中</div>
+					<div class="pei_button"  ng-show="policy.status===4" ng-click="goVerifyInfoPage(policy.verify_info_id); $event.stopPropagation();" >官方验真</div>
 					<div class="have-verify"   ng-show="policy.status===3">已验真</div>
 				</div>
 			</div>

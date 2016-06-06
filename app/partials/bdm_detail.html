@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="css/bdm_detail.css?rev=75fe350fed6698242b3d66dc664c7756">
+<link rel="stylesheet" type="text/css" href="css/bdm_detail.css?rev=273a61ee9a614dc80b635320015ca822">
 <div ng-if="isTest == false"  cg-busy="loadingPromise" style="margin-bottom:70px;">
 	<div class="wrapper " id="my_baodan">
 		<img src="img/yiyanzhen.png"  ng-show="data.status==3" style="position: absolute;top:9px;right:11px;width:70px;z-index: 5;">
@@ -128,10 +128,10 @@
 		<div  class="yanzhen-btn fr fail" ng-show="data.status==4">验真失败</div>
 		<div  class="yanzhen-btn fr fail" ng-show="data.status==2">验真中</div>
 		</div>
-		<div class="fail-tip " ng-show="data.status==4">
+		<div class="fail-tip " ng-show="data.status==4" >
 		   	未查到您的保单信息<br/>
 		   	请尝试其他方式验真
-		   	<div style="margin-top: 8px;">
+		   	<div style="margin-top: 8px;" ng-click="goVerifyInfoPage(data.verify_info_id); $event.stopPropagation();"  >
 			   	<div class="yanzhen-btn">
 			   	  官网验真
 			   	</div>

@@ -416,10 +416,8 @@ function initPieConfig(sumScore, scores) {
 		sumScore: sumScore,
 		parentElement: $("#pieChartContainer"),
 		onSelection: function(pieIndex) {
-
-
 			if (pieIndex == 'x') {
-				window.location = "#/edindex";
+				window.location = "#/bdm_list";
 				_hmt.push(['_trackEvent', 'index', 'index_center']);
 			} else {
 				_hmt.push(['_trackEvent', 'index', 'index_' + pieIndex]);

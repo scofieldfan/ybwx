@@ -1,7 +1,5 @@
 var bdControllers = angular.module('baodanControllers', []);
 
-
-
 bdControllers.controller('ybwxBDIndexCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 		_hmt.push(['_trackPageview', $location.path()]);
@@ -44,7 +42,7 @@ bdControllers.controller('ybwxverify_informationCtrl', ['$scope', '$routeParams'
 		_hmt.push(['_trackPageview', $location.path()]);
 
 		$scope.init = function() {
-			$scope.claimPromise = getHttpPromise($http, $rootScope, 'GET', api['get_claim_info'].replace("{id}",$routeParams.claim_id), {}, function(res) {
+			$scope.claimPromise = getHttpPromise($http, $rootScope, 'GET', api['get_claim_info'].replace("{id}",$routeParams.verify_info_id), {}, function(res) {
 					console.log(res);
 					if (res && res.data && res.data.data) {
 						$scope.data = res.data.data;
@@ -118,7 +116,12 @@ bdControllers.controller('ybwxbaodanVerifyListCtrl', ['$scope', '$routeParams', 
 		$scope.init();
 
 	
-	
+		$scope.goVerifyInfoPage = function(verify_info_id){
+			_hmt.push(['_trackEvent', 'bdm_list', 'gobdm_verify_info']);
+			$location.path('/verify_information').search({
+				verify_info_id: verify_info_id
+			});	
+		}	
 		$scope.goDetail = function(id) {
 			_hmt.push(['_trackEvent', 'bdm_list', 'gobdm_detail']);
 			$location.path('/bdm_detail').search({
@@ -239,6 +242,12 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 			//alert("choose...");
 			//});
 		}
+		$scope.goVerifyInfoPage = function(verify_info_id){
+			_hmt.push(['_trackEvent', 'bdm_detail', 'gobdm_verify_info']);
+			$location.path('/verify_information').search({
+				verify_info_id: verify_info_id
+			});	
+		}	
 		$scope.goClaimInfo = function(claim_id){
 			_hmt.push(['_trackEvent', 'bdm_detail', 'goClaimInfo']);
 			$location.path('/claim_information').search({
