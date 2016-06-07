@@ -1,20 +1,31 @@
 <link rel="stylesheet" href="css/product_list.css?rev=003aa643faaf5ce64cfdc7070190f3fe"> 
 
-
- <ul class="ul_container"  data-ng-init="init()"   cg-busy="listPromise" >
-
-      <li class="list_item" ng-click="goDetail(item.id)"   ng-repeat="item in list">
-        <div  class="img_box">
-          <img ng-src="{{item.insurance_image_url}}" class="order_img"></div>
-        <div class="small_container" style="background:url({{item.company_image_url}}) no-repeat top right/50px" >
-          <p class="h_title">{{item.name}}</p>
-          <p class="desc">{{item.description}}</p>
-          <div class="bottom_container">
-            <div class="money_container"  >
-              <span class="money">{{item.front_price}}</span>
-            </div>
-            <div class="small_btn">立即投保</div>
-          </div>
+<div class="cell nav" style="color:#555555;text-align: center;">
+  <div class="cell_hd  cell_primary " ng-class='{"select":insurances_type=="4"}' ng-click='getList(4);'> 意外 </div>
+  <div class="cell_hd  cell_primary " ng-class='{"select":insurances_type=="3"}' ng-click='getList(3);'> 人寿</div>
+  <div class="cell_hd  cell_primary " ng-class='{"select":insurances_type=="2"}' ng-click='getList(2);'> 健康</div>
+  <div class="cell_hd  cell_primary " ng-class='{"select":insurances_type=="1"}' ng-click='getList(1);'> 家庭</div>
+  <div class="cell_hd  cell_primary " ng-class='{"select":insurances_type=="5"}' ng-click='getList(5);'> 财产</div>
+</div>
+<ul class="ul_container"  data-ng-init="init()"   cg-busy="listPromise"  >
+  <li class="list_item" ng-click="goDetail(item.id)"   ng-repeat="item in list" >
+    <div  class="img_box">
+      <img ng-src="{{item.insurance_image_url}}" class="order_img">
+    </div>
+    <div class="small_container" style="background:url({{item.company_image_url}}) no-repeat top right/50px" >
+      <p class="h_title">{{item.name}}</p>
+      <p class="desc">{{item.description}}</p>
+      <div class="bottom_container">
+        <div class="money_container"  >
+          <span class="money">{{item.front_price}}</span>
         </div>
-      </li>
-    </ul>
+        <div class="small_btn">立即投保</div>
+      </div>
+    </div>
+  </li>
+</ul>
+<ul ng-show="!isHaveResult" >
+ 
+   敬请期待...
+ 
+</ul>

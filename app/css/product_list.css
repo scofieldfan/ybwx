@@ -1,19 +1,37 @@
 .ul_container
 {
     font-size: 14px;
-
     clear: both;
-
-    margin-top: 15px;
+    margin-top: 40px;
     margin-bottom: 30px;
     padding: 0;
-
     color: #a0a0a0;
     background-color: #fff;
     background-color: #f3f3f3;
 }
-
-
+.cell_hd {
+    text-align: center;
+}
+.cell_hd.select {
+    color: #588dd4 !important;          /*border-bottom: 3px solid #588dd4;*/
+    position: relative;
+}
+.select:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: #247ad1;
+    bottom: 0;
+    left: 0
+}
+.nav {
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:99999;
+    background: #fff;
+}
 
 .order_title
 {

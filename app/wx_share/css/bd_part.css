@@ -129,9 +129,8 @@ body {
   background: #fef3d7;
   border: 1px solid #98aba3;
   padding-left: 14px; 
-  color: #c9bd9d;
+  color: #555555;
   font-weight: none;
-  line-height: .48rem;
 }
 .bd_part_input input::input-placeholder {
   color: #c9bd9d;
@@ -163,15 +162,17 @@ body {
 .item {
   color: #003756;
   font-size: .13rem;
+  vertical-align: text-bottom;
 }
 .item a{
   color: #003756;
 }
 .item input{
-  width: .14rem;
-  height: .14rem;
+  width: .16rem;
+  height: .17rem;
   /*background: #003756;*/
-  background: url(../img/checkbox.png) no-repeat;
+  /*background: url(../img/checkbox.png) no-repeat;*/
+  background: url(../img/oncheck.png) no-repeat;
   background-size: .14rem .14rem;
   border: none;
   border-radius: 3px;
@@ -180,7 +181,7 @@ body {
 }
 
 .font_red {
-  color: red;
+  color: #e52f62;
 }
 .bd_footer {
 	width: 100%;

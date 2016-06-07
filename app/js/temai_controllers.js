@@ -12,6 +12,26 @@ ybwxControllers.controller('wxListCtrl', ['$scope', '$routeParams', '$location',
 
 
     //setTest($routeParams.is_test);
+    $scope.isHaveResult = true;
+    $scope.getList = function(insurances_type) {
+      $scope.isHaveResult = true;
+      var openId = sessionStorage.getItem("openId");
+      $scope.insurances_type = insurances_type;
+      $scope.listPromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurances_selling'], {
+        "insurance_type": insurances_type,
+        "open_id": openId
+      }, function(res) {
+        console.log(res);
+        if (res && res.data && res.data.data) {
+          $scope.list = res.data.data.insurances;
+          if (res.data.data.insurances && 　res.data.data.insurances.length > 0) {
+            $scope.isHaveResult = true;
+          } else {
+            $scope.isHaveResult = false;
+          }
+        }
+      })
+    }
 
     $scope.init = function() {
       var code = util.getParameterByName("code");
@@ -19,16 +39,9 @@ ybwxControllers.controller('wxListCtrl', ['$scope', '$routeParams', '$location',
         code = $routeParams.code;
       }
       util.getOpenId(code).then(function() {
-        var openId = sessionStorage.getItem("openId");
-        $scope.listPromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurances_selling'], {
-          "open_id": openId
-        }, function(res) {
-          console.log(res);
-          if (res && res.data && res.data.data) {
-            $scope.list = res.data.data.insurances;
-          }
-        })
+        $scope.getList(4);
       });
+
     }
     $scope.goDetail = function(id) {
       $location.path("/detail").search({

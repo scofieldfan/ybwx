@@ -232,6 +232,10 @@ bdControllers.controller('ybwxbaodanManageListCtrl', ['$scope', '$routeParams', 
 			_hmt.push(['_trackEvent', 'bdm_list', 'nav']);
 			$scope.type = type;
 		}
+		// $scope.getListtype = function(type) {
+		// 	_hmt.push(['_trackEvent', 'bdm_list', 'nav']);
+		// 	$scope.type = type;
+		// }
 		$scope.init();
 
 		$scope.filterFn = function(policy) {

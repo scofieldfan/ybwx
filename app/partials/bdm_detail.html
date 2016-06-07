@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="css/bdm_detail.css?rev=273a61ee9a614dc80b635320015ca822">
+<link rel="stylesheet" type="text/css" href="css/bdm_detail.css?rev=fdgfdgfgd">
 <div ng-if="isTest == false"  cg-busy="loadingPromise" style="margin-bottom:70px;">
 	<div class="wrapper " id="my_baodan">
 		<img src="img/yiyanzhen.png"  ng-show="data.status==3" style="position: absolute;top:9px;right:11px;width:70px;z-index: 5;">
@@ -76,10 +76,9 @@
 					</tr>
 					<tr class="top20"></tr>
 					<tr ng-repeat="(key, value) in data.insured_info"  >
-						<td class="word_justify" >
+						<td  >
 							<span class="gray " >{{key}}</span>
-						</td>
-						<td>
+						
 							<span class="gray " >：</span>{{value}}
 						</td>
 					</tr>
@@ -91,10 +90,9 @@
 					</tr>
 					<tr class="top20"></tr>
 					<tr ng-repeat="(key, value) in data.extra_info"  >
-						<td class="word_justify" >
+						<td  >
 							<span class="gray " >{{key}}</span>
-						</td>
-						<td>
+						
 							<span class="gray " >：</span>{{value}}
 						</td>
 					</tr>
@@ -106,10 +104,9 @@
 					</tr>
 					<tr class="top20"></tr>
 					<tr ng-repeat="(key, value) in data.sale_info"  >
-						<td class="word_justify" >
+						<td >
 							<span class="gray" >{{key}}</span>
-						</td>
-						<td>
+			
 							<span class="gray" >：</span>{{value}}
 						</td>
 					</tr>
