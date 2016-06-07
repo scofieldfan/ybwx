@@ -26,9 +26,6 @@ function($routeProvider) {
   }).when('/freebd', {
     templateUrl: 'wx_share/partials/bd_part.html',
     controller: 'wxShareBdCtrl'
-  }).when('/recognizee', {
-    templateUrl: 'wx_share/partials/recognizee.html',
-    controller: 'wxSharerecognizeeCtrl'
   }).when('/couponlist', {
     templateUrl: 'wx_share/partials/coupon_list.html',
     controller: 'myCouponListCtrl'
