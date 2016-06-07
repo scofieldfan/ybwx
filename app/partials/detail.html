@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="css/product_detail.css?rev=2a34d6d8d1f023fdbd1fb5a0991cf9a0">
+<link rel="stylesheet" type="text/css" href="css/product_detail.css?rev=3895d30ff5de1448d48966acabfabe97">
 
 <div class="mask " id="detail_mask_container"  style="display: none;z-index:100000">
   <div class="head-container">
@@ -8,7 +8,7 @@
       <img ng-src="{{data.small_image}}" ></div>
     <div class="fl">
       <p >
-        <span class="red" style="font-size:18px;">{{money/100 | number}}</span>
+        <span  style="font-size:18px;color:#ff5c00;">{{money/100 | number}}</span>
         元
       </p>
       <p>*最终购买价格</p>
@@ -59,8 +59,9 @@
       </div>
     </div>-->
 
-
-    <a href="javascript:void(0)"  style="height:45px;line-height: 45px;margin-top: 15px;"  ng-click="submit()"  class="btn btn_n_primary">确定</a>
+    <div class="fix_container">
+    <a href="javascript:void(0)"  style="height:45px;line-height: 45px;"  ng-click="submit()"  class="btn btn_n_primary">确定</a>
+    </div>
 
   </div>
 

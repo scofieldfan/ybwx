@@ -47,7 +47,7 @@
         },
 
         innerSegmentAngle = function(n) {
-            return paddedSegmentAngle(n) ;
+            return paddedSegmentAngle(n);
         },
 
         paddedSegmentAngle = function(n) {
@@ -86,7 +86,7 @@
             nSegments = options.pieConfig.length;
 
 
-        var width = $(document).width() - options.padding;//canvas 绘图区域的总宽度
+        var width = $(document).width() - options.padding; //canvas 绘图区域的总宽度
         // var radio = $(document).width()/414;
 
         /*
@@ -95,25 +95,25 @@
         }*/
         //var dpr = 3;
         options.dpr = 3;
-      
 
-       
-        canvas.setAttribute('width', width * options.dpr);//canvas的宽度
-        canvas.setAttribute('height', width * options.dpr);//canvas的高度
 
-        var center = canvas.width/2;//绘图的圆心
+
+        canvas.setAttribute('width', width * options.dpr); //canvas的宽度
+        canvas.setAttribute('height', width * options.dpr); //canvas的高度
+
+        var center = canvas.width / 2; //绘图的圆心
 
         radius = center; //一共可绘图的半径
-        options.closeRadius = radius * 0.42;//内圆半径
+        options.closeRadius = radius * 0.42; //内圆半径
         options.radio = $(document).width() / 414;
         if (options.radio > 1) {
             options.radio = 1;
         }
-        console.log("center:"+center);
-        $("#tip_text").width(width/2);
-        $("#tip_text").css("left", width / 2 );
-        $("#tip_text").css("margin-top", width / 2+10);
- 
+        console.log("center:" + center);
+        $("#tip_text").width(width / 2);
+        $("#tip_text").css("left", width / 2);
+        $("#tip_text").css("margin-top", width / 2 + 10);
+
         if (options.className) {
             canvas.className = options.className;
         }
@@ -152,16 +152,12 @@
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 // Draw segments
                 for (var i = 0; i < options.pieConfig.length; i++) {
-                   // setSelectedColor(ctx, i, i === highlight, options);
+                    // setSelectedColor(ctx, i, i === highlight, options);
                     drawSlice(ctx, radius, i, nSegments, center);
                 }
 
-
-
-
                 //中心区
-
-
+                
                 ctx.beginPath();
                 //console.log("highlight:" + highlight);
                 ctx.arc(center, center, options.closeRadius, 0, 2 * Math.PI);
@@ -171,25 +167,36 @@
 
                 ctx.beginPath();
                 //console.log("highlight:" + highlight);
-                ctx.arc(center, center, options.closeRadius-25, 0, 2 * Math.PI);
+                ctx.arc(center, center, options.closeRadius - 25, 0, 2 * Math.PI);
                 ctx.fillStyle = (highlight === 'x' ? options.selectedColor : "#FFF");
                 ctx.fill();
 
 
 
+                if (options.sumScore > 0) {
 
-                var centerFontsize = options.radio * 140;
-                ctx.textAlign = "center";
-                ctx.font = "normal " + centerFontsize + "px Arial,Microsoft YaHei";
-                ctx.fillStyle = "#1e4e8e";
-                ctx.fillText(options.sumScore, center, center  + radius*0.05);
-                
+                    var centerFontsize = options.radio * 140;
+                    ctx.textAlign = "center";
+                    ctx.font = "normal " + centerFontsize + "px Arial,Microsoft YaHei";
+                    ctx.fillStyle = "#1e4e8e";
+                    ctx.fillText(options.sumScore, center, center + radius * 0.05);
 
-                ctx.font = "normal 35px Arial,Microsoft YaHei";
-                // ctx.fillText("9单", center-radius*0.1, center -radius*0.2);
-                // ctx.fillText("保障中", center+radius*0.1, center -radius*0.2);
-                ctx.fillStyle = "#999999";
-                ctx.fillText("最高10分", center, center +radius*0.2);
+                    ctx.font = "normal 35px Arial,Microsoft YaHei";
+                    // ctx.fillText("9单", center-radius*0.1, center -radius*0.2);
+                    // ctx.fillText("保障中", center+radius*0.1, center -radius*0.2);
+                    ctx.fillStyle = "#999999";
+                    ctx.fillText("最高10分", center, center + radius * 0.2);
+                } else {
+                      preLoadImg("img/index_plus.png", function() {
+               
+                        ctx.drawImage(this, center - 25* options.dpr*options.radio, center  - 40* options.dpr*options.radio, 50* options.dpr*options.radio,50* options.dpr*options.radio);
+                        ctx.font = "normal 35px Arial,Microsoft YaHei";
+                        ctx.fillStyle = "#999999";
+                        ctx.fillText("立即上传保单", center, center + radius * 0.2);
+                    })
+                  
+                }
+
 
             },
             destroy = function() {
@@ -248,8 +255,8 @@
                     } else {
                         angle = Math.asin(dY / centerDistance);
                     }
-                    if(angle>=1.3*Math.PI && angle<=1.5*Math.PI){//计算角度的时候采用的取值不同,startAngle采用的是负值。
-                        angle =angle -2*Math.PI;
+                    if (angle >= 1.3 * Math.PI && angle <= 1.5 * Math.PI) { //计算角度的时候采用的取值不同,startAngle采用的是负值。
+                        angle = angle - 2 * Math.PI;
                     }
                     // angle = angle - 0.7*Math.PI;
                     /*    
@@ -305,27 +312,27 @@
                     callback.call(img); //将回调函数的this替换为Image对象  
                 };
             },
-            drawLine = function(ctx,centerX,centerY,angle,smallRadius,bigRadius){
+            drawLine = function(ctx, centerX, centerY, angle, smallRadius, bigRadius) {
 
                 ctx.beginPath();
-                ctx.strokeStyle="#000";
+                ctx.strokeStyle = "#000";
                 ctx.save();
                 ctx.translate(centerX, centerY);
                 var x1 = Math.cos(angle) * (smallRadius);
                 var y1 = Math.sin(angle) * (smallRadius);
                 var x2 = Math.cos(angle) * (bigRadius);
                 var y2 = Math.sin(angle) * (bigRadius);
-              
+
                 ctx.moveTo(x1, y1);
                 ctx.lineTo(x2, y2);
                 ctx.stroke();
                 ctx.restore();
             },
-            drawSector = function(ctx,color,centerX,centerY,startAngle,endAngle,smallRadius,bigRadius){
+            drawSector = function(ctx, color, centerX, centerY, startAngle, endAngle, smallRadius, bigRadius) {
                 ctx.beginPath();
                 ctx.fillStyle = color;
-                ctx.arc(centerX, centerY, smallRadius,startAngle, endAngle, false);
-                ctx.arc(centerX, centerY, bigRadius, endAngle , startAngle, true); 
+                ctx.arc(centerX, centerY, smallRadius, startAngle, endAngle, false);
+                ctx.arc(centerX, centerY, bigRadius, endAngle, startAngle, true);
                 ctx.closePath();
                 ctx.fill();
             },
@@ -350,32 +357,32 @@
                 ctx.lineTo(center+radius, center+10);
                 ctx.stroke();
                 */
-                var pianX = 17;//圆心偏移的距离
+                var pianX = 17; //圆心偏移的距离
 
-                var middleAngle = (startA+endA)/2;
+                var middleAngle = (startA + endA) / 2;
 
                 var centerX = center + Math.cos(middleAngle) * pianX;
                 var centerY = center + Math.sin(middleAngle) * pianX;
 
                 //绘画基础扇形
-                console.log(" highlight:"+ highlight);
-                console.log(" n:"+ n);
-                var pieColor = highlight===n?options.selectedColor:"#ebebeb";
-                console.log(" pieColor:"+ pieColor);
-                drawSector(ctx,pieColor, centerX,centerY,startA,endA,options.closeRadius-pianX,bigRadius);
-               
+                console.log(" highlight:" + highlight);
+                console.log(" n:" + n);
+                var pieColor = highlight === n ? options.selectedColor : "#ebebeb";
+                console.log(" pieColor:" + pieColor);
+                drawSector(ctx, pieColor, centerX, centerY, startA, endA, options.closeRadius - pianX, bigRadius);
+
                 //绘画灰色分数扇形 
-                var innerRadius = bigRadius +10*options.radio;
-                var outterRadius = bigRadius + 60*options.radio;
-                 // ctx.fillStyle = (isSelected ? options.selectedColor : options.backgroundColor);
-           
-                drawSector(ctx,"#f0f0f0", centerX,centerY,startA,endA,innerRadius,outterRadius);
+                var innerRadius = bigRadius + 10 * options.radio;
+                var outterRadius = bigRadius + 60 * options.radio;
+                // ctx.fillStyle = (isSelected ? options.selectedColor : options.backgroundColor);
+
+                drawSector(ctx, "#f0f0f0", centerX, centerY, startA, endA, innerRadius, outterRadius);
                 //drawSector(ctx,"#f0f0f0", centerX,centerY,startA,endA,innerRadius,outterRadius);
 
                 //绘画带颜色的分数扇形 
-                var anglePercent = (endA  - startA)*options.pieConfig[n].percent + startA;
-                drawSector(ctx, options.pieConfig[n].color, centerX,centerY,startA,anglePercent,innerRadius,outterRadius);
-               
+                var anglePercent = (endA - startA) * options.pieConfig[n].percent + startA;
+                drawSector(ctx, options.pieConfig[n].color, centerX, centerY, startA, anglePercent, innerRadius, outterRadius);
+
                 /*
                  drawLine(ctx,centerX,centerY,anglePercent,bigRadius+5,secHandLength);
                  drawLine(ctx,centerX,centerY,startA,bigRadius+5,secHandLength);
@@ -410,7 +417,7 @@
                 }
                 */
 
-                var textHandLength = innerRadius + (outterRadius - innerRadius)/2 ;
+                var textHandLength = innerRadius + (outterRadius - innerRadius) / 2;
                 var middleAngle = (startA + endA) / 2;
                 ctx.beginPath();
                 ctx.save();
@@ -418,7 +425,7 @@
                 ctx.textAlign = "center";
                 ctx.font = "normal 35px Arial,Microsoft YaHei";
                 ctx.fillStyle = options.pieConfig[n].textColor;
-                ctx.fillText(Math.floor((options.pieConfig[n].percent * 10)*10)/10, Math.cos(middleAngle) * textHandLength, Math.sin(middleAngle) * textHandLength + 15);
+                ctx.fillText(Math.floor((options.pieConfig[n].percent * 10) * 10) / 10, Math.cos(middleAngle) * textHandLength, Math.sin(middleAngle) * textHandLength + 15);
                 ctx.restore();
                 ctx.closePath();
 

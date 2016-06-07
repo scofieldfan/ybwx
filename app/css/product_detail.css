@@ -59,8 +59,8 @@ table td, table th {
   font-weight: 900;
   color: #1f5892;
   position: absolute;
-  left: 0.65rem;
-  top: 0.15rem;
+  left: 17%;
+  top: 7%;
 }
 .content-table .td-left {
   text-align: left;

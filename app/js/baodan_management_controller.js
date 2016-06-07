@@ -36,10 +36,35 @@ bdControllers.controller('ybwxBdEducationCtrl', ['$scope', '$routeParams', '$loc
 		_hmt.push(['_trackPageview', $location.path()]);
 
 		$scope.processMoney = function(money) {
-			return util.processSpecialMoney(money);
+			if(money==0){
+				return "";
+			}else{
+				return util.processSpecialMoney(money);
+			}
 		}
-		$scope.goBdList = function() {
-			$location.path('/bd_list');
+		$scope.getInsuranceCNname = function(){
+			return insureanceCNMap[$routeParams.type];
+		}
+		$scope.goOldEducation = function() {
+			$location.path('/education').search({
+				"type":	$routeParams.type
+			});
+		}
+		$scope.goUpBd = function(){
+			$location.path('/bd_index');
+		}
+		$scope.goBdmList = function(){
+			$location.path('/bdm_list').search({
+				"type":	$routeParams.type
+			});
+		}
+		$scope.hexClick = function(isInsurced){
+			if(isInsurced){
+				$scope.goBdmList();
+			}else{
+				$scope.goDingzhi();
+			}
+
 		}
 		$scope.isHaveUserInfo = false;
 		$scope.getUserInfo = function() {
@@ -208,7 +233,11 @@ bdControllers.controller('ybwxbaodanManageListCtrl', ['$scope', '$routeParams', 
 			_hmt.push(['_trackEvent', 'bdm_list', 'goUpload']);
 			$location.path('/bd_index').search();
 		}
-		$scope.type = "4";
+		if($routeParams.type){
+			$scope.type = $routeParams.type;
+		}else{
+			$scope.type = "4";
+		}
 		$scope.init = function() {
 
 			var code = util.getParameterByName("code");

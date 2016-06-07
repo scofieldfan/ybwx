@@ -103,13 +103,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/bd_pic.html',
       controller: 'ybwxBDPicCtrl',
       title: "保单上传"
-    })
-    /*
-    .when('/test', {
-      templateUrl: 'partials/test.html',
-      controller: 'ybwxTestCtrl'
-    })*/
-    .when('/bd_education', {
+    }).when('/bd_education', {
       templateUrl: 'partials/bd_education.html',
       controller: 'ybwxBdEducationCtrl',
       title: "如何投保"

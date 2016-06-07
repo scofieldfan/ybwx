@@ -8,9 +8,18 @@
     </div>
       <div class=" gradient-shadow" ></div>
       <p class="default_text" ng-show="filtered.length==0" >暂时没有保单</p>
-    <ul class="ul_container"   cg-busy="myPromise">
+    <ul class="ul_container"   cg-busy="myPromise" data-ng-init="init()">
 
+
+    <!--
     <div infinite-scroll="nextPage()" infinite-scroll-distance="0">
+     </div>
+      <div style="background-color: #fff;">
+      <div style="width:100px;margin:0 auto;text-align: center;background-color: #fff;">
+          <img src="img/loading.gif" style="width:50px;">
+      </div>
+     -->
+
       <li class="list_item"   ng-repeat="order in filtered = (orders |filter:filterFn )">
         <div class="order_title" style="position:relative">订单号:{{order.order_no}} <span class="bd_status">{{order.create_time  |  date:'yyyy-MM-dd'}}</span></div>
         <div class="line"></div>
@@ -29,11 +38,8 @@
           <div style="padding:10px 0;"  ng-show="order.status=='1' ||  order.status=='2'   || order.status=='3'   || order.status=='5' ">未支付:￥<span style="color:#f57590">{{order.premium/100 | number:2}}</span><div class="pay_button" ng-click="goPay(order.order_id,order.order_no,order.premium)">立即支付</div></div>
         </div>
       </li>
-      </div>
-      <div style="background-color: #fff;">
-      <div style="width:100px;margin:0 auto;text-align: center;background-color: #fff;">
-          <img src="img/loading.gif" style="width:50px;">
-      </div>
+     
+     
     </div>
 
         <!--

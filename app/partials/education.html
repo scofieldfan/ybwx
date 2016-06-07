@@ -1,27 +1,5 @@
 <link rel="stylesheet" href="css/education.css?rev=c46c3555c1ad2b4509455b1bb39f115c">
 <div class="wrapper" data-ng-init="init()"  style="margin-bottom: 80px;">
-	<div  >
-		<div class="ed-head" cg-busy="myPromise" >
-			<p  ng-if="type=='2'">当前健康保障评分</p>
-			<p  ng-if="type=='3'">当前人寿保障评分</p>
-			<p  ng-if="type=='4'">当前意外保障评分</p>
-			<p>
-				<span style="font-size: 40px;">{{data.aggregate_score}}</span>
-				分
-			</p>
-		</div>
-		<table>
-			<tr class="bd_tr" ng-repeat="item in data.analysis">
-				<td>
-					<img src="img/li_style_01.jpg" style="width:15px;"></td>
-				<td>{{item.name}}</td>
-				<td>保额{{processMoney(item.sum_insured)}}</td>
-				<td>{{item.score}}分</td>
-			</tr>
-		</table>
-		<div class="fr" style="color:#f4ae54" ng-click="goBdList()">保障详情&gt;</div>
-	</div>
-
 	
 	<div class="ed-container"  ng-if="type=='2'">
 		<h4>重大疾病发生率</h4>

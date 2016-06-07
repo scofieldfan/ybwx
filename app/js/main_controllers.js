@@ -27,16 +27,16 @@ var api = {
 		'get_user_info': '/ybwx-web/user/info/wechat/{openId}',
 		'set_user_info': '/ybwx-web/user/info/update',
 		'upload_policy_image': '/ybwx-web/api/upload_policy_image',
-		'get_policies_list':'/ybwx-web/api/policies',
-		'get_policy_detail':'/ybwx-web/api/policy',
+		'get_policies_list': '/ybwx-web/api/policies',
+		'get_policy_detail': '/ybwx-web/api/policy',
 		'signature': '/ybwx-diplomat/wechat/js_signature',
-		'get_claim_info':'/ybwx-web/api/claim_info/{id}',
-		'get_verfiy_policy':'/ybwx-web/api/policies/verify',
-		'policy_verfiy':'/ybwx-web/api/verify',
-		'get_policy_verfiyinfo':'/ybwx-web/api/verify_info/{id}'
+		'get_claim_info': '/ybwx-web/api/claim_info/{id}',
+		'get_verfiy_policy': '/ybwx-web/api/policies/verify',
+		'policy_verfiy': '/ybwx-web/api/verify',
+		'get_policy_verfiyinfo': '/ybwx-web/api/verify_info/{id}'
 	}
 	//测试开始，为了测试做的适配
-/*
+	/*
 var api_test = {};
 for (var key in api) {
 	api_test[key] = "/test" + api[key];
@@ -55,30 +55,30 @@ function setTest(is_test) {
 	}
 }
 */
-//测试结束
-//console.log(api_test);
+	//测试结束
+	//console.log(api_test);
 
 var insuranceMap = {
-		'1': '投保中',
-		'6': '待生效',
-		'7': '投保失败',
-		'8': '保障中',
-		'9': '已失效'
-	}
+	'1': '投保中',
+	'6': '待生效',
+	'7': '投保失败',
+	'8': '保障中',
+	'9': '已失效'
+}
 var chargePeriodTypeMap = {
-	'1':'趸交',
-	'2':'按月缴',
-	'3':'按年缴',
-	'4':'趸交和按月缴',
-	'5':'趸交和按年缴'
+	'1': '趸交',
+	'2': '按月缴',
+	'3': '按年缴',
+	'4': '趸交和按月缴',
+	'5': '趸交和按年缴'
 }
 var chargePeriodTypeAbbreMap = {
-	'1':'趸交',
-	'2':'月',
-	'3':'年',
-	'4':'趸交和按月缴',
-	'5':'趸交和按年缴'
-}
+		'1': '趸交',
+		'2': '月',
+		'3': '年',
+		'4': '趸交和按月缴',
+		'5': '趸交和按年缴'
+	}
 	/*
 }
 var insuranceMap = {
@@ -136,6 +136,13 @@ INSURANCE_INEFFECTIVE(9, "保单失效");
 
 //图标Index：保险类型
 var insureTypeMap = [4, 3, 2, 1, 5];
+var insureanceCNMap = {
+	1:"家庭",
+	2:"健康",
+	3:"人寿",
+	4:"意外",
+	5:"财产"
+}
 
 /*
 FAMILY(1, "家庭保险")
@@ -167,7 +174,7 @@ function getHttpPromise($http, $rootScope, method, url, data, callback) {
 		data: data
 	}).then(function(res) {
 		console.log(res);
-		if(   (res && res.data && res.data.data)   ||    ( res &&  res.data  &&  res.data.code===0 ) ) {
+		if ((res && res.data && res.data.data) || (res && res.data && res.data.code === 0)) {
 			callback(res);
 		} else {
 			util.showToast($rootScope, res.data.description);
@@ -216,65 +223,73 @@ mainControllers.controller('wxBaoDanListCtrl', ['$scope', '$routeParams', '$loca
 		$scope.getBdColor = function(status) {
 			return insuranceColorMap[status]
 		}
+
+		/*
 		$scope.page_no = 1;
-		$scope.page_size=5;
+		$scope.page_size = 5;
 		$scope.orders = [];
 		$scope.isBusy = true;
-		$scope.nextPage = function(){
-			if($scope.isBusy) return;
+		$scope.nextPage = function() {
+			if ($scope.isBusy) return;
 			$scope.isBusy = true;
 			var openId = sessionStorage.getItem("openId");
-
 			$http({
-					method: 'POST',
-					headers: {
-						"Content-Type": "application/json;charset:UTF-8"
-					},
-					url: api['get_insurances'],
-					data: {
-						"open_id": openId,
-						"page_no":$scope.page_no,
-						"page_size":$scope.page_size
+				method: 'POST',
+				headers: {
+					"Content-Type": "application/json;charset:UTF-8"
+				},
+				url: api['get_insurances'],
+				data: {
+					"open_id": openId,
+					"page_no": $scope.page_no,
+					"page_size": $scope.page_size
+				}
+			}).then(function(res) {
+				console.log(res);
+				$scope.isBusy = false;
+				if (res.data && res.data.description) {
+					util.showToast($rootScope, res.data.description);
+					//  $(".default_text").show();
+				}
+				if (res.data.code == 0) {
+					if (res.data.data.orders) {
+						$scope.page_no++;
+						console.log(res.data.data.orders);
+						res.data.data.orders.forEach(function(element, index) {
+							$scope.orders.push(element);
+							// statements
+						});
+						//$scope.orders.concat(res.data.data.orders);
+						console.log("...............");
 					}
-				}).then(function(res) {
-					console.log(res);
-					$scope.isBusy = false;
-					if (res.data && res.data.description) {
-						util.showToast($rootScope, res.data.description);
-						//  $(".default_text").show();
-					}
-					if (res.data.code == 0) {
-						if (res.data.data.orders) {
-							$scope.page_no++;
-							console.log(res.data.data.orders);
-							res.data.data.orders.forEach( function(element, index) {
-								$scope.orders.push(element);
-								// statements
-							});
-							//$scope.orders.concat(res.data.data.orders);
-							console.log("...............");
-						}
-					}
-				}, function(res) {
-					$scope.isBusy = false;
-					console.log(res);
-					util.showToast($rootScope, "服务器错误");
-					// $(".default_text").show();
-				});
-		}
+				}
+			}, function(res) {
+				$scope.isBusy = false;
+				console.log(res);
+				util.showToast($rootScope, "服务器错误");
+				// $(".default_text").show();
+			});
+		}*/
 		$scope.init = function() {
 
 			var code = util.getParameterByName("code");
 			if (!code) {
 				code = $routeParams.code;
 			}
-
 			util.getOpenId(code).then(function() {
-				$scope.isBusy = false;
-				$scope.nextPage();
+				var openId = sessionStorage.getItem("openId");
+				$scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurances'], {
+					'open_id': openId
+				}, function(res) {
+					console.log("result ......");
+					$scope.orders = res.data.data.orders;
+				})
+
+				//$scope.isBusy = false;
+				//$scope.nextPage();
 				//$scope.reason="您没有领取任何优惠券。";
 				// $("#reason_container").show();
-		
+
 			})
 		}
 
@@ -317,7 +332,7 @@ mainControllers.controller('wxBaoDanListCtrl', ['$scope', '$routeParams', '$loca
 			});
 		}
 		$scope.tog = "";
-		$scope.init();
+		//$scope.init();
 	}
 ]);
 
@@ -443,7 +458,7 @@ function initPieConfig(sumScore, scores) {
 			} else {
 				_hmt.push(['_trackEvent', 'index', 'index_' + pieIndex]);
 				if (pieIndex == '0' || pieIndex == '1' || pieIndex == '2') {
-					window.location = "#/education?type=" + insureTypeMap[pieIndex];
+					window.location = "#/bd_education?type=" + insureTypeMap[pieIndex];
 				} else {
 					window.location = "#/continue";
 				}
@@ -462,11 +477,11 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 			_hmt.push(['_trackEvent', 'index', 'index_showTip']);
 			$("#share").show();
 		}
-		$scope.goBdMange = function(){
+		$scope.goBdMange = function() {
 			_hmt.push(['_trackEvent', 'index', 'index_baodan_guanli']);
 			$location.path('/bdm_list').search();
 		}
-		$scope.goVerfiy = function(){
+		$scope.goVerfiy = function() {
 			$location.path('/bd_verify_list').search();
 		}
 		$scope.init = function() {
@@ -503,7 +518,7 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 					if (res.data.code == 0) {
 						$("#loadingContainer").hide();
 						$scope.data = res.data.data;
-						initPieConfig($scope.data.aggregate_score, $scope.data.scores);
+						initPieConfig($scope.data.aggregate_score.toFixed(1), $scope.data.scores);
 					}
 				}, function(res) {
 					console.log(res);
@@ -914,7 +929,7 @@ mainControllers.controller('ybwxOfficalSiteCtrl', ['$scope', '$routeParams', '$l
 		_hmt.push(['_trackPageview', $location.path()]);
 		$scope.plans = JSON.parse(sessionStorage.getItem("sell_plan"));
 		console.log($scope.plans);
-		
+
 		$scope.process_insured_money = function(str) {
 			return util.processSpecialMoney(str);
 		}
