@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="wx_share/css/bd_part.css?rev=rfdfdsfdd">
+<link rel="stylesheet" href="wx_share/css/bd_part.css?rev=hfgfggfhggf">
 <div id="wrapper" class="wrapper">
 	<div class="bd_part_controller">
 		<ul class="layout ul_contrl">
@@ -41,7 +41,7 @@
 					<small class="error" ng-show="registration.flight_no.$error.required">航班号必填</small>
 				    <small class="error" ng-show="card_numer_server_reason">{{card_numer_server_reason}}</small>
 				</div>
-				<input style="background:url(wx_share/img/jian.png) no-repeat 95% center;background-size: .17rem .17rem; -webkit-appearance:none;" type="date" placeholder="保障期间" min="{{minDate | date:'yyyy-MM-dd'}}" max="{{maxDate | date:'yyyy-MM-dd'}}" name="insurance_date" ng-model="user.insurance_date" required >
+				<input style="background:url(wx_share/img/jian.png) no-repeat 95% center;background-size: .17rem .17rem; -webkit-appearance:none;line-height: .48rem;" type="date" placeholder="保障期间" min="{{minDate | date:'yyyy-MM-dd'}}" max="{{maxDate | date:'yyyy-MM-dd'}}" name="insurance_date" ng-model="user.insurance_date" required >
 				<div class="cell"  style="color:red" ng-show="registration.insurance_date.$dirty && registration.insurance_date.$invalid || insurance_date_server_reason">
 	            	<small class="error" ng-show="registration.insurance_date.$error.min">保障日期最早从明天开始</small>
 	            	<small class="error" ng-show="registration.insurance_date.$error.max">保障日期超过最大日期2016年10月26</small>
@@ -74,16 +74,9 @@
 	    <div class="bd_footer" ng-click='submit()' id="submitButton"  >确认投保</div>
     </div>
 </div>
-<!-- <script>
-	window.onload = function(){ var o=document.getElementByIdx_x("searchKey"); o.setAttribute("valueCache",o.value); o.onblur = function(){ if(o.value=="") { o.valueCache=""; o.value=o.tips; } else o.valueCache=o.value; } o.onfocus = function(){ o.value=o.valueCache; 
-</script> -->
-<!-- 
-<script>
-	$(chek).onclick.function(){
-		
-	}
-</script>
+
  -->
+
 
 
 

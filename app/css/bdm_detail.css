@@ -153,8 +153,8 @@ table td {
 }
 .bd-effective img {
 	position: absolute;
-	top: 0.1rem;
-	left: 0.5rem;
+	top: -0.05rem;
+	left: 0.3rem;
 	width: 0.8rem;
 }
 .bd-name {
