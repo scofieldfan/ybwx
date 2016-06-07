@@ -1,88 +1,61 @@
-<style>
-.bd_word_container{
- position:relative;top:200px;color:#DF4243;font-weight:bold;text-align:center;
-}
-.bd_title{
-margin:0;font-size:15px;
-}
-.bd_number{
-margin:0;font-size:20px;	
-}
-.success_share_word{
-	color:#F05754;
-    padding:0.6rem 0.2rem 0 0.2rem;margin:0.2rem;font-size:15px;
-}
-.email_input{
-	background-color:#FFF;
-	color:#000;
-	text-indent:20px;
-	font-size:14px;
-	height:50px;
-	line-height:50px;
-}
-.qrcode_container_success{
-	clear:both;margin:20px 0;padding:20px;position:relative;
-	border:1px solid #3189ff;
-	border-radius: 5px;
-}
-.send_bd{
-	height:50px;
-	line-height:50px;
-	font-size:16px;
-}
-</style>
+<link rel="stylesheet" href="wx_share/css/success.css?rev=dfhgjk">
 <div id="wrapper" class="wrapper ">
-	<header >
-		<div  class="container">
-
-			<div class="" style="text-align: center;height:110px;">
-				<h5 style="font-size:30px;color:#3493f5;margin:40px 0 0 0;">
-					保单生成中...
-				</h5>
-				<!--
-				<img src="wx_share/img/toubao_success.jpg" style="width:200px;margin-top:80px;" />
-				-->
-			</div>
-			<form class="" role="form" name="sendForm" novalidate>
+	<div class="success_part_contrl">
+		<ul class="layout ul_contrl">
+			<li>
+				<p>诺贝保险管家</p>
+				<p>助您出行无忧</p>
+			</li>
+			<li></li>
+			<li>全球航班通用</li>
+		</ul>
+		<div class="padd_1rem">
+			<div  class="bd_ing">保单生成中...</div>
+			<div class="success_main">
+				
+				<form class="" role="form" name="sendForm" novalidate>
 				<div class="cell " >
 					<div class="cell_hd  cell_primary" >
-						<input type="email" class="ipt email_input"  style="border:1px solid #a3a3a3;" ng-model="user.email" name="email"  onfocus="this.placeholder = ''" onblur="this.placeholder = '输入电子邮箱'" placeholder="输入电子邮箱" required />
+						<input type="email" class="ipt email_input"  style="border:1px solid #98a8a3;color:#c9bd9d;padding-left:.14rem" ng-model="user.email" name="email"  onfocus="this.placeholder = ''" onblur="this.placeholder = '输入电子邮箱'" placeholder="输入电子邮箱" required />
 					</div>
 					<div class="cell_hd " style="width:400px;border:none;border-radius:0;">
-						<a href="javascript:void(0)" class="btn btn_happy send_bd" style="border:none;border-radius: 0;" ng-click="send_bd()" >发送电子保单</a>
+						<a href="javascript:void(0)" class="btn btn_happy send_bd" style="border:none;border-radius: 0;background: #e52f62;height: .48rem;" ng-click="send_bd()" >发送电子保单</a>
 					</div>
 				</div>
-				<div class="cell"  style="color:red"
-            ng-show="sendForm.email.$dirty && sendForm.email.$invalid ">
+				<div class="cell"  style="color:red" ng-show="sendForm.email.$dirty && sendForm.email.$invalid ">
 					<small class="error" ng-show="sendForm.email.$error.required">邮箱必填</small>
 					<small class="error" ng-show="sendForm.email.$error.email">邮件格式不正确</small>
 				</div>
 			</form>
+				<ul class="check layout">
+					<li><a href="###" ng-click="goList()">查看保单</a></li>
+					<li></li>
+					<li><a href="###" ng-click="showShareTip()">再领一份</a></li>
+				</ul>
+				<ul class="success_share">
+					<li><img src="wx_share/img/feiji.png"></li>
+					<li>分享至朋友圈</li>
+					<li>快通知您的小伙伴来领取吧!</li>
+				</ul>
+			</div>
 		</div>
-	</header>
-	<!-- /header -->
-	<div  class="container " >
-
-		<div class="cell" style="clear:both;">
-			<div class="cell_hd " style="width:2000px;border:none">
-				<a href="javascript:void(0)" class="btn btn_happy " ng-click="goList()" >查看保单</a>
-			</div>
-			<div class="cell_hd" style="width:300px;border:none"></div>
-
-			<div class="cell_hd " style="width:2000px;border:none">
-				<a href="javascript:void(0)" class="btn btn_warning"  ng-click="showShareTip()" >立即分享</a>
-			</div>
-
-		</div>
-		<div class="qrcode_container_success " style="background-color:#fffdf1;margin-top:68px;" >
-			<img src="wx_share/img/link_2.png?v=1" class="linktip" style="top:-95px;">
-			<img src="wx_share/img/small_nuo.jpg" style="width:50px;float:left;vertical-align: middle;">
-			<div style="margin-left: 5px;display: inline-block;float:left;margin-top:10px;color:#2378eb;font-size:14px;">
-				 分享至朋友圈<br/>
-				 快通知您的小伙伴来领取吧！
-			</div>	
-			<div style="clear:both;"></div>
-			</div>
 	</div>
+	<ul class="layout ul_contrl_footer">
+		<li></li>
+		<li></li>
+		<li></li>
+    </ul>
 </div>
-<!-- /wrapper -->
+
+
+
+
+
+
+
+
+
+
+
+
+

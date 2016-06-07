@@ -1,0 +1,215 @@
+* {margin: 0;padding: 0;}
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+.layout {
+	overflow: auto;
+}
+/* <=320的奇葩手机 */
+@media  (max-width:320px) {
+  html {
+    font-size: 100px;
+  }
+}
+
+/* iphone 4, iphone5 */
+@media only screen and (min-device-width:320px) and (max-device-width:568px) {
+  html {
+    font-size: 100px;
+  }  
+}
+
+/* iphone 6 */
+@media only screen and (min-device-width:375px) and (max-device-width:667px) {
+  html {
+    font-size: 117.18px;
+  }
+}
+
+/* iphone6 plus */
+@media only screen and (min-device-width:414px) and (max-device-width:736px) {
+  html {
+    font-size: 129.37px;
+  }
+}
+html {
+  font-size: 100px;
+  font-family: "微软雅黑";
+}
+body {
+	background: #fef3d7;
+}
+.wrapper {
+  padding: .2rem .4rem .2rem .2rem;
+  /*padding: .2rem;*/
+  display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+  display: -moz-box; /* 老版本语法: Firefox (buggy) */
+  display: -ms-flexbox; /* 混合版本语法: IE 10 */
+  display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+  display: flex;  
+  flex-flow: row;
+}
+.coupon_nav {
+	width: .28rem;
+}
+.coupon_nav img {
+	width: .28rem;
+	height: .28rem;
+}
+.hei_16 {
+	height: .27rem;
+	width: .14rem;
+	padding-left: 50%;
+}
+.hei_16 p {
+	border-left: 1px solid #98a8a3;
+	display: block;
+	height: .27rem;
+	width: 1px;
+}
+.hei_276 {
+	height: 2.76rem;
+	width: .27rem;
+	padding-left: 50%;
+}
+.hei_276 p {
+	display: block;
+	height: 2.76rem;
+	border-left: 1px solid #98a8a3;
+}
+.one {
+	width: .28rem;
+	height: .28rem;
+	background: url(../img/gou.png) no-repeat;
+	background-size: 100% 100%;
+}
+.er,.san {
+	width: .28rem;
+	height: .28rem;
+	background: #c1af84;
+	text-align: center;
+	line-height: .28rem;
+	font-size: .18rem;
+	color: #fff;
+	border-radius: 50%;
+	font-weight: bold;
+}
+
+.coupon_main {
+	padding: 0 0 0 .13rem;
+	/*background: blue;*/
+	   -webkit-box-flex: 1;
+	  -webkit-flex: 1;
+	  -ms-flex: 1;
+	  flex: 1;
+}
+.coupon_main .main_top {
+	/*width: 2.96rem;*/
+	height: .35rem;
+	box-sizing:border-box;
+	border: 1px solid #ccc;
+	font-size: .16rem;
+	color: #e52f62;
+	text-align: center;
+	line-height: .35rem;
+	border-radius: 3px;
+	font-weight: bold;
+}
+.coupon_main .main_cen {
+	/*width: 2.96rem;*/
+	height: 2.78rem;
+	box-sizing: border-box;
+	border: 1px solid #ccc;
+	font-size: .16rem;
+	border-radius: 3px;
+	margin-top: .2rem;
+	text-align: center;
+	font-size: .16rem;
+	color: #003456;
+}
+.coupon_main .main_cen p:nth-child(1) {
+	display: block;
+	height: .53rem;
+	line-height: .53rem;
+	font-weight: bold;
+}
+.coupon_main .main_cen img {
+	width:1.76rem;
+	height: 1.76rem;
+}
+.coupon_main .main_bot {
+	/*width: 2.96rem;*/
+	height: 2.6rem;
+	box-sizing: border-box;
+	border: 1px solid #ccc;
+	font-size: .16rem;
+	border-radius: 3px;
+	margin-top: .2rem;
+	text-align: center;
+	color: #003456;
+	padding-top: .15rem;
+}
+.coupon_main span {
+	color: #e52f62;
+}
+
+.main_bot p{
+	font-weight: bold;
+	height: .28rem;
+	line-height: .28rem;
+}
+
+
+.kuang {
+  display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+  display: -moz-box; /* 老版本语法: Firefox (buggy) */
+  display: -ms-flexbox; /* 混合版本语法: IE 10 */
+  display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+  display: flex;  
+  flex-flow: row;
+}
+.kuang ul:nth-child(1),.kuang ul:nth-child(3) {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.kuang ul:nth-child(2) {
+	width: .86rem;
+	height: 1.3rem;
+	background: url( ../img/kuang.png);
+	background-size: 100% 100%;
+	/*margin-left: 1.09rem;*/
+	font-size: .13rem;
+	margin-top: .15rem;
+	position: relative;
+}
+.kuang ul li {
+	width: .67rem;
+	height: .4rem;	
+	border-bottom: 1px solid #98a8a3;
+    line-height: .4rem;
+    margin-left: .08rem;
+}
+.kuang li:nth-child(3) {
+	border-bottom: none;
+}
+.shou {
+	width: .21rem;
+    height: .21rem;
+    position: absolute;
+    top: .14rem;
+    right: -0.3rem;
+}
+.footer_my {
+	font-size: .13rem;
+	margin-top: .1rem;
+}
+.footer_my img{
+	width: .13rem;
+	height: .13rem;
+	vertical-align: middle;
+}
