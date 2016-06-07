@@ -43,10 +43,11 @@
   <link rel="stylesheet" type="text/css" href="wx_share/css/wx_share.min.css?rev=9560a9bd635e26affe715992a9a17dd7">
   <!--
    <link rel="stylesheet" type="text/css" href="bower_components/normalize-css/normalize.css">
-  <link rel="stylesheet" href="wx_share/css/style.css?rev=58f3a71761dc23d83e5d56ecf7338f9c">--></head>
+  <link rel="stylesheet" href="wx_share/css/style.css?rev=1caee29dcfa15780cfdbc4df524a6ca7">--></head>
 <body  ontouchstart="">
   <main class="content" ng-view></main>
   <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+  <script src="wx_share/js/output/wx_application.min.js?rev=1a185cfd200f6662040c6432137c7f8e"></script>
   <script src="wx_share/js/output/wx_application.min.js?rev=1a185cfd200f6662040c6432137c7f8e"></script>
   <!--
   <script src="wx_share/js/util.js?rev=56c068a5e13fd8e6df99a8a57a50da5f"></script>
@@ -128,11 +129,21 @@
   </div>
 </div>
 <script type="text/javascript" >
+
    $(function(){
        $("#share").click(function(){
           _hmt.push(['_trackEvent', 'wx_share', 'wx_share_closemask']);
           $("#share").hide();
        })
+       if (window.devicePixelRatio && devicePixelRatio > 1) {
+          var testEle = document.createElement('div');
+          testEle.style.border = '.5px solid transparent';
+          document.body.appendChild(testEle);
+          if (testEle.offsetHeight == 1) {
+              document.querySelector('html').classList.add('hairlines');
+          }
+          document.body.removeChild(testEle);
+      }
    })
   </script>
 </body>

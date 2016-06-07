@@ -1,0 +1,225 @@
+* {margin: 0;padding: 0;}
+/* <=320的奇葩手机 */
+@media  (max-width:320px) {
+  html {
+    font-size: 100px;
+  }
+}
+
+/* iphone 4, iphone5 */
+@media only screen and (min-device-width:320px) and (max-device-width:568px) {
+  html {
+    font-size: 100px;
+  }  
+}
+
+/* iphone 6 */
+@media only screen and (min-device-width:375px) and (max-device-width:667px) {
+  html {
+    font-size: 117.18px;
+  }
+}
+
+/* iphone6 plus */
+@media only screen and (min-device-width:414px) and (max-device-width:736px) {
+  html {
+    font-size: 129.37px;
+  }
+}
+body {}
+html {
+  font-size: 100px;
+}
+.layout {
+  overflow: auto;
+}
+.ul_contrl {
+  display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+  display: -moz-box; /* 老版本语法: Firefox (buggy) */
+  display: -ms-flexbox; /* 混合版本语法: IE 10 */
+  display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+  display: flex;  
+  /*flex-flow: row;*/
+  /*display: -webkit-flex;*/
+}
+.ul_contrl li:nth-child(1) {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  border-bottom: 5px solid #e52f62;
+  /*padding-bottom: .07rem;*/
+}
+.ul_contrl li:nth-child(2) {
+  width: .06rem;
+}
+.ul_contrl li:nth-child(3) {
+  width: .84rem;
+  border-bottom: 5px solid #003756;
+  font-size: .13rem;
+  color: #003756;
+  padding-bottom: 3px;
+}
+.ul_contrl li:nth-child(1) p{
+  display: inline-block;
+  font-size: .13rem;
+}
+.ul_contrl li:nth-child(1) p:nth-child(1){
+  color: #003756;
+  font-weight: bold;
+}
+.ul_contrl li:nth-child(1) p:nth-child(2){
+  color: #e52f62;
+}
+.success_part_contrl {
+  padding: .2rem .2rem .1rem .2rem;
+  /*padding: .2rem 0 .2rem 0;*/
+  background: #fef3d7;
+}
+/*保单生成中*/
+.bd_ing {
+  height: .96rem;
+  font-size: .17rem;
+  color: #003756;
+  text-align: center;
+  line-height: .96rem;
+  /*font-weight: bold;*/
+}
+.padd_1rem {
+  padding: 0 .1rem;
+}
+/*end*/
+.success_main {
+ /*padding: 0 .1rem;*/
+}
+.success_main input {
+  box-sizing:border-box;
+  display:block;
+  height: .48rem;
+  border: none;
+  background: none;
+  margin: 0;
+  padding: 0;
+  font-size: .13rem;
+}
+.success_inp {
+  display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+  display: -moz-box; /* 老版本语法: Firefox (buggy) */
+  display: -ms-flexbox; /* 混合版本语法: IE 10 */
+  display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+  display: flex;  
+  /*flex-flow: row;*/
+  /*display: -webkit-flex;*/
+}
+.success_inp li input {
+  width: 100%;
+}
+.success_inp li:nth-child(1) {
+  /*width: 2.3rem;*/
+  color: #c9bd9d;
+  padding-left: .14rem;
+  border: 1px solid #98a8a3;
+  box-sizing: border-box;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.success_inp li:nth-child(2) {
+  width: 1.2rem;
+  background: #e52f62;
+  color: #fff;
+}
+
+.check {
+  padding: .3rem 0 0 0;
+  /*width: 3.54rem;*/
+    display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+  display: -moz-box; /* 老版本语法: Firefox (buggy) */
+  display: -ms-flexbox; /* 混合版本语法: IE 10 */
+  display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+  display: flex;  
+  /*flex-flow: row;*/
+  /*display: -webkit-flex;*/
+}
+.check li {
+  float: left;
+  width: 1.6rem;
+  height: .5rem;
+  font-size: .13rem;
+  text-align: center;
+  line-height: .5rem;
+  border-radius: 5px;
+}
+.check li a {
+  color: #fff;
+}
+.check li:nth-child(1) {
+  box-sizing: border-box;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  background: #e52f62; 
+}
+.check li:nth-child(2) {
+  width: .34rem;
+}
+.check li:nth-child(3) {
+  box-sizing: border-box;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  background: #c1af84; 
+  float: right;
+}
+.success_share {
+  padding: .6rem 0 0 0;
+  text-align: center;
+  height: 3.22rem;
+  color: #003756;
+  font-size: .13rem;
+}
+/*.success_share li:nth-child(1),.success_share li:nth-child(2){
+  line-height: .3rem;
+}*/
+.success_share li img {
+  width: .77rem;
+  height: .77rem;
+}
+.ul_contrl_footer {
+  width: 90%;
+  display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+  display: -moz-box; /* 老版本语法: Firefox (buggy) */
+  display: -ms-flexbox; /* 混合版本语法: IE 10 */
+  display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+  display: flex;  
+  flex-flow: row;
+  /*display: -webkit-flex;*/
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  padding: 0 .2rem;
+}
+.ul_contrl_footer li:nth-child(1) {
+  width: .84rem;
+  border-bottom: 5px solid #003756;
+  font-size: .13rem;
+  color: #003756;
+  padding-bottom: 3px;
+}
+.ul_contrl_footer li:nth-child(2) {
+  width: .06rem;
+}
+.ul_contrl_footer li:nth-child(3) {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  border-bottom: 5px solid #e52f62;
+  /*padding-bottom: .07rem;*/
+
+}
+
+
