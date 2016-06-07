@@ -161,10 +161,12 @@ header .subtitle {
 	color:#222222;
 }
 .container .time {
-	line-height: 40px;
+	/*line-height: 40px;*/
 	height: 40px;
 	color: #999999;
 	font-size: 13px;
+	display: table-cell;
+	vertical-align: middle;
 }
 .container .time img {
 	width: 14px;

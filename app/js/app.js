@@ -10,6 +10,7 @@ var ybwxApp = angular.module('ybwxApp', [
   'ybwxControllers',
   'mainControllers',
   'baodanControllers',
+  'infinite-scroll'
 ]).value('cgBusyDefaults', {
   message: '正在加载....',
   templateUrl: 'template/loading.html'
@@ -30,13 +31,11 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/bz_list.html?v=123',
       controller: 'ybwxBzCtrl',
       title: "定制保障列表"
-    })
-    /*
-    .when('/pay_select', {
-      templateUrl: 'partials/pay_select.html?v=123',
-      controller: 'ybwxPaySelectCtrl'
-    })*/
-    .when('/pay_select', {
+    }).when('/verify_information', {
+      templateUrl: 'partials/verify_information.html',
+      controller: 'ybwxverify_informationCtrl',
+      title: "验真说明"
+    }).when('/pay_select', {
       templateUrl: 'partials/pay_select_new.html?v=123',
       controller: 'ybwxPaySelectNewCtrl',
       title: "支付"
@@ -87,7 +86,7 @@ ybwxApp.config(['$routeProvider',
     }).when('/edindex', {
       templateUrl: 'partials/ed_index.html',
       controller: 'ybwxEdIndexCtrl',
-      title: "如何投保"
+      title: "保障详情"
     }).when('/continue', {
       templateUrl: 'partials/continue.html',
       controller: 'ybwxContinueCtrl',
@@ -126,6 +125,10 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/bdm_detail.html',
       controller: 'ybwxbaodanMDetailSiteCtrl',
       title: "保单详情"
+    }).when('/bd_verify_list', {
+      templateUrl: 'partials/bdm_verfylist.html',
+      controller: 'ybwxbaodanVerifyListCtrl',
+      title: "保单验真"
     }).otherwise({
       redirectTo: '/index'
     });

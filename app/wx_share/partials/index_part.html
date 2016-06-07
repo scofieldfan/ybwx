@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="wx_share/css/index.css?rev=fdafagfgf">
+<link rel="stylesheet" href="wx_share/css/index.css?rev=fdafafaagfgf">
 	<div class="my_bd_controller">
 		<ul class="layout ul_contrl">
 			<li >
@@ -14,12 +14,12 @@
 				<p class="kong_wid45"></p>
 				<p ng-click="addCoupon();">
 
-					<img class="imgwid" src="wx_share/img/my_bd/money.png">
+					<img class="imgwid" src="wx_share/img/my_bd/money.png?v=32">
 					<a href="###" class="fontwid">免费领取</a>
 				</p>
 				<p></p>
 				<p ng-click="showShareTip();">
-					<img class="song_imgwid" src="wx_share/img/my_bd/song.png">
+					<img class="song_imgwid" src="wx_share/img/my_bd/song.png?v=32">
 
 					<a href="###" class="fontwid">送给好友</a>
 				</p>
@@ -32,10 +32,8 @@
 				<span>最高可领12份</span>
 			</p>
 			<ul class="paddBtn_20">
-				<li>
-					每送给3个好友，可再免费领取1份，最高可领取12份。(已有 <i>20</i>
-					位好友已成功领取)
-				</li>
+
+				<li>每送给3个好友，可再免费领取1份，最高可领取12份。(已有<i  class="recommend_times">{{data.recommend_times}}</i>位好友已成功领取)</li>
 			</ul>
 
 			<p>

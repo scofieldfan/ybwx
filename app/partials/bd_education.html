@@ -61,17 +61,17 @@
 	  color:#1e4e8e;
 	  border-radius: 0;
 	  border-top:1px solid #e2e2e2;
-	  height:58px;
-	  line-height:58px;
-	  font-size: 0.18rem;
+	  height:50px;
+	  line-height:50px;
+	  font-size: 14px;
 	}
 	.pay_container .right{
 	  background-color: #1e4e8e;
 	  border-radius: 0;
 	  border-top:1px solid #e2e2e2;
-	  height:58px;
-	  line-height:58px;
-	  font-size: 0.18rem;
+	  height:50px;
+	  line-height:50px;
+	  font-size: 14px;
 	}
 	.hex-title-container{
 		height:0.5rem;
@@ -142,29 +142,19 @@
 </style>
 <header>
 	<img src="img/plane_h.png" class="plan" >意外保障评分
-	<span>1 分 <img src="img/arrow_03.jpg" class="arrow"></span>
+	<span>{{data.aggregate_score}}分 <img src="img/arrow_03.jpg" class="arrow"></span>
 </header>
-<div class="table-container">
+<div class="table-container" data-ng-init="init()">
 	<table >
 		<tr class="bd-tr">
 			<th style="text-align:left;">已有保障</th>
 			<th>保额</th>
 			<th style="text-align:right;">评分</th>
 		</tr>
-		<tr class="bd-tr">
-			<td  style="text-align:left;">自驾</td>
-			<td>70万</td>
-			<td  style="text-align:right;"> 0.15分</td>
-		</tr>
-		<tr class="bd-tr">
-			<td  style="text-align:left;">自驾</td>
-			<td>70万</td>
-			<td  style="text-align:right;">0.15分</td>
-		</tr>
-		<tr class="bd-tr">
-			<td  style="text-align:left;">自驾</td>
-			<td>70万</td>
-			<td  style="text-align:right;">0.15分</td>
+		<tr class="bd-tr" ng-repeat="item in data.analysis">
+			<td  style="text-align:left;">{{item.name}}</td>
+			<td>{{processMoney(item.sum_insured)}}</td>
+			<td  style="text-align:right;"> {{item.score}}分</td>
 		</tr>
 	</table>
 </div>
@@ -176,13 +166,38 @@
 		意外保障推荐 <span>如果投保?</span></div>
 	<div style="overflow:hidden;">
 	<div class="hex-container">
+
 	 <div class="hex-row">
         <div class="hex"></div>
-        <div class="hex "></div>
-        <div class="hex "></div>
-        <div class="hex "></div>
+        <div class="hex"></div>
+        <div class="hex"></div>
+        <div class="hex"></div>
         <div class="hex"></div>
     </div>
+	 <div class="hex-row" ng-repeat="item in hex">
+        <div class="hex"></div>
+        <div class="hex " ng-class="{true: 'blue', false: 'gray'}[item[0].insured]">{{item[0].name}}</div>
+        <div class="hex "  ng-class="{true: 'blue', false: 'gray'}[item[1].insured]">{{item[1].name}}</div>
+        <div class="hex "  ng-class="{true: 'blue', false: 'gray'}[item[2].insured]">{{item[2].name}}</div>
+        <div class="hex"></div>
+    </div>
+
+	 <div class="hex-row">
+        <div class="hex"></div>
+        <div class="hex"></div>
+        <div class="hex"></div>
+        <div class="hex"></div>
+        <div class="hex"></div>
+    </div>
+    <div class="hex-row">
+        <div class="hex"></div>
+        <div class="hex"></div>
+        <div class="hex"></div>
+        <div class="hex"></div>
+        <div class="hex"></div>
+    </div>
+    
+    <!--
     <div class="hex-row">
         <div class="hex"></div>
         <div class="hex gray">航空意外身故或者伤残</div>
@@ -218,7 +233,7 @@
         <div class="hex"></div>
         <div class="hex"></div>
     </div>
-
+	-->
 	</div>
 	</div>
 </div>
@@ -226,7 +241,7 @@
 <div class="cell pay_container" >
 		<div class="cell_hd cell_primary">
 			<a href="javascript:void(0)" class="btn btn_n_primary left"  id="submitButton">
-				<img src="img/plus_2.jpg" style="width:14px;vertical-align: middle;">
+				<img src="img/plus_2.jpg" style="width:14px;vertical-align: -1px;">
 			上传保单</a>
 		</div>
 		<div class="cell_hd cell_primary">
@@ -234,3 +249,11 @@
 		</div>
 		
 </div>
+<script type="text/javascript">
+	$(function(){
+		var width = $(window).width()/2 -200;
+	    console.log("left:"+width);
+		$(".hex-container").css({'margin-left':width})
+	})	
+
+</script>
