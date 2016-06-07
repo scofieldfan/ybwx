@@ -10,6 +10,7 @@ var ybwxApp = angular.module('ybwxApp', [
   'ybwxControllers',
   'mainControllers',
   'baodanControllers',
+  'infinite-scroll'
 ]).value('cgBusyDefaults', {
   message: '正在加载....',
   templateUrl: 'template/loading.html'

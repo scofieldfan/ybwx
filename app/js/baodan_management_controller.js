@@ -4,23 +4,23 @@ bdControllers.controller('ybwxBDIndexCtrl', ['$scope', '$routeParams', '$locatio
 	function($scope, $routeParams, $location, $http, $rootScope) {
 		_hmt.push(['_trackPageview', $location.path()]);
 
-		$scope.upLoadMyBdPic = function(){
-			if($routeParams.isVerify=='true'){
+		$scope.upLoadMyBdPic = function() {
+			if ($routeParams.isVerify == 'true') {
 				goUpload("3");
-			}else{
+			} else {
 				goUpload("1");
 			}
 		}
-		$scope.upLoadFamilyBdPic = function(){
-			if($routeParams.isVerify=='true'){
+		$scope.upLoadFamilyBdPic = function() {
+			if ($routeParams.isVerify == 'true') {
 				goUpload("4");
-			}else{
+			} else {
 				goUpload("2");
 			}
 		}
 
-		 function goUpload(source) {
-			_hmt.push(['_trackEvent', 'bd_uploadpic_index', 'goBdPic_'+source]);
+		function goUpload(source) {
+			_hmt.push(['_trackEvent', 'bd_uploadpic_index', 'goBdPic_' + source]);
 			$location.path('/bd_pic').search({
 				'source': source
 			});
@@ -33,7 +33,74 @@ bdControllers.controller('ybwxBDIndexCtrl', ['$scope', '$routeParams', '$locatio
 
 bdControllers.controller('ybwxBdEducationCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
+		_hmt.push(['_trackPageview', $location.path()]);
 
+		$scope.processMoney = function(money) {
+			return util.processSpecialMoney(money);
+		}
+		$scope.goBdList = function() {
+			$location.path('/bd_list');
+		}
+		$scope.isHaveUserInfo = false;
+		$scope.getUserInfo = function() {
+			var openId = sessionStorage.getItem("openId");
+			$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_user_info'].replace('{openId}', openId), {}, function(res) {
+				console.log(res.data.data);
+				if (res.data.data.age && res.data.data.gender) {
+					$scope.isHaveUserInfo = true;
+				}
+			})
+		}
+		$scope.init = function() {
+
+			var code = util.getParameterByName("code");
+			if (!code) {
+				code = $routeParams.code;
+			}
+			util.getOpenId(code).then(function() {
+				var type = $routeParams.type;
+				$scope.type = type;
+				$scope.getUserInfo();
+				var openId = sessionStorage.getItem("openId");
+				$scope.myPromise = getHttpPromise($http, $rootScope, 'GET', api['get_score_analysis'].replace('{openId}', openId).replace('{type}', type), {}, function(res) {
+					console.log(res.data.data);
+					if (res && res.data && res.data.data) {
+						$scope.data = res.data.data;
+						$scope.hex = [];
+						var row = [];
+						res.data.data.beehive.forEach(function(element, index) {
+							row.push(element);
+							if ((index + 1) % 3 === 0) {
+								$scope.hex.push(row);
+								row = [];
+							}
+							// statements
+						});
+						console.log($scope.hex);
+
+						//$scope.hiveLength = Math.ceil(res.data.data.beehive.length/3);
+					}
+				})
+
+
+			});
+
+
+
+		}
+		$scope.goDingzhi = function() {
+			_hmt.push(['_trackEvent', 'eduction', 'eduction_subBtn']);
+			if ($scope.isHaveUserInfo) {
+				$location.path('/select').search({
+					'type': $routeParams.type
+				});
+			} else {
+				$location.path('/userinfo').search({
+					'type': $routeParams.type
+				});
+			}
+
+		}
 	}
 ]);
 
@@ -42,14 +109,14 @@ bdControllers.controller('ybwxverify_informationCtrl', ['$scope', '$routeParams'
 		_hmt.push(['_trackPageview', $location.path()]);
 
 		$scope.init = function() {
-			$scope.claimPromise = getHttpPromise($http, $rootScope, 'GET', api['get_claim_info'].replace("{id}",$routeParams.verify_info_id), {}, function(res) {
-					console.log(res);
-					if (res && res.data && res.data.data) {
-						$scope.data = res.data.data;
-						$scope.data.items.forEach(function(item){
-							item.processData = item.data.split("\|");
-						})
-					}
+			$scope.claimPromise = getHttpPromise($http, $rootScope, 'GET', api['get_claim_info'].replace("{id}", $routeParams.verify_info_id), {}, function(res) {
+				console.log(res);
+				if (res && res.data && res.data.data) {
+					$scope.data = res.data.data;
+					$scope.data.items.forEach(function(item) {
+						item.processData = item.data.split("\|");
+					})
+				}
 			});
 		}
 	}
@@ -62,20 +129,19 @@ bdControllers.controller('ybwxclaim_informationCtrl', ['$scope', '$routeParams',
 
 		$scope.init = function() {
 
-			$scope.claimPromise = getHttpPromise($http, $rootScope, 'GET', api['get_claim_info'].replace("{id}",$routeParams.claim_id), {}, function(res) {
-					console.log(res);
-					if (res && res.data && res.data.data) {
-						$scope.data = res.data.data;
-						$scope.data.items.forEach(function(item){
-							item.processData = item.data.split("\|");
-						})
-					}
+			$scope.claimPromise = getHttpPromise($http, $rootScope, 'GET', api['get_claim_info'].replace("{id}", $routeParams.claim_id), {}, function(res) {
+				console.log(res);
+				if (res && res.data && res.data.data) {
+					$scope.data = res.data.data;
+					$scope.data.items.forEach(function(item) {
+						item.processData = item.data.split("\|");
+					})
+				}
 			});
 
 		}
 	}
 ]);
-
 
 
 
@@ -86,7 +152,7 @@ bdControllers.controller('ybwxbaodanVerifyListCtrl', ['$scope', '$routeParams', 
 		$scope.goBdUpload = function() {
 			_hmt.push(['_trackEvent', 'bdm_list', 'goUpload']);
 			$location.path('/bd_index').search({
-				'isVerify':	'true'
+				'isVerify': 'true'
 			});
 		}
 		$scope.type = "4";
@@ -109,19 +175,19 @@ bdControllers.controller('ybwxbaodanVerifyListCtrl', ['$scope', '$routeParams', 
 			})
 
 		}
-		$scope.setType = function(type){
+		$scope.setType = function(type) {
 			_hmt.push(['_trackEvent', 'bdm_list', 'nav']);
-			$scope.type=type;
+			$scope.type = type;
 		}
 		$scope.init();
 
-	
-		$scope.goVerifyInfoPage = function(verify_info_id){
+
+		$scope.goVerifyInfoPage = function(verify_info_id) {
 			_hmt.push(['_trackEvent', 'bdm_list', 'gobdm_verify_info']);
 			$location.path('/verify_information').search({
 				verify_info_id: verify_info_id
-			});	
-		}	
+			});
+		}
 		$scope.goDetail = function(id) {
 			_hmt.push(['_trackEvent', 'bdm_list', 'gobdm_detail']);
 			$location.path('/bdm_detail').search({
@@ -131,7 +197,6 @@ bdControllers.controller('ybwxbaodanVerifyListCtrl', ['$scope', '$routeParams', 
 		}
 	}
 ]);
-
 
 
 
@@ -163,9 +228,9 @@ bdControllers.controller('ybwxbaodanManageListCtrl', ['$scope', '$routeParams', 
 			})
 
 		}
-		$scope.setType = function(type){
+		$scope.setType = function(type) {
 			_hmt.push(['_trackEvent', 'bdm_list', 'nav']);
-			$scope.type=type;
+			$scope.type = type;
 		}
 		$scope.init();
 
@@ -176,12 +241,12 @@ bdControllers.controller('ybwxbaodanManageListCtrl', ['$scope', '$routeParams', 
 				return true;
 			}
 		};
-		$scope.goClaimInfo = function(claim_id){
+		$scope.goClaimInfo = function(claim_id) {
 			_hmt.push(['_trackEvent', 'bdm_list', 'goClaimInfo']);
 			$location.path('/claim_information').search({
 				'claim_id': claim_id
 			});
-		}	
+		}
 		$scope.goDetail = function(id) {
 			_hmt.push(['_trackEvent', 'bdm_list', 'gobdm_detail']);
 			$location.path('/bdm_detail').search({
@@ -198,8 +263,8 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 
 		_hmt.push(['_trackPageview', $location.path()]);
 
-		$scope.isTest = false;//示例保单
-		
+		$scope.isTest = false; //示例保单
+
 		$scope.processMoney = function(money) {
 			return util.processSpecialMoney(money);
 		}
@@ -209,17 +274,17 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 			if (!code) {
 				code = $routeParams.code;
 			}
-			if($routeParams.policy_id && $routeParams.policy_id == 'test'){
+			if ($routeParams.policy_id && $routeParams.policy_id == 'test') {
 				$scope.isTest = true;
 				$("#test_baodan").show();
-			}else{
+			} else {
 				$("#my_baodan").show();
 			}
 			util.getOpenId(code).then(function() {
 
 				if (!$scope.isTest) {
 					var openId = sessionStorage.getItem("openId");
-					if($routeParams.share_id){
+					if ($routeParams.share_id) {
 						openId = $routeParams.share_id;
 					}
 					var parameters = {
@@ -228,8 +293,8 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 					}
 					$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_policy_detail'] + "?" + util.genParameters(parameters), {}, function(res) {
 						$scope.data = res.data.data;
-						$scope.data.coverageDateHead =  res.data.data.coverageDate.substring(0,19).trim();
-						$scope.data.coverageDateTail =  res.data.data.coverageDate.substring(19).trim();
+						$scope.data.coverageDateHead = res.data.data.coverageDate.substring(0, 19).trim();
+						$scope.data.coverageDateTail = res.data.data.coverageDate.substring(19).trim();
 						console.log($scope.data.coverageDateHead);
 						console.log($scope.data.coverageDateTail);
 						console.log(res.data.data);
@@ -242,47 +307,47 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 			//alert("choose...");
 			//});
 		}
-		$scope.goVerifyInfoPage = function(verify_info_id){
+		$scope.goVerifyInfoPage = function(verify_info_id) {
 			_hmt.push(['_trackEvent', 'bdm_detail', 'gobdm_verify_info']);
 			$location.path('/verify_information').search({
 				verify_info_id: verify_info_id
-			});	
-		}	
-		$scope.goClaimInfo = function(claim_id){
+			});
+		}
+		$scope.goClaimInfo = function(claim_id) {
 			_hmt.push(['_trackEvent', 'bdm_detail', 'goClaimInfo']);
 			$location.path('/claim_information').search({
 				'claim_id': claim_id
 			});
-		}	
+		}
 		$scope.yanzhentext = "保单验真";
-		$scope.policy_verfiy = function(){
+		$scope.policy_verfiy = function() {
 
-			if($scope.data.status!=1){
+			if ($scope.data.status != 1) {
 				return;
 			}
 			var openId = sessionStorage.getItem("openId");
 
 			var parameters = {
 				'open_id': openId,
-				'policy_id':$routeParams.policy_id
+				'policy_id': $routeParams.policy_id
 			};
 			getHttpPromise($http, $rootScope, 'GET', api['policy_verfiy'] + "?" + util.genParameters(parameters), {}, function(res) {
-					console.log(res);
-					if(res && res.data.code==0){
-						$scope.data.status=2;
-						$scope.yanzhentext = "验真中...."
-					}
-					//$scope
+				console.log(res);
+				if (res && res.data.code == 0) {
+					$scope.data.status = 2;
+					$scope.yanzhentext = "验真中...."
+				}
+				//$scope
 			});
 
 		}
-		$scope.getChargePeroidTypeAbbre = function(type){
+		$scope.getChargePeroidTypeAbbre = function(type) {
 			return chargePeriodTypeAbbreMap[type];
 		}
-		$scope.getChargePeroidType = function(type){
+		$scope.getChargePeroidType = function(type) {
 			return chargePeriodTypeMap[type];
 		}
-		$scope.showTip = function(){
+		$scope.showTip = function() {
 			_hmt.push(['_trackEvent', 'bdm_detail', 'shareTip']);
 			$("#share").show();
 		}
@@ -388,9 +453,9 @@ bdControllers.controller('ybwxBDPicCtrl', ['$scope', '$routeParams', '$location'
 
 		$scope.goBdM = function() {
 			_hmt.push(['_trackEvent', 'bdm_uploadpic', 'goBdmList']);
-			if( $routeParams.source==3 ||  $routeParams.source==4){
+			if ($routeParams.source == 3 || $routeParams.source == 4) {
 				$location.path('/bd_verify_list').search();
-			}else{
+			} else {
 				$location.path('/bdm_list').search();
 			}
 
@@ -465,4 +530,3 @@ bdControllers.controller('ybwxBDPicCtrl', ['$scope', '$routeParams', '$location'
 		}
 	}
 ]);
-

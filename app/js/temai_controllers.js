@@ -11,7 +11,7 @@ ybwxControllers.controller('wxListCtrl', ['$scope', '$routeParams', '$location',
     _hmt.push(['_trackPageview', $location.path()]);
 
 
-    setTest($routeParams.is_test);
+    //setTest($routeParams.is_test);
 
     $scope.init = function() {
       var code = util.getParameterByName("code");

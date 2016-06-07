@@ -36,7 +36,7 @@ var api = {
 		'get_policy_verfiyinfo':'/ybwx-web/api/verify_info/{id}'
 	}
 	//测试开始，为了测试做的适配
-
+/*
 var api_test = {};
 for (var key in api) {
 	api_test[key] = "/test" + api[key];
@@ -54,6 +54,7 @@ function setTest(is_test) {
 		sessionStorage.setItem("is_test", false);
 	}
 }
+*/
 //测试结束
 //console.log(api_test);
 
@@ -215,6 +216,52 @@ mainControllers.controller('wxBaoDanListCtrl', ['$scope', '$routeParams', '$loca
 		$scope.getBdColor = function(status) {
 			return insuranceColorMap[status]
 		}
+		$scope.page_no = 1;
+		$scope.page_size=5;
+		$scope.orders = [];
+		$scope.isBusy = true;
+		$scope.nextPage = function(){
+			if($scope.isBusy) return;
+			$scope.isBusy = true;
+			var openId = sessionStorage.getItem("openId");
+
+			$http({
+					method: 'POST',
+					headers: {
+						"Content-Type": "application/json;charset:UTF-8"
+					},
+					url: api['get_insurances'],
+					data: {
+						"open_id": openId,
+						"page_no":$scope.page_no,
+						"page_size":$scope.page_size
+					}
+				}).then(function(res) {
+					console.log(res);
+					$scope.isBusy = false;
+					if (res.data && res.data.description) {
+						util.showToast($rootScope, res.data.description);
+						//  $(".default_text").show();
+					}
+					if (res.data.code == 0) {
+						if (res.data.data.orders) {
+							$scope.page_no++;
+							console.log(res.data.data.orders);
+							res.data.data.orders.forEach( function(element, index) {
+								$scope.orders.push(element);
+								// statements
+							});
+							//$scope.orders.concat(res.data.data.orders);
+							console.log("...............");
+						}
+					}
+				}, function(res) {
+					$scope.isBusy = false;
+					console.log(res);
+					util.showToast($rootScope, "服务器错误");
+					// $(".default_text").show();
+				});
+		}
 		$scope.init = function() {
 
 			var code = util.getParameterByName("code");
@@ -223,37 +270,11 @@ mainControllers.controller('wxBaoDanListCtrl', ['$scope', '$routeParams', '$loca
 			}
 
 			util.getOpenId(code).then(function() {
-				var openId = sessionStorage.getItem("openId");
+				$scope.isBusy = false;
+				$scope.nextPage();
 				//$scope.reason="您没有领取任何优惠券。";
 				// $("#reason_container").show();
-				$scope.myPromise = $http({
-					method: 'POST',
-					headers: {
-						"Content-Type": "application/json;charset:UTF-8"
-					},
-					url: api['get_insurances'],
-					data: {
-						"open_id": openId
-					}
-				}).then(function(res) {
-					console.log(res);
-					if (res.data && res.data.description) {
-						util.showToast($rootScope, res.data.description);
-						//  $(".default_text").show();
-					}
-
-					if (res.data.code == 0) {
-						if (res.data.data.orders) {
-
-							console.log(res.data.data.orders);
-							$scope.orders = res.data.data.orders;
-						}
-					}
-				}, function(res) {
-					console.log(res);
-					util.showToast($rootScope, "服务器错误");
-					// $(".default_text").show();
-				});
+		
 			})
 		}
 
@@ -450,7 +471,7 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 		}
 		$scope.init = function() {
 			//获得openId
-			setTest($routeParams.is_test);
+			//setTest($routeParams.is_test);
 			var code = util.getParameterByName("code");
 			if (!code) {
 				code = $routeParams.code;
@@ -798,9 +819,6 @@ mainControllers.controller('ybwxEducationCtrl', ['$scope', '$routeParams', '$loc
 			$scope.type = type;
 			$scope.getUserInfo();
 			var openId = sessionStorage.getItem("openId");
-			//alert(type);
-			//alert(api['get_score_analysis'].replace("{openId}", openId).replace('{type}', type));
-
 			$scope.myPromise = $http({
 				method: 'GET',
 				headers: {
