@@ -72,9 +72,8 @@ wxShareControllers.controller('wxShareBdCtrl', ['$scope', '$filter', '$routePara
 		//saveBd($http,"张三","411202198509190511","18910873024");
 		$scope.server_reason = "";
 		var openId = sessionStorage.getItem("openId");
-
-
-
+		// toggle
+		
 		$scope.submit = function() {
 			_hmt.push(['_trackEvent', 'wx_share_toubao', 'wx_share_toubao_subtn']);
 			if (!$scope.registration.$invalid) {

@@ -1,6 +1,6 @@
-<link rel="stylesheet" href="css/product_list.css?rev=fea4bd2749da829f24511e30b92a35e9"> 
+<link rel="stylesheet" href="css/product_list.css?rev=hjghghgjh"> 
 
-<div class="cell nav" style="color:#555555;text-align: center;">
+<div class="cell nav" style="color:#555555;text-align: center;border-bottom:1px solid #e2e2e2">
   <div class="cell_hd  cell_primary " ng-class='{"select":insurances_type=="4"}' ng-click='getList(4);'> 意外 </div>
   <div class="cell_hd  cell_primary " ng-class='{"select":insurances_type=="3"}' ng-click='getList(3);'> 人寿</div>
   <div class="cell_hd  cell_primary " ng-class='{"select":insurances_type=="2"}' ng-click='getList(2);'> 健康</div>
@@ -8,6 +8,7 @@
   <div class="cell_hd  cell_primary " ng-class='{"select":insurances_type=="5"}' ng-click='getList(5);'> 财产</div>
 </div>
 <ul class="ul_container"  data-ng-init="init()"   cg-busy="listPromise"  >
+  <!-- <div class="mar_10"></div> -->
   <li class="list_item" ng-click="goDetail(item.id)"   ng-repeat="item in list" >
     <div  class="img_box">
       <img ng-src="{{item.insurance_image_url}}" class="order_img">
@@ -24,7 +25,12 @@
     </div>
   </li>
 </ul>
-<ul ng-show="!isHaveResult" class="cell_font" >
- 
-   该分类下暂无产品...
+<ul ng-show="!isHaveResult" class="cell_font" style=" text-align: center;padding-top: 90px;" >
+  <img src="img/qidai.png" >
+  <div style="font-size: 15px;color:#999;padding-top: 10px">产品即将上线</div>
+  <div style="font-size: 15px;color:#555;">敬请期待</div>
 </ul>
+<!-- $scope.setType = function(type) {
+      _hmt.push(['_trackEvent', 'bdm_list', 'nav']);
+      $scope.type = type;
+    } -->

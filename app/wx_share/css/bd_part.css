@@ -30,7 +30,7 @@ html {
   font-size: 100px;
 }
 input {
-  -webkit-appearance:none;
+  /*-webkit-appearance:none;*/
   border: none;
 }
 body {
@@ -172,14 +172,16 @@ body {
   height: .17rem;
   /*background: #003756;*/
   /*background: url(../img/checkbox.png) no-repeat;*/
-  background: url(../img/oncheck.png) no-repeat;
+  /*background: url(../img/checkbox1.png) no-repeat;*/
   background-size: .14rem .14rem;
   border: none;
   border-radius: 3px;
   margin-right: 5px;
   vertical-align: middle;
 }
-
+.oneshow {
+   background: url(../img/checkbox1.png) no-repeat;
+}
 .font_red {
   color: #e52f62;
 }
@@ -197,4 +199,14 @@ body {
   bottom: 0;
   left: 0;
   overflow: auto;
+}
+/*ios底部fixed失效的问题的解决方案*/
+.wrapper {
+   position: fixed;
+    top: 10px;
+    bottom: 48px;
+    /* 使之可以滚动 */
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+
 }

@@ -151,7 +151,8 @@ input::-webkit-input-speech-button {
 }
 .gradient-shadow {
   position: relative;
-  height: 3px;
+  height: 1px;
+  background: #e2e2e2;
 }
 .gradient-shadow:before {
   position: absolute;
