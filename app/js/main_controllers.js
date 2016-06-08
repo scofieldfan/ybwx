@@ -594,7 +594,7 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 					});
 					// console.log(obj);
 					//console.log(sumInsuredView);
-					CIRCLE.init(res.data.data.coverage_views, sumInsuredView);
+					CIRCLE.init(res.data.data.coverage_scores,res.data.data.coverage_views, sumInsuredView);
 				}
 			}, function(res) {
 				console.log(res);
