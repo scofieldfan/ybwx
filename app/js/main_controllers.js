@@ -134,6 +134,9 @@ INSURANCE_EFFECTIVE(8, "保单生效"),
 INSURANCE_INEFFECTIVE(9, "保单失效");             
 */
 
+
+
+
 //图标Index：保险类型
 var insureTypeMap = [4, 3, 2, 1, 5];
 var insureanceCNMap = {
@@ -1379,11 +1382,18 @@ mainControllers.controller('ybwxToubaoDingzhiAllCtrl', ['$scope', '$filter', '$r
 		}
 		var taocan_status = {
 			1: "",
-			2: "未开售"
+			2: "未开售",
+			3: "已购买",
+			4: "已购买",
+			5: "已购买"
+
 		}
 		var taocan_css = {
 			1: "tb",
-			2: "unsell"
+			2: "unsell",
+			3: "unsell",
+			4: "unsell",
+			5: "unsell"
 		}
 
 		$scope.get_taocan_css = function(status) {
@@ -1415,9 +1425,14 @@ mainControllers.controller('ybwxToubaoDingzhiAllCtrl', ['$scope', '$filter', '$r
 				return;
 			}
 			$scope.plans.forEach(function(element, index) {
-				plans_to_premium[element.id] = element.premium;
+				if(element.status===1){//状态为1 保险套餐开售才可以购买
+					plans_to_premium[element.id] = element.premium;
+				}
 			});
-
+			if(Object.keys(plans_to_premium).length==0){
+				util.showToast($rootScope, "很抱歉，超过保险公司的限制，无法投保");
+				return false;
+			}
 			var postData = {
 				open_id: openId,
 				plans_to_premium: plans_to_premium,
