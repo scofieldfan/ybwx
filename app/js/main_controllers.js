@@ -706,31 +706,18 @@ mainControllers.controller('ybwxInfoCtrl', ['$scope', '$routeParams', '$location
 		}
 		$scope.init = function() {
 
-			$scope.myPromise = $http({
-				method: 'POST',
-				headers: {
-					"Content-Type": "application/json;charset:UTF-8"
-				},
-				url: api['get_restrictions'],
-				data: {
+			$scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_restrictions'], {
 					"insurance_type": $routeParams.type,
 					"coverage_score": $routeParams.coverage_score,
-					"sum_insured_score": $routeParams.sum_insured_score
-				}
-			}).then(function(res) {
-				console.log(res);
-				if (res && res.data && res.data.data) {
-					$scope.data = res.data.data;
-				}
+					"sum_insured_score": $routeParams.sum_insured_score	
 			}, function(res) {
-				console.log(res);
-				util.showToast($rootScope, "服务器错误");
-			});
-
-
+				$scope.data = res.data.data;
+				if($scope.data.notices){
+						$scope.isHaveHealth  = _.filter([$scope.data.notices], function(notice){ return notice.health_notice })
+						$scope.isExtranotice  = _.filter([$scope.data.notices], function(notice){ return notice.extra_notice })
+				}
+			})
 		}
-
-
 	}
 ]);
 
@@ -773,21 +760,14 @@ mainControllers.controller('ybwxBzCtrl', ['$scope', '$routeParams', '$location',
 			}
 		}
 		var isHaveRestrictions = false;
+
 		$scope.init = function() {
 			$scope.data = {};
-			$scope.myPromise = $http({
-				method: 'POST',
-				headers: {
-					"Content-Type": "application/json;charset:UTF-8"
-				},
-				url: api['get_recommend_coverages'],
-				data: {
+			$scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_coverages'], {
 					"insurance_type": $routeParams.type,
 					"coverage_score": $routeParams.coverage_score,
 					"sum_insured_score": $routeParams.sum_insured_score
-				}
-			}).then(function(res) {
-				console.log(res);
+			}, function(res) {
 				if (res && res.data && res.data.data) {
 					//$scope.data = res.data.data;
 					$scope.data.main_coverages = res.data.data.coverages.filter(function(item) {
@@ -796,15 +776,19 @@ mainControllers.controller('ybwxBzCtrl', ['$scope', '$routeParams', '$location',
 					$scope.data.second_coverages = res.data.data.coverages.filter(function(item) {
 						return item.coverage_type == 2;
 					});
-					//console.log("test:::");
-					isHaveRestrictions = res.data.data.has_restrictions;
 				}
+			})
+			$scope.restrictionPromise = getHttpPromise($http, $rootScope, 'POST', api['get_restrictions'], {
+					"insurance_type": $routeParams.type,
+					"coverage_score": $routeParams.coverage_score,
+					"sum_insured_score": $routeParams.sum_insured_score	
 			}, function(res) {
-				console.log(res);
-				util.showToast($rootScope, "服务器错误");
-			});
-
-
+				if(res.data.data ){
+					if(res.data.data.age_notice || res.data.data.locale_notice || res.data.data.notices){
+						isHaveRestrictions = true;
+					}	
+				}
+			})
 		}
 	}
 ]);
