@@ -30,7 +30,6 @@ html {
   font-size: 100px;
 }
 input {
-  /*-webkit-appearance:none;*/
   border: none;
 }
 body {
@@ -170,9 +169,6 @@ body {
 .item input{
   width: .16rem;
   height: .17rem;
-  /*background: #003756;*/
-  /*background: url(../img/checkbox.png) no-repeat;*/
-  /*background: url(../img/oncheck.png) no-repeat;*/
   background-size: .14rem .14rem;
   border: none;
   border-radius: 3px;
