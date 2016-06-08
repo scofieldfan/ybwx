@@ -40,6 +40,7 @@ body{
 	display: -webkit-flex; /* 新版本语法: Chrome 21+ */
 	display: flex;  
 	flex-flow: row;
+	
 	/*display: -webkit-flex;*/
 }
 .cut_cell {
@@ -47,7 +48,7 @@ body{
 	text-decoration: none;
 	display: inline-block;
 	color: #555;
-	font-size: .19rem;
+	font-size:13px;
 	line-height: 48px;
 	text-align: center;
 	background: #fff;

@@ -1,18 +1,33 @@
 <style>
 	
 	header{
-		background-color: #1e4e8e;
 		color:#fff;
 		height:0.6rem;
 		line-height: 0.6rem;
-		padding:0 0.2rem;
+		padding:0 0.2rem 0 50px;
 		font-size:0.18rem;
+		
+		
 	}
-	header .plan{
+	header.icon_4{
+		background: #1e4e8e url('img/plane_h.png') no-repeat 18px center;
+		background-size: 28px;
+	}
+	header.icon_3{
+		background: #1e4e8e url('img/health_icon.png') no-repeat 18px center;
+		background-size: 28px;
+	}
+	header.icon_2{
+		background: #1e4e8e url('img/heart_icon.png') no-repeat 18px center;
+		background-size: 28px;
+	}
+	/*
+	header .icon{
 		width:28px;
 		vertical-align: middle;
 		margin-right:0.05rem;
-	}
+	}*/
+
 	header span{
 		float:right;
 		vertical-align: middle;
@@ -146,8 +161,8 @@
     */
 
 </style>
-<header>
-	<img src="img/plane_h.png" class="plan" >{{getInsuranceCNname()}}保障评分
+<header class="icon_{{type}}">
+	我的{{getInsuranceCNname()}}保障
 	<span ng-click="goBdmList()">{{data.aggregate_score}}分 <img src="img/arrow_03.jpg" class="arrow"></span>
 </header>
 <div  ng-show="data.aggregate_score>0">
@@ -172,7 +187,7 @@
 <div>
 	<div class="hex-title-container">
 		<img src="img/safe.jpg" >
-		{{getInsuranceCNname()}}保障提升 <span  ng-click="goOldEducation();">如何投保?</span></div>
+		全部{{getInsuranceCNname()}}保障 <span  ng-click="goOldEducation();">如何投保?</span></div>
 	<div style="overflow:hidden;">
 	<div class="hex-container">
 

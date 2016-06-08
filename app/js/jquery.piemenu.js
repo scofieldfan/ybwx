@@ -182,8 +182,12 @@
                     ctx.fillText(options.sumScore, center, center + radius * 0.05);
 
                     ctx.font = "normal 35px Arial,Microsoft YaHei";
-                    // ctx.fillText("9单", center-radius*0.1, center -radius*0.2);
-                    // ctx.fillText("保障中", center+radius*0.1, center -radius*0.2);
+                    if(options.policyNumber){
+                          ctx.fillText(options.policyNumber+"单", center-radius*0.1, center -radius*0.2);
+                          ctx.fillStyle = "#999999";
+                          ctx.fillText("保障中", center+radius*0.1, center -radius*0.2);
+                    }
+                   
                     ctx.fillStyle = "#999999";
                     ctx.fillText("最高10分", center, center + radius * 0.2);
                 } else {

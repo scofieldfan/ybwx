@@ -353,29 +353,19 @@ mainControllers.controller('wxBaoDanDetailCtrl', ['$scope', '$routeParams', '$lo
 			var openId = sessionStorage.getItem("openId");
 			$scope.status = $routeParams.order_status;
 
-			$http({
-				method: 'POST',
-				headers: {
-					"Content-Type": "application/json;charset:UTF-8"
-				},
-				url: api['get_insurance_detail'],
-				data: {
+			$scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurance_detail'], {
 					"open_id": openId,
 					'order_no': $routeParams.order_no
-				}
-			}).then(function(res) {
-				console.log(res);
-				if (res.data && res.data.description) {
-					util.showToast($rootScope, res.data.description);
-				}
-				if (res.data.code == 0) {
-					//res.data.data.order.order_status_text = insuranceMap[res.data.data.order["order_status"]];
-					$scope.order = res.data.data.order;
-				}
 			}, function(res) {
-				console.log(res);
-				util.showToast($rootScope, "服务器错误");
-			});
+					console.log(res);
+					if (res.data && res.data.description) {
+						util.showToast($rootScope, res.data.description);
+					}
+					if (res.data.code == 0) {
+						//res.data.data.order.order_status_text = insuranceMap[res.data.data.order["order_status"]];
+						$scope.order = res.data.data.order;
+					}
+			})
 		}
 
 		$scope.send_bd = function() {
@@ -396,7 +386,7 @@ mainControllers.controller('wxBaoDanDetailCtrl', ['$scope', '$routeParams', '$lo
 ]);
 
 
-function initPieConfig(sumScore, scores) {
+function initPieConfig(sumScore, scores,policyNumber) {
 	var pieConfig = [
 
 		{
@@ -453,6 +443,7 @@ function initPieConfig(sumScore, scores) {
 		},
 		pieConfig: pieConfig,
 		sumScore: sumScore,
+		policyNumber:policyNumber,
 		parentElement: $("#pieChartContainer"),
 		onSelection: function(pieIndex) {
 			if (pieIndex == 'x') {
@@ -521,7 +512,7 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 					if (res.data.code == 0) {
 						$("#loadingContainer").hide();
 						$scope.data = res.data.data;
-						initPieConfig($scope.data.aggregate_score.toFixed(1), $scope.data.scores);
+						initPieConfig($scope.data.aggregate_score.toFixed(1), $scope.data.scores,$scope.data.policy);
 					}
 				}, function(res) {
 					console.log(res);
@@ -724,8 +715,15 @@ mainControllers.controller('ybwxInfoCtrl', ['$scope', '$routeParams', '$location
 			}, function(res) {
 				$scope.data = res.data.data;
 				if($scope.data.notices){
-						$scope.isHaveHealth  = _.filter([$scope.data.notices], function(notice){ return notice.health_notice })
-						$scope.isExtranotice  = _.filter([$scope.data.notices], function(notice){ return notice.extra_notice })
+					    _.map($scope.data.notices,function(item){
+					    	if(item.health_notice){
+						    	item.healthNotices = item.health_notice .split("\r\n");
+					    	}
+					    	return item;
+					    })
+					    console.log($scope.data.notices);
+						$scope.isHaveHealth  = _.filter($scope.data.notices, function(notice){ return notice.health_notice })
+						$scope.isExtranotice  = _.filter($scope.data.notices, function(notice){ return notice.extra_notice })
 				}
 			})
 		}

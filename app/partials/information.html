@@ -1,5 +1,5 @@
 <!-- 投保须知 -->
-<link rel="stylesheet" href="css/information.css?rev=3616d946eba0e345a7752c1632d5ee0a">
+<link rel="stylesheet" href="css/information.css?rev=8cf5db84ab54afcde13c97298b939a80">
 <div  data-ng-init="init()" cg-busy="myPromise">
 	<ul class="claim_controller">
 		<li ng-if="data.age_notice">
@@ -24,7 +24,7 @@
 			</p>
 			<a class="content" ng-repeat="notice in data.notices">
 				{{notice.insurance_name}} 	{{notice.plan_name}}<br/>
-				{{notice.health_notice}} 	
+				<div ng-repeat="item in notice.healthNotices" style="font-size:12px;">{{item}}</div>
 			</a>
 		</li>
 		<li  ng-if="isExtranotice">
