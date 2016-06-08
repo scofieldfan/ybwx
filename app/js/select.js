@@ -454,8 +454,8 @@ var CIRCLE = (function() {
 		
 			scoreObj.fanweiScore = score;
 			updateSumScore();
-			var show_score = baozhang_score[score].toFixed(1) || 0;
-
+			var show_score = baozhang_score[score] || 0;
+			show_score = show_score.toFixed(1);
 			$("#fanwei_score").html(show_score);
 			//$('#clockContainer').scope().fanweiScore = score;
 			//change(score);
