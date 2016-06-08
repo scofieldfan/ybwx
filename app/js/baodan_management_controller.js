@@ -108,7 +108,9 @@ bdControllers.controller('ybwxBdEducationCtrl', ['$scope', '$routeParams', '$loc
 						});
 						var totalLines = Math.ceil($(window).height()/120);
 						$scope.tailLines = $scope.hex.length>totalLines?2:totalLines-$scope.hex.length;
-						console.log($scope.hex);
+						console.log("totalLines:"+totalLines);
+						console.log("$scope.hex.length:"+$scope.hex.length);
+						console.log("$scope.tailLines:"+$scope.tailLines);
 
 						//$scope.hiveLength = Math.ceil(res.data.data.beehive.length/3);
 					}
