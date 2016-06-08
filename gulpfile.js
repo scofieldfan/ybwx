@@ -23,7 +23,9 @@ gulp.task('copycss', function() {
 		.pipe(gulp.dest('app/partials/css/'));
 });
 
-gulp.task('test', ['copycss'], function() {
+
+
+gulp.task('addVersion', ['copycss'], function() {
 	return gulp.src('app/partials/*.html')
 		.pipe(rev())
 		.pipe(gulp.dest('app/partials'));
@@ -31,7 +33,10 @@ gulp.task('test', ['copycss'], function() {
 	//gulp.src('app/partials/css', {read: false})
 	//  .pipe(clean());
 });
-gulp.task('deltmp', ['test'], function() {
+
+
+
+gulp.task('deltmp', ['addVersion'], function() {
 	//del(['app/partials/css/']);
 	return gulp.src('app/partials/css', {
 		read: false
@@ -64,7 +69,6 @@ gulp.task('jsMin', function() {
 			'app/bower_components/angular-resource/angular-resource.min.js'
 			/*
 			'app/js/util.js'
-			
 			'app/js/app.js',
 			'app/js/main_controllers.js',
 			'app/js/temai_controllers.js',
@@ -83,12 +87,33 @@ gulp.task('jsMin', function() {
 });
 
 
-gulp.task('wx_rev', ['wx_cssMin', 'wx_jsMin'], function() {
+gulp.task('wx_rev', ['wx_cssMin', 'wx_jsMin','wx_deltmp'], function() {
 	gulp.src('app/*.html')
 		.pipe(debug())
 		.pipe(rev())
 		.pipe(gulp.dest('app'));
 });
+gulp.task('wx_copycss', function() {
+	return gulp.src('app/wx_share/css/*.css')
+		.pipe(gulp.dest('app/wx_share/partials/wx_share/css/'));
+});
+
+gulp.task('wx_add_version', ['wx_copycss'], function() {
+	return gulp.src('app/wx_share/partials/*.html')
+		.pipe(debug())
+		.pipe(rev())
+		.pipe(gulp.dest('app/wx_share/partials'));
+
+});
+gulp.task('wx_deltmp', ['wx_add_version'], function() {
+	//del(['app/partials/css/']);
+	return gulp.src('app/wx_share/partials/wx_share', {
+		read: false
+	}).pipe(clean({
+		force: true
+	}));
+	//gulp.src('app/partials/css', {read: false}).pipe(clean());
+})
 
 gulp.task('wx_cssMin', function() {
 	return gulp.src([
