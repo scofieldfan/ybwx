@@ -582,8 +582,19 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 					util.showToast($rootScope, res.data.description);
 				}
 				if (res.data.code == 0) {
-
-					CIRCLE.init(res.data.data.coverage_views, res.data.data.sum_insured_views);
+					var sumInsuredView =  [];
+				
+					 _.map(res.data.data.sum_insured_views, function (value, key) {
+						//console.log(value);
+						var objKey = _.groupBy(value, function(val, index){ return index % 2; });//后台只留偶数部分，找巴哥咨询
+						//console.log(objKey);
+						sumInsuredView[key]=objKey[1];
+						// return [key, objKey[1]];
+					   // return [key, value * value];
+					});
+					// console.log(obj);
+					//console.log(sumInsuredView);
+					CIRCLE.init(res.data.data.coverage_views, sumInsuredView);
 				}
 			}, function(res) {
 				console.log(res);
