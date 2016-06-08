@@ -85,8 +85,11 @@
             highlight = '',
             nSegments = options.pieConfig.length;
 
-
-        var width = $(document).width() - options.padding; //canvas 绘图区域的总宽度
+        var sum_width = $(document).width();
+        if(sum_width>640){
+            sum_width = 640;
+        }
+        var width = sum_width - options.padding; //canvas 绘图区域的总宽度
         // var radio = $(document).width()/414;
 
         /*
@@ -105,7 +108,7 @@
 
         radius = center; //一共可绘图的半径
         options.closeRadius = radius * 0.42; //内圆半径
-        options.radio = $(document).width() / 414;
+        options.radio = sum_width / 414;
         if (options.radio > 1) {
             options.radio = 1;
         }

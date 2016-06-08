@@ -15,7 +15,17 @@ var ybwxApp = angular.module('ybwxApp', [
   message: '正在加载....',
   templateUrl: 'template/loading.html'
 });
+ybwxApp.filter('range', function() {
+  return function(input, total) {
+    total = parseInt(total);
 
+    for (var i=0; i<total; i++) {
+      input.push(i);
+    }
+
+    return input;
+  };
+});
 ybwxApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.

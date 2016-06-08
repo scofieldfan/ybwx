@@ -20,7 +20,7 @@ bdControllers.controller('ybwxBDIndexCtrl', ['$scope', '$routeParams', '$locatio
 		}
 
 		function goUpload(source) {
-			_hmt.push(['_trackEvent', 'bd_uploadpic_index', 'goBdPic_' + source]);
+			_hmt.push(['_trackEvent', 'bd_uploadpic_index', 'bdUploadpicIndex_goBdPic_' + source]);
 			$location.path('/bd_pic').search({
 				'source': source
 			});
@@ -37,7 +37,7 @@ bdControllers.controller('ybwxBdEducationCtrl', ['$scope', '$routeParams', '$loc
 
 		$scope.processMoney = function(money) {
 			if(money==0){
-				return "";
+				return "已投保";
 			}else{
 				return util.processSpecialMoney(money);
 			}
@@ -46,22 +46,27 @@ bdControllers.controller('ybwxBdEducationCtrl', ['$scope', '$routeParams', '$loc
 			return insureanceCNMap[$routeParams.type];
 		}
 		$scope.goOldEducation = function() {
+			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_goEducation']);
 			$location.path('/education').search({
 				"type":	$routeParams.type
 			});
 		}
 		$scope.goUpBd = function(){
+			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_goBdIndex']);
 			$location.path('/bd_index');
 		}
 		$scope.goBdmList = function(){
+			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_goBdmList']);
 			$location.path('/bdm_list').search({
 				"type":	$routeParams.type
 			});
 		}
 		$scope.hexClick = function(isInsurced){
 			if(isInsurced){
+			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_hexBlueClick']);
 				$scope.goBdmList();
 			}else{
+			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_hexGrayClick']);
 				$scope.goDingzhi();
 			}
 
@@ -101,6 +106,8 @@ bdControllers.controller('ybwxBdEducationCtrl', ['$scope', '$routeParams', '$loc
 							}
 							// statements
 						});
+						var totalLines = Math.ceil($(window).height()/120);
+						$scope.tailLines = $scope.hex.length>totalLines?2:totalLines-$scope.hex.length;
 						console.log($scope.hex);
 
 						//$scope.hiveLength = Math.ceil(res.data.data.beehive.length/3);
@@ -114,7 +121,7 @@ bdControllers.controller('ybwxBdEducationCtrl', ['$scope', '$routeParams', '$loc
 
 		}
 		$scope.goDingzhi = function() {
-			_hmt.push(['_trackEvent', 'eduction', 'eduction_subBtn']);
+			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_goDingZhi']);
 			if ($scope.isHaveUserInfo) {
 				$location.path('/select').search({
 					'type': $routeParams.type
@@ -175,7 +182,7 @@ bdControllers.controller('ybwxbaodanVerifyListCtrl', ['$scope', '$routeParams', 
 
 		_hmt.push(['_trackPageview', $location.path()]);
 		$scope.goBdUpload = function() {
-			_hmt.push(['_trackEvent', 'bdm_list', 'goUpload']);
+			_hmt.push(['_trackEvent', 'bdm_verifylist', 'bdmVerifyList_goUpload']);
 			$location.path('/bd_index').search({
 				'isVerify': 'true'
 			});
@@ -201,20 +208,20 @@ bdControllers.controller('ybwxbaodanVerifyListCtrl', ['$scope', '$routeParams', 
 
 		}
 		$scope.setType = function(type) {
-			_hmt.push(['_trackEvent', 'bdm_list', 'nav']);
+			_hmt.push(['_trackEvent', 'bdm_verifylist', 'bdmVerifyList_nav']);
 			$scope.type = type;
 		}
 		$scope.init();
 
 
 		$scope.goVerifyInfoPage = function(verify_info_id) {
-			_hmt.push(['_trackEvent', 'bdm_list', 'gobdm_verify_info']);
+			_hmt.push(['_trackEvent', 'bdm_verifylist', 'bdmVerifyList_gobdmverifyinfo']);
 			$location.path('/verify_information').search({
 				verify_info_id: verify_info_id
 			});
 		}
 		$scope.goDetail = function(id) {
-			_hmt.push(['_trackEvent', 'bdm_list', 'gobdm_detail']);
+			_hmt.push(['_trackEvent', 'bdm_verifylist', 'bdmVerifyList_gobdmdetail']);
 			$location.path('/bdm_detail').search({
 				policy_id: id
 			});
@@ -230,7 +237,7 @@ bdControllers.controller('ybwxbaodanManageListCtrl', ['$scope', '$routeParams', 
 
 		_hmt.push(['_trackPageview', $location.path()]);
 		$scope.goBdUpload = function() {
-			_hmt.push(['_trackEvent', 'bdm_list', 'goUpload']);
+			_hmt.push(['_trackEvent', 'bdm_list', 'bdmList_goUpload']);
 			$location.path('/bd_index').search();
 		}
 		if($routeParams.type){
@@ -258,7 +265,7 @@ bdControllers.controller('ybwxbaodanManageListCtrl', ['$scope', '$routeParams', 
 
 		}
 		$scope.setType = function(type) {
-			_hmt.push(['_trackEvent', 'bdm_list', 'nav']);
+			_hmt.push(['_trackEvent', 'bdm_list', 'bdmList_nav']);
 			$scope.type = type;
 		}
 		// $scope.getListtype = function(type) {
@@ -275,13 +282,13 @@ bdControllers.controller('ybwxbaodanManageListCtrl', ['$scope', '$routeParams', 
 			}
 		};
 		$scope.goClaimInfo = function(claim_id) {
-			_hmt.push(['_trackEvent', 'bdm_list', 'goClaimInfo']);
+			_hmt.push(['_trackEvent', 'bdm_list', 'bdmList_goClaimInfo']);
 			$location.path('/claim_information').search({
 				'claim_id': claim_id
 			});
 		}
 		$scope.goDetail = function(id) {
-			_hmt.push(['_trackEvent', 'bdm_list', 'gobdm_detail']);
+			_hmt.push(['_trackEvent', 'bdm_list', 'bdmList_gobdmdetail']);
 			$location.path('/bdm_detail').search({
 				policy_id: id
 			});
@@ -341,13 +348,13 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 			//});
 		}
 		$scope.goVerifyInfoPage = function(verify_info_id) {
-			_hmt.push(['_trackEvent', 'bdm_detail', 'gobdm_verify_info']);
+			_hmt.push(['_trackEvent', 'bdm_detail', 'bdmDetail_gobdmVerifyInfo']);
 			$location.path('/verify_information').search({
 				verify_info_id: verify_info_id
 			});
 		}
 		$scope.goClaimInfo = function(claim_id) {
-			_hmt.push(['_trackEvent', 'bdm_detail', 'goClaimInfo']);
+			_hmt.push(['_trackEvent', 'bdm_detail', 'bdmDetail_goClaimInfo']);
 			$location.path('/claim_information').search({
 				'claim_id': claim_id
 			});
@@ -381,7 +388,7 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 			return chargePeriodTypeMap[type];
 		}
 		$scope.showTip = function() {
-			_hmt.push(['_trackEvent', 'bdm_detail', 'shareTip']);
+			_hmt.push(['_trackEvent', 'bdm_detail', 'bdmDetail_shareTip']);
 			$("#share").show();
 		}
 		$scope.shareConfig = function() {
@@ -432,7 +439,7 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 			})
 		}
 		$scope.preview = function() {
-			_hmt.push(['_trackEvent', 'bdm_detail', 'previewImg']);
+			_hmt.push(['_trackEvent', 'bdm_detail', 'bdmDetail_previewImg']);
 			wx.previewImage({
 				current: $scope.data.image_urls[0], // 当前显示图片的http链接
 				urls: $scope.data.image_urls // 需要预览的图片http链接列表
@@ -485,7 +492,7 @@ bdControllers.controller('ybwxBDPicCtrl', ['$scope', '$routeParams', '$location'
 
 
 		$scope.goBdM = function() {
-			_hmt.push(['_trackEvent', 'bdm_uploadpic', 'goBdmList']);
+			_hmt.push(['_trackEvent', 'bdm_uploadpic', 'bdmuploadpic_goBdmList']);
 			if ($routeParams.source == 3 || $routeParams.source == 4) {
 				$location.path('/bd_verify_list').search();
 			} else {
@@ -495,7 +502,7 @@ bdControllers.controller('ybwxBDPicCtrl', ['$scope', '$routeParams', '$location'
 		}
 
 		$scope.chooseImg = function() {
-			_hmt.push(['_trackEvent', 'bdm_uploadpic', 'chooseImage']);
+			_hmt.push(['_trackEvent', 'bdm_uploadpic', 'bdmuploadpic_chooseImage']);
 			wx.chooseImage({
 				success: function(res) {
 
@@ -525,7 +532,7 @@ bdControllers.controller('ybwxBDPicCtrl', ['$scope', '$routeParams', '$location'
 
 
 		$scope.uploadImg = function() {
-			_hmt.push(['_trackEvent', 'bdm_uploadpic', 'uploadImage']);
+			_hmt.push(['_trackEvent', 'bdm_uploadpic', 'bdmuploadpic_uploadImage']);
 			if ($scope.images.localIds.length == 0) {
 				alert('请先选择图片');
 				return;

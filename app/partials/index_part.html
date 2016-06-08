@@ -27,14 +27,8 @@ body{
  color:#588dd4;
 }
 
-.pay_container{
-  overflow: hidden;position: fixed;bottom:0;width:100%;
-  border-top: 1px solid #e2e2e2;
-}
-.hairlines .pay_container{
-  border-width: 0.5px; 
-}
-.pay_container .left{
+
+.fix_container .left{
   color:#1e4e8e;
   background-color:#f0f0f0 ;margin-right:50%;width:auto;border-radius: 0;
 }
@@ -42,13 +36,13 @@ body{
 .left:active{
   background-color:#e0e0e0;
 }
-.pay_container .right{
+.fix_container .right{
   background-color: #1e4e8e;
   float:right;
   width:50%;
   border-radius: 0;
 }
-.pay_container img{
+.fix_container img{
   width:14px;
   vertical-align: -1.5px;
 }
@@ -85,7 +79,7 @@ body{
 </div>
 -->
 
-<div class="cell pay_container">
+<div class=" fix_container">
   <a href="javascript:void(0)" class="btn btn_n_primary right" ng-click="showTip()" ><img src="img/tsbz.png">&nbsp;提升保障</a>
   <a href="javascript:void(0)" class="btn btn_n_primary left " ng-click="goBdMange()"><img src="img/bdgl.png">&nbsp;保单管理</a>
 </div>

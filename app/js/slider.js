@@ -27,7 +27,7 @@ var SLIDER = (function() {
 
 	function updateScore(width) {
 		if (width >= 0) {
-			var moneyScore = Math.round(width * 10 / baxMax);
+			var moneyScore = Math.round(width * 100 / baxMax)/10;
 			scoreObj.moneyScore = moneyScore;
 			$("#money_score").html(moneyScore);
 			$("#bar").width(width);
