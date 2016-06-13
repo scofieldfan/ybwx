@@ -164,13 +164,18 @@
 	我的{{getInsuranceCNname()}}保障
 	<span ng-click="goBdmList()">{{data.aggregate_score}}分 <img src="img/arrow_03.jpg" class="arrow"></span>
 </header>
-<div  ng-show="data.aggregate_score>0">
+<div>
 <div class="table-container" data-ng-init="init()">
 	<table >
 		<tr class="bd-tr">
 			<th style="text-align:left;">已有保障</th>
 			<th>保额</th>
 			<th style="text-align:right;">评分</th>
+		</tr>
+		<tr class="bd-tr" ng-if="data.aggregate_score==0">
+			<td  style="text-align:left;">您暂时没有任何保障</td>
+			<td></td>
+			<td></td>
 		</tr>
 		<tr class="bd-tr" ng-repeat="item in data.analysis" ng-class="{'hide':$index>5}">
 			<td  style="text-align:left;">{{item.name}}</td>
@@ -179,7 +184,7 @@
 		</tr>
 	</table>
 </div>
-<div class="more">查看更多</div>
+<div class="more" ng-if="data.analysis.length>=6">查看更多</div>
 <div style="background-color:#f5f5f5;height:20px;"></div>
 
 </div>

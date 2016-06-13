@@ -67,7 +67,8 @@ bdControllers.controller('ybwxBdEducationCtrl', ['$scope', '$routeParams', '$loc
 				$scope.goBdmList();
 			}else{
 			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_hexGrayClick']);
-				$scope.goDingzhi();
+				//$scope.goDingzhi();
+				$scope.goOldEducation();
 			}
 
 		}
@@ -87,7 +88,7 @@ bdControllers.controller('ybwxBdEducationCtrl', ['$scope', '$routeParams', '$loc
 			if (!code) {
 				code = $routeParams.code;
 			}
-			util.getOpenId(code).then(function() {
+			util.getOpenId(code).then(function() {                                                                               
 				var type = $routeParams.type;
 				$scope.type = type;
 				$scope.getUserInfo();
