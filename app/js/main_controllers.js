@@ -747,9 +747,7 @@ mainControllers.controller('ybwxBzCtrl', ['$scope', '$routeParams', '$location',
 
 			_hmt.push(['_trackEvent', 'baozhangzeren', 'baozhangzeren_subBtn']);
 
-			if ($routeParams.type === "3") {
-				$location.path('/continue');
-			} else if (isHaveRestrictions) {
+			if (isHaveRestrictions) {
 				$location.path('/information').search({
 					'type': $routeParams.type,
 					'coverage_score': $routeParams.coverage_score,
