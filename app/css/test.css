@@ -1,0 +1,14 @@
+div {
+  color: #323232; }
+
+.rounded {
+  border-left-radius: 5px; }
+
+div h1 {
+  color: red; }
+
+div p {
+  color: blue; }
+
+div h4 {
+  color: #323232; }

@@ -10,6 +10,7 @@ var gp_sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var wait = require('gulp-wait');
 var clean = require('gulp-clean');
+var sass = require('gulp-sass');
 
 gulp.task('rev', ['cssMin', 'jsMin', 'deltmp'], function() {
 	gulp.src('app/*.html')
@@ -34,6 +35,16 @@ gulp.task('addVersion', ['copycss'], function() {
 	//  .pipe(clean());
 });
 
+gulp.task('sass', function () {
+  return gulp.src('./app/sass/**/*.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./app/css'));
+});
+
+
+gulp.task('sass:watch', function () {
+  gulp.watch('./app/sass/**/*.scss', ['sass']);
+});
 
 
 gulp.task('deltmp', ['addVersion'], function() {

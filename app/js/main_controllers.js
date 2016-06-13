@@ -184,6 +184,7 @@ function getHttpPromise($http, $rootScope, method, url, data, callback) {
 		}
 	}, function(res) {
 		console.log(res);
+		_hmt.push(['_trackEvent', 'http_error', "api:"+url]);
 		util.showToast($rootScope, "服务器错误");
 	});
 }

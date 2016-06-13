@@ -89,7 +89,7 @@
    
   <script src="js/util.js?rev=91947199cd48c924148968873efd1c1f"></script>
   <script src="js/app.js?rev=92e169004de8c318ab0b153a6193e2f7"></script>
-  <script src="js/main_controllers.js?rev=3f72aedb819c427ccabe1bf5434fbc6a"></script>
+  <script src="js/main_controllers.js?rev=ae9e11abb19402c95fe0f4c5589aac2d"></script>
   <script src="js/temai_controllers.js?rev=a276f81b657d4e4ec0c31595a0e9b177"></script>
   <script src="js/baodan_management_controller.js?rev=b2267add17c7bca096b461430a4cf282"></script>
 
@@ -145,8 +145,12 @@
        $(".mask").click(function(){
           $(".mask").hide();
        })*/
-   })
+   });
 
+  window.onerror = function(message,file,line){
+    _hmt.push(['_trackEvent', 'window_onerror','file:'+file+'_line:'+line+'_message:'+message]);
+  }
+ 
   </script>
 </body>
 </html>
