@@ -177,14 +177,14 @@
 			<td></td>
 			<td></td>
 		</tr>
-		<tr class="bd-tr" ng-repeat="item in data.analysis" ng-class="{'hide':$index>6}">
+		<tr class="bd-tr" ng-repeat="item in data.analysis" ng-class="{'hide':$index>5}">
 			<td  style="text-align:left;">{{item.name}}</td>
 			<td >{{processMoney(item.sum_insured)}}</td>
 			<td  style="text-align:right;" > {{item.score|number:2}}分</td>
 		</tr>
 	</table>
 </div>
-<div class="more" ng-if="data.analysis.length>6">查看更多</div>
+  <div id="more-container"> <div class="more" ng-if="data.analysis.length>6">查看更多</div> </div>
 <div style="background-color:#f5f5f5;height:20px;"></div>
 
 </div>
@@ -274,9 +274,8 @@
 <script type="text/javascript">
 	$(function(){
 		var width = $(window).width()/2 -200;
-	    console.log("left:"+width);
 		$(".hex-container").css({'margin-left':width});
-		$(".more").click(function(){
+		$("#more-container").on("click",'.more',function(){
 			var html = $(this).html();
 			if(html=='查看更多'){
 					$("table").find("tr").show();
@@ -286,7 +285,6 @@
 				$(this).html("查看更多");
 				$(window).scrollTop(0);
 			}
-		
 		});
 	})	
 
