@@ -19,7 +19,6 @@ body {
 .cell_hd.red {
   color: #588dd4;
 }
-
 .red:after {
   content: "";
   position: absolute;
@@ -49,7 +48,7 @@ body {
 }*/
 .order_title {
   padding: 13px 10px;
-  font-size: 17px;
+  font-size: 13px;
   color: #555555;
 }
 .list_item {
@@ -57,7 +56,7 @@ body {
   margin-bottom: 10px;
   background-color: #FFF;
   /*box-shadow: 0 2px 3px #cacaca;*/
-  border-bottom: 1px solid #d2d2d2;
+  border-bottom: 1px solid #e2e2e2;
 }
 .list_item:active {
   background-color: #F3F3F3;
@@ -69,10 +68,10 @@ body {
 }
 .ul_container p {
   margin: 5px 10px 5px 10px;
-  font-size: 14px;
+  font-size: 12px;
 }
 .bd_status_text {
-  color: #0f9532;
+  color: #ff5c00;
 }
 .bd_status {
   position: absolute;
@@ -91,7 +90,7 @@ body {
   /*background-color: #ffe8e8;*/
   color:#fff;
   border-radius: 5px;
-  font-size: 15px;
+  font-size: 13px;
 }
 @media all and (max-width:320px) {
   .order_title, .ul_container {
