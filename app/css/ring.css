@@ -33,7 +33,7 @@
 }
 .score_container {
 	position: absolute;
-	color: #247ad1;
+	color: #1e4e8e;
 	left:0.2rem;
 	z-index: 10;
 
@@ -71,7 +71,7 @@
 }
 .weui_progress_bar .kedu {
 	position: absolute;
-	top: -0.1rem;
+	top: -0.13rem;
 }
 .kedu .zz {
 	height: 10px;
@@ -93,7 +93,7 @@
 .kedu .top-word >div {
 	line-height: 0.1rem;
 	margin: 4px;
-	color: #ff7550;
+	color: #ff5c00;
 }
 .kedu>p {
 	position: absolute;
@@ -209,4 +209,36 @@
 }
 .cell_container_foucs .danwei{
 	color:#ff7550;
+}
+.select_btn {
+	border-top: 1px solid #e2e2e2;
+	box-sizing: border-box;
+    background: #fff;
+}
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+.left_btn,.right_btn,.right_center {
+	height: 48px;
+    line-height: 48px;
+    color: #555;
+    background: #fff;
+    font-size: 15px;
+}
+.left_btn {
+	width: 45%;
+	text-align: right;
+}
+.right_center {
+	width: 10%;
+    background: #fff;
+}
+.right_btn {
+	width: 45%;
+}
+.font_wei {
+	font-weight: bold;
 }

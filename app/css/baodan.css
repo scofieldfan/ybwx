@@ -1,10 +1,12 @@
+body {
+  background-color: #F5F5F5;
+}
 .ul_container {
   clear: both;
   background-color: #fff;
   padding: 0;
   margin-bottom: 30px;
-  background-color: #F3F3F3;
-  color: #A0A0A0;
+  color: #999;
   font-size: 14px;
 }
 .item{
@@ -54,7 +56,8 @@
   /*padding: 10px 20px;*/
   margin-bottom: 10px;
   background-color: #FFF;
-  box-shadow: 0 2px 3px #cacaca;
+  /*box-shadow: 0 2px 3px #cacaca;*/
+  border-bottom: 1px solid #d2d2d2;
 }
 .list_item:active {
   background-color: #F3F3F3;
@@ -66,6 +69,7 @@
 }
 .ul_container p {
   margin: 5px 10px 5px 10px;
+  font-size: 14px;
 }
 .bd_status_text {
   color: #0f9532;

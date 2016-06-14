@@ -6,13 +6,15 @@
 }
 
 .sub_title {
-  color: #247ad1;
+  color: #555;
   text-align:justify;
   margin-top: 9px;
   margin-bottom:2px;
-  font-size: 17px;
+  font-size: .18rem;
 }
-
+.cell_hd_border {
+  border: 1px solid #e2e2e2;
+}
 .strong{
 	color:#247ad1;
 }
@@ -77,13 +79,15 @@ table td, table th {
   vertical-align:top;
 }
 .bd_th{
-  border-bottom:3px solid #247ad1;text-align: left;
+  border-bottom:1px solid #e2e2e2;text-align: left;
 }
 .bd_tr{
-  border-bottom:1px solid #7f7f7f;text-align: left;
+  border-bottom:1px solid #e2e2e2;text-align: left;
 }
 .tb_logo{
-  vertical-align: middle;width:15px;
+  vertical-align: -3px;
+  width:15px;
+  margin-right: 5px;
 }
 .job_main{
   margin:0.1rem;

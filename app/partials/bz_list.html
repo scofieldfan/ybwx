@@ -1,12 +1,12 @@
-<link rel="stylesheet" type="text/css" href="css/bz.css?rev=93dde927eb5aa82e27dbb9bc7e84a467">
+<link rel="stylesheet" type="text/css" href="css/bz.css?rev=fdgfdg">
 <div class="mask" id="popup">
 	<div class="toast"></div>
 </div>
 
 <div class="wrapper"  data-ng-init="init()" cg-busy="myPromise" style="margin-bottom: 80px;" >
 
-	<h5>
-		主要保障
+	<h5 class="h5">
+		<img src="img/safe.jpg">主要保障
 		<div class="line"></div>
 	</h5>
 
@@ -25,14 +25,13 @@
 						<img src="img/arrow.jpg" ></td>
 				</tr>
 			</table>
-
 		</div>
 
 		<div ng-if="data.main_coverages.length<=7">
 			<div class="sub_container sub_container_{{data.main_coverages.length}} sub_container_{{data.main_coverages.length}}_blue "  >
 				<div class="bz_text bz_text_{{$index+1}} bz_item" ng-repeat="item in data.main_coverages" title="{{item.description}}" name="{{item.name}}">
-					<span class="blue">{{item.name}}</span>
-					<span ng-class="item.coverage_type==1?'red':''">{{processMoney(item.sum_insured)}}</span>
+					<span class="main_color">{{item.name}}</span>
+					<span ng-class="item.coverage_type==1?'color_red':''">{{processMoney(item.sum_insured)}}</span>
 				</div>
 			</div>
 		</div>
@@ -40,7 +39,8 @@
 	</div>
 
 	<h5 ng-if="data.second_coverages.length>
-		0">
+		0" style="color: #222;">
+		<img src="img/safe.jpg" style="width: 15px; vertical-align: middle;margin-right: 5px;">
 		其他保障
 		<div class="line"></div>
 	</h5>
@@ -102,7 +102,7 @@
 			</div>
 		</div>
 	</div>
-	<div  class="word_container">
+	<!-- <div  class="word_container">
 		<div>
 			综合保障评分：
 			<span class="score blue" id="sum_score">{{sum_score}}</span>
@@ -113,10 +113,22 @@
 			<span class="score red">{{estimate_money}}</span>
 			<span class="red">元/年</span>
 		</div>
-	</div>
+	</div> -->
 
 	<div class="fix_container" >
-		<a href="javascript:void(0)" class="btn btn_n_primary " ng-click="goInfo()" style="">立即投保</a>
+		<div class="left" style="width: 65%;height: 48px;">
+	        <a class="left_btn left">
+				总 
+				<span class="score font_wei" id="sum_score">{{sum_score}}</span>
+				<span >分</span>
+			</a>
+			<a class="right_center"></a>
+			<a class="right_btn right">
+				<span class="score font_wei">{{estimate_money}}</span>
+				<span >元</span>
+			</a>
+	    </div>
+		<a href="javascript:void(0)" class="btn btn_n_primary right btn_right" ng-click="goInfo()" style="width: 35%;">立即投保</a>
 	</div>
 
 </div>
