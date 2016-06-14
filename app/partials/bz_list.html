@@ -1,6 +1,6 @@
-<link rel="stylesheet" type="text/css" href="css/bz.css?rev=7ea2492204833c70e2ea68fa743d2011">
+<link rel="stylesheet" type="text/css" href="css/bz.css?rev=hgfhghghghghghghghghghrty">
 <div class="mask" id="popup">
-	<div class="toast"></div>
+	<div class="toast"></div>h
 </div>
 
 <div class="wrapper"  data-ng-init="init()" cg-busy="myPromise" style="margin-bottom: 80px;" >
@@ -30,7 +30,7 @@
 		<div ng-if="data.main_coverages.length<=7">
 			<div class="sub_container sub_container_{{data.main_coverages.length}} sub_container_{{data.main_coverages.length}}_blue "  >
 				<div class="bz_text bz_text_{{$index+1}} bz_item" ng-repeat="item in data.main_coverages" title="{{item.description}}" name="{{item.name}}">
-					<span class="main_color">{{item.name}}</span>
+					<span class="main_color">{{item.name}}</span><br>
 					<span ng-class="item.coverage_type==1?'color_red':''">{{processMoney(item.sum_insured)}}</span>
 				</div>
 			</div>
@@ -38,10 +38,9 @@
 
 	</div>
 
-	<h5 ng-if="data.second_coverages.length>
+	<h5 class="h5" ng-if="data.second_coverages.length>
 		0" style="color: #222;">
-		<img src="img/safe.jpg" style="width: 15px; vertical-align: middle;margin-right: 5px;">
-		其他保障
+		<img src="img/safe.jpg" style="width:15px; vertical-align:-4px;margin-right: 5px;">其他保障
 		<div class="line"></div>
 	</h5>
 
@@ -51,8 +50,8 @@
 			<tr ng-repeat="item in data.second_coverages" class="bz_item" title="{{item.description}}" name="{{item.name}}">
 				<td class="left_td">
 					<img src="img/list_bz.jpg" >&nbsp;{{item.name}}</td>
-				<td style="text-align: center">
-					<span class="red">{{processMoney(item.sum_insured)}}</span>
+				<td style="text-align: center"><br>
+					<span class="color_red">{{processMoney(item.sum_insured)}}</span>
 				</td>
 				<td  class="right_td">
 					<img src="img/arrow.jpg" ></td>
@@ -65,8 +64,8 @@
 
 		<div class="sub_container sub_container_{{data.second_coverages.length}} sub_container_{{data.second_coverages.length}}_blue "  >
 			<div class="bz_text bz_text_{{$index+1}} bz_item" ng-repeat="item in data.second_coverages" title="{{item.description}}" name="{{item.name}}">
-				<span>{{item.name}}</span>
-				<span class="red">{{processMoney(item.sum_insured)}}</span>
+				<span>{{item.name}}</span><br>
+				<span class="color_red">{{processMoney(item.sum_insured)}}</span>
 			</div>
 		</div>
 	</div>
