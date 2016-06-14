@@ -344,10 +344,11 @@ wxShareControllers.controller('myCouponListCtrl', ['$scope', '$routeParams', '$h
 
 			if (coupon_status === 4) {
 				// util.showToast($rootScope,"优惠券已经投保成功，邀请更多的好友领取，可以再次免费获得优惠券");
-				//window.location.href = "/#bd_detail?order_no=" + order_no;
-				$location.path('bd_detail').search({
-					order_no: order_no
-				});
+				//alert("fuck you ");
+				window.location.href = "/#bd_detail?order_no=" + order_no;
+				//$location.path('bd_detail').search({
+				//	order_no: order_no
+				//});
 
 			} else
 			if (coupon_status === 5) {

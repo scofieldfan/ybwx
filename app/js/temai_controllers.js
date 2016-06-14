@@ -329,7 +329,6 @@ ybwxControllers.controller('ybwxPaySelectNewCtrl', ['$scope', '$filter', '$route
       var channelType = $(".pay_container").find(".choose").attr("data-channel-type");
       _hmt.push(['_trackEvent', 'pay', 'pay_select' + channelType]);
     }
-    console.log("payInfo......");
     var url = getPayInfo($routeParams.order_id, "1");
     var ipayNowRequest = getPayInfo($routeParams.order_id, "3")
     if (url) {

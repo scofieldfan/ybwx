@@ -211,6 +211,7 @@
             },
             onClick = function(e) {
                 changeHighlight(e);
+                console.log("highlight:"+highlight);
                 if (highlight !== null && highlight !== '')
                     if (highlight >= 0 && highlight < nSegments || highlight == 'x') {
                         if (e.data)
@@ -221,10 +222,16 @@
             changeHighlight = function(e) {
                 var prevHighlight = highlight;
                 var posn = $(canvas).offset();
-                // console.log("x:" + e.pageX);
-                // console.log("y:" + e.pageY);
-                var x = e.pageX - posn.left,
-                    y = e.pageY - posn.top;
+                console.log(e);
+                var e = e.originalEvent;
+                var  pageX = e.pageX ||  e.targetTouches[0].pageX;
+                var  pageY = e.pageY ||  e.targetTouches[0].pageY;
+                console.log("x:" + pageX);
+                console.log("y:" + pageY);
+
+
+                var x = pageX - posn.left,
+                    y = pageY- posn.top;
                 x = x * options.dpr;
                 y = y * options.dpr;
                 var cX = canvas.width / 2,
@@ -469,14 +476,12 @@
 
             };
 
-        $(canvas).
-        mousemove(changeHighlight).
-        mouseleave(function(e) {
+        $(canvas).on('mousemove touchstart',changeHighlight).
+        on('mouseleave touchend',function(e){
             highlight = null;
             draw();
-        }).
-        bind('click', options.onSelection, onClick);
-       // $(canvas).bind('touchstart', options.onSelection, onClick);
+        }).bind('click', options.onSelection, onClick);
+        
         draw();
     };
 }(jQuery));
