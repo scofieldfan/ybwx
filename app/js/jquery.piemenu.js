@@ -476,6 +476,7 @@
             draw();
         }).
         bind('click', options.onSelection, onClick);
+       // $(canvas).bind('touchstart', options.onSelection, onClick);
         draw();
     };
 }(jQuery));

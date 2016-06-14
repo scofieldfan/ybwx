@@ -1,24 +1,9 @@
-$blue:#323232;
-
-div {
-  color:$blue;
-}
-
-$side:left;
-
-.rounded {
-    border-#{$side}-radius:5px;
-}
+@import "base/classes.scss";
 
 div{
-  
-  h1{
-    color:red;
-  }
-  p{
-    color:blue;
-  }
-  h4{
-  	color:$blue;
-  }
+	@include flexbox;
+}
+.item{
+	@include flex(5 4 12%);
+	@include texthide;
 }
