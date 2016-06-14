@@ -273,7 +273,7 @@
 </div>
 <script type="text/javascript">
 	$(function(){
-		var width = $(window).width()/2 -200;
+		var width = $(window).width()/2 -208;
 		$(".hex-container").css({'margin-left':width});
 		$("#more-container").on("click",'.more',function(){
 			var html = $(this).html();
@@ -281,7 +281,7 @@
 					$("table").find("tr").show();
 					$(this).html("收起");
 			}else{
-				$("table").find("tr:gt(5)").hide();
+				$("table").find("tr:gt(6)").hide();
 				$(this).html("查看更多");
 				$(window).scrollTop(0);
 			}

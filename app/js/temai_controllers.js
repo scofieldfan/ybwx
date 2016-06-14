@@ -13,6 +13,11 @@ ybwxControllers.controller('wxListCtrl', ['$scope', '$routeParams', '$location',
 
     //setTest($routeParams.is_test);
     $scope.isHaveResult = true;
+
+    util.share({
+              shareUrl:"http://web.youbaowuxian.com/#/list"
+    });
+
     $scope.getList = function(insurances_type) {
       $scope.isHaveResult = true;
       var openId = sessionStorage.getItem("openId");
@@ -85,7 +90,8 @@ ybwxControllers.controller('wxDetailCtrl', ['$scope', '$routeParams', '$location
       var code = util.getParameterByName("code");
       if (!code) {
         code = $routeParams.code;
-      }
+      };
+
       util.getOpenId(code).then(function() {
 
         $scope.haveMask = false;
@@ -141,6 +147,14 @@ ybwxControllers.controller('wxDetailCtrl', ['$scope', '$routeParams', '$location
             $scope.money = res.data.data.insurance_plans[0].premium;
             $scope.plan = res.data.data.insurance_plans[0];
             $scope.danwei = genDuration($scope.plan.coverage_period_type);
+
+            util.share({
+              shareUrl:"http://web.youbaowuxian.com/#/detail?product_id="+$routeParams.product_id,
+              shareImg: $scope.data.small_image,
+              shareTitle: $scope.data.insurance_name,
+              shareDesc:$scope.data.insurance_description
+            });
+
           }
         }, function(res) {
           console.log(res);
