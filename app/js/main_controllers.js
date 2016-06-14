@@ -91,7 +91,7 @@ var insuranceMap = {
 */
 
 var greenColor = "#82ce6a";
-var redColor = "#e66e7a";
+var redColor = "#ff5c00";
 var grayColor = "#808080";
 var insuranceColorMap = {
 	'1': redColor,
