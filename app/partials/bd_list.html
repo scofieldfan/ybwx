@@ -1,7 +1,7 @@
-<link rel="stylesheet" type="text/css" href="css/baodan.css?rev=ecbb7c802386cf6d4502855198b940fa">
+<link rel="stylesheet" type="text/css" href="css/baodan.css?rev=25e667a7c70348f53450c133aa8f0936">
 
-    <div class="cell" style="color:#4A4A4A">
-      <div class="cell_hd  cell_primary item " ng-class='{"red":tog==""}' ng-click='tog=""'>全&nbsp;&nbsp;&nbsp;部</div>
+    <div class="cell" style="color:#555;background: #fff;">
+      <div class="cell_hd  cell_primary item " ng-class='{"red":tog==""}' ng-click='tog=""'>全部</div>
       <div class="cell_hd  cell_primary item" ng-class='{"red":tog=="1"}' ng-click='tog="1"'>待支付</div>
       <div class="cell_hd  cell_primary item" ng-class='{"red":tog=="8"}' ng-click='tog="8"'>保障中</div>
       <div class="cell_hd  cell_primary item" ng-class='{"red":tog=="6"}' ng-click='tog="6"'>待生效</div>
@@ -9,7 +9,6 @@
       <div class=" gradient-shadow" ></div>
       <p class="default_text" ng-show="filtered.length==0" >暂时没有保单</p>
     <ul class="ul_container"   cg-busy="myPromise" data-ng-init="init()">
-
 
     <!--
     <div infinite-scroll="nextPage()" infinite-scroll-distance="0">
@@ -19,29 +18,34 @@
           <img src="img/loading.gif" style="width:50px;">
       </div>
      -->
-
+    <ul class="bd_list_controller">
       <li class="list_item"   ng-repeat="order in filtered = (orders |filter:filterFn )">
-        <div class="order_title" style="position:relative">订单号:{{order.order_no}} <span class="bd_status">{{order.create_time  |  date:'yyyy-MM-dd'}}</span></div>
+        <div class="order_title" style="position:relative">订单号：{{order.order_no}} <span class="bd_status">{{order.create_time  |  date:'yyyy-MM-dd'}}</span></div>
         <div class="line"></div>
         <div>
             <div ng-repeat="insurance in order.insurance_orders" ng-click="goDetail(insurance.order_no,order.status)">
-              <p style="position:relative;margin-top:13px;color:#6caaea">{{insurance.order_name}} <span class="bd_status_text" style="position:absolute;right:0;color:{{getBdColor(insurance.order_status)}}"  >{{getBdStatus(order.status,insurance.order_status)}} </span></p>
+              <p style="position:relative;margin-top:13px;color:#000;font-size: 19px;">{{insurance.order_name}} </p>
               <div ng-repeat="people in insurance.insured_peoples">
                 <p>被保人:{{people.name}}</p>
                 <p>手机号:{{people.mobile}}</p>
                 <p>身份证:{{people.social_id}}</p>
+                <p style="position: relative;margin-bottom: 10px;" >
+                  <img style="width: 14px;vertical-align:-2px;" src="img/clock.jpg"/> 
+                  {{insurance.effective_date|date:"yyyy.MM.dd"}} - {{insurance.ineffective_date|date:"yyyy.MM.dd"}}
+                  <span class="bd_status_text" style="position:absolute;right: 5px;color:{{getBdColor(insurance.order_status)}}">{{getBdStatus(order.status,insurance.order_status)}} </span>
+                </p>
                </div>
-                <div class="line" style="clear:both;"></div>
+                <!-- <div class="line" style="clear:both;"></div> -->
             </div>
          
          
-          <div style="padding:10px 0;"  ng-show="order.status=='1' ||  order.status=='2'   || order.status=='3'   || order.status=='5' ">未支付:￥<span style="color:#f57590">{{order.premium/100 | number:2}}</span><div class="pay_button" ng-click="goPay(order.order_id,order.order_no,order.premium)">立即支付</div></div>
+          <div style="padding:20px 10px;color:#555555;position: relative;font-size: 18px"  ng-show="order.status=='1' ||  order.status=='2'   || order.status=='3'   || order.status=='5' ">
+             订单金额:
+            <span style="color:#555555">{{order.premium/100 | number:2}}</span>
+            <div class="pay_button" ng-click="goPay(order.order_id,order.order_no,order.premium)">立即支付</div>
+          </div>
         </div>
       </li>
-     
-     
-  
-
         <!--
       <li class="list_item"  ng-click="goDetail(order.order_no)"  ng-repeat="order in filtered = (orders |filter:filterFn )">
         <div class="order_title" style="position:relative">订单号:{{order.order_no}}  <span class="bd_status">{{order.create_time  |  date:'yyyy-MM-dd'}}</span></div>
@@ -56,9 +60,6 @@
           <div class="line" style="clear:both;"></div>
         </div>
       </li>
-      
-
-    
-
+    </ul> 
     -->
     </ul>

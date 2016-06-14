@@ -27,6 +27,43 @@
 	position: relative;
 	color: #494949;
 }
+.h5 {
+	color: #555;
+    font-size: .18rem;
+}
+.h5 img {
+	width: 15px; vertical-align: -4px;margin-right: 5px;
+}
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+.btn_left {
+	width: 70%;
+	background: #fff;
+}
+.btn_right {
+    width: 30%;
+    background: #1e4e8e;
+}
+.word_container {
+	margin: 0;
+	color: #555;
+}
+.fix_container {
+	bottom: 0;
+	background: #fff;
+	border-top: 1px solid #e2e2e2;
+	boe-sizing: border-box;
+}
+.color_red {
+	color: #ff5c00;
+}
+.main_color {
+	color: #1e4e8e;
+}
 .sub_container_ul li:not(:last-child):after{
 	content:'';
 	position: absolute;
@@ -437,8 +474,8 @@ table th{
 	width:15px;
 	vertical-align: middle;
 }
- .right_td {
-	text-align: right
+.right_td {
+	text-align: right;
 }
 .right_td img{
 	width:8px;
@@ -446,4 +483,31 @@ table th{
 }
 .bz_item{
 	cursor: pointer;
+}
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+.left_btn,.right_btn,.right_center {
+	height: 48px;
+    line-height: 48px;
+    color: #555;
+    background: #fff;
+    font-size: 15px;
+}
+.left_btn {
+	width: 45%;
+	text-align: right;
+}
+.right_center {
+	width: 10%;
+    background: #fff;
+}
+.right_btn {
+	width: 45%;
+}
+.font_wei {
+	font-weight: bold;
 }

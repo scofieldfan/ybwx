@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="css/ring.css?rev=55cfbbd104713178b84c048e8d78ecc9">
+<link rel="stylesheet" type="text/css" href="css/ring.css?rev=7b4fa6a1ef94e10c5645e33310a8e985">
 
 <div  class="wrapper"  data-ng-init="init()" style="overflow: hidden;">
 
@@ -12,7 +12,7 @@
 	</div>
 
 	<div  class="bt_container">
-		<span class="blue" style="font-size: 17px;">1</span>
+		<span class="blue" style="font-size: 0.18rem;">1</span>
 		选择保障范围
 	</div>
 	<div style="position: relative;" id="clockContainer">
@@ -41,7 +41,7 @@
 	<div  class="bt_container">
 
 		<div style="">
-			<span class="blue"  style="font-size: 17px;">2</span>
+			<span class="blue"  style="font-size: 0.18rem;">2</span>
 			选择保障金额
 		</div>
 		<!--
@@ -109,8 +109,7 @@
 </div>
 
 <div  class="word_container" style="margin-bottom: 80px;line-height:1;">
-
-	<div  >
+	<!-- <div  >
 		综合保障评分：
 		<span class="score blue" id="sum_score">10</span>
 		<span class="">分</span>
@@ -119,12 +118,23 @@
 		预估保费：
 		<span class="score red" id="estimateMoneyContainer">{{estimateMoney}}</span>
 		<span class=" red">元/年</span>
-	</div>
-
+	</div> -->
 </div>
 
-<div class="fix_container">
-	<a href="javascript:void(0)" class="btn btn_n_primary_default " id="dzSbButton" ng-click="goBz()">生成方案</a>
+<div class="fix_container select_btn">
+	<div class="left" style="width: 65%;height: 48px;">
+        <a class="left_btn left">
+			总 
+			<span class="score font_wei" id="sum_score">10</span>
+			<span >分</span>
+		</a>
+		<a class="right_center"></a>
+		<a class="right_btn right">
+			<span class="score font_wei" id="estimateMoneyContainer">{{estimateMoney}}</span>
+			<span >元</span>
+		</a>
+	</div>
+	<a href="javascript:void(0)"style="width: 35%;" class="btn btn_n_primary_default right" style="width: 70%;" id="dzSbButton" ng-click="goBz()">生成方案</a>
 </div>
 
 </div>

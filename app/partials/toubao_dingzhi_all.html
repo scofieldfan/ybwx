@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="css/toubao.css?rev=00b9ee41f6313b281418e47b8ef46645">
+<link rel="stylesheet" type="text/css" href="css/toubao.css?rev=bd401bc42b4132a01a1af4f13fe41acb">
 
 <div class="job_main" id="job_container_1" style="display:none"  cg-busy="firstPromise" >
 	<h4>请选择行业类型</h4>
@@ -119,7 +119,7 @@
 <form class="" role="form" name="order" novalidate>
 
 	<div class="sub_title ">
-		<img src="img/person_02.jpg" class="tb_logo" style="width:17px;">&nbsp;被保险人</div>
+		<img src="img/safe.jpg" class="tb_logo">&nbsp;被保险人</div>
 
 	<div class="sub_title " ng-show="!view.family" style="color:#f13838;padding-left: 17px;display:none;">&nbsp;仅支持为自己投保</div>
 
@@ -234,7 +234,7 @@
 	</div>
 
 	<div class="sub_title ">
-		<img src="img/list_01.jpg" class="tb_logo">&nbsp;投保方案</div>
+		<img src="img/safe.jpg" class="tb_logo">&nbsp;投保方案</div>
 	<div class="cell ">
 		<div class="cell_hd " >
 			<div class="cell_hd_4_word">生效时间</div>
@@ -259,10 +259,10 @@
 	<div   cg-busy="planPromise" >
 		<table>
 			<tr class="bd_th">
-				<th class="blue" style="width:50%;">产品</th>
-				<th class="blue">保额</th>
+				<th class="main_color" style="width:50%;">产品</th>
+				<th class="main_color">保额</th>
 				<th></th>
-				<th class="blue" style="text-align: right">保费</th>
+				<th class="main_color" style="text-align: right">保费</th>
 			</tr>
 
 			<tr class="bd_tr" ng-repeat="plan in plans">
@@ -282,7 +282,7 @@
 			</tr>
 			<tr style="font-size: 19px;">
 				<td>共计</td>
-				<td class="red" colspan="4" style="text-align: right;">
+				<td colspan="4" style="text-align: right;color: #ff5c00;">
 					{{premium/100}}元&emsp;&emsp;{{coverage_period}}{{genDanwei(coverage_period_type)}}
 				</td>
 			</tr>
@@ -303,7 +303,7 @@
 
 <div class="cell pay_container"  >
 	<a href="javascript:void(0)" class="btn btn_n_primary right"  ng-click="submitbt()" id="submitButton" >确认投保</a>
-	<a href="javascript:void(0)" class="btn btn_n_primary left"   id="submitButton" >共计：￥{{premium/100}}元</a>
+	<a href="javascript:void(0)" class="btn btn_n_primary left"   id="submitButton" >共计  {{premium/100}}元</a>
 </div>
 
 <script type="text/javascript">

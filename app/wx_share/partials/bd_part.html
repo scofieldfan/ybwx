@@ -57,7 +57,7 @@
 				</ul>
 			</div>
 			<div class="item">
-				<input type="checkbox" id="chek" ng-model="user.know_contract" name="know_contract" required >
+				<input type="checkbox" id="chek" checked="checked" ng-model="user.know_contract" name="know_contract" required >
 					我已阅读
 				<a href="http://web.youbaowuxian.com/ybwx-web/api/web_page/130" class="blue"  ng-if="coupon_id==2">
 					产品条款及投保须知
@@ -69,21 +69,18 @@
 		    <div class="cell"  style="color:red" ng-show="server_reason">
           	  <small class="error" ng-show="server_reason">{{server_reason}}</small>
 		    </div>
-			<form>
-	   		 <div class="bd_footer" ng-click='submit()' id="submitButton"  >确认投保</div>
-        </div>
-        </div>
+		</div>
+		<form>
+    </div>
 </div>
+<footer class="bd_footer">
+	 <div  ng-click='submit()' id="submitButton"  >确认投保</div>
+</footer>
 
 
 
 
 
-
-
-
-
-
-
+ 
 
 
