@@ -12,6 +12,7 @@ var CIRCLE = (function() {
 		//0:["顺时针滑动提升分数"]
 
 	};
+	var baozhang_score = {};
 	var baozhang_money = {
 		0:['20','40','60','80','100']
 	};
@@ -44,8 +45,8 @@ var CIRCLE = (function() {
 			}
 		}
 	}
-	function init(tiaojian,money){
-
+	function init(coverageScores,tiaojian,money){
+		baozhang_score = coverageScores;
 		baozhang_tiaojian = tiaojian;
 		baozhang_money = money;
 		//$scope = scope;
@@ -453,7 +454,11 @@ var CIRCLE = (function() {
 		
 			scoreObj.fanweiScore = score;
 			updateSumScore();
-			$("#fanwei_score").html(score);
+			var showScore = baozhang_score[score] || 0;
+			if(showScore>0 && showScore<10){
+				showScore = showScore.toFixed(1);
+			}
+			$("#fanwei_score").html(showScore);
 			//$('#clockContainer').scope().fanweiScore = score;
 			//change(score);
 		

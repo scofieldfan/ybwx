@@ -15,7 +15,17 @@ var ybwxApp = angular.module('ybwxApp', [
   message: '正在加载....',
   templateUrl: 'template/loading.html'
 });
+ybwxApp.filter('range', function() {
+  return function(input, total) {
+    total = parseInt(total);
 
+    for (var i=0; i<total; i++) {
+      input.push(i);
+    }
+
+    return input;
+  };
+});
 ybwxApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
@@ -26,11 +36,11 @@ ybwxApp.config(['$routeProvider',
     }).when('/select', {
       templateUrl: 'partials/select_part.html?v=123',
       controller: 'ybwxSelectCtrl',
-      title: "保险定制"
+      title: "保障提升"
     }).when('/bz', {
       templateUrl: 'partials/bz_list.html?v=123',
       controller: 'ybwxBzCtrl',
-      title: "定制保障列表"
+      title: "定制保障说明"
     }).when('/verify_information', {
       templateUrl: 'partials/verify_information.html',
       controller: 'ybwxverify_informationCtrl',
@@ -106,7 +116,7 @@ ybwxApp.config(['$routeProvider',
     }).when('/bd_education', {
       templateUrl: 'partials/bd_education.html',
       controller: 'ybwxBdEducationCtrl',
-      title: "如何投保"
+      title: "保障评分"
     }).when('/offical', {
       templateUrl: 'partials/offical_site.html',
       controller: 'ybwxOfficalSiteCtrl',

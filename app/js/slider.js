@@ -29,7 +29,11 @@ var SLIDER = (function() {
 		if (width >= 0) {
 			var moneyScore = Math.round(width * 10 / baxMax);
 			scoreObj.moneyScore = moneyScore;
-			$("#money_score").html(moneyScore);
+			var showScore = moneyScore;
+			if(moneyScore>0 && moneyScore<10){
+				showScore = moneyScore+".0";
+			}
+			$("#money_score").html(showScore);
 			$("#bar").width(width);
 			$("#zhizhen").css("left", width - 26);
 

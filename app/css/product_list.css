@@ -138,9 +138,12 @@
     bottom: 0;
     display: inline-block;
     padding: 5px 10px;
-    color: #669adb;
-    border: 1px solid #247ad1;
+    color: #588dd4;
+    border: 1px solid #588dd4;
     border-radius: 5px;
+}
+.hairlines .small_btn{
+    border-width:0.5px;
 }
 @media all and (max-width: 320px)
 {

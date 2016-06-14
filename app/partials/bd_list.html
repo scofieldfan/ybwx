@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="css/baodan.css?rev=fghfhgh">
+<link rel="stylesheet" type="text/css" href="css/baodan.css?rev=73465da26fa6cd1a71374ad24ff3af2b">
 
     <div class="cell" style="color:#555;background: #fff;">
       <div class="cell_hd  cell_primary item" ng-class='{"red":tog==""}' ng-click='tog=""'>全部</div>
@@ -9,7 +9,6 @@
       <div class=" gradient-shadow" ></div>
       <p class="default_text" ng-show="filtered.length==0" >暂时没有保单</p>
     <ul class="ul_container"   cg-busy="myPromise" data-ng-init="init()">
-
 
     <!--
     <div infinite-scroll="nextPage()" infinite-scroll-distance="0">
@@ -47,7 +46,6 @@
           </div>
         </div>
       </li>
-    </div>
         <!--
       <li class="list_item"  ng-click="goDetail(order.order_no)"  ng-repeat="order in filtered = (orders |filter:filterFn )">
         <div class="order_title" style="position:relative">订单号:{{order.order_no}}  <span class="bd_status">{{order.create_time  |  date:'yyyy-MM-dd'}}</span></div>

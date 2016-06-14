@@ -55,7 +55,9 @@ body{
 		<p>支付金额:<span class="red">￥{{order.order_amount/100 | number:2}}</span>元 
 		<!-- <span class="fr">本产品由<span class="blue">{{order.insurance_company_name}}</span>提供</span>--></p>
 	</div>
-	<div class="bd_detail_btn_border" ng-click="showDialog()" ng-if="getBdStatus(status,order.order_status)!=='待支付'">电子保单 <span class="fr blue ">发送</span></div>
+
+	<div class="bd_detail_btn_border"  ng-click="showDialog()" ng-if="getBdStatus(status,order.order_status)!=='待支付'">电子保单 <span class="fr blue ">发送</span></div>
+
 </div>
 
 <div  class="detail_container bottm_border" >

@@ -239,7 +239,10 @@ ybwxControllers.controller('wxDetailCtrl', ['$scope', '$routeParams', '$location
 ybwxControllers.controller('ybwxPaySelectNewCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
   function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 
+
+
     _hmt.push(['_trackPageview', $location.path()]);
+
     $scope.plans = {};
     $scope.insurance_name = $routeParams.insurance_name;
     $scope.insurance_plan_name = $routeParams.insurance_plan_name;
@@ -247,12 +250,14 @@ ybwxControllers.controller('ybwxPaySelectNewCtrl', ['$scope', '$filter', '$route
 
     $scope.plans = JSON.parse(sessionStorage.getItem("sell_plan"));
 
-    console.log($scope.plans);
 
-    $scope.isHaveOffical = $scope.plans.some(function(item) {
-      return !item.premium;
-    });
-    console.log("offical:" + $scope.isHaveOffical);
+    if ($scope.plans) {
+      $scope.isHaveOffical = $scope.plans.some(function(item) {
+        return !item.premium;
+      });
+    }else{
+       $scope.isHaveOffical = false;
+    }
 
     //测试
     /*
@@ -323,43 +328,6 @@ ybwxControllers.controller('ybwxPaySelectNewCtrl', ['$scope', '$filter', '$route
       }
       var channelType = $(".pay_container").find(".choose").attr("data-channel-type");
       _hmt.push(['_trackEvent', 'pay', 'pay_select' + channelType]);
-
-      /*
-      
-      var openId = sessionStorage.getItem("openId");
-      if (channelType == "1" && $scope.redirectUrl) {
-        return;
-      }
-      if (channelType == "3" && $scope.ipaynow_pay_request) {
-        return;
-      }
-      $http({
-        method: 'POST',
-        headers: {
-          "Content-Type": "application/json;charset:UTF-8"
-        },
-        url: api['pay'],
-        data: {
-          open_id: openId,
-          order_id: $scope.order_id,
-          pay_channel_type: channelType,
-          order_amount: $scope.order_amount
-        }
-      }).then(function(res) {
-        console.log(res);
-        if (res && res.data && res.data.data && res.data.code === 0) {
-          if (channelType == "1") { //银行卡
-            $scope.redirectUrl = res.data.data.pp_response.pp_url;
-          } else if (channelType == "3") { //现在支付微信
-            $scope.ipaynow_pay_request = res.data.data.ipaynow_pay_request;
-          }
-        } else {
-          util.showToast($rootScope, res.data.reason);
-        }
-      }, function(res) {
-        console.log(res);
-        util.showToast($rootScope, res.description);
-      });*/
     }
     console.log("payInfo......");
     var url = getPayInfo($routeParams.order_id, "1");
@@ -374,6 +342,8 @@ ybwxControllers.controller('ybwxPaySelectNewCtrl', ['$scope', '$filter', '$route
     } else {
       $scope.ajaxPayInfo("3");
     }
+
+
   }
 ]);
 

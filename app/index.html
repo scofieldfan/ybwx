@@ -33,12 +33,12 @@
       opacity: 1 !important;    /* */
     }
 </style>
- <link rel="stylesheet" href="css/output/application.min.css?rev=2e8d8e22512f6802a79dade64c7bd0d4"> 
- <link rel="stylesheet" href="css/output/application.min.css?rev=2e8d8e22512f6802a79dade64c7bd0d4">
+ <link rel="stylesheet" href="css/output/application.min.css?rev=d753abe6e6f3674f97d87a4c05c10811"> 
+ <link rel="stylesheet" href="css/output/application.min.css?rev=d753abe6e6f3674f97d87a4c05c10811">
 <!--
   <link rel="stylesheet" href="css/share.css">
   <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/globe.css?rev=113734b0c4a16e0525576503681b2af0">
+  <link rel="stylesheet" href="css/globe.css?rev=26a23c1522edf7f503c37b9ff979afca">
   <link rel="stylesheet" href="css/app.css?rev=5a256568e36e1b53714d98abec1e1ac0">
   <link rel="stylesheet" href="css/angular-busy.min.css?rev=382a25599fb5b0b2e9efc9af00041c17">
  --> 
@@ -88,13 +88,13 @@
    -->
    
   <script src="js/util.js?rev=91947199cd48c924148968873efd1c1f"></script>
-  <script src="js/app.js?rev=27b1b18dc56afa77273b188d25f1c3bf"></script>
-  <script src="js/main_controllers.js?rev=3b212510d51f1fc847c0cd6a4a1f0282"></script>
-  <script src="js/temai_controllers.js?rev=dcdc3ba9b740e65ee8a7b53196647008"></script>
-  <script src="js/baodan_management_controller.js?rev=bdd460a11c6430a4ee24925396feb7b4"></script>
+  <script src="js/app.js?rev=92e169004de8c318ab0b153a6193e2f7"></script>
+  <script src="js/main_controllers.js?rev=7b27120cf37fe707b4c559ec68f7c299"></script>
+  <script src="js/temai_controllers.js?rev=ad4caeb070d1a9e725c30e1dd0abe1f0"></script>
+  <script src="js/baodan_management_controller.js?rev=b2267add17c7bca096b461430a4cf282"></script>
 
   <script src="js/directives.js?rev=57d74af2016e6c30d8b9b057ef03947a"></script>
-  <script src="js/jquery.piemenu.js?rev=96470f9a2e5cfc9a0a13cd7a971890e8"></script>
+  <script src="js/jquery.piemenu.js?rev=f66e7d8df9b62e143d12902bd763fafd"></script>
   <script src="js/angular-busy.min.js?rev=5e39cee156fc10cdfb02e35cbf2da5aa"></script>
   <script type='text/javascript' src='bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js'></script>
   
@@ -145,8 +145,12 @@
        $(".mask").click(function(){
           $(".mask").hide();
        })*/
-   })
+   });
 
+  window.onerror = function(message,file,line){
+    _hmt.push(['_trackEvent', 'window_onerror','file:'+file+'_line:'+line+'_message:'+message]);
+  }
+ 
   </script>
 </body>
 </html>

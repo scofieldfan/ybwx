@@ -134,6 +134,9 @@ INSURANCE_EFFECTIVE(8, "保单生效"),
 INSURANCE_INEFFECTIVE(9, "保单失效");             
 */
 
+
+
+
 //图标Index：保险类型
 var insureTypeMap = [4, 3, 2, 1, 5];
 var insureanceCNMap = {
@@ -181,6 +184,7 @@ function getHttpPromise($http, $rootScope, method, url, data, callback) {
 		}
 	}, function(res) {
 		console.log(res);
+		_hmt.push(['_trackEvent', 'http_error', "api:"+url]);
 		util.showToast($rootScope, "服务器错误");
 	});
 }
@@ -350,29 +354,19 @@ mainControllers.controller('wxBaoDanDetailCtrl', ['$scope', '$routeParams', '$lo
 			var openId = sessionStorage.getItem("openId");
 			$scope.status = $routeParams.order_status;
 
-			$http({
-				method: 'POST',
-				headers: {
-					"Content-Type": "application/json;charset:UTF-8"
-				},
-				url: api['get_insurance_detail'],
-				data: {
+			$scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurance_detail'], {
 					"open_id": openId,
 					'order_no': $routeParams.order_no
-				}
-			}).then(function(res) {
-				console.log(res);
-				if (res.data && res.data.description) {
-					util.showToast($rootScope, res.data.description);
-				}
-				if (res.data.code == 0) {
-					//res.data.data.order.order_status_text = insuranceMap[res.data.data.order["order_status"]];
-					$scope.order = res.data.data.order;
-				}
 			}, function(res) {
-				console.log(res);
-				util.showToast($rootScope, "服务器错误");
-			});
+					console.log(res);
+					if (res.data && res.data.description) {
+						util.showToast($rootScope, res.data.description);
+					}
+					if (res.data.code == 0) {
+						//res.data.data.order.order_status_text = insuranceMap[res.data.data.order["order_status"]];
+						$scope.order = res.data.data.order;
+					}
+			})
 		}
 
 		$scope.send_bd = function() {
@@ -393,7 +387,7 @@ mainControllers.controller('wxBaoDanDetailCtrl', ['$scope', '$routeParams', '$lo
 ]);
 
 
-function initPieConfig(sumScore, scores) {
+function initPieConfig(sumScore, scores,policyNumber) {
 	var pieConfig = [
 
 		{
@@ -450,6 +444,7 @@ function initPieConfig(sumScore, scores) {
 		},
 		pieConfig: pieConfig,
 		sumScore: sumScore,
+		policyNumber:policyNumber,
 		parentElement: $("#pieChartContainer"),
 		onSelection: function(pieIndex) {
 			if (pieIndex == 'x') {
@@ -518,7 +513,7 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 					if (res.data.code == 0) {
 						$("#loadingContainer").hide();
 						$scope.data = res.data.data;
-						initPieConfig($scope.data.aggregate_score.toFixed(1), $scope.data.scores);
+						initPieConfig($scope.data.aggregate_score.toFixed(1), $scope.data.scores,$scope.data.policy);
 					}
 				}, function(res) {
 					console.log(res);
@@ -579,8 +574,19 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 					util.showToast($rootScope, res.data.description);
 				}
 				if (res.data.code == 0) {
-
-					CIRCLE.init(res.data.data.coverage_views, res.data.data.sum_insured_views);
+					var sumInsuredView =  [];
+				
+					 _.map(res.data.data.sum_insured_views, function (value, key) {
+						//console.log(value);
+						var objKey = _.groupBy(value, function(val, index){ return index % 2; });//后台只留偶数部分，找巴哥咨询
+						//console.log(objKey);
+						sumInsuredView[key]=objKey[1];
+						// return [key, objKey[1]];
+					   // return [key, value * value];
+					});
+					// console.log(obj);
+					//console.log(sumInsuredView);
+					CIRCLE.init(res.data.data.coverage_scores,res.data.data.coverage_views, sumInsuredView);
 				}
 			}, function(res) {
 				console.log(res);
@@ -703,31 +709,25 @@ mainControllers.controller('ybwxInfoCtrl', ['$scope', '$routeParams', '$location
 		}
 		$scope.init = function() {
 
-			$scope.myPromise = $http({
-				method: 'POST',
-				headers: {
-					"Content-Type": "application/json;charset:UTF-8"
-				},
-				url: api['get_restrictions'],
-				data: {
+			$scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_restrictions'], {
 					"insurance_type": $routeParams.type,
 					"coverage_score": $routeParams.coverage_score,
-					"sum_insured_score": $routeParams.sum_insured_score
-				}
-			}).then(function(res) {
-				console.log(res);
-				if (res && res.data && res.data.data) {
-					$scope.data = res.data.data;
-				}
+					"sum_insured_score": $routeParams.sum_insured_score	
 			}, function(res) {
-				console.log(res);
-				util.showToast($rootScope, "服务器错误");
-			});
-
-
+				$scope.data = res.data.data;
+				if($scope.data.notices){
+					    _.map($scope.data.notices,function(item){
+					    	if(item.health_notice){
+						    	item.healthNotices = item.health_notice .split("\r\n");
+					    	}
+					    	return item;
+					    })
+					    console.log($scope.data.notices);
+						$scope.isHaveHealth  = _.filter($scope.data.notices, function(notice){ return notice.health_notice })
+						$scope.isExtranotice  = _.filter($scope.data.notices, function(notice){ return notice.extra_notice })
+				}
+			})
 		}
-
-
 	}
 ]);
 
@@ -748,9 +748,7 @@ mainControllers.controller('ybwxBzCtrl', ['$scope', '$routeParams', '$location',
 
 			_hmt.push(['_trackEvent', 'baozhangzeren', 'baozhangzeren_subBtn']);
 
-			if ($routeParams.type === "3") {
-				$location.path('/continue');
-			} else if (isHaveRestrictions) {
+			if (isHaveRestrictions) {
 				$location.path('/information').search({
 					'type': $routeParams.type,
 					'coverage_score': $routeParams.coverage_score,
@@ -770,21 +768,14 @@ mainControllers.controller('ybwxBzCtrl', ['$scope', '$routeParams', '$location',
 			}
 		}
 		var isHaveRestrictions = false;
+
 		$scope.init = function() {
 			$scope.data = {};
-			$scope.myPromise = $http({
-				method: 'POST',
-				headers: {
-					"Content-Type": "application/json;charset:UTF-8"
-				},
-				url: api['get_recommend_coverages'],
-				data: {
+			$scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_coverages'], {
 					"insurance_type": $routeParams.type,
 					"coverage_score": $routeParams.coverage_score,
 					"sum_insured_score": $routeParams.sum_insured_score
-				}
-			}).then(function(res) {
-				console.log(res);
+			}, function(res) {
 				if (res && res.data && res.data.data) {
 					//$scope.data = res.data.data;
 					$scope.data.main_coverages = res.data.data.coverages.filter(function(item) {
@@ -793,15 +784,19 @@ mainControllers.controller('ybwxBzCtrl', ['$scope', '$routeParams', '$location',
 					$scope.data.second_coverages = res.data.data.coverages.filter(function(item) {
 						return item.coverage_type == 2;
 					});
-					//console.log("test:::");
-					isHaveRestrictions = res.data.data.has_restrictions;
 				}
+			})
+			$scope.restrictionPromise = getHttpPromise($http, $rootScope, 'POST', api['get_restrictions'], {
+					"insurance_type": $routeParams.type,
+					"coverage_score": $routeParams.coverage_score,
+					"sum_insured_score": $routeParams.sum_insured_score	
 			}, function(res) {
-				console.log(res);
-				util.showToast($rootScope, "服务器错误");
-			});
-
-
+				if(res.data.data ){
+					if(res.data.data.age_notice || res.data.data.locale_notice || res.data.data.notices){
+						isHaveRestrictions = true;
+					}	
+				}
+			})
 		}
 	}
 ]);
@@ -1379,11 +1374,18 @@ mainControllers.controller('ybwxToubaoDingzhiAllCtrl', ['$scope', '$filter', '$r
 		}
 		var taocan_status = {
 			1: "",
-			2: "未开售"
+			2: "未开售",
+			3: "已购买",
+			4: "已购买",
+			5: "已购买"
+
 		}
 		var taocan_css = {
 			1: "tb",
-			2: "unsell"
+			2: "unsell",
+			3: "unsell",
+			4: "unsell",
+			5: "unsell"
 		}
 
 		$scope.get_taocan_css = function(status) {
@@ -1415,9 +1417,14 @@ mainControllers.controller('ybwxToubaoDingzhiAllCtrl', ['$scope', '$filter', '$r
 				return;
 			}
 			$scope.plans.forEach(function(element, index) {
-				plans_to_premium[element.id] = element.premium;
+				if(element.status===1){//状态为1 保险套餐开售才可以购买
+					plans_to_premium[element.id] = element.premium;
+				}
 			});
-
+			if(Object.keys(plans_to_premium).length==0){
+				util.showToast($rootScope, "很抱歉，超过保险公司的限制，无法投保");
+				return false;
+			}
 			var postData = {
 				open_id: openId,
 				plans_to_premium: plans_to_premium,

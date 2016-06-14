@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="css/toubao.css?rev=fgdgdf">
+<link rel="stylesheet" type="text/css" href="css/toubao.css?rev=bd401bc42b4132a01a1af4f13fe41acb">
 
 <div class="job_main" id="job_container_1" style="display:none"  cg-busy="firstPromise" >
 	<h4>请选择行业类型</h4>
@@ -276,7 +276,7 @@
 				<td >{{process_insured_money(plan.sum_insured)}}</td>
 				<td>1份</td>
 				<td class="red" style="text-align: right" >
-					<span ng-if="plan.premium">{{plan.premium/100}}元</span>
+					<span ng-if="plan.status==1">{{plan.premium/100}}元</span>
 					<div class="status {{get_taocan_css(plan.status)}}">{{taocan_status(plan.status)}}</div>
 				</td>
 			</tr>
