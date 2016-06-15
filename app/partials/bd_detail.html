@@ -1,5 +1,5 @@
 <link rel="stylesheet" type="text/css" href="css/baodan_detail.css?rev=37d34aa029c2857ca76d246bae14782a">
-<link rel="stylesheet" type="text/css" href="css/bd_detail.css?rev=66589fe7ef9e7397c8d52b996c20263b">
+<link rel="stylesheet" type="text/css" href="css/bd_detail.css?rev=c4eafe072bf38bb46bf5bfd743867e3b">
 
 <div  class="detail_container padd">
 	<h4>{{order.order_name}}</h4>
@@ -9,8 +9,8 @@
 		<p>生效时间:{{order.effective_date  |  date:'yyyy-MM-dd HH:mm:ss' }}</p>
 		<p>终止时间:{{order.ineffective_date  |  date:'yyyy-MM-dd HH:mm:ss' }}</p>
 		<p>保障额度:<span class="red">￥{{order.sum_insured/100 | number:2}}</span>元</p>
-		<p>支付金额:<span class="red">￥{{order.order_amount/100 | number:2}}</span>元 
-		<!-- <span class="fr">本产品由<span class="blue">{{order.insurance_company_name}}</span>提供</span>--></p>
+		<p>支付金额:<span class="red">￥{{order.order_amount/100 | number:2}}</span>元</p> 
+		<p>本产品由<span class="blue">{{order.insurance_company_name}}</span>提供</p>
 	</div>
 
 	<div class="bd_detail_btn_border"  ng-click="showDialog()" ng-if="getBdStatus(status,order.order_status)!=='待支付'">电子保单 <span class="fr blue ">发送</span></div>
@@ -21,11 +21,11 @@
 	<h4>投保人信息</h4>
 	<p>姓名：{{order.name}}</p>	
 	<p>身份证号:{{order.social_id}}</p>	
-	<p>手机号码:{{order.mobile}}</p>
+	<p class="padd_bot">手机号码:{{order.mobile}}</p>
 	<div class="line"></div>
 	<h4>被保险人信息</h4>	
 
-	<div ng-repeat="person in order.insured_peoples">
+	<div ng-repeat="person in order.insured_peoples" class="padd_bot">
 	<p>姓名：{{person.name}}</p>	
 	<p>身份证号:{{person.social_id}}</p>	
 	<p>手机号码:{{person.mobile}}</p>	
