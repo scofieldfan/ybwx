@@ -204,9 +204,9 @@
     </div>
 	 <div class="hex-row" ng-repeat="item in hex">
         <div class="hex"></div>
-        <div class="hex " ng-class="{true: 'blue', false: 'gray'}[item[1].insured]"  ng-click="hexClick(item[1].insured);"><div class="hex-v-center">{{item[1].name}}<div ng-if="item[1].insured==true">{{item[1].score | number}}分</div></div></div>
-        <div class="hex " ng-class="{true: 'blue', false: 'gray'}[item[0].insured]" ng-click="hexClick(item[0].insured);"><div class="hex-v-center">{{item[0].name}}<div ng-if="item[0].insured==true">{{item[0].score | number}}分</div></div></div>
-        <div class="hex " ng-class="{true: 'blue', false: 'gray'}[item[2].insured]"  ng-click="hexClick(item[2].insured);"><div class="hex-v-center">{{item[2].name}}<div ng-if="item[2].insured==true">{{item[2].score | number}}分</div></div></div>
+        <div class="hex " ng-class="{true: 'blue', false: 'gray'}[item[1].insured]"  ng-click="hexClick(item[1].insured);"><div class="hex-v-center">{{item[1].name}}<div ng-if="item[1].insured==true">{{item[1].score | setDecimal:2}}分</div></div></div>
+        <div class="hex " ng-class="{true: 'blue', false: 'gray'}[item[0].insured]" ng-click="hexClick(item[0].insured);"><div class="hex-v-center">{{item[0].name}}<div ng-if="item[0].insured==true">{{item[0].score | setDecimal:2}}分</div></div></div>
+        <div class="hex " ng-class="{true: 'blue', false: 'gray'}[item[2].insured]"  ng-click="hexClick(item[2].insured);"><div class="hex-v-center">{{item[2].name}}<div ng-if="item[2].insured==true">{{item[2].score  | setDecimal:2}}分</div></div></div>
         <div class="hex"></div>
     </div>
 
