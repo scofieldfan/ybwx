@@ -301,7 +301,7 @@
                              }
                              return true;
                          });*/
-                    if (highlight != prevHighlight) {
+                    if (highlight !== prevHighlight) {
                         draw();
                     }
                 } else if (centerDistance > width) {
@@ -478,8 +478,8 @@
 
         $(canvas).on('mousemove touchstart',changeHighlight).
         on('mouseleave touchend',function(e){
-            highlight = null;
-            draw();
+           // highlight = null;
+           // draw();
         }).bind('click', options.onSelection, onClick);
         
         draw();
