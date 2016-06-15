@@ -136,15 +136,14 @@ INSURANCE_INEFFECTIVE(9, "保单失效");
 
 
 
-
 //图标Index：保险类型
 var insureTypeMap = [4, 3, 2, 1, 5];
 var insureanceCNMap = {
-	1:"家庭",
-	2:"健康",
-	3:"人寿",
-	4:"意外",
-	5:"财产"
+	1: "家庭",
+	2: "健康",
+	3: "人寿",
+	4: "意外",
+	5: "财产"
 }
 
 /*
@@ -184,7 +183,7 @@ function getHttpPromise($http, $rootScope, method, url, data, callback) {
 		}
 	}, function(res) {
 		console.log(res);
-		_hmt.push(['_trackEvent', 'http_error', "api:"+url]);
+		_hmt.push(['_trackEvent', 'http_error', "api:" + url]);
 		util.showToast($rootScope, "服务器错误");
 	});
 }
@@ -355,17 +354,17 @@ mainControllers.controller('wxBaoDanDetailCtrl', ['$scope', '$routeParams', '$lo
 			$scope.status = $routeParams.order_status;
 
 			$scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurance_detail'], {
-					"open_id": openId,
-					'order_no': $routeParams.order_no
+				"open_id": openId,
+				'order_no': $routeParams.order_no
 			}, function(res) {
-					console.log(res);
-					if (res.data && res.data.description) {
-						util.showToast($rootScope, res.data.description);
-					}
-					if (res.data.code == 0) {
-						//res.data.data.order.order_status_text = insuranceMap[res.data.data.order["order_status"]];
-						$scope.order = res.data.data.order;
-					}
+				console.log(res);
+				if (res.data && res.data.description) {
+					util.showToast($rootScope, res.data.description);
+				}
+				if (res.data.code == 0) {
+					//res.data.data.order.order_status_text = insuranceMap[res.data.data.order["order_status"]];
+					$scope.order = res.data.data.order;
+				}
 			})
 		}
 
@@ -387,7 +386,7 @@ mainControllers.controller('wxBaoDanDetailCtrl', ['$scope', '$routeParams', '$lo
 ]);
 
 
-function initPieConfig(sumScore, scores,policyNumber) {
+function initPieConfig(sumScore, scores, policyNumber) {
 	var pieConfig = [
 
 		{
@@ -444,7 +443,7 @@ function initPieConfig(sumScore, scores,policyNumber) {
 		},
 		pieConfig: pieConfig,
 		sumScore: sumScore,
-		policyNumber:policyNumber,
+		policyNumber: policyNumber,
 		parentElement: $("#pieChartContainer"),
 		onSelection: function(pieIndex) {
 			if (pieIndex == 'x') {
@@ -513,7 +512,7 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 					if (res.data.code == 0) {
 						$("#loadingContainer").hide();
 						$scope.data = res.data.data;
-						initPieConfig($scope.data.aggregate_score.toFixed(1), $scope.data.scores,$scope.data.policy);
+						initPieConfig($scope.data.aggregate_score.toFixed(1), $scope.data.scores, $scope.data.policy);
 					}
 				}, function(res) {
 					console.log(res);
@@ -574,19 +573,21 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 					util.showToast($rootScope, res.data.description);
 				}
 				if (res.data.code == 0) {
-					var sumInsuredView =  [];
-				
-					 _.map(res.data.data.sum_insured_views, function (value, key) {
+					var sumInsuredView = [];
+
+					_.map(res.data.data.sum_insured_views, function(value, key) {
 						//console.log(value);
-						var objKey = _.groupBy(value, function(val, index){ return index % 2; });//后台只留偶数部分，找巴哥咨询
+						var objKey = _.groupBy(value, function(val, index) {
+							return index % 2;
+						}); //后台只留偶数部分，找巴哥咨询
 						//console.log(objKey);
-						sumInsuredView[key]=objKey[1];
+						sumInsuredView[key] = objKey[1];
 						// return [key, objKey[1]];
-					   // return [key, value * value];
+						// return [key, value * value];
 					});
 					// console.log(obj);
 					//console.log(sumInsuredView);
-					CIRCLE.init(res.data.data.coverage_scores,res.data.data.coverage_views, sumInsuredView);
+					CIRCLE.init(res.data.data.coverage_scores, res.data.data.coverage_views, sumInsuredView);
 				}
 			}, function(res) {
 				console.log(res);
@@ -710,21 +711,25 @@ mainControllers.controller('ybwxInfoCtrl', ['$scope', '$routeParams', '$location
 		$scope.init = function() {
 
 			$scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_restrictions'], {
-					"insurance_type": $routeParams.type,
-					"coverage_score": $routeParams.coverage_score,
-					"sum_insured_score": $routeParams.sum_insured_score	
+				"insurance_type": $routeParams.type,
+				"coverage_score": $routeParams.coverage_score,
+				"sum_insured_score": $routeParams.sum_insured_score
 			}, function(res) {
 				$scope.data = res.data.data;
-				if($scope.data.notices){
-					    _.map($scope.data.notices,function(item){
-					    	if(item.health_notice){
-						    	item.healthNotices = item.health_notice .split("\r\n");
-					    	}
-					    	return item;
-					    })
-					    console.log($scope.data.notices);
-						$scope.isHaveHealth  = _.filter($scope.data.notices, function(notice){ return notice.health_notice })
-						$scope.isExtranotice  = _.filter($scope.data.notices, function(notice){ return notice.extra_notice })
+				if ($scope.data.notices) {
+					_.map($scope.data.notices, function(item) {
+						if (item.health_notice) {
+							item.healthNotices = item.health_notice.split("\r\n");
+						}
+						return item;
+					})
+					console.log($scope.data.notices);
+					$scope.isHaveHealth = _.filter($scope.data.notices, function(notice) {
+						return notice.health_notice
+					})
+					$scope.isExtranotice = _.filter($scope.data.notices, function(notice) {
+						return notice.extra_notice
+					})
 				}
 			})
 		}
@@ -772,9 +777,9 @@ mainControllers.controller('ybwxBzCtrl', ['$scope', '$routeParams', '$location',
 		$scope.init = function() {
 			$scope.data = {};
 			$scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_coverages'], {
-					"insurance_type": $routeParams.type,
-					"coverage_score": $routeParams.coverage_score,
-					"sum_insured_score": $routeParams.sum_insured_score
+				"insurance_type": $routeParams.type,
+				"coverage_score": $routeParams.coverage_score,
+				"sum_insured_score": $routeParams.sum_insured_score
 			}, function(res) {
 				if (res && res.data && res.data.data) {
 					//$scope.data = res.data.data;
@@ -787,14 +792,14 @@ mainControllers.controller('ybwxBzCtrl', ['$scope', '$routeParams', '$location',
 				}
 			})
 			$scope.restrictionPromise = getHttpPromise($http, $rootScope, 'POST', api['get_restrictions'], {
-					"insurance_type": $routeParams.type,
-					"coverage_score": $routeParams.coverage_score,
-					"sum_insured_score": $routeParams.sum_insured_score	
+				"insurance_type": $routeParams.type,
+				"coverage_score": $routeParams.coverage_score,
+				"sum_insured_score": $routeParams.sum_insured_score
 			}, function(res) {
-				if(res.data.data ){
-					if(res.data.data.age_notice || res.data.data.locale_notice || res.data.data.notices){
+				if (res.data.data) {
+					if (res.data.data.age_notice || res.data.data.locale_notice || res.data.data.notices) {
 						isHaveRestrictions = true;
-					}	
+					}
 				}
 			})
 		}
@@ -1417,11 +1422,11 @@ mainControllers.controller('ybwxToubaoDingzhiAllCtrl', ['$scope', '$filter', '$r
 				return;
 			}
 			$scope.plans.forEach(function(element, index) {
-				if(element.status===1){//状态为1 保险套餐开售才可以购买
+				if (element.status === 1) { //状态为1 保险套餐开售才可以购买
 					plans_to_premium[element.id] = element.premium;
 				}
 			});
-			if(Object.keys(plans_to_premium).length==0){
+			if (Object.keys(plans_to_premium).length == 0) {
 				util.showToast($rootScope, "很抱歉，超过保险公司的限制，无法投保");
 				return false;
 			}
