@@ -660,7 +660,7 @@ mainControllers.controller('ybwxJingzhunCtrl', ['$scope', '$routeParams', '$loca
 		_hmt.push(['_trackPageview', $location.path()]);
 
 		//insurance_type":1
-
+        $scope.isHaveResult = true;
 		$scope.init = function() {
 			var openId = sessionStorage.getItem("openId");
 			$scope.listPromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurances_selling'], {
@@ -670,6 +670,11 @@ mainControllers.controller('ybwxJingzhunCtrl', ['$scope', '$routeParams', '$loca
 				console.log(res);
 				if (res && res.data && res.data.data) {
 					$scope.list = res.data.data.insurances;
+					if (res.data.data.insurances && 　res.data.data.insurances.length > 0) {
+		            $scope.isHaveResult = true;
+		          } else {
+		            $scope.isHaveResult = false;
+		          }
 				}
 			})
 		}
@@ -684,6 +689,7 @@ mainControllers.controller('ybwxJingzhunCtrl', ['$scope', '$routeParams', '$loca
 				'type': $routeParams.type
 			});
 		}
+
 
 	}
 ]);

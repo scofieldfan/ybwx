@@ -1,37 +1,30 @@
-<link rel="stylesheet" href="css/product_list.css?rev=dsfdsfds"> 
-<style>
-
-</style>
-
-
-  <div style="" class="head-container" >
-    <div class="cell_hd">
-      <a href="javascript:void(0)"  class="btn  btn_unchoose "  ng-click="goLairen()">个性定制</a>
-    </div>
-    <div class="cell_hd">
-      <a href="javascript:void(0)"  style="border-radius: 0;" class="btn btn_n_primary" >直接购买</a>
-    </div>
-    <!-- <ul  class="cell_font" style=" text-align: center;padding-top: 90px;" >
-      <img src="img/qidai.png" >
-      <div style="font-size: 15px;color:#999;padding-top: 10px">产品即将上线</div>
-      <div style="font-size: 15px;color:#555;">敬请期待</div>
-    </ul> -->
+<link rel="stylesheet" href="css/product_list.css?rev=jhjhgfgjkjkj"> 
+<div style="" class="head-container" >
+  <div class="cell_hd">
+    <a href="javascript:void(0)"  class="btn  btn_unchoose"  ng-click="goLairen()">个性定制</a>
   </div>
-
- <ul class="ul_container"  data-ng-init="init()" cg-busy="listPromise">
-
-      <li class="list_item" ng-click="goDetail(item.id)"   ng-repeat="item in list">
-        <div  class="img_box">
-          <img ng-src="{{item.insurance_image_url}}" class="order_img"></div>
-        <div class="small_container" style="background:url({{item.company_image_url}}) no-repeat top right/50px" >
-          <p class="h_title">{{item.name}}</p>
-          <p class="desc">{{item.description}}</p>
-          <div class="bottom_container">
-            <div class="money_container"  >
-              <span class="money">{{item.front_price}}</span>
-            </div>
-            <div class="small_btn">立即投保</div>
-          </div>
+  <div class="cell_hd">
+    <a href="javascript:void(0)"  style="border-radius: 0;" class="btn btn_n_primary" >直接购买</a>
+  </div>
+</div>
+<ul class="ul_container"  data-ng-init="init()" cg-busy="listPromise" >
+  <li class="list_item" ng-click="goDetail(item.id)"   ng-repeat="item in list">
+    <div  class="img_box">
+      <img ng-src="{{item.insurance_image_url}}" class="order_img"></div>
+    <div class="small_container" style="background:url({{item.company_image_url}}) no-repeat top right/50px" >
+      <p class="h_title">{{item.name}}</p>
+      <p class="desc">{{item.description}}</p>
+      <div class="bottom_container">
+        <div class="money_container"  >
+          <span class="money">{{item.front_price}}</span>
         </div>
-      </li>
-    </ul>
+        <div class="small_btn">立即投保</div>
+      </div>
+    </div>
+  </li>
+</ul>
+<div  ng-show="!isHaveResult" class="cell_font" style=" text-align: center;padding-top: 90px;" >
+  <img src="img/qidai.png" >
+  <div style="font-size: 15px;color:#999;padding-top: 10px">产品即将上线</div>
+  <div style="font-size: 15px;color:#555;">敬请期待</div>
+</div>

@@ -7,37 +7,38 @@ body {
 }*/
 .detail_container {
   background-color: #fff;
-  padding: 0 30px;
-  /*box-shadow: 0 2px 2px  #cdcdcd;*/
-  /*border-bottom: 1px solid #e2e2e2;*/
-  margin-bottom: 20px;
+  padding: 0 20px;
   color: #555; }
+  .detail_container .padd_bot {
+    padding-bottom: 5px; }
 
 .detail_container p {
   margin: 0;
   line-height: 25px; }
 
 .detail_container h4 {
+  padding: 5px 0;
   margin: 0;
   line-height: 0.4rem;
   font-size: 15px;
-  font-weight: normal;
   color: #555;
   font-weight: bold; }
 
 .sub_container {
+  padding: 5px 0;
   border-top: 1px solid #efefef;
   border-bottom: 1px solid #efefef;
   font-size: 13px;
   color: #555; }
 
 .padd {
-  padding: 0 30px; }
+  padding: 0 20px; }
 
 .bd_detail_btn_border {
   border-bottom: 1px solid #efefef;
   height: 40px;
-  line-height: 40px; }
+  line-height: 40px;
+  font-size: 13px; }
 
 .bottm_border {
   border-bottom: 1px solid #efefef;
