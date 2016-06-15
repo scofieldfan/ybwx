@@ -211,9 +211,10 @@
 	color:#ff7550;
 }
 .select_btn {
-	border-top: 1px solid #e2e2e2;
+	/*border-top: 1px solid #e2e2e2;*/
 	box-sizing: border-box;
     background: #fff;
+    height: 48px;
 }
 .left {
 	float: left;

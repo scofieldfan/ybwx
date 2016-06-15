@@ -1,32 +1,7 @@
 <link rel="stylesheet" type="text/css" href="css/baodan_detail.css?rev=37d34aa029c2857ca76d246bae14782a">
+<link rel="stylesheet" type="text/css" href="css/bd_detail.css?rev=37d34aa029c2857ca76d246bae14782a">
 
-<style>
-body{
-	background-color: #f6f6f6;
-}
-.detail_container{
-	background-color: #fff;
-	padding:0 0.1rem ;
-	box-shadow: 0 2px 2px  #cdcdcd;
-	margin-bottom: 20px;
-}
-.detail_container p{
-	margin:0;
-	line-height: 25px;
-}
-.detail_container h4{
-	margin : 0;
-	line-height: 0.4rem;
-	font-size:0.17rem;
-	font-weight: normal;
-}
-.sub_container{
-	border-top:1px solid #efefef;
-	border-bottom:1px solid #efefef;
-}
-</style>
-
-<div  class="detail_container">
+<div  class="detail_container padd">
 	<h4>{{order.order_name}}</h4>
 	<div class="sub_container">
 		<p>保单号:{{order.policy_no}} <span class="fr orange" style="color:{{getBdColor(order.order_status)}}">{{getBdStatus(status,order.order_status)}} </span></p>
@@ -37,10 +12,12 @@ body{
 		<p>支付金额:<span class="red">￥{{order.order_amount/100 | number:2}}</span>元 
 		<!-- <span class="fr">本产品由<span class="blue">{{order.insurance_company_name}}</span>提供</span>--></p>
 	</div>
-	<div style="height:40px;line-height: 40px;" ng-click="showDialog()" ng-if="getBdStatus(status,order.order_status)!=='待支付'">电子保单 <span class="fr blue">发送</span></div>
+
+	<div class="bd_detail_btn_border"  ng-click="showDialog()" ng-if="getBdStatus(status,order.order_status)!=='待支付'">电子保单 <span class="fr blue ">发送</span></div>
+
 </div>
 
-<div  class="detail_container" >
+<div  class="detail_container bottm_border" >
 	<h4>投保人信息</h4>
 	<p>姓名：{{order.name}}</p>	
 	<p>身份证号:{{order.social_id}}</p>	
@@ -146,4 +123,3 @@ body{
       </div>
     </form>
 	</div>
-
