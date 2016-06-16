@@ -54,14 +54,14 @@ var CIRCLE = (function() {
 
 	}
 	
-	var MIN_ANGLE = -Math.PI / 2;
-	var MAX_ANGLE = 3 * Math.PI / 2;
+	var MIN_ANGLE = -Math.PI *5/ 4;
+	var MAX_ANGLE = Math.PI / 4;
 	var TWO_PI = 2 * Math.PI;
 	var angle = 0;
 	var bgCanvas = document.getElementById("bgchartContainer");
 	var canvas = document.getElementById("chartContainer");
 	var width = $(document).width() - config.padding;
-	console.log("document width:" + $(document).width());
+	//console.log("document width:" + $(document).width());
 	//if (width > 500) {
 	//	width = 500;
 	//}
@@ -99,9 +99,10 @@ var CIRCLE = (function() {
 	var smallRadius = radius;
 	var bigRadius = radius + config.lineWidth;
 
-	drawFace(ctx, radius, angle);
-	load();
-	drawBg(ctxBg);
+	//drawFace(ctx, radius, angle);//绘画滑动的表皮
+	load();//初始化
+	drawBg(ctxBg);//绘制背景
+
 	var text_width = canvas.width * 0.5;
 	$(".canvas_text").css({
 		'left': (radiusX) / config.dpr,
@@ -290,32 +291,25 @@ var CIRCLE = (function() {
 		//画灰色圆环
 
 		ctx.beginPath();
-		ctx.arc(0, 0, bigRadius, 0, TWO_PI);
-		ctx.fillStyle = "#e0e0e0";
-		ctx.fill();
+		ctx.arc(0, 0, bigRadius, MIN_ANGLE, MAX_ANGLE);
+		ctx.lineWidth=50;
+		ctx.strokeStyle="#e0e0e0";
+		ctx.stroke();
 
+		/*
 		ctx.beginPath();
-		ctx.arc(0, 0, smallRadius, 0, TWO_PI);
+		ctx.arc(0, 0, smallRadius, MIN_ANGLE, MAX_ANGLE);
 		ctx.fillStyle = "#fff";
 		ctx.fill();
+		*/
 
 
-		//画提示弧线
-		var angleMin = -Math.PI / 4;
-		var indrodRadius = config.lineWidth + radius + 50;
-		ctx.beginPath();
-		ctx.arc(0, 0, indrodRadius, -Math.PI / 2, angleMin);
-		ctx.strokeStyle = '#bdd7f1';
-		ctx.lineWidth = 12;
-		ctx.stroke();
-		ctx.beginPath();
-		ctx.moveTo(indrodRadius * Math.cos(angleMin), indrodRadius * Math.sin(angleMin));
-		ctx.lineTo(indrodRadius * Math.cos(angleMin) - 40, indrodRadius * Math.sin(angleMin) - 70);
-		ctx.stroke();
 
 		var max_width = 6;
 		var min_width = 3;
 		//画刻度
+
+		/*
 		drawZhiZhen(ctx, -Math.PI / 2, max_width, smallRadius - config.closePadding, smallRadius); //0
 		drawZhiZhen(ctx, -Math.PI / 2 + Math.PI / 5, min_width, smallRadius - config.closePadding / 2, smallRadius);
 		drawZhiZhen(ctx, -Math.PI / 2 + 2 * Math.PI / 5, min_width, smallRadius - config.closePadding / 2, smallRadius);
@@ -336,6 +330,7 @@ var CIRCLE = (function() {
 
 		drawWord(ctx, Math.PI / 2 + 3 * Math.PI / 5 + 0.05, "#535353", smallRadius - config.closePadding - 50, "8分");
 		drawWord(ctx, Math.PI / 2 + 3 * Math.PI / 5 - 0.1, "#ff7550", smallRadius - 2 * config.closePadding - 25, "推荐");
+		*/
 
 		//drawWord(ctx,Math.PI / 2,smallRadius - config.closePadding-10,"5分",smallRadius - 2*config.closePadding-15,"基本");
 		//drawWord(ctx,Math.PI / 2 + 3*Math.PI/5,"8分","推荐");
