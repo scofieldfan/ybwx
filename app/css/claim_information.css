@@ -4,6 +4,7 @@ body{
 }
 .claim_controller {
 	padding: 0 .19rem;
+
 }
 .claim_controller li {
 	padding-top: .38rem;
@@ -35,6 +36,6 @@ a{
 	display: block; 
 }
 .content {
-	color: #999999;
+	color: #555;
 	text-decoration: none;
 }	

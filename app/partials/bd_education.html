@@ -36,6 +36,7 @@
 		padding:0 0.2rem;
 		background-color:#fff;
 		color:#555555;
+		border-bottom: 1px solid #e0e0e0;
 	}
 	table {
 	  width: 100%;
@@ -172,7 +173,7 @@
 			<th>保额</th>
 			<th style="text-align:right;">评分</th>
 		</tr>
-		<tr class="bd-tr" ng-if="data.aggregate_score==0">
+		<tr ng-if="data.aggregate_score==0">
 			<td  style="text-align:left;">您暂时没有任何保障</td>
 			<td></td>
 			<td></td>

@@ -102,6 +102,9 @@ table td, table th {
   margin: 0.2rem 0;
   font-size: 0.18rem;
 }
+.money_color {
+  color: #ff5c00;
+}
 footer {
   margin-top: 1rem;
 }

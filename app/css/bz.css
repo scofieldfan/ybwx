@@ -92,7 +92,9 @@
 .money{
 	color:#f54a7e;
 }
-
+.money_color {
+	color: #ff5c00;
+}
 .bz_container{
 	background-color: #fff;
     position: relative;
