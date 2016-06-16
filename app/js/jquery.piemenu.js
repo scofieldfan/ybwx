@@ -107,6 +107,7 @@
         var center = canvas.width / 2; //绘图的圆心
 
         radius = center; //一共可绘图的半径
+        options.outterRadius = radius;
         options.closeRadius = radius * 0.42; //内圆半径
         options.radio = sum_width / 414;
         if (options.radio > 1) {
@@ -234,12 +235,18 @@
                     y = pageY- posn.top;
                 x = x * options.dpr;
                 y = y * options.dpr;
-                var cX = canvas.width / 2,
-                    cY = canvas.height / 2;
+                var cX = (canvas.width / 2),
+                    cY = (canvas.height / 2);
+
+
                 var centerDistance = Math.sqrt((cX - x) * (cX - x) + (cY - y) * (cY - y));
-                // console.log("centerDistance:"+centerDistance);
-                // console.log("width:"+width);
-                // console.log("radius:"+radius);
+                console.log("canvas.width / 2:"+canvas.width / 2);
+                console.log("canvas.height / 2:"+canvas.height / 2);
+                console.log("centerDistance/dpr:"+centerDistance/ options.dpr);
+                console.log("centerDistance:"+centerDistance);
+                console.log("width:"+width);
+                console.log("options.closeRadius:"+options.closeRadius);
+                console.log("radius:"+radius);
                 //console.log("highlight:"+highlight);
                 //console.log("prevHighlight:"+prevHighlight);
                 if (centerDistance < options.closeRadius) {
@@ -252,7 +259,7 @@
                     /**/
 
                     //                } else if ( (centerDistance > (options.closeRadius + options.closePadding)) && (centerDistance<=radius) ) {
-                } else if ((centerDistance > (options.closeRadius)) && (centerDistance <= width)) {
+                } else if ((centerDistance > (options.closeRadius)) && (centerDistance <= options.outterRadius)) {
                     var dX = x - cX,
                         dY = y - cY;
                     var angle = null;
@@ -388,6 +395,7 @@
                 //绘画灰色分数扇形 
                 var innerRadius = bigRadius + 10 * options.radio;
                 var outterRadius = bigRadius + 60 * options.radio;
+                options.outterRadius = outterRadius+10;
                 // ctx.fillStyle = (isSelected ? options.selectedColor : options.backgroundColor);
 
                 drawSector(ctx, "#f0f0f0", centerX, centerY, startA, endA, innerRadius, outterRadius);
