@@ -405,7 +405,7 @@ function initPieConfig(sumScore, scores, policyNumber) {
 			"img": "img/yiliao.png",
 			"isDisable": true,
 			"color": "#d1e5f3",
-			"textColor": "#60bd9b",
+			"textColor": "#5796c3",
 			"hoverColor": "#fffefa"
 		}, {
 			"text": "健康",
@@ -414,7 +414,7 @@ function initPieConfig(sumScore, scores, policyNumber) {
 			"icon": "\uf1b9",
 			"img": "img/jiankang.png",
 			"color": "#c6e7db",
-			"textColor": "#5796c3",
+			"textColor": "#60bd9b",
 			"hoverColor": "#fafffc"
 		}, {
 			"text": "家庭",
