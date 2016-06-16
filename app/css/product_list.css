@@ -2,12 +2,15 @@
 {
     font-size: 14px;
     clear: both;
-    margin-top: 18px;
+    margin-top: 40px;
     /*margin-bottom: 30px;*/
     padding: 0;
     color: #a0a0a0;
     background-color: #fff;
     background-color: #f3f3f3;
+}
+.jingzhun_ul_container {
+    margin-top: 18px;
 }
 .cell_hd {
     text-align: center;
