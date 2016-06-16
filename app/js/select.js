@@ -254,10 +254,10 @@ var CIRCLE = (function() {
 	}
 
 
-	function drawZhiZhen(ctx, angle, width, startR, endR) {
+	function drawZhiZhen(ctx, angle, width, startR, endR,color) {
 		ctx.beginPath();
 		ctx.lineWidth = width;
-		ctx.strokeStyle = '#535353';
+		ctx.strokeStyle = color;
 		ctx.moveTo(startR * Math.cos(angle), startR * Math.sin(angle));
 		ctx.lineTo(endR * Math.cos(angle), endR * Math.sin(angle));
 		ctx.stroke();
@@ -292,7 +292,7 @@ var CIRCLE = (function() {
 
 		ctx.beginPath();
 		ctx.arc(0, 0, bigRadius, MIN_ANGLE, MAX_ANGLE);
-		ctx.lineWidth=50;
+		ctx.lineWidth=57;
 		ctx.strokeStyle="#e0e0e0";
 		ctx.stroke();
 
@@ -308,7 +308,10 @@ var CIRCLE = (function() {
 		var max_width = 6;
 		var min_width = 3;
 		//画刻度
+		for(var i = MIN_ANGLE;i<MAX_ANGLE;i=i+Math.PI/24){
+			drawZhiZhen(ctx, i, min_width, smallRadius - 11, smallRadius,"#cccccc");
 
+		}
 		/*
 		drawZhiZhen(ctx, -Math.PI / 2, max_width, smallRadius - config.closePadding, smallRadius); //0
 		drawZhiZhen(ctx, -Math.PI / 2 + Math.PI / 5, min_width, smallRadius - config.closePadding / 2, smallRadius);
