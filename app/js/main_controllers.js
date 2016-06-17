@@ -463,6 +463,7 @@ function initPieConfig(sumScore, scores, policyNumber) {
 
 mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
+
 		_hmt.push(['_trackPageview', $location.path()]);
 		$scope.data = {
 			aggregate_score: 0
@@ -481,7 +482,7 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 		$scope.init = function() {
 			//获得openId
 			//setTest($routeParams.is_test);
-			var code = util.getParameterByName("code") | $routeParams.code;
+			var code = util.getParameterByName("code") || $routeParams.code;
 			util.getSign();
 			util.getOpenId(code).then(function() {
 
