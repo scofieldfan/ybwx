@@ -225,13 +225,13 @@
 .left_btn,.right_btn,.right_center {
 	height: 48px;
     line-height: 48px;
-    color: #555;
     background: #fff;
     font-size: 15px;
 }
 .left_btn {
 	width: 45%;
 	text-align: right;
+    color: #555;
 }
 .right_center {
 	width: 10%;
@@ -239,7 +239,5 @@
 }
 .right_btn {
 	width: 45%;
-}
-.font_wei {
-	font-weight: bold;
+    color: #ff5c00;
 }
