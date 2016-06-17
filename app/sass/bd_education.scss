@@ -6,8 +6,6 @@
 		line-height: 0.6rem;
 		padding:0 0.2rem 0 50px;
 		font-size:0.18rem;
-		
-		
 	}
 	header.icon_4{
 		background: #1e4e8e url('../img/plane_h.png') no-repeat 18px center;
@@ -60,7 +58,7 @@
 
 	}
 	.more-container {
-		@include border(0 0 1px 0,#e0e0e0)
+		@include border(0 0 1px 0,#e0e0e0);
 	}
 	.more{
 		background-color: #fff;
@@ -70,20 +68,23 @@
 		line-height: 40px;
 		border-bottom: 1px solid #e2e2e2;
 	}
-
+    .select_btn {
+    	height: 48px;
+    	box-sizing: border-box;
+    }
 	.fix_container .left{
 	  background-color: #fff;
 	  color:#1e4e8e;
 	  border-radius: 0;
-	  height:50px;
-	  line-height:50px;
+	  height: 48px;
+	  line-height: 48px;
 	  font-size: 15px;
 	}
 	.fix_container .right{
 	  background-color: #1e4e8e;
 	  border-radius: 0;
-	  height:50px;
-	  line-height:50px;
+	  height: 48px;
+	  line-height: 48px;
 	  font-size: 15px;
 	}
 	.fix_container img{

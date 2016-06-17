@@ -466,9 +466,8 @@ table td, table th {
   max-width: 150px;
 }
 table td{
-	 padding: 0.15rem 0.1rem;
-	// border-bottom: 1px solid #d9d9d9;
-	@include border(0 0 1px 0,#d9d9d9);
+	padding: 0.15rem 0.1rem;
+	@include border(0 0 1px 0,#e0e0e0);
 }
 table th{
 	font-size:0.18rem;
@@ -514,6 +513,8 @@ table th{
 	width: 45%;
     color: #ff5c00;
 }
-.font_wei {
-	font-weight: bold;
+
+.select_btn {
+	height: 48px;
+	box-sizing: border-box;
 }

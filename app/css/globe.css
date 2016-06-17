@@ -450,6 +450,7 @@ overflow: hidden;
   transition: background .3s;
 }
 .fix_container {
+  box-sizing: border-box;
   position: fixed;
   left:0;
   bottom: 0;

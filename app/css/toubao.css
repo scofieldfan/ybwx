@@ -189,7 +189,7 @@ table td, table th {
   box-shadow: 0 0 2px #60afff;
 }
 .pay_container{
-  overflow: hidden;position: fixed;bottom:0;width:100%;border-top: 1px solid #e2e2e2;box-sizing: border-box;
+  overflow: hidden;position: fixed;bottom:0;width:100%;border-top: 1px solid #e2e2e2;box-sizing: border-box;height: 48px;
 }
 .pay_container .left{
   margin-right:1.5rem;width:65%;border-radius: 0
@@ -202,7 +202,7 @@ table td, table th {
 }
 .money_size {
   font-size: .27rem;
-  font-weight: bold;
+  color: #ff5c00;
 }
 .status{
   text-align: center;
