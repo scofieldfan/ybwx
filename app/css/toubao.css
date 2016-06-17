@@ -74,6 +74,10 @@
 .btn_n_primary {
   background: #fff;
 }
+.btn_n_new_primary {
+  color:#fff;
+  background-color: #1e4e8e;
+}
 .tg_dz_fr{
   color: #555;
 }

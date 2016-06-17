@@ -481,10 +481,7 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 		$scope.init = function() {
 			//获得openId
 			//setTest($routeParams.is_test);
-			var code = util.getParameterByName("code");
-			if (!code) {
-				code = $routeParams.code;
-			}
+			var code = util.getParameterByName("code") | $routeParams.code;
 			util.getSign();
 			util.getOpenId(code).then(function() {
 

@@ -94,6 +94,8 @@ var util = {
 			})).done(function(res) {
 				if (res && res.data && res.data["openid"]) {
 					sessionStorage.setItem("openId", res.data["openid"]);
+				}else{
+					console.error("invalid code......");
 				}
 			});
 		}
