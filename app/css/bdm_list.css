@@ -146,8 +146,8 @@ header .subtitle {
 }
 .bd-effective img{
 	position: absolute;
-	right: 5px;
-	bottom: 0px;
+	left: 66px;
+	bottom: -22px;
 	width: 60px;
 }
 
