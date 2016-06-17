@@ -1,13 +1,14 @@
 var SHARE = (function() {
 
   var init = function(shareUrl) {
-    var code = getParameterByName("code");
+    
    var api = {
      "openid": "/ybwx-diplomat/wechat/open_id",
      "signature": "/ybwx-diplomat/wechat/js_signature"
    }
 
-   function getOpenId(code) {
+   function getOpenId() {
+    var code = getParameterByName("code");
      var openId = sessionStorage.getItem("openId");
      
      if (openId) {
@@ -123,7 +124,7 @@ var SHARE = (function() {
 
       });
     }
-    $.when(getOpenId(code), getSign()).done(wxShareCallBack);
+    $.when(getOpenId(), getSign()).done(wxShareCallBack);
   }
   return {
     init: init

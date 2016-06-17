@@ -8,6 +8,15 @@
   <meta name="viewport"content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>天寿助富您安享</title>
   <link rel="stylesheet" type="text/css" href="bower_components/normalize-css/normalize.css">
+  <script>
+    (function(){
+       var WE_CHAT_URL="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri=http%3a%2f%2fweb.youbaowuxian.com%2fanxiang_index.html&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
+       var  openId = sessionStorage.getItem("openId");
+       if(!openId && location.href.indexOf("code")==-1){
+            window.location.href=WE_CHAT_URL;
+       }
+    })()
+  </script>
 <body >
   <a href="anxiang.html">
     <img src="anxiang/img/index.gif?v=1" style="width:100%;vertical-align: middle;" title = />
@@ -16,6 +25,7 @@
   <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
   <script src="anxiang/js/share.js"></script>
   <script>
+
     SHARE.init("http://web.youbaowuxian.com/anxiang_index.html");
     var _hmt = _hmt || [];
     _hmt.push(['_setAutoPageview', false]);
