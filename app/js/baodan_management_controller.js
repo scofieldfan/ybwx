@@ -240,11 +240,8 @@ bdControllers.controller('ybwxbaodanVerifyListCtrl', ['$scope', '$routeParams', 
 	}
 ]);
 
-
-
 bdControllers.controller('ybwxbaodanManageListCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
-
 		_hmt.push(['_trackPageview', $location.path()]);
 		$scope.goBdUpload = function() {
 			_hmt.push(['_trackEvent', 'bdm_list', 'bdmList_goUpload']);
@@ -256,7 +253,6 @@ bdControllers.controller('ybwxbaodanManageListCtrl', ['$scope', '$routeParams', 
 			$scope.type = "4";
 		}
 		$scope.init = function() {
-
 			var code = util.getParameterByName("code");
 			if (!code) {
 				code = $routeParams.code;
