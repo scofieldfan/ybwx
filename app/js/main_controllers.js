@@ -1452,7 +1452,7 @@ mainControllers.controller('ybwxToubaoDingzhiAllCtrl', ['$scope', '$filter', '$r
 				postData["job_id"] = $scope.job.id;
 			}
 			if ($scope.view.email && $scope.insured.email) {
-				postData["job_id"] = $scope.insured.email;
+				postData["email"] = $scope.insured.email;
 			}
 			if ($scope.view.address && $scope.insured.address) {
 				postData["address"] = $scope.insured.address;
