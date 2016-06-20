@@ -223,10 +223,10 @@
 	<div ng-show="view.address">
 		<div class="cell ">
 			<div class="cell_hd">
-				<div class="cell_hd_2_word">地址</div>
+				<div class="cell_hd_2_word">城市</div>
 			</div>
 			<div class="cell_hd cell_hd_border cell_primary">
-				<input type="text" class="ipt"   onfocus="_hmt.push(['_trackEvent', 'toubao', 'toubao_address_focus']);"   name="address" ng-model="insured.address" placeholder="输入邮寄地址" required></div>
+				<input type="text" class="ipt"   onfocus="_hmt.push(['_trackEvent', 'toubao', 'toubao_address_focus']);"   name="address" ng-model="insured.address" placeholder="输入所在城市" required></div>
 		</div>
 		<div class="cell"  style="color:red" ng-show="order.address.$dirty && order.address.$invalid ">
 			<small class="error" ng-show="order.address.$error.required">地址必填</small>
