@@ -1339,6 +1339,10 @@ mainControllers.controller('ybwxToubaoDingzhiAllCtrl', ['$scope', '$filter', '$r
 				util.showToast($rootScope, "Email填写不正确");
 				return false;
 			}
+			if ($scope.view.address && $scope.order.address.$invalid) {
+				util.showToast($rootScope, " 地址填写不正确");
+				return false;
+			}
 
 			if ($scope.view.car_no && $scope.order.car_no.$invalid) {
 				util.showToast($rootScope, "车牌号不正确");
@@ -1446,6 +1450,12 @@ mainControllers.controller('ybwxToubaoDingzhiAllCtrl', ['$scope', '$filter', '$r
 			};
 			if ($scope.view.job && $scope.job) {
 				postData["job_id"] = $scope.job.id;
+			}
+			if ($scope.view.email && $scope.insured.email) {
+				postData["job_id"] = $scope.insured.email;
+			}
+			if ($scope.view.address && $scope.insured.address) {
+				postData["address"] = $scope.insured.address;
 			}
 			if ($scope.charge_period) {
 				postData["charge_period"] = $scope.charge_period;
