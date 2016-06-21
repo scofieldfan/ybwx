@@ -4,7 +4,7 @@ var CIRCLE = (function() {
 	var config = {
 		marginTop: 20,
 		padding: 31,
-		lineWidth: 30,
+		lineWidth: 57,
 		closePadding: 40,
 		dpr: 3
 	};
@@ -39,9 +39,9 @@ var CIRCLE = (function() {
 		if(baozhang_money && baozhang_money[score] && baozhang_money[score]!=""){
 			console.log("update...");
 			console.log(baozhang_money[score]);
-			var kedus = $("#customerSlider").find(".kedu");
-			for(var i = 0 ;i<kedus.length;i++){
-				$(kedus[i]).find("p").html(baozhang_money[score][i]+"万");
+			var kedus = $("#customerSlider").find(".kedu").find("p");
+			for(var i = 1 ;i<kedus.length;i++){
+				$(kedus[i]).html(baozhang_money[score][i-1]+"万");
 			}
 		}
 	}
@@ -54,10 +54,12 @@ var CIRCLE = (function() {
 
 	}
 	
-	var MIN_ANGLE = -Math.PI *5/ 4;
-	var MAX_ANGLE = Math.PI / 4;
+	var MIN_ANGLE = -Math.PI *4/ 3;
+	var MAX_ANGLE = Math.PI / 3;
 	var TWO_PI = 2 * Math.PI;
-	var angle = 0;
+	var PI2 = Math.PI / 180;
+	var MIN_ANGLE_DEGREE = 210;//12点钟为0度为开始计算
+	var MAX_ANGLE_DEGREE = 150;
 	var bgCanvas = document.getElementById("bgchartContainer");
 	var canvas = document.getElementById("chartContainer");
 	var width = $(document).width() - config.padding;
@@ -65,7 +67,7 @@ var CIRCLE = (function() {
 	//if (width > 500) {
 	//	width = 500;
 	//}
-	var height = parseInt(width) + config.marginTop;
+	var height = parseInt(width);
 	console.log(width);
 	console.log(height);
 	var radius = width; //一共可绘图的半径
@@ -73,7 +75,6 @@ var CIRCLE = (function() {
 	bgCanvas.setAttribute('height', height * config.dpr);
 	$(bgCanvas).css({
 		width: width,
-
 		height: height,
 		display: "block"
 	})
@@ -82,7 +83,6 @@ var CIRCLE = (function() {
 	canvas.setAttribute('height', height * config.dpr);
 	$(canvas).css({
 		width: width,
-
 		height: height,
 		display: "block"
 	})
@@ -91,22 +91,22 @@ var CIRCLE = (function() {
 	var ctxBg = bgCanvas.getContext("2d");
 	var radius = canvas.width / 2;
 	var radiusX = radius;
-	var radiusY = (canvas.height) / 2;
+	var radiusY = radius;
 	var mHold = 0;
 	ctx.translate(radiusX, radiusY);
 	ctxBg.translate(radiusX, radiusY);
 	radius = radius * 0.75;
 	var smallRadius = radius;
-	var bigRadius = radius + config.lineWidth;
-
-	//drawFace(ctx, radius, angle);//绘画滑动的表皮
+	var bigRadius = radius + config.lineWidth/2;
+	var angle = MIN_ANGLE_DEGREE;
+	drawFace(ctx, radius, angle);
 	load();//初始化
 	drawBg(ctxBg);//绘制背景
 
 	var text_width = canvas.width * 0.5;
-	$(".canvas_text").css({
+	$("#chartTextContainer").css({
 		'left': (radiusX) / config.dpr,
-		'top': (radiusY - radius / 2) / config.dpr,
+		'top': (radiusY - radius *2/ 3) / config.dpr,
 		'width': text_width / config.dpr,
 		"margin-left": -text_width / (2 * config.dpr)
 	})
@@ -123,9 +123,9 @@ var CIRCLE = (function() {
 			x: offs.left,
 			y: offs.top
 		};
-		var PI2 = Math.PI / 180;
-		var lastX = 0;
-		var lastY = 0;
+		
+		var lastX = -radiusX / config.dpr;
+		var lastY = radiusY / config.dpr;
 
 		function touch(event) {
 			var event = event || window.event;
@@ -138,62 +138,35 @@ var CIRCLE = (function() {
 					}; //动作点相遇于canvas的坐标
 					var currentX = mPos.x - radiusX / config.dpr;
 					var currentY = mPos.y - radiusY / config.dpr; //以圆心作为远点，当前事件的坐标点.
-					//var dis = Math.round(Math.sqrt(Math.pow(currentX, 2) + Math.pow(currentY, 2))); //当前事件半径
-					//var atan = Math.atan2(currentX, currentY); //返回从0度到当前坐标逆时针所转的角度 单位是弧度。注意这里将x，y坐标调换，然后转化成为从（0，y）开始的角度
-					//var deg = -atan / PI2 + 180; //转化成度数，
-					//alert("deg:"+deg)
-					//alert("angle:"+angle)
-
-					/*
-					if (Math.abs(deg - angle) < 30 && Math.abs(dis - radius / config.dpr) < 250) {
-						mHold = 1;
-					}*/
-					//console.log("deg:" + deg);
+					
+					var lineWidth = config.lineWidth;
 
 					var ang = angle * Math.PI / 180; //当前刻度的位置
-					var keduRadius = (radius + config.lineWidth / 2);
-					var keduX = (keduRadius / config.dpr) * Math.cos(-Math.PI / 2 + ang);
-					var keduY = (keduRadius / config.dpr) * Math.sin(-Math.PI / 2 + ang);
+					var angFrom90 = -Math.PI / 2 + ang ;//弧度单位，以3点钟作为的起始
+					if(angFrom90>Math.PI / 2){
+						angFrom90 = angFrom90-2*Math.PI;
+					}
+					var keduX = (bigRadius / config.dpr) * Math.cos( angFrom90);
+					var keduY = (bigRadius / config.dpr) * Math.sin( angFrom90);
 					var distance = Math.round(Math.sqrt(Math.pow(currentX - keduX, 2) + Math.pow(currentY - keduY, 2)));
+					console.log("angFrom90:"+angFrom90 *180/Math.PI);
+					console.log("keduX:"+keduX);
+					console.log("keduY:"+keduY);
 
+					console.log("currentX:"+currentX);
+					console.log("currentY:"+currentY);
+					console.log("radiusX:"+radiusX);
+
+
+					console.log("distance:"+distance);
 					if (distance < 60) {
 						mHold = 1;
 						event.preventDefault();
 					}
 					_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_circleTabStart']);
-					//console.log("newDeg:" + (Math.atan2(currentY, currentX) / PI2));
-
-					/*
-					console.log("screenX:" + event.changedTouches[0].screenX);
-					console.log("pageX:" + event.changedTouches[0].pageX);
-					console.log("pageY:" + event.changedTouches[0].pageY);
-					console.log("clientX:" + event.changedTouches[0].clientX);
-					console.log("clientY:" + event.changedTouches[0].clientY);
-					*/
-					/*
-					var ang = deg * Math.PI / 180;
-					var keduRadius = (radius + config.lineWidth / 2);
-					console.log("deg:" + deg);
-					console.log("angle:" + angle);
-					console.log("currentX:" + (currentX));
-					console.log("currentY:" + (currentY));
-					console.log("keduX:" + (keduRadius/config.dpr)* Math.cos(-Math.PI / 2 + ang));
-					console.log("keduY:" + (keduRadius/config.dpr) * Math.sin(-Math.PI / 2 + ang));*/
-					/*
-					console.log("deg:" + deg);
-					console.log("dis:" + dis);
-					console.log("radius:" + radius / config.dpr);
-					console.log("angle:" + angle);
-					console.log("currentX:" + (currentX));
-					console.log("currentY:" + (currentY));
-					console.log("kedu:" + (radius + config.lineWidth / 2) * Math.cos(-Math.PI / 2 + angle));
-					console.log("kedu:" + (radius + config.lineWidth / 2) * Math.sin(-Math.PI / 2 + angle));
-					console.log("Touch started (" + event.touches[0].clientX + "," + event.touches[0].clientY + ")");
-					*/
 
 					break;
 				case "touchend":
-					//console.log("<br/>Touch end (" + event.changedTouches[0].clientX + "," + event.changedTouches[0].clientY + ")");
 					mHold = 0;
 					_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_circleTabEnd']);
 					break;
@@ -212,41 +185,43 @@ var CIRCLE = (function() {
 						var deg = -atan / PI2 + 180;
 						deg = Math.floor(deg);
 
-						if (lastX < 0 && lastY < 0) { //防止从左侧滑到右侧
-							if (currentX >= 0 && currentY <= 0 || currentX > 0 && currentY > 0) {
-								lastX = -0.01;
-								lastY = -radiusY / config.dpr;
-								angle = 360;
-								drawFace(ctx, radius, 360);
+						if (lastX <= 0 && lastY >= 0) { //防止从左侧滑动到右侧
+							if (currentX > 0 && currentY > 0) {
+
+								lastX = -radiusX / config.dpr;
+								lastY = radiusY / config.dpr;
+								angle =  MIN_ANGLE_DEGREE;
+
+								drawFace(ctx, radius, angle);
 								return;
 							}
 						}
-						if (lastX >= 0 && lastY <= 0) { //防止从右侧滑动到左侧
-							if (currentX < 0 && currentY < 0 || currentX < 0 && currentY > 0) {
+						if (lastX >= 0 && lastY >= 0) { //防止从右侧滑动到左侧
+							if (currentX < 0 && currentY > 0) {
 
-								lastX = 0.01;
-								lastY = -radiusY / config.dpr;
-								angle = 0;
+								lastX = radiusX / config.dpr;
+								lastY = radiusY / config.dpr;
+								angle =  MAX_ANGLE_DEGREE
 
-								drawFace(ctx, radius, 0);
+								drawFace(ctx, radius, angle);
 								return;
 							}
 						}
-
-						/*
-						console.log(mPos);
-						console.log("atanX:" + (currentX));
-						console.log("atanY:" + (currentY));
-						console.log("atan:" + atan);
-						console.log("deg:" + deg);
-						console.log("angle:" + angle);
-						console.log("drawAngle:" + drawAngle);
-						*/
+						if (currentX > 0 && currentY > 0 ) {
+							if(deg>= MAX_ANGLE_DEGREE){
+								deg =  MAX_ANGLE_DEGREE;
+							}
+						}
+						if (currentX <= 0 && currentY > 0) {
+							if(deg<= MIN_ANGLE_DEGREE){
+								deg= MIN_ANGLE_DEGREE;
+							}
+						}
 						angle = deg;
 						lastX = currentX;
 						lastY = currentY;
 						drawFace(ctx, radius, angle);
-						//console.log("<br/>Touch moved (" + event.touches[0].clientX + "," + event.touches[0].clientY + ")");
+						
 					}
 					break;
 			}
@@ -263,81 +238,61 @@ var CIRCLE = (function() {
 		ctx.stroke();
 	}
 
-	function drawWord(ctx, angle, color, radius_score, score) {
+	function drawWord(ctx, angle, color, radius, word,rotate) {
 		ctx.textAlign = "center";
-		//var textRadius = smallRadius - 2*config.closePadding;
 		ctx.font = "normal 40px Arial,Microsoft YaHei";
-		//ctx.fillStyle = "#535353";
 		ctx.fillStyle = color;
-		var textX = (radius_score) * Math.cos(angle);
-		var textY = (radius_score) * Math.sin(angle);
-		ctx.fillText(score, textX, textY);
-
-		// textRadius = smallRadius - 3*config.closePadding;
-		/*
-		ctx.font = "normal 40px Arial,Microsoft YaHei";
-		ctx.fillStyle = "#ff7550";
-		var textX = (radius_word) * Math.cos(angle);
-		var textY = (radius_word) * Math.sin(angle);
-		ctx.fillText(word, textX, textY);*/
-
-
+		var textX = (radius) * Math.cos(angle);
+		var textY = (radius) * Math.sin(angle);
+	    ctx.beginPath();
+		ctx.save();
+		ctx.translate(textX,textY);
+		ctx.rotate(rotate);
+		ctx.fillText(word, 0, 0);
+		ctx.restore();
 	}
 
 	function drawBg(ctx) { //背景是指示标
 
-
-
 		//画灰色圆环
-
 		ctx.beginPath();
 		ctx.arc(0, 0, bigRadius, MIN_ANGLE, MAX_ANGLE);
-		ctx.lineWidth=57;
-		ctx.strokeStyle="#e0e0e0";
+		ctx.lineWidth = config.lineWidth;
+		ctx.strokeStyle = "#e0e0e0";
 		ctx.stroke();
-
-		/*
-		ctx.beginPath();
-		ctx.arc(0, 0, smallRadius, MIN_ANGLE, MAX_ANGLE);
-		ctx.fillStyle = "#fff";
-		ctx.fill();
-		*/
-
 
 
 		var max_width = 6;
 		var min_width = 3;
-		//画刻度
-		for(var i = MIN_ANGLE;i<MAX_ANGLE;i=i+Math.PI/24){
-			drawZhiZhen(ctx, i, min_width, smallRadius - 11, smallRadius,"#cccccc");
-
+		var dur = (MAX_ANGLE - MIN_ANGLE)/40;
+		//画刻度指针	
+		for(var i = MIN_ANGLE;i<MAX_ANGLE;i=i+dur){
+			drawZhiZhen(ctx, i, min_width, smallRadius -5, smallRadius-20,"#cccccc");
 		}
-		/*
-		drawZhiZhen(ctx, -Math.PI / 2, max_width, smallRadius - config.closePadding, smallRadius); //0
-		drawZhiZhen(ctx, -Math.PI / 2 + Math.PI / 5, min_width, smallRadius - config.closePadding / 2, smallRadius);
-		drawZhiZhen(ctx, -Math.PI / 2 + 2 * Math.PI / 5, min_width, smallRadius - config.closePadding / 2, smallRadius);
-		drawZhiZhen(ctx, -Math.PI / 2 + 3 * Math.PI / 5, min_width, smallRadius - config.closePadding / 2, smallRadius);
-		drawZhiZhen(ctx, -Math.PI / 2 + 4 * Math.PI / 5, min_width, smallRadius - config.closePadding / 2, smallRadius);
-		drawZhiZhen(ctx, Math.PI / 2, max_width, smallRadius - config.closePadding, smallRadius); //5
-		drawZhiZhen(ctx, Math.PI / 5 + Math.PI / 2, min_width, smallRadius - config.closePadding / 2, smallRadius);
-		drawZhiZhen(ctx, 2 * Math.PI / 5 + Math.PI / 2, min_width, smallRadius - config.closePadding / 2, smallRadius);
-		drawZhiZhen(ctx, 3 * Math.PI / 5 + Math.PI / 2, max_width, smallRadius - config.closePadding, smallRadius); //5
-		drawZhiZhen(ctx, 4 * Math.PI / 5 + Math.PI / 2, min_width, smallRadius - config.closePadding / 2, smallRadius);
+		for(var i = MIN_ANGLE;i<=MAX_ANGLE;i=i+8*dur){
+				drawZhiZhen(ctx, i, max_width, smallRadius -5, smallRadius-30, "#588dd4");
+		}
 
+		//画文字
+		drawWord(ctx, MIN_ANGLE + 24*dur, "#ff7550", smallRadius -80, "基本",30*Math.PI/180);
+		drawWord(ctx, MIN_ANGLE + 32*dur, "#ff7550", smallRadius -80, "推荐",0);
+		drawWord(ctx, MIN_ANGLE + 40*dur, "#ff7550", smallRadius -80, "无忧",-30*Math.PI/180);
 
-		drawWord(ctx, -Math.PI / 2, "#535353", smallRadius - 2 * config.closePadding, "10分");
-		drawWord(ctx, -Math.PI / 2, "#ff7550", smallRadius - 3 * config.closePadding, "无忧");
+		//起始点的灰色圆角
+		ctx.beginPath();
+		var textX = (radius+config.lineWidth/2) * Math.cos(MIN_ANGLE);
+		var textY = (radius+config.lineWidth/2) * Math.sin(MIN_ANGLE);
+		ctx.arc(textX, textY, 30, 0, TWO_PI, false); 
+		ctx.fillStyle = "#e0e0e0";
+		ctx.fill();
 
-		drawWord(ctx, Math.PI / 2, "#535353", smallRadius - config.closePadding - 10, "5分");
-		drawWord(ctx, Math.PI / 2, "#ff7550", smallRadius - 2 * config.closePadding - 15, "基本");
-
-		drawWord(ctx, Math.PI / 2 + 3 * Math.PI / 5 + 0.05, "#535353", smallRadius - config.closePadding - 50, "8分");
-		drawWord(ctx, Math.PI / 2 + 3 * Math.PI / 5 - 0.1, "#ff7550", smallRadius - 2 * config.closePadding - 25, "推荐");
-		*/
-
-		//drawWord(ctx,Math.PI / 2,smallRadius - config.closePadding-10,"5分",smallRadius - 2*config.closePadding-15,"基本");
-		//drawWord(ctx,Math.PI / 2 + 3*Math.PI/5,"8分","推荐");
-
+		//结束点的灰色圆角
+		ctx.beginPath();
+		var textX = (radius+config.lineWidth/2) * Math.cos(MAX_ANGLE);
+		var textY = (radius+config.lineWidth/2) * Math.sin(MAX_ANGLE);
+		ctx.arc(textX, textY, 30, 0, TWO_PI, false); 
+		ctx.fillStyle = "#e0e0e0";
+		ctx.fill();	
 
 	}
 
@@ -354,80 +309,47 @@ var CIRCLE = (function() {
 
 	function drawFace(ctx, radius, angle) {
 
+		/*
 		if (angle < 0) {
 			angle = 0;
 		}
 		if (angle > 360) {
 			angle = 360;
+		}*/
+
+
+		clearCircle(ctx, 0, 0, radius + 100);
+
+		var ang = angle * Math.PI / 180;//弧度单位，以12点作为起始 
+		var angFrom90 = -Math.PI / 2 + ang ;//弧度单位，以3点钟作为的起始
+		if(angFrom90>Math.PI / 2){
+			angFrom90 = angFrom90-2*Math.PI;
 		}
 
-
-
-		//ctx.clearRect(0, 0, bigRadius, bigRadius);
-
-		clearCircle(ctx, 0, 0, bigRadius + 35);
-		//ctx.beginPath();
-		//ctx.arc(0, 0, bigRadius + 35, 0, 2 * Math.PI);
-
-		//ctx.fillStyle = "#fff";
-		//ctx.fill();
+		var lineWidth = config.lineWidth;
 
 
 
-		/*
+		//if(angle>225){
+				//起始点的蓝色圆角
 		ctx.beginPath();
-		ctx.arc(0, 0, bigRadius, 0, TWO_PI);
-		ctx.fillStyle = "#e0e0e0";
+		var textX = (radius+config.lineWidth/2) * Math.cos(MIN_ANGLE);
+		var textY = (radius+config.lineWidth/2) * Math.sin(MIN_ANGLE);
+		ctx.arc(textX, textY, config.lineWidth/2, 0, TWO_PI, false); 
+		ctx.fillStyle = "#588dd4";
 		ctx.fill();
-
-
-
-		ctx.beginPath();
-		ctx.arc(0, 0, smallRadius, 0, TWO_PI);
-		ctx.fillStyle = "#fff";
-		ctx.fill();
-		*/
-
-
-		var ang = angle * Math.PI / 180;
-		var angFrom90 = -Math.PI / 2 + ang;
-
+		
+		
 
 		ctx.beginPath();
-		ctx.arc(0, 0, smallRadius + config.lineWidth / 2, MIN_ANGLE, angFrom90, false); //当前大圆环的刻度
-		ctx.lineWidth = config.lineWidth;
-		ctx.strokeStyle = '#247ad1';
+		ctx.arc(0, 0, smallRadius + lineWidth / 2, MIN_ANGLE, angFrom90, false); //当前蓝色已滑动的区域
+		ctx.lineWidth = lineWidth;
+		ctx.strokeStyle = '#588dd4';
 		ctx.stroke();
-
-
-		/*
-	    ctx.beginPath();
-		ctx.arc(0, 0, smallRadius + config.lineWidth / 2, angFrom90,MAX_ANGLE , false); //当前大圆环的刻度灰色
-		ctx.lineWidth = config.lineWidth;
-		ctx.strokeStyle = '#e0e0e0';
-		ctx.stroke();
-*/
-
-
-		//	console.log("angle:" + angle);
-
-
-		ctx.beginPath();
-		ctx.arc(0, 0, smallRadius - config.closePadding, MIN_ANGLE, angFrom90, false); //内环线蓝色
-		ctx.lineWidth = 1;
-		ctx.strokeStyle = '#3282d4';
-		ctx.stroke();
-
-		ctx.beginPath();
-		ctx.arc(0, 0, smallRadius - config.closePadding, angFrom90, MAX_ANGLE, false); //内环线灰色
-		ctx.lineWidth = 1;
-		ctx.strokeStyle = '#e7e7e7';
-		ctx.stroke();
-
-
 
 		//当前刻度圆环的画法
-		var keduRadius = smallRadius + config.lineWidth / 2;
+		
+		var keduRadius = smallRadius + lineWidth / 2;
 		var cosX = Math.cos(angFrom90);
 		var sinX = Math.sin(angFrom90);
 		var keduX = keduRadius * cosX;
@@ -440,16 +362,26 @@ var CIRCLE = (function() {
 
 
 		ctx.beginPath();
-		ctx.arc(keduX, keduY, 20, 0, TWO_PI, false); //当前刻度
+		ctx.arc(keduX, keduY, 37, 0, TWO_PI, false); //当前刻度
 		ctx.fillStyle = "#fff";
 		ctx.fill();
 
 
-		var score = Math.round(angle / 36);
+		var score = 0;
+
+		if(angle>=MIN_ANGLE_DEGREE && angle<=360){
+			score  = Math.round((angle - MIN_ANGLE_DEGREE)/30);
+		}
+
+		if(angle<=MAX_ANGLE_DEGREE && angle>=0){
+			score  = Math.round((angle + 150)/30);
+		}
+		//console.log("angle..."+angle);
+		//console.log("score..."+score);
 		if (score !== lastScore) {
 
-			 console.log("...........");
-		
+
+			console.log("...........");
 			scoreObj.fanweiScore = score;
 			updateSumScore();
 			var showScore = baozhang_score[score] || 0;
@@ -463,35 +395,7 @@ var CIRCLE = (function() {
 			changeText(score);
 		}
 		lastScore = score;
-		/*
-		if(score===2){
-			$("#chartTextContainer").find("div:eq(0)").animate({ opacity: 1 });
-			$("#chartTextContainer").find("div:eq(2)").animate({ opacity: 0 });
-		}
-		if(score===3){
-			$("#chartTextContainer").find("div:eq(3)").animate({ opacity: 1 });
-			$("#chartTextContainer").find("div:eq(4)").animate({ opacity: 0 });
-		}*/
-		/* */
-		//console.log("angle:" + ang);
-		//console.log("keduX:" + keduRadius * Math.cos(-Math.PI / 2 + ang));
-		//console.log("keduY:" + keduRadius * Math.sin(-Math.PI / 2 + ang));
-
-
-		//当前的百分比得分
-		/*
-		ctx.textAlign = "right";
-		var textRadius = bigRadius + 55;
-		ctx.font = "normal 50px Arial,Microsoft YaHei";
-		ctx.fillStyle = "#f65066";
-		var textX = (textRadius) * cosX + 10;
-		var textY = (textRadius) * sinX + 20;
-		//console.log("angle:" + angle);
-		ctx.fillText(Math.floor(angle / 36), textX, textY);
-		*/
-
-		//console.log("textX:" + textX);
-		//console.log("textY:" + textY);
+	
 
 	}
 
@@ -555,14 +459,7 @@ var CIRCLE = (function() {
 				});
 			}
 		}
-		/*
-		if(largeElement.html()!=largeText){
-			largeElement.animate({ opacity: 0 },function(){
-				largeElement.html(largeText);
-			});
-			
-			largeElement.animate({ opacity: 1 });
-		}*/
+	
 
 
 	}

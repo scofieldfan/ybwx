@@ -20,8 +20,8 @@ var SLIDER = (function() {
 
 	function reset() {
 		barWidth = 0;
-		$(".kedu").find(".zz").removeClass("hover");
-		$(".kedu").children("p").removeClass("wordhover");
+		//$(".kedu").find(".zz").removeClass("hover");
+		//$(".kedu").children("p").removeClass("wordhover");
 		updateScore(0);
 	}
 
@@ -70,6 +70,7 @@ var SLIDER = (function() {
 				case "touchstart":
 					isOk = checkScore();
 					event.preventDefault();
+					event.stopPropagation();
 					baxMax = $("#customerSlider").find(".weui_progress_bar").width() - 16;
 					startX = event.touches[0].clientX;
 					console.log("Touch started (" + event.touches[0].clientX + "," + event.touches[0].clientX + ")");
@@ -154,6 +155,7 @@ var SLIDER = (function() {
 					var index = Math.floor(scoreObj.moneyScore/2-1);
 					// $(".kedu:eq("+index+"")")
 					console.log(index);
+					/*
 					if(index>=0){
 						 $(".kedu").find(".zz").removeClass("hover");
 						 $(".kedu").children("p").removeClass("wordhover");
@@ -162,7 +164,7 @@ var SLIDER = (function() {
 					}else{
 						 $(".kedu").find(".zz").removeClass("hover");
 						 $(".kedu").children("p").removeClass("wordhover");
-					}
+					}*/
 					
 					/*
 					$(".kedu").each(function(item,val){

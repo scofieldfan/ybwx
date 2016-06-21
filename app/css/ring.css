@@ -5,6 +5,10 @@
 .tx_ce {
 	text-align: center;
 }
+.head-container{
+	width:200px;
+	margin:.2rem auto;
+}
 .bt_container {
 	position: relative;
 	border-width: 1px;
@@ -12,7 +16,7 @@
 	border-color: #e0e0e0;
 	padding: 0.1rem 0px;
 	font-size: 0.16rem;
-	overflow: auto;
+	overflow: hidden;
 }
 /*
 .bt_container div {
@@ -34,74 +38,79 @@
 .score_container {
 	position: absolute;
 	color: #1e4e8e;
-	left:0.2rem;
+	left:50%;
+	margin-left: -41px;
+	bottom:30px;
 	z-index: 10;
+	color:#555555;
+	width:90px;
+	text-align: center;
 
 }
-.score_container > p{
-	display:inline;
-	vertical-align: bottom;
-
+.score_container  .score{
+	font-size:0.5rem;
+	color:#555;
 }
-.score_container  span {
-	font-size: 0.45rem
+.score_container  .danwei{
+	font-size:16px;
+	color:#999;
 }
 .small {
 	font-size: 0.12rem;
 }
 
 .canvas_text {
-	color: #247ad1;
+	color: #bbbbbb;
 	font-size: 0.2rem;
 	text-align: center;
 }
+.canvas_text > div{
+	margin:0.05rem;
+}
 .weui_progress_bar {
 	background-color: #e0e0e0;
-	height: 5px;
+	height: 15px;
 	position: relative;
-	-webkit-box-flex: 1;
-	-webkit-flex: 1;
-	-ms-flex: 1;
-	flex: 1;
+	border-radius: 15px;
 }
 .weui_progress_inner_bar {
 	width: 0;
 	height: 100%;
-	background-color: #247ad1;
+	background-color: #588dd4;
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
 }
 .weui_progress_bar .kedu {
 	position: absolute;
-	top: -0.13rem;
+	top: -13px;
 }
 .kedu .zz {
 	height: 10px;
 	width: 2px;
-	background-color: #cacaca;
+	background-color: #588dd4;
 }
-.kedu .top-word {
+.kedu .small-zz {
+	height: 6px;
+	width: 2px;
+	background-color: #ccc;
+}
+
+.kedu .bottom-word {
 	position: absolute;
-	top: -0.3rem;
-	width: 0.5rem;
+	top: 35px;
+	width: 50px;
 	left: -0.23rem;
 	line-height: 0.13rem;
-	color: #535353;
-	text-align: center;
-}
-.kedu .top-word span {
-	color: #ff7550;
-}
-.kedu .top-word >div {
-	line-height: 0.1rem;
-	margin: 4px;
 	color: #ff5c00;
+	text-align: center;
 }
 .kedu>p {
 	position: absolute;
-	top: 0.15rem;
+	top: -30px;
 	width: 0.5rem;
 	font-size: 0.12rem;
 	left: -0.2rem;
-	color: #535353;
+	color: #999;
 }
 .kedu .hover {
 	background-color: #247ad1;
@@ -117,42 +126,43 @@
 	border-style: none none solid;
 	border-color: #cacaca;
 	padding: 0.4rem 0.2rem;
-	margin-top: 0.2rem;
+	margin-top: 90px;
 	position: relative;
 	text-align: center;
 }
 .left_button {
 	background-color: #247ad1;
-	height: 16px;
-	width: 16px;
+	height: 15px;
+	width: 15px;
 	border-radius: 100%;
 	float: left;
 	position: relative;
-	top: -6px;
+	top: 0px;
+	left:-9px;
 }
 .ring {
 	background-color: #e0e0e0;
-	height: 16px;
-	width: 16px;
+	height: 15px;
+	width: 15px;
 	border-radius: 100%;
 	float: right;
 	position: relative;
-	top: -10px;
+	top: 0px;
 }
 
 .bar_btn {
-	width: 0.29rem;
-	top: 0.38rem;
+	width: 22px;
+	top:47px;
 	left: 35px;
 	position: absolute;
 	z-index: 3;
 }
 #zhizhen {
 	position: absolute;
-	width: 1rem;
-	height: 1.2rem;
-	top: -0.5rem;
-	left:-0.5rem;
+	width: 100px;
+	height: 120px;
+	top: -50px;
+	left:-50px;
 	z-index: 1000;
 	margin-left: -14px;
 }
@@ -242,4 +252,132 @@
 }
 .font_wei {
 	font-weight: bold;
+}
+
+
+
+
+
+
+
+.switch {
+	position: relative;
+	display: block;
+	vertical-align: top;
+	width: 170px;
+	height: 33px;
+	padding: 3px;
+	margin: 0 auto;
+	outline: none;	/*background: linear-gradient(to bottom, #eeeeee, #FFFFFF 25px);*/
+
+	/*background-image: -webkit-linear-gradient(top, #eeeeee, #FFFFFF 25px);*/
+	border-radius: 31px;	/*box-shadow: inset 0 -1px white, inset 0 1px 1px rgba(0, 0, 0, 0.05);*/
+	cursor: pointer;
+	border: none;	/*border:1px solid #e2e2e2;*/
+}
+.switch-input {
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.switch-label {
+	position: relative;
+	display: block;
+	height: inherit;
+	font-size: 14px;
+	text-transform: uppercase;
+	background: #f0f0f0;
+	border-radius: inherit;
+	border:1px solid #e2e2e2;
+	/*box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.12), inset 0 0 1px rgba(0, 0, 0, 0.15);*/
+	font-family: Arial, Microsoft YaHei, SimHei, Helvetica, sans-serif;
+}
+.switch-label:before, .switch-label:after {
+	position: absolute;
+	top: 50%;
+	margin-top: -.5em;
+	line-height: 1;
+	-webkit-transition: inherit;
+	-moz-transition: inherit;
+	-o-transition: inherit;
+	transition: inherit;
+}
+.switch-label:before {
+	content: attr(data-off);
+	right: 15px;
+	color: #555555;
+	/*text-shadow: 0 1px rgba(255, 255, 255, 0.5);*/
+}
+.switch-label:after {
+	content: attr(data-on);
+	left: 12px;
+	color: #555555;
+	/*text-shadow: 0 1px rgba(0, 0, 0, 0.2);*/
+	opacity: 0;
+}
+.switch-input:checked ~ .switch-label {
+	background: #f0f0f0;
+	/*box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 0 3px rgba(0, 0, 0, 0.2);*/
+}
+.switch-input:checked ~ .switch-label:before {
+	opacity: 0;
+}
+.switch-input:checked ~ .switch-label:after {
+	opacity: 1;
+}
+.switch-handle {
+	position: absolute;
+	top: 4px;
+	left: 3px;
+	width: 91px;
+	height: 33px;
+	background-color: #1e4e8e;	/*background: linear-gradient(to bottom, #FFFFFF 40%, #f0f0f0);*/
+
+	/*background-image: -webkit-linear-gradient(top, #FFFFFF 40%, #f0f0f0);*/
+	border-radius: 44px;
+	/*box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);*/
+}
+.switch-handle:before {
+	content: "个性定制";
+	position: absolute;
+	color: #fff;
+	font-size: 14px;
+	top: 50%;
+	left: 50%;
+	margin: -12px 0 0 -32px;
+	width: 80px;
+	/*height: 12px;*/
+	font-family: Arial, Microsoft YaHei, SimHei, Helvetica, sans-serif;	/*background: linear-gradient(to bottom, #eeeeee, #FFFFFF);*/
+
+	/*background-image: -webkit-linear-gradient(top, #eeeeee, #FFFFFF);*/
+
+	/*border-radius: 6px;*/
+
+	/*box-shadow: inset 0 1px rgba(0, 0, 0, 0.02);*/
+}
+.switch-input:checked ~ .switch-handle:before {
+	content: "直接购买";
+}
+
+
+.switch-input:checked ~ .switch-handle {
+
+	/*left: 74px;*/
+	-webkit-transform: translateX(80px);
+	-moz-transform: translateX(80px);
+	-ms-transform: translateX(80px);
+	-o-transform: translateX(80px);
+	transform: translateX(80px);
+	/*box-shadow: -1px 1px 5px rgba(0, 0, 0, 0.2);*/
+}
+
+/* Transition
+========================== */
+.switch-label, .switch-handle {
+	transition: All 0.3s ease;
+	-webkit-transition: All 0.3s ease;
+	-moz-transition: All 0.3s ease;
+	-o-transition: All 0.3s ease;
 }

@@ -1,37 +1,33 @@
-<link rel="stylesheet" type="text/css" href="css/ring.css?rev=629879cc8593b261206855e9faa98bf0">
+<link rel="stylesheet" type="text/css" href="css/ring.css?rev=a2e363946d7a46c73bae48007e41daca">
 
 <div  class="wrapper"  data-ng-init="init()" style="overflow: hidden;">
 
-	<div style="" class="head-container">
-		<div class="cell_hd">
-			<a href="javascript:void(0)"   class="btn btn_n_primary " >个性定制</a>
-		</div>
-		<div class="cell_hd">
-			<a href="javascript:void(0)"  style="border-radius: 0;" class="btn btn_unchoose"  ng-click="goJingzhun()">直接购买</a>
-		</div>
+	<div  class="head-container" style="overflow: hidden;">
+		<label class="switch">
+		<input class="switch-input" type="checkbox" />
+		<span class="switch-label" data-on="个性定制" data-off="直接购买"></span> 
+		<span class="switch-handle"></span> 
+	</label>
 	</div>
 
+	
+
 	<div  class="bt_container">
-		<span class="blue" style="font-size: 0.18rem;">1</span>
+		<img src="img/safe.jpg" style="width:15px;vertical-align: -3px;">
 		选择保障范围
 	</div>
 	<div style="position: relative;" id="clockContainer">
 		<div class="score_container" >
-			<p >
-				<span id="fanwei_score">{{fanweiScore}}</span>
-			</p>
-			<p>
-				<span style="font-size:0.14rem;">分</span>
-			</p>
-			<img src="wx_share/img/help.jpg" class="help_img" ng-click="showIntrod()"></div>
+			<span id="fanwei_score"  class="score">{{fanweiScore}}</span><span class="danwei">分</span>
+			</div>
 		<canvas id="bgchartContainer" ></canvas>
 		<canvas id="chartContainer"  style="background:transparent;position:absolute;left:0;top:0;" ></canvas>
 		<div  id = "chartTextContainer" class="canvas_text"   style = "position:absolute;">
 			<!---->
 			<p  style="position:absolute;left:0.1rem;margin:0;top:0.4rem;font-size:0.20rem;text-align: center;color:#4e4e4d;" id="default_text">顺时针滑动提升分数</p>
 
-			<div  style="position:relative;left:0.3rem;opacity: 0"  class="small">&nbsp;&nbsp;</div>
-			<div  style="position:relative;left:-0.1rem;font-size:0.22rem;opacity: 0">&nbsp;&nbsp;</div>
+			<div  style="position:relative;left:-0.5rem;opacity: 0"  class="small">&nbsp;&nbsp;</div>
+			<div  style="position:relative;left:-0.1rem;font-size:0.2rem;opacity: 0">&nbsp;&nbsp;</div>
 			<div  style="position:relative;font-size:0.26rem;text-align: center;opacity: 1">&nbsp;&nbsp;</div>
 			<div  style="position:relative;left:0.3rem;opacity: 0;font-size:0.16rem" >&nbsp;&nbsp;</div>
 			<div  style="position:relative;left:-0.2rem;opacity: 0;" class="small" >&nbsp;&nbsp;</div>
@@ -41,7 +37,7 @@
 	<div  class="bt_container">
 
 		<div style="">
-			<span class="blue"  style="font-size: 0.18rem;">2</span>
+			<img src="img/safe.jpg" style="width:15px;vertical-align: -3px;">
 			选择保障金额
 		</div>
 		<!--
@@ -50,61 +46,69 @@
 </div>
 
 <div  class="bottom_container" id="customerSlider" >
-	<div class="score_container" style="top:-0.25rem; ">
-		<p>
-			<span id="money_score">0</span>
-		</p>
-		<p>
-			<span style="font-size:0.14rem;">分</span>
-		</p>
+	<div class="score_container" style="top:-80px; ">
+			<span id="money_score" class="score">0</span>
+			<span class="danwei">分</span>
 	</div>
-	<div style="left:0.05rem;top:0.46rem;position: absolute;color:#535353;font-size:0.12px;z-index:100;">
-			<p>平均保额</p>
-	</div>
-	<div class="left_button"></div>
+	
 	<div class="weui_progress_bar" >
 		<div class="weui_progress_inner_bar" id="bar" style="width: 16px;">
 			<div style="background:transparent;" id="zhizhen">
-				<img src="img/btn.png?v=1" id="btnCircle" class="bar_btn" style=""></div>
+				<img src="img/slider-btn.png?v=1" id="btnCircle" class="bar_btn" style=""></div>
 		</div>
-		
+		<div  class="kedu" style="left:2%;">
+			<div class="zz"></div>
+			<p>0万</p>
+		</div>
+		<div  class="kedu" style="left:6.5%;">
+			<div class="small-zz"></div>
+		</div>
+		<div  class="kedu" style="left:11%;">
+			<div class="small-zz"></div>
+		</div>
+		<div  class="kedu" style="left:15.5%;">
+			<div class="small-zz"></div>
+		</div>
+	
 		<div  class="kedu" style="left:20%;">
 			<div class="zz"></div>
 			<p>20万</p>
 		</div>
+		<div  class="kedu" style="left:25%"> <div class="small-zz"></div> </div> 
+		<div  class="kedu" style="left:30%"> <div class="small-zz"></div> </div> 
+		<div  class="kedu" style="left:35%"> <div class="small-zz"></div> </div> 
 		<div  class="kedu" style="left:40%;">
 			<div class="zz"></div>
 			<p>50万</p>
 		</div>
+		<div  class="kedu" style="left:45%"> <div class="small-zz"></div> </div> 
+		<div  class="kedu" style="left:50%"> <div class="small-zz"></div> </div> 
+		<div  class="kedu" style="left:55%"> <div class="small-zz"></div> </div> 
 		<div  class="kedu" style="left:60%;">
 			<div class="zz"></div>
-			<div class="top-word">
-				6分
-				<div >基本</div>
-			</div>
 			<p>100万</p>
+			<div class="bottom-word">基本</div>
 		</div>
-
+		<div  class="kedu" style="left:65%"> <div class="small-zz"></div> </div> 
+		<div  class="kedu" style="left:70%"> <div class="small-zz"></div> </div> 
+		<div  class="kedu" style="left:75%"> <div class="small-zz"></div> </div> 
 		<div  class="kedu" style="left:80%;">
 			<div class="zz"></div>
-			<div class="top-word">
-				8分
-				<div >推荐</div>
-			</div>
 			<p>200万</p>
+			<div class="bottom-word">推荐</div>
 		</div>
+		<div  class="kedu" style="left:84.5%"> <div class="small-zz"></div> </div> 
+		<div  class="kedu" style="left:89%"> <div class="small-zz"></div> </div> 
+		<div  class="kedu" style="left:93.5%"> <div class="small-zz"></div> </div> 
 
-		<div  class="kedu" style="left:100%;">
-			<div class="top-word" style="left:-0.39rem;">
-				10分
-				<div>无忧</div>
-			</div>
-			<p  style="left:-0.35rem;">500万</p>
+		<div  class="kedu" style="left:98%;">
+			<div class="zz"></div>	
+			<p >500万</p>
+			<div class="bottom-word">无忧</div>
 		</div>
 
 	</div>
 
-	<div class="ring"></div>
 
 </div>
 
