@@ -12,7 +12,7 @@ var wait = require('gulp-wait');
 var clean = require('gulp-clean');
 var sass = require('gulp-sass');
 
-gulp.task('rev', ['cssMin', 'jsMin', 'deltmp'], function() {
+gulp.task('rev', ['sass','cssMin', 'jsMin', 'deltmp'], function() {
 	gulp.src('app/*.html')
 		.pipe(debug())
 		.pipe(rev())

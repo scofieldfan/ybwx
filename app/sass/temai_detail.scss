@@ -1,0 +1,165 @@
+@import "base/classes.scss";
+@import "base/variables.scss";
+
+body {
+	background-color: #f5f5f5;
+}
+header {
+	background-color: #fff;
+
+	.top-container {
+		height: 110px;
+		background: url("../img/temai/header_detail.jpg") no-repeat center center;
+		background-size: cover;
+		color: #fff;
+		padding: 0 10px;
+		position: relative;
+		overflow: hidden;
+
+		.company {
+			background-color: #588dd4;
+			color: #fff;
+			width: 96px;
+			text-align: center;
+			float: right;
+			border-bottom-left-radius: 2px;
+			border-bottom-right-radius: 2px;
+		}
+		.title {
+			font-size: 17px;
+		}
+		.sub-title {
+			font-size: 15px;
+		}
+		.sub-title img {
+			width: 15px;
+			vertical-align: -3px;
+		}
+	}
+	.bottom-container {
+		padding: 10px;
+		font-size: 14px;
+		color: #555;
+		border-bottom: 1px solid #e2e2e2;
+	}
+	.text-container {
+		position: absolute;
+		left: 10px;
+		bottom: 10px;
+	}
+}
+.gray{
+	color:#999;
+}
+.detail-content {
+	background-color: #FFF;
+	margin-top: 10px;
+	padding: 0 10px 10px;
+	border-bottom:1px solid #e2e2e2;
+	.btn-container {
+		padding: 10px 0;
+		overflow: hidden;
+	}
+
+	
+	.content-table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size:14px;	
+	}
+	.content-table td, .content-table th {
+		border: 1px solid #e2e2e2;
+		padding: 0.07rem;
+		text-align: center;
+
+	}
+	.content-table th {
+		font-weight: normal;
+		color: #999;
+	}
+	.content-table tr{
+		color: #555;
+	}
+	.content-table .td-left {
+		text-align: left;
+	}
+	.help-img {
+	  height: 0.18rem;
+	  vertical-align: -0.02rem;
+	}
+}
+.weui_btn {
+	position: relative;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 14px;
+	padding-right: 14px;
+	box-sizing: border-box;
+	font-size: 13px;
+	text-align: center;
+	text-decoration: none;
+	color: #FFFFFF;
+	line-height: 2.33333333;
+	border-radius: 5px;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	overflow: hidden;
+}
+.fl-3 {
+	float: left;
+	width: 70px;
+	margin-right: 10px;
+}
+.weui_btn_plain_default {
+	color: #555;
+	border: 1px solid #ccc;
+}
+.weui_btn_primary {
+	background-color: #588dd4;
+	color: #fff;
+}
+.tail-container{
+	margin-top:10px;
+	border-bottom:1px solid  #e2e2e2;
+}
+.tail-header{
+	background-color: #FFF;
+	border-bottom:1px solid  #e2e2e2;
+	@include flexbox;
+	.hd{
+		@include flex(1);
+		text-align: center;
+		height:45px;
+		line-height: 45px;
+	}
+}
+.qa-container{
+	background-color: #FFF;
+}
+.item{
+	@include flexbox;
+	.qa-icon{
+		@include flex( 0 1 150px;);
+		text-align: center;
+	}
+	.qa-content{
+		@include flex(1);
+	}
+}
+.pay_container{
+  overflow: hidden;position: fixed;bottom:0;width:100%;
+  border-top: 1px solid #e2e2e2;box-sizing: border-box;height: 48px;
+}
+.pay_container .left{
+  margin-right:1.5rem;width:65%;border-radius: 0;  background-color: #fff;color:#555;
+}
+.pay_container .right{
+  background-color: #ff5c00;
+  float:right;
+  width: 35%;
+  border-radius: 0
+}
+.money_size {
+  font-size: .27rem;
+  color: #ff5c00;
+}
