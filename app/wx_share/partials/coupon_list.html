@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="wx_share/css/coupon.css?rev=ab36fc115766e2bfba326e4afde86b44">
+<link rel="stylesheet" type="text/css" href="wx_share/css/coupon.css?rev=14392fc487f07bb781cc9a2b5c847cd5">
 <div id="wrapper" class="wrapper">
     <ul class="ul_container" style="background-color:#f3f3f3;margin-top:0;padding-left:0;display:none">
 
@@ -8,6 +8,7 @@
            <div class="fl">
                <img src="wx_share/img/ta_logo.png" class="logo_img" ng-if="coupon.coupon_id==1">
                <img src="wx_share/img/pingan_logo.jpg" class="logo_img" ng-if="coupon.coupon_id==2">
+               <img src="wx_share/img/exchange.png" class="logo_img img_back_grey" ng-if="coupon.coupon_id==3">
             </div>
             <div class="fl coupon_text" style="z-index:10;"  ng-if="coupon.coupon_id==1">
               <p >天安100万航空意外险 </p>
@@ -15,8 +16,14 @@
               <p style="color:#b8b8ba;font-size:11px;">有效期至:{{coupon.expiry_date |  date:'yyyy-MM-dd'}}</p>
               <div class="fl tag {{coupon.imgClass}}" > </div>
             </div>
-                 <div class="fl coupon_text" style="z-index:10;"  ng-if="coupon.coupon_id==2">
+            <div class="fl coupon_text" style="z-index:10;"  ng-if="coupon.coupon_id==2">
               <p >平安500万航空意外险 </p>
+              <p style="font-size:11px;">限本人使用 请至少提前一天投保</p>
+              <p style="color:#b8b8ba;font-size:11px;">有效期至:{{coupon.expiry_date |  date:'yyyy-MM-dd'}}</p>
+              <div class="fl tag {{coupon.imgClass}}" > </div>
+            </div>
+            <div class="fl coupon_text" style="z-index:10;"  ng-if="coupon.coupon_id==3">
+              <p >平安500万航空延误险 </p>
               <p style="font-size:11px;">限本人使用 请至少提前一天投保</p>
               <p style="color:#b8b8ba;font-size:11px;">有效期至:{{coupon.expiry_date |  date:'yyyy-MM-dd'}}</p>
               <div class="fl tag {{coupon.imgClass}}" > </div>
@@ -24,8 +31,5 @@
         </div>
       </li>
     </ul>
-
     <p class="default_text" id="reason_container">暂时没有保险劵</p>
-
-
   </div>

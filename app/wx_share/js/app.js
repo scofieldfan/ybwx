@@ -29,6 +29,9 @@ function($routeProvider) {
   }).when('/couponlist', {
     templateUrl: 'wx_share/partials/coupon_list.html',
     controller: 'myCouponListCtrl'
+  }).when('/exchange', {
+    templateUrl: 'wx_share/partials/exchange.html',
+    controller: 'myExchangetCtrl'
   }).otherwise({
     redirectTo: '/index'
   });

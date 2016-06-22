@@ -13,6 +13,7 @@ var api = {
 	'addFreeBd': '/ybwx-web/api/use_coupon',
 	'send_bd': '/ybwx-web/api/send_policy',
 	'ping_coupon': '/ybwx-web/api/ping_coupon',
+	'exchange': '/ybwx-web/api/exchange_coupon',
 	"test": "/ybwx-web/api/test"
 }
 
@@ -33,9 +34,9 @@ function submitBd($scope, $http, $location, $filter) {
 		mobile: $scope.user.mobile,
 		insure_date: insuranceDate
 	};
-	if ($scope.coupon_id == 2) {
+	// if ($scope.coupon_id == 2) {
 		postData["flight_no"] = $scope.user.flight_no;
-	}
+	// }
 	return $http({
 		method: 'POST',
 		headers: {
@@ -46,7 +47,6 @@ function submitBd($scope, $http, $location, $filter) {
 	})
 
 }
-
 wxShareControllers.controller('wxShareBdCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
 	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
 		_hmt.push(['_trackPageview', "/wx_share_toubao"]);
@@ -262,7 +262,33 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 				util.showToast($rootScope, "服务器错误");
 			});
 		}
-
+        $scope.exchange = function() {
+			_hmt.push(['_trackEvent', 'wx_share_index', 'wx_share_index_left_button']);
+	
+			var openId = sessionStorage.getItem("openId");
+			$http({
+				method: 'POST',
+				headers: {
+					"Content-Type": "application/json;charset:UTF-8"
+				},
+				url: api['exchange'],
+				data: {
+					"open_id": openId
+				}
+			}).then(function(res) {
+				console.log("tailu log .......");
+				console.log(res);
+				if (res.data && res.data.description) {
+					util.showToast($rootScope, res.data.description);
+				}else
+				if (res.data.data.result == 1) {
+					$location.path('/exchange');
+				}
+			}, function(res) {
+				console.log(res);
+				util.showToast($rootScope, "服务器错误");
+			});
+		}
 		$scope.freeBd = function() {
 			$location.path('/freebd');
 		}
@@ -285,6 +311,7 @@ wxShareControllers.controller('myCouponListCtrl', ['$scope', '$routeParams', '$h
 			3: "ing_item",
 			4: "success_item",
 			5: "ood_item",
+			6: "exchange_item",
 		}
 
 		$scope.init = function() {

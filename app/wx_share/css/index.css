@@ -30,13 +30,21 @@
 body {
   background: #fef3d7;
 }
-.my_bd_controller {
-  height: auto;
-  padding: .15rem .2rem .15rem .2rem;
+.left {
+  float: left;
+}
+.right {
+  float: right;
 }
 .layout {
   overflow: auto;
 }
+.my_bd_controller {
+  height: auto;
+  padding: .15rem .2rem .15rem .2rem;
+  background: ;
+}
+
 .ul_contrl {
   display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
   display: -moz-box; /* 老版本语法: Firefox (buggy) */
@@ -75,200 +83,231 @@ body {
 .ul_contrl li:nth-child(1) p:nth-child(2){
   color: #e52f62;
 }
-
-.logo_controller {
-  margin-top: .2rem;
-  width: 100%;
-  /*height: 2.6rem;*/
-  position: relative;
-}
  img {
   width: 100%;
   height: 100%;
 }
-/*input {
-  border: none;
-  width: 1.09rem;
-  height: .39rem;
-  border-radius: 5px;
-  color: #fff;
-  padding-left: .15rem;
-  font-size: .12rem;
+.share_mian {
+  padding-top: .25rem;
+  background: url(../img/my_bd/diwen.png) 0 .9rem no-repeat;
+  background-size: 100%;
 }
-.input_1 {
-  background: #e42f62;
-}
-.kong_input {
-  width: .14rem;
-}
-.input_2 {
-  margin: 0 0 0 .14rem;
-  background: #c2b085;
-}*/
-
-.button_contr {
-  position: absolute;
-  left: 0;
-  bottom:.45rem;
-  /*top: 1.5rem;*/
-  width: 100%;
-  /*padding:0 0 0 .18rem;*/
-  display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
-  display: -moz-box; /* 老版本语法: Firefox (buggy) */
-  display: -ms-flexbox; /* 混合版本语法: IE 10 */
-  display: -webkit-flex; /* 新版本语法: Chrome 21+ */
-  display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
-  flex-flow: row;
-}
-.button_contr p:nth-child(2),p:nth-child(4) {
-  display: inline-block;
-  width: 1.1rem;
-  /* -webkit-box-flex: 1;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;*/
-  /*height: .39rem;*/
-  font-size: .12rem;
-  text-align: center;
-  border-radius: 5px;
- /* display: -webkit-box; 
-  display: -moz-box;
-  display: -ms-flexbox; 
-  display: -webkit-flex; 
-  display: flex; 
-  flex-flow: row;*/
-  /*position: relative;*/
-  color: #fff;
-  line-height: .4rem;
-
-
-}
-.button_contr p:nth-child(2) {
-  background: #e42f62;
-}
-.button_contr p:nth-child(4) {
-  background: #c3b086;
-}
-
-.button_contr p:nth-child(3) {
-  width: .22rem;
-  /*box-flex: 1;
-  flex-grow: 1;
-  background: yellow;*/
-}
-.kong_wid45 {
-  /*width: .29rem;*/
-  /*background: blue;*/
-   -webkit-box-flex: 1;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-}
-.imgwid {
- /* display:inline-block;
-  width: .35rem;*/
-  vertical-align: middle;
-}
-.imgwid{
-  display: inline-block;
-  width: .16rem;
-  height: .16rem;
-  /*position: absolute;
-  left: .15rem;
-  top: .12rem;*/
-}
-.song_imgwid {
-  width: .14rem;
-  height: .14rem;
-  vertical-align: middle;
-}
-.imgwid span img {
-  width: 100%;
-  height: 100%;
-}
-.fontwid {
-  color: #fff;
-}
-/*
-.money {
+.free_500 {
+  /*height: 2rem;*/
   position: relative;
 }
-.money_song li {
-  list-style: none;
-  width: .16rem;
-  height: .16rem;
+.mianfei {
+  padding-bottom: .2rem;
+}
+.mianfei .mianfei_img {
+  float: right;
+  width: 210px;
+}
+.feiji {
+  width: .75rem;
+  height: .75rem;
   position: absolute;
-  top: .12rem;
+  bottom: -0.6rem;
+  left: -0.05rem;
+  z-index: 9999;
 }
-.money_song li:nth-child(1){
-  left: .37rem;
+/*500万航班意外险*/
+.up {
+  position: relative;
 }
-.money_song li:nth-child(2){
-  list-style: none;
-  width: .16rem;
-  height: .16rem;
-  position: absolute;
-  top: .12rem;
-  left: 1.63rem;
+.marBtn_3 {
+  margin-bottom: -0.02rem;
 }
-img  {
+.pingan img:nth-child(1) {
+  float: left;
+  margin-left: 10%;
+  width: .48rem;
+}
+.pingan img:nth-child(2) {
+  float: right;
+  margin-right: 10%;
+  width: 1.44rem;
+}
+.img_logo {
   width: 100%;
-  height: 100%;
-}*/
+  position: absolute;
+  left: 0;
+  top: 40%;
+}
+.pingan {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 15%;
+}
+.img_logo a {
+  display: inline-block;
+  /*padding: .1rem 0 0 0;*/
+  width: 1.1rem;
+  height: .4rem;
+  text-align: center;
+  line-height: .4rem;
+  color: #fff;
+  border-radius: 5px;
+  font-size: .15rem;
+}
+.img_logo a:nth-child(1) {
+  margin-left: 8%;
+  float: left;
+  background: #e52f62;
+}
+.img_logo a:nth-child(2) {
+  margin-right: 8%;
+  float: right;
+  background: #c1af84;
+}
+.p_color {
+  width: 100%;
+  position: absolute;
+  right: 9%;
+  top: 60%;
+  color: #c1af84;
+  text-align: right;
+  font-size: .11rem;
+}
+.font_red {
+  color: #e52f62;
+}
+.font_color_red {
+  color: #e52f62;
+  font-size: .13rem;
+  padding: 0 0 0 .1rem;
+}
+.font_color_red img {
+  width: .13rem;
+  vertical-align: -1px;
+}
+.dun_font {
+  position: absolute;
+  bottom: 10%;
+  left: 2%;
+}
+/*300元韩版延误险*/
+.down {
+  position: relative;
+}
+.yanwu {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 15%;
+}
+.yanwu img:nth-child(1) {
+  float: left;
+  width: .48rem;
+  /*margin-left: 8%;*/
+  margin: 2% 0 0 10%;
+}
+.yanwu img:nth-child(2) {
+  float: right;
+  width: 1.44rem;
+  margin-right: 8%;
+}
+.logo_size {
+  width: .13rem;
+  height: .13rem;
+  vertical-align: -2px;
+}
+.duihuan {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 25%;
+  color: #e52f62;
+  font-size: .13rem;
+
+  /*padding: .2rem .2rem 0 .1rem;*/
+}
+.duihuan li:nth-child(1) {
+  width: 1.3rem;
+  margin-left: 6%;
+}
+.duihuan li {
+  float: left;
+}
+.duihuan_btn {
+  width: 1.1rem;
+  height: .4rem;
+  background: #e52f62;
+  text-align: center;
+  line-height: .4rem;
+  color: #fff;
+  border-radius: 5px;
+  font-size: .15rem;
+}
+.hangyixian{
+  width: 100%;
+  position: absolute;
+  right: -2%;
+  bottom: 15%;
+  color: #c1af84;
+  font-size: .11rem;
+  text-align: right;
+  padding-right: .25rem;
+}
+.duihuan li:nth-child(2) {
+  float: right;
+  margin-right: 6%;
+}
+.logo_money {
+  width: .15rem;
+  height: .15rem;
+  vertical-align: -2px;
+}
+.logo_song {
+  width: .13rem;
+  height: .13rem;
+  vertical-align: -2px;
+}
+.lipei_font {
+  width: 100%;
+  position:  absolute;
+  right: 8%;
+  top: 25%;
+  color: #c1af84;
+  font-size: .12rem;
+  text-align: right;
+}
+/*底部横线+二维码*/
 .font_controller {
-  padding: .19rem 0 0 0;
+  padding: 20px 10px 10px 10px;
   position: relative;
 }
 .font_controller li{
   list-style: none;
   color: #a08f66;
-  font-size: 12px;
+  font-size: .12rem;
   line-height: .2rem;
 }
 .font_controller p{
   list-style: none;
-  color: #a08f66;
-  font-size: .08rem;
+  color: #e52f62;
+  font-size: .13rem;
   padding-bottom: .05rem;
+
 }
 .font_controller img{
   width: .13rem;
   height: .13rem;
-  /*vertical-align: middle;*/
-}
-.font_controller span {
-  display: inline-block;
-  font-size: .13rem;
-  color: #e52f62;
-  margin-left: .04rem;
-  /*font-weight: bold;*/
-}
-.paddBtn_20 {
-  padding-bottom: .1rem;
-}
-.cell_code {
-  display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
-  display: -moz-box; /* 老版本语法: Firefox (buggy) */
-  display: -ms-flexbox; /* 混合版本语法: IE 10 */
-  display: -webkit-flex; /* 新版本语法: Chrome 21+ */
-  display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
-  flex-flow: row;
-  width: 100%;
+  vertical-align: -1px;
 }
 .main_font {
   /*padding-bottom: 17px; */
   line-height: .17rem;
-  -webkit-box-flex: 1;
+  width: 1.85rem;
+ /* -webkit-box-flex: 1;
   -webkit-flex: 1;
   -ms-flex: 1;
-  flex: 1;
+  flex: 1;*/
 }
 .two_code {
   width: .75rem;
   height: .75rem;
-  /*position: absolute;
-  left: 2.05rem;
-  top: 1.3rem;*/
   overflow: auto;
 }
 .two_code img {
