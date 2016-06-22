@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css" href="css/ring.css?rev=a2e363946d7a46c73bae48007e41daca">
 
-<div  class="wrapper"  data-ng-init="init()" style="overflow: hidden;">
+<div  class="wrapper"  data-ng-init="init()" style="overflow: hidden;padding:0 17px;">
 
 	<div  class="head-container" style="overflow: hidden;">
 		<label class="switch">
@@ -24,14 +24,18 @@
 		<canvas id="chartContainer"  style="background:transparent;position:absolute;left:0;top:0;" ></canvas>
 		<div  id = "chartTextContainer" class="canvas_text"   style = "position:absolute;">
 			<!---->
-			<p  style="position:absolute;left:0.1rem;margin:0;top:0.4rem;font-size:0.20rem;text-align: center;color:#4e4e4d;" id="default_text">顺时针滑动提升分数</p>
+			<p  style="position:absolute;left:0.5rem;margin:0;top:0.4rem;font-size:0.20rem;text-align: center;color:#588dd4;line-height: 24px;" id="default_text">
+			顺时针滑动<br/>
+			<span style="color:#999;">选择范围</span>
+			</p>
 
-			<div  style="position:relative;left:-0.5rem;opacity: 0"  class="small">&nbsp;&nbsp;</div>
-			<div  style="position:relative;left:-0.1rem;font-size:0.2rem;opacity: 0">&nbsp;&nbsp;</div>
+			<div  style="position:relative;left:-0.5rem;opacity:0"  class="small">&nbsp;&nbsp;</div>
+			<div  style="position:relative;left:0.4rem;font-size:0.16rem;opacity: 0">&nbsp;&nbsp;</div>
 			<div  style="position:relative;font-size:0.26rem;text-align: center;opacity: 1">&nbsp;&nbsp;</div>
-			<div  style="position:relative;left:0.3rem;opacity: 0;font-size:0.16rem" >&nbsp;&nbsp;</div>
-			<div  style="position:relative;left:-0.2rem;opacity: 0;" class="small" >&nbsp;&nbsp;</div>
+			<div  style="position:relative;left:0.3rem;opacity: 0;font-size:0.13rem" >&nbsp;&nbsp;</div>
+			<div  style="position:relative;left:-0.2rem;font-size:0.17rem;opacity: 0;" class="small" >&nbsp;&nbsp;</div>
 		</div>
+		<div id="log"></div>
 	</div>
 
 	<div  class="bt_container">
