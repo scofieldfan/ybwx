@@ -71,7 +71,7 @@
 }
 .weui_progress_bar .kedu {
 	position: absolute;
-	top: -0.13rem;
+	top: -10px;
 }
 .kedu .zz {
 	height: 10px;
@@ -115,7 +115,7 @@
 .bottom_container {
 	border-width: 1px;
 	border-style: none none solid;
-	border-color: #cacaca;
+	border-color: #e0e0e0;
 	padding: 0.4rem 0.2rem;
 	margin-top: 0.2rem;
 	position: relative;
