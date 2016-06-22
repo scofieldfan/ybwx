@@ -1,7 +1,4 @@
 * {margin: 0;padding: 0;}
-/*body {
-  height: 100%;
-}*/
 /* <=320的奇葩手机 */
 @media  (max-width:320px) {
   html {
@@ -211,10 +208,6 @@ body {
   width: 1.44rem;
   margin-right: 8%;
 }
-/*.yanwu span {
-  color: #c1af84;
-  font-size: .12rem;
-}*/
 .logo_size {
   width: .13rem;
   height: .13rem;
@@ -315,9 +308,6 @@ body {
 .two_code {
   width: .75rem;
   height: .75rem;
-  /*position: absolute;
-  left: 2.05rem;
-  top: 1.3rem;*/
   overflow: auto;
 }
 .two_code img {
