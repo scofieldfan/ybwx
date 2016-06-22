@@ -343,9 +343,18 @@ wxShareControllers.controller('myCouponListCtrl', ['$scope', '$routeParams', '$h
 					} else if (res.data.code == 0) {
 						if (res.data.data.coupons) {
 							/**/
-							res.data.data.coupons.forEach(function(item) {
+							res.data.data.coupons.forEach(function(coupon) {
 								//  item.showDate = item["expiry_date"].substring(0,4)+"-"+item["expiry_date"].substring(4,6)+"-"+item["expiry_date"].substring(6);
-								item.imgClass = imgMap[item["coupon_status"]];
+								coupon.imgClass = imgMap[coupon["coupon_status"]];
+								if(coupon.coupon_id == 2 || coupon.coupon_id == 3){
+									if(coupon.coupon_status == 5 || coupon.coupon_status ==  6) {
+                                      coupon.logo = "wx_share/img/exchange.png";
+									}else {
+                                      coupon.logo = "wx_share/img/pingan_logo.jpg";
+									}
+								}else if(coupon.coupon_id == 1){
+									  coupon.logo = "wx_share/img/ta_logo.png";
+								}
 							})
 							$scope.reason = "";
 							if (res.data.data.coupons.length === 0) {
