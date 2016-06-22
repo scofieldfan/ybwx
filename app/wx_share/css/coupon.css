@@ -186,6 +186,10 @@ ul{
   background:url(../img/coupon_ood.png)  no-repeat ;
   background-size:contain;
 }
+.exchange_item{
+  background:url(../img/coupon_exchange.png)  no-repeat ;
+  background-size:contain;
+}
 .right_button_container{
   margin-top:45px;
   margin-right:10px;

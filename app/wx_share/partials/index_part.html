@@ -1,58 +1,72 @@
-<link rel="stylesheet" href="wx_share/css/index.css?rev=093089c016e918c915809b107e815aa3">
-	<div class="my_bd_controller">
-		<ul class="layout ul_contrl">
-			<li >
-				<p>诺贝保险管家</p>
-				<p>助您出行无忧</p>
-			</li>
-			<li></li>
-			<li>全球航班通用</li>
+<link rel="stylesheet" href="wx_share/css/index.css?rev=fe6d85abc7c49c9dfb8684f363de99a2">
+<div class="my_bd_controller">
+	<ul class="layout ul_contrl">
+		<li >
+			<p>诺贝保险管家</p>
+			<p>助您出行无忧</p>
+		</li>
+		<li></li>
+		<li></li>
+	</ul >
+	<div class="share_mian">
+		<ul class="free_500">
+			<img src="wx_share/img/my_bd/free500.png">
+			<img src="wx_share/img/my_bd/jia300.png"><img  class="feiji" src="wx_share/img/my_bd/xiaofeiji.png">
 		</ul>
-		<div class="logo_controller">
-			<img src="wx_share/img/my_bd/logo.png" srcset="wx_share/img/my_bd/logo.png 568w, wx_share/img/my_bd/logo2.png 667w, wx_share/img/my_bd/logo2.png 736w" >
-			<div class="button_contr">
-				<p class="kong_wid45"></p>
-				<p ng-click="addCoupon()">
-					<img class="imgwid" src="wx_share/img/my_bd/money.png?v=32">
-					<a href="###" class="fontwid">免费领取</a>
-				</p>
-				<p></p>
-				<p ng-click="showShareTip()">
-					<img class="song_imgwid" src="wx_share/img/my_bd/song.png?v=32">
-
-					<a href="###" class="fontwid">送给好友</a>
-				</p>
-				<p class="kong_wid45"></p>
+		<ul class="mianfei layout">
+			<div class="left"></div>
+			<img class=" mianfei_img" src="wx_share/img/my_bd/mianfei.png">
+		</ul>
+		<div class="up">
+			<img class=" marBtn_3" src="wx_share/img/my_bd/shang.png">
+			<div class="pingan layout">
+			    <img src="wx_share/img/my_bd/pingan.png">
+				<img src="wx_share/img/my_bd/wan500.png">
+			</div>
+			<div class="img_logo layout">
+				<a href="###" ng-click="addCoupon()"><img class="logo_money" src="wx_share/img/my_bd/money.png"> 免费领取</a>
+				<a href="###" ng-click="showShareTip()"><img class="logo_song" src="wx_share/img/my_bd/song.png"> 送给好友</a>
+			</div>
+			<p class="p_color">( 已成功送给<span class="recommend_times font_red">{{data.recommend_times}}</span>位好友 )</p>
+			<div class="dun_font">
+				<p class="font_color_red"><img  src="wx_share/img/my_bd/bx_logo.jpg"> 每月均可无条件免费领取1份</p>
+			    <p class="font_color_red" >&nbsp;&nbsp;&nbsp;&nbsp;每送给1个好友,即可再免费领取1份</p>
 			</div>
 		</div>
-		<div class="font_controller">
-			<p>
-				<img src="wx_share/img/my_bd/bx_logo.jpg">
-				<span>最高可领12份</span>
-			</p>
-			<ul class="paddBtn_20">
-
-				<li>每送给3个好友，可再免费领取1份，最高可领取12份。(已有<i  class="recommend_times">{{data.recommend_times}}</i>位好友已成功领取)</li>
-			</ul>
-
-			<p>
-				<img src="wx_share/img/my_bd/bx_logo.jpg">
-				<span>领取后请前微信号 [ 诺贝 ] 投保</span>
-			</p>
-			<div class="cell_code">
-				<div class="main_font left">
-					<li>1.长按右侧二维码关注 [诺贝]</li>
-					<li>2.在微信号底部菜单  [ 我的保险劵 ] 投保</li>
-					<li>3.有效期：2016.04.26 ~ 07.26</li>
-				</div>
-				<!-- 二维码 -->
-				<div class="two_code">
-					<img src="wx_share/img/my_bd/erweima.jpg"></div>
+		<div class="down">
+			<img src="wx_share/img/my_bd/xia.png">
+			<div class="yanwu layout">
+			    <img src="wx_share/img/my_bd/pingan.png">
+				<img src="wx_share/img/my_bd/yuan300.png">
+				
 			</div>
+			<p class="lipei_font">延误3小时立赔</p>
+			<ul class="duihuan layout">
+				<li ><img class="logo_size" src="wx_share/img/my_bd/bx_logo.jpg"> 3份航空意外险可以 &nbsp;&nbsp;&nbsp;&nbsp;兑换1份航班延误险</li>
+                <li class="duihuan_btn" ng-click="exchange()"><img class="logo_money" src="wx_share/img/my_bd/duihuan.png"> 立即兑换</li>
+			</ul>                    
+            <div class="hangyixian">( 你已有<span class="remain_times font_red">{{data.remain_times}}</span>份航意险 )</div>
 		</div>
-		<ul class="footer_border">
-			<li></li>
-			<li></li>
-			<li></li>
-		</ul>
 	</div>
+	
+	<div class="font_controller layout">
+	    <p>
+			<img src="wx_share/img/my_bd/bx_logo.jpg">  领取后请前往微信号 [ 诺贝 ] 投保
+        </p>
+		<div class="main_font left">
+			
+			<li>1.长按右侧二维码关注 [诺贝]</li>
+			<li>2.在微信号底部菜单  [ 我的保险劵 ] &nbsp;&nbsp;&nbsp;投保</li>
+			<li>3.有效期：2016.04.26 ~ 07.26</li>
+		</div>
+		<!-- 二维码 -->
+		<div class="two_code right">
+			<img src="wx_share/img/my_bd/erweima.jpg">
+		</div>
+	</div>
+	<ul class="footer_border">
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</div>

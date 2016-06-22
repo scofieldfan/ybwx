@@ -16,7 +16,7 @@
 .cell_hd_border {
   border: 1px solid #e2e2e2;
 }
-.strong{
+.strong{ szxd
 	color:#247ad1;
 }
 .self{
@@ -214,5 +214,6 @@ table td, table th {
 .unsell{
   background-color: #cccccc;
 }
-
-
+.orange {
+  color: #ff5c00;
+}
