@@ -350,7 +350,7 @@ wxShareControllers.controller('myCouponListCtrl', ['$scope', '$routeParams', '$h
 									if(coupon.coupon_status == 5 || coupon.coupon_status ==  6) {
                                       coupon.logo = "wx_share/img/exchange.png";
 									}else {
-                                      coupon.logo = "wx_share/img/pingan_logo.jpg";
+                                      coupon.logo = "wx_share/img/pingan.png";
 									}
 								}else if(coupon.coupon_id == 1){
 									  coupon.logo = "wx_share/img/ta_logo.png";
