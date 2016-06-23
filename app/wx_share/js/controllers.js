@@ -127,10 +127,12 @@ wxShareControllers.controller('wxShareBdCtrl', ['$scope', '$filter', '$routePara
 				if ($scope.registration.insurance_date.$invalid) {
 					util.showToast($rootScope, "保障日期填写有误，请修改");
 				}
-
 			}
 		}
-
+        // $('#birthday').focus(function() {
+        // 	this.type = 'date';
+        // 	// this.focus();
+        // })
 	}
 ]);
 
@@ -263,7 +265,7 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 			});
 		}
         $scope.exchange = function() {
-			_hmt.push(['_trackEvent', 'wx_share_index', 'wx_share_index_left_button']);
+			_hmt.push(['_trackEvent', 'wx_share_index', 'wx_share_index_exchange_button']);
 	
 			var openId = sessionStorage.getItem("openId");
 			$http({
