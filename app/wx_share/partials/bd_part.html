@@ -1,60 +1,74 @@
-<link rel="stylesheet" href="wx_share/css/bd_part.css?rev=ec44b3f553fa55e9ca700b5febf82fa5">
+<link rel="stylesheet" href="wx_share/css/bd_part.css?rev=edsfdsfdsfdsfs">
 <div id="wrapper" class="wrapper">
 	<div class="bd_part_controller">
-		<ul class="layout ul_contrl">
-			<li>
-				<p>诺贝保险管家</p>
-				<p>助您出行无忧</p>
-			</li>
-			<li></li>
-			<li>全球航班通用</li>
-		</ul>
+		<div class="ul_contrl" ng-if="coupon_id==1">
+			<p class="chanpin_name">天安人寿-百万航空意外险</p>
+			<p class="pei_300">乘坐飞机人身意外身故/伤残保障<span>100</span>万</p>
+		</div>
+		<div class="ul_contrl" ng-if="coupon_id==2">
+			<p class="chanpin_name">中国平安-500万航空意外险</p>
+			<p class="pei_300">乘坐飞机人身意外身故/伤残保障<span>500</span>万</p>
+		</div>
+		<div class="ul_contrl" >
+			<div class="ul_contrl_top">
+				<div class="chanpin_name" >中国平安-航班延误险</div>
+				<div class="pei_300 up_20">航班延误3小时以上，即赔付<span>300</span>元</div>
+			</div>
+			<div class="ul_contrl_bot">
+				<div class="xian"></div>
+			    <div class="pei_300 up_30">暂不支持春秋航空、国际航空</div>
+			</div>
+			
+		</div>
 		<div class="bd_part_main paddLeft">
 			<form class="" role="form" name="registration" novalidate>
-			<div class="bd_part_tit">
-				<img src="wx_share/img/my_bd//bx_logo.jpg">
-				<span>被保人信息</span>
-			</div>
+			<ul class="layout bd_part_tit">
+				<li class="left" >投保信息</li>
+				<li class="right">
+					<a href="http://web.youbaowuxian.com/ybwx-web/api/web_page/130" class="blue"  ng-if="coupon_id==2">产品条款及投保须知
+					</a>
+					<a href="http://web.youbaowuxian.com/ybwx-web/api/web_page/1" class="blue"  ng-if="coupon_id==1">
+					产品条款及投保须知
+					</a>
+					<a href="http://web.youbaowuxian.com/ybwx-web/api/web_page/11" class="blue"  ng-if="coupon_id==3">
+					产品条款及投保须知
+					</a>
+				</li>
+			</ul>
 			<div class="bd_part_input ">
-				<input type="text" placeholder="姓名"   onfocus="_hmt.push(['_trackEvent', 'wx_share_toubao', 'wx_share_toubao_name_focus']);" ng-minlength="1"  name="username" ng-model="user.username" required chinese >
+				<input type="text" style="margin-top: none" placeholder="姓名"   onfocus="_hmt.push(['_trackEvent', 'wx_share_toubao', 'wx_share_toubao_name_focus']);" ng-minlength="1"  name="username" ng-model="user.username" required chinese >
 				<div class="cell"  style="color:red" ng-show="registration.username.$dirty && registration.username.$invalid || username_server_reason">
 					<small class="error" ng-show="registration.username.$error.required">姓名必填</small>
             		<small class="error"  ng-show="registration.username.$error.chinese">姓名必须是汉字!</small>
                     <small class="error" ng-show="username_server_reason">{{username_server_reason}}</small>
 		        </div>
-				<input type="text" placeholder="身份证"  ng-minlength="18" ng-maxlength="18"  name="social_id" ng-model="user.social_id" required >
-				<div class="cell"  style="color:red" ng-show="registration.social_id.$dirty && registration.social_id.$invalid || card_numer_server_reason">
+				<input type="text" class="input_top_padd" placeholder="身份证"  ng-minlength="18" ng-maxlength="18"  name="social_id" ng-model="user.social_id" required >
+				<div class="cell" style="color:red" ng-show="registration.social_id.$dirty && registration.social_id.$invalid || card_numer_server_reason">
 					<small class="error" ng-show="registration.social_id.$error.required">身份证必填</small>
 					<small class="error" ng-show="registration.social_id.$error.minlength">身份证必须是18位</small>
 					<small class="error" ng-show="registration.social_id.$error.maxlength">身份证必须是18位</small>
                     <small class="error" ng-show="card_numer_server_reason">{{card_numer_server_reason}}</small>
 				</div>
-				<input type="number" placeholder="手机号"  ng-minlength="11" ng-maxlength="11" name="mobile" ng-model="user.mobile" required>
+				<input type="number" class="input_top_padd" placeholder="手机号"  ng-minlength="11" ng-maxlength="11" name="mobile" ng-model="user.mobile" required>
 				<div class="cell"  style="color:red" ng-show="registration.mobile.$dirty && registration.mobile.$invalid || mobile_server_reason">
 					<small class="error" ng-show="registration.mobile.$error.required">手机号必填</small>
 					<small class="error" ng-show="registration.mobile.$error.minlength">手机号必须是11位数字</small>
 					<small class="error" ng-show="registration.mobile.$error.maxlength">手机号必须是11位数字</small>
                     <small class="error" ng-show="mobile_server_reason">{{mobile_server_reason}}</small>
 		        </div>
-				<input type="text" placeholder="航班号"  name="flight_no" ng-model="user.flight_no" required>
+				<input type="text" class="input_top_padd"style="background: #fff;" placeholder="航班号"  name="flight_no" ng-model="user.flight_no" required>
 				<div class="cell"  style="color:red" ng-show="registration.flight_no.$dirty && registration.flight_no.$invalid || card_numer_server_reason">
 					<small class="error" ng-show="registration.flight_no.$error.required">航班号必填</small>
 				    <small class="error" ng-show="card_numer_server_reason">{{card_numer_server_reason}}</small>
 				</div>
-				<input style="background:url(wx_share/img/jian.png) no-repeat 95% center;background-size: .17rem .17rem; -webkit-appearance:none;line-height: .48rem;" type="date" placeholder="保障期间" min="{{minDate | date:'yyyy-MM-dd'}}" max="{{maxDate | date:'yyyy-MM-dd'}}" name="insurance_date" ng-model="user.insurance_date" required >
+				<div class="date_tit">生效日期</div>
+				<input class="last_input" style="background:url(wx_share/img/jian.jpg) no-repeat 95% center #fff;background-size: .17rem .17rem; -webkit-appearance:none;line-height: .48rem;" type="date" placeholder="保障期间" min="{{minDate | date:'yyyy-MM-dd'}}" max="{{maxDate | date:'yyyy-MM-dd'}}" name="insurance_date" ng-model="user.insurance_date" required >
 				<div class="cell"  style="color:red" ng-show="registration.insurance_date.$dirty && registration.insurance_date.$invalid || insurance_date_server_reason">
 	            	<small class="error" ng-show="registration.insurance_date.$error.min">保障日期最早从明天开始</small>
 	            	<small class="error" ng-show="registration.insurance_date.$error.max">保障日期超过最大日期2016年10月26</small>
 	                <small class="error" ng-show="insurance_date_server_reason">{{insurance_date_server_reason}}</small>
 		        </div>
-				<ul class="layout">
-					<li class="left ">
-						保费：原价<span class="font_red">20元</span>
-					</li>
-					<li class="right">
-						由诺贝保险管家<span class="font_red">免费赠送</span>
-					</li>
-				</ul>
+				<div class="baofei">保费： 由诺贝保险管家<span class="font_red">免费赠送</span></div>
 			</div>
 			<div class="item">
 				<input type="checkbox" id="chek" checked="checked" ng-model="user.know_contract" name="know_contract" required >
@@ -77,12 +91,8 @@
     </div>
 </div>
 <footer class="bd_footer">
-	 <div  ng-click='submit()' id="submitButton"  >确认投保</div>
+	 <div  ng-click='submit()' id="submitButton"  >立即投保</div>
 </footer>
-
-
-
-
 
  
 

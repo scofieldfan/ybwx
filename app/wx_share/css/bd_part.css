@@ -28,13 +28,20 @@
 }
 html {
   font-size: 100px;
+  font-family: ;
 }
 input {
   /*-webkit-appearance:none;*/
   border: none;
 }
+/*body {
+  background: #fafafa;
+}*/
 body {
-  background: #fef3d7;
+  font: 0.14rem  Helvetica, Microsoft YaHei, SimHei,sans-serif;/*实际相当于14px*/
+  line-height: 1.6;
+  background-color: #fafafa;
+  -webkit-text-size-adjust: 100% !important; /*禁止IOS调整字体大小*/
 }
 .left {
   float: left;
@@ -42,13 +49,15 @@ body {
 .right {
   float: right;
 }
+.layout {
+  overflow: auto;
+}
 .wrapper {
   width: 100%;
   height: 100%;
-  font-family: "微软雅黑";
 }
 .bd_part_controller {
-  padding: .15rem .2rem .63rem .2rem;
+  padding: 0 0 .7rem 0;
 }
 .bd_part_controller input{
   border: none;
@@ -58,95 +67,98 @@ body {
   margin: 0;
   /*　-webkit-appearance:none; /*去除input默认样式*/*/
 }
-.layout {
-  overflow: auto;
-}
 .ul_contrl {
-  display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
-  display: -moz-box; /* 老版本语法: Firefox (buggy) */
-  display: -ms-flexbox; /* 混合版本语法: IE 10 */
-  display: -webkit-flex; /* 新版本语法: Chrome 21+ */
-  display: flex;  
-  /*flex-flow: row;*/
-  /*display: -webkit-flex;*/
+  padding: .15rem .1rem;
+  background: #588dd4;
 }
-.ul_contrl li:nth-child(1) {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  border-bottom: 5px solid #e52f62;
-  /*padding-bottom: .07rem;*/
+.xian {
+  background:#add0ff;
+  height:1px;
+
 }
-.ul_contrl li:nth-child(2) {
-  width: .06rem;
+.ul_contrl_top {
 }
-.ul_contrl li:nth-child(3) {
-  width: .84rem;
-  border-bottom: 5px solid #003756;
+.ul_contrl_bot {
+  padding: .08rem 0 0 0;
+}
+.chanpin_name {
+  color: #fff;
+  font-size: .17rem; 
+}
+.up_20 {
+  /*padding: .01rem 0 0 0;*/
+}
+.up_30 {
+  padding-top: .08rem;
+}
+.pei_300 {
   font-size: .13rem;
-  color: #003756;
-  padding-bottom: 3px;
+  color: #add0ff;
 }
-.ul_contrl li:nth-child(1) p{
-  display: inline-block;
-  font-size: .13rem;
-}
-.ul_contrl li:nth-child(1) p:nth-child(1){
-  color: #003756;
-  font-weight: bold;
-}
-.ul_contrl li:nth-child(1) p:nth-child(2){
-  color: #e52f62;
+.pei_300 span {
+  color: #fff;
 }
 .bd_part_main {
-  padding: .4rem 0 0 0;
+  padding: 0 .1rem;
 }
 .bd_part_tit {
-  font-size: .14rem;
-  font-weight: bold;
-  color: #e52f62;
-}
-.bd_part_tit  img {
-  width: .17rem;
-  height: .17rem;
-  vertical-align: middle;                                                   i     
-}
-.bd_part_tit span {
   font-size: .13rem;
+  padding: .1rem 0;
+}
+.bd_part_tit li:nth-child(1) {
+  color: #555;
+  font-size: .15rem;
+}
+.bd_part_tit li:nth-child(2) a{
+  color: #588dd4;
 }
 .bd_part_input {
-  padding: 0 .1rem 0 0;
+  /*padding: 0 .1rem 0 0;*/
 }
+
 .bd_part_input input {
   box-sizing:border-box;
   -moz-box-sizing:border-box; /* Firefox */ 
   -webkit-box-sizing:border-box;
   display: block;
-  margin-top: .2rem;
+  /*margin-top: .15rem;*/
   width: 100%;
-  height: .48rem;
-  background: #fef3d7;
-  border: 1px solid #98aba3;
+  height: .44rem;
+  background: #fff;
+  border: 1px solid #e2e2e2;
   padding-left: 14px; 
-  color: #555555;
+  color: #555;
   font-weight: none;
+  -webkit-appearance:none;appearance:none;outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);border-radius:0;/*解决ios下input禁止圆角边框的问题*/
+}
+.bd_part_input .input_top_padd {
+  margin-top: .15rem;
+}
+.bd_part_input .last_input {
+  background: #fff;
+  margin-top: .1rem;
 }
 .bd_part_input input::input-placeholder {
-  color: #c9bd9d;
+  color: #ccc;
 }
 .bd_part_input input::-webkit-input-placeholder {
-  color: #c9bd9d;
+  color: #ccc;
 }
 .bd_part_input input::-moz-input-placeholder {
-  color: #c9bd9d;
+  color: #ccc;
 }
 .bd_part_input input::-webkit-input-placeholder {
-  color: #c9bd9d;
+  color: #ccc;
 }
 .bd_part_input input::-ms-input-placeholder {
-  color: #c9bd9d;
+  color: #ccc;
 }
+.date_tit {
+  padding-top: .1rem;
+  color: #555;
+  font-size: .15rem;
+}
+
 .hairlines .bd_part_input input{
     border-width: 0.5px;
 }
@@ -160,12 +172,13 @@ body {
 
 }
 .item {
+  padding-top: .15rem;
   color: #003756;
-  font-size: .13rem;
+  font-size: .15rem;
   vertical-align: text-bottom;
 }
 .item a{
-  color: #003756;
+  color: #588dd4;
 }
 .item input{
   width: .16rem;
@@ -182,13 +195,17 @@ body {
 .oneshow {
    background: url(../img/checkbox1.png) no-repeat;
 }
+.baofei {
+  color: #999;
+  padding-top: .3rem;
+}
 .font_red {
-  color: #e52f62;
+  color: #ff5c00;
 }
 .bd_footer {
-	width: 100%;
-	height: .48rem;
-	background: #1e4e8e;
+  width: 100%;
+  height: .48rem;
+  background: #1e4e8e;
   /*border-top: 1px solid #003756;
   border-bottom: 1px solid #003756;*/
   text-align: center;
@@ -203,8 +220,8 @@ body {
 /*ios底部fixed失效的问题的解决方案*/
 .wrapper {
    position: fixed;
-    top: 10px;
-    bottom: 48px;
+    top: 0;
+    bottom: .48rem;
     /* 使之可以滚动 */
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
