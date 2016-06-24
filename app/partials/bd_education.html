@@ -9,17 +9,14 @@
 		<tr class="bd-tr">
 			<th style="text-align:left;">已有保障</th>
 			<th>保额</th>
-			<th style="text-align:right;">评分</th>
 		</tr>
 		<tr ng-if="data.aggregate_score==0">
 			<td  style="text-align:left;">您暂时没有任何保障</td>
-			<td></td>
 			<td></td>
 		</tr>
 		<tr class="bd-tr" ng-repeat="item in data.analysis" ng-class="{'hide':$index>5}">
 			<td  style="text-align:left;">{{item.name}}</td>
 			<td >{{processMoney(item.sum_insured)}}</td>
-			<td  style="text-align:right;" > {{item.score|number:2}}分</td>
 		</tr>
 	</table>
 </div>
