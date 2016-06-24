@@ -230,19 +230,17 @@ body {
 header {
   background-color: #fff; }
   header .top-container {
-    height: 1.35rem;
-    background: url("../img/temai/header_detail.jpg") no-repeat center center;
-    background-size: cover;
     color: #fff;
-    padding: 0 10px;
     position: relative;
     overflow: hidden; }
     header .top-container .company {
       background-color: #588dd4;
       color: #fff;
-      width: 96px;
+      padding: 0 10px;
       text-align: center;
-      float: right;
+      position: absolute;
+      top: 0;
+      right: 10px;
       border-bottom-left-radius: 2px;
       border-bottom-right-radius: 2px; }
     header .top-container .title {
@@ -336,6 +334,15 @@ header {
   padding-bottom: 20px;
   margin-bottom: 65px; }
 
+.introd-container {
+  padding: 10px; }
+  .introd-container h5 {
+    font-weight: normal;
+    font-size: 13px;
+    margin: 0 10px; }
+  .introd-container img {
+    width: 100%; }
+
 .tail-header {
   background-color: #FFF;
   border-bottom: 1px solid  #e2e2e2;
@@ -354,7 +361,8 @@ header {
     width: .1px;
     text-align: center;
     height: 45px;
-    line-height: 45px; }
+    line-height: 45px;
+    cursor: pointer; }
   .tail-header .hd.select {
     color: #588dd4;
     border-bottom: 3px solid #588dd4; }
@@ -489,3 +497,66 @@ header {
 .money_size {
   font-size: .27rem;
   color: #ff5c00; }
+
+.head-container {
+  position: absolute;
+  top: 100px;
+  bottom: 0;
+  width: 100%;
+  background-color: #fff; }
+
+.head-container img {
+  width: 100px;
+  height: 100px;
+  margin: -0.22rem 0.08rem 0 0.17rem; }
+
+.head-container p {
+  margin: 3px 0; }
+
+.head-container .close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 25px;
+  height: 25px;
+  background: #fff url("../img/close_1.jpg") no-repeat center/25px; }
+
+.select-container {
+  margin-left: 0.17rem; }
+
+.select-container h4 {
+  margin: 0.14rem 0 0.08rem 0; }
+
+.button {
+  font-size: 0.13rem;
+  line-height: 0.33rem;
+  height: 0.33rem;
+  display: inline-block;
+  overflow: hidden;
+  box-sizing: border-box;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 4px;
+  padding: 0 0.17rem;
+  margin-right: 5px;
+  -webkit-tap-highlight-color: transparent; }
+
+.button_primary {
+  border: 1px solid #c1c1c1;
+  color: #000;
+  background-color: #fff; }
+
+.button_hover {
+  border: 1px solid #247ad1;
+  color: #000;
+  background: #fff url("../img/choose_rb.png") no-repeat right bottom/15px; }
+
+.button_minus {
+  border-right: 1px solid #c1c1c1;
+  vertical-align: middle;
+  background: #fff url("../img/minus.jpg") no-repeat center/10px; }
+
+.button_plus {
+  border-left: 1px solid #c1c1c1;
+  vertical-align: middle;
+  background: #fff url("../img/plus.jpg") no-repeat center/12px; }

@@ -72,8 +72,12 @@ ybwxApp.config(['$routeProvider',
       controller: 'ybwxtb_notivelCtrl',
       title: "投保须知"
     }).when('/detail', {
-      templateUrl: 'partials/temai_detail.html',
+      templateUrl: 'partials/detail.html',
       controller: 'wxDetailCtrl',
+      title: "特卖商城"
+    }).when('/newdetail', {
+      templateUrl: 'partials/temai_detail.html',
+      controller: 'wxDetailNewCtrl',
       title: "特卖商城"
     }).when('/bd_list', {
       templateUrl: 'partials/bd_list.html',
