@@ -1,0 +1,232 @@
+@import "base/classes.scss";
+@import "base/variables.scss";
+* {margin: 0;padding: 0;}
+/* <=320的奇葩手机 */
+@media  (max-width:320px) {
+  html {
+    font-size: 100px;
+  }
+}
+
+/* iphone 4, iphone5 */
+@media only screen and (min-device-width:320px) and (max-device-width:568px) {
+  html {
+    font-size: 100px;
+  }  
+}
+
+/* iphone 6 */
+@media only screen and (min-device-width:375px) and (max-device-width:667px) {
+  html {
+    font-size: 117.18px;
+  }
+}
+
+/* iphone6 plus */
+@media only screen and (min-device-width:414px) and (max-device-width:736px) {
+  html {
+    font-size: 129.37px;
+  }
+}
+html {
+  font-size: 100px;
+  font-family: ;
+}
+input {
+  /*-webkit-appearance:none;*/
+  border: none;
+}
+/*body {
+  background: #fafafa;
+}*/
+body {
+  font: 0.14rem  Helvetica, Microsoft YaHei, SimHei,sans-serif;/*实际相当于14px*/
+  line-height: 1.6;
+  background-color: #fafafa;
+  -webkit-text-size-adjust: 100% !important; /*禁止IOS调整字体大小*/
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.layout {
+  overflow: auto;
+}
+.wrapper {
+  width: 100%;
+  height: 100%;
+}
+.bd_part_controller {
+  padding: 0 0 .7rem 0;
+}
+.bd_part_controller input{
+  border: none;
+  padding: 0;
+  width: 0;
+  height: .48rem;
+  margin: 0;
+  /*　-webkit-appearance:none; /*去除input默认样式*/*/
+}
+.ul_contrl {
+  padding: .15rem .1rem;
+  background: #588dd4;
+}
+.xian {
+  background:#add0ff;
+  // height:1px;
+
+  
+}
+.ul_contrl_top {
+}
+.ul_contrl_bot {
+  padding: .08rem 0 0 0;
+}
+.chanpin_name {
+  color: #fff;
+  font-size: .17rem; 
+}
+.up_20 {
+  /*padding: .01rem 0 0 0;*/
+}
+.up_30 {
+  padding-top: .08rem;
+}
+.pei_300 {
+  font-size: .13rem;
+  color: #add0ff;
+}
+.pei_300 span {
+  color: #fff;
+}
+.bd_part_main {
+  padding: 0 .1rem;
+}
+.bd_part_tit {
+  font-size: .13rem;
+  padding: .1rem 0;
+}
+.bd_part_tit li:nth-child(1) {
+  color: #555;
+  font-size: .15rem;
+}
+.bd_part_tit li:nth-child(2) a{
+  color: #588dd4;
+}
+.bd_part_input {
+  /*padding: 0 .1rem 0 0;*/
+}
+
+.bd_part_input input {
+  box-sizing:border-box;
+  -moz-box-sizing:border-box; /* Firefox */ 
+  -webkit-box-sizing:border-box;
+  display: block;
+  /*margin-top: .15rem;*/
+  width: 100%;
+  height: .44rem;
+  background: #fff;
+  border: 1px solid #e2e2e2;
+  padding-left: 14px; 
+  color: #555;
+  font-weight: none;
+  -webkit-appearance:none;appearance:none;outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0);border-radius:0;/*解决ios下input禁止圆角边框的问题*/
+}
+.bd_part_input .input_top_padd {
+  margin-top: .15rem;
+}
+.bd_part_input .last_input {
+  background: #fff;
+  margin-top: .1rem;
+}
+.bd_part_input input::input-placeholder {
+  color: #ccc;
+}
+.bd_part_input input::-webkit-input-placeholder {
+  color: #ccc;
+}
+.bd_part_input input::-moz-input-placeholder {
+  color: #ccc;
+}
+.bd_part_input input::-webkit-input-placeholder {
+  color: #ccc;
+}
+.bd_part_input input::-ms-input-placeholder {
+  color: #ccc;
+}
+.date_tit {
+  padding-top: .1rem;
+  color: #555;
+  font-size: .15rem;
+}
+
+.hairlines .bd_part_input input{
+    border-width: 0.5px;
+}
+.bd_part_input ul {
+  padding: .2rem 0 .4rem 0;
+  font-size: .13rem;
+  color: #003756;
+}
+.paddLeft {
+  padding-left: .1rem;
+
+}
+.item {
+  padding-top: .15rem;
+  color: #003756;
+  font-size: .15rem;
+  vertical-align: text-bottom;
+}
+.item a{
+  color: #588dd4;
+}
+.item input{
+  width: .16rem;
+  height: .17rem;
+  /*background: #003756;*/
+  /*background: url(../img/checkbox.png) no-repeat;*/
+  /*background: url(../img/checkbox1.png) no-repeat;*/
+  background-size: .14rem .14rem;
+  border: none;
+  border-radius: 3px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+.oneshow {
+   background: url(../img/checkbox1.png) no-repeat;
+}
+.baofei {
+  color: #999;
+  padding-top: .3rem;
+}
+.font_red {
+  color: #ff5c00;
+}
+.bd_footer {
+  width: 100%;
+  height: .48rem;
+  background: #1e4e8e;
+  /*border-top: 1px solid #003756;
+  border-bottom: 1px solid #003756;*/
+  text-align: center;
+  line-height: .48rem;
+  color: #fff;
+  font-size: .14rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+}
+/*ios底部fixed失效的问题的解决方案*/
+.wrapper {
+   position: fixed;
+    top: 0;
+    bottom: .48rem;
+    /* 使之可以滚动 */
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+
+}

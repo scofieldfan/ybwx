@@ -44,7 +44,6 @@ gulp.task('sass:watch', function () {
   gulp.watch('./app/sass/*.scss', ['sass']);
 });
 
-
 gulp.task('deltmp', ['addVersion'], function() {
 	//del(['app/partials/css/']);
 	return gulp.src('app/partials/css', {
