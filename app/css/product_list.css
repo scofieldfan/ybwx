@@ -16,6 +16,37 @@
     color: #588dd4 !important;          /*border-bottom: 3px solid #588dd4;*/
     position: relative;
 }
+
+
+.head-container{
+    width:200px;
+    margin:15px auto 25px;
+}
+.head-container .cell_hd {
+  width: 200px;
+  height:auto;
+}
+.head-container .btn {
+  height: 34px;
+  line-height: 34px;
+  font-size: 12px;
+}
+.head-container .btn_n_primary{
+    background-color: #1e4e8e;
+    border-radius: 20px;
+}
+.head-container .btn_unchoose {
+  background-color: #cacaca;
+  color: #555;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  position: relative;
+  top:0;
+  left:12px;
+  z-index:-1;
+}
+
+
 .select:after {
     content: "";
     position: absolute;

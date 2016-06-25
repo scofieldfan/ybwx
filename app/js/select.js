@@ -3,8 +3,9 @@ var CIRCLE = (function() {
 
 	var config = {
 		marginTop: 20,
-		padding: 34,
-		lineWidth: 57,
+		paddingSum: 20,//wrapper的padding 左右各10
+		padding:30,//绘图区域左右各隔开30px
+		lineWidth: 45,//3倍 (dpr) 乘以15
 		closePadding: 40,
 		dpr: 3
 	};
@@ -63,7 +64,7 @@ var CIRCLE = (function() {
 	var MAX_ANGLE_DEGREE = 150;
 	var bgCanvas = document.getElementById("bgchartContainer");
 	var canvas = document.getElementById("chartContainer");
-	var width = $(document).width() - config.padding;
+	var width = $(document).width() - config.paddingSum;
 	//console.log("document width:" + $(document).width());
 	//if (width > 500) {
 	//	width = 500;
@@ -96,7 +97,8 @@ var CIRCLE = (function() {
 	var mHold = 0;
 	ctx.translate(radiusX, radiusY);
 	ctxBg.translate(radiusX, radiusY);
-	radius = radius * 0.75;
+	// radius = radius * 0.75;
+	radius = radius - config.dpr*config.padding  -config.lineWidth;//
 	var smallRadius = radius;
 	var bigRadius = radius + config.lineWidth / 2;
 	var angle = MIN_ANGLE_DEGREE;
@@ -284,8 +286,25 @@ var CIRCLE = (function() {
 		ctx.beginPath();
 		ctx.arc(0, 0, bigRadius, MIN_ANGLE, MAX_ANGLE);
 		ctx.lineWidth = config.lineWidth;
-		ctx.strokeStyle = "#e0e0e0";
+		ctx.strokeStyle = "#eeeeee";
 		ctx.stroke();
+
+
+		//起始点的灰色圆角
+		ctx.beginPath();
+		var textX = (radius + config.lineWidth / 2) * Math.cos(MIN_ANGLE);
+		var textY = (radius + config.lineWidth / 2) * Math.sin(MIN_ANGLE);
+		ctx.arc(textX, textY,config.lineWidth / 2, 0, TWO_PI, false);
+		ctx.fillStyle = "#eeeeee";
+		ctx.fill();
+
+		//结束点的灰色圆角
+		ctx.beginPath();
+		var textX = (radius + config.lineWidth / 2) * Math.cos(MAX_ANGLE);
+		var textY = (radius + config.lineWidth / 2) * Math.sin(MAX_ANGLE);
+		ctx.arc(textX, textY, config.lineWidth / 2, 0, TWO_PI, false);
+		ctx.fillStyle = "#eeeeee";
+		ctx.fill();
 
 		//画蓝色指示按钮
 		var tipRadius = bigRadius - 80;
@@ -322,21 +341,6 @@ var CIRCLE = (function() {
 		drawWord(ctx, MIN_ANGLE + 32 * dur, "#ff7550", smallRadius - 80, "推荐", 0);
 		drawWord(ctx, MIN_ANGLE + 40 * dur, "#ff7550", smallRadius - 80, "无忧", -30 * Math.PI / 180);
 
-		//起始点的灰色圆角
-		ctx.beginPath();
-		var textX = (radius + config.lineWidth / 2) * Math.cos(MIN_ANGLE);
-		var textY = (radius + config.lineWidth / 2) * Math.sin(MIN_ANGLE);
-		ctx.arc(textX, textY, 30, 0, TWO_PI, false);
-		ctx.fillStyle = "#e0e0e0";
-		ctx.fill();
-
-		//结束点的灰色圆角
-		ctx.beginPath();
-		var textX = (radius + config.lineWidth / 2) * Math.cos(MAX_ANGLE);
-		var textY = (radius + config.lineWidth / 2) * Math.sin(MAX_ANGLE);
-		ctx.arc(textX, textY, 30, 0, TWO_PI, false);
-		ctx.fillStyle = "#e0e0e0";
-		ctx.fill();
 
 	}
 

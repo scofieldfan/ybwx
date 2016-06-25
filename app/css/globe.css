@@ -282,23 +282,7 @@ input::-webkit-input-speech-button {
 .weui_toast_content {
   margin: 0 0 15px;
 }
-.head-container {
-  width: 1.85rem;
-  margin: 0.2rem auto 0;
-}
-.head-container .cell_hd {
-  width: 200px;
-}
-.head-container .btn {
-  border-radius: 0;
-  height: 0.35rem;
-  line-height: 0.35rem;
-  font-size: 0.17rem;
-}
-.head-container .btn_unchoose {
-  background-color: #cacaca;
-  color: #fff;
-}
+
 
 /* info 须知页面*/
 .infocontainer {
