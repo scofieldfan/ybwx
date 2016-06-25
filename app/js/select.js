@@ -42,7 +42,12 @@ var CIRCLE = (function() {
 			console.log(baozhang_money[score]);
 			var kedus = $("#customerSlider").find(".kedu").find("p");
 			for (var i = 1; i < kedus.length; i++) {
-				$(kedus[i]).html(baozhang_money[score][i - 1] + "万");
+				
+				if(i== (kedus.length-1)){
+						$(kedus[i]).html(baozhang_money[score][i - 1] + "(万)");
+				}else{
+						$(kedus[i]).html(baozhang_money[score][i - 1] );
+				}
 			}
 		}
 	}
@@ -268,7 +273,7 @@ var CIRCLE = (function() {
 
 	function drawWord(ctx, angle, color, radius, word, rotate) {
 		ctx.textAlign = "center";
-		ctx.font = "normal 40px Arial,Microsoft YaHei";
+		ctx.font = "normal 39px Arial,Microsoft YaHei";
 		ctx.fillStyle = color;
 		var textX = (radius) * Math.cos(angle);
 		var textY = (radius) * Math.sin(angle);
@@ -280,6 +285,23 @@ var CIRCLE = (function() {
 		ctx.restore();
 	}
 
+	function drawIntrod(ctx){
+		//画蓝色指示按钮
+		var tipRadius = bigRadius - 80;
+		var tipMaxAngle = MIN_ANGLE + 0.7;
+		ctx.beginPath();
+		ctx.arc(0, 0,tipRadius, MIN_ANGLE, tipMaxAngle);
+		ctx.lineWidth = 8;
+		ctx.strokeStyle = "#588dd4";
+		ctx.stroke();
+
+		ctx.beginPath();
+		ctx.lineWidth = 9;
+		ctx.strokeStyle = "#588dd4";
+		ctx.moveTo(tipRadius * Math.cos(tipMaxAngle), tipRadius * Math.sin(tipMaxAngle));
+		ctx.lineTo((tipRadius-9) * Math.cos(tipMaxAngle-0.15), (tipRadius-9) * Math.sin(tipMaxAngle-0.15));
+		ctx.stroke();
+	}
 	function drawBg(ctx) { //背景是指示标
 
 		//画灰色圆环
@@ -306,40 +328,28 @@ var CIRCLE = (function() {
 		ctx.fillStyle = "#eeeeee";
 		ctx.fill();
 
-		//画蓝色指示按钮
-		var tipRadius = bigRadius - 80;
-		var tipMaxAngle = MIN_ANGLE + 0.7;
-		ctx.beginPath();
-		ctx.arc(0, 0,tipRadius, MIN_ANGLE, tipMaxAngle);
-		ctx.lineWidth = 8;
-		ctx.strokeStyle = "#588dd4";
-		ctx.stroke();
+		
 
-		ctx.beginPath();
-		ctx.lineWidth = 9;
-		ctx.strokeStyle = "#588dd4";
-		ctx.moveTo(tipRadius * Math.cos(tipMaxAngle), tipRadius * Math.sin(tipMaxAngle));
-		ctx.lineTo((tipRadius-9) * Math.cos(tipMaxAngle-0.15), (tipRadius-9) * Math.sin(tipMaxAngle-0.15));
-		ctx.stroke();
+	
 
 
 
 
-		var max_width = 6;
+		var max_width = 3;
 		var min_width = 3;
 		var dur = (MAX_ANGLE - MIN_ANGLE) / 40;
 		//画刻度指针	
 		for (var i = MIN_ANGLE; i < MAX_ANGLE; i = i + dur) {
-			drawZhiZhen(ctx, i, min_width, smallRadius - 5, smallRadius - 20, "#cccccc");
+			drawZhiZhen(ctx, i, min_width, smallRadius - 22.5, smallRadius - 30, "#cccccc");
 		}
 		for (var i = MIN_ANGLE; i <= MAX_ANGLE; i = i + 8 * dur) {
-			drawZhiZhen(ctx, i, max_width, smallRadius - 5, smallRadius - 30, "#588dd4");
+			drawZhiZhen(ctx, i, max_width, smallRadius - 15, smallRadius - 30, "#588dd4");
 		}
 
 		//画文字
 		drawWord(ctx, MIN_ANGLE + 24 * dur, "#ff7550", smallRadius - 80, "基本", 30 * Math.PI / 180);
-		drawWord(ctx, MIN_ANGLE + 32 * dur, "#ff7550", smallRadius - 80, "推荐", 0);
-		drawWord(ctx, MIN_ANGLE + 40 * dur, "#ff7550", smallRadius - 80, "无忧", -30 * Math.PI / 180);
+		drawWord(ctx, MIN_ANGLE + 32 * dur+0.03, "#ff7550", smallRadius - 80, "推荐", 0);
+		drawWord(ctx, MIN_ANGLE + 40 * dur, "#ff7550", smallRadius - 50, "无忧", -30 * Math.PI / 180);
 
 
 	}
@@ -354,7 +364,19 @@ var CIRCLE = (function() {
 	};
 
 	var lastScore;
+ 	 function preLoadImg(url, callback) {
+                var img = new Image(); //创建一个Image对象，实现图片的预下载  
+                img.src = url;
 
+                if (img.complete) { // 如果图片已经存在于浏览器缓存，直接调用回调函数  
+                    callback.call(img);
+                    return; // 直接返回，不用再处理onload事件  
+                }
+
+                img.onload = function() { //图片下载完毕时异步调用callback函数。  
+                    callback.call(img); //将回调函数的this替换为Image对象  
+                };
+      }
 	function drawFace(ctx, radius, angle) {
 
 		/*
@@ -367,6 +389,11 @@ var CIRCLE = (function() {
 
 
 		clearCircle(ctx, 0, 0, radius + 100);
+
+		if(angle==MIN_ANGLE_DEGREE){
+			drawIntrod(ctx);//画指示箭头
+		}
+		
 
 		var ang = angle * Math.PI / 180; //弧度单位，以12点作为起始 
 		var angFrom90 = -Math.PI / 2 + ang; //弧度单位，以3点钟作为的起始
@@ -403,16 +430,23 @@ var CIRCLE = (function() {
 		var keduX = keduRadius * cosX;
 		var keduY = keduRadius * sinX;
 
+
+
+		preLoadImg("img/slider-btn.png", function() {
+            ctx.drawImage(this, keduX-33, keduY-33, 66,66);
+        });
+		/*
 		ctx.beginPath();
-		ctx.arc(keduX, keduY, 40, 0, TWO_PI, false); //当前刻度
+		ctx.arc(keduX, keduY, 34, 0, TWO_PI, false); //当前刻度
 		ctx.fillStyle = "#91bce8";
 		ctx.fill();
 
 
 		ctx.beginPath();
-		ctx.arc(keduX, keduY, 37, 0, TWO_PI, false); //当前刻度
+		ctx.arc(keduX, keduY, 31, 0, TWO_PI, false); //当前刻度
 		ctx.fillStyle = "#fff";
 		ctx.fill();
+		*/
 
 
 		var score = 0;

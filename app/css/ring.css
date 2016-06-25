@@ -28,7 +28,7 @@
 	border-radius: 20px;
 }
 .head-container .btn_unchoose {
-  background-color: #cacaca;
+  background-color: #e2e2e2;
   color: #555;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
@@ -44,10 +44,14 @@
 	position: relative;
 	border-width: 1px;
 	border-style: none none solid none;
-	border-color: #e0e0e0;
+	border-color: #e2e2e2;
+	color:#555;
 	padding: 0px 0px 13px; 
 	font-size: 0.16rem;
 	overflow: hidden;
+}
+.hairlines .bt_container{
+  border-width: 0.5px; 
 }
 /*
 .bt_container div {
@@ -68,7 +72,6 @@
 }
 .score_container {
 	position: absolute;
-	color: #1e4e8e;
 	left:50%;
 	margin-left: -41px;
 	bottom:-6px;
@@ -81,6 +84,7 @@
 }
 .score_container  .score{
 	font-size:.28rem;
+	font-weight: bold;
 	color:#555;
 }
 .score_container  .danwei{
@@ -114,16 +118,16 @@
 }
 .weui_progress_bar .kedu {
 	position: absolute;
-	top: -13px;
+	top: -8px;
 }
 .kedu .zz {
-	height: 10px;
-	width: 2px;
+	height: 5px;
+	width: 1px;
 	background-color: #588dd4;
 }
 .kedu .small-zz {
-	height: 6px;
-	width: 2px;
+	height: 2.5px;
+	width: 1px;
 	background-color: #ccc;
 }
 
@@ -131,17 +135,18 @@
 	position: absolute;
 	top: 35px;
 	width: 50px;
-	left: -0.23rem;
+	left: -25px;
 	line-height: 0.13rem;
 	color: #ff5c00;
 	text-align: center;
+	font-size:13px;
 }
 .kedu>p {
 	position: absolute;
 	top: -30px;
 	width: 0.5rem;
 	font-size: 0.12rem;
-	left: -0.2rem;
+	left: -0.23rem;
 	color: #999;
 }
 .kedu .hover {
@@ -257,6 +262,9 @@
 	box-sizing: border-box;
     background: #fff;
     height: 48px;
+}
+#estimateMoneyContainer{
+	color:#ff5c00;
 }
 .left {
 	float: left;
