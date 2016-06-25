@@ -365,8 +365,8 @@ ybwxControllers.controller('wxDetailCtrl', ['$scope', '$routeParams', '$location
     }
     $scope.headSelect = function($event, plan) {
       var element = $event.currentTarget;
-      $(".btn-container").find("a").removeClass("weui_btn_primary")
-      $(element).addClass("weui_btn_primary");
+      $("#title-table").find("td").removeClass("choose")
+      $(element).addClass("choose");
       var index = $(element).attr("data-index");
       $scope.selectTable = index;
       // $("#title-table").attr("data-current-select-id", plan.id);
