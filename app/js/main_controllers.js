@@ -654,6 +654,10 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 				'type': $routeParams.type
 			});
 		}
+
+		$scope.test= function(){
+			console.log("test....");
+		}
 	}
 ]);
 mainControllers.controller('ybwxJingzhunCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
