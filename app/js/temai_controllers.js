@@ -4,8 +4,13 @@
 
 var ybwxControllers = angular.module('ybwxControllers', []);
 
+ybwxControllers.controller('wxTemaiIndexCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+  function($scope, $routeParams, $location, $http, $rootScope) {
 
 
+
+  }
+ ]);
 ybwxControllers.controller('wxListCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
   function($scope, $routeParams, $location, $http, $rootScope) {
     _hmt.push(['_trackPageview', $location.path()]);

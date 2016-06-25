@@ -212,25 +212,182 @@
  * @param {Length} $height 居中元素的高度
  */
 /* border */
-div {
+/**
+ * Yo框架全局Variables
+ -----------------------
+ * Yo基础变量map，如果不想定义某属性，将其value设置为null；
+ * Yo仅使用2种长度单位：px用于边框，rem用于除边框之外的所有地方
+ *
+ * @class variables
+ * @module Yo
+ */
+* {
+  box-sizing: border-box; }
+
+body {
+  background-color: #f5f5f5; }
+
+header {
+  background-color: #1e4e8e;
+  height: 45px;
+  line-height: 45px;
+  color: #88aeee; }
+  header .logo-container {
+    padding: 5px 0;
+    margin-right: 5px;
+    margin-top: 10px;
+    float: left; }
+    header .logo-container .logo {
+      border-right: 1px solid #588dd4;
+      margin-left: 20px;
+      line-height: 0;
+      padding-right: 5px; }
+      header .logo-container .logo img {
+        width: 50px; }
+
+.swiper-container {
+  line-height: 0; }
+  .swiper-container img {
+    width: 100%; }
+
+.nav {
+  background-color: #FFF;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
   display: -ms-flexbox;
   display: flex; }
-
-.item {
-  -webkit-box-flex: 5 4 12%;
-  -webkit-flex: 5 4 12%;
-  -moz-box-flex: 5 4 12%;
-  -ms-flex: 5 4 12%;
-  flex: 5 4 12%;
-  /*
+  .nav .item {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    /*
     @if $direction == column {
         height: .1px;
     } @else {
         width: .1px;
     }*/
-  overflow: hidden;
-  white-space: nowrap;
-  text-indent: 100%; }
+    text-align: center;
+    height: 80px;
+    padding-top: 23px;
+    border-right: 1px solid #e2e2e2;
+    border-bottom: 1px solid #e2e2e2;
+    font-size: 13px; }
+    .nav .item div {
+      margin-top: 5px; }
+    .nav .item img {
+      width: 23px;
+      vertical-align: middle; }
+
+.recommend {
+  background-color: #FFF;
+  margin-top: 20px;
+  height: 40px;
+  line-height: 40px;
+  padding-left: 10px;
+  border-bottom: 1px solid #e2e2e2; }
+  .recommend img {
+    width: 25px;
+    vertical-align: -5px; }
+
+.recommend-content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #FFF;
+  margin-top: 8px;
+  margin-bottom: 8px; }
+  .recommend-content .introd {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    /*
+    @if $direction == column {
+        height: .1px;
+    } @else {
+        width: .1px;
+    }*/
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    text-align: center;
+    border-bottom: 1px solid #e2e2e2;
+    border-right: 1px solid #e2e2e2; }
+    .recommend-content .introd .box .name {
+      color: #555;
+      font-size: 15px; }
+    .recommend-content .introd .box .more {
+      color: #999; }
+    .recommend-content .introd .box img {
+      width: 50px; }
+  .recommend-content .recommend-container {
+    -webkit-box-flex: 2.5;
+    -webkit-flex: 2.5;
+    -moz-box-flex: 2.5;
+    -ms-flex: 2.5;
+    flex: 2.5;
+    /*
+    @if $direction == column {
+        height: .1px;
+    } @else {
+        width: .1px;
+    }*/
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    flex-direction: column; }
+    .recommend-content .recommend-container .flex-item {
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+      -moz-box-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+      /*
+    @if $direction == column {
+        height: .1px;
+    } @else {
+        width: .1px;
+    }*/
+      border-bottom: 1px solid #e2e2e2;
+      padding: 10px 15px; }
+      .recommend-content .recommend-container .flex-item .hot {
+        display: inline-block;
+        background-color: #ff5c00;
+        border-radius: 4px;
+        color: #fff;
+        padding: 0px 3px;
+        font-size: 13px; }
+      .recommend-content .recommend-container .flex-item .title {
+        color: #555;
+        font-size: 15px; }
+      .recommend-content .recommend-container .flex-item .des {
+        color: #999; }
+      .recommend-content .recommend-container .flex-item .money {
+        color: #ff5c00;
+        font-weight: bold; }
+
+.fix_container span {
+  color: #588dd4; }
+
+.fix_container img {
+  width: 18px;
+  vertical-align: -3px; }

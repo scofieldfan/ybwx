@@ -272,11 +272,12 @@
     -ms-flex:  $flex;
     flex: $flex;
     // 修复Android Browser4.3及以下，iOS Safari6.1及以下按比例分配错误的问题
+    /*
     @if $direction == column {
         height: .1px;
     } @else {
         width: .1px;
-    }
+    }*/
 }
 
 /**

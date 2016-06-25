@@ -1,0 +1,139 @@
+@import "base/classes.scss";
+@import "base/variables.scss";
+
+*{
+	box-sizing:border-box;
+}
+body{
+	background-color: #f5f5f5;
+}
+header{
+	background-color: #1e4e8e;
+	height:45px;	
+	line-height:45px;
+	color:#88aeee;
+	.logo-container{
+		padding:5px 0;
+		margin-right: 5px;
+		margin-top:10px;
+		float:left;
+		.logo{
+			border-right:1px solid #588dd4;
+			margin-left: 20px;
+			line-height: 0;
+			padding-right:5px;	
+			img{
+				width:50px;					
+			}
+		}
+	}
+}
+.swiper-container{
+	line-height:0;
+	img{
+		width:100%;
+	}		
+}
+.nav{
+	background-color: #FFF;
+	@include flexbox;
+	.item{
+		@include flex(1);
+		text-align: center;
+		height:80px;
+		padding-top:23px;
+		border-right:1px solid #e2e2e2;
+		border-bottom:1px solid #e2e2e2;
+		font-size:13px;
+		div{
+			margin-top:5px;
+		}
+		img{
+			width:23px;
+			vertical-align: middle;
+		}
+	}
+}
+.recommend{
+	background-color: #FFF;
+	margin-top:20px;
+	height:40px;
+	line-height:40px; 
+	padding-left:10px;
+	border-bottom:1px solid #e2e2e2;
+	img{
+		width:25px;
+		vertical-align: -5px;;
+	}
+}
+.recommend-content{
+	@include flexbox;
+	background-color: #FFF;
+	margin-top:8px;
+	margin-bottom:	8px;
+	.introd{
+		@include flex(1);
+		@include flexbox;
+		@include align-items(center);
+		@include justify-content(center);	
+		text-align: center;
+		border-bottom:1px solid #e2e2e2;
+		.box{
+			.name{
+				color:#555;
+				font-size:15px;
+			}
+			.more{
+				color:#999;
+			}
+			img{
+				width:50px;
+			}
+		}
+	
+		border-right:1px solid #e2e2e2;
+	
+	}
+	.recommend-container{
+		@include flex(2.5);
+		@include flexbox;
+		@include flex-direction(column);
+			
+			.flex-item{
+				@include flex(1,column);
+				border-bottom:1px solid #e2e2e2;
+				padding:10px 15px;
+				.hot{
+						display: inline-block;
+						background-color: #ff5c00;
+						border-radius:4px;
+						color:#fff;
+						padding:0px 3px;
+						font-size:13px;
+					}
+				.title{
+					color:#555;
+					font-size:15px;
+
+				}
+				.des{
+					color:#999;
+				}
+				.money{
+					color:#ff5c00;
+					font-weight: bold;
+				}
+			}
+	
+	}
+}
+
+.fix_container{
+	span{
+		color:#588dd4;
+	}
+	img{
+		width:18px;
+		vertical-align: -3px;
+	}
+}
