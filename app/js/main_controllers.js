@@ -1147,7 +1147,7 @@ mainControllers.controller('ybwxToubaoDingzhiAllCtrl', ['$scope', '$filter', '$r
 			result.setDate(result.getDate() + days);
 			return result;
 		}
-
+        
 		function genInEffectiveDate() {
 			//计算失效日期
 			if ($scope.coverage_period && $scope.coverage_period_type) {

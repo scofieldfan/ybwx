@@ -14,7 +14,8 @@ var api = {
 	'send_bd': '/ybwx-web/api/send_policy',
 	'ping_coupon': '/ybwx-web/api/ping_coupon',
 	'exchange': '/ybwx-web/api/exchange_coupon',
-	"test": "/ybwx-web/api/test"
+	"test": "/ybwx-web/api/test",
+	'pre_insure': '/ybwx-web/api/insurance/pre_insure'
 }
 
 function shareTip() {
@@ -161,9 +162,26 @@ wxShareControllers.controller('wxShareBdCtrl', ['$scope', '$filter', '$routePara
 		$scope.server_reason = "";
 		var openId = sessionStorage.getItem("openId");
 		// toggle
+		function addDays(date,days) {
+			var result = new Date(date);
+			result.setDate(result.getDate() + days);
+			return result;
+		} 
+		$scope.genInEffectiveDate = function() {
+		//计算失效日期
+			//console.log("test ineffective Date.........");
+			//console.log($scope.user.insurance_date);
+			
+			//console.log(addDays($scope.user.insurance_date,3));
+
+			$scope.user.inEnd_date = addDays($scope.user.insurance_date,3);
+		}
 		
 		$scope.submit = function() {
 			_hmt.push(['_trackEvent', 'wx_share_toubao', 'wx_share_toubao_subtn']);
+
+			console.log($scope.registration);
+			console.log("invalid:"+$scope.registration.$invalid);
 			if (!$scope.registration.$invalid) {
 				$("#loadingToast").show();
 				//util.showToast($rootScope,"正在提交,请稍后.....");
@@ -176,7 +194,8 @@ wxShareControllers.controller('wxShareBdCtrl', ['$scope', '$filter', '$routePara
 						JSON.stringify({
 							username: $scope.user.username,
 							social_id: $scope.user.social_id,
-							mobile: $scope.user.mobile
+							mobile: $scope.user.mobile,
+
 						}));
 
 					if (res.data.code === 0) {
@@ -190,6 +209,7 @@ wxShareControllers.controller('wxShareBdCtrl', ['$scope', '$filter', '$routePara
 					if (res && res.data && res.data.description) {
 						util.showToast($rootScope, res.data.description);
 					}
+					console.log(res.data.code);
 				}, function(res) {
 					//$("#loading").hide();
 					$("#loadingToast").hide();
@@ -207,10 +227,8 @@ wxShareControllers.controller('wxShareBdCtrl', ['$scope', '$filter', '$routePara
 				if ($scope.registration.mobile.$invalid) {
 					util.showToast($rootScope, "手机号码填写有误，请修改");
 				}
-				if ($scope.coupon_id == 2) {
-					if ($scope.registration.flight_no.$invalid) {
+				if ($scope.registration.flight_no.$invalid) {
 						util.showToast($rootScope, "航班号必须填写");
-					}
 				}
 				if ($scope.registration.insurance_date.$invalid) {
 					util.showToast($rootScope, "保障日期填写有误，请修改");
@@ -221,6 +239,7 @@ wxShareControllers.controller('wxShareBdCtrl', ['$scope', '$filter', '$routePara
         // 	this.type = 'date';
         // 	// this.focus();
         // })
+		
 	}
 ]);
 
