@@ -56,12 +56,7 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 		_hmt.push(['_trackPageview', '/wx_share_index']);
 		_hmt.push(['_setCustomVar', 1, 'qudao', qd, 1]);
 
-		util.share({
-              shareUrl:"http://web.youbaowuxian.com/#/jixian",
-              shareImg: "http://web.youbaowuxian.com/wx_share/share_sport.png",
-              shareTitle: "免费领取10万元极限运动险！要酷，更要安全！",
-              shareDesc:"每月均可领取1份，每邀请1位好友，即可再免费领取1份。约上朋友一起突破极限吧！"
-        });
+		
 		//_hmt.push(['_trackPageview', '/wx_share_index'+"_qd_"+qd]);
 		$scope.init = function() {
 			$scope.data = {
@@ -73,9 +68,16 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 				code = $routeParams.code;
 			}
 			$("#loadingToastCommon").show();
-			weixinShareUtil.getOpenId(code).then(function() {
+			util.getOpenId(code).then(function() {
 				$("#loadingToastCommon").hide();
 				var openId = sessionStorage.getItem("openId");
+				util.share({
+		              shareUrl:"http://web.youbaowuxian.com/wx_share.html?rec_id="+ openId+"#/jixian",
+		              shareImg: "http://web.youbaowuxian.com/wx_share/img/share_sport.png",
+		              shareTitle: "免费领取10万元极限运动险！要酷，更要安全！",
+		              shareDesc:"每月均可领取1份，每邀请1位好友，即可再免费领取1份。约上朋友一起突破极限吧！"
+		            
+		        });
 				$http({
 					method: 'POST',
 					headers: {
@@ -107,7 +109,7 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 		$scope.init();
 		$scope.sportsAddCoupon = function() {
 			_hmt.push(['_trackEvent', 'wx_share_index', 'wx_share_index_left_button']);
-			var recId = util.getParameterByName('rec_id');
+			var recId = util.getParameterByName('rec_id') || $routeParams.rec_id;
 			var openId = sessionStorage.getItem("openId");
 			$http({
 				method: 'POST',
@@ -296,9 +298,17 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 				code = $routeParams.code;
 			}
 			$("#loadingToastCommon").show();
-			weixinShareUtil.share(shareUrl, false, code).then(function() {
+		
+			util.getOpenId(code).then(function() {
 				$("#loadingToastCommon").hide();
 				var openId = sessionStorage.getItem("openId");
+				util.share({
+		              shareUrl:"http://web.youbaowuxian.com/wx_share.html?rec_id="+ openId,
+		              shareImg: "http://web.youbaowuxian.com/wx_share/img/share61.jpg",
+		              shareTitle: "送你一份500万航空意外险，买机票立省30元！",
+		              shareDesc:"集齐3份航空意外险保险券，即可免费兑换一份航班延误险保险券！"
+		            
+		        });
 				$http({
 					method: 'POST',
 					headers: {
@@ -330,7 +340,7 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 		$scope.init();
 		$scope.addCoupon = function() {
 			_hmt.push(['_trackEvent', 'wx_share_index', 'wx_share_index_left_button']);
-			var recId = util.getParameterByName('rec_id');
+			var recId = util.getParameterByName('rec_id') || $routeParams.rec_id;
 			var openId = sessionStorage.getItem("openId");
 			$http({
 				method: 'POST',
@@ -412,14 +422,14 @@ wxShareControllers.controller('myCouponListCtrl', ['$scope', '$routeParams', '$h
 		}
 
 		$scope.init = function() {
-
+			util.share();
 			_hmt.push(['_trackPageview', '/wx_share_couponlist']);
 			//_hmt.push(['_trackEvent', 'wx_share_couponlist', 'index_center']);
 			var code = util.getParameterByName("code");
 			if (!code) {
 				code = $routeParams.code;
 			}
-			weixinShareUtil.share(shareUrl, false, code).then(function() {
+			util.getOpenId(code).then(function() {
 				var openId = sessionStorage.getItem("openId");
 				//  $scope.reason="您没有领取任何优惠券。";
 				// $("#reason_container").show();
