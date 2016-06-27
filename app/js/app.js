@@ -75,13 +75,17 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/detail.html',
       controller: 'wxDetailCtrl',
       title: "特卖商城"
-    }).when('/newdetail', {
+    }).when('/temaidetail', {
       templateUrl: 'partials/temai_detail.html',
       controller: 'wxDetailNewCtrl',
       title: "特卖商城"
     }).when('/temaiindex', {
       templateUrl: 'partials/temai_index.html',
       controller: 'wxTemaiIndexCtrl',
+      title: "特卖商城"
+    }).when('/temailist', {
+      templateUrl: 'partials/temai_list.html',
+      controller: 'wxTemaiListCtrl',
       title: "特卖商城"
     }).when('/bd_list', {
       templateUrl: 'partials/bd_list.html',
