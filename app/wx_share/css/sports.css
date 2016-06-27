@@ -1,0 +1,387 @@
+* {margin: 0;padding: 0;}
+/* <=320的奇葩手机 */
+@media  (max-width:320px) {
+  html {
+    font-size: 100px;
+  }
+   .auto_wid {
+    width: 1.8rem;
+  }
+  .moneyAndsong a{
+    width: 1.08rem;
+    height: .4rem;
+    line-height: .4rem;
+    font-size: .13rem;
+  }
+}
+
+/* iphone 4, iphone5 */
+@media only screen and (min-device-width:320px) and (max-device-width:568px) {
+  html {
+    font-size: 100px;
+  }  
+   .auto_wid {
+    width: 1.8rem;
+  }
+  .moneyAndsong a{
+    width: 1.08rem;
+    height: .4rem;
+    line-height: .4rem;
+    font-size: .13rem;
+  }
+}
+
+/* iphone 6 */
+@media only screen and (min-device-width:375px) and (max-device-width:667px) {
+  html {
+    font-size: 117.18px;
+  }
+    .peifu_lablel .auto_wid {
+    width: 2.2rem;
+  }
+   .moneyAndsong a{
+    width: 1.4rem;
+    height: .5rem;
+    color: #fff;
+    line-height: .5rem;
+    font-size: .17rem;
+  }
+}
+
+/* iphone6 plus */
+@media only screen and (min-device-width:414px) and (max-device-width:736px) {
+  html {
+    font-size: 129.37px;
+  }
+    .peifu_lablel .auto_wid {
+    width: auto;
+  }
+  .moneyAndsong a{
+    width: 1.4rem;
+    height: .5rem;
+    color: #fff;
+    line-height: .5rem;
+    font-size: .17rem;
+  }
+}
+html {
+  font-size: 100px;
+}
+input {
+  /*-webkit-appearance:none;*/
+  border: none;
+}
+/*body {
+  background: #fafafa;
+}*/
+body {
+  font: 0.14rem  Helvetica, Microsoft YaHei, SimHei,sans-serif;/*实际相当于14px*/
+  line-height: 1.6;
+  background-color: #fafafa;
+  -webkit-text-size-adjust: 100% !important; /*禁止IOS调整字体大小*/
+}
+/** {box-sizing:border-box;}*/
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.layout {
+  overflow: auto;
+}
+.sports_controller {
+}
+.sports_controller img{
+  width: 100%;
+ /*height: 100%;*/
+} 
+.ctrl_back {
+  position: relative;
+}
+.ctrl_back img{
+  border: none;
+  display: block;
+}
+.fuceng {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+/*.layer_1,.layer_2,.layer_3 {
+
+}*/
+.layer_1 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: .79rem;
+  height: 1.1rem;
+}
+.layer_2 {
+  position: absolute;
+  left: 0;
+  top: 75%;
+  width: 30%;
+  height: 2.1rem;
+}
+.layer_3 {
+  position: absolute;
+  right: 0;
+  top: 5%;
+  width: 55%;
+  /*height: 3.9rem;*/
+}
+.layer_word {
+  position: absolute;
+  top: 52%;
+  right: 7%;
+  width: 47%; 
+}
+.img_wh {
+  width: 100%;
+  /*height: 100%;*/
+  border: none;
+  display: block;
+}
+.sports_font {
+  height: .62rem;
+  /*background: #ccc;*/
+}
+.sports_font p:nth-child(1){
+  color: #2a2008;
+  font-size: .12rem;
+  padding: .14rem 0 0 16%; 
+  border: none;
+  display: block;
+  height: auto;
+  line-height: 10px;
+}
+.sports_font p:nth-child(2) {
+  color: #2a2008;
+  font-size: .12rem;
+  font-weight: bold;
+  padding: 2% 0 0 16%; 
+}
+.sports_bot_ctl {
+  /*width: 100%;*/
+  padding: 0 .2rem;
+  /*height: 2.2rem;*/
+  position: relative;
+}
+.back_img {
+  height: 2rem;
+}
+.sports_bot {
+  box-sizing:border-box;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.bot_head {
+  width: 100%;
+  /*height: .22rem;*/
+  /*padding: 0 .4rem;*/
+  /*background: red;*/
+  position: absolute;
+  top: 13%;
+  left: 0;
+}
+.tp {
+  margin-left: 12%;
+}
+.wuwan {
+  margin-right: 12%;
+}
+.bot_head img {
+  z-index: 9999;
+}
+.bot_head img:nth-child(1) {
+  width: .95rem;
+}
+.bot_head img:nth-child(2) {
+  width: 1.4rem;
+}
+.peifu_lablel {
+  font-size: .12rem;
+  color: #39617a;
+  padding: 0 12%;
+  position: absolute;
+  top: 28%;
+  left: 0;
+}
+.moneyAndsong {
+  width: 100%;
+  position: absolute;
+  top: 60%;
+  left: 0;
+}
+.moneyAndsong a{
+  color: #fff;
+  /*text-align: .16rem;*/
+  text-align: center;
+  border-radius: 5px;
+}
+.moneyAndsong a:nth-child(1) {
+  background: #f74515;
+  margin-left: 12%;
+}
+.moneyAndsong a:nth-child(2) {
+  background: #0e7ac0;
+  margin-right: 12%;
+}
+.moneyAndsong a:nth-child(1) img{
+  width: .17rem;
+  height: .17rem;
+  vertical-align: -3px;
+}
+.moneyAndsong a:nth-child(2) img {
+  width: .15rem;
+  height: .15rem;
+  vertical-align: -2px;
+}
+.sheng {
+  width: 100%;
+ font-size: .12rem;
+ /*padding: 0 .4rem;*/
+ position: absolute;
+ bottom: 9%;
+ left: 0;
+ }
+.sheng span:nth-child(1) {
+  color: #f74515;
+  margin-left: 18%;
+}
+.sheng span:nth-child(2) {
+  color: #0e7ac0;
+  margin-right: 18%;
+}
+.alt_font {
+  padding: .26rem .2rem .3rem .2rem;
+}
+
+.alt_font .padd_top10 img ,.padd_bot69 img{
+  width: .15rem;
+  height: .15rem;
+  vertical-align: -2px;
+  color: #39617a;
+}
+
+.padd_top10 {
+  padding-bottom: .07rem;
+  color: #39617a;
+  font-size: .12rem;
+}
+.padd_bot69 {
+  padding-bottom: .23rem;
+  color: #39617a;
+  font-size: .12rem;
+}
+.range {
+  font-size: .15rem;
+  color: #0e7ac0;
+  text-align: center;
+  border-bottom: .02rem solid #0e7ac0;
+  font-weight: bold;
+  margin-bottom: .25rem;
+}
+.sort_ctrl {
+  padding-bottom: .2rem;
+  border-bottom: .02rem solid #0e7ac0;
+  font-size: .13rem;
+}
+.sort_ctrl p{
+  color: #39617a;
+  text-align: center;
+}
+.sort_ctrl .color_black {
+  color: #2a2008;
+  padding-bottom: .05rem;
+}
+.sort {
+  padding: .1rem 0;
+}
+.font_controller {
+  padding: .2rem 0;
+  position: relative;
+}
+.font_controller li{
+  list-style: none;
+  color: #39617a;
+  font-size: 12px;
+  line-height: .2rem;
+}
+.font_controller p{
+  list-style: none;
+  color: #2a2008;
+  font-size: .13rem;
+  padding-bottom: .05rem;
+
+}
+.font_controller img{
+  width: .13rem;
+  height: .13rem;
+  vertical-align: -1px;
+}
+.main_font {
+  /*padding-bottom: 17px; */
+  line-height: .17rem;
+  width: 1.8rem;
+ /* -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;*/
+}
+.two_code {
+  width: .75rem;
+  height: .75rem;
+  /*position: absolute;
+  left: 2.05rem;
+  top: 1.3rem;*/
+  overflow: auto;
+}
+.two_code img {
+  width: 100%;
+  height: 100%;
+}
+.else_but {
+  display: block;
+  height: .3rem;
+  background: #f74515; 
+  color: #fff;
+  font-size: .13rem;
+  text-align: center;
+  line-height: .3rem;
+}
+.overseas_word {
+  padding-top: .1rem;
+}
+.churchyard_word ,.overseas_word{
+  height: 1.05rem;
+  background: #019cff;color: #fff;
+  font-size: .12rem;
+  padding: 0 .1rem;
+}
+.padding_img img{
+  border: none;
+  display: block;/*解决img标签默认下边距*/
+}
+.word_head {
+  font-size: .15rem;
+  padding: .1rem 0;
+}
+
+.buy_but {
+  height: .35rem;
+  background: #019cff;
+  font-size: .15rem;
+  text-align: center;
+  line-height: .35rem;
+  color: #99ceff;
+  border-top: 1px dashed #80ceff;
+}
+.kong_div {
+  height: .1rem;
+}

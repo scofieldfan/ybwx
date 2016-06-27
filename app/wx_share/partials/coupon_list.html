@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="wx_share/css/coupon.css?rev=1c29008c408a98e60010337a9f18d449">
+<link rel="stylesheet" type="text/css" href="wx_share/css/coupon.css?rev=09dec9183075ce9777b201001c70929d">
 <div id="wrapper" class="wrapper">
     <ul class="ul_container" style="background-color:#f3f3f3;margin-top:0;padding-left:0;display:none">
 
@@ -6,23 +6,11 @@
 
         <div style="padding:30px 20px 20px;">
            <div class="fl">
-               <img ng-src="{{coupon.logo}}" class="logo_img" >
+               <img ng-src="{{coupon.logo_url}}" class="logo_img" ng-class="{'img_gray':coupon.coupon_status == 5 || coupon.coupon_status ==  6}">
             </div>
-            <div class="fl coupon_text" style="z-index:10;"  ng-if="coupon.coupon_id==1">
-              <p >天安100万航空意外险 </p>
-              <p style="font-size:11px;">限本人使用</p>
-              <p style="color:#b8b8ba;font-size:11px;">有效期至:{{coupon.expiry_date |  date:'yyyy-MM-dd'}}</p>
-              <div class="fl tag {{coupon.imgClass}}" > </div>
-            </div>
-            <div class="fl coupon_text" style="z-index:10;"  ng-if="coupon.coupon_id==2">
-              <p >平安500万航空意外险 </p>
-              <p style="font-size:11px;">限本人使用 请至少提前一天投保</p>
-              <p style="color:#b8b8ba;font-size:11px;">有效期至:{{coupon.expiry_date |  date:'yyyy-MM-dd'}}</p>
-              <div class="fl tag {{coupon.imgClass}}" > </div>
-            </div>
-            <div class="fl coupon_text" style="z-index:10;"  ng-if="coupon.coupon_id==3">
-              <p >平安300元航空延误险 </p>
-              <p style="font-size:11px;">限本人使用 请至少提前一天投保</p>
+            <div class="fl coupon_text" style="z-index:10;"  >
+              <p class="name">{{coupon.name}} </p>
+              <p style="font-size:11px;">{{coupon.description}}</p>
               <p style="color:#b8b8ba;font-size:11px;">有效期至:{{coupon.expiry_date |  date:'yyyy-MM-dd'}}</p>
               <div class="fl tag {{coupon.imgClass}}" > </div>
             </div>
@@ -30,4 +18,4 @@
       </li>
     </ul>
     <p class="default_text" id="reason_container">暂时没有保险劵</p>
-  </div>
+</div>

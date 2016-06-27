@@ -47,6 +47,94 @@ function submitBd($scope, $http, $location, $filter) {
 	})
 
 }
+wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
+	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
+		var qd = util.getParameterByName("qd");
+		if (!qd) {
+			qd = 'default';
+		}
+		_hmt.push(['_trackPageview', '/wx_share_index']);
+		_hmt.push(['_setCustomVar', 1, 'qudao', qd, 1]);
+		//_hmt.push(['_trackPageview', '/wx_share_index'+"_qd_"+qd]);
+		$scope.init = function() {
+			$scope.data = {
+				remain_times: 1,
+				recommend_times: 0
+			}
+			var code = util.getParameterByName("code");
+			if (!code) {
+				code = $routeParams.code;
+			}
+			$("#loadingToastCommon").show();
+			weixinShareUtil.share(shareUrl, false, code).then(function() {
+				$("#loadingToastCommon").hide();
+				var openId = sessionStorage.getItem("openId");
+				$http({
+					method: 'POST',
+					headers: {
+						"Content-Type": "application/json;charset:UTF-8"
+					},
+					url: api['ping_coupon'],
+					data: {
+						"open_id": openId,
+						"coupon_id": "4"
+					}
+				}).then(function(res) {
+					console.log(res);
+					if (res.data && res.data.description) {
+						//util.showToast($rootScope, res.data.description);
+					} else if (res.data.code === 0) {
+						$scope.data = res.data.data;
+						// console.log($scope.data);
+						if (res.data.data.recommend_times > 0) {
+							$("#coupons_container").show();
+						}
+					}
+					// showToast($rootScope,res.data.description);
+				}, function(res) {
+					console.log(res);
+					util.showToast($rootScope, "服务器错误");
+				});
+			})
+		}
+		$scope.init();
+		$scope.sportsAddCoupon = function() {
+			_hmt.push(['_trackEvent', 'wx_share_index', 'wx_share_index_left_button']);
+			var recId = util.getParameterByName('rec_id');
+			var openId = sessionStorage.getItem("openId");
+			$http({
+				method: 'POST',
+				headers: {
+					"Content-Type": "application/json;charset:UTF-8"
+				},
+				url: api['addCoupon'],
+				data: {
+					"open_id": openId,
+					"r_open_id": recId,
+					"coupon_id": "4"
+				}
+			}).then(function(res) {
+				console.log(res);
+				if (res.data && res.data.description) {
+					util.showToast($rootScope, res.data.description);
+				}
+				// showToast($rootScope,res.data.description);
+				if (res.data.code == 0) {
+					$location.path('/success_coupon').search({
+						count: (res.data.data["coupon_counts"] + 1)
+					});
+				}
+			}, function(res) {
+				console.log(res);
+				util.showToast($rootScope, "服务器错误");
+			});
+		}
+		$scope.showShareTip = function() {
+			_hmt.push(['_trackEvent', 'wx_share_index', 'wx_index_right_button']);
+			shareTip();
+		}
+	}
+]);
 wxShareControllers.controller('wxShareBdCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
 	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
 		_hmt.push(['_trackPageview', "/wx_share_toubao"]);
@@ -344,19 +432,18 @@ wxShareControllers.controller('myCouponListCtrl', ['$scope', '$routeParams', '$h
 						$("#reason_container").show();
 					} else if (res.data.code == 0) {
 						if (res.data.data.coupons) {
-							/**/
 							res.data.data.coupons.forEach(function(coupon) {
 								//  item.showDate = item["expiry_date"].substring(0,4)+"-"+item["expiry_date"].substring(4,6)+"-"+item["expiry_date"].substring(6);
 								coupon.imgClass = imgMap[coupon["coupon_status"]];
-								if(coupon.coupon_id == 2 || coupon.coupon_id == 3){
+								/*if(coupon.coupon_id == 2 || coupon.coupon_id == 3){
 									if(coupon.coupon_status == 5 || coupon.coupon_status ==  6) {
-                                      coupon.logo = "wx_share/img/exchange.png";
+                                      $(".logo_img").addClass("img_gray");
 									}else {
-                                      coupon.logo = "wx_share/img/pingan.png";
+                                      $(".logo_img").removeClass("img_gray");
 									}
-								}else if(coupon.coupon_id == 1){
-									  coupon.logo = "wx_share/img/ta_logo.png";
-								}
+								}else{
+                                      $(".logo_img").removeClass("img_gray");
+								}*/
 							})
 							$scope.reason = "";
 							if (res.data.data.coupons.length === 0) {

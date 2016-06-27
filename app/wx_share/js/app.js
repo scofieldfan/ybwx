@@ -32,6 +32,9 @@ function($routeProvider) {
   }).when('/exchange', {
     templateUrl: 'wx_share/partials/exchange.html',
     controller: 'myExchangetCtrl'
+  }).when('/jixian', {
+    templateUrl: 'wx_share/partials/jixian.html',
+    controller: 'sportsCtrl'
   }).otherwise({
     redirectTo: '/index'
   });
