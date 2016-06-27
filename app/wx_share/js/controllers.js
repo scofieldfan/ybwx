@@ -71,7 +71,7 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 				$("#loadingToastCommon").hide();
 				var openId = sessionStorage.getItem("openId");
 				util.share({
-		              shareUrl:"http://web.youbaowuxian.com/wx_share.html?rec_id="+ openId+"#/jixian",
+		              shareUrl:"http://web.youbaowuxian.com/wx_share.html#/jixian?rec_id="+ openId,
 		              shareImg: "http://web.youbaowuxian.com/wx_share/img/share_sport.png",
 		              shareTitle: "免费领取10万元极限运动险！要酷，更要安全！",
 		              shareDesc:"每月均可领取1份，每邀请1位好友，即可再免费领取1份。约上朋友一起突破极限吧！"
@@ -320,7 +320,7 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 				$("#loadingToastCommon").hide();
 				var openId = sessionStorage.getItem("openId");
 				util.share({
-		              shareUrl:"http://web.youbaowuxian.com/wx_share.html?rec_id="+ openId,
+		              shareUrl:"http://web.youbaowuxian.com/wx_share.html#/?rec_id="+ openId,
 		              shareImg: "http://web.youbaowuxian.com/wx_share/img/share61.jpg",
 		              shareTitle: "送你一份500万航空意外险，买机票立省30元！",
 		              shareDesc:"集齐3份航空意外险保险券，即可免费兑换一份航班延误险保险券！"
