@@ -733,9 +733,10 @@ mainControllers.controller('ybwxInfoCtrl', ['$scope', '$routeParams', '$location
 					$scope.isHaveHealth = _.filter($scope.data.notices, function(notice) {
 						return notice.health_notice
 					})
-					$scope.isExtranotice = _.filter($scope.data.notices, function(notice) {
+					$scope.isExtraNotice = _.filter($scope.data.notices, function(notice) {
 						return notice.extra_notice
 					})
+					console.log("extranotice:"+$scope.isExtraNotice.length);
 				}
 			})
 		}

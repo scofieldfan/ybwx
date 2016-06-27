@@ -55,6 +55,13 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 		}
 		_hmt.push(['_trackPageview', '/wx_share_index']);
 		_hmt.push(['_setCustomVar', 1, 'qudao', qd, 1]);
+
+		util.share({
+              shareUrl:"http://web.youbaowuxian.com/#/jixian",
+              shareImg: "http://web.youbaowuxian.com/wx_share/share_sport.png",
+              shareTitle: "免费领取10万元极限运动险！要酷，更要安全！",
+              shareDesc:"每月均可领取1份，每邀请1位好友，即可再免费领取1份。约上朋友一起突破极限吧！"
+        });
 		//_hmt.push(['_trackPageview', '/wx_share_index'+"_qd_"+qd]);
 		$scope.init = function() {
 			$scope.data = {
@@ -66,7 +73,7 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 				code = $routeParams.code;
 			}
 			$("#loadingToastCommon").show();
-			weixinShareUtil.share(shareUrl, false, code).then(function() {
+			weixinShareUtil.getOpenId(code).then(function() {
 				$("#loadingToastCommon").hide();
 				var openId = sessionStorage.getItem("openId");
 				$http({

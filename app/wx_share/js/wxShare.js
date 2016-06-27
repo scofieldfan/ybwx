@@ -10,7 +10,7 @@
      var openId = sessionStorage.getItem("openId");
      
      if (openId) {
-       return openId;
+       return $.when();;
      }
      return $.ajax({
        type: 'GET',
