@@ -54,7 +54,7 @@ ybwxControllers.controller('wxListCtrl', ['$scope', '$routeParams', '$location',
 
     }
     $scope.goDetail = function(id) {
-      $location.path("/newdetail").search({
+      $location.path("/detail").search({
         "product_id": id
       });
     }
