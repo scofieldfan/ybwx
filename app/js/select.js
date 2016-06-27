@@ -365,8 +365,9 @@ var CIRCLE = (function() {
 
 	var lastScore;
  	 function preLoadImg(url, callback) {
-                var img = new Image(); //创建一个Image对象，实现图片的预下载  
-                img.src = url;
+ 	 			var img=document.getElementById("tip-img");
+               // var img = new Image(); //创建一个Image对象，实现图片的预下载  
+               // img.src = url;
 
                 if (img.complete) { // 如果图片已经存在于浏览器缓存，直接调用回调函数  
                     callback.call(img);
@@ -375,6 +376,7 @@ var CIRCLE = (function() {
 
                 img.onload = function() { //图片下载完毕时异步调用callback函数。  
                     callback.call(img); //将回调函数的this替换为Image对象  
+                    return;
                 };
       }
 	function drawFace(ctx, radius, angle) {
@@ -386,7 +388,6 @@ var CIRCLE = (function() {
 		if (angle > 360) {
 			angle = 360;
 		}*/
-
 
 		clearCircle(ctx, 0, 0, radius + 100);
 
@@ -431,7 +432,10 @@ var CIRCLE = (function() {
 		var keduY = keduRadius * sinX;
 
 
+		
 
+		
+		
 		preLoadImg("img/slider-btn.png", function() {
             ctx.drawImage(this, keduX-33, keduY-33, 66,66);
         });
