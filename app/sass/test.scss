@@ -1,9 +1,0 @@
-@import "base/classes.scss";
-
-div{
-	@include flexbox;
-}
-.item{
-	@include flex(5 4 12%);
-	@include texthide;
-}
