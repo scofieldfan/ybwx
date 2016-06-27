@@ -13,9 +13,7 @@ var api = {
 	'addFreeBd': '/ybwx-web/api/use_coupon',
 	'send_bd': '/ybwx-web/api/send_policy',
 	'ping_coupon': '/ybwx-web/api/ping_coupon',
-	'exchange': '/ybwx-web/api/exchange_coupon',
-	"test": "/ybwx-web/api/test",
-	'pre_insure': '/ybwx-web/api/insurance/pre_insure'
+	'exchange': '/ybwx-web/api/exchange_coupon'
 }
 
 function shareTip() {
