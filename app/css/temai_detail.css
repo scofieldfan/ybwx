@@ -1,0 +1,548 @@
+@charset "UTF-8";
+/**
+ * Yo框架全局基础方法
+ -----------------------
+ * Yo内置了包括响应式方案，CSS3兼容性方案，厂商前缀方案，iconfont方案，flex布局等全局方法
+ *
+ * @class classes
+ * @module Yo
+ */
+/**
+ * 给需要的属性加厂家前缀
+ * @method prefix
+ * @param {String} $property 指定属性
+ * @param {String} $value 指定属性值
+ */
+/**
+ * 四则运算
+ * @method calc
+ * @param {String} $property 指定需要进行计算的CSS属性
+ * @param {String} $value 与原生CSS语法一致，使用方式如：@include calc(width, 100% - 0.1rem);
+ */
+/**
+ * 定义渐变色值
+ * @method gradient
+ * @param {String} $type 指定渐变的4种类型：linear, repeating-linear, radial, repeating-radial
+ * @param {String} $gradient 指定渐变取值，与w3c最新原生语法一致
+ */
+/**
+ * 定义响应式方案
+ * @method responsive
+ * @param {String} $media 指定媒体查询条件
+ */
+/**
+ * 定义字体图标
+ * @method yofont
+ */
+/**
+ * 滤镜
+ * @method filter
+ * @param {String} $filter 取值与原生语法一致
+ */
+/**
+ * 定义UA默认外观
+ * @method appearance
+ * @param {String} $appearance 指定UA外观类型
+ */
+/**
+ * 定义是否可以选中元素
+ * @method user-select
+ * @param {String} $user-select 指定是否可以选中
+ */
+/**
+ * 定义背景图像缩放（Android Browser2.3.*还需要厂商前缀）
+ * @method background-size
+ * @param {String | Length} $background-size 指定背景图缩放值
+ */
+/**
+ * 定义背景裁减（Android Browser2.3.*还需要厂商前缀）
+ * @method background-clip
+ * @param {String} $background-clip 指定背景图缩放值
+ */
+/**
+ * 定义背景显示区域（Android Browser2.3.*还需要厂商前缀）
+ * @method background-origin
+ * @param {String} $background-origin 指定背景图缩放值
+ */
+/**
+ * 定义盒模型
+ * @method box-sizing
+ * @param {String} $box-sizing 的2个值分别为：content-box(标准盒模型) | border-box(怪异盒模型)
+ */
+/**
+ * 定义圆角
+ * @method border-radius
+ * @param {String} $border-radius 取值与原生语法一致
+ */
+/**
+ * 定义简单变换
+ * @method transform
+ * @param {String} $transform 取值与原生语法一致
+ */
+/**
+ * 定义变换原点
+ * @method transform-origin
+ * @param {String} $transform-origin 取值与原生语法一致
+ */
+/**
+ * 定义动画
+ * @method animation
+ * @param {String} $animation 取值与原生语法一致
+ */
+/**
+ * 定义补间
+ * @method transition
+ * @param {String} $transition 取值与原生语法一致
+ */
+/**
+ * 定义显示类型为伸缩盒
+ * @method flexbox
+ * @param {String} $flexbox 默认值：flex，取值与最新原生语法一致
+ */
+/**
+ * 定义伸缩盒子元素如何分配空间
+ * @method flex
+ * @param {String} $flex 默认值：1，取值与最新原生语法一致
+ * @param {String} $direction 默认值: row
+ */
+/**
+ * 定义伸缩盒子元素的排版顺序
+ * @method order
+ * @param {String} $order 默认值：1，取值与最新原生语法一致
+ */
+/**
+ * 定义伸缩盒子元素的流动方向
+ * @method flex-direction
+ * @param {String} $flex-direction 默认值：row，取值与最新原生语法一致
+ */
+/**
+ * 定义伸缩盒子元素溢出排版
+ * @method flex-wrap
+ * @param {String} $flex-wrap 默认值：nowrap，取值与最新原生语法一致
+ */
+/**
+ * 定义伸缩盒子元素的水平对齐方式
+ * @method justify-content
+ * @param {String} $justify-content 默认值：center，取值与最新原生语法一致
+ */
+/**
+ * 定义伸缩盒子元素的垂直对齐方式
+ * @method align-items
+ * @param {String} $align-items 默认值：center，取值与最新原生语法一致
+ */
+/**
+ * 定义伸缩盒子元素自身的垂直对齐方式
+ * @method align-self
+ * @param {String} $align-self 默认值：center，取值与最新原生语法一致
+ */
+/**
+ * 定义root root-scroll
+ * @method root-scroll
+ * @param {String} $root-scroll 指定scroll类型，取值overflow属性的标准值
+ */
+/**
+ * 定义是否有滚动条
+ * @method overflow
+ * @param {String} $overflow 默认值：auto，取值与最新原生语法一致
+ */
+/**
+ * 生成矩形方法
+ * @method rect
+ * @param {Length} $width 定义矩形的长度
+ * @param {Length} $height 定义矩形的高度
+ */
+/**
+ * 生成正方形方法
+ * @method square
+ * @param {Length} $size 定义正方形的边长
+ */
+/**
+ * 生成圆形方法
+ * @method circle
+ * @param {Length} $size 定义圆的半径长度
+ * @param {Length} $radius 定义圆的圆角半径长度
+ */
+/**
+ * 生成全屏方法
+ * @method fullscreen
+ * @param {Integer} $z-index 定义层叠级别
+ */
+/**
+ * 清除浮动方案
+ * @method clearfix
+ */
+/**
+ * 链接处理方法
+ * @method link
+ * @param {Color} $color 定义链接颜色
+ */
+/**
+ * 强制换行方案
+ * @method wrap
+ */
+/**
+ * 单行文本溢出显示方案
+ * @method ellipsis
+ * @param {Boolen} $ellipsis 定义是否需要省略号
+ */
+/**
+ * 文字隐藏方案
+ * @method texthide
+ */
+/**
+ * 清除间隙方案-容器
+ * @method killspace
+ */
+/**
+ * 清除间隙方案-子级
+ * @method killspace-item
+ */
+/**
+ * 未知尺寸元素垂直居中解决方案-容器
+ * @method valign
+ */
+/**
+ * 未知尺寸元素垂直居中解决方案-子级
+ * @method valign-item
+ */
+/**
+ * 已经尺寸元素垂直居中解决方案
+ * @method alignment
+ * @param {Length} $width 居中元素的宽度
+ * @param {Length} $height 居中元素的高度
+ */
+/* border */
+/**
+ * Yo框架全局Variables
+ -----------------------
+ * Yo基础变量map，如果不想定义某属性，将其value设置为null；
+ * Yo仅使用2种长度单位：px用于边框，rem用于除边框之外的所有地方
+ *
+ * @class variables
+ * @module Yo
+ */
+* {
+  box-sizing: border-box; }
+
+body {
+  background-color: #f5f5f5; }
+
+header {
+  background-color: #fff; }
+  header .top-container {
+    color: #fff;
+    position: relative;
+    overflow: hidden; }
+    header .top-container .company {
+      background-color: #588dd4;
+      color: #fff;
+      padding: 0 10px;
+      text-align: center;
+      position: absolute;
+      top: 0;
+      right: 10px;
+      border-bottom-left-radius: 2px;
+      border-bottom-right-radius: 2px; }
+    header .top-container .title {
+      font-size: 17px; }
+    header .top-container .sub-title {
+      font-size: 15px; }
+    header .top-container .sub-title img {
+      width: 15px;
+      vertical-align: -3px; }
+  header .bottom-container {
+    padding: 10px;
+    font-size: 14px;
+    color: #555;
+    border-bottom: 1px solid #e2e2e2; }
+  header .text-container {
+    position: absolute;
+    left: 10px;
+    bottom: 10px; }
+
+.gray {
+  color: #999; }
+
+.detail-content {
+  background-color: #FFF;
+  margin-top: 10px;
+  padding: 0 10px 10px;
+  border-bottom: 1px solid #e2e2e2; }
+  .detail-content .btn-container {
+    padding: 10px 0;
+    overflow: hidden; }
+  .detail-content .content-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px; }
+  .detail-content .content-table td, .detail-content .content-table th {
+    border: 1px solid #e2e2e2;
+    padding: 0.07rem;
+    text-align: center; }
+  .detail-content .content-table th {
+    font-weight: normal;
+    color: #999; }
+  .detail-content .content-table tr {
+    color: #555; }
+  .detail-content .content-table .td-left {
+    text-align: left;
+    font-size: 15px; }
+  .detail-content .td-left > span {
+    font-size: 14px; }
+  .detail-content .help-img {
+    height: 0.18rem;
+    vertical-align: -0.02rem; }
+
+.fl-3 {
+  float: left;
+  width: 70px;
+  margin-right: 10px; }
+
+.tail-container {
+  margin-top: 10px;
+  border-bottom: 1px solid  #e2e2e2;
+  background-color: #fff;
+  padding-bottom: 20px;
+  margin-bottom: 65px; }
+
+.introd-container {
+  padding: 10px; }
+  .introd-container h5 {
+    font-weight: normal;
+    font-size: 13px;
+    margin: 0 10px; }
+  .introd-container img {
+    width: 100%; }
+
+.tail-header {
+  background-color: #FFF;
+  border-bottom: 1px solid  #e2e2e2;
+  font-size: 15px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex; }
+  .tail-header .hd {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    /*
+    @if $direction == column {
+        height: .1px;
+    } @else {
+        width: .1px;
+    }*/
+    text-align: center;
+    height: 45px;
+    line-height: 45px;
+    cursor: pointer; }
+  .tail-header .hd.select {
+    color: #588dd4;
+    border-bottom: 3px solid #588dd4; }
+
+.qa-container {
+  background-color: #FFF; }
+
+.qa-item {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 15px 0; }
+  .qa-item .qa-icon {
+    width: 40px;
+    text-align: center; }
+  .qa-item .qa-content {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    /*
+    @if $direction == column {
+        height: .1px;
+    } @else {
+        width: .1px;
+    }*/ }
+    .qa-item .qa-content div {
+      background-color: #f5f5f5;
+      margin: 0 10px;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 14px;
+      display: inline-block;
+      *display: inline;
+      *zoom: 1;
+      position: relative; }
+    .qa-item .qa-content div:before {
+      content: "";
+      display: block;
+      position: absolute;
+      left: -7px;
+      top: 3px;
+      width: 0;
+      height: 0;
+      border-width: 8px 8px 8px 0;
+      border-style: solid;
+      border-color: transparent;
+      border-right-color: #f5f5f5; }
+
+.question .qa-icon {
+  background: url(../img/temai/question.jpg) no-repeat center;
+  background-size: 22px; }
+
+.answer .qa-icon {
+  background: url(../img/temai/answer.jpg) no-repeat center;
+  background-size: 22px; }
+
+.question {
+  color: #555; }
+
+.answer {
+  color: #999; }
+
+.more-container {
+  width: 100px;
+  margin: 0 auto; }
+
+.more-container img {
+  width: 5px;
+  transform: rotate(90deg);
+  vertical-align: 0px; }
+
+.more-1-container {
+  width: 100px;
+  margin: 0 auto;
+  margin-top: 8px;
+  text-align: center; }
+  .more-1-container img {
+    width: 5px;
+    transform: rotate(90deg);
+    vertical-align: 0px; }
+
+.button-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 15px; }
+  .button-container .left, .button-container .right {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    /*
+    @if $direction == column {
+        height: .1px;
+    } @else {
+        width: .1px;
+    }*/ }
+    .button-container .left a, .button-container .right a {
+      width: 83px; }
+
+.showknow-container {
+  background-color: #FFF;
+  padding: 0 10px 15px;
+  color: #555; }
+  .showknow-container h4 {
+    font-size: 13px;
+    margin: 0;
+    margin-top: 18px; }
+  .showknow-container p {
+    font-size: 12px;
+    margin: 0; }
+
+.pay_container {
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #e2e2e2;
+  box-sizing: border-box;
+  height: 48px; }
+
+.pay_container .left {
+  margin-right: 1.5rem;
+  width: 65%;
+  border-radius: 0;
+  background-color: #fff;
+  color: #555; }
+
+.pay_container .right {
+  background-color: #ff5c00;
+  float: right;
+  width: 35%;
+  border-radius: 0; }
+
+.money_size {
+  font-size: .27rem;
+  color: #ff5c00; }
+
+.head-container {
+  position: absolute;
+  top: 100px;
+  bottom: 0;
+  width: 100%;
+  background-color: #fff; }
+
+.head-container img {
+  width: 100px;
+  height: 100px;
+  margin: -0.22rem 0.08rem 0 0.17rem; }
+
+.head-container p {
+  margin: 3px 0; }
+
+.head-container .close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 25px;
+  height: 25px;
+  background: #fff url("../img/close_1.jpg") no-repeat center/25px; }
+
+.select-container {
+  margin-left: 0.17rem; }
+
+.select-container h4 {
+  margin: 0.14rem 0 0.08rem 0; }
+
+.button {
+  font-size: 0.13rem;
+  line-height: 0.33rem;
+  height: 0.33rem;
+  display: inline-block;
+  overflow: hidden;
+  box-sizing: border-box;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 4px;
+  padding: 0 0.17rem;
+  margin-right: 5px;
+  -webkit-tap-highlight-color: transparent; }
+
+.button_primary {
+  border: 1px solid #c1c1c1;
+  color: #000;
+  background-color: #fff; }
+
+.button_hover {
+  border: 1px solid #247ad1;
+  color: #000;
+  background: #fff url("../img/choose_rb.png") no-repeat right bottom/15px; }
+
+.button_minus {
+  border-right: 1px solid #c1c1c1;
+  vertical-align: middle;
+  background: #fff url("../img/minus.jpg") no-repeat center/10px; }
+
+.button_plus {
+  border-left: 1px solid #c1c1c1;
+  vertical-align: middle;
+  background: #fff url("../img/plus.jpg") no-repeat center/12px; }

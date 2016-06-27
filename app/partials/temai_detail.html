@@ -1,0 +1,135 @@
+<link rel="stylesheet" type="text/css" href="css/temai_detail.css?rev=d1f3061ccbb2cf191de9f9badb87fb47">
+
+<div  cg-busy="myPromise" >
+	<header>
+		<div class="top-container" >
+			<img ng-src="{{data.large_image}}" style="width:100%;">
+			<div class="company">
+				{{data.insurance_company_name
+}}承保
+			</div>
+			<div class="text-container">
+				<div class="title">{{data.insurance_name}}</div>
+				<div class="sub-title" style="display:none">
+					<img src="img/temai/dun.png">&nbsp;</div>
+			</div>
+		</div>
+		<div class="bottom-container">{{data.insurance_description}}</div>
+	</header>
+
+	<div class="detail-content"  data-ng-init="init()"   >
+		<div class="btn-container" ng-show="data.insurance_plans.length>
+			1"   data-current-select-id="{{data.insurance_plans[0].id}}">
+			<div class="fl-3" ng-repeat="plan in data.insurance_plans" data-id="{{plan.id}}">
+				<a href="javascript:;" class="weui_btn weui_btn_plain_default"   ng-class="{'weui_btn_primary':$index==0}"  data-index="{{$index}}"  ng-click="headSelect($event, plan)"   >{{plan.name}}</a>
+			</div>
+
+		</div>
+
+		<table class="content-table" id="content_{{$index}}" ng-repeat="plan in data.insurance_plans" ng-show="selectTable==$index">
+			<tr>
+				<th width="70%">保障范围</th>
+				<th>保额</th>
+			</tr>
+
+			<tr ng-repeat="item in plan.coverage_beans">
+				<td class="td-left" style="cursor: pointer;">
+					{{item.name}}
+					<img src="img/temai/wen.png"  class="help-img" title="{{item.description}}"/>
+					<br/>
+					<span class="gray">含高风险运动</span>
+				</td>
+				<td>{{item.sum_insured/100 | number}}元{{item.danwei}}</td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="tail-container"></div>
+
+	<div class="cell pay_container ">
+		<a href="javascript:void(0)" class="btn btn_n_primary right"   ng-click="showMask()" >立即投保</a>
+		<a href="javascript:void(0)" class="btn btn_n_primary left tg_dz_fr" >
+			<span class="money_size">{{money/100 | number}}</span>
+			元
+			<span ng-show="plan.premium_type==2">起</span>
+		</a>
+	</div>
+</div>
+<div class="mask " id="detail_mask_container"  style="display: none;z-index:100000">
+	<div class="head-container">
+		<span class="close"></span>
+		<div class="fl">
+			<img ng-src="{{data.small_image}}" ></div>
+		<div class="fl">
+			<p >
+				<span  style="font-size:18px;color:#ff5c00;">{{money/100 | number}}</span>
+				元
+			</p>
+			<p>*最终购买价格</p>
+			<p>以被保险人身份信息测算为准</p>
+		</div>
+		<div class="line" style="clear:both;"></div>
+
+		<div class="select-container">
+			<h4>保障方案</h4>
+			<a href="javascript:void(0)" class="button button_primary" ng-click="changeTaoCan($event,item)" ng-class="item.id==plan.id?'button_hover':''" ng-repeat="item in data.insurance_plans">{{item.name}}</a>
+			<!--
+      <a href="javascript:void(0)" class="button button_primary button_hover">经济型</a>
+		<a href="javascript:void(0)" class="button button_primary">实惠制</a>
+		-->
+	</div>
+
+	<div class="select-container">
+		<h4>保障期间</h4>
+		<a href="javascript:void(0)" class="button button_primary"   ng-click="changeDuration($event,item)"  ng-class="item==coverage_period?'button_hover':''"  ng-repeat="item in maskSelectPlan.coverage_periods">{{item}}{{genDanwei(maskSelectPlan.coverage_period_type)}}</a>
+	</div>
+
+	<div class="select-container">
+		<h4>缴费期间</h4>
+
+		<a href="javascript:void(0)" class="button button_primary"  ng-click="changeFee($event,nul)"   ng-class="charge_period==null?'button_hover':''">一次交清</a>
+
+		<a href="javascript:void(0)" class="button button_primary"  ng-click="changeFee($event,item)"   ng-class="item==charge_period?'button_hover':''"  ng-repeat="item in maskSelectPlan.charge_periods">{{item}}</a>
+
+	</div>
+
+	<div class="fix_container">
+		<a href="javascript:void(0)"  style="height:45px;line-height: 45px;"  ng-click="submit()"  class="btn btn_n_primary">确定</a>
+	</div>
+
+</div>
+
+</div>
+
+<div class="mask " id="popup">
+<div class="toast"></div>
+</div>
+<script>
+
+$(function(){
+ $("body").on("click",".td-left",function(){
+    $("#popup").find(".toast").html($(this).find("img").attr("title"));
+    $("#popup").show()
+ });
+
+ $("body").on("click",".more-1-container",function(){
+ 	 $(".know-content").show();
+ 	 $(".know-content").css({
+ 	 	"height":"auto",
+ 	 	"overflow":"auto"
+ 	 });
+     $(this).hide();
+ });
+
+  $(".tail-container").on("click",".hd",function(){
+  	$(".tail-header").find(".hd").removeClass("select");
+  	$(this).addClass("select");
+  	var index = $(this).index()
+  	$("#template-container").children().hide();
+  	$("#template-container").children(":eq("+index+")").show();
+ });
+ $(".mask").click(function(){
+    $(this).hide(); 
+ });
+})
+</script>

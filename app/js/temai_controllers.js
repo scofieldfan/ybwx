@@ -4,8 +4,13 @@
 
 var ybwxControllers = angular.module('ybwxControllers', []);
 
+ybwxControllers.controller('wxTemaiIndexCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+  function($scope, $routeParams, $location, $http, $rootScope) {
 
 
+
+  }
+ ]);
 ybwxControllers.controller('wxListCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
   function($scope, $routeParams, $location, $http, $rootScope) {
     _hmt.push(['_trackPageview', $location.path()]);
@@ -49,7 +54,7 @@ ybwxControllers.controller('wxListCtrl', ['$scope', '$routeParams', '$location',
 
     }
     $scope.goDetail = function(id) {
-      $location.path("/detail").search({
+      $location.path("/newdetail").search({
         "product_id": id
       });
     }
@@ -72,9 +77,186 @@ var coveragePeriodMap = {
   4: "月",
   5: "天"
 }
+ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope', '$sce',
+  function($scope, $routeParams, $location, $http, $rootScope, $sce) {
+
+
+   
+    _hmt.push(['_trackPageview', $location.path()]);
+
+    $scope.genDanwei = function(type) {
+      return coveragePeriodMap[type];
+    }
+    $scope.init = function() {
+
+
+      var code = util.getParameterByName("code");
+      if (!code) {
+        code = $routeParams.code;
+      };
+
+      util.getOpenId(code).then(function() {
+
+        $scope.haveMask = false;
+        $scope.selectTable = 0;
+        $scope.maskPromise = getHttpPromise($http, $rootScope, 'GET', api['get_insurances_mask'].replace("{productId}", $routeParams.product_id), {}, function(res) {
+
+          if (res.data && res.data.data && res.data.data.plans) {
+            console.log(".................");
+            console.log(res.data.data.plans);
+            $scope.maskPlans = res.data.data.plans;
+            $scope.maskSelectPlan = $scope.maskPlans[Object.keys($scope.maskPlans)[0]];
+
+            $scope.coverage_period = $scope.maskSelectPlan.coverage_periods[0];
+            $scope.coverage_period_type = $scope.maskSelectPlan.coverage_period_type;
+
+
+            if ($scope.maskSelectPlan.charge_periods) {
+              $scope.charge_period = $scope.maskSelectPlan.charge_periods[0];
+            }
+            $scope.charge_period_type = $scope.maskSelectPlan.charge_period_type;
+
+            $scope.haveMask = true;
+          } else {
+            $scope.haveMask = false;
+          }
+
+        })
+
+
+
+        $scope.myPromise = $http({
+          method: 'POST',
+          headers: {
+            "Content-Type": "application/json;charset:UTF-8"
+          },
+          url: api['get_insurances_detail'],
+          data: {
+            "insurance_id": $routeParams.product_id
+          }
+        }).then(function(res) {
+          console.log(res);
+          if (res && res.data && res.data.data) {
+             $(".tail-container").load("template/new/product_" + $routeParams.product_id + ".html");
+            for (var i = 0; i < res.data.data.insurance_plans.length; i++) {
+              var plan = res.data.data.insurance_plans[i];
+              for (var j = 0; j < plan.coverage_beans.length; j++) {
+                if (plan.coverage_beans[j].sum_insured.charAt(plan.coverage_beans[j].sum_insured.length - 1) === "d") {
+                  plan.coverage_beans[j].danwei = "/天";
+                  plan.coverage_beans[j].sum_insured = plan.coverage_beans[j].sum_insured.substring(0, plan.coverage_beans[j].sum_insured.length - 1);
+                }
+              }
+            }
+            $scope.data = res.data.data;
+            $scope.money = res.data.data.insurance_plans[0].premium;
+            $scope.plan = res.data.data.insurance_plans[0];
+            $scope.danwei = genDuration($scope.plan.coverage_period_type);
+
+            util.share({
+              shareUrl:"http://web.youbaowuxian.com/#/detail?product_id="+$routeParams.product_id,
+              shareImg: $scope.data.small_image,
+              shareTitle: $scope.data.insurance_name,
+              shareDesc:$scope.data.insurance_description
+            });
+
+          }
+        }, function(res) {
+          console.log(res);
+          util.showToast($rootScope, "服务器错误");
+        })
+
+      })
+    }
+
+    $scope.changeTaoCan = function($event, item) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.plan = item;
+      $scope.danwei = genDuration($scope.plan.coverage_period_type);
+      $scope.money = $scope.plan.premium;
+    }
+    $scope.changeDuration = function($event, item) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.coverage_period = item;
+    }
+    $scope.changeFee = function($event, item) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.charge_period = item;
+    }
+    $scope.headSelect = function($event, plan) {
+      var element = $event.currentTarget;
+      $(".btn-container").find("a").removeClass("weui_btn_primary")
+      $(element).addClass("weui_btn_primary");
+      var index = $(element).attr("data-index");
+      $scope.selectTable = index;
+      // $("#title-table").attr("data-current-select-id", plan.id);
+      //console.log($(element));
+      $scope.plan = plan;
+      $scope.danwei = genDuration($scope.plan.coverage_period_type);
+      $scope.money = plan.premium;
+    }
+    /*
+    Coverage_Period_Type:
+      (0, "保障期间类型未知"),
+      (1, "保终身"),
+      (2, "按年保"),
+      (3, "按年龄限保"),
+      (4, "按月保"),
+      (5, "按天保");*/
+
+    $scope.showMask = function() {
+      if ($scope.haveMask) {
+        $("#detail_mask_container").show();
+      } else {
+        $scope.submit();
+      }
+    }
+    $scope.submit = function() {
+      //获得当前的plan
+      console.log($scope.data);
+      var selectPlan = $scope.plan.id;
+
+
+      /*
+      if ($scope.plan.coverage_period_type === 5) {
+        $scope.danwei = $scope.plan.coverage_period + "天";
+      }
+      if ($scope.plan.coverage_period_type === 2) {
+        $scope.danwei = $scope.plan.coverage_period + "年";
+      }*/
+      var postData = {
+        "from": "list",
+        "plan_id": selectPlan
+      };
+      if ($routeParams.is_test) {
+        postData["is_test"] = $routeParams.is_test;
+      }
+      if ($scope.coverage_period_type) {
+        postData["coverage_period_type"] = $scope.coverage_period_type;
+      };
+      if ($scope.charge_period_type) {
+        postData["charge_period_type"] = $scope.charge_period_type;
+      };
+
+      if ($scope.coverage_period) {
+        postData["coverage_period"] = $scope.coverage_period;
+      };
+      if ($scope.charge_period) {
+        postData["charge_period"] = $scope.charge_period;
+      }
+
+
+      $location.path("/tb_dz").search(postData);
+    }
+  }
+]);
+
 ybwxControllers.controller('wxDetailCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope', '$sce',
   function($scope, $routeParams, $location, $http, $rootScope, $sce) {
 
+    
     $("#detail-template").load("template/product_" + $routeParams.product_id + ".html");
 
     _hmt.push(['_trackPageview', $location.path()]);
@@ -248,8 +430,6 @@ ybwxControllers.controller('wxDetailCtrl', ['$scope', '$routeParams', '$location
     }
   }
 ]);
-
-
 ybwxControllers.controller('ybwxPaySelectNewCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
   function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 

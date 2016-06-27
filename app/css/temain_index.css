@@ -212,25 +212,19 @@
  * @param {Length} $height 居中元素的高度
  */
 /* border */
-div {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex; }
+/**
+ * Yo框架全局Variables
+ -----------------------
+ * Yo基础变量map，如果不想定义某属性，将其value设置为null；
+ * Yo仅使用2种长度单位：px用于边框，rem用于除边框之外的所有地方
+ *
+ * @class variables
+ * @module Yo
+ */
+* {
+  box-sizing: border-box; }
 
-.item {
-  -webkit-box-flex: 5 4 12%;
-  -webkit-flex: 5 4 12%;
-  -moz-box-flex: 5 4 12%;
-  -ms-flex: 5 4 12%;
-  flex: 5 4 12%;
-  /*
-    @if $direction == column {
-        height: .1px;
-    } @else {
-        width: .1px;
-    }*/
-  overflow: hidden;
-  white-space: nowrap;
-  text-indent: 100%; }
+header {
+  background-color: #1e4e8e;
+  height: 45px;
+  line-height: 45px; }
