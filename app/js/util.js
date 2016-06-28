@@ -62,11 +62,11 @@ var util = {
 			ret = parseInt(moneyStr.substring(0, moneyStr.length - 1));
 			isTail = true;
 		}
-		if (ret >= 100000) {
-			ret = ret / 1000000;
+		if (ret >= 1000) {
+			ret = ret / 10000;
 			tail = '万元'
 		} else {
-			ret = ret / 100;
+			ret = ret ;
 			tail = '元'
 		}
 		if (isTail) {

@@ -841,6 +841,8 @@ mainControllers.controller('ybwxEducationCtrl', ['$scope', '$routeParams', '$loc
 			$scope.type = type;
 			$scope.getUserInfo();
 			var openId = sessionStorage.getItem("openId");
+
+			/*
 			$scope.myPromise = $http({
 				method: 'GET',
 				headers: {
@@ -856,7 +858,7 @@ mainControllers.controller('ybwxEducationCtrl', ['$scope', '$routeParams', '$loc
 			}, function(res) {
 				console.log(res);
 				util.showToast($rootScope, "服务器错误");
-			});
+			});*/
 		}
 		$scope.goDingzhi = function() {
 			_hmt.push(['_trackEvent', 'eduction', 'eduction_subBtn']);

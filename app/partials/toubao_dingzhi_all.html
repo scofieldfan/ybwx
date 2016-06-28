@@ -295,13 +295,13 @@
 				<td >{{process_insured_money(plan.sum_insured)}}</td>
 				<td>1份</td>
 				<td  style="text-align: right" >
-					<span ng-if="plan.status==1" class="orange">{{plan.premium/100}}元</span>
+					<span ng-if="plan.status==1" class="orange">{{plan.premium}}元</span>
 					<div class="status {{get_taocan_css(plan.status)}}">{{taocan_status(plan.status)}}</div>
 				</td>
 			</tr>
 			<tr style="font-size: 19px;font-size: 15px;">
 				<td colspan="2" style="text-align: left;color: #ff5c00;"><span style="color: #555;">共计</span>
-					{{premium/100}}元&emsp;&emsp;{{coverage_period}}{{genDanwei(coverage_period_type)}}
+					{{premium}}元&emsp;&emsp;{{coverage_period}}{{genDanwei(coverage_period_type)}}
 				</td>
 			</tr>
 		</table>
