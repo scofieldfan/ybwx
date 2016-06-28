@@ -10,11 +10,12 @@ var ybwxApp = angular.module('ybwxApp', [
   'ybwxControllers',
   'mainControllers',
   'baodanControllers',
-  'infinite-scroll'
+  'routeStyles'
 ]).value('cgBusyDefaults', {
   message: '正在加载....',
   templateUrl: 'template/loading.html'
 });
+
 ybwxApp.filter('range', function() {
   return function(input, total) {
     total = parseInt(total);
@@ -43,15 +44,27 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/index_part.html?v=123',
       controller: 'ybwxIndexCtrl',
       title: '诺贝保险管家'
+    }).when('/bd_education', {
+      templateUrl: 'partials/bd_education.html',
+      controller: 'ybwxBdEducationCtrl',
+      title: "保障评分",
+      css:'css/bd_education.css'
     }).when('/select', {
       templateUrl: 'partials/select_part.html?v=123',
       controller: 'ybwxSelectCtrl',
-      title: "保障提升"
+      title: "保障提升",
+      css:'css/ring.css'
     }).when('/bz', {
       templateUrl: 'partials/bz_list.html?v=123',
       controller: 'ybwxBzCtrl',
-      title: "定制保障说明"
-    }).when('/verify_information', {
+      title: "定制保障说明",
+      css:'css/bz.css'
+    }).when('/tb_dz', {
+      templateUrl: 'partials/toubao_dingzhi_all.html',
+      controller: 'ybwxToubaoDingzhiAllCtrl',
+      title: "确认投保",
+      css:'css/toubao.css'
+    }) .when('/verify_information', {
       templateUrl: 'partials/verify_information.html',
       controller: 'ybwxverify_informationCtrl',
       title: "验真说明"
@@ -111,10 +124,6 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/education.html',
       controller: 'ybwxEducationCtrl',
       title: "如何投保"
-    }).when('/tb_dz', {
-      templateUrl: 'partials/toubao_dingzhi_all.html',
-      controller: 'ybwxToubaoDingzhiAllCtrl',
-      title: "确认投保"
     }).when('/edindex', {
       templateUrl: 'partials/ed_index.html',
       controller: 'ybwxEdIndexCtrl',
@@ -135,10 +144,6 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/bd_pic.html',
       controller: 'ybwxBDPicCtrl',
       title: "保单上传"
-    }).when('/bd_education', {
-      templateUrl: 'partials/bd_education.html',
-      controller: 'ybwxBdEducationCtrl',
-      title: "保障评分"
     }).when('/offical', {
       templateUrl: 'partials/offical_site.html',
       controller: 'ybwxOfficalSiteCtrl',

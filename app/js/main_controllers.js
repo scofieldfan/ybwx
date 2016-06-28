@@ -1445,12 +1445,17 @@ mainControllers.controller('ybwxToubaoDingzhiAllCtrl', ['$scope', '$filter', '$r
 				open_id: openId,
 				plans_to_premium: plans_to_premium,
 				insure_type: $scope.tbFor,
-				effective_date: effectiveDate,
-				ineffective_date: ineffectiveDate,
 				coverage_period: $scope.coverage_period,
 				coverage_period_type: $scope.coverage_period_type,
 				charge_period_type: $scope.charge_period_type
 			};
+
+			if ($scope.view.ineffective_date && ineffectiveDate) {
+				postData["ineffective_date"] = ineffectiveDate;
+			}
+			if ($scope.view.effective_date && effectiveDate) {
+				postData["effective_date"] = effectiveDate;
+			}
 			if ($scope.view.job && $scope.job) {
 				postData["job_id"] = $scope.job.id;
 			}
