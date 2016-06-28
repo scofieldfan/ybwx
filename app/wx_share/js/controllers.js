@@ -58,10 +58,11 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 		
 		//_hmt.push(['_trackPageview', '/wx_share_index'+"_qd_"+qd]);
 		$scope.init = function() {
+			/*
 			$scope.data = {
 				remain_times: 1,
 				recommend_times: 0
-			}
+			}*/
 			var code = util.getParameterByName("code");
 			if (!code) {
 				code = $routeParams.code;
@@ -93,7 +94,7 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 				}).then(function(res) {
 					console.log(res);
 					if (res.data && res.data.description) {
-						//util.showToast($rootScope, res.data.description);
+						util.showToast($rootScope, res.data.description);
 					} else if (res.data.code === 0) {
 						$scope.data = res.data.data;
 						// console.log($scope.data);
