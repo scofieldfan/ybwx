@@ -320,12 +320,15 @@ table td, th {
   box-sizing: border-box; }
 
 .fix_container .left {
-  background-color: #fff;
-  color: #1e4e8e;
+  background-color: #1e4e8e;
+  color: #fff;
   border-radius: 0;
   height: 48px;
   line-height: 48px;
-  font-size: 15px; }
+  font-size: 15px; 
+  box-sizing: border-box;
+  border-right: 1px solid #13325c;
+}
 
 .fix_container .right {
   background-color: #1e4e8e;
