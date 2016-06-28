@@ -47,15 +47,21 @@ body{
 	height: 48px;
 	text-decoration: none;
 	display: inline-block;
-	color: #555;
+	/*color: #555;*/
 	font-size:15px;
 	line-height: 48px;
 	text-align: center;
-	background: #fff;
+	/*background: #fff;*/
 	-webkit-box-flex: 1;
  	-webkit-flex: 1;
     -ms-flex: 1;
     flex: 1;
+}
+.cut_cell:nth-child(1) {
+	background: #1e4e8e;
+	color: #fff;
+	box-sizing: border-box;
+	border-right: 1px solid #13325c;
 }
 .cut_cell:nth-child(2) {
 	background: #1e4e8e;
