@@ -1,7 +1,7 @@
 var util = {
 	api: {
-		"openid": "/ybwx-diplomat/wechat/open_id",
-		"signature": "/ybwx-diplomat/wechat/js_signature"
+		"openid": "/ybwx-web/wechat/open_id",
+		"signature": "/ybwx-web/wechat/js_signature"
 	},
 	getParameterByName: function(name) {
 		name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
