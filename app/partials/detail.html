@@ -98,11 +98,10 @@
       <td class="td-left" style="cursor: pointer;">
         {{item.name}}
         <img src="wx_share/img/help.jpg"  class="help-img" title="{{item.description}}"></td>
-      <td>{{item.sum_insured/100 | number}}元{{item.danwei}}</td>
+      <td>{{item.sum_insured | number}}元{{item.danwei}}</td>
     </tr>
   </table>
   <div class="introd-sum">
-
     <span class="money_color" style="font-weight: bold;">{{money/100 | number}}</span>
     元<span ng-show="plan.premium_type==2">起</span> &nbsp;&nbsp;<span ng-show="plan.premium_type==1">保
     <span class="money_color" style="font-weight: bold;"  >{{plan.coverage_period}}</span> {{danwei}}</span>
@@ -136,9 +135,14 @@ $(function(){
     $("#popup").find(".toast").html($(this).find("img").attr("title"));
     $("#popup").show()
  });
- $(".mask").click(function(){
-    $(this).hide(); 
+ $("body").on("click",".head-container",function(event){
+    event.preventDefault();
+    event.stopPropagation(); 
+    return false;
+ }).on("click",".mask",function(event){
+      $(this).hide(); 
  });
+
 })
  /*
  $("#title-table").on("click","td",function(){
