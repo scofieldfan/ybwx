@@ -123,7 +123,8 @@ ybwxApp.config(['$routeProvider',
     }).when('/education', {
       templateUrl: 'partials/education.html',
       controller: 'ybwxEducationCtrl',
-      title: "如何投保"
+      title: "如何投保",
+      css:"css/education.css"
     }).when('/edindex', {
       templateUrl: 'partials/ed_index.html',
       controller: 'ybwxEdIndexCtrl',
