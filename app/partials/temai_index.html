@@ -1,4 +1,16 @@
 <link rel="stylesheet" type="text/css" href="css/temai_index.css?rev=b3f2f916ca86f1a92dc3fd524554d0fa">
+<link rel="stylesheet" href="wx_bx_gl/css/swiper.min.css">
+<style>
+.swiper-pagination-bullet{
+	background-color: #fff;
+}
+.swiper-pagination-bullet-active{
+	background-color: #fff;
+	width:16px;
+	height:6px;
+	border-radius: 10px;
+}
+</style>
 <header>
 	<div  class="logo-container">
 		<div class="logo">
@@ -11,7 +23,15 @@
 	</div>
 </header>
 <div class="swiper-container">
-	<img src="img/temai/header-top.jpg">
+		<div class="swiper-container" >
+				<div class="swiper-wrapper swiper">
+					<div class="swiper-slide item " style="">
+						<img src="img/temai/header-top.jpg">
+					</div>
+				</div>
+				<!-- Add Pagination -->
+				<div class="swiper-pagination" style="text-align:center"></div>
+			</div>
 </div>
 <div class="nav">
 	<div class="item"><img src="img/temai/nav-1.png"><div>0元抢</div> </div>
@@ -77,3 +97,12 @@
 <div class=" fix_container">
 	<a href="javascript:void(0)" class="btn btn_n_primary " ><img src="img/temai/kefu.png"> <span>客服电话 </span>400-8080-988</a>
 </div>
+
+<script src="wx_bx_gl/js/swiper.min.js"></script>
+<script>
+  var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        autoplay:5000
+    });
+</script>

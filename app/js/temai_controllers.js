@@ -7,8 +7,14 @@ var ybwxControllers = angular.module('ybwxControllers', []);
 ybwxControllers.controller('wxTemaiIndexCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
   function($scope, $routeParams, $location, $http, $rootScope) {
 
-
-
+     var openId = sessionStorage.getItem("openId");
+     $scope.listPromise = getHttpPromise($http, $rootScope, 'POST', api['temai_index'], {
+        "open_id": openId
+      }, function(res) {
+        if (res && res.data && res.data.data) {
+             
+        }
+      })
   }
  ]);
 ybwxControllers.controller('wxTemaiListCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',

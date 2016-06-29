@@ -33,7 +33,8 @@ var api = {
 		'get_claim_info': '/ybwx-web/api/claim_info/{id}',
 		'get_verfiy_policy': '/ybwx-web/api/policies/verify',
 		'policy_verfiy': '/ybwx-web/api/verify',
-		'get_policy_verfiyinfo': '/ybwx-web/api/verify_info/{id}'
+		'get_policy_verfiyinfo': '/ybwx-web/api/verify_info/{id}',
+		'temai_index':'/ybwx-web/api/insurance/selling_page'
 	}
 	//测试开始，为了测试做的适配
 	/*
@@ -537,7 +538,8 @@ function updateSumScore() {
 	if (scoreObj.moneyScore == 0) {
 		sum_score = 0;
 	} else {
-		sum_score = Math.floor((scoreObj.fanweiScore + scoreObj.moneyScore) / 2);
+//		sum_score = Math.floor((scoreObj.fanweiScore + scoreObj.moneyScore) / 2);
+		sum_score = Math.floor((scoreObj.fanweiScore * scoreObj.moneyScore) / 10);
 	}
 	$("#sum_score").html(sum_score);
 	if (scoreObj.fanweiScore != 0 && scoreObj.moneyScore != 0) {
