@@ -589,7 +589,13 @@
         border-width: $border-width;
         @include box-sizing(border-box);
         // 适配dpr进行缩放
-    
+        @include responsive(retina1x) {
+            width: 100%;
+            height: 100%;
+            @if $radius != null {
+                border-radius: $radius;
+            }
+        }
         @include responsive(retina2x) {
             width: 200%;
             height: 200%;

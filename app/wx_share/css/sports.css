@@ -219,6 +219,7 @@ body {
   border-bottom: .02rem solid #0e7ac0;
   font-weight: bold;
   margin-bottom: .25rem;
+  padding-bottom: .05rem;
 }
 .sort_ctrl {
   padding-bottom: .2rem;
@@ -254,7 +255,7 @@ body {
 
 }
 .font_controller img{
-  width: .15rem;
+  width: .13rem;
   /*height: .13rem;*/
   vertical-align: -1px;
 }
@@ -310,7 +311,7 @@ body {
 }
 .word_head {
   font-size: .15rem;
-  padding: .1rem 0;
+  padding: .1rem 0 .05rem 0;
 }
 
 .buy_but {
@@ -324,4 +325,7 @@ body {
 }
 .kong_div {
   height: .1rem;
+}
+.jiacu_word {
+  font-weight: bold;
 }

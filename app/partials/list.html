@@ -8,7 +8,6 @@
   <div class="cell_hd  cell_primary font15" ng-class='{"select":insurances_type=="5"}' ng-click='getList(5);'> 财产</div>
 </div>
 <ul class="ul_container"  data-ng-init="init()"   cg-busy="listPromise"  >
-  <!-- <div class="mar_10"></div> -->
   <li class="list_item" ng-click="goDetail(item.id)"   ng-repeat="item in list" >
     <div  class="img_box">
       <img ng-src="{{item.insurance_image_url}}" class="order_img">

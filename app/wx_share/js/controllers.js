@@ -132,6 +132,8 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 						count: (res.data.data["coupon_counts"] + 1)
 					});
 				}
+				console.log(服务器错误);
+				console.log(res);
 			}, function(res) {
 				console.log(res);
 				util.showToast($rootScope, "服务器错误");

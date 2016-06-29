@@ -11,19 +11,70 @@ ybwxControllers.controller('wxTemaiIndexCtrl', ['$scope', '$routeParams', '$loca
 
   }
  ]);
+/*特卖list*/
 ybwxControllers.controller('wxTemaiListCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
   function($scope, $routeParams, $location, $http, $rootScope) {
+    if($routeParams.type){
+      $scope.type = $routeParams.type;
+    }else{
+      $scope.type = "4";
+    }
+    $scope.setType = function(type) {
+      $scope.type = type;
+    }
+     $scope.isHaveResult = true;
 
+    util.share({
+              shareUrl:"http://web.youbaowuxian.com/#/temailist"
+    });
 
+    $scope.getList = function(category_id) {
+      $scope.isHaveResult = true;
+      var openId = sessionStorage.getItem("openId");
+      $scope.category_id = category_id;
+      $scope.listPromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurances_selling_temailist'], {
+        "open_id": openId
+      }, function(res) {
+        console.log('tailu........');
+        console.log(res);
+        console.log('tailu........');
+        if (res && res.data && res.data.data) {
+          $scope.list = res.data.data.categorys;
+        }
+      })
+    }
 
+    /*$scope.getList = function(category_id) {
+      $scope.isHaveResult = true;
+      var openId = sessionStorage.getItem("openId");
+      $scope.category_id = category_id;
+      $scope.listPromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurances_selling_temailist_shujv'], {
+        "category_id" = category_id;
+        "open_id": openId
+      }, function(res) {
+        console.log('tailu........');
+        console.log(res);
+        console.log('tailu........');
+        if (res && res.data && res.data.data) {
+          $scope.list = res.data.data.categorys;
+        }
+      })
+    }*/
+    $scope.init = function() {
+      var code = util.getParameterByName("code");
+      if (!code) {
+        code = $routeParams.code;
+      }
+      util.getOpenId(code).then(function() {
+        $scope.getList(4);
+      });
+    }
   }
  ]);
-
+/*特卖首页list*/
 ybwxControllers.controller('wxListCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
   function($scope, $routeParams, $location, $http, $rootScope) {
     _hmt.push(['_trackPageview', $location.path()]);
-
-
     //setTest($routeParams.is_test);
     $scope.isHaveResult = true;
 
@@ -59,7 +110,6 @@ ybwxControllers.controller('wxListCtrl', ['$scope', '$routeParams', '$location',
       util.getOpenId(code).then(function() {
         $scope.getList(4);
       });
-
     }
     $scope.goDetail = function(id) {
       $location.path("/detail").search({

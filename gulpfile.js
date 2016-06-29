@@ -44,6 +44,21 @@ gulp.task('sass:watch', function () {
   gulp.watch('./app/sass/*.scss', ['sass']);
 });
 
+
+
+gulp.task('wx_sass', function () {
+  return gulp.src('./app/sass/wx_share/*.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./app/wx_share/css'));
+});
+gulp.task('wx_sass:watch', function () {
+  gulp.watch('./app/sass/wx_share/*.scss', ['wx_sass']);
+});
+
+
+
+
+
 gulp.task('deltmp', ['addVersion'], function() {
 	//del(['app/partials/css/']);
 	return gulp.src('app/partials/css', {
