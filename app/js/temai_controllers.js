@@ -78,12 +78,7 @@ ybwxControllers.controller('wxTemaiListCtrl', ['$scope', '$routeParams', '$locat
 /*特卖首页list*/
 ybwxControllers.controller('wxListCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
   function($scope, $routeParams, $location, $http, $rootScope) {
-<<<<<<< HEAD
-    
     _hmt.push(['_trackPageview', $location.path()+"_form:"+$routeParams.from]);
-=======
-    _hmt.push(['_trackPageview', $location.path()]);
->>>>>>> dev
     //setTest($routeParams.is_test);
     $scope.isHaveResult = true;
 
