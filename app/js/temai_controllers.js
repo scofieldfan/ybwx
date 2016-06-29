@@ -28,45 +28,43 @@ ybwxControllers.controller('wxTemaiListCtrl', ['$scope', '$routeParams', '$locat
               shareUrl:"http://web.youbaowuxian.com/#/temailist"
     });
 
-    $scope.getList = function(category_id) {
+    $scope.getNav = function() {
       $scope.isHaveResult = true;
       var openId = sessionStorage.getItem("openId");
-      $scope.category_id = category_id;
-      $scope.listPromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurances_selling_temailist'], {
+      $scope.listPromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurance_category'], {
         "open_id": openId
       }, function(res) {
         console.log('tailu........');
         console.log(res);
         console.log('tailu........');
         if (res && res.data && res.data.data) {
-          $scope.list = res.data.data.categorys;
+          $scope.navItems = res.data.data.categorys;
         }
       })
     }
-
-    /*$scope.getList = function(category_id) {
-      $scope.isHaveResult = true;
+    $scope.getCate = function(category_id) {
       var openId = sessionStorage.getItem("openId");
       $scope.category_id = category_id;
-      $scope.listPromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurances_selling_temailist_shujv'], {
-        "category_id" = category_id;
+      console.log('getCate........');
+      $scope.catePromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurance_category_insurance'], {
+        "category_id" : category_id,
         "open_id": openId
       }, function(res) {
-        console.log('tailu........');
+        console.log('shijv........');
         console.log(res);
-        console.log('tailu........');
-        if (res && res.data && res.data.data) {
-          $scope.list = res.data.data.categorys;
-        }
+        console.log('shujv........');
+       if (res && res.data && res.data.data) {
+         $scope.cateItems = res.data.data.insurances;
+       }
       })
-    }*/
+    }
     $scope.init = function() {
       var code = util.getParameterByName("code");
       if (!code) {
         code = $routeParams.code;
       }
       util.getOpenId(code).then(function() {
-        $scope.getList(4);
+        $scope.getNav();
       });
     }
   }

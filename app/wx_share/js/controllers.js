@@ -4,7 +4,6 @@
 
 
 var wxShareControllers = angular.module('wxShareControllers', []);
-
 var shareUrl = 'http://web.youbaowuxian.com/wx_share.html';
 var api = {
 	"saveBd": "/ybwx-web/api/use_coupon",
@@ -19,8 +18,6 @@ var api = {
 function shareTip() {
 	$("#share").show();
 }
-
-
 
 function submitBd($scope, $http, $location, $filter) {
 	var openId = sessionStorage.getItem("openId");
@@ -127,16 +124,22 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 				}
 			}).then(function(res) {
 				console.log(res);
-				if (res.data && res.data.description) {
-					util.showToast($rootScope, res.data.description);
+				if (res.data && res.data.description) {  
+					$("#pop").show();
+					$("#popup").click(function(){
+			          $("#pop").hide();
+			        });
+			        $("#popup-btn").click(function(){
+			          $("#pop").hide();
+			        });
+					// util.showToast($rootScope, res.data.description);
 				}
-				// showToast($rootScope,res.data.description);
+				// util.showToast($rootScope,res.data.description);
 				if (res.data.code == 0) {
-					$location.path('/success_coupon').search({
+					$location.path('/success/').search({
 						count: (res.data.data["coupon_counts"] + 1)
 					});
 				}
-				console.log(服务器错误);
 				console.log(res);
 			}, function(res) {
 				console.log(res);
@@ -240,6 +243,10 @@ wxShareControllers.controller('wxShareBdCtrl', ['$scope', '$filter', '$routePara
 				if ($scope.registration.mobile.$invalid) {
 					util.showToast($rootScope, "手机号码填写有误，请修改");
 				}
+				if ($scope.order.effective_date.$invalid) {
+					util.showToast($rootScope, "保险生效时间不正确");
+					return false;
+				}util.showToast($rootScope, "手机号码填写有误，请修改");
 				if ($scope.registration.flight_no.$invalid) {
 						util.showToast($rootScope, "航班号必须填写");
 				}
