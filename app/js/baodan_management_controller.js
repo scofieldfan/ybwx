@@ -24,9 +24,7 @@ bdControllers.controller('ybwxBDIndexCtrl', ['$scope', '$routeParams', '$locatio
 			$location.path('/bd_pic').search({
 				'source': source
 			});
-		            }
-
-
+		}
 	}
 ]);
 

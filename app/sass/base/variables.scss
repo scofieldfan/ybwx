@@ -76,6 +76,12 @@ $media-types: (
     landscape: "screen and (orientation: landscape)",
     // {String} 竖屏
     portrait:  "screen and (orientation: portrait)",
+     // {String} 视网膜屏1x
+    retina1x:  "(min--moz-device-pixel-ratio: 1),
+                (-webkit-min-device-pixel-ratio: 1),
+                (min-device-pixel-ratio: 1),
+                (min-resolution: 100dpi),
+                (min-resolution: 1.0dppx)",
     // {String} 视网膜屏2x
     retina2x:  "(min--moz-device-pixel-ratio: 1.5),
                 (-webkit-min-device-pixel-ratio: 1.5),

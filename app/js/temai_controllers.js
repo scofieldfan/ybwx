@@ -17,18 +17,73 @@ ybwxControllers.controller('wxTemaiIndexCtrl', ['$scope', '$routeParams', '$loca
       })
   }
  ]);
+/*特卖list*/
 ybwxControllers.controller('wxTemaiListCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
   function($scope, $routeParams, $location, $http, $rootScope) {
+    if($routeParams.type){
+      $scope.type = $routeParams.type;
+    }else{
+      $scope.type = "4";
+    }
+    $scope.setType = function(type) {
+      $scope.type = type;
+    }
+     $scope.isHaveResult = true;
 
+    util.share({
+              shareUrl:"http://web.youbaowuxian.com/#/temailist"
+    });
 
-
+    $scope.getNav = function() {
+      $scope.isHaveResult = true;
+      var openId = sessionStorage.getItem("openId");
+      $scope.listPromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurance_category'], {
+        "open_id": openId
+      }, function(res) {
+        console.log('tailu........');
+        console.log(res);
+        console.log('tailu........');
+        if (res && res.data && res.data.data) {
+          $scope.navItems = res.data.data.categorys;
+        }
+      })
+    }
+    $scope.getCate = function(category_id) {
+      var openId = sessionStorage.getItem("openId");
+      $scope.category_id = category_id;
+      console.log('getCate........');
+      $scope.catePromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurance_category_insurance'], {
+        "category_id" : category_id,
+        "open_id": openId
+      }, function(res) {
+        console.log('shijv........');
+        console.log(res);
+        console.log('shujv........');
+       if (res && res.data && res.data.data) {
+         $scope.cateItems = res.data.data.insurances;
+       }
+      })
+    }
+    $scope.init = function() {
+      var code = util.getParameterByName("code");
+      if (!code) {
+        code = $routeParams.code;
+      }
+      util.getOpenId(code).then(function() {
+        $scope.getNav();
+      });
+    }
   }
  ]);
-
+/*特卖首页list*/
 ybwxControllers.controller('wxListCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
   function($scope, $routeParams, $location, $http, $rootScope) {
+<<<<<<< HEAD
     
     _hmt.push(['_trackPageview', $location.path()+"_form:"+$routeParams.from]);
+=======
+    _hmt.push(['_trackPageview', $location.path()]);
+>>>>>>> dev
     //setTest($routeParams.is_test);
     $scope.isHaveResult = true;
 
@@ -64,7 +119,6 @@ ybwxControllers.controller('wxListCtrl', ['$scope', '$routeParams', '$location',
       util.getOpenId(code).then(function() {
         $scope.getList(4);
       });
-
     }
     var testId = [];
     $scope.goDetail = function(id) {

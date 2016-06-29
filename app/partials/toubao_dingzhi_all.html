@@ -258,7 +258,8 @@
 				<div class="cell_hd_4_word">生效时间</div>
 			</div>
 			<div class="cell_hd cell_hd_border cell_primary">
-				<input type="date" class="ipt select_bg_2"   onfocus="_hmt.push(['_trackEvent', 'toubao', 'toubao_effective_date_focus']);"    name="effective_date" ng-model="user.effective_date"   placeholder="yyyy/MM/dd" min="{{minDate | date:'yyyy-MM-dd'}}" max="{{maxDate | date:'yyyy-MM-dd'}}" ng-change="changeEffectiveDate()"  placeholder="保险生效时间" required ></div>
+				<input type="date" class="ipt select_bg_2"   onfocus="_hmt.push(['_trackEvent', 'toubao', 'toubao_effective_date_focus']);"    name="effective_date" ng-model="user.effective_date"   placeholder="yyyy/MM/dd" min="{{minDate | date:'yyyy-MM-dd'}}" max="{{maxDate | date:'yyyy-MM-dd'}}" ng-change="changeEffectiveDate()"  placeholder="保险生效时间" required >
+			</div>
 		</div>
 		<div class="cell"  style="color:red"
 	            ng-show="order.effective_date.$dirty && order.effective_date.$invalid ">

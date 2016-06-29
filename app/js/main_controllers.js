@@ -9,6 +9,8 @@ var api = {
 		'get_insurance_detail': '/ybwx-web/api/insurance_order',
 		'get_insurance_index': '/ybwx-web/api/aggregate_score',
 		'get_insurances_selling': '/ybwx-web/api/insurance/selling',
+		'get_insurance_category':'/ybwx-web/api/insurance/insurance_category',
+		'get_insurance_category_insurance':'/ybwx-web/api/insurance/insurance_category_insurance',
 		'get_insurances_detail': '/ybwx-web/api/insurance/plans',
 		'get_insurances_mask': '/ybwx-web/api/insurance/float/{productId}',
 		'get_recommend': '/ybwx-web/api/recommend_view/{type}',

@@ -662,6 +662,7 @@ table td, table th {
 
 table td {
   padding: 0.15rem 0.1rem;
+  position: relative;
   position: relative; }
   table td::after {
     pointer-events: none;

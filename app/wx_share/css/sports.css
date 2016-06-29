@@ -219,6 +219,7 @@ body {
   border-bottom: .02rem solid #0e7ac0;
   font-weight: bold;
   margin-bottom: .25rem;
+  padding-bottom: .05rem;
 }
 .sort_ctrl {
   padding-bottom: .2rem;
@@ -254,7 +255,7 @@ body {
 
 }
 .font_controller img{
-  width: .15rem;
+  width: .13rem;
   /*height: .13rem;*/
   vertical-align: -1px;
 }
@@ -310,7 +311,7 @@ body {
 }
 .word_head {
   font-size: .15rem;
-  padding: .1rem 0;
+  padding: .1rem 0 .05rem 0;
 }
 
 .buy_but {
@@ -324,4 +325,59 @@ body {
 }
 .kong_div {
   height: .1rem;
+}
+.jiacu_word {
+  font-weight: bold;
+}
+.pop {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.ku {
+  background: #000;
+  opacity: .5;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+/*.lai {
+  background: #fff;
+  position: fixed;
+  left: 15%;
+  top: .6rem;
+  border-radius: 10px;
+}*/
+.popup_box{
+  width: 80%;
+  position: relative;
+  left: 50%;
+  margin-left: -40%;
+  top: .6rem;
+}
+.popup_box img{
+  width: 100%;
+  position: relative;
+  left: 0;
+  top: 0;
+}
+.popup_btn {
+  position: absolute;
+  bottom: 13%;
+  left: 10%; 
+  /*margin-left: -25%;*/
+  /*border: 1px solid #019cff;*/
+  width: 80%;
+  height: 11%;
+  /*color: #019cff;
+  font-size: .2rem;
+  border-radius: 5px;*/
+  line-height: 11%;
+  /*text-align: center;
+  background: #fff;*/
 }
