@@ -1,7 +1,7 @@
 var util = {
 	api: {
-		"openid": "/ybwx-diplomat/wechat/open_id",
-		"signature": "/ybwx-diplomat/wechat/js_signature"
+		"openid": "/ybwx-web/wechat/open_id",
+		"signature": "/ybwx-web/wechat/js_signature"
 	},
 	getParameterByName: function(name) {
 		name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -62,11 +62,11 @@ var util = {
 			ret = parseInt(moneyStr.substring(0, moneyStr.length - 1));
 			isTail = true;
 		}
-		if (ret >= 100000) {
-			ret = ret / 1000000;
+		if (ret >= 1000) {
+			ret = ret / 10000;
 			tail = '万元'
 		} else {
-			ret = ret / 100;
+			ret = ret ;
 			tail = '元'
 		}
 		if (isTail) {

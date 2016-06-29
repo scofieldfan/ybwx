@@ -41,7 +41,7 @@
          
           <div style="padding:20px 10px;color:#555555;position: relative;font-size: 13px;"  ng-show="order.status=='1' ||  order.status=='2'   || order.status=='3'   || order.status=='5' ">
              订单金额:
-            <span style="color:#555555">{{order.premium/100 | number:2}}</span>
+            <span style="color:#555555">{{order.premium | number:2}}</span>
             <div class="pay_button" ng-click="goPay(order.order_id,order.order_no,order.premium)">立即支付</div>
           </div>
         </div>

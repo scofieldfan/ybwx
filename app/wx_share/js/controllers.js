@@ -58,10 +58,11 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 		
 		//_hmt.push(['_trackPageview', '/wx_share_index'+"_qd_"+qd]);
 		$scope.init = function() {
+			/*
 			$scope.data = {
 				remain_times: 1,
 				recommend_times: 0
-			}
+			}*/
 			var code = util.getParameterByName("code");
 			if (!code) {
 				code = $routeParams.code;
@@ -77,6 +78,8 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 		              shareDesc:"每月均可领取1份，每邀请1位好友，即可再免费领取1份。约上朋友一起突破极限吧！"
 		            
 		        });
+		       // alert("get openId ok:"+openId);
+		        //alert("get openId ok:"+api['ping_coupon']);
 				$http({
 					method: 'POST',
 					headers: {
@@ -85,12 +88,13 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 					url: api['ping_coupon'],
 					data: {
 						"open_id": openId,
-						"coupon_id": "4"
+						"coupon_id": "4",
+						"time":new Date().getTime()
 					}
 				}).then(function(res) {
 					console.log(res);
 					if (res.data && res.data.description) {
-						//util.showToast($rootScope, res.data.description);
+						util.showToast($rootScope, res.data.description);
 					} else if (res.data.code === 0) {
 						$scope.data = res.data.data;
 						// console.log($scope.data);

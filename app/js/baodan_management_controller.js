@@ -44,10 +44,10 @@ bdControllers.controller('ybwxBdEducationCtrl', ['$scope', '$routeParams', '$loc
 			return insureanceCNMap[$routeParams.type];
 		}
 		$scope.goOldEducation = function() {
-			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_goEducation']);
 			$location.path('/education').search({
 				"type":	$routeParams.type
 			});
+			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_goEducation']);
 		}
 		$scope.goUpBd = function(){
 			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_goBdIndex']);
@@ -114,19 +114,13 @@ bdControllers.controller('ybwxBdEducationCtrl', ['$scope', '$routeParams', '$loc
 						console.log("totalLines:"+totalLines);
 						console.log("$scope.hex.length:"+$scope.hex.length);
 						console.log("$scope.tailLines:"+$scope.tailLines);
-						// console.log("totalLines:"+totalLines);
-						// console.log("$scope.hex.length:"+$scope.hex.length);
-						// console.log("$scope.tailLines:"+$scope.tailLines);
-
+						//console.log("totalLines:"+totalLines);
+						//console.log("$scope.hex.length:"+$scope.hex.length);
+						//console.log("$scope.tailLines:"+$scope.tailLines);
 						//$scope.hiveLength = Math.ceil(res.data.data.beehive.length/3);
 					}
 				})
-
-
 			});
-
-
-
 		}
 		$scope.goDingzhi = function() {
 			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_goDingZhi']);

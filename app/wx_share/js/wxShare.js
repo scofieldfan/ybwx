@@ -2,8 +2,8 @@
 
 
    var api = {
-     "openid": "/ybwx-diplomat/wechat/open_id",
-     "signature": "/ybwx-diplomat/wechat/js_signature"
+     "openid": "/ybwx-web/wechat/open_id",
+     "signature": "/ybwx-web/wechat/js_signature"
    }
 
    function getOpenId(code) {

@@ -102,8 +102,8 @@ var CIRCLE = (function() {
 	var mHold = 0;
 	ctx.translate(radiusX, radiusY);
 	ctxBg.translate(radiusX, radiusY);
-	// radius = radius * 0.75;
-	radius = radius - config.dpr*config.padding  -config.lineWidth;//
+	radius = radius * 0.75;
+	//radius = radius - config.dpr*config.padding  -config.lineWidth;//
 	var smallRadius = radius;
 	var bigRadius = radius + config.lineWidth / 2;
 	var angle = MIN_ANGLE_DEGREE;

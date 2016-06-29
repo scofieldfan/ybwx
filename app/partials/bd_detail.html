@@ -8,8 +8,8 @@
 		<p>创建时间:{{order.create_time  |  date:'yyyy-MM-dd HH:mm:ss' }}</p>
 		<p>生效时间:{{order.effective_date  |  date:'yyyy-MM-dd HH:mm:ss' }}</p>
 		<p>终止时间:{{order.ineffective_date  |  date:'yyyy-MM-dd HH:mm:ss' }}</p>
-		<p>保障额度:<span class="red">￥{{order.sum_insured/100 | number:2}}</span>元</p>
-		<p>支付金额:<span class="red">￥{{order.order_amount/100 | number:2}}</span>元</p> 
+		<p>保障额度:<span class="red">￥{{order.sum_insured | number:2}}</span>元</p>
+		<p>支付金额:<span class="red">￥{{order.order_amount | number:2}}</span>元</p> 
 		<p>本产品由<span class="blue">{{order.insurance_company_name}}</span>提供</p>
 	</div>
 

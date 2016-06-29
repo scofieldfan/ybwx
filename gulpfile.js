@@ -20,6 +20,11 @@ gulp.task('rev', ['sass','cssMin', 'jsMin', 'deltmp'], function() {
 
 });
 gulp.task('copycss', function() {
+
+	 gulp.src('app/css/*.css')
+		.pipe(gulp.dest('app/js/css/'));
+
+
 	return gulp.src('app/css/*.css')
 		.pipe(gulp.dest('app/partials/css/'));
 });
@@ -27,9 +32,15 @@ gulp.task('copycss', function() {
 
 
 gulp.task('addVersion', ['copycss'], function() {
+
+	 return gulp.src('app/js/*.js')
+		.pipe(rev())
+		.pipe(gulp.dest('app/js'));
+
+		
 	return gulp.src('app/partials/*.html')
 		.pipe(rev())
-		.pipe(gulp.dest('app/partials'));
+		.pipe(gulp.dest('app/partials'));/**/
 	//del(['app/partials/css/']);
 	//gulp.src('app/partials/css', {read: false})
 	//  .pipe(clean());
@@ -61,6 +72,13 @@ gulp.task('wx_sass:watch', function () {
 
 gulp.task('deltmp', ['addVersion'], function() {
 	//del(['app/partials/css/']);
+
+	gulp.src('app/js/css', {
+		read: false
+	}).pipe(clean({
+		force: true
+	}));
+
 	return gulp.src('app/partials/css', {
 		read: false
 	}).pipe(clean({

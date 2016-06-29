@@ -13,8 +13,8 @@ var util={
 	 }, 2000);
 	},
 	api : {
-     "openid": "/ybwx-diplomat/wechat/open_id",
-     "signature": "/ybwx-diplomat/wechat/js_signature"
+     "openid": "/ybwx-web/wechat/open_id",
+     "signature": "/ybwx-web/wechat/js_signature"
    },
    	getOpenId: function(code) {
 		if (!sessionStorage.getItem("openId")) {
