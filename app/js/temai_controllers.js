@@ -27,9 +27,8 @@ ybwxControllers.controller('wxTemaiListCtrl', ['$scope', '$routeParams', '$locat
 
 ybwxControllers.controller('wxListCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
   function($scope, $routeParams, $location, $http, $rootScope) {
-    _hmt.push(['_trackPageview', $location.path()]);
-
-
+    
+    _hmt.push(['_trackPageview', $location.path()+"_form:"+$routeParams.from]);
     //setTest($routeParams.is_test);
     $scope.isHaveResult = true;
 
@@ -274,7 +273,7 @@ ybwxControllers.controller('wxDetailCtrl', ['$scope', '$routeParams', '$location
     
     $("#detail-template").load("template/product_" + $routeParams.product_id + ".html");
 
-    _hmt.push(['_trackPageview', $location.path()]);
+    _hmt.push(['_trackPageview', $location.path()+"_id:"+$routeParams.product_id+"_"+"from:"+$routeParams.from]);
 
 
 

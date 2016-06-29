@@ -52,7 +52,7 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 		if (!qd) {
 			qd = 'default';
 		}
-		_hmt.push(['_trackPageview', '/wx_share_index']);
+		_hmt.push(['_trackPageview', '/wx_share_jixian']);
 		_hmt.push(['_setCustomVar', 1, 'qudao', qd, 1]);
 
 		
@@ -111,7 +111,7 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 		}
 		$scope.init();
 		$scope.sportsAddCoupon = function() {
-			_hmt.push(['_trackEvent', 'wx_share_index', 'wx_share_index_left_button']);
+			_hmt.push(['_trackEvent', 'wx_share_jixian', 'wx_share_jixian_left_button']);
 			var recId = util.getParameterByName('rec_id') || $routeParams.rec_id;
 			var openId = sessionStorage.getItem("openId");
 			$http({
@@ -142,9 +142,10 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 			});
 		}
 		$scope.showShareTip = function() {
-			_hmt.push(['_trackEvent', 'wx_share_index', 'wx_index_right_button']);
+			_hmt.push(['_trackEvent', 'wx_share_jixian', 'wx_share_jixian_right_button']);
 			shareTip();
 		}
+		
 	}
 ]);
 wxShareControllers.controller('wxShareBdCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
