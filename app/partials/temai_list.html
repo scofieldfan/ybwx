@@ -11,15 +11,15 @@
 <div class="insurance" >
 	<div class="insurance-item"   ng-repeat="item in cateItems">
 		<div class="logo">
-			<img ng-src="{{item.company_image_url}}">
+			<img ng-src="{{item.insurance_image_url}}">
 		</div>	
 		<div class="wrap">
-			<div class="title">{{item.description}}</div>	
-			<div class="des"><span class="hot">热卖</span> 25种重大疾病 1年期</div>	
+			<div class="title">{{item.name}}</div>	
+			<div class="des"><span class="hot">热卖</span> {{item.description}}</div>	
 			<div class="money">{{item.front_price}}</div>	
 		</div>	
 	</div>
-	<!-- <div class="insurance-item">
+<!-- 	<div class="insurance-item">
 		<div class="logo">
 			<img src="img/temai/120.jpg">
 		</div>	

@@ -136,7 +136,7 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 				}
 				// util.showToast($rootScope,res.data.description);
 				if (res.data.code == 0) {
-					$location.path('/success/').search({
+					$location.path('/success_coupon/').search({
 						count: (res.data.data["coupon_counts"] + 1)
 					});
 				}
@@ -243,10 +243,6 @@ wxShareControllers.controller('wxShareBdCtrl', ['$scope', '$filter', '$routePara
 				if ($scope.registration.mobile.$invalid) {
 					util.showToast($rootScope, "手机号码填写有误，请修改");
 				}
-				if ($scope.order.effective_date.$invalid) {
-					util.showToast($rootScope, "保险生效时间不正确");
-					return false;
-				}util.showToast($rootScope, "手机号码填写有误，请修改");
 				if ($scope.registration.flight_no.$invalid) {
 						util.showToast($rootScope, "航班号必须填写");
 				}

@@ -368,16 +368,16 @@ body {
 }
 .popup_btn {
   position: absolute;
-  bottom: 11%;
+  bottom: 13%;
   left: 10%; 
   /*margin-left: -25%;*/
-  border: 1px solid #019cff;
+  /*border: 1px solid #019cff;*/
   width: 80%;
-  height: .46rem;
-  color: #019cff;
+  height: 11%;
+  /*color: #019cff;
   font-size: .2rem;
-  border-radius: 5px;
-  line-height: .46rem;
-  text-align: center;
-  background: #fff;
+  border-radius: 5px;*/
+  line-height: 11%;
+  /*text-align: center;
+  background: #fff;*/
 }
