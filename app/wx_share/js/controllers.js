@@ -160,10 +160,17 @@ wxShareControllers.controller('wxShareBdCtrl', ['$scope', '$filter', '$routePara
 		$scope.expiry_date = $routeParams.expiry_date;
 		$scope.coupon_no = $routeParams.coupon_no;
 		var testDate = new Date();
-		testDate.setDate(testDate.getDate() + 1);
-		$scope.minDate = testDate;
-		$scope.maxDate = $scope.expiry_date;
-
+		// testDate.setDate(testDate.getDate() + 1);
+		// $scope.minDate = testDate;
+		// $scope.getMaxDate = $scope.expiry_date;
+		var tmp = new Date($scope.expiry_date);
+		console.log($scope.expiry_date);
+		console.log(tmp);
+		// tmp.setDate(tmp.getDate() - 1);
+		// $scope.maxDate = tmp;
+		
+		// 	$scope.user.insurance_date = effectiveDate;
+       
 		var userinfo = JSON.parse(localStorage.getItem('userinfo'));
 		if (userinfo) {
 			$scope.user = {
@@ -182,21 +189,20 @@ wxShareControllers.controller('wxShareBdCtrl', ['$scope', '$filter', '$routePara
 		function addDays(date,days) {
 			var result = new Date(date);
 			result.setDate(result.getDate() + days);
+			// result.setDate(result.getDate() - jian);
 			return result;
 		} 
 		$scope.genInEffectiveDate = function() {
 		//计算失效日期
 			//console.log("test ineffective Date.........");
 			//console.log($scope.user.insurance_date);
-			
-			//console.log(addDays($scope.user.insurance_date,3));
 
 			$scope.user.inEnd_date = addDays($scope.user.insurance_date,3);
 		}
 		
 		$scope.submit = function() {
 			_hmt.push(['_trackEvent', 'wx_share_toubao', 'wx_share_toubao_subtn']);
-
+             
 			console.log($scope.registration);
 			console.log("invalid:"+$scope.registration.$invalid);
 			if (!$scope.registration.$invalid) {
@@ -244,11 +250,11 @@ wxShareControllers.controller('wxShareBdCtrl', ['$scope', '$filter', '$routePara
 				if ($scope.registration.mobile.$invalid) {
 					util.showToast($rootScope, "手机号码填写有误，请修改");
 				}
-				if ($scope.registration.flight_no.$invalid) {
-						util.showToast($rootScope, "航班号必须填写");
-				}
 				if ($scope.registration.insurance_date.$invalid) {
-					util.showToast($rootScope, "保障日期填写有误，请修改");
+					util.showToast($rootScope, "保险生效时间不正确");
+				}
+				if ($scope.registration.flight_no.$invalid) {
+					util.showToast($rootScope, "航班号必须填写");
 				}
 			}
 		}

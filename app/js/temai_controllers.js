@@ -68,17 +68,13 @@ ybwxControllers.controller('wxTemaiListCtrl', ['$scope', '$routeParams', '$locat
         }
       })
     }
-    $scope.getCate = function(category_id) {
+    $scope.getCateList = function(category_id) {
       var openId = sessionStorage.getItem("openId");
       $scope.category_id = category_id;
-      console.log('getCate........');
       $scope.catePromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurance_category_insurance'], {
         "category_id": category_id,
         "open_id": openId
       }, function(res) {
-        console.log('shijv........');
-        console.log(res);
-        console.log('shujv........');
         if (res && res.data && res.data.data) {
           $scope.cateItems = res.data.data.insurances;
         }
@@ -91,6 +87,7 @@ ybwxControllers.controller('wxTemaiListCtrl', ['$scope', '$routeParams', '$locat
       }
       util.getOpenId(code).then(function() {
         $scope.getNav();
+        $scope.getCateList(3);
       });
     }
   }
@@ -125,7 +122,6 @@ ybwxControllers.controller('wxListCtrl', ['$scope', '$routeParams', '$location',
         }
       })
     }
-
     $scope.init = function() {
       var code = util.getParameterByName("code");
       if (!code) {
@@ -148,7 +144,6 @@ ybwxControllers.controller('wxListCtrl', ['$scope', '$routeParams', '$location',
       }
 
     }
-
   }
 ]);
 

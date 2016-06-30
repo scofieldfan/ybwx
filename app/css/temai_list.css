@@ -288,7 +288,7 @@ body {
     margin-bottom: 5px;
     border-bottom: 1px solid #e2e2e2; }
     .insurance .insurance-item .logo {
-      width: 150px;
+      width: 1.07rem;
       display: -webkit-box;
       display: -webkit-flex;
       display: -moz-box;
@@ -315,18 +315,19 @@ body {
     } @else {
         width: .1px;
     }*/
-      padding: 15px; }
+      padding: .15rem; }
       .insurance .insurance-item .wrap .hot {
         background-color: #ff5c00;
         color: #fff;
         border-radius: 3px;
-        padding: 2px; }
+        padding: 2px;
+        font-size: .1rem; }
       .insurance .insurance-item .wrap .title {
         color: #555;
-        font-size: 15px; }
+        font-size: .15rem; }
       .insurance .insurance-item .wrap .des {
         color: #999;
-        font-size: 13px; }
+        font-size: .13rem; }
       .insurance .insurance-item .wrap .money {
         color: #ff5c00;
-        font-size: 15px; }
+        font-size: .15rem; }

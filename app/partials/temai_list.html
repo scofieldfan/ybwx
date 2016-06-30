@@ -4,7 +4,7 @@
 
 <div cg-busy="listPromise">
 <div class="nav" data-ng-init="init()" >
-	<div class="item" ng-class='{"select":category_id==nav.id}'ng-repeat="nav in navItems" ng-click='getCate(nav.id)'>{{nav.name}}</div>
+	<div class="item" ng-class='{"select":category_id==nav.id}'ng-repeat="nav in navItems" ng-click='getCateList(nav.id)'>{{nav.name}}</div>
 
 </div>
 
@@ -19,7 +19,7 @@
 			<div class="money">{{item.front_price}}</div>	
 		</div>	
 	</div>
-<!-- 	<div class="insurance-item">
+	<div class="insurance-item">
 		<div class="logo">
 			<img src="img/temai/120.jpg">
 		</div>	
@@ -38,7 +38,7 @@
 			<div class="des"><span class="hot">热卖</span> 25种重大疾病 1年期</div>	
 			<div class="money">258元起</div>	
 		</div>	
-	</div> -->
+	</div>
 </div>
 <ul ng-show="!isHaveResult" class="cell_font" style=" text-align: center;padding-top: 90px;" >
   <img src="img/qidai.png" >
