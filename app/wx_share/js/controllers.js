@@ -156,19 +156,15 @@ wxShareControllers.controller('wxShareBdCtrl', ['$scope', '$filter', '$routePara
 	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
 		_hmt.push(['_trackPageview', "/wx_share_toubao"]);
 		$scope.coupon_id = $routeParams.coupon_id;
-		$scope.expiry_date = $routeParams.expiry_date;
 		$scope.coupon_no = $routeParams.coupon_no;
 		var testDate = new Date();
-		// testDate.setDate(testDate.getDate() + 1);
-		// $scope.minDate = testDate;
-		// $scope.getMaxDate = $scope.expiry_date;
-		var tmp = new Date($scope.expiry_date);
-		console.log($scope.expiry_date);
-		console.log(tmp);
-		// tmp.setDate(tmp.getDate() - 1);
-		// $scope.maxDate = tmp;
-		
-		// 	$scope.user.insurance_date = effectiveDate;
+		testDate.setDate(testDate.getDate() + 1);
+		$scope.minDate = testDate;
+		var tmp = new Date(Number($routeParams.expiry_date));
+		tmp.setDate(tmp.getDate() - 1);
+		$scope.maxDate = tmp;
+		$scope.user = {};
+		$scope.user.insurance_date = testDate;
        
 		var userinfo = JSON.parse(localStorage.getItem('userinfo'));
 		if (userinfo) {
@@ -195,8 +191,15 @@ wxShareControllers.controller('wxShareBdCtrl', ['$scope', '$filter', '$routePara
 		//计算失效日期
 			//console.log("test ineffective Date.........");
 			//console.log($scope.user.insurance_date);
-
+            var testDate = new Date();
+            testDate.setDate(testDate.getDate() + 3);
 			$scope.user.inEnd_date = addDays($scope.user.insurance_date,3);
+			if ($scope.order && $scope.order.$scope.minDate && !$scope.order.$scope.minDate.$invalid) {
+				$scope.user.inEnd_date = testDate;
+			}
+			if (!$scope.order) {
+				$scope.user.inEnd_date = testDate;
+			}
 		}
 		
 		$scope.submit = function() {
