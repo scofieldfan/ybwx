@@ -5,8 +5,7 @@
 		<div class="top-container" >
 			<img ng-src="{{data.large_image}}" style="width:100%;">
 			<div class="company">
-				{{data.insurance_company_name
-}}承保
+				{{data.insurance_company_name}}承保
 			</div>
 			<div class="text-container">
 				<div class="title">{{data.insurance_name}}</div>
@@ -14,7 +13,7 @@
 					<img src="img/temai/dun.png">&nbsp;</div>
 			</div>
 		</div>
-		<div class="bottom-container">{{data.insurance_description}}</div>
+		<div class="bottom-container">{{data.coverage_overview}}</div>
 	</header>
 
 	<div class="detail-content"  data-ng-init="init()"   >
@@ -28,19 +27,35 @@
 
 		<table class="content-table" id="content_{{$index}}" ng-repeat="plan in data.insurance_plans" ng-show="selectTable==$index">
 			<tr>
-				<th width="70%">保障范围</th>
+				<th width="70%">主要保障</th>
 				<th>保额</th>
 			</tr>
 
-			<tr ng-repeat="item in plan.coverage_beans">
+			<tr ng-repeat="item in plan.main_coverage_beans">
 				<td class="td-left" style="cursor: pointer;">
 					{{item.name}}
 					<img src="img/temai/wen.png"  class="help-img" title="{{item.description}}"/>
 					<br/>
-					<span class="gray">含高风险运动</span>
+					<span class="gray" style="display: none">含高风险运动</span>
 				</td>
-				<td>{{item.sum_insured/100 | number}}元{{item.danwei}}</td>
+				<td>{{item.sum_insured | number}}元{{item.danwei}}</td>
 			</tr>
+			<tr>
+				<th width="70%">次要保障</th>
+				<th>保额</th>
+			</tr>
+
+			<tr ng-repeat="item in plan.second_coverage_beans">
+				<td class="td-left" style="cursor: pointer;">
+					{{item.name}}
+					<img src="img/temai/wen.png"  class="help-img" title="{{item.description}}"/>
+					<br/>
+					<span class="gray" style="display: none">含高风险运动</span>
+				</td>
+				<td>{{item.sum_insured | number}}元{{item.danwei}}</td>
+			</tr>
+
+
 		</table>
 	</div>
 
@@ -49,7 +64,8 @@
 	<div class="cell pay_container ">
 		<a href="javascript:void(0)" class="btn btn_n_primary right"   ng-click="showMask()" >立即投保</a>
 		<a href="javascript:void(0)" class="btn btn_n_primary left tg_dz_fr" >
-			<span class="money_size">{{money/100 | number}}</span>
+			<span>{{plan.name }}</span>
+			<span class="money_size">{{money | number}}</span>
 			元
 			<span ng-show="plan.premium_type==2">起</span>
 		</a>
@@ -62,7 +78,7 @@
 			<img ng-src="{{data.small_image}}" ></div>
 		<div class="fl">
 			<p >
-				<span  style="font-size:18px;color:#ff5c00;">{{money/100 | number}}</span>
+				<span  style="font-size:18px;color:#ff5c00;">{{money | number}}</span>
 				元
 			</p>
 			<p>*最终购买价格</p>
@@ -113,11 +129,11 @@ $(function(){
  });
 
  $("body").on("click",".more-1-container",function(){
- 	 $(".know-content").show();
- 	 $(".know-content").css({
- 	 	"height":"auto",
- 	 	"overflow":"auto"
- 	 });
+ 	 $(".know-content").children().show();
+     $(this).hide();
+ });
+  $("body").on("click",".more-container",function(){
+ 	 $(".qa-container").find("li").removeClass("hide");
      $(this).hide();
  });
 

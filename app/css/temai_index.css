@@ -276,7 +276,8 @@ header {
     border-bottom: 1px solid #e2e2e2;
     font-size: 13px; }
     .nav .item div {
-      margin-top: 5px; }
+      margin-top: 5px;
+      color: #555; }
     .nav .item img {
       width: 23px;
       vertical-align: middle; }

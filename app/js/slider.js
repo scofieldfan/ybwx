@@ -87,6 +87,7 @@ var SLIDER = (function() {
 					}
 					_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_squreTabEnd']);
 					event.preventDefault();
+					event.stopPropagation();
 					console.log("<br/>Touch end (" + event.changedTouches[0].clientX + "," + event.changedTouches[0].clientY + ")");
 					var dis = event.changedTouches[0].clientX - startX;
 					//dis=dis*1.2;
@@ -122,6 +123,7 @@ var SLIDER = (function() {
 						return false;
 					}
 					event.preventDefault();
+					event.stopPropagation();
 					var dis = event.touches[0].clientX - startX;
 					var drawDis = barWidth + dis;
 

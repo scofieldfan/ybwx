@@ -34,6 +34,7 @@ header{
 		width:100%;
 	}		
 }
+
 .nav{
 	background-color: #FFF;
 	@include flexbox;
@@ -45,8 +46,10 @@ header{
 		border-right:1px solid #e2e2e2;
 		border-bottom:1px solid #e2e2e2;
 		font-size:13px;
+
 		div{
 			margin-top:5px;
+			color:#555;
 		}
 		img{
 			width:23px;
