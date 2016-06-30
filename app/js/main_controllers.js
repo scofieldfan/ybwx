@@ -1070,7 +1070,7 @@ mainControllers.controller('ybwxToubaoDingzhiAllCtrl', ['$scope', '$filter', '$r
 			$scope.familys = $scope.familys.filter(function(item) {
 				return item.name !== name;
 			})
-			//deleteFamily(name);
+			//deleteFamily(name);s
 			selectDefaultFamily();
 		}
 		$scope.selectFamily = function() {

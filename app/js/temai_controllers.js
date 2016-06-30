@@ -32,6 +32,7 @@ ybwxControllers.controller('wxTemaiListCtrl', ['$scope', '$routeParams', '$locat
       $scope.isHaveResult = true;
       var openId = sessionStorage.getItem("openId");
       $scope.listPromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurance_category'], {
+        // "category_id" : "4",
         "open_id": openId
       }, function(res) {
         console.log('tailu........');
@@ -65,6 +66,7 @@ ybwxControllers.controller('wxTemaiListCtrl', ['$scope', '$routeParams', '$locat
       }
       util.getOpenId(code).then(function() {
         $scope.getNav();
+        $scope.getCate(3);
       });
     }
   }
@@ -99,7 +101,6 @@ ybwxControllers.controller('wxListCtrl', ['$scope', '$routeParams', '$location',
         }
       })
     }
-
     $scope.init = function() {
       var code = util.getParameterByName("code");
       if (!code) {
@@ -115,7 +116,6 @@ ybwxControllers.controller('wxListCtrl', ['$scope', '$routeParams', '$location',
         "product_id": id
       });
     }
-
   }
 ]);
 
