@@ -396,11 +396,8 @@ ybwxControllers.controller('wxDetailCtrl', ['$scope', '$routeParams', '$location
             console.log(res.data.data.plans);
             $scope.maskPlans = res.data.data.plans;
             $scope.maskSelectPlan = $scope.maskPlans[Object.keys($scope.maskPlans)[0]];
-
             $scope.coverage_period = $scope.maskSelectPlan.coverage_periods[0];
             $scope.coverage_period_type = $scope.maskSelectPlan.coverage_period_type;
-
-
             if ($scope.maskSelectPlan.charge_periods) {
               $scope.charge_period = $scope.maskSelectPlan.charge_periods[0];
             }

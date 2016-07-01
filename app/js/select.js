@@ -13,6 +13,7 @@ var CIRCLE = (function() {
 		//0:["顺时针滑动提升分数"]
 
 	};
+	var insuranceType;
 	var baozhang_score = {};
 	var baozhang_money = {
 		0: ['20', '40', '60', '80', '100']
@@ -52,12 +53,23 @@ var CIRCLE = (function() {
 		}
 	}
 
-	function init(coverageScores, tiaojian, money) {
+	function init(coverageScores, tiaojian, money,type) {
 		baozhang_score = coverageScores;
 		baozhang_tiaojian = tiaojian;
 		baozhang_money = money;
+		insuranceType = type;
+
 		//$scope = scope;
 		changeText(0);
+		drawBg(ctxBg); //绘制背景
+
+		var text_width = canvas.width * 0.5;
+		$("#chartTextContainer").css({
+			'left': (radiusX) / config.dpr,
+			'top': (radiusY - radius * 2 / 3) / config.dpr,
+			'width': text_width / config.dpr,
+			"margin-left": -text_width / (2 * config.dpr)
+		})
 
 	}
 
@@ -109,15 +121,7 @@ var CIRCLE = (function() {
 	var angle = MIN_ANGLE_DEGREE;
 	drawFace(ctx, radius, angle);
 	load(); //初始化
-	drawBg(ctxBg); //绘制背景
 
-	var text_width = canvas.width * 0.5;
-	$("#chartTextContainer").css({
-		'left': (radiusX) / config.dpr,
-		'top': (radiusY - radius * 2 / 3) / config.dpr,
-		'width': text_width / config.dpr,
-		"margin-left": -text_width / (2 * config.dpr)
-	})
 
 	function log(ary) {
 		$("#log").html(ary.join("<br/>"));
@@ -347,9 +351,21 @@ var CIRCLE = (function() {
 		}
 
 		//画文字
-		drawWord(ctx, MIN_ANGLE + 24 * dur, "#ff7550", smallRadius - 80, "基本", 30 * Math.PI / 180);
-		drawWord(ctx, MIN_ANGLE + 32 * dur+0.03, "#ff7550", smallRadius - 80, "推荐", 0);
-		drawWord(ctx, MIN_ANGLE + 40 * dur, "#ff7550", smallRadius - 50, "无忧", -30 * Math.PI / 180);
+		
+		if(insuranceType == 4){
+			drawWord(ctx, MIN_ANGLE + 24 * dur, "#ff7550", smallRadius - 80, "基本", 30 * Math.PI / 180);
+			drawWord(ctx, MIN_ANGLE + 32 * dur+0.03, "#ff7550", smallRadius - 80, "推荐", 0);
+			drawWord(ctx, MIN_ANGLE + 40 * dur, "#ff7550", smallRadius - 50, "无忧", -30 * Math.PI / 180);
+		}else if(insuranceType == 3){
+			drawWord(ctx, MIN_ANGLE + 16 * dur, "#ff7550", smallRadius - 80, "基本", -30 * Math.PI / 180);
+			drawWord(ctx, MIN_ANGLE + 24 * dur, "#ff7550", smallRadius - 80, "推荐", 30 * Math.PI / 180);
+			drawWord(ctx, MIN_ANGLE + 32 * dur+0.03, "#ff7550", smallRadius - 80, "无忧", 0 * Math.PI / 180);
+		}else if(insuranceType == 2){
+			drawWord(ctx, MIN_ANGLE + 16 * dur, "#ff7550", smallRadius - 80, "基本", -30 * Math.PI / 180);
+			drawWord(ctx, MIN_ANGLE + 24 * dur+0.03, "#ff7550", smallRadius - 80, "推荐", 30 * Math.PI / 180);
+			drawWord(ctx, MIN_ANGLE + 40 * dur, "#ff7550", smallRadius - 50, "无忧", -30 * Math.PI / 180);
+		}
+		
 
 
 	}
