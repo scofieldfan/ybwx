@@ -240,7 +240,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$routeParams', '$locat
             $scope.plan = res.data.data.insurance_plans[0];
             $scope.danwei = genDuration($scope.plan.coverage_period_type);
             util.share({
-              shareUrl: "http://web.youbaowuxian.com/#/detail?product_id=" + $routeParams.product_id,
+              shareUrl: "http://web.youbaowuxian.com/#/temaidetail?product_id=" + $routeParams.product_id,
               shareImg: $scope.data.small_image,
               shareTitle: $scope.data.insurance_name,
               shareDesc: $scope.data.insurance_description
