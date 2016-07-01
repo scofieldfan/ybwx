@@ -240,7 +240,7 @@ header {
     header .top-container .company {
       background-color: #588dd4;
       color: #fff;
-      padding: 0 10px;
+      padding: 3px 10px;
       text-align: center;
       position: absolute;
       top: 0;
@@ -249,7 +249,7 @@ header {
       border-bottom-right-radius: 2px;
       line-height: 15px; }
     header .top-container .title {
-      font-size: 17px; }
+      font-size: 18px; }
     header .top-container .sub-title {
       font-size: 15px; }
     header .top-container .sub-title img {
@@ -442,9 +442,8 @@ header {
   margin-top: 8px;
   text-align: center; }
   .more-1-container img {
-    width: 5px;
-    transform: rotate(90deg);
-    vertical-align: 0px; }
+    width: 10px;
+    vertical-align: 2px; }
 
 .button-container {
   display: -webkit-box;
@@ -473,11 +472,11 @@ header {
   padding: 0 10px 15px;
   color: #555; }
   .showknow-container h4 {
-    font-size: 13px;
+    font-size: 14px;
     margin: 0;
     margin-top: 18px; }
   .showknow-container p {
-    font-size: 12px;
+    font-size: 14px;
     margin: 0; }
 
 .pay_container {

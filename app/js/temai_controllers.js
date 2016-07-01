@@ -19,16 +19,16 @@ ybwxControllers.controller('wxTemaiIndexCtrl', ['$scope', '$routeParams', '$loca
         }
       })
     });
-    $("body").on("click","#foucs_button",function(event){
-        $(".qrcode-wrapper").show();
-        event.preventDefault();
-        event.stopPropagation();
-    }).on('click','.qrcode-container',function(event){
-         event.preventDefault();
-         event.stopPropagation();
-     }).on('click','.qrcode-wrapper',function(){
-       $(".qrcode-wrapper").hide();
-     })
+    $("body").on("click", "#foucs_button", function(event) {
+      $(".qrcode-wrapper").show();
+      event.preventDefault();
+      event.stopPropagation();
+    }).on('click', '.qrcode-container', function(event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }).on('click', '.qrcode-wrapper', function() {
+      $(".qrcode-wrapper").hide();
+    })
     $scope.goCategory = function(categoryId) {
       $location.path("/temailist").search({
         "category_id": categoryId
@@ -67,8 +67,8 @@ ybwxControllers.controller('wxTemaiListCtrl', ['$scope', '$routeParams', '$locat
         console.log('tailu........');
         if (res && res.data && res.data.data) {
           $scope.navItems = res.data.data.categories;
-        }else{
-           $scope.isHaveResult = false;
+        } else {
+          $scope.isHaveResult = false;
         }
       })
     }
@@ -85,8 +85,8 @@ ybwxControllers.controller('wxTemaiListCtrl', ['$scope', '$routeParams', '$locat
       })
     }
     $scope.init = function() {
-      var code = util.getParameterByName("code") ||  $routeParams.code;
-      var defaultCategory = $routeParams.category_id ||  3;
+      var code = util.getParameterByName("code") || $routeParams.code;
+      var defaultCategory = $routeParams.category_id || 3;
       util.getOpenId(code).then(function() {
         $scope.getNav();
         $scope.getCateList(defaultCategory);
@@ -223,15 +223,15 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$routeParams', '$locat
                   plan.coverage_beans[j].danwei = "/天";
                   plan.coverage_beans[j].sum_insured = plan.coverage_beans[j].sum_insured.substring(0, plan.coverage_beans[j].sum_insured.length - 1);
                 }
-              } 
-              if(res.data.data.coverage_overview){
+              }
+              if (res.data.data.coverage_overview) {
                 $scope.coverage_overviews = res.data.data.coverage_overview.split("##");
               }
-              plan.main_coverage_beans = plan.coverage_beans.filter(function(item){
-                    return item.coverage_type == 1;
+              plan.main_coverage_beans = plan.coverage_beans.filter(function(item) {
+                return item.coverage_type == 1;
               });
-              plan.second_coverage_beans = plan.coverage_beans.filter(function(item){
-                    return item.coverage_type == 2;
+              plan.second_coverage_beans = plan.coverage_beans.filter(function(item) {
+                return item.coverage_type == 2;
               });
 
             }
@@ -252,7 +252,21 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$routeParams', '$locat
 
       })
     }
-
+    $scope.more = function($event) {
+      var element = $event.currentTarget;
+      var switchValue = $(element).attr("data-switch");
+      if (switchValue === 'on') {
+        $(element).siblings().removeClass("ng-hide");
+        $(element).find("span").html("收起");
+        $(element).attr("data-switch", "off");
+        $(element).find("img").addClass("up");
+      } else {
+        $(element).siblings(":gt(6)").addClass("ng-hide");
+        $(element).find("span").html("查看更多");
+        $(element).attr("data-switch", "on");
+        $(element).find("img").removeClass("up");
+      }
+    }
     $scope.changeTaoCan = function($event, item) {
       $event.preventDefault();
       $event.stopPropagation();
@@ -431,8 +445,8 @@ ybwxControllers.controller('wxDetailCtrl', ['$scope', '$routeParams', '$location
       })
     }
 
-    
-    
+
+
     $scope.changeTaoCan = function($event, item) {
       $event.preventDefault();
       $event.stopPropagation();

@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="css/temai_detail.css?rev=55767b9cd57d24a0a2fc4688bb30d161">
+<link rel="stylesheet" type="text/css" href="css/temai_detail.css?rev=129ec95f593fe60ba1de1b3f5da4e41b">
 
 <div  cg-busy="myPromise" >
 	<header>
@@ -62,7 +62,7 @@
 					<td ng-if="item.sum_insured>0">{{item.sum_insured | number}}元{{item.danwei}}</td>
 					<td ng-if="item.sum_insured==0">赠送</td>
 				</tr>
-				<tr  class="more_coverages_button" ng-show="plan.second_coverage_beans.length>6" data-switch='on'><td colspan="2" class="gray"><span>查看更多</span><img src="img/temai/arrow.jpg" class="arrow"></td></tr>
+				<tr  class="more_coverages_button" ng-show="plan.second_coverage_beans.length>6" data-switch='on' ng-click="more($event)"><td colspan="2" class="gray"><span>查看更多</span><img src="img/temai/blue_arrow.jpg" class="arrow"></td></tr>
 				
 			</table>
 		</div>
@@ -142,6 +142,7 @@ $(function(){
  	 $(".qa-container").find("li").removeClass("hide");
      $(this).hide();
  });
+  /*
   $("body").on("click",".more_coverages_button",function(){
   		var switchValue = $(this).attr("data-switch");
   		if(switchValue === 'on'){
@@ -155,7 +156,7 @@ $(function(){
   			$(this).attr("data-switch","on");
   			$(this).find("img").removeClass("up");
   		}
- });
+ });*/
 
 
   $(".tail-container").on("click",".hd",function(){
