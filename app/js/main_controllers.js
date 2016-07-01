@@ -540,8 +540,9 @@ function updateSumScore() {
 	if (scoreObj.moneyScore == 0) {
 		sum_score = 0;
 	} else {
-//		sum_score = Math.floor((scoreObj.fanweiScore + scoreObj.moneyScore) / 2);
-		sum_score = Math.floor((scoreObj.fanweiScore * scoreObj.moneyScore) / 10);
+		//sum_score = Math.floor((scoreObj.fanweiScore + scoreObj.moneyScore) / 2);
+		//sum_score = Math.floor((scoreObj.fanweiScore * scoreObj.moneyScore) / 10);
+		 sum_score = Math.floor(scoreObj.fanweiScore);
 	}
 	$("#sum_score").html(sum_score);
 	if (scoreObj.fanweiScore != 0 && scoreObj.moneyScore != 0) {
@@ -1262,7 +1263,10 @@ mainControllers.controller('ybwxToubaoDingzhiAllCtrl', ['$scope', '$filter', '$r
 				});
 
 				console.log("isAllOffical:" + $scope.isAllOffical);
-
+				if($scope.isAllOffical){
+					$("#confirmBtn").html("官网购买");
+					$("#submitBtn").html("未开售");
+				}
 
 				$scope.view = res.data.data.view;
 

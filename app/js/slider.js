@@ -35,8 +35,11 @@ var SLIDER = (function() {
 				if(moneyScore>0 && moneyScore<10){
 					showScore = moneyScore+".0";
 				}
-				$("#money_score").html(showScore);
+				var kedus = $("#customerSlider").find(".kedu").find("p");
+				var html = $(kedus[moneyScore/2]).html().replace("(万)","");
+				$("#money_score").html(html);
 				var newWidth = moneyScore /10 * baxMax;
+
 				 $("#bar").width(newWidth);
 
 				 $("#zhizhen").css("left", newWidth-24);

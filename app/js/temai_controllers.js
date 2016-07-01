@@ -4,6 +4,14 @@
 
 var ybwxControllers = angular.module('ybwxControllers', []);
 
+
+
+ybwxControllers.controller('ybwxProductInfoCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+  function($scope, $routeParams, $location, $http, $rootScope) {
+
+
+  }
+]);
 ybwxControllers.controller('wxTemaiIndexCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
   function($scope, $routeParams, $location, $http, $rootScope) {
 
@@ -169,8 +177,8 @@ var coveragePeriodMap = {
   4: "月",
   5: "天"
 }
-ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope', '$sce',
-  function($scope, $routeParams, $location, $http, $rootScope, $sce) {
+ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope', '$sce', 'sharedRestrictions',
+  function($scope, $routeParams, $location, $http, $rootScope, $sce, sharedRestrictions) {
 
 
 
@@ -186,6 +194,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$routeParams', '$locat
       if (!code) {
         code = $routeParams.code;
       };
+
 
       util.getOpenId(code).then(function() {
 
@@ -224,9 +233,9 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$routeParams', '$locat
                   plan.coverage_beans[j].sum_insured = plan.coverage_beans[j].sum_insured.substring(0, plan.coverage_beans[j].sum_insured.length - 1);
                 }
               }
-              if (res.data.data.coverage_overview) {
-                $scope.coverage_overviews = res.data.data.coverage_overview.split("##");
-              }
+
+
+              console.log();
               plan.main_coverage_beans = plan.coverage_beans.filter(function(item) {
                 return item.coverage_type == 1;
               });
@@ -235,6 +244,14 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$routeParams', '$locat
               });
 
             }
+            if (res.data.data.coverage_overview) {
+              $scope.coverage_overviews = res.data.data.coverage_overview.split("##");
+            }
+            sharedRestrictions.setRestrictions({
+              health_notice: res.data.data.health_notice,
+              extra_notice: res.data.data.extra_notice,
+              locale_notice: res.data.data.locale_notice
+            })
             $scope.data = res.data.data;
             $scope.money = res.data.data.insurance_plans[0].premium;
             $scope.plan = res.data.data.insurance_plans[0];
@@ -314,17 +331,8 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$routeParams', '$locat
     }
     $scope.submit = function() {
       //获得当前的plan
-      console.log($scope.data);
       var selectPlan = $scope.plan.id;
 
-
-      /*
-      if ($scope.plan.coverage_period_type === 5) {
-        $scope.danwei = $scope.plan.coverage_period + "天";
-      }
-      if ($scope.plan.coverage_period_type === 2) {
-        $scope.danwei = $scope.plan.coverage_period + "年";
-      }*/
       var postData = {
         "from": "list",
         "plan_id": selectPlan
@@ -346,8 +354,12 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$routeParams', '$locat
         postData["charge_period"] = $scope.charge_period;
       }
 
+      if ($scope.data.health_notice || $scope.data.extra_notice || $scope.data.locale_notice) {
+        $location.path("/productinformation").search(postData);
+      } else {
+        $location.path("/tb_dz").search(postData);
+      }
 
-      $location.path("/tb_dz").search(postData);
     }
   }
 ]);

@@ -15,7 +15,18 @@ var ybwxApp = angular.module('ybwxApp', [
   message: '正在加载....',
   templateUrl: 'template/loading.html'
 });
+ybwxApp.service('sharedRestrictions', function () {
+        var restrictions = {};
 
+        return {
+            getRestrictions: function () {
+                return restrictions;
+            },
+            setRestrictions: function(value) {
+                restrictions = value;
+            }
+        };
+});
 ybwxApp.filter('range', function() {
   return function(input, total) {
     total = parseInt(total);
@@ -53,7 +64,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/select_part.html?v=123',
       controller: 'ybwxSelectCtrl',
       title: "保障提升",
-      css:'css/ring.css?rev=891200b47864c2f327697002745b1f0d'
+      css:'css/ring.css?rev=95cda24d854100e1c580cdfad09a7ad7'
     }).when('/bz', {
       templateUrl: 'partials/bz_list.html?v=123',
       controller: 'ybwxBzCtrl',
@@ -119,6 +130,10 @@ ybwxApp.config(['$routeProvider',
     }).when('/information', {
       templateUrl: 'partials/information.html',
       controller: 'ybwxInfoCtrl',
+      title: "投保须知"
+    }).when('/productinformation', {
+      templateUrl: 'partials/product_information.html',
+      controller: 'ybwxProductInfoCtrl',
       title: "投保须知"
     }).when('/education', {
       templateUrl: 'partials/education.html',
