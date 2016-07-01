@@ -39,7 +39,7 @@ ybwxControllers.controller('wxTemaiListCtrl', ['$scope', '$routeParams', '$locat
         console.log(res);
         console.log('tailu........');
         if (res && res.data && res.data.data) {
-          $scope.navItems = res.data.data.categorys;
+          $scope.navItems = res.data.data.categories;
         }
       })
     }
@@ -67,6 +67,11 @@ ybwxControllers.controller('wxTemaiListCtrl', ['$scope', '$routeParams', '$locat
       util.getOpenId(code).then(function() {
         $scope.getNav();
         $scope.getCate(3);
+      });
+    }
+    $scope.goCateDetail = function(id) {
+      $location.path("/detail").search({
+        "product_id": id
       });
     }
   }

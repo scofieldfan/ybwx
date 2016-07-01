@@ -42,7 +42,7 @@
 				</li> -->
 			</ul>
 			<div class="bd_part_input ">
-				<input type="text" style="margin-top: none" placeholder="姓名"   onfocus="_hmt.push(['_trackEvent', 'wx_share_toubao', 'wx_share_toubao_name_focus']);" ng-minlength="1"  name="username" ng-model="user.username" required chinese >
+				<input type="text" style="margin-top: none" placeholder="姓名"    ng-minlength="1"  name="username" ng-model="user.username" required chinese >
 				<div class="cell"  style="color:red" ng-show="registration.username.$dirty && registration.username.$invalid || username_server_reason">
 					<small class="error" ng-show="registration.username.$error.required">姓名必填</small>
             		<small class="error"  ng-show="registration.username.$error.chinese">姓名必须是汉字!</small>
