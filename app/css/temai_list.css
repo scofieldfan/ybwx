@@ -302,7 +302,7 @@ body {
       justify-content: center;
       border-right: 1px solid #e2e2e2; }
       .insurance .insurance-item .logo img {
-        width: 45px; }
+        width: 100px; }
     .insurance .insurance-item .wrap {
       -webkit-box-flex: 1;
       -webkit-flex: 1;
