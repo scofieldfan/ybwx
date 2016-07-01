@@ -1,11 +1,9 @@
-<link rel="stylesheet" type="text/css" href="css/temai_index.css?rev=b0feffc8a923c3a079c3ff53bd8310f8">
+<link rel="stylesheet" type="text/css" href="css/temai_index.css?rev=c31f595f677eaac28db36ca06e47af28">
 <link rel="stylesheet" href="wx_bx_gl/css/swiper.min.css">
 <style>
-
 .swiper-container-horizontal>.swiper-pagination-bullets{
 	bottom: 7px;
 }
-
 .swiper-pagination-bullet{
 	background-color: #fff;
 	opacity: 1;
@@ -25,38 +23,36 @@
 			<img src="img/temai/logo.png">
 		</div>
 	</div>
-	保险本该如此
-	<div class="fr" style="margin:6px 6px 0 0;">
-			<a href="javascript:;" class="weui_btn weui_btn_plain_focus" id="foucs_button">关注</a>
-	</div>
+	<div class = "div_inline left">	保险本该如此</div>
+	<a href="javascript:;" class="focus_btn right" id="foucs_button">关 注</a>
 </header>
 <div class="swiper-container">
-		<div class="swiper-container" >
-				<div class="swiper-wrapper swiper">
-					<div class="swiper-slide item " >
-						<img src="http://7xvrkw.com1.z0.glb.clouddn.com/huodong-1.jpg">
-					</div>
-					<div class="swiper-slide item " >
-						<img src="http://7xvrkw.com1.z0.glb.clouddn.com/huodong-2.jpg">
-					</div>
-				</div>
-				
-				<!-- Add Pagination -->
-				<div class="swiper-pagination" style="text-align:center"></div>
+	<div class="swiper-container" >
+		<div class="swiper-wrapper swiper">
+			<div class="swiper-slide item " >
+				<a href="/wx_share.html#index"><img src="http://7xvrkw.com1.z0.glb.clouddn.com/huodong-1.jpg"></a>
 			</div>
+			<div class="swiper-slide item " >
+				<a href="/wx_share.html#jixian"><img src="http://7xvrkw.com1.z0.glb.clouddn.com/huodong-2.jpg"></a>
+			</div>
+		</div>
+		
+		<!-- Add Pagination -->
+		<div class="swiper-pagination" style="text-align:center"></div>
+	</div>
 </div>
 <div class="nav">
 	<a href="/wx_share.html#jixian" class="item"><img src="img/temai/nav-1.png"><div >0元抢</div></a>
 	<a href="/wx_gl.html" class="item"><img src="img/temai/nav-2.png"><div>怎么买</div></a>
 	<a href="/" class="item"><img src="img/temai/nav-3.png"><div>专属方案</div></a>
-	<a href="/#list" class="item"><img src="img/temai/nav-4.png"><div>更多保障</div></a>
+	<a href="/#temailist" class="item"><img src="img/temai/nav-4.png"><div>更多保障</div></a>
 </div>
 
 <div class="recommend">
 	<img src="img/temai/hot.jpg">	
 	热门推荐		
 </div>
-<div style="margin-bottom: 60px">
+<div style="margin-bottom: 10px">
 <div class="recommend-content" ng-repeat="category in categorys">
 	<div class="introd" ng-click="goCategory(category.id)">
 		<div class="box">
@@ -66,15 +62,13 @@
 		</div>
 	</div>
 	<div class="recommend-container">
-			<div class="flex-item" ng-click="goDetail(insurance.id)" ng-repeat="insurance in category.insurances">
-				<div>
-					<div class="title">{{insurance.name}}</div>
-					<div class="des"><span class="hot" style="display:none">热卖</span> {{insurance.description}}</div>
-					<div class="money">{{insurance.front_price}}元</div>
-				</div>
-			</div>	
-			
-		
+		<div class="flex-item" ng-click="goDetail(insurance.id)" ng-repeat="insurance in category.insurances">
+			<div>
+				<div class="title">{{insurance.name}}</div>
+				<div class="des"><span class="hot" style="display:none">热卖</span> {{insurance.description}}</div>
+				<div class="money">{{insurance.front_price}}</div>
+			</div>
+		</div>	
 	</div>
 </div>
 
@@ -104,14 +98,14 @@
 -->
 
 </div>
-<div class=" fix_container">
-	<a href="javascript:void(0)" class="btn btn_n_primary " ><img src="img/temai/kefu.png"> <span>客服电话 </span>400-992-0205</a>
+<div class=" btn_container">
+	<a href="tel:4009920205" class="btn btn_n_primary "  ><img src="img/temai/kefu.png"> <span>客服电话 </span>400-992-0205</a>
 </div>
 <div class="qrcode-wrapper">
 	<div class="qrcode-container" >
-		<img src="img/temai/qcode_big.png">	
+		<img src="img/temai/qcode_big.png" srcset="img/temai/qcode_min.png 568w, img/temai/qcode_big.png 667w, img/temai/qcode_big.png 736w">	
 	</div>
-	</div>
+</div>
 <script src="wx_bx_gl/js/swiper.min.js"></script>
 <script>
   var swiper = new Swiper('.swiper-container', {
