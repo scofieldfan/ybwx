@@ -10,6 +10,7 @@ body {
 .hide{
 	display:none !important;
 }
+
 header {
 	background-color: #fff;
 
@@ -53,11 +54,12 @@ header {
 	.text-container {
 		position: absolute;
 		left: 10px;
-		bottom: 10px;
+		bottom: 8px;
+		line-height: 24px;
 	}
 }
 .gray {
-	color: #999;
+	color: #999999;
 }
 .detail-content {
 	background-color: #FFF;
@@ -84,7 +86,7 @@ header {
 	}
 	.content-table th {
 		font-weight: normal;
-		color: #999;
+		color: #588dd4;
 	}
 	.content-table tr {
 		color: #555;

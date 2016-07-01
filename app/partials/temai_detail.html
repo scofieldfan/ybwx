@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="css/temai_detail.css?rev=d1f3061ccbb2cf191de9f9badb87fb47">
+<link rel="stylesheet" type="text/css" href="css/temai_detail.css?rev=55767b9cd57d24a0a2fc4688bb30d161">
 
 <div  cg-busy="myPromise" >
 	<header>
@@ -9,8 +9,8 @@
 			</div>
 			<div class="text-container">
 				<div class="title">{{data.insurance_name}}</div>
-				<div class="sub-title" style="display:none">
-					<img src="img/temai/dun.png">&nbsp;</div>
+				<div class="sub-title" >
+					<img src="img/temai/dun.png">&nbsp;{{data.insurance_feature}} </div>
 			</div>
 		</div>
 		<div class="bottom-container">
@@ -52,7 +52,7 @@
 					<th width="70%"  style="text-align: left">其他保障</th>
 					<th>保额</th>
 				</tr>
-				<tr ng-repeat="item in plan.second_coverage_beans" ng-show="$index<3">
+				<tr ng-repeat="item in plan.second_coverage_beans" ng-show="$index<6">
 					<td class="td-left" style="cursor: pointer;">
 						{{item.name}}
 						<img src="img/temai/wen.png"  class="help-img" title="{{item.description}}"/>
@@ -62,26 +62,18 @@
 					<td ng-if="item.sum_insured>0">{{item.sum_insured | number}}元{{item.danwei}}</td>
 					<td ng-if="item.sum_insured==0">赠送</td>
 				</tr>
-				<tr  class="more_coverages_button" ng-show="plan.second_coverage_beans.length>3" data-switch='on'><td colspan="2" class="gray"><span>查看更多</span><img src="img/temai/arrow.jpg" class="arrow"></td></tr>
+				<tr  class="more_coverages_button" ng-show="plan.second_coverage_beans.length>6" data-switch='on'><td colspan="2" class="gray"><span>查看更多</span><img src="img/temai/arrow.jpg" class="arrow"></td></tr>
 				
 			</table>
-
-		
-
 		</div>
-
-
 	</div>
-
 	<div class="tail-container"></div>
 
 	<div class="cell pay_container ">
 		<a href="javascript:void(0)" class="btn btn_n_primary right"   ng-click="showMask()" >立即投保</a>
 		<a href="javascript:void(0)" class="btn btn_n_primary left tg_dz_fr" >
-			<span>{{plan.name }}</span>
-			<span class="money_size">{{money | number}}</span>
-			元
-			<span ng-show="plan.premium_type==2">起</span>
+			<span>{{plan.name }}</span>&nbsp;
+			<span class="money_size">{{money | number}}</span>元<span ng-show="plan.premium_type==2">起</span>
 		</a>
 	</div>
 </div>
@@ -158,7 +150,7 @@ $(function(){
 	 		$(this).attr("data-switch","off");
 	 		$(this).find("img").addClass("up");
   		}else{
-  			$(this).siblings(":gt(3)").addClass("ng-hide");
+  			$(this).siblings(":gt(6)").addClass("ng-hide");
 	 		$(this).find("span").html("查看更多");
   			$(this).attr("data-switch","on");
   			$(this).find("img").removeClass("up");

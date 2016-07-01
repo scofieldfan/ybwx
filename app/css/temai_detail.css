@@ -263,10 +263,11 @@ header {
   header .text-container {
     position: absolute;
     left: 10px;
-    bottom: 10px; }
+    bottom: 8px;
+    line-height: 24px; }
 
 .gray {
-  color: #999; }
+  color: #999999; }
 
 .detail-content {
   background-color: #FFF;
@@ -288,7 +289,7 @@ header {
     text-align: center; }
   .detail-content .content-table th {
     font-weight: normal;
-    color: #999; }
+    color: #588dd4; }
   .detail-content .content-table tr {
     color: #555; }
   .detail-content .content-table .td-left {
