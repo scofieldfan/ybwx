@@ -309,11 +309,12 @@ header {
   margin-top: 10px;
   border-bottom: 1px solid  #e2e2e2;
   background-color: #fff;
-  padding-bottom: 20px;
+  padding-bottom: 0;
   margin-bottom: 60px; }
 
 .introd-container {
-  padding: 10px 0 0; }
+  padding: 10px 0 0;
+  line-height: 0; }
   .introd-container h5 {
     font-weight: normal;
     font-size: 13px;
@@ -429,7 +430,7 @@ header {
 
 .more-container {
   width: 100px;
-  margin: 0 auto; }
+  margin: 0 auto 20px; }
 
 .more-container img {
   width: 5px;
