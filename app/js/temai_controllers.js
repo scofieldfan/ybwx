@@ -138,7 +138,7 @@ ybwxControllers.controller('wxListCtrl', ['$scope', '$routeParams', '$location',
         $scope.getList(4);
       });
     }
-    var testId = [64, 94];
+    var testId = [64];
     $scope.goDetail = function(id) {
       if (testId.indexOf(id) !== -1) {
         $location.path("/temaidetail").search({
@@ -431,6 +431,8 @@ ybwxControllers.controller('wxDetailCtrl', ['$scope', '$routeParams', '$location
       })
     }
 
+    
+    
     $scope.changeTaoCan = function($event, item) {
       $event.preventDefault();
       $event.stopPropagation();
