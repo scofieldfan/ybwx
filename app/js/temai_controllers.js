@@ -92,6 +92,11 @@ ybwxControllers.controller('wxTemaiListCtrl', ['$scope', '$routeParams', '$locat
         $scope.getCateList(defaultCategory);
       });
     }
+    $scope.goCateDetail = function(id) {
+      $location.path("/detail").search({
+        "product_id": id
+      });
+    }
   }
 ]);
 /*特卖首页list*/

@@ -42,7 +42,7 @@
 				</li> -->
 			</ul>
 			<div class="bd_part_input ">
-				<input type="text" style="margin-top: none" placeholder="姓名"   onfocus="_hmt.push(['_trackEvent', 'wx_share_toubao', 'wx_share_toubao_name_focus']);" ng-minlength="1"  name="username" ng-model="user.username" required chinese >
+				<input type="text" style="margin-top: none" placeholder="姓名"    ng-minlength="1"  name="username" ng-model="user.username" required chinese >
 				<div class="cell"  style="color:red" ng-show="registration.username.$dirty && registration.username.$invalid || username_server_reason">
 					<small class="error" ng-show="registration.username.$error.required">姓名必填</small>
             		<small class="error"  ng-show="registration.username.$error.chinese">姓名必须是汉字!</small>
@@ -68,7 +68,7 @@
 				    <small class="error" ng-show="card_numer_server_reason">{{card_numer_server_reason}}</small>
 				</div>
 				<div class="date_tit" >生效时间</div>
-					<input class="last_input" style="background:url(wx_share/img/jian.jpg) no-repeat 95% center #fff;background-size: .17rem .17rem; -webkit-appearance:none;line-height: .48rem;" type="date" placeholder="保障期间"  min="{{minDate | date:'yyyy-MM-dd'}}" max="{{maxDate | date:'yyyy-MM-dd'}}" name="insurance_date" ng-change="genInEffectiveDate()" ng-model="user.insurance_date" placeholder="yyyy/MM/dd" required >
+					<input class="last_input" style="background:url(wx_share/img/jian.jpg) no-repeat 95% center #fff;background-size: .17rem .17rem; -webkit-appearance:none;line-height: .48rem;" type="date" placeholder="保障期间" onfocus="_hmt.push(['_trackEvent', 'toubao', 'toubao_effective_date_focus']);" min="{{minDate | date:'yyyy-MM-dd'}}" max="{{maxDate | date:'yyyy-MM-dd'}}" name="insurance_date" ng-change="genInEffectiveDate()" ng-model="user.insurance_date" placeholder="yyyy/MM/dd" required >
 
 
 				<div class="cell"  style="color:red" ng-show="registration.insurance_date.$dirty && registration.insurance_date.$invalid || insurance_date_server_reason">
@@ -79,7 +79,7 @@
 		        </div>
 
 		        <div class="date_tit" ng-if="coupon_id==4">失效时间</div>
-		        <div ng-if="coupon_id==4" style="font-size:15px;padding-left:6px;height: .44rem;border: 1px solid #e2e2e2;background: #fff;line-height: .44rem;padding-left: 16px;font-size: 14px;color: #555;">{{user.inEnd_date | date:'yyyy/MM/dd'}}</div>
+		        <div ng-if="coupon_id==4" style="font-size:15px;padding-left:6px;height: .44rem;border: 1px solid #e2e2e2;background: #fff;line-height: .44rem;padding-left: 16px;font-size: 14px;color: #555;" ng-moudle="user.inEnd_date">{{user.inEnd_date | date:'yyyy/MM/dd'}}</div>
 
                 
 				<div class="baofei">由诺贝保险管家<span class="font_red">免费赠送</span></div>
