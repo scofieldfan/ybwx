@@ -58,7 +58,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/bz_list.html?v=123',
       controller: 'ybwxBzCtrl',
       title: "定制保障说明",
-      css:'css/bz.css?rev=0005babc7ee4d53dddf7c726d813baf4'
+      css:'css/bz.css?rev=b13f9d0d1ad3fee210f54b60edae93b7'
     }).when('/tb_dz', {
       templateUrl: 'partials/toubao_dingzhi_all.html',
       controller: 'ybwxToubaoDingzhiAllCtrl',

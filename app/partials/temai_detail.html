@@ -1,20 +1,23 @@
-<link rel="stylesheet" type="text/css" href="css/temai_detail.css?rev=d1f3061ccbb2cf191de9f9badb87fb47">
+<link rel="stylesheet" type="text/css" href="css/temai_detail.css?rev=55767b9cd57d24a0a2fc4688bb30d161">
 
 <div  cg-busy="myPromise" >
 	<header>
 		<div class="top-container" >
-			<img ng-src="{{data.large_image}}" style="width:100%;">
+			<img ng-src="{{data.hot_image}}" style="width:100%;">
 			<div class="company">
-				{{data.insurance_company_name
-}}承保
+				{{data.insurance_company_name}}承保
 			</div>
 			<div class="text-container">
 				<div class="title">{{data.insurance_name}}</div>
-				<div class="sub-title" style="display:none">
-					<img src="img/temai/dun.png">&nbsp;</div>
+				<div class="sub-title" >
+					<img src="img/temai/dun.png">&nbsp;{{data.insurance_feature}} </div>
 			</div>
 		</div>
-		<div class="bottom-container">{{data.insurance_description}}</div>
+		<div class="bottom-container">
+		
+		<div ng-repeat="overview in coverage_overviews">{{overview}}</div>
+
+		</div>
 	</header>
 
 	<div class="detail-content"  data-ng-init="init()"   >
@@ -25,33 +28,52 @@
 			</div>
 
 		</div>
+		<div id="content_{{$index}}"  ng-show="selectTable==$index" ng-repeat="plan in data.insurance_plans">
 
-		<table class="content-table" id="content_{{$index}}" ng-repeat="plan in data.insurance_plans" ng-show="selectTable==$index">
-			<tr>
-				<th width="70%">保障范围</th>
-				<th>保额</th>
-			</tr>
+			<table class="content-table"   >
+				<tr>
+					<th width="70%" style="text-align: left">主要保障</th>
+					<th>保额</th>
+				</tr>
+				<tr ng-repeat="item in plan.main_coverage_beans">
+					<td class="td-left" style="cursor: pointer;">
+						{{item.name}}
+						<img src="img/temai/wen.png"  class="help-img" title="{{item.description}}"/>
+						<br/>
+						<span class="gray" >{{item.overview}}</span>
+					</td>
+					<td ng-if="item.sum_insured>0">{{item.sum_insured | number}}元{{item.danwei}}</td>
+					<td ng-if="item.sum_insured==0">赠送</td>
+				</tr>
+			</table>
 
-			<tr ng-repeat="item in plan.coverage_beans">
-				<td class="td-left" style="cursor: pointer;">
-					{{item.name}}
-					<img src="img/temai/wen.png"  class="help-img" title="{{item.description}}"/>
-					<br/>
-					<span class="gray">含高风险运动</span>
-				</td>
-				<td>{{item.sum_insured/100 | number}}元{{item.danwei}}</td>
-			</tr>
-		</table>
+			<table class="content-table" style="margin-top:10px;" >
+				<tr>
+					<th width="70%"  style="text-align: left">其他保障</th>
+					<th>保额</th>
+				</tr>
+				<tr ng-repeat="item in plan.second_coverage_beans" ng-show="$index<6">
+					<td class="td-left" style="cursor: pointer;">
+						{{item.name}}
+						<img src="img/temai/wen.png"  class="help-img" title="{{item.description}}"/>
+						<br/>
+						<span class="gray" >{{item.overview}}</span>
+					</td>
+					<td ng-if="item.sum_insured>0">{{item.sum_insured | number}}元{{item.danwei}}</td>
+					<td ng-if="item.sum_insured==0">赠送</td>
+				</tr>
+				<tr  class="more_coverages_button" ng-show="plan.second_coverage_beans.length>6" data-switch='on'><td colspan="2" class="gray"><span>查看更多</span><img src="img/temai/arrow.jpg" class="arrow"></td></tr>
+				
+			</table>
+		</div>
 	</div>
-
 	<div class="tail-container"></div>
 
 	<div class="cell pay_container ">
 		<a href="javascript:void(0)" class="btn btn_n_primary right"   ng-click="showMask()" >立即投保</a>
 		<a href="javascript:void(0)" class="btn btn_n_primary left tg_dz_fr" >
-			<span class="money_size">{{money/100 | number}}</span>
-			元
-			<span ng-show="plan.premium_type==2">起</span>
+			<span>{{plan.name }}</span>&nbsp;
+			<span class="money_size">{{money | number}}</span>元<span ng-show="plan.premium_type==2">起</span>
 		</a>
 	</div>
 </div>
@@ -62,7 +84,7 @@
 			<img ng-src="{{data.small_image}}" ></div>
 		<div class="fl">
 			<p >
-				<span  style="font-size:18px;color:#ff5c00;">{{money/100 | number}}</span>
+				<span  style="font-size:18px;color:#ff5c00;">{{money | number}}</span>
 				元
 			</p>
 			<p>*最终购买价格</p>
@@ -113,13 +135,28 @@ $(function(){
  });
 
  $("body").on("click",".more-1-container",function(){
- 	 $(".know-content").show();
- 	 $(".know-content").css({
- 	 	"height":"auto",
- 	 	"overflow":"auto"
- 	 });
+ 	 $(".know-content").children().removeClass("hide");
      $(this).hide();
  });
+  $("body").on("click",".more-container",function(){
+ 	 $(".qa-container").find("li").removeClass("hide");
+     $(this).hide();
+ });
+  $("body").on("click",".more_coverages_button",function(){
+  		var switchValue = $(this).attr("data-switch");
+  		if(switchValue === 'on'){
+	 		$(this).siblings().removeClass("ng-hide");
+	 		$(this).find("span").html("收起");
+	 		$(this).attr("data-switch","off");
+	 		$(this).find("img").addClass("up");
+  		}else{
+  			$(this).siblings(":gt(6)").addClass("ng-hide");
+	 		$(this).find("span").html("查看更多");
+  			$(this).attr("data-switch","on");
+  			$(this).find("img").removeClass("up");
+  		}
+ });
+
 
   $(".tail-container").on("click",".hd",function(){
   	$(".tail-header").find(".hd").removeClass("select");

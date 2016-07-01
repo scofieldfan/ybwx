@@ -15,6 +15,7 @@ var SLIDER = (function() {
 	var baxMax = $(document).width() - (34 + 40 + 30) * radio; //减去wraper的padding，减去container的padding
 	*/
 	var baxMax = $("#customerSlider").find(".weui_progress_bar").width() - 16;
+	var partentMax = $("#customerSlider").find(".weui_progress_bar").width();
 	//console.log($("#customerSlider").find(".weui_progress_bar").width());
 	load();
 
@@ -28,17 +29,21 @@ var SLIDER = (function() {
 	function updateScore(width) {
 		if (width >= 0) {
 			var moneyScore = Math.round(width * 10 / baxMax);
-			scoreObj.moneyScore = moneyScore;
-			var showScore = moneyScore;
-			if(moneyScore>0 && moneyScore<10){
-				showScore = moneyScore+".0";
+			if(moneyScore%2==0){
+				scoreObj.moneyScore = moneyScore;
+				var showScore = moneyScore;
+				if(moneyScore>0 && moneyScore<10){
+					showScore = moneyScore+".0";
+				}
+				$("#money_score").html(showScore);
+				var newWidth = moneyScore /10 * baxMax;
+				 $("#bar").width(newWidth);
+
+				 $("#zhizhen").css("left", newWidth-24);
+				// $("#bar").width(width);
+				// $("#zhizhen").css("left", newWidth - 26);
 			}
-			$("#money_score").html(showScore);
-			$("#bar").width(width);
-			$("#zhizhen").css("left", width - 26);
-
 		}
-
 	}
 
 	function checkScore() {
@@ -82,6 +87,7 @@ var SLIDER = (function() {
 					}
 					_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_squreTabEnd']);
 					event.preventDefault();
+					event.stopPropagation();
 					console.log("<br/>Touch end (" + event.changedTouches[0].clientX + "," + event.changedTouches[0].clientY + ")");
 					var dis = event.changedTouches[0].clientX - startX;
 					//dis=dis*1.2;
@@ -117,6 +123,7 @@ var SLIDER = (function() {
 						return false;
 					}
 					event.preventDefault();
+					event.stopPropagation();
 					var dis = event.touches[0].clientX - startX;
 					var drawDis = barWidth + dis;
 

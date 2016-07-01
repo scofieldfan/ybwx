@@ -1,10 +1,11 @@
-<link rel="stylesheet" type="text/css" href="css/temai_list.css?rev=fdgfdgfgfg">
+
+<link rel="stylesheet" type="text/css" href="css/temai_list.css?rev=d46792c69939884a30645f961671aaf5">
 
 
 
 <div cg-busy="listPromise">
 <div class="nav" data-ng-init="init()" >
-	<div class="item" ng-class='{"select":category_id==nav.id}'ng-repeat="nav in navItems" ng-click='getCate(nav.id)'>{{nav.name}}</div>
+	<div class="item" ng-class='{"select":category_id==nav.id}'ng-repeat="nav in navItems" ng-click='getCateList(nav.id)'>{{nav.name}}</div>
 </div>
 
 <div class="insurance" >

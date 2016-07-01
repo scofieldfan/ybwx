@@ -33,7 +33,7 @@ gulp.task('copycss', function() {
 
 gulp.task('addVersion', ['copycss'], function() {
 
-	 return gulp.src('app/js/*.js')
+	  gulp.src('app/js/*.js')
 		.pipe(rev())
 		.pipe(gulp.dest('app/js'));
 
@@ -51,24 +51,11 @@ gulp.task('sass', function () {
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./app/css'));
 });
+
+
 gulp.task('sass:watch', function () {
   gulp.watch('./app/sass/*.scss', ['sass']);
 });
-
-
-
-gulp.task('wx_sass', function () {
-  return gulp.src('./app/sass/wx_share/*.scss')
-    .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./app/wx_share/css'));
-});
-gulp.task('wx_sass:watch', function () {
-  gulp.watch('./app/sass/wx_share/*.scss', ['wx_sass']);
-});
-
-
-
-
 
 gulp.task('deltmp', ['addVersion'], function() {
 	//del(['app/partials/css/']);
@@ -86,6 +73,8 @@ gulp.task('deltmp', ['addVersion'], function() {
 	}));
 	//gulp.src('app/partials/css', {read: false}).pipe(clean());
 })
+
+
 
 gulp.task('cssMin', function() {
 	return gulp.src([
@@ -125,6 +114,18 @@ gulp.task('jsMin', function() {
 		.pipe(gp_sourcemaps.init())
 		.pipe(uglify())
 		.pipe(gulp.dest('app/js/output'));
+});
+
+
+
+
+gulp.task('wx_sass', function () {
+  return gulp.src('./app/sass/wx_share/*.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./app/wx_share/css'));
+});
+gulp.task('wx_sass:watch', function () {
+  gulp.watch('./app/sass/wx_share/*.scss', ['wx_sass']);
 });
 
 

@@ -390,6 +390,7 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 			$("#share").show();
 		}
 		$scope.shareConfig = function() {
+
 			var openId = sessionStorage.getItem("openId");
 			var params = {
 				'policy_id': $routeParams.policy_id,
@@ -397,6 +398,14 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 			}
 			var paramStr = util.genParameters(params);
 			var shareUrl = "http://web.youbaowuxian.com/#bdm_detail?" + paramStr;
+			util.share({
+				"shareTitle":"我的保单",
+				"shareUrl":shareUrl,
+				"shareDesc":"这是我在诺贝保险管家的保单。诺贝保险管家，保险本该如此!",
+				"shareImg":"http://web.youbaowuxian.com/img/icon.jpg"
+			});
+
+			/*
 			$scope.thirdPromise = getHttpPromise($http, $rootScope, 'GET', api['signature'] + "?url=" + encodeURIComponent(location.href.split('#')[0]), {}, function(res) {
 				console.log(res);
 				wx.config({
@@ -434,7 +443,7 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 					});
 				});
 
-			})
+			})*/
 		}
 		$scope.preview = function() {
 			_hmt.push(['_trackEvent', 'bdm_detail', 'bdmDetail_previewImg']);
