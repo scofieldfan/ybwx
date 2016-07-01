@@ -6,6 +6,9 @@
 
 .swiper-pagination-bullet{
 	background-color: #fff;
+	opacity: 1;
+	height:6px;
+	width:6px;
 }
 .swiper-pagination-bullet-active{
 	background-color: #fff;
@@ -22,16 +25,20 @@
 	</div>
 	保险本该如此
 	<div class="fr" style="margin:6px 6px 0 0;">
-			<a href="javascript:;" class="weui_btn weui_btn_plain_focus">关注</a>
+			<a href="javascript:;" class="weui_btn weui_btn_plain_focus" id="foucs_button">关注</a>
 	</div>
 </header>
 <div class="swiper-container">
 		<div class="swiper-container" >
 				<div class="swiper-wrapper swiper">
-					<div class="swiper-slide item " style="">
-						<img src="img/temai/header-top.jpg">
+					<div class="swiper-slide item " >
+						<img src="http://7xvrkw.com1.z0.glb.clouddn.com/huodong-1.jpg">
+					</div>
+					<div class="swiper-slide item " >
+						<img src="http://7xvrkw.com1.z0.glb.clouddn.com/huodong-2.jpg">
 					</div>
 				</div>
+				
 				<!-- Add Pagination -->
 				<div class="swiper-pagination" style="text-align:center"></div>
 			</div>
@@ -58,9 +65,11 @@
 	</div>
 	<div class="recommend-container">
 			<div class="flex-item" ng-click="goDetail(insurance.id)" ng-repeat="insurance in category.insurances">
-				<div class="title">{{insurance.name}}</div>
-				<div class="des"><span class="hot" style="display:none">热卖</span> {{insurance.description}}</div>
-				<div class="money">{{insurance.front_price}}元</div>
+				<div>
+					<div class="title">{{insurance.name}}</div>
+					<div class="des"><span class="hot" style="display:none">热卖</span> {{insurance.description}}</div>
+					<div class="money">{{insurance.front_price}}元</div>
+				</div>
 			</div>	
 			
 		
@@ -96,7 +105,11 @@
 <div class=" fix_container">
 	<a href="javascript:void(0)" class="btn btn_n_primary " ><img src="img/temai/kefu.png"> <span>客服电话 </span>400-992-0205</a>
 </div>
-
+<div class="qrcode-wrapper">
+	<div class="qrcode-container" >
+		<img src="img/temai/qcode_big.png">	
+	</div>
+	</div>
 <script src="wx_bx_gl/js/swiper.min.js"></script>
 <script>
   var swiper = new Swiper('.swiper-container', {
@@ -104,4 +117,6 @@
         paginationClickable: true,
         autoplay:5000
     });
+
+  $()
 </script>

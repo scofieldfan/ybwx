@@ -235,7 +235,8 @@ header {
   header .top-container {
     color: #fff;
     position: relative;
-    overflow: hidden; }
+    overflow: hidden;
+    line-height: 0; }
     header .top-container .company {
       background-color: #588dd4;
       color: #fff;
@@ -245,7 +246,8 @@ header {
       top: 0;
       right: 10px;
       border-bottom-left-radius: 2px;
-      border-bottom-right-radius: 2px; }
+      border-bottom-right-radius: 2px;
+      line-height: 15px; }
     header .top-container .title {
       font-size: 17px; }
     header .top-container .sub-title {
@@ -274,6 +276,8 @@ header {
   .detail-content .btn-container {
     padding: 10px 0;
     overflow: hidden; }
+    .detail-content .btn-container .weui_btn_primary {
+      border: 1px solid #588dd4; }
   .detail-content .content-table {
     width: 100%;
     border-collapse: collapse;
@@ -304,7 +308,8 @@ header {
   margin-top: 10px;
   border-bottom: 1px solid  #e2e2e2;
   background-color: #fff;
-  padding-bottom: 20px; }
+  padding-bottom: 20px;
+  margin-bottom: 60px; }
 
 .introd-container {
   padding: 10px; }
@@ -343,6 +348,21 @@ header {
   .tail-header .hd.select {
     color: #588dd4;
     border-bottom: 3px solid #588dd4; }
+
+.more_coverages_button {
+  cursor: pointer; }
+
+.arrow {
+  width: 12px;
+  vertical-align: 2px;
+  margin-left: 2px; }
+
+.up {
+  -ms-transform: rotate(180deg);
+  /* IE 9 */
+  -webkit-transform: rotate(180deg);
+  /* Chrome, Safari, Opera */
+  transform: rotate(180deg); }
 
 .qa-container {
   background-color: #FFF; }
@@ -393,11 +413,11 @@ header {
       border-right-color: #f5f5f5; }
 
 .question .qa-icon {
-  background: url(../img/temai/question.jpg) no-repeat center;
+  background: url(../img/temai/question.jpg) no-repeat top;
   background-size: 22px; }
 
 .answer .qa-icon {
-  background: url(../img/temai/answer.jpg) no-repeat center;
+  background: url(../img/temai/answer.jpg) no-repeat top;
   background-size: 22px; }
 
 .question {

@@ -19,7 +19,16 @@ ybwxControllers.controller('wxTemaiIndexCtrl', ['$scope', '$routeParams', '$loca
         }
       })
     });
-
+    $("body").on("click","#foucs_button",function(event){
+        $(".qrcode-wrapper").show();
+        event.preventDefault();
+        event.stopPropagation();
+    }).on('click','.qrcode-container',function(event){
+         event.preventDefault();
+         event.stopPropagation();
+     }).on('click','.qrcode-wrapper',function(){
+       $(".qrcode-wrapper").hide();
+     })
     $scope.goCategory = function(categoryId) {
       $location.path("/temailist").search({
         "category_id": categoryId
@@ -39,15 +48,8 @@ ybwxControllers.controller('wxTemaiIndexCtrl', ['$scope', '$routeParams', '$loca
 ybwxControllers.controller('wxTemaiListCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
   function($scope, $routeParams, $location, $http, $rootScope) {
 
-    if ($routeParams.type) {
-      $scope.type = $routeParams.type;
-    } else {
-      $scope.type = "4";
-    }
 
-    $scope.setType = function(type) {
-      $scope.type = type;
-    }
+
     $scope.isHaveResult = true;
 
     util.share({
@@ -64,7 +66,9 @@ ybwxControllers.controller('wxTemaiListCtrl', ['$scope', '$routeParams', '$locat
         console.log(res);
         console.log('tailu........');
         if (res && res.data && res.data.data) {
-          $scope.navItems = res.data.data.categorys;
+          $scope.navItems = res.data.data.categories;
+        }else{
+           $scope.isHaveResult = false;
         }
       })
     }
@@ -81,13 +85,11 @@ ybwxControllers.controller('wxTemaiListCtrl', ['$scope', '$routeParams', '$locat
       })
     }
     $scope.init = function() {
-      var code = util.getParameterByName("code");
-      if (!code) {
-        code = $routeParams.code;
-      }
+      var code = util.getParameterByName("code") ||  $routeParams.code;
+      var defaultCategory = $routeParams.category_id ||  3;
       util.getOpenId(code).then(function() {
         $scope.getNav();
-        $scope.getCateList(3);
+        $scope.getCateList(defaultCategory);
       });
     }
   }
@@ -191,6 +193,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$routeParams', '$locat
             $scope.maskSelectPlan = $scope.maskPlans[Object.keys($scope.maskPlans)[0]];
             $scope.coverage_period = $scope.maskSelectPlan.coverage_periods[0];
             $scope.coverage_period_type = $scope.maskSelectPlan.coverage_period_type;
+
             if ($scope.maskSelectPlan.charge_periods) {
               $scope.charge_period = $scope.maskSelectPlan.charge_periods[0];
             }
@@ -216,6 +219,9 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$routeParams', '$locat
                   plan.coverage_beans[j].sum_insured = plan.coverage_beans[j].sum_insured.substring(0, plan.coverage_beans[j].sum_insured.length - 1);
                 }
               } 
+              if(res.data.data.coverage_overview){
+                $scope.coverage_overviews = res.data.data.coverage_overview.split("##");
+              }
               plan.main_coverage_beans = plan.coverage_beans.filter(function(item){
                     return item.coverage_type == 1;
               });
