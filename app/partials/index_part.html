@@ -26,8 +26,11 @@ body{
  font-size:0.17rem;
  color:#588dd4;
 }
-
-
+.fix_container img{
+  width:14px;
+  vertical-align: -1.5px;
+}
+/*
 .fix_container .left{
   color:#1e4e8e;
   background-color:#1e4e8e ;margin-right:50%;width:auto;border-radius: 0;
@@ -51,6 +54,7 @@ body{
   width:14px;
   vertical-align: -1.5px;
 }
+*/
 #loadingContainer{
   height:350px;
   background: #fff url(img/loading.gif) no-repeat center/50px;
@@ -83,11 +87,16 @@ body{
 
 </div>
 -->
-
-<div class=" fix_container select_btn">
-  <a href="javascript:void(0)" class="btn btn_n_primary right" ng-click="showTip()" ><img src="img/tsbz.png">&nbsp;提升保障</a>
-  <a href="javascript:void(0)" class="btn btn_n_primary left " ng-click="goBdMange()"><img src="img/bdgl.png">&nbsp;保单管理</a>
+<div class="fix_container select_btn ng-scope">
+    <div class="cell_hd cell_primary" style="border-right:1px solid #13325c;">
+      <a href="javascript:void(0)" class="btn btn_n_primary left " ng-click="goBdMange()"><img src="img/bdgl.png">&nbsp;保单管理</a>
+    </div>
+    <div class="cell_hd cell_primary">
+     <a href="javascript:void(0)" class="btn btn_n_primary right" ng-click="showTip()" ><img src="img/tsbz.png">&nbsp;提升保障</a>
+    </div>
+    
 </div>
+
  <div class="mask" id="share">
      <div id="tip_text" style="margin:0 auto;position: relative;">
        <img  src="img/tishi.png" style="width:2rem;position:absolute;left:-1.25rem;top:0.02rem;">
