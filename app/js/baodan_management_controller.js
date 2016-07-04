@@ -260,7 +260,6 @@ bdControllers.controller('ybwxbaodanManageListCtrl', ['$scope', '$routeParams', 
 					console.log(res.data.data);
 				})
 			})
-
 		}
 		$scope.setType = function(type) {
 			_hmt.push(['_trackEvent', 'bdm_list', 'bdmList_nav']);
