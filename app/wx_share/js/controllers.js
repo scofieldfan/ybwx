@@ -15,34 +15,34 @@ var api = {
 	'exchange': '/ybwx-web/api/exchange_coupon'
 }
 
-function shareTip() {
-	$("#share").show();
-}
+	function shareTip() {
+		$("#share").show();
+	}
 
-function submitBd($scope, $http, $location, $filter) {
-	var openId = sessionStorage.getItem("openId");
-	var insuranceDate = $filter('date')($scope.user.insurance_date, "yyyyMMdd");
-	var postData = {
-		coupon_no: $scope.coupon_no,
-		open_id: openId,
-		username: $scope.user.username,
-		social_id: $scope.user.social_id,
-		mobile: $scope.user.mobile,
-		insure_date: insuranceDate
-	};
-	// if ($scope.coupon_id == 2) {
+	function submitBd($scope, $http, $location, $filter) {
+		var openId = sessionStorage.getItem("openId");
+		var insuranceDate = $filter('date')($scope.user.insurance_date, "yyyyMMdd");
+		var postData = {
+			coupon_no: $scope.coupon_no,
+			open_id: openId,
+			username: $scope.user.username,
+			social_id: $scope.user.social_id,
+			mobile: $scope.user.mobile,
+			insure_date: insuranceDate
+		};
+		// if ($scope.coupon_id == 2) {
 		postData["flight_no"] = $scope.user.flight_no;
-	// }
-	return $http({
-		method: 'POST',
-		headers: {
-			"Content-Type": "application/json;charset:UTF-8"
-		},
-		url: api['saveBd'],
-		data: postData
-	})
+		// }
+		return $http({
+			method: 'POST',
+			headers: {
+				"Content-Type": "application/json;charset:UTF-8"
+			},
+			url: api['saveBd'],
+			data: postData
+		})
 
-}
+	}
 wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
 	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
 		var qd = util.getParameterByName("qd");
@@ -52,7 +52,7 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 		_hmt.push(['_trackPageview', '/wx_share_jixian']);
 		_hmt.push(['_setCustomVar', 1, 'qudao', qd, 1]);
 
-		
+
 		//_hmt.push(['_trackPageview', '/wx_share_index'+"_qd_"+qd]);
 		$scope.init = function() {
 			/*
@@ -69,14 +69,14 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 				$("#loadingToastCommon").hide();
 				var openId = sessionStorage.getItem("openId");
 				util.share({
-		              shareUrl:"http://web.youbaowuxian.com/wx_share.html#/jixian?rec_id="+ openId,
-		              shareImg: "http://web.youbaowuxian.com/wx_share/img/share_sport.png",
-		              shareTitle: "免费领取10万元极限运动险！要酷，更要安全！",
-		              shareDesc:"每月均可领取1份，每邀请1位好友，即可再免费领取1份。约上朋友一起突破极限吧！"
-		            
-		        });
-		       // alert("get openId ok:"+openId);
-		        //alert("get openId ok:"+api['ping_coupon']);
+					shareUrl: "http://web.youbaowuxian.com/wx_share.html#/jixian?rec_id=" + openId,
+					shareImg: "http://web.youbaowuxian.com/wx_share/img/share_sport.png",
+					shareTitle: "免费领取10万元极限运动险！要酷，更要安全！",
+					shareDesc: "每月均可领取1份，每邀请1位好友，即可再免费领取1份。约上朋友一起突破极限吧！"
+
+				});
+				// alert("get openId ok:"+openId);
+				//alert("get openId ok:"+api['ping_coupon']);
 				$http({
 					method: 'POST',
 					headers: {
@@ -86,7 +86,7 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 					data: {
 						"open_id": openId,
 						"coupon_id": "4",
-						"time":new Date().getTime()
+						"time": new Date().getTime()
 					}
 				}).then(function(res) {
 					console.log(res);
@@ -124,14 +124,14 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 				}
 			}).then(function(res) {
 				console.log(res);
-				if (res.data && res.data.description) {  
+				if (res.data && res.data.description) {
 					$("#pop").show();
-					$("#popup").click(function(){
-			          $("#pop").hide();
-			        });
-			        $("#popup-btn").click(function(){
-			          $("#pop").hide();
-			        });
+					$("#popup").click(function() {
+						$("#pop").hide();
+					});
+					$("#popup-btn").click(function() {
+						$("#pop").hide();
+					});
 					// util.showToast($rootScope, res.data.description);
 				}
 				// util.showToast($rootScope,res.data.description);
@@ -150,7 +150,7 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 			_hmt.push(['_trackEvent', 'wx_share_jixian', 'wx_share_jixian_right_button']);
 			shareTip();
 		}
-		
+
 	}
 ]);
 wxShareControllers.controller('wxShareBdCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
@@ -161,12 +161,14 @@ wxShareControllers.controller('wxShareBdCtrl', ['$scope', '$filter', '$routePara
 		var testDate = new Date();
 		testDate.setDate(testDate.getDate() + 1);
 		$scope.minDate = testDate;
+
+		console.log($scope.minDate);
 		var tmp = new Date(Number($routeParams.expiry_date));
 		tmp.setDate(tmp.getDate() - 1);
 		$scope.maxDate = tmp;
 		$scope.user = {};
 		$scope.user.insurance_date = testDate;
-       
+		console.log($scope.maxDate);
 		var userinfo = JSON.parse(localStorage.getItem('userinfo'));
 		if (userinfo) {
 			$scope.user = {
@@ -182,32 +184,38 @@ wxShareControllers.controller('wxShareBdCtrl', ['$scope', '$filter', '$routePara
 		$scope.server_reason = "";
 		var openId = sessionStorage.getItem("openId");
 		// toggle
-		function addDays(date,days) {
-			var result = new Date(date);
-			result.setDate(result.getDate() + days);
-			// result.setDate(result.getDate() - jian);
+
+		function addDays(date, days) {
+			var result;
+			if (date) {
+				result = new Date(date);
+				result.setDate(result.getDate() + days);
+			} else {
+				result = '';
+			}
+
 			return result;
-		} 
+		}
 		$scope.genInEffectiveDate = function() {
-		//计算失效日期
+			//计算失效日期
 			//console.log("test ineffective Date.........");
 			//console.log($scope.user.insurance_date);
-            var testDate = new Date();
-            testDate.setDate(testDate.getDate() + 3);
-			$scope.user.inEnd_date = addDays($scope.user.insurance_date,3);
-			if ($scope.order && $scope.order.$scope.minDate && !$scope.order.$scope.minDate.$invalid) {
+			var testDate = new Date();
+			$scope.user.inEnd_date = addDays($scope.user.insurance_date, 3);
+			/*if ($scope.minDate>$scope.user.insurance_date>$scope.maxDate) {
+				testDate.setDate(testDate.getDate() + 4);
 				$scope.user.inEnd_date = testDate;
 			}
-			if (!$scope.order) {
-				$scope.user.inEnd_date = testDate;
-			}
-		}
-		
+            console.log($scope.minDate);
+		    console.log($scope.user.insurance_date);
+		    console.log($scope.minDate>$scope.user.insurance_date>$scope.maxDate);*/
+		};
+
 		$scope.submit = function() {
 			_hmt.push(['_trackEvent', 'wx_share_toubao', 'wx_share_toubao_subtn']);
-             
+
 			console.log($scope.registration);
-			console.log("invalid:"+$scope.registration.$invalid);
+			console.log("invalid:" + $scope.registration.$invalid);
 			if (!$scope.registration.$invalid) {
 				$("#loadingToast").show();
 				//util.showToast($rootScope,"正在提交,请稍后.....");
@@ -261,11 +269,11 @@ wxShareControllers.controller('wxShareBdCtrl', ['$scope', '$filter', '$routePara
 				}
 			}
 		}
-        // $('#birthday').focus(function() {
-        // 	this.type = 'date';
-        // 	// this.focus();
-        // })
-		
+		// $('#birthday').focus(function() {
+		// 	this.type = 'date';
+		// 	// this.focus();
+		// })
+
 	}
 ]);
 
@@ -334,17 +342,17 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 				code = $routeParams.code;
 			}
 			$("#loadingToastCommon").show();
-		
+
 			util.getOpenId(code).then(function() {
 				$("#loadingToastCommon").hide();
 				var openId = sessionStorage.getItem("openId");
 				util.share({
-		              shareUrl:"http://web.youbaowuxian.com/wx_share.html#/?rec_id="+ openId,
-		              shareImg: "http://web.youbaowuxian.com/wx_share/img/share61.jpg",
-		              shareTitle: "送你一份500万航空意外险，买机票立省30元！",
-		              shareDesc:"集齐3份航空意外险保险券，即可免费兑换一份航班延误险保险券！"
-		            
-		        });
+					shareUrl: "http://web.youbaowuxian.com/wx_share.html#/?rec_id=" + openId,
+					shareImg: "http://web.youbaowuxian.com/wx_share/img/share61.jpg",
+					shareTitle: "送你一份500万航空意外险，买机票立省30元！",
+					shareDesc: "集齐3份航空意外险保险券，即可免费兑换一份航班延误险保险券！"
+
+				});
 				$http({
 					method: 'POST',
 					headers: {
@@ -405,9 +413,9 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 				util.showToast($rootScope, "服务器错误");
 			});
 		}
-        $scope.exchange = function() {
+		$scope.exchange = function() {
 			_hmt.push(['_trackEvent', 'wx_share_index', 'wx_share_index_exchange_button']);
-	
+
 			var openId = sessionStorage.getItem("openId");
 			$http({
 				method: 'POST',
@@ -423,7 +431,7 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 				console.log(res);
 				if (res.data && res.data.description) {
 					util.showToast($rootScope, res.data.description);
-				}else
+				} else
 				if (res.data.data.result == 1) {
 					$location.path('/exchange');
 				}

@@ -63,7 +63,7 @@
 					<img class="logo" ng-src="{{policy.icon}}"   />
 					<div style="margin-right: 1rem;">
 						<div class="product">{{policy.name}}</div>
-						<div class="time" ><img src="img/clock.jpg"/>  {{policy.coverageDate.substring(0,11)}} ~ {{policy.coverageDate.substring(20,30)}} </div>
+						<div class="time" ><img src="img/clock.jpg"/>  <span ng-moudle="policy.coverageDate">{{policy.coverageDate.substring(0,11)}} - {{policy.coverageDate.substring(20,30)}}</span> </div>
 					</div>
 					<div style="clear:both;"></div>
 
