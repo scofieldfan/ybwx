@@ -15,7 +15,7 @@ ybwxControllers.controller('ybwxProductInfoCtrl', ['$scope', '$routeParams', '$l
 ybwxControllers.controller('wxTemaiIndexCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
   function($scope, $routeParams, $location, $http, $rootScope) {
 
-
+    $scope.loadReady = false;
     var code = util.getParameterByName("code") || $routeParams.code;
     util.getOpenId(code).then(function() {
       var openId = sessionStorage.getItem("openId");
@@ -25,6 +25,7 @@ ybwxControllers.controller('wxTemaiIndexCtrl', ['$scope', '$routeParams', '$loca
         if (res && res.data && res.data.data) {
           $scope.categorys = res.data.data.categorys;
         }
+         $scope.loadReady = true;
       })
     });
     /*

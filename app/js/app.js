@@ -106,7 +106,9 @@ ybwxApp.config(['$routeProvider',
     }).when('/temaiindex', {
       templateUrl: 'partials/temai_index.html',
       controller: 'wxTemaiIndexCtrl',
-      title: "特卖商城"
+      title: "特卖商城",
+      css:['css/temai_index.css?rev=03e9859471029a5f6a25100d5fe26d68'
+          ,'wx_bx_gl/css/swiper.min.css?rev=3423423']
     }).when('/temailist', {
       templateUrl: 'partials/temai_list.html',
       controller: 'wxTemaiListCtrl',
