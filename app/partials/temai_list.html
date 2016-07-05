@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="css/temai_list.css?rev=f8cdb1556516920c905656f7d182b9ea">
+<link rel="stylesheet" type="text/css" href="css/temai_list.css?rev=4ecccdb8550864f87f9c8f354f68fe22">
 <div cg-busy="listPromise">
 <div class="nav" data-ng-init="init()" >
 	<div class="item" ng-class='{"select":category_id==nav.id}'ng-repeat="nav in navItems" ng-click='getCateList(nav.id)'>{{nav.name}}</div>
@@ -11,7 +11,7 @@
 		</div>	
 		<div class="wrap">
 			<div class="title">{{item.name}}</div>	
-			<div class="des"><span class="hot" style="display: none">热卖</span> {{item.description}}</div>	
+			<div class="des"><span class="hot" style="display: none">热卖</span><span class="special_offer" style="display: none;">特惠</span>  {{item.description}}</div>	
 			<div class="money">{{item.front_price}}</div>	
 		</div>	
 	</div>

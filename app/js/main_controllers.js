@@ -463,7 +463,15 @@ function initPieConfig(sumScore, scores, policyNumber) {
 		}
 	});
 }
-
+mainControllers.controller('ybwxPromoteCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $routeParams, $location, $http, $rootScope) {
+		$scope.goSelect = function(type) {
+			window.location=("#/select?type="+type);
+		}
+		$scope.goContinue = function() {
+			$location.path('/continue');
+		}
+	}])
 mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
@@ -473,7 +481,8 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 		}
 		$scope.showTip = function() {
 			_hmt.push(['_trackEvent', 'index', 'index_showTip']);
-			$("#share").show();
+			// $("#share").show();
+			$location.path("/promote").search();
 		}
 		$scope.goBdMange = function() {
 			_hmt.push(['_trackEvent', 'index', 'index_baodan_guanli']);

@@ -51,12 +51,15 @@ body {
 		.wrap{
 			@include flex(1);
 			padding: .15rem;
-			.hot{
+			.hot,.special_offer{
 				background-color: #ff5c00;
 				color:#fff;
 				border-radius:3px;
 				padding: .01rem .03rem;
 				font-size: .1rem
+			}
+			.special_offer {
+                background-color: #ff005a;
 			}
 			.title{
 				color:#555;
