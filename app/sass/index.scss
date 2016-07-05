@@ -1,0 +1,127 @@
+.wrapper {
+  padding: 0 10px;
+  position: relative;
+}
+body {
+  background-color: #fff;
+}
+.gift {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  background: url(../img/index/gift.png) no-repeat center;
+  background-size: 22px;
+}
+.gift-message {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  background: url(../img/index/message.png) no-repeat center;
+  background-size: 22px;
+}
+.text_container {
+
+  /*margin-bottom: 80px;*/
+}
+.text_container p {
+  text-align: center;
+  line-height: 0.07rem;
+}
+.text_container .subtitle {
+  font-size: 0.16rem;
+  color: #999;
+}
+.text_container .tip {
+  font-size: 0.2rem;
+  color: #ffb594;
+}
+.text_container .bd_yz {
+  margin-top: 0.7rem;
+  font-size: 0.17rem;
+  color: #588dd4;
+}
+#loadingContainer {
+  height: 350px;
+  background: #fff url(../img/loading.gif) no-repeat center/50px;
+}
+#pieChartContainer {
+  padding-top: 0.1rem;
+}
+.cell_hd {
+  height: 50px;
+}
+.cell-circle {
+  box-sizing: border-box;
+  width: 1.29rem;
+  height: 1.29rem;
+  border-radius: 100%;
+  color: #1e4e8e;
+  background-color: #FFF;
+  border: 1px solid #dde5ee;
+  text-align: center;
+  padding: .3rem 0;
+  margin: 0 auto;
+
+  .icon {
+    height: 30px;
+  }
+  .icon.icon-mangment {
+    background: url("../img/index/guanli.png") no-repeat center;
+    background-size: 22px;
+  }
+  .icon.icon-up {
+    background: url("../img/index/up.png") no-repeat center;
+    background-size: 22px;
+  }
+}
+.cell-circle:active {
+  background-color: #f5f5f5;
+}
+
+
+.cell-item {
+  box-sizing: border-box;
+  height: 50px;
+  line-height: 17px;
+  text-align: center;
+  background-color: #1e4e8e;
+  color: #4c87d6;
+  padding: 4.5px 0;
+
+  .icon, .icon_hover {
+    height: 22px;
+  }
+  .icon.icon-home {
+    background: url("../img/index/index.png") no-repeat center;
+    background-size: 22px;
+  }
+  .icon.icon-shopping {
+    background: url("../img/index/shopping.png") no-repeat center;
+    background-size: 22px;
+  }
+  .icon.icon-service {
+    background: url("../img/index/service.png") no-repeat center;
+    background-size: 22px;
+  }
+}
+
+
+.cell-item.hover {
+  color: #fff;
+  .icon.icon-home {
+    background: url("../img/index/index_hover.png") no-repeat center;
+    background-size: 22px;
+  }
+  .icon.icon-shopping {
+    background: url("../img/index/shopping_hover.png") no-repeat center;
+    background-size: 22px;
+  }
+  .icon.icon-service {
+    background: url("../img/index/service_hover.png") no-repeat center;
+    background-size: 22px;
+  }
+}

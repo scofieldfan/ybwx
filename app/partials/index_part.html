@@ -1,134 +1,49 @@
-<style>
-.wrapper{
-  padding:0 10px;
-}
-body{
-  background-color: #f5f5f5;
-}
-.text_container {
-  /*margin-bottom: 80px;*/
-}
-.text_container p {
-  text-align: center;
-  line-height: 0.07rem;
-}
-.text_container .subtitle {
- font-size:0.16rem;color:#999;
-}
-
-.text_container .tip {
- font-size:0.2rem;
- color:#ffb594;
-}
-
-.text_container .bd_yz {
- margin-top: 0.7rem;
- font-size:0.17rem;
- color:#588dd4;
-}
-.fix_container img{
-  width:14px;
-  vertical-align: -1.5px;
-}
-/*
-.fix_container .left{
-  color:#1e4e8e;
-  background-color:#1e4e8e ;margin-right:50%;width:auto;border-radius: 0;
-  color: #fff;
-  border-right: 1px solid #13325c;
-}
-.select_btn {
-  height: 48px;
-  box-sizing: border-box;
-}
-.left:active{
-  background-color:#e0e0e0;
-}
-.fix_container .right{
-  background-color: #1e4e8e;
-  float:right;
-  width:50%;
-  border-radius: 0;
-}
-.fix_container img{
-  width:14px;
-  vertical-align: -1.5px;
-}
-*/
-#loadingContainer{
-  height:350px;
-  background: #fff url(img/loading.gif) no-repeat center/50px;
-}
-#pieChartContainer{
-  padding-top: 0.1rem;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="css/index.css?rev=1c6aa98150c235dca1982dc6e63782d5">
 <div id="wrapper" class="wrapper"  data-ng-init="init()">
+<div class="gift"></div>
   <div id="pieChartContainer">
     <div id="loadingContainer" >
     </div>
   </div>
+  <!--
   <div class="text_container"  >
     <p class="subtitle" >您的综合评分</p>
     <p class="tip" >低于平均水平</p>
     <p class="bd_yz" ng-click="goVerfiy()">保单验真 > </p>
   </div>
-
-  <!--
-  <div class="cell " style="padding:0 0.25rem;">
-    <a href="javascript:void(0)"  ng-click="showTip()" class="btn btn_n_primary" >评分解析</a>
-  </div>
   -->
-
+  <div calss="cell">
+       <div class="cell_hd cell_primary">
+             <div class="cell-circle " ng-click="goBdMange()"><div class="icon icon-mangment"></div><div>保单管理</div></div>
+       </div>
+       <div class="cell_hd cell_primary">
+             <div class="cell-circle "><div class="icon icon-up"></div><div>保障提升</div></div>
+       </div>
+  </div>
 </div>
-<!--
-<div class="cell pay_container">
-  <a href="javascript:void(0)" class="btn btn_n_primary " style="background-color: #1e4e8e;border-radius: 0;" ng-click="showTip()" ><img src="img/tsbz.png"> 提升保障</a>
 
-</div>
--->
-<div class="fix_container select_btn ng-scope">
-    <div class="cell_hd cell_primary" style="border-right:1px solid #13325c;">
-      <a href="javascript:void(0)" class="btn btn_n_primary left " ng-click="goBdMange()"><img src="img/bdgl.png">&nbsp;保单管理</a>
+
+<div class="fix_container select_btn ">
+    <div class="cell_hd cell_primary " >
+    <div class="cell-item hover" ng-click="goIndex($event)"><div class="icon icon-home"></div><div>首页</div></div>
     </div>
     <div class="cell_hd cell_primary">
-     <a href="javascript:void(0)" class="btn btn_n_primary right" ng-click="showTip()" ><img src="img/tsbz.png">&nbsp;提升保障</a>
+      <div class="cell-item" ng-click="goTemai($event)"><div class="icon icon-shopping"></div><div>严选</div></div>
     </div>
-    
+    <div class="cell_hd cell_primary">
+      <div class="cell-item" ng-click="goService($event)"><div class="icon icon-service"></div><div>服务</div></div>
+    </div>
 </div>
 
+
+
+
+<!--
  <div class="mask" id="share">
      <div id="tip_text" style="margin:0 auto;position: relative;">
        <img  src="img/tishi.png" style="width:2rem;position:absolute;left:-1.25rem;top:0.02rem;">
-      <!--
-     <img class="pic" src="img/tip_pic.png" style="position:absolute;left:-0.45rem;top:0.05rem;">
-     <img class="word" src="img/tip_word.png?v=1" style="position:absolute;left:0.3rem;top:0.60rem;">
-     <img class="tip" src="img/tip_text.png" style="position:absolute;left:0.2rem;top:1.2rem;z-index:100;">
-     -->
    </div>
   </div>
-<!-- /wrapper -->
+ -->
 
-<script>
-/*
- $("#menu").on("click","a",function(e){
-    e.preventDefault;
-    slideLeft.close();
- });
-  var slideLeft = new Menu({
-    wrapper: '#wrapper',
-    type: 'slide-left',
-    menuOpenerClass: '.c-button',
-    maskId: '#c-mask'
-  });
- $("#wrapper").on("click","#c-button--slide-left",function(e){
-   console.log("click");
-    e.preventDefault;
-    slideLeft.open();
- });
-  var slideLeftBtn = document.querySelector('#c-button--slide-left');
-  slideLeftBtn.addEventListener('click', function(e) {
-    e.preventDefault;
-    slideLeft.open();
-  });*/
-  </script>
+<!-- /wrapper -->

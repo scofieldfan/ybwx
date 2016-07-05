@@ -98,7 +98,8 @@
       <td class="td-left" style="cursor: pointer;">
         {{item.name}}
         <img src="wx_share/img/help.jpg"  class="help-img" title="{{item.description}}"></td>
-      <td>{{item.sum_insured | number}}元{{item.danwei}}</td>
+      <td ng-if="item.sum_insured>0">{{item.sum_insured | number}}元{{item.danwei}}</td>
+      <td ng-if="item.sum_insured==0">赠送</td>
     </tr>
   </table>
   <div class="introd-sum">

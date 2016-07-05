@@ -161,17 +161,18 @@
                 }
 
                 //中心区
-                
+               
+                /* 
                 ctx.beginPath();
-                //console.log("highlight:" + highlight);
                 ctx.arc(center, center, options.closeRadius, 0, 2 * Math.PI);
                 ctx.fillStyle = "#f5f5f5";
                 ctx.fill();
+                */
 
 
                 ctx.beginPath();
-                //console.log("highlight:" + highlight);
-                ctx.arc(center, center, options.closeRadius - 25, 0, 2 * Math.PI);
+              
+                ctx.arc(center, center, options.closeRadius, 0, 2 * Math.PI);
                 ctx.fillStyle = (highlight === 'x' ? options.selectedColor : "#FFF");
                 ctx.fill();
 
@@ -388,7 +389,7 @@
                 //绘画基础扇形
                 console.log(" highlight:" + highlight);
                 console.log(" n:" + n);
-                var pieColor = highlight === n ? options.selectedColor : "#ebebeb";
+                var pieColor = highlight === n ? options.selectedColor : "#f5f5f5";
                 console.log(" pieColor:" + pieColor);
                 drawSector(ctx, pieColor, centerX, centerY, startA, endA, options.closeRadius - pianX, bigRadius);
 
@@ -398,7 +399,7 @@
                 options.outterRadius = outterRadius+10;
                 // ctx.fillStyle = (isSelected ? options.selectedColor : options.backgroundColor);
 
-                drawSector(ctx, "#f0f0f0", centerX, centerY, startA, endA, innerRadius, outterRadius);
+                drawSector(ctx, "#f5f5f5", centerX, centerY, startA, endA, innerRadius, outterRadius);
                 //drawSector(ctx,"#f0f0f0", centerX,centerY,startA,endA,innerRadius,outterRadius);
 
                 //绘画带颜色的分数扇形 

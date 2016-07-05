@@ -396,46 +396,46 @@ function initPieConfig(sumScore, scores, policyNumber) {
 			"text": "意外",
 			"percent": scores[4] / 10,
 			"icon": "\uf21e",
-			"img": "img/feiji.png",
+			"img": "img/index/plane.png",
 			"isDisable": true,
-			"color": "#f0d8dc",
-			"textColor": "#ea8094",
+			"color": "#ffd9df",
+			"textColor": "#ff788e",
 			"hoverColor": "#fffafa"
 		}, {
 			"text": "人寿",
 			"percent": scores[3] / 10,
 			"icon": "\uf155",
-			"img": "img/yiliao.png",
+			"img": "img/index/heart.png",
 			"isDisable": true,
-			"color": "#d1e5f3",
-			"textColor": "#5796c3",
+			"color": "#c6f9e7",
+			"textColor": "#54dbaa",
 			"hoverColor": "#fffefa"
 		}, {
 			"text": "健康",
 			"percent": scores[2] / 10,
 			"isDisable": true,
 			"icon": "\uf1b9",
-			"img": "img/jiankang.png",
-			"color": "#c6e7db",
-			"textColor": "#60bd9b",
+			"img": "img/index/health.png",
+			"color": "#cbe9ff",
+			"textColor": "#4aa7e9",
 			"hoverColor": "#fafffc"
 		}, {
 			"text": "家庭",
 			"percent": scores[1] / 10,
 			"isDisable": false,
 			"icon": "\uf072",
-			"img": "img/jiating.png",
-			"color": "#e0d4e8",
-			"textColor": "#ac80c9",
+			"img": "img/index/family.png",
+			"color": "#f3e1ff",
+			"textColor": "#ca94ee",
 			"hoverColor": "#fbfdff"
 		}, {
 			"text": "财产",
 			"percent": scores[5] / 10,
 			"icon": "\uf278",
-			"img": "img/qian.png",
+			"img": "img/index/money.png",
 			"isDisable": true,
-			"color": "#e2dccb",
-			"textColor": "#d4bd78",
+			"color": "#f0ead9",
+			"textColor": "#cdc48b",
 			"hoverColor": "#fdfcff"
 		}
 	];
@@ -481,6 +481,19 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 		}
 		$scope.goVerfiy = function() {
 			$location.path('/bd_verify_list').search();
+		}
+		$scope.goIndex = function($event){
+			$($event.target).parents(".fix_container ").find(".cell-item ").removeClass("hover");
+			$($event.target).parents(".cell-item ").addClass("hover");
+		}
+		$scope.goTemai = function($event){
+			//$location.path('/temaiindex').search();
+			$($event.target).parents(".fix_container ").find(".cell-item ").removeClass("hover");
+			$($event.target).parents(".cell-item ").addClass("hover");
+		}
+		$scope.goService = function($event){
+			$($event.target).parents(".fix_container ").find(".cell-item ").removeClass("hover");
+			$($event.target).parents(".cell-item ").addClass("hover");
 		}
 		$scope.init = function() {
 			//获得openId
