@@ -65,7 +65,9 @@
 		<div class="flex-item" ng-click="goDetail(insurance.id)" ng-repeat="insurance in category.insurances">
 			<div>
 				<div class="title">{{insurance.name}}</div>
-				<div class="des"><span class="hot" style="display:none">热卖</span> {{insurance.description}}</div>
+				<div class="des">
+					<span class="hot" style="display:none">热卖</span>
+					<span class="special_offer" style="display: none">特惠</span>  {{insurance.description}}</div>
 				<div class="money">{{insurance.front_price}}</div>
 			</div>
 		</div>	

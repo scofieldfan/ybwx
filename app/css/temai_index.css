@@ -428,21 +428,24 @@ header {
       -webkit-box-pack: center;
       -webkit-justify-content: center;
       justify-content: center; }
-      .recommend-content .recommend-container .flex-item .hot {
+      .recommend-content .recommend-container .flex-item .hot, .recommend-content .recommend-container .flex-item .special_offer {
         display: inline-block;
         background-color: #ff5c00;
         border-radius: 4px;
         color: #fff;
         padding: 0px 3px;
         font-size: 13px; }
+      .recommend-content .recommend-container .flex-item .special_offer {
+        background-color: #ff005a; }
       .recommend-content .recommend-container .flex-item .title {
         color: #555;
         font-size: 15px; }
       .recommend-content .recommend-container .flex-item .des {
-        color: #999; }
+        color: #999;
+        font-size: 13px; }
       .recommend-content .recommend-container .flex-item .money {
         color: #ff5c00;
-        font-weight: bold; }
+        font-size: 15px; }
     .recommend-content .recommend-container .flex-item > div {
       -webkit-box-flex: 1;
       -webkit-flex: 1;

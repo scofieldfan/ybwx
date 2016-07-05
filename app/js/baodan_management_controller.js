@@ -387,6 +387,7 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 		$scope.showTip = function() {
 			_hmt.push(['_trackEvent', 'bdm_detail', 'bdmDetail_shareTip']);
 			$("#share").show();
+			
 		}
 		$scope.shareConfig = function() {
 

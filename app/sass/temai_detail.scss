@@ -295,28 +295,37 @@ header {
   bottom: 0;
   width: 100%;
   background-color: #fff;
+
+}
+.small_img_ctrl {
+	box-sizing: border-box;
+	// @include border(1px ,solid #e2e2e2);
+	border: 1px solid #e2e2e2;
+	margin: -0.22rem 0.08rem 0 0.17rem;
+
 }
 .head-container img {
-  width: 100px;
-  height: 100px;
-  margin: -0.22rem 0.08rem 0 0.17rem;
+  width: 107px;
+  // height: 116px;
 }
 .head-container p {
   margin: 3px 0;
 }
 .head-container .close{
   position: absolute;
-  top:5px;
-  right:5px;
-  width:25px;
-  height:25px;
+  top: .13rem;
+  right: .13rem;
+  width: .19rem;
+  height: .19rem;
   background:#fff url("../img/close_1.jpg") no-repeat center /25px;
+  background-size: 100% 100%;
 }
 .select-container {
   margin-left: 0.17rem;
 }
 .select-container h4 {
   margin: 0.14rem 0 0.08rem 0;
+  color: #535353;
 }
 .button {
   font-size: 0.13rem;
@@ -327,7 +336,7 @@ header {
   box-sizing: border-box;
   text-align: center;
   text-decoration: none;
-  border-radius: 4px;
+  border-radius: 2px;
   padding: 0 0.17rem;
   margin-right: 5px;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
