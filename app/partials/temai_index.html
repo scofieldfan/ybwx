@@ -1,5 +1,26 @@
 <link rel="stylesheet" href="wx_bx_gl/css/swiper.min.css">
 <style>
+/*html{
+	width: 100%;
+	height: 100%;
+}
+body {
+	width: 100%;
+	height: 100%;
+}*/
+.ctrl_apcity {
+	width: 100%;
+	height: 100%;
+	background: #000;
+	opacity: .6;
+}
+.swiper-container {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
 .swiper-container-horizontal>.swiper-pagination-bullets{
 	bottom: 7px;
 }
@@ -25,8 +46,8 @@
 	<div class = "div_inline left">	保险本该如此</div>
 	<a href="javascript:;" class="focus_btn right" id="foucs_button">关 注</a>
 </header>
-<div class="swiper-container">
 	<div class="swiper-container" >
+		<div class="ctrl_apcity"></div>
 		<div class="swiper-wrapper swiper">
 			<div class="swiper-slide item " >
 				<a href="/wx_share.html#index"><img src="http://7xvrkw.com1.z0.glb.clouddn.com/huodong-1.jpg"></a>
@@ -39,7 +60,6 @@
 		<!-- Add Pagination -->
 		<div class="swiper-pagination" style="text-align:center"></div>
 	</div>
-</div>
 <div class="nav">
 	<a href="/wx_share.html#jixian" class="item"><img src="img/temai/nav-1.png"><div >0元抢</div></a>
 	<a href="/wx_gl.html" class="item"><img src="img/temai/nav-2.png"><div>怎么买</div></a>

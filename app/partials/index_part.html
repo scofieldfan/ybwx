@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="wx_bx_gl/css/swiper.min.css">
+
 <style>
 .wrapper{
   padding:0 10px;
@@ -29,6 +31,65 @@ body{
 .fix_container img{
   width:14px;
   vertical-align: -1.5px;
+}
+/*礼物弹窗*/
+.swiper-container {
+  /*display: none;*/
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 9999999999;
+}
+.opacity_ctrl {
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: #000;
+  opacity: .4;
+  width: 100%;
+  height: 100%;
+  z-index: 999999;
+}
+.off {
+  position: fixed;
+  right: 15px;
+  top: 15px;
+  width: 20px;
+  height: 20px;
+  z-index: 9999999999999999;
+}
+.off img {
+  width: 100%;
+  height: 100%;
+}
+.swiper-container {
+    width: 100%;
+    height: 100%;
+}
+.swiper-wrapper {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  margin: 30% auto;
+  z-index: 99999999;
+}
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  width: 3.35rem;
+  /*width: 60%;*/
+  height: 60%;
+  height: 0;
+  border-radius: 10px;
+}
+.swiper-slide img {
+  /*width: 3.34rem;*/
+  width: 3.35rem;
 }
 /*
 .fix_container .left{
@@ -89,7 +150,7 @@ body{
 -->
 <div class="fix_container select_btn ng-scope">
     <div class="cell_hd cell_primary" style="border-right:1px solid #13325c;">
-      <a href="javascript:void(0)" class="btn btn_n_primary left " ng-click="goBdMange()"><img src="img/bdgl.png">&nbsp;保单管理</a>
+      <a href="javascript:void(0)" class="btn btn_n_primary left " ng-click="goBdMange()"><img src="img/bdgl.png">&nbsp;保障管理</a>
     </div>
     <div class="cell_hd cell_primary">
      <a href="javascript:void(0)" class="btn btn_n_primary right" ng-click="showTip()" ><img src="img/tsbz.png">&nbsp;提升保障</a>
@@ -107,6 +168,16 @@ body{
      -->
    </div>
   </div>
+<!-- 礼物弹窗 -->
+<div class="swiper-container" id ="share_ctrl">
+  <div class="off" ng-click="shareHide()"><img src="img/index_img/X.png" srcset="img/index_img/xx.png 568w, img/index_img/X.png 667w, img/index_img/X.png 736w"></div>
+  <div class="opacity_ctrl"></div>
+  <div class="swiper-wrapper">
+    <div class="swiper-slide" style="width: 260px;" ><img ng-click="goSports()" src="img/index_img/jixian_big.png" srcset="img/index_img/jixian_small.png 568w, img/index_img/jixian_big.png 667w, img/index_img/jixian_big.png 736w"></div>
+    <div class="swiper-slide" style="width: 260px;" ><img ng-click="goIndexShare()" src="img/index_img/five_big.png" srcset="img/index_img/five_small.png 568w, img/index_img/five_big.png 667w, img/index_img/five_big.png 736w"></div>
+  </div>
+</div>
+<script src="wx_bx_gl/js/swiper.min.js"></script>
 <!-- /wrapper -->
 
 <script>
@@ -131,4 +202,12 @@ body{
     e.preventDefault;
     slideLeft.open();
   });*/
-  </script>
+/*Swiper Js*/
+  var swiper = new Swiper('.swiper-container', {
+      pagination: '.swiper-pagination',
+      slidesPerView: 1.2,
+      centeredSlides: true,
+      paginationClickable: true,
+      spaceBetween: 12
+  });
+</script>

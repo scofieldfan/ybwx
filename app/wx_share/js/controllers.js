@@ -524,6 +524,9 @@ wxShareControllers.controller('myCouponListCtrl', ['$scope', '$routeParams', '$h
 				});
 			})
 		}
+		$scope.goShare =function() {
+			$location.path("/jixian");
+		}
 		$scope.goDetail = function(coupon_no, coupon_status, order_no, coupon_id, expiry_date) {
 			_hmt.push(['_trackEvent', 'wx_share_couponlist', 'wx_share_couponlist_godetail']);
 			//wx_list.html#/detail?order_no=P20160130000000122

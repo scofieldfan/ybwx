@@ -467,6 +467,7 @@ mainControllers.controller('ybwxPromoteCtrl', ['$scope', '$routeParams', '$locat
 	function($scope, $routeParams, $location, $http, $rootScope) {
 		$scope.goSelect = function(type) {
 			window.location=("#/select?type="+type);
+			// $location.path("/select?type="+shu);
 		}
 		$scope.goContinue = function() {
 			$location.path('/continue');
@@ -478,6 +479,15 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 		_hmt.push(['_trackPageview', $location.path()]);
 		$scope.data = {
 			aggregate_score: 0
+		}
+		$scope.shareHide = function() {
+			$("#share_ctrl").hide();
+		}
+		$scope.goSports = function() {
+		  window.location = "/wx_share.html#/jixian";
+		}
+		$scope.goIndexShare = function() {
+		  window.location = "/wx_share.html#/index";
 		}
 		$scope.showTip = function() {
 			_hmt.push(['_trackEvent', 'index', 'index_showTip']);
@@ -715,7 +725,7 @@ mainControllers.controller('ybwxInfoCtrl', ['$scope', '$routeParams', '$location
 		_hmt.push(['_trackPageview', $location.path()]);
 		$scope.showTip = function() {
 			_hmt.push(['_trackEvent', 'information', 'information_yesBtn']);
-			util.showToast($rootScope, "对不起，您不符合当前方案的投保条件");
+			util.showToast($rootScope, "很抱歉，被保险人不满足该产品投保规定。详情请联系诺贝：400-992-0205");
 		}
 		$scope.goToubao = function() {
 			_hmt.push(['_trackEvent', 'information', 'information_subBtn']);

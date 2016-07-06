@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="wx_share/css/index.css?rev=8ff023dfcc667192636115b886ce7c01">
+<link rel="stylesheet" href="wx_share/css/index.css?rev=e6a822525f376a56e1bc3b677651ed2d">
 <div class="my_bd_controller">
 	<ul class="layout ul_contrl">
 		<li >
@@ -9,7 +9,27 @@
 		<li></li>
 	</ul >
 	<div class="share_mian">
-		<ul class="free_500">
+		<img src="wx_share/img/my_bd/activity_big.jpg">
+		<!-- <img src="wx_share/img/my_bd/activity_small.png"> -->
+		<div class="up">
+			<div class="img_logo layout">
+				<div class="btn_left"></div>
+				<a class="left_a" href="javascript:" ng-click="addCoupon()"><img class="logo_money" src="wx_share/img/my_bd/money.png"> 免费领取</a>
+				<div class="btn_center"></div>
+				<a class="right_a" href="javascript:" ng-click="showShareTip()"><img class="logo_song" src="wx_share/img/my_bd/song.png"> 送给好友</a>
+				<div class="btn_right"></div>
+			</div>
+			<p class="p_color">( 已成功送给<span class="recommend_times font_red">{{data.recommend_times}}</span>位好友 )</p>
+			
+		</div>
+		<div class="duihuan_ctrl">
+			<div class="duihuan_btn" ng-click="exchange()"><img class="logo_money" src="wx_share/img/my_bd/duihuan.png"> 立即兑换</div>
+			<div class="hangyixian">( 你已有<span class="number font_red">{{data.number}}</span>份航意险 )</div>
+		</div>
+		
+	</div>
+		<!-- <img src="wx_share/img/my_bd/activity_small.png"> -->
+		<!-- <ul class="free_500">
 			<img src="wx_share/img/my_bd/free500.png">
 			<img src="wx_share/img/my_bd/jia300.png"><img  class="feiji" src="wx_share/img/my_bd/xiaofeiji.png">
 		</ul>
@@ -45,11 +65,11 @@
                 <li class="duihuan_btn" ng-click="exchange()"><img class="logo_money" src="wx_share/img/my_bd/duihuan.png"> 立即兑换</li>
 			</ul>                    
             <div class="hangyixian">( 你已有<span class="number font_red">{{data.number}}</span>份航意险 )</div>
-		</div>
-	</div>
+		</div> -->
 	
-	<div class="font_controller layout">
-	    <p>
+	
+	<div class="index_font_controller layout">
+<!-- 	    <p>
 			<img src="wx_share/img/my_bd/bx_logo.jpg">  领取后请前往微信号 [ 诺贝 ] 投保
         </p>
 		<div class="main_font left">
@@ -58,11 +78,10 @@
 			<li>2.在微信号底部菜单  [ 我的保险劵 ] &nbsp;&nbsp;&nbsp;投保</li>
 			<li>3.有效期：2016.06.24 ~ 12.24</li>
 		</div>
-		<!-- 二维码 -->
 		<div class="two_code right">
 			<img src="wx_share/img/my_bd/erweima.jpg">
 		</div>
-	</div>
+	</div> -->
 	<ul class="footer_border">
 		<li></li>
 		<li></li>
