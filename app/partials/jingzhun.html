@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="css/product_list.css?rev=0d9b82ececb03fca01608a09fe95daee"> 
+<link rel="stylesheet" href="css/temai_list.css?rev=4ecccdb8550864f87f9c8f354f68fe22">
 <div  class="head-container"  ng-click="goLairen()">
   <div class="cell_hd">
     <a href="javascript:void(0)"  class="btn  btn_unchoose" >个性定制</a>
@@ -7,7 +8,7 @@
     <a href="javascript:void(0)"   class="btn btn_n_primary" >直接购买</a>
   </div>
 </div>
-<ul class="ul_container jingzhun_ul_container"  data-ng-init="init()" cg-busy="listPromise" >
+<!-- <ul class="ul_container jingzhun_ul_container"  data-ng-init="init()" cg-busy="listPromise" >
   <li class="list_item" ng-click="goDetail(item.id)"   ng-repeat="item in list">
     <div  class="img_box">
       <img ng-src="{{item.insurance_image_url}}" class="order_img"></div>
@@ -22,7 +23,19 @@
       </div>
     </div>
   </li>
-</ul>
+</ul> -->
+<div class="insurance ul_container jingzhun_ul_container" data-ng-init="init()" cg-busy="listPromise">
+  <div class="insurance-item"   ng-repeat="item in list" ng-click="goDetail(item.id)">
+    <div class="logo">
+      <img ng-src="{{item.insurance_image_url}}">
+    </div>  
+    <div class="wrap">
+      <div class="title">{{item.name}}</div>  
+      <div class="des"><span class="hot" style="display: none">热卖</span> {{item.description}}</div> 
+      <div class="money">{{item.front_price}}</div> 
+    </div>  
+  </div>
+</div>
 <div  ng-show="!isHaveResult" class="cell_font" style=" text-align: center;padding-top: 90px;" >
   <img src="img/qidai.png" >
   <div style="font-size: 15px;color:#999;padding-top: 10px">产品即将上线</div>

@@ -83,7 +83,7 @@ body {
 }
 
 
-.cell-item {
+.cell-footer {
   box-sizing: border-box;
   height: 50px;
   line-height: 17px;
@@ -110,7 +110,7 @@ body {
 }
 
 
-.cell-item.hover {
+.cell-footer.hover {
   color: #fff;
   .icon.icon-home {
     background: url("../img/index/index_hover.png") no-repeat center;

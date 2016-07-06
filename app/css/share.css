@@ -1,5 +1,5 @@
 .wx-tip {
-    margin-left: 147px;
+    /*margin-left: 147px;*/
     z-index: 10000;
     top: 20px;
     width:200px;
@@ -8,4 +8,6 @@
     -webkit-background-size: 100% auto;
     -moz-background-size: 100% auto;
     background-size: 100% auto;
+    float: right;
+    margin-right: 10%;
 }

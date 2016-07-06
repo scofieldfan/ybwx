@@ -221,54 +221,42 @@
  * @class variables
  * @module Yo
  */
-* {
-  box-sizing: border-box; }
-
 body {
   background-color: #f5f5f5; }
 
-.nav {
+.head {
+  width: 100%;
+  height: 150px;
+  font-size: 15px;
+  background-color: #262d35;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: #FFF; }
-  .nav .item {
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-    -moz-box-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-    /*
-    @if $direction == column {
-        height: .1px;
-    } @else {
-        width: .1px;
-    }*/
-    height: 45px;
-    line-height: 45px;
-    text-align: center;
-    font-size: 15px;
-    border-bottom: 1px solid #e2e2e2; }
-  .nav .item.select {
-    color: #588dd4;
-    border-bottom: 3px solid #588dd4; }
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  color: #fff; }
+  .head .icon {
+    width: 100%;
+    height: 50px;
+    background: url("../img/service/camera.jpg") no-repeat center;
+    background-size: 40px; }
 
-.insurance {
-  background-color: #f5f5f5;
-  margin-top: 5px;
+.service-container {
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  flex-direction: column; }
-  .insurance .insurance-item {
-    background-color: #fff;
+  background-color: #FFF;
+  color: #555; }
+  .service-container .service-item {
+    height: 1.35rem;
     -webkit-box-flex: 1;
     -webkit-flex: 1;
     -moz-box-flex: 1;
@@ -285,51 +273,40 @@ body {
     display: -moz-box;
     display: -ms-flexbox;
     display: flex;
-    margin-bottom: 5px;
-    border-bottom: 1px solid #e2e2e2; }
-    .insurance .insurance-item .logo {
-      width: 1.07rem;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -moz-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-      align-items: center;
-      -webkit-box-pack: center;
-      -webkit-justify-content: center;
-      justify-content: center;
-      border-right: 1px solid #e2e2e2; }
-      .insurance .insurance-item .logo img {
-        width: 100px; }
-    .insurance .insurance-item .wrap {
-      -webkit-box-flex: 1;
-      -webkit-flex: 1;
-      -moz-box-flex: 1;
-      -ms-flex: 1;
-      flex: 1;
-      /*
-    @if $direction == column {
-        height: .1px;
-    } @else {
-        width: .1px;
-    }*/
-      padding: .15rem; }
-      .insurance .insurance-item .wrap .hot, .insurance .insurance-item .wrap .special_offer {
-        background-color: #ff5c00;
-        color: #fff;
-        border-radius: 3px;
-        padding: .01rem .03rem;
-        font-size: .1rem; }
-      .insurance .insurance-item .wrap .special_offer {
-        background-color: #ff005a; }
-      .insurance .insurance-item .wrap .title {
-        color: #555;
-        font-size: .15rem; }
-      .insurance .insurance-item .wrap .des {
-        color: #999;
-        font-size: .13rem; }
-      .insurance .insurance-item .wrap .money {
-        color: #ff5c00;
-        font-size: .15rem; }
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    border-right: 1px solid #e2e2e2;
+    border-bottom: 1px solid #e2e2e2;
+    line-height: 35px; }
+    .service-container .service-item .icon {
+      width: 100%;
+      min-height: 25px; }
+    .service-container .service-item .icon-juan {
+      background: url("../img/service/juan.png") no-repeat center;
+      background-size: 25px; }
+    .service-container .service-item .icon-record {
+      background: url("../img/service/record.png") no-repeat center;
+      background-size: 25px; }
+    .service-container .service-item .icon-bd {
+      background: url("../img/service/bd.png") no-repeat center;
+      background-size: 25px; }
+    .service-container .service-item .icon-phone {
+      background: url("../img/service/phone.png") no-repeat center;
+      background-size: 25px; }
+    .service-container .service-item .icon-logo {
+      background: url("../img/service/logo.png") no-repeat center;
+      background-size: 25px; }
+
+.phone-container {
+  color: #588dd4;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 15px;
+  margin-top: 26px; }
+  .phone-container img {
+    width: 20px;
+    vertical-align: -5px; }

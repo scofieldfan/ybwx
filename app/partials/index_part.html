@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="css/index.css?rev=1c6aa98150c235dca1982dc6e63782d5">
+<link rel="stylesheet" type="text/css" href="css/index.css?rev=5a5ec55054715ec9967bf851b2106a09">
 <div id="wrapper" class="wrapper"  data-ng-init="init()">
 <div class="gift"></div>
   <div id="pieChartContainer">
@@ -17,7 +17,7 @@
              <div class="cell-circle " ng-click="goBdMange()"><div class="icon icon-mangment"></div><div>保单管理</div></div>
        </div>
        <div class="cell_hd cell_primary">
-             <div class="cell-circle "><div class="icon icon-up"></div><div>保障提升</div></div>
+             <div class="cell-circle " ng-click="goPromote()"><div class="icon icon-up"></div><div>保障提升</div></div>
        </div>
   </div>
 </div>
@@ -25,17 +25,15 @@
 
 <div class="fix_container select_btn ">
     <div class="cell_hd cell_primary " >
-    <div class="cell-item hover" ng-click="goIndex($event)"><div class="icon icon-home"></div><div>首页</div></div>
+    <div class="cell-footer hover" ng-click="goIndex($event)"><div class="icon icon-home"></div><div>首页</div></div>
     </div>
     <div class="cell_hd cell_primary">
-      <div class="cell-item" ng-click="goTemai($event)"><div class="icon icon-shopping"></div><div>严选</div></div>
+      <div class="cell-footer" ng-click="goTemai($event)"><div class="icon icon-shopping"></div><div>严选</div></div>
     </div>
     <div class="cell_hd cell_primary">
-      <div class="cell-item" ng-click="goService($event)"><div class="icon icon-service"></div><div>服务</div></div>
+      <div class="cell-footer" ng-click="goService($event)"><div class="icon icon-service"></div><div>服务</div></div>
     </div>
 </div>
-
-
 
 
 <!--
