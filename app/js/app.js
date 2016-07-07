@@ -55,19 +55,19 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/index_part.html?v=123',
       controller: 'ybwxIndexCtrl',
       title: '诺贝保险管家'
-    }).when('/bd_education', {
+    }).when('/bd_education_new', {
       templateUrl: 'partials/bd_education_new.html',
       controller: 'ybwxBdEducationNewCtrl',
       title: "保障评分",
       css:'css/bd_education_new.css?rev=96ed9875ae825223e34446551fadee94'
     })
-    /*
+    /**/
     .when('/bd_education', {
       templateUrl: 'partials/bd_education.html',
       controller: 'ybwxBdEducationCtrl',
       title: "保障评分",
       css:'css/bd_education.css?rev=03e9859471029a5f6a25100d5fe26d68'
-    })*/
+    })
     .when('/select', {
       templateUrl: 'partials/select_part.html?v=123',
       controller: 'ybwxSelectCtrl',
@@ -80,7 +80,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/service.html',
       controller: 'ybwxServiceCtrl',
       title: "服务",
-      css:'css/service.css?rev=84bba1a60066709cd9c4dc1b8c76d277'
+      css:'css/service.css?rev=d69c0f9bd4f8fea50c5a88947b266e0d'
     }).when('/contact', {
       templateUrl: 'partials/contact.html',
       controller: 'ybwxCantactCtrl',
@@ -127,7 +127,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/temai_index.html',
       controller: 'wxTemaiIndexCtrl',
       title: "诺贝严选",
-      css:'css/temai_index.css?rev=7bb4d0f79206771b522de770e94515fb'
+      css:'css/temai_index.css?rev=546d3d67b2025b87ec7571d995d81b47'
     }).when('/temailist', {
       templateUrl: 'partials/temai_list.html',
       controller: 'wxTemaiListCtrl',
