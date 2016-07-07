@@ -66,76 +66,7 @@ footer {
   width: 60px;
   color: #d1d1d1;
 }
-/*
-.btn {
-  font-size: 18px;
-  line-height: 50px;
-  position: relative;   
-  display: block;
-  overflow: hidden;
-  box-sizing: border-box;
-  text-align: center;
-  text-decoration: none;
-  color: #fff;
-  border-radius: 2px;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-.btn_primary {
-  height: 50px;
-  margin: 15px 0;
-  background-color: #37bdc8;
-}
-.btn_n_primary {
-  height: 50px;
-  margin: 15px 0;
-  background-color: #247ad1;
-}
-.red {
-  color: #f13838;
-}
-.line {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  -webkit-transform: scaleY(.5);
-  transform: scaleY(.5);
-  -webkit-transform-origin: 0 0;
-  transform-origin: 0 0;
-  border-top: 1px solid #d9d9d9;
-}
-.line_focus {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  -webkit-transform: scaleY(.5);
-  transform: scaleY(.5);
-  -webkit-transform-origin: 0 0;
-  transform-origin: 0 0;
-  border-top: 1px solid #37bdc8;
-}
-.btn-ycode {
-  font-size: 12px;
-  line-height: 40px;
-  width: 70px;
-  height: 40px;
-}
-.eyebg {
-  background: transparent url('../img/password.png') right center no-repeat;
-  background-size: 30px 15px;
-}
-.eyebg:focus {
-  background: transparent url('../img/passwordFocus.png') right center no-repeat;
-  background-size: 30px 15px;
-}
-.login_container {
-  width: 90%;
-  margin: 40px auto;
-}
-*/
+
 .btn_default {
   color: #37bdc8;
   border: 1px solid #37bdc8;
@@ -176,48 +107,6 @@ footer {
 .text_container {
   position: relative;
 }
-/*
-.footer_container_left{
-  float:left;
-  color:#247ad1;
-  line-height: 50px;
-}
-.footer_container_left span {
-  font-size: 38px;
-}
-.footer_container_right{
-  color:#838383;
-  margin-left:85px;
-}
-.text_container s {
-  font-size: 0;
-  line-height: 0;
-  position: absolute;
-  top: -21px;
-  left: 48%;
-  display: block;
-  width: 0;
-  height: 0;
-  margin: 0 auto;
-  border-width: 10px;
-  border-style: dashed dashed solid dashed;
-  border-color: transparent transparent #838383 transparent;
-  *top: -20px;
-}
-.text_container i {
-  font-size: 0;
-  line-height: 0;
-  position: absolute;
-  top: -9px;
-  left: -10px;
-  display: block;
-  width: 0;
-  height: 0;
-  border-width: 10px;
-  border-style: dashed dashed solid dashed;
-  border-color: transparent transparent #fff transparent;
-  *top: -9px;
-}*/
 
 
 
@@ -357,3 +246,37 @@ footer {
   0%, 39%, 100% { opacity: 0; }
   40% { opacity: 1; } 
 }
+
+
+
+.cell-footer {
+  box-sizing: border-box;
+  height: 50px;
+  line-height: 17px;
+  text-align: center;
+  background-color: #1e4e8e;
+  color: #4c87d6;
+  padding: 4.5px 0; }
+  .cell-footer .icon, .cell-footer .icon_hover {
+    height: 22px; }
+  .cell-footer .icon.icon-home {
+    background: url("../../img/index/index.png") no-repeat center;
+    background-size: 22px; }
+  .cell-footer .icon.icon-shopping {
+    background: url("../../img/index/shopping.png") no-repeat center;
+    background-size: 22px; }
+  .cell-footer .icon.icon-service {
+    background: url("../../img/index/service.png") no-repeat center;
+    background-size: 22px; }
+
+.cell-footer.hover {
+  color: #fff; }
+  .cell-footer.hover .icon.icon-home {
+    background: url("../../img/index/index_hover.png") no-repeat center;
+    background-size: 22px; }
+  .cell-footer.hover .icon.icon-shopping {
+    background: url("../../img/index/shopping_hover.png") no-repeat center;
+    background-size: 22px; }
+  .cell-footer.hover .icon.icon-service {
+    background: url("../../img/index/service_hover.png") no-repeat center;
+    background-size: 22px; }

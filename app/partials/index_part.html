@@ -1,3 +1,4 @@
+
 <link rel="stylesheet" href="wx_bx_gl/css/swiper.min.css">
 
 <style>
@@ -124,50 +125,61 @@ body{
   padding-top: 0.1rem;
 }
 </style>
+=======
+<link rel="stylesheet" type="text/css" href="css/index.css?rev=5a5ec55054715ec9967bf851b2106a09">
+>>>>>>> master
 <div id="wrapper" class="wrapper"  data-ng-init="init()">
+<div class="gift"></div>
   <div id="pieChartContainer">
     <div id="loadingContainer" >
     </div>
   </div>
+  <!--
   <div class="text_container"  >
     <p class="subtitle" >您的综合评分</p>
     <p class="tip" >低于平均水平</p>
     <p class="bd_yz" ng-click="goVerfiy()">保单验真 > </p>
   </div>
-
-  <!--
-  <div class="cell " style="padding:0 0.25rem;">
-    <a href="javascript:void(0)"  ng-click="showTip()" class="btn btn_n_primary" >评分解析</a>
-  </div>
   -->
-
+  <div calss="cell">
+       <div class="cell_hd cell_primary">
+             <div class="cell-circle " ng-click="goBdMange()"><div class="icon icon-mangment"></div><div>保单管理</div></div>
+       </div>
+       <div class="cell_hd cell_primary">
+             <div class="cell-circle " ng-click="goPromote()"><div class="icon icon-up"></div><div>保障提升</div></div>
+       </div>
+  </div>
 </div>
-<!--
-<div class="cell pay_container">
-  <a href="javascript:void(0)" class="btn btn_n_primary " style="background-color: #1e4e8e;border-radius: 0;" ng-click="showTip()" ><img src="img/tsbz.png"> 提升保障</a>
 
+<<<<<<< HEAD
 </div>
 -->
 <div class="fix_container select_btn ng-scope">
     <div class="cell_hd cell_primary" style="border-right:1px solid #13325c;">
       <a href="javascript:void(0)" class="btn btn_n_primary left " ng-click="goBdMange()"><img src="img/bdgl.png">&nbsp;保障管理</a>
+=======
+
+<div class="fix_container select_btn ">
+    <div class="cell_hd cell_primary " >
+    <div class="cell-footer hover" ng-click="goIndex($event)"><div class="icon icon-home"></div><div>首页</div></div>
     </div>
     <div class="cell_hd cell_primary">
-     <a href="javascript:void(0)" class="btn btn_n_primary right" ng-click="showTip()" ><img src="img/tsbz.png">&nbsp;提升保障</a>
+      <div class="cell-footer" ng-click="goTemai($event)"><div class="icon icon-shopping"></div><div>严选</div></div>
+>>>>>>> master
     </div>
-    
+    <div class="cell_hd cell_primary">
+      <div class="cell-footer" ng-click="goService($event)"><div class="icon icon-service"></div><div>服务</div></div>
+    </div>
 </div>
 
+
+<!--
  <div class="mask" id="share">
      <div id="tip_text" style="margin:0 auto;position: relative;">
        <img  src="img/tishi.png" style="width:2rem;position:absolute;left:-1.25rem;top:0.02rem;">
-      <!--
-     <img class="pic" src="img/tip_pic.png" style="position:absolute;left:-0.45rem;top:0.05rem;">
-     <img class="word" src="img/tip_word.png?v=1" style="position:absolute;left:0.3rem;top:0.60rem;">
-     <img class="tip" src="img/tip_text.png" style="position:absolute;left:0.2rem;top:1.2rem;z-index:100;">
-     -->
    </div>
   </div>
+<<<<<<< HEAD
 <!-- 礼物弹窗 -->
 <div class="swiper-container" id ="share_ctrl">
   <div class="off" ><img src="img/index_img/X.png" srcset="img/index_img/xx.png 568w, img/index_img/X.png 667w, img/index_img/X.png 736w"></div>
@@ -211,3 +223,8 @@ body{
       spaceBetween: 40
   });
 </script>
+=======
+ -->
+
+<!-- /wrapper -->
+>>>>>>> master

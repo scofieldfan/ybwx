@@ -15,6 +15,12 @@ ybwxControllers.controller('ybwxProductInfoCtrl', ['$scope', '$routeParams', '$l
 ybwxControllers.controller('wxTemaiIndexCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
   function($scope, $routeParams, $location, $http, $rootScope) {
 
+    util.share({
+              shareUrl: "http://web.youbaowuxian.com/#/temaiindex",
+              shareImg: "http://web.youbaowuxian.com/img/icon.jpg",
+              shareTitle: "诺贝保险管家-特卖商城",
+              shareDesc: "严选优质产品，全网低价出售，还有更多福利免费领取！"
+    });//定义本页分享形式
     $scope.loadReady = false;
     var code = util.getParameterByName("code") || $routeParams.code;
     util.getOpenId(code).then(function() {

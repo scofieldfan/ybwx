@@ -38,28 +38,7 @@ var api = {
 		'get_policy_verfiyinfo': '/ybwx-web/api/verify_info/{id}',
 		'temai_index':'/ybwx-web/api/insurance/selling_page'
 	}
-	//测试开始，为了测试做的适配
-	/*
-var api_test = {};
-for (var key in api) {
-	api_test[key] = "/test" + api[key];
-}
 
-function setTest(is_test) {
-	var isTest = false;
-	if (is_test === 'true') {
-		isTest = true;
-	}
-	if (isTest) {
-		api = api_test;
-		sessionStorage.setItem("is_test", true);
-	} else {
-		sessionStorage.setItem("is_test", false);
-	}
-}
-*/
-	//测试结束
-	//console.log(api_test);
 
 var insuranceMap = {
 	'1': '投保中',
@@ -191,6 +170,52 @@ function getHttpPromise($http, $rootScope, method, url, data, callback) {
 	});
 }
 
+mainControllers.controller('ybwxServiceCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $routeParams, $location, $http, $rootScope) {
+
+		_hmt.push(['_trackPageview', $location.path()]);
+		
+		var cellClass=".cell-footer";
+		$scope.goIndex = function($event){
+			$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
+			$($event.target).parents(cellClass).addClass("hover");
+			$location.path('/').search();
+		}
+		$scope.goTemai = function($event){
+			$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
+			$($event.target).parents(cellClass).addClass("hover");
+			$location.path('/temaiindex').search();
+		}
+		$scope.goService = function($event){
+			$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
+			$($event.target).parents(cellClass).addClass("hover");
+			$location.path('/service').search();
+		}
+
+		$scope.goVerfiy = function() {
+			$location.path('/bd_verify_list').search();
+		}
+		$scope.goInsuranceCard = function() {
+			//$location.path('/bd_verify_list').search();
+			window.location = "/wx_share.html#/couponlist";
+		}
+		$scope.goTradeRecord = function() {
+			$location.path('/bd_list').search();
+		}
+
+		$scope.goBaoDan = function() {
+			$location.path('/bdm_list').search();
+		}
+
+		$scope.goContact = function() {
+			
+		}
+		
+		$scope.goAboutme = function() {
+			window.location = "http://mp.weixin.qq.com/s?__biz=MzI0NDE2Mjk2OA==&mid=407057806&idx=1&sn=d6136f57ac70f0ae4504c657355a6989#wechat_redirect";
+		}
+	}
+]);
 
 
 mainControllers.controller('ybwxUserinfoCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
@@ -396,46 +421,46 @@ function initPieConfig(sumScore, scores, policyNumber) {
 			"text": "意外",
 			"percent": scores[4] / 10,
 			"icon": "\uf21e",
-			"img": "img/feiji.png",
+			"img": "img/index/plane.png",
 			"isDisable": true,
-			"color": "#f0d8dc",
-			"textColor": "#ea8094",
+			"color": "#ffd9df",
+			"textColor": "#ff788e",
 			"hoverColor": "#fffafa"
 		}, {
 			"text": "人寿",
 			"percent": scores[3] / 10,
 			"icon": "\uf155",
-			"img": "img/yiliao.png",
+			"img": "img/index/heart.png",
 			"isDisable": true,
-			"color": "#d1e5f3",
-			"textColor": "#5796c3",
+			"color": "#c6f9e7",
+			"textColor": "#54dbaa",
 			"hoverColor": "#fffefa"
 		}, {
 			"text": "健康",
 			"percent": scores[2] / 10,
 			"isDisable": true,
 			"icon": "\uf1b9",
-			"img": "img/jiankang.png",
-			"color": "#c6e7db",
-			"textColor": "#60bd9b",
+			"img": "img/index/health.png",
+			"color": "#cbe9ff",
+			"textColor": "#4aa7e9",
 			"hoverColor": "#fafffc"
 		}, {
 			"text": "家庭",
 			"percent": scores[1] / 10,
 			"isDisable": false,
 			"icon": "\uf072",
-			"img": "img/jiating.png",
-			"color": "#e0d4e8",
-			"textColor": "#ac80c9",
+			"img": "img/index/family.png",
+			"color": "#f3e1ff",
+			"textColor": "#ca94ee",
 			"hoverColor": "#fbfdff"
 		}, {
 			"text": "财产",
 			"percent": scores[5] / 10,
 			"icon": "\uf278",
-			"img": "img/qian.png",
+			"img": "img/index/money.png",
 			"isDisable": true,
-			"color": "#e2dccb",
-			"textColor": "#d4bd78",
+			"color": "#f0ead9",
+			"textColor": "#cdc48b",
 			"hoverColor": "#fdfcff"
 		}
 	];
@@ -503,8 +528,23 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 			_hmt.push(['_trackEvent', 'index', 'index_baodan_guanli']);
 			$location.path('/bdm_list').search();
 		}
-		$scope.goVerfiy = function() {
-			$location.path('/bd_verify_list').search();
+		$scope.goPromote = function(){
+			$location.path('/promote').search();
+		}
+		var cellClass=".cell-footer";
+		$scope.goIndex = function($event){
+			$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
+			$($event.target).parents(cellClass).addClass("hover");
+		}
+		$scope.goTemai = function($event){
+			$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
+			$($event.target).parents(cellClass).addClass("hover");
+			$location.path('/temaiindex').search();
+		}
+		$scope.goService = function($event){
+			$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
+			$($event.target).parents(cellClass).addClass("hover");
+			$location.path('/service').search();
 		}
 		$scope.init = function() {
 			//获得openId

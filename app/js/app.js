@@ -69,6 +69,11 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/bz_ts.html',
       controller: 'ybwxPromoteCtrl',
       title: "首页保障提升"
+    }).when('/service', {
+      templateUrl: 'partials/service.html',
+      controller: 'ybwxServiceCtrl',
+      title: "服务",
+      css:'css/service.css?rev=d41d8cd98f00b204e9800998ecf8427e'
     }).when('/bz', {
       templateUrl: 'partials/bz_list.html?v=123',
       controller: 'ybwxBzCtrl',
