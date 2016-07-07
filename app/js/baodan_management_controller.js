@@ -75,9 +75,9 @@ bdControllers.controller('ybwxBdEducationNewCtrl', ['$scope', '$routeParams', '$
 			})
 		}
 		$scope.init = function() {
-
+			
 			var code = util.getParameterByName("code") || $routeParams.code;
-			console.log("init:"+$scope.type);
+		
 			util.getOpenId(code).then(function() {                                                                               
 				var type = $routeParams.type;
 				$scope.type =  $routeParams.type;
@@ -107,6 +107,7 @@ bdControllers.controller('ybwxBdEducationNewCtrl', ['$scope', '$routeParams', '$
 	}
 ]);
 
+/*
 bdControllers.controller('ybwxBdEducationCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 		_hmt.push(['_trackPageview', $location.path()]);
@@ -214,7 +215,7 @@ bdControllers.controller('ybwxBdEducationCtrl', ['$scope', '$routeParams', '$loc
 
 		}
 	}
-]);
+]); */
 
 bdControllers.controller('ybwxverify_informationCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
