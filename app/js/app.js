@@ -74,6 +74,10 @@ ybwxApp.config(['$routeProvider',
       controller: 'ybwxServiceCtrl',
       title: "服务",
       css:'css/service.css?rev=d41d8cd98f00b204e9800998ecf8427e'
+    }).when('/contact', {
+      templateUrl: 'partials/contact.html',
+      controller: 'ybwxCantactCtrl',
+      title: "联系我们",
     }).when('/bz', {
       templateUrl: 'partials/bz_list.html?v=123',
       controller: 'ybwxBzCtrl',

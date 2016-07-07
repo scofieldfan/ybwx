@@ -41,7 +41,7 @@ body{
   height: 100%;
   left: 0;
   top: 0;
-  z-index: 9999999999;
+  z-index: 10001;
 }
 .opacity_ctrl {
   position: fixed;
@@ -51,7 +51,7 @@ body{
   opacity: .4;
   width: 100%;
   height: 100%;
-  z-index: 999999;
+  z-index: 10002;
 }
 .off {
   position: fixed;
@@ -59,7 +59,7 @@ body{
   top: 15px;
   width: 20px;
   height: 20px;
-  z-index: 9999999999;
+  z-index: 10003;
 }
 .off img {
   width: 100%;
@@ -125,11 +125,9 @@ body{
   padding-top: 0.1rem;
 }
 </style>
-=======
 <link rel="stylesheet" type="text/css" href="css/index.css?rev=5a5ec55054715ec9967bf851b2106a09">
->>>>>>> master
 <div id="wrapper" class="wrapper"  data-ng-init="init()">
-<div class="gift"></div>
+<div class="gift" id="gift" ></div>
   <div id="pieChartContainer">
     <div id="loadingContainer" >
     </div>
@@ -150,22 +148,12 @@ body{
        </div>
   </div>
 </div>
-
-<<<<<<< HEAD
-</div>
--->
-<div class="fix_container select_btn ng-scope">
-    <div class="cell_hd cell_primary" style="border-right:1px solid #13325c;">
-      <a href="javascript:void(0)" class="btn btn_n_primary left " ng-click="goBdMange()"><img src="img/bdgl.png">&nbsp;保障管理</a>
-=======
-
 <div class="fix_container select_btn ">
     <div class="cell_hd cell_primary " >
     <div class="cell-footer hover" ng-click="goIndex($event)"><div class="icon icon-home"></div><div>首页</div></div>
     </div>
     <div class="cell_hd cell_primary">
       <div class="cell-footer" ng-click="goTemai($event)"><div class="icon icon-shopping"></div><div>严选</div></div>
->>>>>>> master
     </div>
     <div class="cell_hd cell_primary">
       <div class="cell-footer" ng-click="goService($event)"><div class="icon icon-service"></div><div>服务</div></div>
@@ -178,8 +166,7 @@ body{
      <div id="tip_text" style="margin:0 auto;position: relative;">
        <img  src="img/tishi.png" style="width:2rem;position:absolute;left:-1.25rem;top:0.02rem;">
    </div>
-  </div>
-<<<<<<< HEAD
+  </div>-->
 <!-- 礼物弹窗 -->
 <div class="swiper-container" id ="share_ctrl">
   <div class="off" ><img src="img/index_img/X.png" srcset="img/index_img/xx.png 568w, img/index_img/X.png 667w, img/index_img/X.png 736w"></div>
@@ -215,16 +202,13 @@ body{
     slideLeft.open();
   });*/
 /*Swiper Js*/
-  var swiper = new Swiper('.swiper-container', {
-      pagination: '.swiper-pagination',
+  var swipe = new Swiper('.swiper-container', {
       slidesPerView: 1.5,
       centeredSlides: true,
       paginationClickable: true,
-      spaceBetween: 40
+      spaceBetween: 40,
+      width : window.innerWidth
   });
-</script>
-=======
- -->
+</script> 
 
 <!-- /wrapper -->
->>>>>>> master

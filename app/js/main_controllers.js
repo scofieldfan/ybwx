@@ -208,7 +208,7 @@ mainControllers.controller('ybwxServiceCtrl', ['$scope', '$routeParams', '$locat
 		}
 
 		$scope.goContact = function() {
-			
+			$location.path('/contact').search();
 		}
 		
 		$scope.goAboutme = function() {
@@ -508,7 +508,9 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 		// $scope.shareHide = function() {
 			
 		// }
-		 $("body").on("click", "#share_ctrl", function() {
+		 $("body").on("click","#gift",function () {
+		 	$("#share_ctrl").show();
+		 }).on("click", "#share_ctrl", function() {
 		 	$("#share_ctrl").hide();
 		 }).on("click","#opacity_ctrl",function() {
 		 	$("#share_ctrl").hide();
