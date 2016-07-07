@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="css/bz_ts.css">
+<link rel="stylesheet" type="text/css" href="css/bz_ts.css?rev=5b3663a2c3d84d18a29ef69cf73778d4">
 <div class="promote_ctrl">
 	<div class="head_ctrl">
 		<div class="head_left">
@@ -14,8 +14,8 @@
 			建议分值
 		</div>
 		<div class="head_right">
-			<div class="score">8.0</div>
-			<div>一键提升</div>
+			<div class="score" style="width:1.16rem">8.0</div>
+			<div style="display:none">一键提升</div>
 		</div>
 	</div>
 	<div class="promote_main">
@@ -33,40 +33,44 @@
 		</div>
 		<div class="left pro_main_ctrl">
 			<div class="main_word" ng-click="goSelect(4)">
-				<div class="left">
+				<div class="main_l">
 					<div class="main_head">意外保障</div>
-					<div class="change_word">发生后造成的损失大，建议优先提升</div>
+					<div class="change_word">造成的损失大，建议优先提升</div>
 				</div>
-				<div class="right ts_btn">立即提升</div>
+				<div class="main_r ts_btn">立即提升</div>
 			</div>
 
 			<div class="main_word" ng-click="goSelect(3)">
-				<div class="left">
+				<div class="main_l">
 					<div class="main_head">人寿保障</div>
-					<div class="change_word">保障因身故造成的经济损失，建议提升</div>
+					<div class="change_word">保障身故损失，建议提升
+</div>
 				</div>
-				<div class="right ts_btn">立即提升</div>
+				<div class="main_r ts_btn">立即提升</div>
 			</div>
-			<div class="main_word" ng-click="goSelect(2)">
-				<div class="left">
+			<div class="main_word main2" ng-click="goSelect(2)">
+				<div class="main_l">
 					<div class="main_head">健康保障</div>
-					<div class="change_word">先保重大疾病，再补充医疗报销，建议提升</div>
+					<div class="change_word">先保重疾，再补充医疗报销
+</div>
 				</div>
-				<div class="right ts_btn">立即提升</div>
+				<div class="main_r ts_btn">立即提升</div>
 			</div>
-			<div class="main_word" ng-click="goContinue()">
-				<div class="left">
+			<div class="main_word main3" ng-click="goContinue()">
+				<div class="main_l">
 					<div class="main_head">家庭保障</div>
-					<div class="change_word">先保家庭收入支柱，再保老人和小孩</div>
+					<div class="change_word">先保收入支柱，再保老人小孩
+</div>
 				</div>
-				<div class="right ts_btn">立即提升</div>
+				<div class="main_r ts_btn">立即提升</div>
 			</div>
 			<div class="main_word" ng-click="goContinue()">
-				<div class="left">
+				<div class="main_l">
 					<div class="main_head">财产保障</div>
-					<div class="change_word">先保人后保物，优先保障价值大的财产</div>
+					<div class="change_word">优先保障价值大的财产
+</div>
 				</div>
-				<div class="right ts_btn">立即提升</div>
+				<div class="main_r ts_btn">立即提升</div>
 			</div>
 			<!-- <div>
 				<div class="left">人寿保障

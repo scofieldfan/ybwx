@@ -11,7 +11,7 @@
 		</div>	
 		<div class="wrap">
 			<div class="title">{{item.name}}</div>	
-			<div class="des"><span class="hot" style="display: none">热卖</span><span class="special_offer" style="display: none;">特惠</span>  {{item.description}}</div>	
+			<div class="des"><span class="hot" ng-if="item.status==4">热卖</span><span class="special_offer" style="display: none;">特惠</span>  {{item.description}}</div>	
 			<div class="money">{{item.front_price}}</div>	
 		</div>	
 	</div>

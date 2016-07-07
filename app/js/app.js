@@ -72,8 +72,7 @@ ybwxApp.config(['$routeProvider',
       css:'css/ring.css?rev=95cda24d854100e1c580cdfad09a7ad7'
     }).when('/promote', {
       templateUrl: 'partials/bz_ts.html',
-      controller: 'ybwxPromoteCtrl',
-      title: "首页保障提升"
+      controller: 'ybwxPromoteCtrl'
     }).when('/service', {
       templateUrl: 'partials/service.html',
       controller: 'ybwxServiceCtrl',
@@ -120,16 +119,16 @@ ybwxApp.config(['$routeProvider',
     }).when('/temaidetail', {
       templateUrl: 'partials/temai_detail.html',
       controller: 'wxDetailNewCtrl',
-      title: "特卖商城"
+      title: "诺贝严选"
     }).when('/temaiindex', {
       templateUrl: 'partials/temai_index.html',
       controller: 'wxTemaiIndexCtrl',
-      title: "特卖商城",
+      title: "诺贝严选",
       css:'css/temai_index.css?rev=546d3d67b2025b87ec7571d995d81b47'
     }).when('/temailist', {
       templateUrl: 'partials/temai_list.html',
       controller: 'wxTemaiListCtrl',
-      title: "特卖商城"
+      title: "诺贝严选"
     }).when('/bd_list', {
       templateUrl: 'partials/bd_list.html',
       controller: 'wxBaoDanListCtrl',
