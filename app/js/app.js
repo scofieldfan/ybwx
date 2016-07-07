@@ -60,7 +60,13 @@ ybwxApp.config(['$routeProvider',
       controller: 'ybwxBdEducationNewCtrl',
       title: "保障评分",
       css:'css/bd_education_new.css?rev=96ed9875ae825223e34446551fadee94'
-    }).when('/select', {
+    }).when('/bd_education_new', {
+      templateUrl: 'partials/bd_education.html',
+      controller: 'ybwxBdEducationCtrl',
+      title: "保障评分",
+      css:'css/bd_education_new.css?rev=96ed9875ae825223e34446551fadee94'
+    })
+    .when('/select', {
       templateUrl: 'partials/select_part.html?v=123',
       controller: 'ybwxSelectCtrl',
       title: "保障提升",
