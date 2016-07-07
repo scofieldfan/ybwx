@@ -84,7 +84,7 @@ bdControllers.controller('ybwxBdEducationNewCtrl', ['$scope', '$routeParams', '$
 				console.log("type:"+$scope.type);
 				$scope.getUserInfo();
 				var openId = sessionStorage.getItem("openId");
-				$scope.myPromise = getHttpPromise($http, $rootScope, 'GET', api['get_score_analysis'].replace('{openId}', openId).replace('{type}', type), {}, function(res) {
+				$scope.myPromise = getHttpPromise($http, $rootScope, 'GET', api['get_score_analysis_new'].replace('{openId}', openId).replace('{type}', type), {}, function(res) {
 					if (res && res.data && res.data.data) {
 						$scope.data = res.data.data;
 					}
