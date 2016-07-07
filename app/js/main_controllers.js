@@ -480,9 +480,14 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 		$scope.data = {
 			aggregate_score: 0
 		}
-		$scope.shareHide = function() {
-			$("#share_ctrl").hide();
-		}
+		// $scope.shareHide = function() {
+			
+		// }
+		 $("body").on("click", "#share_ctrl", function() {
+		 	$("#share_ctrl").hide();
+		 }).on("click","#opacity_ctrl",function() {
+		 	$("#share_ctrl").hide();
+		 })
 		$scope.goSports = function() {
 		  window.location = "/wx_share.html#/jixian";
 		}
