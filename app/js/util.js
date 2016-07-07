@@ -64,7 +64,7 @@ var util = {
 		}
 		if (ret >= 1000) {
 			ret = ret / 10000;
-			tail = '万元'
+			tail = '万'
 		} else {
 			ret = ret ;
 			tail = '元'

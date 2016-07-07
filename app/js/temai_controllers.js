@@ -34,23 +34,27 @@ ybwxControllers.controller('wxTemaiIndexCtrl', ['$scope', '$routeParams', '$loca
          $scope.loadReady = true;
       })
     });
-    /*
-    $("body").on("click", "#foucs_button", function(event) {
-      $(".qrcode-wrapper").show();
-      event.preventDefault();
-      event.stopPropagation();
-    }).on('click', '.qrcode-container', function(event) {
-      event.preventDefault();
-      event.stopPropagation();
-    }).on('click', '.qrcode-wrapper', function() {
-      $(".qrcode-wrapper").hide();
-    })*/
-    // $("body").on("click","#foucs_button",function(event){}
+    var cellClass=".cell-footer";
+    $scope.goIndex = function($event){
+      $($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
+      $($event.target).parents(cellClass).addClass("hover");
+      $location.path('/').search();
+    }
+    $scope.goTemai = function($event){
+      $($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
+      $($event.target).parents(cellClass).addClass("hover");
+      $location.path('/temaiindex').search();
+    }
+    $scope.goService = function($event){
+      $($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
+      $($event.target).parents(cellClass).addClass("hover");
+      $location.path('/service').search();
+    }
       $("#foucs_button").click(function(event){
         $(".qrcode-wrapper").show();
         event.preventDefault();
         event.stopPropagation();
-    })
+     })
       $(".qrcode-container").click(function(event){
          event.preventDefault();
          event.stopPropagation();

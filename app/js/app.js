@@ -60,6 +60,11 @@ ybwxApp.config(['$routeProvider',
       controller: 'ybwxBdEducationCtrl',
       title: "保障评分",
       css:'css/bd_education.css?rev=03e9859471029a5f6a25100d5fe26d68'
+    }).when('/bd_education_new', {
+      templateUrl: 'partials/bd_education_new.html',
+      controller: 'ybwxBdEducationNewCtrl',
+      title: "保障评分",
+      css:'css/bd_education_new.css?rev=96ed9875ae825223e34446551fadee94'
     }).when('/select', {
       templateUrl: 'partials/select_part.html?v=123',
       controller: 'ybwxSelectCtrl',
@@ -73,7 +78,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/service.html',
       controller: 'ybwxServiceCtrl',
       title: "服务",
-      css:'css/service.css?rev=d41d8cd98f00b204e9800998ecf8427e'
+      css:'css/service.css?rev=93aca11df086805031f28b4af725b387'
     }).when('/bz', {
       templateUrl: 'partials/bz_list.html?v=123',
       controller: 'ybwxBzCtrl',
@@ -116,8 +121,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/temai_index.html',
       controller: 'wxTemaiIndexCtrl',
       title: "特卖商城",
-      css:['css/temai_index.css?rev=03e9859471029a5f6a25100d5fe26d68'
-          ,'wx_bx_gl/css/swiper.min.css?rev=3423423']
+      css:'css/temai_index.css?rev=546d3d67b2025b87ec7571d995d81b47'
     }).when('/temailist', {
       templateUrl: 'partials/temai_list.html',
       controller: 'wxTemaiListCtrl',

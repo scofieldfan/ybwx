@@ -1,0 +1,104 @@
+<header class="icon_{{type}}"  data-ng-init="init()">
+	我的{{getInsuranceCNname()}}保障 {{data.aggregate_score}}分
+	<span class="fr" style="color:#97c8ff;font-size:14px;">如何投保?</span>
+</header>
+<style>
+    .rangeslider{
+        display:block;
+        border-radius: 4px;
+        position:relative;
+        background-color:#f0f0f0;
+    }
+    .rangeslider--vertical .rangeslider__handle{
+        left:-5px;
+    }
+    .rangeslider--vertical{
+        width:4px;
+        min-height:80px;
+        margin:0 auto;
+    }
+    .rangeslider--disabled{
+
+    }
+    .rangeslider__fill{
+        bottom:0;
+        width:100%;
+        background-color:#acd0ff;
+        position:absolute;
+    }
+
+    .rangeslider__handle{
+        width:15px;
+        height:15px;
+        background:url("../img/score/btn.jpg") no-repeat center;
+        background-size:15px;
+        
+        position:absolute;
+        cursor:pointer;
+        display: inline-block;
+        touch-action:pan-x;
+        box-shadow:none;
+        border-radius: 0;
+        border:none;
+    }
+    .rangeslider__handle:after{
+        content:none;
+    }
+    </style>
+<div class="slider-container">
+<div class="slider-item"><div><div class="type">交通<div class="percent">74%</div></div><input type="range" data-orientation="vertical"></div></div>
+    <div class="slider-item"><div><div class="type">一般<div class="percent">58%</div></div><input type="range" data-orientation="vertical" ></div></div>
+    <div class="slider-item"><div><div class="type">自然灾害<div class="percent">45%</div></div><input type="range" data-orientation="vertical" ></div></div>
+    <div class="slider-item"><div><div class="type">旅游<div class="percent">88%</div></div><input type="range" data-orientation="vertical" ></div></div>
+    <div class="slider-item"><div><div class="type">高风险运动<div class="percent">66%</div></div><input type="range" data-orientation="vertical" ></div></div>
+ </div>
+
+
+<div class="table-container">
+    <div class="table-title">
+        <div class="cell_hd cell_primary left"><div class="icon-guard"></div>保障明细</div> 
+        <div class="cell_hd cell_primary right" >查看</div>
+    </div>
+    <table >
+        
+     
+        <tr class="bd-tr" >
+            <td  style="text-align:left;">客运汽车意外保障</td>
+            <td  style="text-align:right;"> 70万 </td>
+        </tr>
+        <tr class="more">
+        <td colspan="2">查看更多<div class="icon-arrow"></div></td>
+        </tr>
+
+    </table>
+</div>
+
+<div class=" fix_container select_btn" >
+		<div class="cell_hd cell_primary">
+			<a href="javascript:void(0)" class="btn btn_n_primary_new "    ng-click="goDingzhi()" id="submitButton" ><div class="icon-up"></div> 提升保障</a>
+		</div>
+		
+</div>
+<script>
+    // Initialize a new plugin instance for all
+    // e.g. $('input[type="range"]') elements.
+        /*  
+        $('input[type="range"]').rangeslider({
+              polyfill: false,
+               rangeClass: 'nbslider',
+               disabledClass: 'nbslider--disabled',
+               verticalClass: 'nbslider--vertical',
+               fillClass: 'nbslider__fill',
+               handleClass: 'nbslider__handle',
+          }).val(50).change();
+  */
+         $('input[type="range"]').rangeslider({
+              polyfill: false,
+               rangeClass: 'rangeslider',
+               disabledClass: 'rangeslider--disabled',
+               verticalClass: 'rangeslider--vertical',
+               fillClass: 'rangeslider__fill',
+               handleClass: 'rangeslider__handle',
+          }).val(50).change();
+
+</script>
