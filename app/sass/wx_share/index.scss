@@ -6,9 +6,10 @@
   html {
     font-size: 100px;
   }
-   .img_logo a {
+   .img_logo a,.duihuan_btn {
     line-height: .4rem;
   }
+  
 }
 
 /* iphone 4, iphone5 */
@@ -16,7 +17,7 @@
   html {
     font-size: 100px;
   }
-   .img_logo a {
+   .img_logo a ,.duihuan_btn{
     line-height: .4rem;
   }
 }
@@ -26,7 +27,7 @@
   html {
     font-size: 117.18px;
   }
-   .img_logo a {
+   .img_logo a,.duihuan_btn {
     line-height: .5rem;
   }
 }
@@ -36,7 +37,7 @@
   html {
     font-size: 129.37px;
   }
-  .img_logo a {
+  .img_logo a,.duihuan_btn {
     line-height: .5rem;
   }
 }
@@ -55,20 +56,16 @@ body {
 }
 .my_bd_controller {
   height: auto;
-  /*padding: .15rem .2rem .15rem .2rem;*/
   padding: .15rem 0 0 0;
-  // background: ;
 }
 
 .ul_contrl {
-  padding: 0 .2rem .25rem .2rem;
+  padding: 0 .17rem .25rem .17rem;
   display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
   display: -moz-box; /* 老版本语法: Firefox (buggy) */
   display: -ms-flexbox; /* 混合版本语法: IE 10 */
   display: -webkit-flex; /* 新版本语法: Chrome 21+ */
   display: flex;  
-  /*flex-flow: row;*/
-  /*display: -webkit-flex;*/
 }
 .ul_contrl li:nth-child(1) {
   -webkit-box-flex: 1;
@@ -104,29 +101,13 @@ body {
 }
 .share_mian {
   position: relative;
- /* background: url(../img/my_bd/diwen.png) 0 .9rem no-repeat;
-  background-size: 100%;*/
 }
-
 /*500万航班意外险*/
 .up {
   position: absolute;
   left: 0;
-  top: 38.7%;
+  top: 46%;
   width: 100%;
-}
-.marBtn_3 {
-  margin-bottom: -0.02rem;
-}
-.pingan img:nth-child(1) {
-  float: left;
-  margin-left: 10%;
-  width: .48rem;
-}
-.pingan img:nth-child(2) {
-  float: right;
-  margin-right: 10%;
-  width: 1.44rem;
 }
 .img_logo {
   width: 100%;
@@ -144,12 +125,6 @@ body {
 .btn_right {
   width: 12%;
 }
-.pingan {
-  width: 100%;
-  position: absolute;
-  left: 0;
-  top: 15%;
-}
 .img_logo a {
   display: inline-block;
   /*padding: .1rem 0 0 0;*/
@@ -160,7 +135,7 @@ body {
   // line-height: .5rem;
   color: #fff;
   border-radius: 5px;
-  font-size: .17rem;
+  font-size: .15rem;
 }
 .left_a {
   // margin-left: 8%;
@@ -186,41 +161,7 @@ body {
   font-size: .13rem;
   padding: 0 0 0 .1rem;
 }
-.font_color_red img {
-  width: .13rem;
-  vertical-align: -1px;
-}
-.dun_font {
-  position: absolute;
-  bottom: 10%;
-  left: 2%;
-}
 /*300元航班延误险*/
-.down {
-  position: relative;
-}
-.yanwu {
-  width: 100%;
-  position: absolute;
-  left: 0;
-  top: 15%;
-}
-.yanwu img:nth-child(1) {
-  float: left;
-  width: .48rem;
-  /*margin-left: 8%;*/
-  margin: 2% 0 0 10%;
-}
-.yanwu img:nth-child(2) {
-  float: right;
-  width: 1.44rem;
-  margin-right: 8%;
-}
-.logo_size {
-  width: .13rem;
-  height: .13rem;
-  vertical-align: -2px;
-}
 .duihuan {
   width: 100%;
   position: absolute;
@@ -238,28 +179,31 @@ body {
 }
 .duihuan_ctrl {
   width: 100%;
-  height: 6%;
   position: absolute;
   left: 0;
-  top: 72%;
+  top: 84%;
+  @include flexbox;
 }
+.duihuan_left {
+  width: 53%;
+}
+
 .duihuan_btn {
-  position: relative;
-  left: 53%;
-  top: 0;
-  width: 37%;
-  height: 100%;
+  @include flex(1);
   background: #e52f62;
   text-align: center;
-  line-height: 200%;
   color: #fff;
   border-radius: 5px;
-  font-size: .17rem;
+  font-size: .15rem;
+}
+.duihuan_right {
+  width: 12%;
 }
 .hangyixian{
-  position: relative;
+  width: 100%;
+  position: absolute;
   right: 14%;
-  top: 0;
+  top: 92%;
   color: #c1af84;
   font-size: .11rem;
   text-align: right;
@@ -278,46 +222,43 @@ body {
   height: .13rem;
   vertical-align: -2px;
 }
-.lipei_font {
-  width: 100%;
-  position:  absolute;
-  right: 8%;
-  top: 25%;
-  color: #c1af84;
-  font-size: .12rem;
-  text-align: right;
-}
 /*底部横线+二维码*/
 .index_font_controller {
-  padding: 0 0 20px 0;
+  padding: 0 20px 0 20px;
   position: relative;
 }
-.font_controller li{
-  list-style: none;
-  color: #a08f66;
-  font-size: .12rem;
-  line-height: .2rem;
-}
-.font_controller p{
+.p{
   list-style: none;
   color: #e52f62;
   font-size: .13rem;
   padding-bottom: .05rem;
 
 }
-.font_controller img{
+.index_font_controller img{
   width: .13rem;
   height: .13rem;
   vertical-align: -1px;
 }
+.flex_ctrl {
+  @include flexbox;
+}
 .main_font {
-  /*padding-bottom: 17px; */
+  @include flex(1);
+  padding-right: .2rem;
   line-height: .17rem;
-  width: 1.85rem;
+  // width: 1.85rem;
  /* -webkit-box-flex: 1;
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;*/
+  color: #a08f66;
+  font-size: .12rem;
+}
+.main_font p{
+  list-style: none;
+  line-height: .2rem;
+  color: #a08f66;
+  font-size: .12rem;
 }
 .two_code {
   width: .75rem;
@@ -329,7 +270,7 @@ body {
   height: 100%;
 }
 .footer_border {
-  padding: 0 .2rem;
+  padding: .1rem .15rem;
   display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
   display: -moz-box; /* 老版本语法: Firefox (buggy) */
   display: -ms-flexbox; /* 混合版本语法: IE 10 */

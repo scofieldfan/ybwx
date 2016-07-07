@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="wx_share/css/index.css?rev=e6a822525f376a56e1bc3b677651ed2d">
+<link rel="stylesheet" href="wx_share/css/index.css?rev=ghghfhg">
 <div class="my_bd_controller">
 	<ul class="layout ul_contrl">
 		<li >
@@ -9,7 +9,7 @@
 		<li></li>
 	</ul >
 	<div class="share_mian">
-		<img src="wx_share/img/my_bd/activity_big.png">
+		<img src="wx_share/img/my_bd/activity_big.png" srcset="wx_share/img/my_bd/activity_small.png 568w, wx_share/img/my_bd/activity_big.pngg 667w, wx_share/img/my_bd/activity_big.png 736w">
 		<!-- <img src="wx_share/img/my_bd/activity_small.png"> -->
 		<div class="up">
 			<div class="img_logo layout">
@@ -20,68 +20,31 @@
 				<div class="btn_right"></div>
 			</div>
 			<p class="p_color">( 已成功送给<span class="recommend_times font_red">{{data.recommend_times}}</span>位好友 )</p>
-			
 		</div>
 		<div class="duihuan_ctrl">
+			<div class="duihuan_left"></div>
 			<div class="duihuan_btn" ng-click="exchange()"><img class="logo_money" src="wx_share/img/my_bd/duihuan.png"> 立即兑换</div>
-			<div class="hangyixian">( 你已有<span class="number font_red">{{data.number}}</span>份航意险 )</div>
+			<div class="duihuan_right"></div>
+			
 		</div>
-		
+		<div class="hangyixian">( 你已有<span class="number font_red">{{data.number}}</span>份航意险 )</div>
 	</div>
-		<!-- <img src="wx_share/img/my_bd/activity_small.png"> -->
-		<!-- <ul class="free_500">
-			<img src="wx_share/img/my_bd/free500.png">
-			<img src="wx_share/img/my_bd/jia300.png"><img  class="feiji" src="wx_share/img/my_bd/xiaofeiji.png">
-		</ul>
-		<ul class="mianfei layout">
-			<div class="left"></div>
-			<img class=" mianfei_img" src="wx_share/img/my_bd/mianfei.png">
-		</ul>
-		<div class="up">
-			<img class=" marBtn_3" src="wx_share/img/my_bd/shang.png">
-			<div class="pingan layout">
-			    <img src="wx_share/img/my_bd/pingan.png">
-				<img src="wx_share/img/my_bd/wan500.png">
-			</div>
-			<div class="img_logo layout">
-				<a href="javascript:" ng-click="addCoupon()"><img class="logo_money" src="wx_share/img/my_bd/money.png"> 免费领取</a>
-				<a href="javascript:" ng-click="showShareTip()"><img class="logo_song" src="wx_share/img/my_bd/song.png"> 送给好友</a>
-			</div>
-			<p class="p_color">( 已成功送给<span class="recommend_times font_red">{{data.recommend_times}}</span>位好友 )</p>
-			<div class="dun_font">
-				<div class="font_color_red"><img class="logo_size" src="wx_share/img/my_bd/bx_logo.jpg"> 每月均可无条件免费领取1份</div>
-			    <div class="font_color_red" >&nbsp;&nbsp;&nbsp;&nbsp;每送给1个好友,即可再免费领取1份</div>
-			</div>
-		</div>
-		<div class="down">
-			<img src="wx_share/img/my_bd/xia.png">
-			<div class="yanwu layout">
-			    <img src="wx_share/img/my_bd/pingan.png">
-				<img src="wx_share/img/my_bd/yuan300.png">
-			</div>
-			<p class="lipei_font">延误3小时立赔</p>
-			<ul class="duihuan layout">
-				<li ><img class="logo_size" src="wx_share/img/my_bd/bx_logo.jpg"> 3份航空意外险可以 &nbsp;&nbsp;&nbsp;&nbsp;兑换1份航班延误险</li>
-                <li class="duihuan_btn" ng-click="exchange()"><img class="logo_money" src="wx_share/img/my_bd/duihuan.png"> 立即兑换</li>
-			</ul>                    
-            <div class="hangyixian">( 你已有<span class="number font_red">{{data.number}}</span>份航意险 )</div>
-		</div> -->
-	
-	
 	<div class="index_font_controller layout">
-<!-- 	    <p>
+	    <p class="p">
 			<img src="wx_share/img/my_bd/bx_logo.jpg">  领取后请前往微信号 [ 诺贝 ] 投保
         </p>
-		<div class="main_font left">
-			
-			<li>1.长按右侧二维码关注 [诺贝]</li>
-			<li>2.在微信号底部菜单  [ 我的保险劵 ] &nbsp;&nbsp;&nbsp;投保</li>
-			<li>3.有效期：2016.06.24 ~ 12.24</li>
-		</div>
-		<div class="two_code right">
-			<img src="wx_share/img/my_bd/erweima.jpg">
-		</div>
-	</div> -->
+        <div class="flex_ctrl">
+        	<div class="main_font">
+				<p>1.长按右侧二维码关注 [ 诺贝 ]</p>
+				<p>2.在微信号底部菜单  [ 我的保险劵 ]投保</p>
+				<p>3.有效期：2016.06.24 ~ 12.24</p>
+			</div>
+			<div class="two_code right">
+				<img src="wx_share/img/my_bd/erweima.jpg">
+			</div>
+        </div>
+		
+	</div>
 	<ul class="footer_border">
 		<li></li>
 		<li></li>
