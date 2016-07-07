@@ -505,12 +505,10 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 		$scope.data = {
 			aggregate_score: 0
 		}
-		// $scope.shareHide = function() {
-			
-		// }
-		 $("body").on("click","#gift",function () {
-		 	$("#share_ctrl").show();
-		 }).on("click", "#share_ctrl", function() {
+		$('#gift').click(function() {
+			$("#share_ctrl").show();
+		})
+		 $("body").on("click", "#share_ctrl", function() {
 		 	$("#share_ctrl").hide();
 		 }).on("click","#opacity_ctrl",function() {
 		 	$("#share_ctrl").hide();
