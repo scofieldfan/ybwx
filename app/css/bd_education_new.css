@@ -224,39 +224,39 @@
 body {
   background-color: #f5f5f5; }
 
-.head {
-  width: 100%;
-  height: 150px;
-  font-size: 15px;
-  background-color: #262d35;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  color: #fff; }
-  .head .icon {
-    width: 100%;
-    height: 50px;
-    background: url("../img/service/camera.jpg?v=212") no-repeat center;
-    background-size: 40px; }
+header {
+  color: #fff;
+  height: 0.6rem;
+  line-height: 0.6rem;
+  padding: 0 0.2rem 0 50px;
+  font-size: 0.18rem; }
 
-.service-container {
+header.icon_4 {
+  background: #006ee9 url("../img/plane_h.png") no-repeat 18px center;
+  background-size: 28px; }
+
+header.icon_3 {
+  background: #006ee9 url("../img/health_icon.png") no-repeat 18px center;
+  background-size: 28px; }
+
+header.icon_2 {
+  background: #006ee9 url("../img/heart_icon.png") no-repeat 18px center;
+  background-size: 28px; }
+
+header span {
+  float: right;
+  vertical-align: middle; }
+
+.slider-container {
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: #FFF;
-  color: #555; }
-  .service-container .service-item {
-    height: 1.35rem;
+  border-bottom: 1px solid #ccc;
+  background-color: #FFF; }
+  .slider-container .slider-item {
+    padding: 13px 0;
     -webkit-box-flex: 1;
     -webkit-flex: 1;
     -moz-box-flex: 1;
@@ -273,40 +273,68 @@ body {
     display: -moz-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    align-items: center;
+    text-align: center;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
-    justify-content: center;
-    border-right: 1px solid #e2e2e2;
-    border-bottom: 1px solid #e2e2e2;
-    line-height: 35px; }
-    .service-container .service-item .icon {
-      width: 100%;
-      min-height: 25px; }
-    .service-container .service-item .icon-juan {
-      background: url("../img/service/juan.png") no-repeat center;
-      background-size: 25px; }
-    .service-container .service-item .icon-record {
-      background: url("../img/service/record.png") no-repeat center;
-      background-size: 25px; }
-    .service-container .service-item .icon-bd {
-      background: url("../img/service/bd.png") no-repeat center;
-      background-size: 25px; }
-    .service-container .service-item .icon-phone {
-      background: url("../img/service/phone.png") no-repeat center;
-      background-size: 25px; }
-    .service-container .service-item .icon-logo {
-      background: url("../img/service/logo.png") no-repeat center;
-      background-size: 25px; }
+    justify-content: center; }
 
-.phone-container {
-  color: #588dd4;
-  margin-top: 20px;
-  text-align: center;
+.type {
+  color: #006ee9;
   font-size: 15px;
-  margin-top: 26px; }
-  .phone-container img {
-    width: 20px;
-    vertical-align: -5px; }
+  line-height: 20px;
+  margin-bottom: 10px; }
+  .type .percent {
+    color: #444;
+    font-size: 13px; }
+
+.icon-arrow {
+  background: url("../img/temai/arrow.jpg") no-repeat center;
+  background-size: 20px;
+  width: 10px;
+  height: 20px;
+  vertical-align: -2px;
+  display: inline-block; }
+
+.icon-guard {
+  background: url("../img/score/guard.jpg") no-repeat center;
+  background-size: 20px;
+  width: 25px;
+  height: 20px;
+  vertical-align: -5px;
+  display: inline-block; }
+
+.icon-up {
+  background: url("../img/score/up.jpg") no-repeat center;
+  background-size: 20px;
+  width: 25px;
+  height: 20px;
+  vertical-align: -5px;
+  display: inline-block; }
+
+.table-container {
+  margin-top: 15px;
+  background-color: #fff;
+  color: #555555; }
+  .table-container .table-title {
+    border-bottom: 1px solid #e2e2e2; }
+    .table-container .table-title .left {
+      padding-left: 0.2rem; }
+    .table-container .table-title .right {
+      padding-right: 0.2rem;
+      text-align: right; }
+  .table-container table {
+    padding: 0 0.2rem;
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff; }
+    .table-container table td {
+      padding: 0.1rem 0.2rem;
+      font-size: 0.15rem;
+      text-align: center;
+      border-bottom: 1px solid #e2e2e2; }
+    .table-container table .more {
+      color: #588dd4; }
+
+.btn_n_primary_new {
+  color: #fff;
+  background-color: #006ee9; }

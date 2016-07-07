@@ -465,3 +465,13 @@ header {
 .btn_container img {
   width: 18px;
   vertical-align: -3px; }
+
+.phone-container {
+  color: #588dd4;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 15px;
+  margin-top: 26px; }
+  .phone-container img {
+    width: 20px;
+    vertical-align: -5px; }

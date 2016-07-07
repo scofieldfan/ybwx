@@ -28,6 +28,84 @@ bdControllers.controller('ybwxBDIndexCtrl', ['$scope', '$routeParams', '$locatio
 	}
 ]);
 
+bdControllers.controller('ybwxBdEducationNewCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $routeParams, $location, $http, $rootScope) {
+		_hmt.push(['_trackPageview', $location.path()]);
+
+		$scope.processMoney = function(money) {
+			if(money==0){
+				return "已投保";
+			}else{
+				return util.processSpecialMoney(money);
+			}
+		}
+		$scope.getInsuranceCNname = function(){
+			return insureanceCNMap[$routeParams.type];
+		}
+
+		$scope.goOldEducation = function() {
+			$location.path('/education').search({
+				"type":	$routeParams.type
+			});
+			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_goEducation']);
+		}
+
+		$scope.goUpBd = function(){
+			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_goBdIndex']);
+			$location.path('/bd_index');
+		}
+
+		$scope.goBdmList = function(){
+			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_goBdmList']);
+			$location.path('/bdm_list').search({
+				"type":	$routeParams.type
+			});
+		}
+
+
+		$scope.isHaveUserInfo = false;
+
+		$scope.getUserInfo = function() {
+			var openId = sessionStorage.getItem("openId");
+			$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_user_info'].replace('{openId}', openId), {}, function(res) {
+				console.log(res.data.data);
+				if (res.data.data.age && res.data.data.gender) {
+					$scope.isHaveUserInfo = true;
+				}
+			})
+		}
+		$scope.init = function() {
+
+			var code = util.getParameterByName("code") || $routeParams.code;
+			console.log("init:"+$scope.type);
+			util.getOpenId(code).then(function() {                                                                               
+				var type = $routeParams.type;
+				$scope.type =  $routeParams.type;
+				console.log("type:"+$scope.type);
+				$scope.getUserInfo();
+				var openId = sessionStorage.getItem("openId");
+				$scope.myPromise = getHttpPromise($http, $rootScope, 'GET', api['get_score_analysis'].replace('{openId}', openId).replace('{type}', type), {}, function(res) {
+					if (res && res.data && res.data.data) {
+						$scope.data = res.data.data;
+					}
+				})
+			});
+		}
+		$scope.goDingzhi = function() {
+			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_goDingZhi']);
+			if ($scope.isHaveUserInfo) {
+				$location.path('/select').search({
+					'type': $routeParams.type
+				});
+			} else {
+				$location.path('/userinfo').search({
+					'type': $routeParams.type
+				});
+			}
+
+		}
+	}
+]);
 
 bdControllers.controller('ybwxBdEducationCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
