@@ -75,13 +75,12 @@ ybwxApp.config(['$routeProvider',
       css:'css/ring.css?rev=95cda24d854100e1c580cdfad09a7ad7'
     }).when('/promote', {
       templateUrl: 'partials/bz_ts.html',
-      controller: 'ybwxPromoteCtrl',
-      title: "首页保障提升"
+      controller: 'ybwxPromoteCtrl'
     }).when('/service', {
       templateUrl: 'partials/service.html',
       controller: 'ybwxServiceCtrl',
       title: "服务",
-      css:'css/service.css?rev=d69c0f9bd4f8fea50c5a88947b266e0d'
+      css:'css/service.css?rev=84bba1a60066709cd9c4dc1b8c76d277'
     }).when('/contact', {
       templateUrl: 'partials/contact.html',
       controller: 'ybwxCantactCtrl',
@@ -123,16 +122,16 @@ ybwxApp.config(['$routeProvider',
     }).when('/temaidetail', {
       templateUrl: 'partials/temai_detail.html',
       controller: 'wxDetailNewCtrl',
-      title: "特卖商城"
+      title: "诺贝严选"
     }).when('/temaiindex', {
       templateUrl: 'partials/temai_index.html',
       controller: 'wxTemaiIndexCtrl',
-      title: "特卖商城",
-      css:'css/temai_index.css?rev=546d3d67b2025b87ec7571d995d81b47'
+      title: "诺贝严选",
+      css:'css/temai_index.css?rev=7bb4d0f79206771b522de770e94515fb'
     }).when('/temailist', {
       templateUrl: 'partials/temai_list.html',
       controller: 'wxTemaiListCtrl',
-      title: "特卖商城"
+      title: "诺贝严选"
     }).when('/bd_list', {
       templateUrl: 'partials/bd_list.html',
       controller: 'wxBaoDanListCtrl',
