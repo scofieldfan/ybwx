@@ -698,7 +698,7 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 				'type': $routeParams.type,
 				'coverage_score': scoreObj.fanweiScore,
 				'sum_insured_score': scoreObj.moneyScore,
-				'estimate_money': $scope.estimateMoney,
+				'estimate_money': $scope.data.premium,
 				'sum_score': $scope.data.scoreFix
 			});
 		}
