@@ -9,8 +9,8 @@ body {
   width: 60px;
   height: 60px;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -4px;
+  right: -4px;
   background: url(../img/index/gift.png) no-repeat center;
   background-size: 22px;
   z-index:10;
@@ -63,7 +63,9 @@ body {
   border-radius: 100%;
   color: #1e4e8e;
   background-color: #FFF;
-  border: 1px solid #dde5ee;
+  // border: 1px solid #dde5ee;
+  background: url('../img/index/circle.png') no-repeat center;
+  background-size:1.29rem;
   text-align: center;
   padding: .3rem 0;
   margin: 0 auto;
@@ -85,48 +87,13 @@ body {
 }
 
 
-.cell-footer {
-  box-sizing: border-box;
-  height: 50px;
-  line-height: 17px;
-  text-align: center;
-  background-color: #1e4e8e;
-  color: #4c87d6;
-  padding: 7px 0 5px;
 
-  .icon, .icon_hover {
-    height: 22px;
-  }
-  .icon.icon-home {
-    background: url("../img/index/index.png") no-repeat center;
-    background-size: 22px;
-  }
-  .icon.icon-shopping {
-    background: url("../img/index/shopping.png") no-repeat center;
-    background-size: 22px;
-  }
-  .icon.icon-service {
-    background: url("../img/index/service.png") no-repeat center;
-    background-size: 22px;
-  }
-}
+ .mag-container{
+    margin-top:1rem;
+ }
+ 
 
 
-.cell-footer.hover {
-  color: #fff;
-  .icon.icon-home {
-    background: url("../img/index/index_hover.png") no-repeat center;
-    background-size: 22px;
-  }
-  .icon.icon-shopping {
-    background: url("../img/index/shopping_hover.png") no-repeat center;
-    background-size: 22px;
-  }
-  .icon.icon-service {
-    background: url("../img/index/service_hover.png") no-repeat center;
-    background-size: 22px;
-  }
-}
 
 
 .swiper-container {

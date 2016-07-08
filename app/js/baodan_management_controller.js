@@ -75,18 +75,22 @@ bdControllers.controller('ybwxBdEducationNewCtrl', ['$scope', '$routeParams', '$
 			})
 		}
 		$scope.init = function() {
-
+			
 			var code = util.getParameterByName("code") || $routeParams.code;
-			console.log("init:"+$scope.type);
+		
 			util.getOpenId(code).then(function() {                                                                               
 				var type = $routeParams.type;
 				$scope.type =  $routeParams.type;
 				console.log("type:"+$scope.type);
 				$scope.getUserInfo();
 				var openId = sessionStorage.getItem("openId");
-				$scope.myPromise = getHttpPromise($http, $rootScope, 'GET', api['get_score_analysis'].replace('{openId}', openId).replace('{type}', type), {}, function(res) {
+				$scope.myPromise = getHttpPromise($http, $rootScope, 'GET', api['get_score_analysis_new'].replace('{openId}', openId).replace('{type}', type), {}, function(res) {
 					if (res && res.data && res.data.data) {
 						$scope.data = res.data.data;
+						 var inputs =  $('input[type="range"]');
+						 for(var i=0;i<inputs.length;i++){
+						 	var input = $(inputs[i]).length;
+						 }
 					}
 				})
 			});
@@ -106,6 +110,7 @@ bdControllers.controller('ybwxBdEducationNewCtrl', ['$scope', '$routeParams', '$
 		}
 	}
 ]);
+
 
 bdControllers.controller('ybwxBdEducationCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {

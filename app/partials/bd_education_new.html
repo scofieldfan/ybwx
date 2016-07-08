@@ -10,7 +10,7 @@
         background-color:#f0f0f0;
     }
     .rangeslider--vertical .rangeslider__handle{
-        left:-5px;
+        left:-5.5px;
     }
     .rangeslider--vertical{
         width:4px;
@@ -44,13 +44,16 @@
     .rangeslider__handle:after{
         content:none;
     }
+    .noresult{
+      height: 150px;
+      line-height: 150px;
+      text-align: center;
+      font-size:15px;
+    }
     </style>
 <div class="slider-container">
-<div class="slider-item"><div><div class="type">交通<div class="percent">74%</div></div><input type="range" data-orientation="vertical"></div></div>
-    <div class="slider-item"><div><div class="type">一般<div class="percent">58%</div></div><input type="range" data-orientation="vertical" ></div></div>
-    <div class="slider-item"><div><div class="type">自然灾害<div class="percent">45%</div></div><input type="range" data-orientation="vertical" ></div></div>
-    <div class="slider-item"><div><div class="type">旅游<div class="percent">88%</div></div><input type="range" data-orientation="vertical" ></div></div>
-    <div class="slider-item"><div><div class="type">高风险运动<div class="percent">66%</div></div><input type="range" data-orientation="vertical" ></div></div>
+    <div class="slider-item" ng-repeat="item in data.elements"><div><div class="type">{{item.name}}<div class="percent">{{item.percent*100}}%</div></div><input type="range" id="rangeInput{{$index}}" data-orientation="vertical" value="{{item.percent*100}}" ></div></div>
+ 
  </div>
 
 
@@ -59,9 +62,7 @@
         <div class="cell_hd cell_primary left"><div class="icon-guard"></div>保障明细</div> 
         <div class="cell_hd cell_primary right" >查看</div>
     </div>
-    <table >
-        
-     
+    <table ng-if="data.coverages">
         <tr class="bd-tr" >
             <td  style="text-align:left;">客运汽车意外保障</td>
             <td  style="text-align:right;"> 70万 </td>
@@ -71,6 +72,9 @@
         </tr>
 
     </table>
+    <div class="noresult" ng-if="!data.coverages">
+      您暂时没有任何保障 
+    </div>
 </div>
 
 <div class=" fix_container select_btn" >
@@ -80,25 +84,33 @@
 		
 </div>
 <script>
-    // Initialize a new plugin instance for all
-    // e.g. $('input[type="range"]') elements.
-        /*  
-        $('input[type="range"]').rangeslider({
-              polyfill: false,
-               rangeClass: 'nbslider',
-               disabledClass: 'nbslider--disabled',
-               verticalClass: 'nbslider--vertical',
-               fillClass: 'nbslider__fill',
-               handleClass: 'nbslider__handle',
-          }).val(50).change();
-  */
-         $('input[type="range"]').rangeslider({
-              polyfill: false,
-               rangeClass: 'rangeslider',
-               disabledClass: 'rangeslider--disabled',
-               verticalClass: 'rangeslider--vertical',
-               fillClass: 'rangeslider__fill',
-               handleClass: 'rangeslider__handle',
-          }).val(50).change();
+    $(function(){
 
+      /*
+        var inputs =  $('input[type="range"]');
+        for(var i =0;i<inputs.length;i++){
+            var value = $(inputs[i]).val();
+            console.log("value:"+value);
+            $(inputs[i]).rangeslider({
+                      polyfill: false,
+                       rangeClass: 'rangeslider',
+                       disabledClass: 'rangeslider--disabled',
+                       verticalClass: 'rangeslider--vertical',
+                       fillClass: 'rangeslider__fill',
+                       handleClass: 'rangeslider__handle',
+             }).val(value).change();
+        }
+*/
+        
+         $('input[type="range"]').rangeslider({
+                      polyfill: false,
+                       rangeClass: 'rangeslider',
+                       disabledClass: 'rangeslider--disabled',
+                       verticalClass: 'rangeslider--vertical',
+                       fillClass: 'rangeslider__fill',
+                       handleClass: 'rangeslider__handle',
+                  }).change();
+                  
+    }) 
+         
 </script>
