@@ -33,13 +33,14 @@
     }
 </style>
 
- <link rel="stylesheet" href="css/output/application.min.css?rev=eab2e7cab18efd86fe07d64926c15b0b"> 
- <link rel="stylesheet" href="wx_bx_gl/css/swiper.min.css?rev=377170fcb9a59057009bea5e1aa63aeb"> 
+ <link rel="stylesheet" href="css/output/application.min.css?rev=478221aaca97727cc0f2ac8ff9f58d93"> 
+ <link rel="stylesheet" href="wx_bx_gl/css/swiper.min.css?rev=56abffd44543484d134388f01d0f2996"> 
  <link rel="stylesheet" type="text/css" href="bower_components/rangeslider.js/dist/rangeslider.css">
+<!--  <link rel="stylesheet" href="css/index.css?rev=dsfdsffds"> -->
 <!--
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/globe.css?rev=92918cdffef145ead35047bee4c013e2">
-  <link rel="stylesheet" href="css/app.css?rev=f4d64e8879fe4984612909a6374d3d6a">
+  <link rel="stylesheet" href="css/app.css?rev=cc5388ced53a14765327bbad235499c3">
   <link rel="stylesheet" href="css/angular-busy.min.css?rev=382a25599fb5b0b2e9efc9af00041c17">
  --> 
    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
@@ -74,6 +75,17 @@
   </div>
 </div>
   <div class="fixed-top" id="fix_to_top" style="display:none"><img src="img/top.png" style="width:50px;"></div>
+  <!-- 礼物弹窗 -->
+<div class="swiper-ctrl" id ="share_ctrl">
+  <div class="off" ><img src="img/index_img/X.png" srcset="img/index_img/xx.png 568w, img/index_img/X.png 667w, img/index_img/X.png 736w"></div>
+  <div class="opacity_ctrl" id="opacity_ctrl"></div>
+  <div class="swiper-wrapper swrap_ctrl">
+    <div class="swiper-slide slide" style="width: 260px;" ><img class="img1" onclick="goSports()" src="img/index_img/jixian_big.png" ></div>
+    <div class="swiper-slide slide" style="width: 260px;" ><img class="img2" onclick="goIndexShare()" src="img/index_img/five_big.png" ></div>
+  </div>
+</div>
+<script src="wx_bx_gl/js/swiper.min.js"></script>
+<!-- /wrapper -->
   <script src="js/output/application.min.js?rev=88739c0e9e2ee221f068348013cdf6a7"></script>
   <!--
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -86,8 +98,8 @@
 
   <script src="js/util.js?rev=899d0880f631beb0c245dc5ca5296810"></script>
   <script src="js/app.js?rev=30db5c7696be6d77176e131bc912bdb6"></script>
-  <script src="js/main_controllers.js?rev=6d6859987e3b39d0b065c05c2b602de5"></script>
-  <script src="js/temai_controllers.js?rev=2928e75ddfdc78646eb65cfe8d4837f8"></script>
+  <script src="js/main_controllers.js?rev=883952b3a57df8843843725491251fb5"></script>
+  <script src="js/temai_controllers.js?rev=450f137c424caf1f1cd087b1bf71dd84"></script>
   <script src="js/baodan_management_controller.js?rev=b03dd8e23604585707f9a2a8a0d3d3ee"></script>
   <script src="js/directives.js?rev=57d74af2016e6c30d8b9b057ef03947a"></script>
   <script src="js/jquery.piemenu.js?rev=1528aa5bcb7c6345a39322be792f0092"></script>
@@ -148,7 +160,21 @@
   window.onerror = function(message,file,line){
     _hmt.push(['_trackEvent', 'window_onerror','file:'+file+'_line:'+line+'_message:'+message]);
   }
- 
+ /*Swiper Js*/
+   var swipe = new Swiper('.swiper-ctrl', {
+      slidesPerView: 1.5,
+      centeredSlides: true,
+      paginationClickable: true,
+      spaceBetween: 40,
+      width : window.innerWidth
+  });
+    function goSports() {
+      window.location = "/wx_share.html#/jixian";
+    }
+     function goIndexShare() {
+      window.location = "/wx_share.html#/index";
+    }
+</script>
   </script>
   <img src="img/slider-btn.png" id="tip-img" style="opacity: 0;position: absolute;left:-200000px;">
 </body>

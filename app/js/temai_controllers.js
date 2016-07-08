@@ -79,7 +79,14 @@ ybwxControllers.controller('wxTemaiIndexCtrl', ['$scope', '$routeParams', '$loca
         });
       }
     }
-
+    $("body").on("click","#showShare",function(){
+      $("#share_ctrl").show();
+    })
+    $("body").on("click", "#share_ctrl", function() {
+      $("#share_ctrl").hide();
+     }).on("click","#opacity_ctrl",function() {
+      $("#share_ctrl").hide();
+     })
   }
 ]);
 

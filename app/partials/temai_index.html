@@ -14,6 +14,7 @@
 	height:6px;
 	border-radius: 10px;
 }
+
 </style>
 <header>
 	<div  class="logo-container">
@@ -26,11 +27,11 @@
 </header>
 <div class="swiper-container">
 	<div class="swiper-container" >
-		<div class="swiper-wrapper swiper">
+		<div class="swiper-wrapper">
 			<div class="swiper-slide item " >
 				<a href="/wx_share.html#index"><img src="http://7xvrkw.com1.z0.glb.clouddn.com/huodong-1.jpg"></a>
 			</div>
-			<div class="swiper-slide item " >
+			<div class="swiper-slide  item " >
 				<a href="/wx_share.html#jixian"><img src="http://7xvrkw.com1.z0.glb.clouddn.com/huodong-2.jpg"></a>
 			</div>
 		</div>
@@ -40,7 +41,7 @@
 	</div>
 </div>
 <div class="nav">
-	<a href="/wx_share.html#jixian" class="item"><img src="img/temai/nav-1.png"><div >0元抢</div></a>
+	<a href="javascript:" class="item" id="showShare"><img src="img/temai/nav-1.png"><div >0元抢</div></a>
 	<a href="/wx_gl.html" class="item"><img src="img/temai/nav-2.png"><div>怎么买</div></a>
 	<a href="/" class="item"><img src="img/temai/nav-3.png"><div>专属方案</div></a>
 	<a href="/#temailist" class="item"><img src="img/temai/nav-4.png"><div>更多保障</div></a>
@@ -66,7 +67,7 @@
 				<div class="title">{{insurance.name}}</div>
 				<div class="des">
 					<span class="hot" ng-if="insurance.status==4">热卖</span>
-					<span class="special_offer" ng-if="insurance.status==5">特惠</span>  {{insurance.description}}</div>
+					<span class="special_offer" ng-if="insurance.status==5">特惠</span> {{insurance.description}}</div>
 				<div class="money">{{insurance.front_price}}</div>
 			</div>
 		</div>	
@@ -106,4 +107,5 @@
     });
 
   $()
+  
 </script>

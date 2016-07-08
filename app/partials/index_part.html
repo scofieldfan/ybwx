@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="css/index.css?rev=a14bdfe961a5947a59c7825940f87061">
+<link rel="stylesheet" type="text/css" href="css/index_part.css?rev=a14bdfe961a5947a59c7825940f87061">
 <div id="wrapper" class="wrapper"  data-ng-init="init()">
 <div class="gift" id="gift" ></div>
   <div id="pieChartContainer">
@@ -40,17 +40,7 @@
        <img  src="img/tishi.png" style="width:2rem;position:absolute;left:-1.25rem;top:0.02rem;">
    </div>
   </div>-->
-<!-- 礼物弹窗 -->
-<div class="swiper-container" id ="share_ctrl">
-  <div class="off" ><img src="img/index_img/X.png" srcset="img/index_img/xx.png 568w, img/index_img/X.png 667w, img/index_img/X.png 736w"></div>
-  <div class="opacity_ctrl" id="opacity_ctrl"></div>
-  <div class="swiper-wrapper">
-    <div class="swiper-slide" style="width: 260px;" ><img ng-click="goSports()" src="img/index_img/jixian_big.png" ></div>
-    <div class="swiper-slide" style="width: 260px;" ><img ng-click="goIndexShare()" src="img/index_img/five_big.png" ></div>
-  </div>
-</div>
-<script src="wx_bx_gl/js/swiper.min.js"></script>
-<!-- /wrapper -->
+
 
 <script>
 /*
@@ -74,14 +64,6 @@
     e.preventDefault;
     slideLeft.open();
   });*/
-/*Swiper Js*/
-  var swipe = new Swiper('.swiper-container', {
-      slidesPerView: 1.5,
-      centeredSlides: true,
-      paginationClickable: true,
-      spaceBetween: 40,
-      width : window.innerWidth
-  });
-</script> 
+ 
 
 <!-- /wrapper -->
