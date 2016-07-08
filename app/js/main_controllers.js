@@ -423,6 +423,7 @@ mainControllers.controller('ybwxBdEducationNewCtrl', ['$scope', '$routeParams', 
                   });
 
 		});
+		
 		$scope.more = function($event) {
 	      var element = $event.currentTarget;
 	      var switchValue = $(element).attr("data-switch");

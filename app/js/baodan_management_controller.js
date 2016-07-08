@@ -130,11 +130,7 @@ bdControllers.controller('ybwxbaodanManageListCtrl', ['$scope', '$routeParams', 
 			_hmt.push(['_trackEvent', 'bdm_list', 'bdmList_goUpload']);
 			$location.path('/bd_index').search();
 		}
-		if($routeParams.type){
-			$scope.type = $routeParams.type;
-		}else{
-			$scope.type = "4";
-		}
+		$scope.type = $routeParams.type || "4";
 		$scope.init = function() {
 			var code = util.getParameterByName("code");
 			if (!code) {
@@ -156,10 +152,7 @@ bdControllers.controller('ybwxbaodanManageListCtrl', ['$scope', '$routeParams', 
 			_hmt.push(['_trackEvent', 'bdm_list', 'bdmList_nav']);
 			$scope.type = type;
 		}
-		// $scope.getListtype = function(type) {
-		// 	_hmt.push(['_trackEvent', 'bdm_list', 'nav']);
-		// 	$scope.type = type;
-		// }
+		
 		$scope.init();
 
 		$scope.filterFn = function(policy) {

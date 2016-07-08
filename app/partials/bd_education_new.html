@@ -1,6 +1,6 @@
 <header class="icon_{{type}}"  data-ng-init="init()">
 	我的{{getInsuranceCNname()}}保障 <span class="score">{{data.score}}</span>分
-	<span   class="how">如何投保?</span>
+	<span   class="how" ng-click="goOldEducation()">如何投保?</span>
 </header>
 <style>
    
@@ -76,7 +76,7 @@
 <div class="table-container" style="margin-bottom:70px;">
     <div class="table-title">
         <div class="cell_hd cell_primary left"><div class="icon-guard"></div>保障明细</div> 
-        <div class="cell_hd cell_primary right" >查看</div>
+        <div class="cell_hd cell_primary right" ng-click="goBdmList()">查看</div>
     </div>
     <table ng-if="data.coverages">
         <tr class="bd-tr" ng-repeat="item in data.coverages" ng-hide="$index>=6">
