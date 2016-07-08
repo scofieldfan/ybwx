@@ -6,22 +6,22 @@ body {
   background-color: #fff;
 }
 .gift {
-  width: 22px;
-  height: 22px;
+  width: 60px;
+  height: 60px;
   position: absolute;
-  top: 12px;
-  right: 15px;
+  top: 0;
+  right: 0;
   background: url(../img/index/gift.png) no-repeat center;
   background-size: 22px;
   z-index:10;
   cursor: pointer;
 }
 .gift-message {
-  width: 22px;
-  height: 22px;
+  width: 60px;
+  height: 60px;
   position: absolute;
-  top: 12px;
-  right: 15px;
+  top: 0;
+  right: 0;
   background: url(../img/index/message.png) no-repeat center;
   background-size: 22px;
 }

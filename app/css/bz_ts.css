@@ -261,7 +261,8 @@
       font-size: .51rem;
       color: #fff;
       text-align: center;
-      line-height: normal; }
+      line-height: normal;
+      padding-top: 30px; }
     .promote_ctrl .head_ctrl .head_right div:nth-child(2) {
       width: 1.16rem;
       height: .38rem;
