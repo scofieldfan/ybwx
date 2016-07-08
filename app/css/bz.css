@@ -1,245 +1,11 @@
 @charset "UTF-8";
-/**
- * Yo框架全局基础方法
- -----------------------
- * Yo内置了包括响应式方案，CSS3兼容性方案，厂商前缀方案，iconfont方案，flex布局等全局方法
- *
- * @class classes
- * @module Yo
- */
-/**
- * 给需要的属性加厂家前缀
- * @method prefix
- * @param {String} $property 指定属性
- * @param {String} $value 指定属性值
- */
-/**
- * 四则运算
- * @method calc
- * @param {String} $property 指定需要进行计算的CSS属性
- * @param {String} $value 与原生CSS语法一致，使用方式如：@include calc(width, 100% - 0.1rem);
- */
-/**
- * 定义渐变色值
- * @method gradient
- * @param {String} $type 指定渐变的4种类型：linear, repeating-linear, radial, repeating-radial
- * @param {String} $gradient 指定渐变取值，与w3c最新原生语法一致
- */
-/**
- * 定义响应式方案
- * @method responsive
- * @param {String} $media 指定媒体查询条件
- */
-/**
- * 定义字体图标
- * @method yofont
- */
-/**
- * 滤镜
- * @method filter
- * @param {String} $filter 取值与原生语法一致
- */
-/**
- * 定义UA默认外观
- * @method appearance
- * @param {String} $appearance 指定UA外观类型
- */
-/**
- * 定义是否可以选中元素
- * @method user-select
- * @param {String} $user-select 指定是否可以选中
- */
-/**
- * 定义背景图像缩放（Android Browser2.3.*还需要厂商前缀）
- * @method background-size
- * @param {String | Length} $background-size 指定背景图缩放值
- */
-/**
- * 定义背景裁减（Android Browser2.3.*还需要厂商前缀）
- * @method background-clip
- * @param {String} $background-clip 指定背景图缩放值
- */
-/**
- * 定义背景显示区域（Android Browser2.3.*还需要厂商前缀）
- * @method background-origin
- * @param {String} $background-origin 指定背景图缩放值
- */
-/**
- * 定义盒模型
- * @method box-sizing
- * @param {String} $box-sizing 的2个值分别为：content-box(标准盒模型) | border-box(怪异盒模型)
- */
-/**
- * 定义圆角
- * @method border-radius
- * @param {String} $border-radius 取值与原生语法一致
- */
-/**
- * 定义简单变换
- * @method transform
- * @param {String} $transform 取值与原生语法一致
- */
-/**
- * 定义变换原点
- * @method transform-origin
- * @param {String} $transform-origin 取值与原生语法一致
- */
-/**
- * 定义动画
- * @method animation
- * @param {String} $animation 取值与原生语法一致
- */
-/**
- * 定义补间
- * @method transition
- * @param {String} $transition 取值与原生语法一致
- */
-/**
- * 定义显示类型为伸缩盒
- * @method flexbox
- * @param {String} $flexbox 默认值：flex，取值与最新原生语法一致
- */
-/**
- * 定义伸缩盒子元素如何分配空间
- * @method flex
- * @param {String} $flex 默认值：1，取值与最新原生语法一致
- * @param {String} $direction 默认值: row
- */
-/**
- * 定义伸缩盒子元素的排版顺序
- * @method order
- * @param {String} $order 默认值：1，取值与最新原生语法一致
- */
-/**
- * 定义伸缩盒子元素的流动方向
- * @method flex-direction
- * @param {String} $flex-direction 默认值：row，取值与最新原生语法一致
- */
-/**
- * 定义伸缩盒子元素溢出排版
- * @method flex-wrap
- * @param {String} $flex-wrap 默认值：nowrap，取值与最新原生语法一致
- */
-/**
- * 定义伸缩盒子元素的水平对齐方式
- * @method justify-content
- * @param {String} $justify-content 默认值：center，取值与最新原生语法一致
- */
-/**
- * 定义伸缩盒子元素的垂直对齐方式
- * @method align-items
- * @param {String} $align-items 默认值：center，取值与最新原生语法一致
- */
-/**
- * 定义伸缩盒子元素自身的垂直对齐方式
- * @method align-self
- * @param {String} $align-self 默认值：center，取值与最新原生语法一致
- */
-/**
- * 定义root root-scroll
- * @method root-scroll
- * @param {String} $root-scroll 指定scroll类型，取值overflow属性的标准值
- */
-/**
- * 定义是否有滚动条
- * @method overflow
- * @param {String} $overflow 默认值：auto，取值与最新原生语法一致
- */
-/**
- * 生成矩形方法
- * @method rect
- * @param {Length} $width 定义矩形的长度
- * @param {Length} $height 定义矩形的高度
- */
-/**
- * 生成正方形方法
- * @method square
- * @param {Length} $size 定义正方形的边长
- */
-/**
- * 生成圆形方法
- * @method circle
- * @param {Length} $size 定义圆的半径长度
- * @param {Length} $radius 定义圆的圆角半径长度
- */
-/**
- * 生成全屏方法
- * @method fullscreen
- * @param {Integer} $z-index 定义层叠级别
- */
-/**
- * 清除浮动方案
- * @method clearfix
- */
-/**
- * 链接处理方法
- * @method link
- * @param {Color} $color 定义链接颜色
- */
-/**
- * 强制换行方案
- * @method wrap
- */
-/**
- * 单行文本溢出显示方案
- * @method ellipsis
- * @param {Boolen} $ellipsis 定义是否需要省略号
- */
-/**
- * 文字隐藏方案
- * @method texthide
- */
-/**
- * 清除间隙方案-容器
- * @method killspace
- */
-/**
- * 清除间隙方案-子级
- * @method killspace-item
- */
-/**
- * 未知尺寸元素垂直居中解决方案-容器
- * @method valign
- */
-/**
- * 未知尺寸元素垂直居中解决方案-子级
- * @method valign-item
- */
-/**
- * 已经尺寸元素垂直居中解决方案
- * @method alignment
- * @param {Length} $width 居中元素的宽度
- * @param {Length} $height 居中元素的高度
- */
-/* border */
-/**
- * Yo框架全局Variables
- -----------------------
- * Yo基础变量map，如果不想定义某属性，将其value设置为null；
- * Yo仅使用2种长度单位：px用于边框，rem用于除边框之外的所有地方
- *
- * @class variables
- * @module Yo
- */
 .main {
   background-color: #f7f7f7;
   padding: 20px 30px;
   background: -moz-linear-gradient(bottom, #f7f7f7, #eeeeee); }
-
-/*
-.head_left{
-	height:40px;
-	line-height: 40px;
-	padding-left: 20px;
-	font-size: 0.18rem;
-	color:#4e4e4e;
-	background: -moz-linear-gradient( top,#f7f7f7,#eeeeee);
-}*/
 .sub_container_ul {
   list-style: none;
-  /*padding:  0 0.1rem;*/
   margin: 0; }
-
 .sub_container_ul li {
   background: url(../img/left_logo.jpg) no-repeat left, url(../img/arrow.jpg) no-repeat right;
   background-size: 15px,8px;
@@ -249,47 +15,36 @@
   text-align: left;
   position: relative;
   color: #494949; }
-
 .h5 {
   color: #222;
   font-size: 15px;
   margin: .14rem 0 0 0; }
-
 .h5 img {
   width: 15px;
   vertical-align: -4px;
   margin-right: 5px; }
-
 .left {
   float: left; }
-
 .right {
   float: right; }
-
 .btn_left {
   width: 70%;
   background: #fff; }
-
 .btn_right {
   width: 30%;
   background: #1e4e8e; }
-
 .word_container {
   margin: 0;
   color: #555; }
-
 .fix_container {
   bottom: 0;
   background: #fff;
   border-top: 1px solid #e2e2e2;
   box-sizing: border-box; }
-
 .color_red {
   color: #ff5c00; }
-
 .main_color {
   color: #1e4e8e; }
-
 .sub_container_ul li:not(:last-child):after {
   content: '';
   position: absolute;
@@ -302,46 +57,35 @@
   -webkit-transform-origin: 0 0;
   transform-origin: 0 0;
   border-top: 1px solid #d9d9d9; }
-
 .left_text {
   display: inline-block;
   margin-left: 0.15rem;
   overflow: hidden;
-  /*不显示超过对象宽度的内容*/
   text-overflow: ellipsis;
-  /*当对象内文本溢出时显示省略标记（...）*/
   white-space: nowrap;
-  /*限制在一行内显示所有文本*/
   width: 60%; }
-
 .money {
   color: #f54a7e; }
-
 .money_color {
   color: #ff5c00; }
-
 .bz_container {
   background-color: #fff;
   position: relative; }
-
 .sub_container {
   position: relative;
   margin: 0 auto;
   font-size: 0.14rem;
   line-height: 0.16rem; }
-
 .sub_container_1 {
   width: 270px;
   height: 230px;
   background: #fff url("../img/bz_1.jpg") no-repeat center;
   background-size: 150px; }
-
 .sub_container_1_blue {
   width: 270px;
   height: 230px;
   background: #fff url("../img/bz_1_blue.jpg") no-repeat center;
   background-size: 150px; }
-
 .sub_container_1 .bz_text_1 {
   width: 80px;
   text-align: center;
@@ -349,17 +93,14 @@
   left: 95px;
   top: 85px;
   color: #4e4e4e; }
-
 .sub_container_2 {
   width: 280px;
   height: 181px;
   background: #fff url("../img/bz_2.jpg") no-repeat center/280px; }
-
 .sub_container_2_blue {
   width: 280px;
   height: 181px;
   background: #fff url("../img/bz_2_blue.jpg") no-repeat center/280px; }
-
 .sub_container_2 .bz_text_1 {
   width: 80px;
   text-align: center;
@@ -367,7 +108,6 @@
   left: 31px;
   top: 54px;
   color: #4e4e4e; }
-
 .sub_container_2 .bz_text_2 {
   width: 80px;
   text-align: center;
@@ -375,19 +115,16 @@
   left: 173px;
   top: 56px;
   color: #4e4e4e; }
-
 .sub_container_3 {
   width: 200px;
   height: 300px;
   background: #fff url("../img/bz_3.jpg") no-repeat center;
   background-size: 200px 200px; }
-
 .sub_container_3_blue {
   width: 200px;
   height: 300px;
   background: #fff url("../img/bz_3_blue.jpg") no-repeat center;
   background-size: 200px 200px; }
-
 .sub_container_3 .bz_text_1 {
   width: 80px;
   text-align: center;
@@ -395,7 +132,6 @@
   left: 60px;
   top: 87px;
   color: #4e4e4e; }
-
 .sub_container_3 .bz_text_2 {
   width: 80px;
   text-align: center;
@@ -403,7 +139,6 @@
   left: 12px;
   top: 170px;
   color: #4e4e4e; }
-
 .sub_container_3 .bz_text_3 {
   width: 80px;
   text-align: center;
@@ -411,19 +146,16 @@
   left: 110px;
   top: 170px;
   color: #4e4e4e; }
-
 .sub_container_4 {
   max-width: 280px;
   height: 300px;
   background: #fff url("../img/bz_4.jpg") no-repeat center;
   background-size: 100%; }
-
 .sub_container_4_blue {
   max-width: 280px;
   height: 300px;
   background: #fff url("../img/bz_4_blue.jpg") no-repeat center;
   background-size: 100%; }
-
 .sub_container_4 .bz_text_1 {
   width: 80px;
   text-align: center;
@@ -431,7 +163,6 @@
   left: 100px;
   top: 84px;
   color: #4e4e4e; }
-
 .sub_container_4 .bz_text_2 {
   width: 80px;
   text-align: center;
@@ -439,7 +170,6 @@
   left: 19px;
   top: 130px;
   color: #4e4e4e; }
-
 .sub_container_4 .bz_text_3 {
   width: 80px;
   text-align: center;
@@ -447,7 +177,6 @@
   left: 185px;
   top: 118px;
   color: #4e4e4e; }
-
 .sub_container_4 .bz_text_4 {
   width: 80px;
   text-align: center;
@@ -455,19 +184,16 @@
   left: 100px;
   top: 185px;
   color: #4e4e4e; }
-
 .sub_container_5 {
   max-width: 280px;
   height: 300px;
   background: #fff url("../img/bz_5.jpg") no-repeat center;
   background-size: 100%; }
-
 .sub_container_5_blue {
   max-width: 280px;
   height: 300px;
   background: #fff url("../img/bz_5_blue.png") no-repeat center;
   background-size: 100%; }
-
 .sub_container_5 .bz_text_1 {
   width: 80px;
   text-align: center;
@@ -475,7 +201,6 @@
   left: 55px;
   top: 78px;
   color: #4e4e4e; }
-
 .sub_container_5 .bz_text_2 {
   width: 80px;
   text-align: center;
@@ -483,7 +208,6 @@
   left: 150px;
   top: 78px;
   color: #4e4e4e; }
-
 .sub_container_5 .bz_text_3 {
   width: 80px;
   text-align: center;
@@ -491,7 +215,6 @@
   left: 5px;
   top: 164px;
   color: #4e4e4e; }
-
 .sub_container_5 .bz_text_4 {
   width: 80px;
   text-align: center;
@@ -499,7 +222,6 @@
   left: 100px;
   top: 164px;
   color: #4e4e4e; }
-
 .sub_container_5 .bz_text_5 {
   width: 80px;
   text-align: center;
@@ -507,21 +229,18 @@
   left: 195px;
   top: 164px;
   color: #4e4e4e; }
-
 .sub_container_6 {
   max-width: 280px;
   height: 300px;
   width: 100%;
   background: #fff url("../img/bz_6.jpg") no-repeat center;
   background-size: 100%; }
-
 .sub_container_6_blue {
   max-width: 280px;
   height: 300px;
   width: 100%;
   background: #fff url("../img/bz_6_blue.jpg") no-repeat center;
   background-size: 100%; }
-
 .sub_container_6 .bz_text_1 {
   width: 80px;
   text-align: center;
@@ -529,7 +248,6 @@
   left: 17px;
   top: 104px;
   color: #4e4e4e; }
-
 .sub_container_6 .bz_text_2 {
   width: 80px;
   text-align: center;
@@ -537,7 +255,6 @@
   left: 105px;
   top: 59px;
   color: #4e4e4e; }
-
 .sub_container_6 .bz_text_3 {
   width: 80px;
   text-align: center;
@@ -545,7 +262,6 @@
   left: 187px;
   top: 106px;
   color: #4e4e4e; }
-
 .sub_container_6 .bz_text_4 {
   width: 80px;
   text-align: center;
@@ -553,7 +269,6 @@
   left: 16px;
   top: 211px;
   color: #4e4e4e; }
-
 .sub_container_6 .bz_text_5 {
   width: 80px;
   text-align: center;
@@ -561,7 +276,6 @@
   left: 105px;
   top: 160px;
   color: #4e4e4e; }
-
 .sub_container_6 .bz_text_6 {
   width: 80px;
   text-align: center;
@@ -569,19 +283,16 @@
   left: 187px;
   top: 212px;
   color: #4e4e4e; }
-
 .sub_container_7 {
   height: 380px;
   width: 290px;
   background: #fff url("../img/bz_7.jpg") no-repeat center;
   background-size: 100%; }
-
 .sub_container_7_blue {
   height: 380px;
   width: 290px;
   background: #fff url("../img/bz_7_blue.jpg") no-repeat center;
   background-size: 100%; }
-
 .sub_container_7 .bz_text_1 {
   width: 80px;
   text-align: center;
@@ -589,7 +300,6 @@
   left: 16px;
   top: 113px;
   color: #4e4e4e; }
-
 .sub_container_7 .bz_text_2 {
   width: 80px;
   text-align: center;
@@ -597,7 +307,6 @@
   left: 105px;
   top: 62px;
   color: #4e4e4e; }
-
 .sub_container_7 .bz_text_3 {
   width: 80px;
   text-align: center;
@@ -605,7 +314,6 @@
   left: 195px;
   top: 110px;
   color: #4e4e4e; }
-
 .sub_container_7 .bz_text_4 {
   width: 80px;
   text-align: center;
@@ -613,7 +321,6 @@
   left: 18px;
   top: 210px;
   color: #4e4e4e; }
-
 .sub_container_7 .bz_text_5 {
   width: 80px;
   text-align: center;
@@ -621,7 +328,6 @@
   left: 105px;
   top: 155px;
   color: #4e4e4e; }
-
 .sub_container_7 .bz_text_6 {
   width: 80px;
   text-align: center;
@@ -629,7 +335,6 @@
   left: 195px;
   top: 210px;
   color: #4e4e4e; }
-
 .sub_container_7 .bz_text_7 {
   width: 80px;
   text-align: center;
@@ -637,29 +342,22 @@
   left: 105px;
   top: 260px;
   color: #4e4e4e; }
-
 .text {
   margin: 0 auto;
   font-size: 0.14rem;
   line-height: 12px;
   color: #807f7f;
   background-color: #f7f7f7; }
-
 table {
   width: 100%;
   border-collapse: collapse;
   text-align: left; }
-
 table td, table th {
   font-weight: normal;
   overflow: hidden;
-  /*不显示超过对象宽度的内容*/
   text-overflow: ellipsis;
-  /*当对象内文本溢出时显示省略标记（...）*/
   white-space: nowrap;
-  /*限制在一行内显示所有文本*/
   max-width: 150px; }
-
 table td {
   padding: 0.15rem 0.1rem;
   position: relative;
@@ -690,51 +388,39 @@ table td {
         height: 200%;
         -webkit-transform: scale(1/3);
         transform: scale(1/3); } }
-
 table th {
   font-size: 0.18rem;
   color: #247ad1;
   border-bottom: 3px solid #247ad1; }
-
 .left_td img {
   width: 15px;
   vertical-align: middle; }
-
 .right_td {
   text-align: right; }
-
 .right_td img {
   width: 8px;
   vertical-align: middle; }
-
 .bz_item {
   cursor: pointer; }
-
 .left {
   float: left; }
-
 .right {
   float: right; }
-
 .left_btn, .right_btn, .right_center {
   height: 48px;
   line-height: 48px;
   background: #fff;
   font-size: 15px; }
-
 .left_btn {
   width: 45%;
   text-align: right;
   color: #555; }
-
 .right_center {
   width: 10%;
   background: #fff; }
-
 .right_btn {
   width: 45%;
   color: #ff5c00; }
-
 .select_btn {
   height: 48px;
   box-sizing: border-box; }

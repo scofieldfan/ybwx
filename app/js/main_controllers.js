@@ -178,18 +178,18 @@ mainControllers.controller('ybwxServiceCtrl', ['$scope', '$routeParams', '$locat
 		
 		var cellClass=".cell-footer";
 		$scope.goIndex = function($event){
-			$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
-			$($event.target).parents(cellClass).addClass("hover");
+			//$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
+			//$($event.target).parents(cellClass).addClass("hover");
 			$location.path('/').search();
 		}
 		$scope.goTemai = function($event){
-			$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
-			$($event.target).parents(cellClass).addClass("hover");
+			//$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
+			//$($event.target).parents(cellClass).addClass("hover");
 			$location.path('/temaiindex').search();
 		}
 		$scope.goService = function($event){
-			$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
-			$($event.target).parents(cellClass).addClass("hover");
+			//$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
+			//$($event.target).parents(cellClass).addClass("hover");
 			$location.path('/service').search();
 		}
 
@@ -534,17 +534,17 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 		}
 		var cellClass=".cell-footer";
 		$scope.goIndex = function($event){
-			$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
-			$($event.target).parents(cellClass).addClass("hover");
+			//$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
+			//$($event.target).parents(cellClass).addClass("hover");
 		}
 		$scope.goTemai = function($event){
-			$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
-			$($event.target).parents(cellClass).addClass("hover");
+			//$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
+			//$($event.target).parents(cellClass).addClass("hover");
 			$location.path('/temaiindex').search();
 		}
 		$scope.goService = function($event){
-			$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
-			$($event.target).parents(cellClass).addClass("hover");
+			//$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
+			//$($event.target).parents(cellClass).addClass("hover");
 			$location.path('/service').search();
 		}
 		$scope.init = function() {

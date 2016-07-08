@@ -1,4 +1,11 @@
 <style>
+.swiper-container{
+	line-height:0;
+}
+.swiper-container img{
+		width:100%;
+ }	
+ 
 .swiper-container-horizontal>.swiper-pagination-bullets{
 	bottom: 7px;
 }
@@ -14,6 +21,7 @@
 	height:6px;
 	border-radius: 10px;
 }
+
 </style>
 <header>
 	<div  class="logo-container">
@@ -24,8 +32,7 @@
 	<div class = "div_inline left">	每款产品都由诺贝严选</div>
 	<a href="javascript:;" class="focus_btn right" id="foucs_button">关 注</a>
 </header>
-<div class="swiper-container">
-	<div class="swiper-container" >
+<div class="swiper-container" >
 		<div class="swiper-wrapper swiper">
 			<div class="swiper-slide item " >
 				<a href="/wx_share.html#index"><img src="http://7xvrkw.com1.z0.glb.clouddn.com/huodong-1.jpg"></a>
@@ -37,7 +44,6 @@
 		
 		<!-- Add Pagination -->
 		<div class="swiper-pagination" style="text-align:center"></div>
-	</div>
 </div>
 <div class="nav">
 	<a href="/wx_share.html#jixian" class="item"><img src="img/temai/nav-1.png"><div >0元抢</div></a>
@@ -50,7 +56,7 @@
 	<img src="img/temai/hot.jpg">	
 	热门推荐		
 </div>
-<div   cg-busy="listPromise">
+<div  cg-busy="listPromise">
 <div style="margin-bottom: 10px">
 <div class="recommend-content" ng-repeat="category in categorys">
 	<div class="introd" ng-click="goCategory(category.id)">
@@ -96,7 +102,6 @@
 		<img src="img/temai/qcode_big.png" srcset="img/temai/qcode_min.png 568w, img/temai/qcode_big.png 667w, img/temai/qcode_big.png 736w">	
 	</div>
 </div>
-<script src="wx_bx_gl/js/swiper.min.js"></script>
 <script>
   var swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
@@ -104,6 +109,4 @@
         autoplay:5000,
         loop : true
     });
-
-  $()
 </script>

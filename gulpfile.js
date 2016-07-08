@@ -11,6 +11,8 @@ var uglify = require('gulp-uglify');
 var wait = require('gulp-wait');
 var clean = require('gulp-clean');
 var sass = require('gulp-sass');
+var stripCssComments = require('gulp-strip-css-comments');
+var removeEmptyLines = require('gulp-remove-empty-lines');
 
 gulp.task('rev', ['sass','cssMin', 'jsMin', 'deltmp'], function() {
 	gulp.src('app/*.html')
@@ -20,11 +22,8 @@ gulp.task('rev', ['sass','cssMin', 'jsMin', 'deltmp'], function() {
 
 });
 gulp.task('copycss', function() {
-
 	 gulp.src('app/css/*.css')
 		.pipe(gulp.dest('app/js/css/'));
-
-
 	return gulp.src('app/css/*.css')
 		.pipe(gulp.dest('app/partials/css/'));
 });
@@ -49,6 +48,8 @@ gulp.task('addVersion', ['copycss'], function() {
 gulp.task('sass', function () {
   return gulp.src('./app/sass/*.scss')
     .pipe(sass().on('error', sass.logError))
+    .pipe(stripCssComments())
+    .pipe(removeEmptyLines())
     .pipe(gulp.dest('./app/css'));
 });
 
@@ -122,6 +123,7 @@ gulp.task('jsMin', function() {
 gulp.task('wx_sass', function () {
   return gulp.src('./app/sass/wx_share/*.scss')
     .pipe(sass().on('error', sass.logError))
+     .pipe(stripCssComments())
     .pipe(gulp.dest('./app/wx_share/css'));
 });
 gulp.task('wx_sass:watch', function () {

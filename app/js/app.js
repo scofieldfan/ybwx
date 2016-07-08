@@ -60,12 +60,12 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/bd_education_new.html',
       controller: 'ybwxBdEducationNewCtrl',
       title: "保障评分",
-      css:'css/bd_education_new.css?rev=a048b74f5677491f6e26866868496db5'
+      css:'css/bd_education_new.css?rev=7d4b1d58d55b4bd80c249eb6fbe4137a'
     }).when('/bd_education', {
       templateUrl: 'partials/bd_education.html',
       controller: 'ybwxBdEducationCtrl',
       title: "保障评分",
-      css:'css/bd_education.css?rev=03e9859471029a5f6a25100d5fe26d68'
+      css:'css/bd_education.css?rev=f520106f95ff63b6ab7129260491c9d7'
     }).when('/select', {
       templateUrl: 'partials/select_part.html?v=123',
       controller: 'ybwxSelectCtrl',
@@ -78,7 +78,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/service.html',
       controller: 'ybwxServiceCtrl',
       title: "服务",
-      css:'css/service.css?rev=d69c0f9bd4f8fea50c5a88947b266e0d'
+      css:'css/service.css?rev=473126171dfc19c112d9a2112fc7fe64'
     }).when('/contact', {
       templateUrl: 'partials/contact.html',
       title: "联系我们",
@@ -86,12 +86,12 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/bz_list.html?v=123',
       controller: 'ybwxBzCtrl',
       title: "定制保障说明",
-      css:'css/bz.css?rev=b13f9d0d1ad3fee210f54b60edae93b7'
+      css:'css/bz.css?rev=bce3af9d845381e3dc7cfd8fd513b4c9'
     }).when('/tb_dz', {
       templateUrl: 'partials/toubao_dingzhi_all.html',
       controller: 'ybwxToubaoDingzhiAllCtrl',
       title: "确认投保",
-      css:'css/toubao.css?rev=068e5e2c1f4916439fa5506df6a1e44d'
+      css:'css/toubao.css?rev=d41d8cd98f00b204e9800998ecf8427e'
     }) .when('/verify_information', {
       templateUrl: 'partials/verify_information.html',
       controller: 'ybwxverify_informationCtrl',
@@ -120,7 +120,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/temai_index.html',
       controller: 'wxTemaiIndexCtrl',
       title: "诺贝严选",
-      css:'css/temai_index.css?rev=546d3d67b2025b87ec7571d995d81b47'
+      css:'css/temai_index.css?rev=d3e5154596ced31c26e47b818b66977a'
     }).when('/temailist', {
       templateUrl: 'partials/temai_list.html',
       controller: 'wxTemaiListCtrl',

@@ -1,10 +1,8 @@
 .wrapper {
   padding: 0 10px;
   position: relative; }
-
 body {
   background-color: #fff; }
-
 .gift {
   width: 60px;
   height: 60px;
@@ -15,7 +13,6 @@ body {
   background-size: 22px;
   z-index: 10;
   cursor: pointer; }
-
 .gift-message {
   width: 22px;
   height: 22px;
@@ -24,37 +21,28 @@ body {
   right: 15px;
   background: url(../img/index/message.png) no-repeat center;
   background-size: 22px; }
-
 .text_container {
-  /*margin-bottom: 80px;*/ }
-
+   }
 .text_container p {
   text-align: center;
   line-height: 0.07rem; }
-
 .text_container .subtitle {
   font-size: 0.16rem;
   color: #999; }
-
 .text_container .tip {
   font-size: 0.2rem;
   color: #ffb594; }
-
 .text_container .bd_yz {
   margin-top: 0.7rem;
   font-size: 0.17rem;
   color: #588dd4; }
-
 #loadingContainer {
   height: 350px;
   background: #fff url(../img/loading.gif) no-repeat center/50px; }
-
 #pieChartContainer {
   padding-top: 0.1rem; }
-
 .cell_hd {
   height: 50px; }
-
 .cell-circle {
   box-sizing: border-box;
   width: 1.29rem;
@@ -75,13 +63,10 @@ body {
   .cell-circle .icon.icon-up {
     background: url("../img/index/up.png") no-repeat center;
     background-size: 22px; }
-
 .cell-circle:active {
   background-color: #f5f5f5; }
-
 .mag-container {
   margin-top: 1rem; }
-
 .swiper-container {
   display: none;
   position: fixed;
@@ -90,7 +75,6 @@ body {
   left: 0;
   top: 0;
   z-index: 10001; }
-
 .opacity_ctrl {
   position: fixed;
   left: 0;
@@ -100,7 +84,6 @@ body {
   width: 100%;
   height: 100%;
   z-index: 10002; }
-
 .off {
   position: fixed;
   right: 15px;
@@ -108,15 +91,12 @@ body {
   width: 20px;
   height: 20px;
   z-index: 10003; }
-
 .off img {
   width: 100%;
   height: 100%; }
-
 .swiper-container {
   width: 100%;
   height: 100%; }
-
 .swiper-wrapper {
   position: relative;
   left: 0;
@@ -125,17 +105,13 @@ body {
   height: 100%;
   margin: 20% auto;
   z-index: 99999999; }
-
 .swiper-slide {
   text-align: center;
   font-size: 18px;
   background: #fff;
   width: 2.67rem;
-  /*width: 60%;*/
   height: 60%;
   height: 0;
   border-radius: 10px; }
-
 .swiper-slide img {
-  /*width: 3.34rem;*/
   width: 2.67rem; }

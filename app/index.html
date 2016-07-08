@@ -36,13 +36,7 @@
  <link rel="stylesheet" href="css/output/application.min.css?rev=eab2e7cab18efd86fe07d64926c15b0b"> 
  <link rel="stylesheet" href="wx_bx_gl/css/swiper.min.css?rev=377170fcb9a59057009bea5e1aa63aeb"> 
  <link rel="stylesheet" type="text/css" href="bower_components/rangeslider.js/dist/rangeslider.css">
-<!--
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/globe.css?rev=92918cdffef145ead35047bee4c013e2">
-  <link rel="stylesheet" href="css/app.css?rev=f4d64e8879fe4984612909a6374d3d6a">
-  <link rel="stylesheet" href="css/angular-busy.min.css?rev=382a25599fb5b0b2e9efc9af00041c17">
- --> 
-   <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+ <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
   </head>
 <body ontouchstart="" onselectstart="return false">
 
@@ -85,9 +79,9 @@
    -->
 
   <script src="js/util.js?rev=899d0880f631beb0c245dc5ca5296810"></script>
-  <script src="js/app.js?rev=e9e5e1d61741f438ebb0aebfd9347290"></script>
-  <script src="js/main_controllers.js?rev=6d6859987e3b39d0b065c05c2b602de5"></script>
-  <script src="js/temai_controllers.js?rev=1ae9967338c74ec3c198ffdac5d97307"></script>
+  <script src="js/app.js?rev=8e36a1c20771176d7088ac6cb66bfc37"></script>
+  <script src="js/main_controllers.js?rev=382ae4d702a732231bb5788ee0e7a6cf"></script>
+  <script src="js/temai_controllers.js?rev=8cd7870296ad6b3e5aec63ce7f2bdf51"></script>
   <script src="js/baodan_management_controller.js?rev=1606c8c00fe9b9a4623dc1855ffedd78"></script>
   <script src="js/directives.js?rev=57d74af2016e6c30d8b9b057ef03947a"></script>
   <script src="js/jquery.piemenu.js?rev=1528aa5bcb7c6345a39322be792f0092"></script>
@@ -128,8 +122,6 @@
         }).on("click",".fixed-top",function(){
             $(window).scrollTop(0);
         })
-
-
        $(window).scroll(function(){
         var y=$(document).scrollTop();
         if(y>600){
@@ -138,11 +130,6 @@
           $('.fixed-top').fadeOut();
         }
       })
-        //console.log("scrollBar:"+util.hasScrollbar());
-        /*
-       $(".mask").click(function(){
-          $(".mask").hide();
-       })*/
    });
 
   window.onerror = function(message,file,line){
@@ -150,6 +137,6 @@
   }
  
   </script>
-  <img src="img/slider-btn.png" id="tip-img" style="opacity: 0;position: absolute;left:-200000px;">
+  <img src="img/slider-btn.png?v=23423" id="tip-img" style="opacity: 0;position: absolute;left:-200000px;">
 </body>
 </html>
