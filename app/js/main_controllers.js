@@ -172,52 +172,6 @@ function getHttpPromise($http, $rootScope, method, url, data, callback) {
 	});
 }
 
-mainControllers.controller('ybwxServiceCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
-	function($scope, $routeParams, $location, $http, $rootScope) {
-
-		_hmt.push(['_trackPageview', $location.path()]);
-
-		var cellClass = ".cell-footer";
-		$scope.goIndex = function($event) {
-			//$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
-			//$($event.target).parents(cellClass).addClass("hover");
-			$location.path('/').search();
-		}
-		$scope.goTemai = function($event) {
-			//$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
-			//$($event.target).parents(cellClass).addClass("hover");
-			$location.path('/temaiindex').search();
-		}
-		$scope.goService = function($event) {
-			//$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
-			//$($event.target).parents(cellClass).addClass("hover");
-			$location.path('/service').search();
-		}
-
-		$scope.goVerfiy = function() {
-			$location.path('/bd_verify_list').search();
-		}
-		$scope.goInsuranceCard = function() {
-			//$location.path('/bd_verify_list').search();
-			window.location = "/wx_share.html#/couponlist";
-		}
-		$scope.goTradeRecord = function() {
-			$location.path('/bd_list').search();
-		}
-
-		$scope.goBaoDan = function() {
-			$location.path('/bdm_list').search();
-		}
-
-		$scope.goContact = function() {
-			$location.path('/contact').search();
-		}
-
-		$scope.goAboutme = function() {
-			window.location.href = "http://mp.weixin.qq.com/s?__biz=MzI0NDE2Mjk2OA==&mid=407057806&idx=1&sn=d6136f57ac70f0ae4504c657355a6989#wechat_redirect";
-		}
-	}
-]);
 
 
 mainControllers.controller('ybwxUserinfoCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
@@ -245,175 +199,7 @@ mainControllers.controller('ybwxUserinfoCtrl', ['$scope', '$routeParams', '$loca
 	}
 ]);
 
-mainControllers.controller('wxBaoDanListCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
-	function($scope, $routeParams, $location, $http, $rootScope) {
 
-		_hmt.push(['_trackPageview', $location.path()]);
-		//setTest($routeParams.is_test);
-		$scope.getBdStatus = function(status, bdStatus) {
-			return getBdStatus(status, bdStatus);
-		}
-		$scope.getBdColor = function(status) {
-			return insuranceColorMap[status]
-		}
-
-		/*
-		$scope.page_no = 1;
-		$scope.page_size = 5;
-		$scope.orders = [];
-		$scope.isBusy = true;
-		$scope.nextPage = function() {
-			if ($scope.isBusy) return;
-			$scope.isBusy = true;
-			var openId = sessionStorage.getItem("openId");
-			$http({
-				method: 'POST',
-				headers: {
-					"Content-Type": "application/json;charset:UTF-8"
-				},
-				url: api['get_insurances'],
-				data: {
-					"open_id": openId,
-					"page_no": $scope.page_no,
-					"page_size": $scope.page_size
-				}
-			}).then(function(res) {
-				console.log(res);
-				$scope.isBusy = false;
-				if (res.data && res.data.description) {
-					util.showToast($rootScope, res.data.description);
-					//  $(".default_text").show();
-				}
-				if (res.data.code == 0) {
-					if (res.data.data.orders) {
-						$scope.page_no++;
-						console.log(res.data.data.orders);
-						res.data.data.orders.forEach(function(element, index) {
-							$scope.orders.push(element);
-							// statements
-						});
-						//$scope.orders.concat(res.data.data.orders);
-						console.log("...............");
-					}
-				}
-			}, function(res) {
-				$scope.isBusy = false;
-				console.log(res);
-				util.showToast($rootScope, "服务器错误");
-				// $(".default_text").show();
-			});
-		}*/
-		$scope.init = function() {
-
-			var code = util.getParameterByName("code");
-			if (!code) {
-				code = $routeParams.code;
-			}
-			util.getOpenId(code).then(function() {
-				var openId = sessionStorage.getItem("openId");
-				$scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurances'], {
-					'open_id': openId
-				}, function(res) {
-					console.log("result ......");
-					$scope.orders = res.data.data.orders;
-				})
-
-				//$scope.isBusy = false;
-				//$scope.nextPage();
-				//$scope.reason="您没有领取任何优惠券。";
-				// $("#reason_container").show();
-
-			})
-		}
-
-
-		$scope.filterFn = function(order) {
-			if ($scope.tog === "") {
-				return true;
-			}
-			if ($scope.tog === "1") { //待支付
-				return order.status !== 4; //订单状态是待支付，true是留下来了。false是过滤完的
-			} else {
-				return order.insurance_orders.filter(function(item) {
-					return parseInt(item["order_status"]) === parseInt($scope.tog);
-				}).length > 0;
-
-			}
-
-			/*
-			console.log(order.order_status)
-			console.log($scope.tog)
-			console.log(order.order_status === $scope.tog);*/
-			//return parseInt(order.order_status_enum) === parseInt($scope.tog);
-		};
-
-		$scope.goPay = function(order_id, order_no, order_amount) {
-			_hmt.push(['_trackEvent', 'bd_list', 'bdlist_gopay']);
-			$location.path('/pay_select').search({
-				"insurance_name": "诺贝保险管家定制产品套餐",
-				"insurance_plan_name": "诺贝保险管家定制产品套餐",
-				"order_id": order_id,
-				"order_no": order_no,
-				"order_amount": order_amount
-			});
-		}
-		$scope.goDetail = function(order_no, order_status) {
-			_hmt.push(['_trackEvent', 'bd_list', 'bdlist_godetail']);
-			$location.path('/bd_detail').search({
-				'order_no': order_no,
-				'order_status': order_status
-			});
-		}
-		$scope.tog = "";
-		//$scope.init();
-	}
-]);
-
-mainControllers.controller('wxBaoDanDetailCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
-	function($scope, $routeParams, $location, $http, $rootScope) {
-		console.log($routeParams.order_no);
-		_hmt.push(['_trackPageview', $location.path()]);
-		$scope.getBdStatus = function(status, bdStatus) {
-			return getBdStatus(status, bdStatus);
-		}
-		$scope.getBdColor = function(status) {
-			return insuranceColorMap[status]
-		}
-		$scope.init = function() {
-			var openId = sessionStorage.getItem("openId");
-			$scope.status = $routeParams.order_status;
-
-			$scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurance_detail'], {
-				"open_id": openId,
-				'order_no': $routeParams.order_no
-			}, function(res) {
-				console.log(res);
-				if (res.data && res.data.description) {
-					util.showToast($rootScope, res.data.description);
-				}
-				if (res.data.code == 0) {
-					//res.data.data.order.order_status_text = insuranceMap[res.data.data.order["order_status"]];
-					$scope.order = res.data.data.order;
-				}
-			})
-		}
-
-		$scope.send_bd = function() {
-			if (!sendForm.email.$invalid) {
-				var openId = sessionStorage.getItem("openId");
-				util.sendMail($http, $rootScope, api['send_bd'], openId, $scope.user.email, $location.search().order_no);
-				$scope.hideDialog();
-			}
-		}
-		$scope.showDialog = function() {
-			$("#email_dialog").show();
-		}
-		$scope.hideDialog = function() {
-			$("#email_dialog").hide();
-		}
-		$scope.init();
-	}
-]);
 
 
 function initPieConfig(sumScore, scores, policyNumber) {
@@ -618,6 +404,225 @@ function updateSumScore() {
 
 
 }
+
+
+mainControllers.controller('ybwxBdEducationNewCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $routeParams, $location, $http, $rootScope) {
+		_hmt.push(['_trackPageview', $location.path()]);
+
+
+		$scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+	  	
+				  $('input[type="range"]').rangeslider({
+                      polyfill: false,
+                       rangeClass: 'rangeslider',
+                       disabledClass: 'rangeslider--disabled',
+                       verticalClass: 'rangeslider--vertical',
+                       fillClass: 'rangeslider__fill',
+                       handleClass: 'rangeslider__handle',
+                  });
+
+		});
+		$scope.more = function($event) {
+	      var element = $event.currentTarget;
+	      var switchValue = $(element).attr("data-switch");
+	      if (switchValue === 'on') {
+	        $(element).siblings().removeClass("ng-hide");
+	        $(element).find("span").html("收起");
+	        $(element).attr("data-switch", "off");
+	        $(element).find("div").addClass("up");
+	      } else {
+	        $(element).siblings(":gt(6)").addClass("ng-hide");
+	        $(element).find("span").html("查看更多");
+	        $(element).attr("data-switch", "on");
+	        $(element).find("div").removeClass("up");
+	      }
+	    }
+		$scope.processMoney = function(money) {
+			if(money==0){
+				return "已投保";
+			}else{
+				return util.processSpecialMoney(money);
+			}
+		}
+		$scope.getInsuranceCNname = function(){
+			return insureanceCNMap[$routeParams.type];
+		}
+
+		$scope.goOldEducation = function() {
+			$location.path('/education').search({
+				"type":	$routeParams.type
+			});
+			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_goEducation']);
+		}
+
+		$scope.goUpBd = function(){
+			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_goBdIndex']);
+			$location.path('/bd_index');
+		}
+
+		$scope.goBdmList = function(){
+			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_goBdmList']);
+			$location.path('/bdm_list').search({
+				"type":	$routeParams.type
+			});
+		}
+
+
+		$scope.isHaveUserInfo = false;
+
+		$scope.getUserInfo = function() {
+			var openId = sessionStorage.getItem("openId");
+			$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_user_info'].replace('{openId}', openId), {}, function(res) {
+				console.log(res.data.data);
+				if (res.data.data.age && res.data.data.gender) {
+					$scope.isHaveUserInfo = true;
+				}
+			})
+		}
+		$scope.init = function() {
+			
+			var code = util.getParameterByName("code") || $routeParams.code;
+		
+			util.getOpenId(code).then(function() {                                                                               
+				var type = $routeParams.type;
+				$scope.type =  $routeParams.type;
+				console.log("type:"+$scope.type);
+				$scope.getUserInfo();
+				var openId = sessionStorage.getItem("openId");
+				$scope.myPromise = getHttpPromise($http, $rootScope, 'GET', api['get_score_analysis_new'].replace('{openId}', openId).replace('{type}', type), {}, function(res) {
+					if (res && res.data && res.data.data) {
+						res.data.data.score = Math.round(res.data.data.score*10)/10;
+						$scope.data = res.data.data;
+					}
+				})
+			});
+		}
+		$scope.goDingzhi = function() {
+			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_goDingZhi']);
+			if ($scope.isHaveUserInfo) {
+				$location.path('/select').search({
+					'type': $routeParams.type
+				});
+			} else {
+				$location.path('/userinfo').search({
+					'type': $routeParams.type
+				});
+			}
+
+		}
+	}
+]);
+
+
+mainControllers.controller('ybwxBdEducationCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $routeParams, $location, $http, $rootScope) {
+		_hmt.push(['_trackPageview', $location.path()]);
+
+		$scope.processMoney = function(money) {
+			if(money==0){
+				return "已投保";
+			}else{
+				return util.processSpecialMoney(money);
+			}
+		}
+		$scope.getInsuranceCNname = function(){
+			return insureanceCNMap[$routeParams.type];
+		}
+		$scope.goOldEducation = function() {
+			$location.path('/education').search({
+				"type":	$routeParams.type
+			});
+			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_goEducation']);
+		}
+		$scope.goUpBd = function(){
+			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_goBdIndex']);
+			$location.path('/bd_index');
+		}
+		$scope.goBdmList = function(){
+			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_goBdmList']);
+			$location.path('/bdm_list').search({
+				"type":	$routeParams.type
+			});
+		}
+		$scope.hexClick = function(isInsurced){
+			if(isInsurced){
+			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_hexBlueClick']);
+				$scope.goBdmList();
+			}else{
+			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_hexGrayClick']);
+				//$scope.goDingzhi();
+				$scope.goOldEducation();
+			}
+
+		}
+		$scope.isHaveUserInfo = false;
+		$scope.getUserInfo = function() {
+			var openId = sessionStorage.getItem("openId");
+			$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_user_info'].replace('{openId}', openId), {}, function(res) {
+				console.log(res.data.data);
+				if (res.data.data.age && res.data.data.gender) {
+					$scope.isHaveUserInfo = true;
+				}
+			})
+		}
+		$scope.init = function() {
+
+			var code = util.getParameterByName("code");
+			if (!code) {
+				code = $routeParams.code;
+			}
+			util.getOpenId(code).then(function() {                                                                               
+				var type = $routeParams.type;
+				$scope.type = type;
+				$scope.getUserInfo();
+				var openId = sessionStorage.getItem("openId");
+				$scope.myPromise = getHttpPromise($http, $rootScope, 'GET', api['get_score_analysis'].replace('{openId}', openId).replace('{type}', type), {}, function(res) {
+					console.log(res.data.data);
+					if (res && res.data && res.data.data) {
+						$scope.data = res.data.data;
+						$scope.hex = [];
+						var row = [];
+						res.data.data.beehive.forEach(function(element, index) {
+							row.push(element);
+							if ((index + 1) % 3 === 0) {
+								$scope.hex.push(row);
+								row = [];
+							}
+							// statements
+						});
+						if(row.length>0){
+							$scope.hex.push(row);
+						}
+						var totalLines = Math.ceil($(window).height()/120);
+						$scope.tailLines = $scope.hex.length>totalLines?2:totalLines-$scope.hex.length;
+						$scope.tailLines = $scope.tailLines<2?2:$scope.tailLines;
+						console.log("totalLines:"+totalLines);
+						console.log("$scope.hex.length:"+$scope.hex.length);
+						console.log("$scope.tailLines:"+$scope.tailLines);
+						//console.log("totalLines:"+totalLines);
+						//console.log("$scope.hex.length:"+$scope.hex.length);
+						//console.log("$scope.tailLines:"+$scope.tailLines);
+						//$scope.hiveLength = Math.ceil(res.data.data.beehive.length/3);
+					}
+				})
+			});
+		}
+		$scope.goDingzhi = function() {
+			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_goDingZhi']);
+			if ($scope.isHaveUserInfo) {
+				$location.path('/select').search({
+					'type': $routeParams.type
+				});
+			} else {
+				$location.path('/userinfo').search({
+					'type': $routeParams.type
+				});
+			}
+
+		}
+	}
+]);
 
 mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
