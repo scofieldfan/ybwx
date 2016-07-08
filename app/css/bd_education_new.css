@@ -224,6 +224,13 @@
 body {
   background-color: #f5f5f5; }
 
+.up {
+  -ms-transform: rotate(180deg);
+  /* IE 9 */
+  -webkit-transform: rotate(180deg);
+  /* Chrome, Safari, Opera */
+  transform: rotate(180deg); }
+
 header {
   color: #fff;
   height: 0.6rem;
@@ -232,7 +239,7 @@ header {
   font-size: 0.18rem; }
 
 header.icon_4 {
-  background: #006ee9 url("../img/plane_h.png") no-repeat 18px center;
+  background: #006ee9 url("../img/index/plan_blue.jpg") no-repeat 18px center;
   background-size: 28px; }
 
 header.icon_3 {
@@ -289,10 +296,11 @@ header span {
 
 .icon-arrow {
   background: url("../img/temai/arrow.jpg") no-repeat center;
-  background-size: 20px;
+  background-size: 10px;
   width: 10px;
-  height: 20px;
-  vertical-align: -2px;
+  height: 7px;
+  vertical-align: 1px;
+  margin-left: 2px;
   display: inline-block; }
 
 .icon-guard {

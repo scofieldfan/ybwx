@@ -3,6 +3,7 @@
 	<span class="fr" style="color:#97c8ff;font-size:14px;">如何投保?</span>
 </header>
 <style>
+   
     .rangeslider{
         display:block;
         border-radius: 4px;
@@ -18,7 +19,7 @@
         margin:0 auto;
     }
     .rangeslider--disabled{
-
+        opacity:1;
     }
     .rangeslider__fill{
         bottom:0;
@@ -52,23 +53,23 @@
     }
     </style>
 <div class="slider-container">
-    <div class="slider-item" ng-repeat="item in data.elements" on-finish-render="ngRepeatFinished"><div><div class="type">{{item.name}}<div class="percent">{{item.percent*100}}%</div></div><input type="range" id="rangeInput{{$index}}" data-orientation="vertical" value="{{$index*10}}" ></div></div>
+    <div class="slider-item" ng-repeat="item in data.elements" on-finish-render="ngRepeatFinished"><div><div class="type">{{item.name}}<div class="percent">{{item.percent}}%</div></div><input type="range" id="rangeInput{{$index}}" data-orientation="vertical" value="{{item.percent}}" disabled=""></div></div>
  
  </div>
 
 
-<div class="table-container">
+<div class="table-container" style="margin-bottom:70px;">
     <div class="table-title">
         <div class="cell_hd cell_primary left"><div class="icon-guard"></div>保障明细</div> 
         <div class="cell_hd cell_primary right" >查看</div>
     </div>
     <table ng-if="data.coverages">
-        <tr class="bd-tr" >
-            <td  style="text-align:left;">客运汽车意外保障</td>
-            <td  style="text-align:right;"> 70万 </td>
+        <tr class="bd-tr" ng-repeat="item in data.coverages" ng-hide="$index>=6">
+            <td  style="text-align:left;">{{item.name}}</td>
+            <td  style="text-align:right;"> {{processMoney(item.sum_insured)}}</td>
         </tr>
-        <tr class="more">
-        <td colspan="2">查看更多<div class="icon-arrow"></div></td>
+        <tr class="more"  ng-show=" data.coverages.length > 7" data-switch="on"  ng-click="more($event)">
+          <td colspan="2" ><span>查看更多</span><div class="icon-arrow" ></div></td>
         </tr>
 
     </table>

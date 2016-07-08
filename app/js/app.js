@@ -56,22 +56,17 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/index_part.html?v=123',
       controller: 'ybwxIndexCtrl',
       title: '诺贝保险管家'
-    }).when('/bd_education', {
+    }).when('/bd_education_new', {
       templateUrl: 'partials/bd_education_new.html',
       controller: 'ybwxBdEducationNewCtrl',
       title: "保障评分",
-      css:'css/bd_education_new.css?rev=96ed9875ae825223e34446551fadee94'
-    })
-
-    /*
-    .when('/bd_education', {
+      css:'css/bd_education_new.css?rev=a048b74f5677491f6e26866868496db5'
+    }).when('/bd_education', {
       templateUrl: 'partials/bd_education.html',
       controller: 'ybwxBdEducationCtrl',
       title: "保障评分",
       css:'css/bd_education.css?rev=03e9859471029a5f6a25100d5fe26d68'
-    })*/
-
-    .when('/select', {
+    }).when('/select', {
       templateUrl: 'partials/select_part.html?v=123',
       controller: 'ybwxSelectCtrl',
       title: "保障提升",
@@ -105,14 +100,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/pay_select_new.html?v=123',
       controller: 'ybwxPaySelectNewCtrl',
       title: "支付"
-    })
-    /*
-    .when('/list', {
-      templateUrl: 'partials/list.html',
-      controller: 'wxListCtrl',
-      title: "特卖商城"
-    })*/
-    .when('/claim_information', {
+    }).when('/claim_information', {
       templateUrl: 'partials/claim_information.html',
       controller: 'ybwxclaim_informationCtrl',
       title: "理赔说明"
