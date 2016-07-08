@@ -8,22 +8,6 @@
     <a href="javascript:void(0)"   class="btn btn_n_primary" >直接购买</a>
   </div>
 </div>
-<!-- <ul class="ul_container jingzhun_ul_container"  data-ng-init="init()" cg-busy="listPromise" >
-  <li class="list_item" ng-click="goDetail(item.id)"   ng-repeat="item in list">
-    <div  class="img_box">
-      <img ng-src="{{item.insurance_image_url}}" class="order_img"></div>
-    <div class="small_container" style="background:url({{item.company_image_url}}) no-repeat top right/50px" >
-      <p class="h_title">{{item.name}}</p>
-      <p class="desc">{{item.description}}</p>
-      <div class="bottom_container">
-        <div class="money_container"  >
-          <span class="money">{{item.front_price}}</span>
-        </div>
-        <div class="small_btn">立即投保</div>
-      </div>
-    </div>
-  </li>
-</ul> -->
 <div class="insurance ul_container jingzhun_ul_container" data-ng-init="init()" cg-busy="listPromise">
   <div class="insurance-item"   ng-repeat="item in list" ng-click="goDetail(item.id)">
     <div class="logo">

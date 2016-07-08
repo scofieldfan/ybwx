@@ -1,6 +1,6 @@
 <header class="icon_{{type}}"  data-ng-init="init()">
-	我的{{getInsuranceCNname()}}保障 {{data.aggregate_score}}分
-	<span class="fr" style="color:#97c8ff;font-size:14px;">如何投保?</span>
+	我的{{getInsuranceCNname()}}保障 <span class="score">{{data.score}}</span>分
+	<span   class="how">如何投保?</span>
 </header>
 <style>
    
@@ -57,7 +57,6 @@
  
  </div>
 
-
 <div class="table-container" style="margin-bottom:70px;">
     <div class="table-title">
         <div class="cell_hd cell_primary left"><div class="icon-guard"></div>保障明细</div> 
@@ -84,26 +83,3 @@
 		</div>
 		
 </div>
-<script>
-    $(function(){
-
-      /*
-        var inputs =  $('input[type="range"]');
-        for(var i =0;i<inputs.length;i++){
-            var value = $(inputs[i]).val();
-            console.log("value:"+value);
-            $(inputs[i]).rangeslider({
-                      polyfill: false,
-                       rangeClass: 'rangeslider',
-                       disabledClass: 'rangeslider--disabled',
-                       verticalClass: 'rangeslider--vertical',
-                       fillClass: 'rangeslider__fill',
-                       handleClass: 'rangeslider__handle',
-             }).val(value).change();
-        }
-*/
-       
-                  
-    }) 
-         
-</script>

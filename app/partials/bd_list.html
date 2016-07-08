@@ -10,14 +10,6 @@
       <p class="default_text" ng-show="filtered.length==0" >暂时没有保单</p>
     <ul class="ul_container"   cg-busy="myPromise" data-ng-init="init()">
 
-    <!--
-    <div infinite-scroll="nextPage()" infinite-scroll-distance="0">
-     </div>s
-      <div style="background-color: #fff;">
-      <div style="width:100px;margin:0 auto;text-align: center;background-color: #fff;">
-          <img src="img/loading.gif" style="width:50px;">
-      </div>
-     -->
     <ul class="bd_list_controller">
       <li class="list_item"   ng-repeat="order in filtered = (orders |filter:filterFn )">
         <div class="order_title" style="position:relative">订单号：{{order.order_no}} <span class="bd_status">{{order.create_time  |  date:'yyyy-MM-dd'}}</span></div>
@@ -46,21 +38,6 @@
           </div>
         </div>
       </li>
-        <!--
-      <li class="list_item"  ng-click="goDetail(order.order_no)"  ng-repeat="order in filtered = (orders |filter:filterFn )">
-        <div class="order_title" style="position:relative">订单号:{{order.order_no}}  <span class="bd_status">{{order.create_time  |  date:'yyyy-MM-dd'}}</span></div>
-        <div class="line"></div>
-        <div>
-          <div class="">
-            <p style="position:relative;margin-top:13px;color:#6caaea">{{order.order_name}}<span class="bd_status_text" style="position:absolute;right:0" >{{order.order_status_text}}</span></p>
-            <p>被保人:<span ng-repeat="person in order.insured_peoples">{{person.name}}</span></p>
-            <p>保险金额:<span class="red">￥{{order.order_amount/100 | number:2}}</span></p>
-            <p>生效时间:{{order.effective_date |  date:'yyyy-MM-dd HH:mm:ss'}}</p>
-          </div>
-          <div class="line" style="clear:both;"></div>
-        </div>
-      </li>
-    </ul> 
-    -->
+       
     </ul>
      </ul> 
