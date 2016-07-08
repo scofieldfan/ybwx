@@ -909,24 +909,7 @@ mainControllers.controller('ybwxEducationCtrl', ['$scope', '$routeParams', '$loc
 			$scope.type = type;
 			$scope.getUserInfo();
 			var openId = sessionStorage.getItem("openId");
-
-			/*
-			$scope.myPromise = $http({
-				method: 'GET',
-				headers: {
-					"Content-Type": "application/json;charset:UTF-8"
-				},
-				url: api['get_score_analysis'].replace("{openId}", openId).replace('{type}', type)
-
-			}).then(function(res) {
-				console.log(res);
-				if (res && res.data && res.data.data) {
-					$scope.data = res.data.data;
-				}
-			}, function(res) {
-				console.log(res);
-				util.showToast($rootScope, "服务器错误");
-			});*/
+			
 		}
 		$scope.goDingzhi = function() {
 			_hmt.push(['_trackEvent', 'eduction', 'eduction_subBtn']);
