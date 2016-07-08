@@ -48,6 +48,7 @@ ybwxApp.filter('setDecimal', function ($filter) {
         return Math.round(input * factor) / factor;
     };
 });
+
 ybwxApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
@@ -55,19 +56,21 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/index_part.html?v=123',
       controller: 'ybwxIndexCtrl',
       title: '诺贝保险管家'
-    }).when('/bd_education_new', {
+    }).when('/bd_education', {
       templateUrl: 'partials/bd_education_new.html',
       controller: 'ybwxBdEducationNewCtrl',
       title: "保障评分",
       css:'css/bd_education_new.css?rev=96ed9875ae825223e34446551fadee94'
     })
-    /**/
+
+    /*
     .when('/bd_education', {
       templateUrl: 'partials/bd_education.html',
       controller: 'ybwxBdEducationCtrl',
       title: "保障评分",
       css:'css/bd_education.css?rev=03e9859471029a5f6a25100d5fe26d68'
-    })
+    })*/
+
     .when('/select', {
       templateUrl: 'partials/select_part.html?v=123',
       controller: 'ybwxSelectCtrl',
@@ -83,7 +86,6 @@ ybwxApp.config(['$routeProvider',
       css:'css/service.css?rev=d69c0f9bd4f8fea50c5a88947b266e0d'
     }).when('/contact', {
       templateUrl: 'partials/contact.html',
-      controller: 'ybwxCantactCtrl',
       title: "联系我们",
     }).when('/bz', {
       templateUrl: 'partials/bz_list.html?v=123',
@@ -103,11 +105,14 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/pay_select_new.html?v=123',
       controller: 'ybwxPaySelectNewCtrl',
       title: "支付"
-    }).when('/list', {
+    })
+    /*
+    .when('/list', {
       templateUrl: 'partials/list.html',
       controller: 'wxListCtrl',
       title: "特卖商城"
-    }).when('/claim_information', {
+    })*/
+    .when('/claim_information', {
       templateUrl: 'partials/claim_information.html',
       controller: 'ybwxclaim_informationCtrl',
       title: "理赔说明"
@@ -202,6 +207,20 @@ ybwxApp.config(['$routeProvider',
     });
   }
 ]);
+
+//ng-repeat ready的事件
+ybwxApp.directive('onFinishRender', function ($timeout) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attr) {
+            if (scope.$last === true) {
+                $timeout(function () {
+                    scope.$emit(attr.onFinishRender);
+                });
+            }
+        }
+    }
+});
 
 
 

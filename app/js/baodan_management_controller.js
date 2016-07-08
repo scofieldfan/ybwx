@@ -32,6 +32,19 @@ bdControllers.controller('ybwxBdEducationNewCtrl', ['$scope', '$routeParams', '$
 	function($scope, $routeParams, $location, $http, $rootScope) {
 		_hmt.push(['_trackPageview', $location.path()]);
 
+
+		$scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+	  	
+				  $('input[type="range"]').rangeslider({
+                      polyfill: false,
+                       rangeClass: 'rangeslider',
+                       disabledClass: 'rangeslider--disabled',
+                       verticalClass: 'rangeslider--vertical',
+                       fillClass: 'rangeslider__fill',
+                       handleClass: 'rangeslider__handle',
+                  });
+
+		});
 		$scope.processMoney = function(money) {
 			if(money==0){
 				return "已投保";

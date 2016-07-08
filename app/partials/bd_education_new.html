@@ -52,7 +52,7 @@
     }
     </style>
 <div class="slider-container">
-    <div class="slider-item" ng-repeat="item in data.elements"><div><div class="type">{{item.name}}<div class="percent">{{item.percent*100}}%</div></div><input type="range" id="rangeInput{{$index}}" data-orientation="vertical" value="{{item.percent*100}}" ></div></div>
+    <div class="slider-item" ng-repeat="item in data.elements" on-finish-render="ngRepeatFinished"><div><div class="type">{{item.name}}<div class="percent">{{item.percent*100}}%</div></div><input type="range" id="rangeInput{{$index}}" data-orientation="vertical" value="{{$index*10}}" ></div></div>
  
  </div>
 
@@ -101,15 +101,7 @@
              }).val(value).change();
         }
 */
-        
-         $('input[type="range"]').rangeslider({
-                      polyfill: false,
-                       rangeClass: 'rangeslider',
-                       disabledClass: 'rangeslider--disabled',
-                       verticalClass: 'rangeslider--vertical',
-                       fillClass: 'rangeslider__fill',
-                       handleClass: 'rangeslider__handle',
-                  }).change();
+       
                   
     }) 
          
