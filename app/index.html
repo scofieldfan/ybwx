@@ -33,7 +33,7 @@
     }
 </style>
 
- <link rel="stylesheet" href="css/output/application.min.css?rev=eab2e7cab18efd86fe07d64926c15b0b"> 
+ <link rel="stylesheet" href="css/output/application.min.css?rev=d94bf1b136ed68199ccb1ab707bfaf1a"> 
  <link rel="stylesheet" href="wx_bx_gl/css/swiper.min.css?rev=377170fcb9a59057009bea5e1aa63aeb"> 
  <link rel="stylesheet" type="text/css" href="bower_components/rangeslider.js/dist/rangeslider.css">
  <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
@@ -68,6 +68,17 @@
   </div>
 </div>
   <div class="fixed-top" id="fix_to_top" style="display:none"><img src="img/top.png" style="width:50px;"></div>
+  <!-- 礼物弹窗 -->
+<div class="swiper-ctrl" id ="share_ctrl">
+  <div class="off" ><img src="img/index_img/X.png" srcset="img/index_img/xx.png 568w, img/index_img/X.png 667w, img/index_img/X.png 736w"></div>
+  <div class="opacity_ctrl" id="opacity_ctrl"></div>
+  <div class="swiper-wrapper swrap_ctrl">
+    <div class="swiper-slide slide" style="width: 260px;" ><img class="img1" onclick="goSports()" src="img/index_img/jixian_big.png" ></div>
+    <div class="swiper-slide slide" style="width: 260px;" ><img class="img2" onclick="goIndexShare()" src="img/index_img/five_big.png" ></div>
+  </div>
+</div>
+<script src="wx_bx_gl/js/swiper.min.js"></script>
+<!-- /wrapper -->
   <script src="js/output/application.min.js?rev=88739c0e9e2ee221f068348013cdf6a7"></script>
   <!--
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -77,11 +88,10 @@
   <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
   <script src="bower_components/angular-resource/angular-resource.min.js"></script>
    -->
-
   <script src="js/util.js?rev=899d0880f631beb0c245dc5ca5296810"></script>
-  <script src="js/app.js?rev=abc15f83a5d3aaefb68b7c29a7483991"></script>
-  <script src="js/main_controllers.js?rev=382ae4d702a732231bb5788ee0e7a6cf"></script>
-  <script src="js/temai_controllers.js?rev=8cd7870296ad6b3e5aec63ce7f2bdf51"></script>
+  <script src="js/app.js?rev=c1f3c73eaf9514f64d20b4dea47ab18c"></script>
+  <script src="js/main_controllers.js?rev=1c825cb499129a148f323206681d357e"></script>
+  <script src="js/temai_controllers.js?rev=f2866d99bbb16d9e66ccd909fb786b01"></script>
   <script src="js/baodan_management_controller.js?rev=1606c8c00fe9b9a4623dc1855ffedd78"></script>
   <script src="js/directives.js?rev=57d74af2016e6c30d8b9b057ef03947a"></script>
   <script src="js/jquery.piemenu.js?rev=1528aa5bcb7c6345a39322be792f0092"></script>
@@ -135,7 +145,21 @@
   window.onerror = function(message,file,line){
     _hmt.push(['_trackEvent', 'window_onerror','file:'+file+'_line:'+line+'_message:'+message]);
   }
- 
+ /*Swiper Js*/
+   var swipe = new Swiper('.swiper-ctrl', {
+      slidesPerView: 1.5,
+      centeredSlides: true,
+      paginationClickable: true,
+      spaceBetween: 40,
+      width : window.innerWidth
+  });
+    function goSports() {
+      window.location = "/wx_share.html#/jixian";
+    }
+     function goIndexShare() {
+      window.location = "/wx_share.html#/index";
+    }
+</script>
   </script>
   <img src="img/slider-btn.png?v=23423" id="tip-img" style="opacity: 0;position: absolute;left:-200000px;">
 </body>

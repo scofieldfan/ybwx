@@ -155,12 +155,13 @@ header{
 				@include justify-content(center);	
 
 				.hot,.special_offer{
-					display: inline-block;
+					// display: inline-block;
 					background-color: #ff5c00;
-					border-radius:4px;
+					border-radius:3px;
 					color:#fff;
-					padding:0px 3px;
-					font-size:13px;
+					padding: 0.01rem .03rem;
+				    font-size: .1rem;
+				    margin-top: 1px;
 					}
 				.special_offer {
 					background-color: #ff005a;

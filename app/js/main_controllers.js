@@ -508,18 +508,12 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 		}
 		$('#gift').click(function() {
 			$("#share_ctrl").show();
-		})
+		});
 		 $("body").on("click", "#share_ctrl", function() {
 		 	$("#share_ctrl").hide();
 		 }).on("click","#opacity_ctrl",function() {
 		 	$("#share_ctrl").hide();
 		 })
-		$scope.goSports = function() {
-		  window.location = "/wx_share.html#/jixian";
-		}
-		$scope.goIndexShare = function() {
-		  window.location = "/wx_share.html#/index";
-		}
 		$scope.showTip = function() {
 			_hmt.push(['_trackEvent', 'index', 'index_showTip']);
 			// $("#share").show();
