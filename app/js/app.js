@@ -91,7 +91,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/toubao_dingzhi_all.html',
       controller: 'ybwxToubaoDingzhiAllCtrl',
       title: "确认投保",
-      css:'css/toubao.css?rev=d41d8cd98f00b204e9800998ecf8427e'
+      css:'css/toubao.css?rev=068e5e2c1f4916439fa5506df6a1e44d'
     }) .when('/verify_information', {
       templateUrl: 'partials/verify_information.html',
       controller: 'ybwxverify_informationCtrl',
