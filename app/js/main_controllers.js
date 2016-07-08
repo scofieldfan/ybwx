@@ -5,40 +5,41 @@
 var mainControllers = angular.module('mainControllers', []);
 
 var api = {
-		'get_insurances': '/ybwx-web/api/insurance_orders',
-		'get_insurance_detail': '/ybwx-web/api/insurance_order',
-		'get_insurance_index': '/ybwx-web/api/aggregate_score',
-		'get_insurances_selling': '/ybwx-web/api/insurance/selling',
-		'get_insurance_category':'/ybwx-web/api/insurance/insurance_category',
-		'get_insurance_category_insurance':'/ybwx-web/api/insurance/insurance_category_insurance',
-		'get_insurances_detail': '/ybwx-web/api/insurance/plans',
-		'get_insurances_mask': '/ybwx-web/api/insurance/float/{productId}',
-		'get_recommend': '/ybwx-web/api/recommend_view/{type}',
-		'get_recommend_coverages': '/ybwx-web/api/recommend_coverages',
-		'get_recommend_plans': '/ybwx-web/api/recommend_plans',
-		'get_estimate_money': '/ybwx-web/api/recommend_premium',
-		'get_restrictions': '/ybwx-web/api/recommend_restrictions',
-		'get_score_analysis_new': '/ybwx-web/api/single_score/{openId}/{type}',
-		'get_score_analysis': '/ybwx-web/api/score_analysis/{openId}/{type}',
-		'get_industries_1': '/ybwx-web/api/industries',
-		'get_industries_2': '/ybwx-web/api/occupations/',
-		'get_industries_3': '/ybwx-web/api/jobs/',
-		'pre_insure': '/ybwx-web/api/insurance/pre_insure',
-		'insure': '/ybwx-web/api/insurance/insure',
-		'send_bd': '/ybwx-web/api/send_policy',
-		'pay': '/ybwx-web/api/pay',
-		'get_user_info': '/ybwx-web/user/info/wechat/{openId}',
-		'set_user_info': '/ybwx-web/user/info/update',
-		'upload_policy_image': '/ybwx-web/api/upload_policy_image',
-		'get_policies_list': '/ybwx-web/api/policies',
-		'get_policy_detail': '/ybwx-web/api/policy',
-		'signature': '/ybwx-diplomat/wechat/js_signature',
-		'get_claim_info': '/ybwx-web/api/claim_info/{id}',
-		'get_verfiy_policy': '/ybwx-web/api/policies/verify',
-		'policy_verfiy': '/ybwx-web/api/verify',
-		'get_policy_verfiyinfo': '/ybwx-web/api/verify_info/{id}',
-		'temai_index':'/ybwx-web/api/insurance/selling_page'
-	}
+	'get_insurances': '/ybwx-web/api/insurance_orders',
+	'get_insurance_detail': '/ybwx-web/api/insurance_order',
+	'get_insurance_index': '/ybwx-web/api/aggregate_score',
+	'get_insurances_selling': '/ybwx-web/api/insurance/selling',
+	'get_insurance_category': '/ybwx-web/api/insurance/insurance_category',
+	'get_insurance_category_insurance': '/ybwx-web/api/insurance/insurance_category_insurance',
+	'get_insurances_detail': '/ybwx-web/api/insurance/plans',
+	'get_insurances_mask': '/ybwx-web/api/insurance/float/{productId}',
+	'get_recommend': '/ybwx-web/api/recommend_view/{type}',
+	'get_recommend_coverages': '/ybwx-web/api/recommend_coverages',
+	'get_recommend_plans': '/ybwx-web/api/recommend_plans',
+	'get_estimate_money': '/ybwx-web/api/recommend_premium',
+	'get_recommend_suggestion': '/ybwx-web/api/recommend/suggestion',
+	'get_restrictions': '/ybwx-web/api/recommend_restrictions',
+	'get_score_analysis_new': '/ybwx-web/api/single_score/{openId}/{type}',
+	'get_score_analysis': '/ybwx-web/api/score_analysis/{openId}/{type}',
+	'get_industries_1': '/ybwx-web/api/industries',
+	'get_industries_2': '/ybwx-web/api/occupations/',
+	'get_industries_3': '/ybwx-web/api/jobs/',
+	'pre_insure': '/ybwx-web/api/insurance/pre_insure',
+	'insure': '/ybwx-web/api/insurance/insure',
+	'send_bd': '/ybwx-web/api/send_policy',
+	'pay': '/ybwx-web/api/pay',
+	'get_user_info': '/ybwx-web/user/info/wechat/{openId}',
+	'set_user_info': '/ybwx-web/user/info/update',
+	'upload_policy_image': '/ybwx-web/api/upload_policy_image',
+	'get_policies_list': '/ybwx-web/api/policies',
+	'get_policy_detail': '/ybwx-web/api/policy',
+	'signature': '/ybwx-diplomat/wechat/js_signature',
+	'get_claim_info': '/ybwx-web/api/claim_info/{id}',
+	'get_verfiy_policy': '/ybwx-web/api/policies/verify',
+	'policy_verfiy': '/ybwx-web/api/verify',
+	'get_policy_verfiyinfo': '/ybwx-web/api/verify_info/{id}',
+	'temai_index': '/ybwx-web/api/insurance/selling_page'
+}
 
 
 var insuranceMap = {
@@ -175,19 +176,19 @@ mainControllers.controller('ybwxServiceCtrl', ['$scope', '$routeParams', '$locat
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
 		_hmt.push(['_trackPageview', $location.path()]);
-		
-		var cellClass=".cell-footer";
-		$scope.goIndex = function($event){
+
+		var cellClass = ".cell-footer";
+		$scope.goIndex = function($event) {
 			//$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
 			//$($event.target).parents(cellClass).addClass("hover");
 			$location.path('/').search();
 		}
-		$scope.goTemai = function($event){
+		$scope.goTemai = function($event) {
 			//$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
 			//$($event.target).parents(cellClass).addClass("hover");
 			$location.path('/temaiindex').search();
 		}
-		$scope.goService = function($event){
+		$scope.goService = function($event) {
 			//$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
 			//$($event.target).parents(cellClass).addClass("hover");
 			$location.path('/service').search();
@@ -211,7 +212,7 @@ mainControllers.controller('ybwxServiceCtrl', ['$scope', '$routeParams', '$locat
 		$scope.goContact = function() {
 			$location.path('/contact').search();
 		}
-		
+
 		$scope.goAboutme = function() {
 			window.location.href = "http://mp.weixin.qq.com/s?__biz=MzI0NDE2Mjk2OA==&mid=407057806&idx=1&sn=d6136f57ac70f0ae4504c657355a6989#wechat_redirect";
 		}
@@ -492,13 +493,14 @@ function initPieConfig(sumScore, scores, policyNumber) {
 mainControllers.controller('ybwxPromoteCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 		$scope.goSelect = function(type) {
-			window.location=("#/select?type="+type);
+			window.location = ("#/select?type=" + type);
 			// $location.path("/select?type="+shu);
 		}
 		$scope.goContinue = function() {
 			$location.path('/continue');
 		}
-	}])
+	}
+])
 mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
@@ -509,11 +511,11 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 		$('#gift').click(function() {
 			$("#share_ctrl").show();
 		});
-		 $("body").on("click", "#share_ctrl", function() {
-		 	$("#share_ctrl").hide();
-		 }).on("click","#opacity_ctrl",function() {
-		 	$("#share_ctrl").hide();
-		 })
+		$("body").on("click", "#share_ctrl", function() {
+			$("#share_ctrl").hide();
+		}).on("click", "#opacity_ctrl", function() {
+			$("#share_ctrl").hide();
+		})
 		$scope.showTip = function() {
 			_hmt.push(['_trackEvent', 'index', 'index_showTip']);
 			// $("#share").show();
@@ -523,20 +525,20 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 			_hmt.push(['_trackEvent', 'index', 'index_baodan_guanli']);
 			$location.path('/bdm_list').search();
 		}
-		$scope.goPromote = function(){
+		$scope.goPromote = function() {
 			$location.path('/promote').search();
 		}
-		var cellClass=".cell-footer";
-		$scope.goIndex = function($event){
+		var cellClass = ".cell-footer";
+		$scope.goIndex = function($event) {
 			//$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
 			//$($event.target).parents(cellClass).addClass("hover");
 		}
-		$scope.goTemai = function($event){
+		$scope.goTemai = function($event) {
 			//$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
 			//$($event.target).parents(cellClass).addClass("hover");
 			$location.path('/temaiindex').search();
 		}
-		$scope.goService = function($event){
+		$scope.goService = function($event) {
 			//$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
 			//$($event.target).parents(cellClass).addClass("hover");
 			$location.path('/service').search();
@@ -601,9 +603,9 @@ function updateSumScore() {
 	} else {
 		//sum_score = Math.floor((scoreObj.fanweiScore + scoreObj.moneyScore) / 2);
 		//sum_score = Math.floor((scoreObj.fanweiScore * scoreObj.moneyScore) / 10);
-		 sum_score = Math.floor(scoreObj.fanweiScore);
+		sum_score = Math.floor(scoreObj.fanweiScore);
 	}
-	$("#sum_score").html(sum_score);
+	//$("#sum_score").html(sum_score);
 	if (scoreObj.fanweiScore != 0 && scoreObj.moneyScore != 0) {
 		$("#dzSbButton").removeClass("btn_n_primary_default").addClass("btn_n_primary")
 	} else {
@@ -649,19 +651,25 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 					});
 					// console.log(obj);
 					//console.log(sumInsuredView);
-					CIRCLE.init(res.data.data.coverage_scores, res.data.data.coverage_views, sumInsuredView,$routeParams.type);
+					CIRCLE.init(res.data.data.coverage_scores, res.data.data.coverage_views, sumInsuredView, $routeParams.type);
 				}
 			}, function(res) {
 				console.log(res);
 				util.showToast($rootScope, "服务器错误");
 			});
 		}
-
+		$scope.data = {
+			scoreFix:0
+		}
+		var openId = sessionStorage.getItem("openId");
+		//get_recommend_suggestion
 		$scope.goEstimateMoney = function() {
 			if (scoreObj.fanweiScore == 0 || scoreObj.moneyScore == 0) {
-				$scope.estimateMoney = 0;
+				//$scope.estimateMoney = 0;
 				$scope.$apply();
 			} else {
+
+				/*
 				$http({
 					method: 'POST',
 					headers: {
@@ -674,21 +682,32 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 						"sum_insured_score": scoreObj.moneyScore // 保额分
 					}
 				}).then(function(res) {
-					/*
-				console.log(res);
-				if (res.data && res.data.description) {
-					util.showToast($rootScope, res.data.description);
-				}*/
+
 					if (res.data.code == 0) {
 						$scope.estimateMoney = Math.floor(res.data.data / 100);
 					}
 				}, function(res) {
 					console.log(res);
 					//util.showToast($rootScope, "服务器错误");
-				});
+				});*/
+				$scope.moneyPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_suggestion'], {
+					"open_id": openId,
+					"insurance_type": $routeParams.type, // 保险类型
+					"coverage_score": scoreObj.fanweiScore, // 保障分
+					"sum_insured_score": scoreObj.moneyScore // 保额分
+				}, function(res) {
+					console.log(res);
+					if (res && res.data && res.data.data) {
+						if(res.data.data.score>0){
+							res.data.data.scoreFix = Math.round(res.data.data.score*10)/10; 
+						}
+						$scope.data= res.data.data;
+					}
+				})
 			}
-
 		}
+
+		
 		$scope.goBz = function() {
 			_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_subBtn']);
 			if (scoreObj.fanweiScore == 0 || scoreObj.moneyScore == 0) {
@@ -725,7 +744,7 @@ mainControllers.controller('ybwxJingzhunCtrl', ['$scope', '$routeParams', '$loca
 		_hmt.push(['_trackPageview', $location.path()]);
 
 		//insurance_type":1
-        $scope.isHaveResult = true;
+		$scope.isHaveResult = true;
 		$scope.init = function() {
 			var openId = sessionStorage.getItem("openId");
 			$scope.listPromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurances_selling'], {
@@ -736,10 +755,10 @@ mainControllers.controller('ybwxJingzhunCtrl', ['$scope', '$routeParams', '$loca
 				if (res && res.data && res.data.data) {
 					$scope.list = res.data.data.insurances;
 					if (res.data.data.insurances && 　res.data.data.insurances.length > 0) {
-		            $scope.isHaveResult = true;
-		          } else {
-		            $scope.isHaveResult = false;
-		          }
+						$scope.isHaveResult = true;
+					} else {
+						$scope.isHaveResult = false;
+					}
 				}
 			})
 		}
@@ -800,7 +819,7 @@ mainControllers.controller('ybwxInfoCtrl', ['$scope', '$routeParams', '$location
 					$scope.isExtraNotice = _.filter($scope.data.notices, function(notice) {
 						return notice.extra_notice
 					})
-					console.log("extranotice:"+$scope.isExtraNotice.length);
+					console.log("extranotice:" + $scope.isExtraNotice.length);
 				}
 			})
 		}
@@ -1133,7 +1152,7 @@ mainControllers.controller('ybwxToubaoDingzhiAllCtrl', ['$scope', '$filter', '$r
 				return item.name !== name;
 			})
 			//deleteFamily(name);s
-			
+
 			selectDefaultFamily();
 		}
 		$scope.selectFamily = function() {
@@ -1215,7 +1234,7 @@ mainControllers.controller('ybwxToubaoDingzhiAllCtrl', ['$scope', '$filter', '$r
 			result.setDate(result.getDate() + days);
 			return result;
 		}
-        
+
 		function genInEffectiveDate() {
 			//计算失效日期
 			if ($scope.coverage_period && $scope.coverage_period_type) {
@@ -1322,7 +1341,7 @@ mainControllers.controller('ybwxToubaoDingzhiAllCtrl', ['$scope', '$filter', '$r
 				});
 
 				console.log("isAllOffical:" + $scope.isAllOffical);
-				if($scope.isAllOffical){
+				if ($scope.isAllOffical) {
 					$("#confirmBtn").html("官网购买");
 					$("#submitBtn").html("未开售");
 				}
@@ -1596,11 +1615,11 @@ mainControllers.controller('ybwxToubaoDingzhiAllCtrl', ['$scope', '$filter', '$r
 					if (whiteOpenIds.indexOf(openId)!==-1) {
 						payResponse["order_amount"] = 10;
 					}*/
-					var fitlerResult = whiteOpenIds.filter(function(item){
-					    return item.openid===openId
+					var fitlerResult = whiteOpenIds.filter(function(item) {
+						return item.openid === openId
 					});
-					if(fitlerResult &&  fitlerResult.length>0){
-						payResponse["order_amount"] = 10;	
+					if (fitlerResult && fitlerResult.length > 0) {
+						payResponse["order_amount"] = 10;
 					}
 					$location.path("/pay_select").search(payResponse);
 				});
@@ -1608,10 +1627,19 @@ mainControllers.controller('ybwxToubaoDingzhiAllCtrl', ['$scope', '$filter', '$r
 		}
 	}
 ]);
-var whiteOpenIds = [
-	{ openid:"omP9dwb6u-lamgwOhFqFIcU3QLPk",name:"巴信军"},
-	{ openid:"omP9dwbQiEkPbFE0K6NtVa4d5bF0",name:"Fan"},
-	{ openid:"omP9dwThw9op485Y-6NMp6HywJ0M",name:"郭渊敏"},
-	{ openid:"omP9dwSdKKzWA4D9j1I1Lr1EbHMg",name:"许文科"},
-	{ openid:"omP9dwSHJtzwyRFBCBc3z-jpxwj8",name:"岳文甲"}
-];
+var whiteOpenIds = [{
+	openid: "omP9dwb6u-lamgwOhFqFIcU3QLPk",
+	name: "巴信军"
+}, {
+	openid: "omP9dwbQiEkPbFE0K6NtVa4d5bF0",
+	name: "Fan"
+}, {
+	openid: "omP9dwThw9op485Y-6NMp6HywJ0M",
+	name: "郭渊敏"
+}, {
+	openid: "omP9dwSdKKzWA4D9j1I1Lr1EbHMg",
+	name: "许文科"
+}, {
+	openid: "omP9dwSHJtzwyRFBCBc3z-jpxwj8",
+	name: "岳文甲"
+}];

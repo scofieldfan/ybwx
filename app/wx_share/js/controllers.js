@@ -45,13 +45,14 @@ var api = {
 	}
 wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
 	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
-		var qd = util.getParameterByName("qd");
-		if (!qd) {
-			qd = 'default';
-		}
-		_hmt.push(['_trackPageview', '/wx_share_jixian']);
-		_hmt.push(['_setCustomVar', 1, 'qudao', qd, 1]);
 
+
+		var qd = util.getParameterByName("qd") || $routeParams.qd  ||  'default';
+
+		_hmt.push(['_trackPageview', '/wx_share_jixian']);
+
+
+		_hmt.push(['_setCustomVar', 1, 'jixian_qudao', qd, 1]);
 
 		//_hmt.push(['_trackPageview', '/wx_share_index'+"_qd_"+qd]);
 		$scope.init = function() {
@@ -325,12 +326,10 @@ wxShareControllers.controller('wxSharesuccessCouponCtrl', ['$scope', '$routePara
 
 wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$http', '$location', '$rootScope',
 	function($scope, $routeParams, $http, $location, $rootScope) {
-		var qd = util.getParameterByName("qd");
-		if (!qd) {
-			qd = 'default';
-		}
+		
+		var qd = util.getParameterByName("qd") || $routeParams.qd || 'default';
 		_hmt.push(['_trackPageview', '/wx_share_index']);
-		_hmt.push(['_setCustomVar', 1, 'qudao', qd, 1]);
+		_hmt.push(['_setCustomVar', 1, 'hangkong_qudao', qd, 1]);
 		//_hmt.push(['_trackPageview', '/wx_share_index'+"_qd_"+qd]);
 		$scope.init = function() {
 			$scope.data = {

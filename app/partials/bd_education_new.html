@@ -51,11 +51,27 @@
       text-align: center;
       font-size:15px;
     }
+    .age-insurance{
+        background-color: #fff;
+        padding:15px 10px;
+        color:#555;
+        font-size:13px;
+    }
+    .img-container{
+        margin-top:10px;
+        text-align: center;
+    }
+    .img-container img{
+        width:150px;
+    }
     </style>
-<div class="slider-container">
-    <div class="slider-item" ng-repeat="item in data.elements" on-finish-render="ngRepeatFinished"><div><div class="type">{{item.name}}<div class="percent">{{item.percent}}%</div></div><input type="range" id="rangeInput{{$index}}" data-orientation="vertical" value="{{item.percent}}" disabled=""></div></div>
- 
- </div>
+    <div class="slider-container" ng-if="type!=3">
+        <div class="slider-item" ng-repeat="item in data.elements" on-finish-render="ngRepeatFinished"><div><div class="type">{{item.name}}<div class="percent">{{item.percent}}%</div></div><input type="range" id="rangeInput{{$index}}" data-orientation="vertical" value="{{item.percent}}" disabled=""></div></div>
+    </div>
+    <div  ng-if="type==3" class="age-insurance">
+        寿险是转嫁死亡风险的工具，应对家庭支柱突然身故造成的收入损失风险。
+        <div class="img-container"><img src="img/index/age.jpg" /></div>
+    </div>
 
 <div class="table-container" style="margin-bottom:70px;">
     <div class="table-title">
