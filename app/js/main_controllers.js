@@ -574,7 +574,7 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 					if (res.data.code == 0) {
 						$("#loadingContainer").hide();
 						$scope.data = res.data.data;
-						initPieConfig($scope.data.aggregate_score.toFixed(1), $scope.data.scores, $scope.data.policy);
+						initPieConfig($scope.data.aggregate_score, $scope.data.scores, $scope.data.policy);
 					}
 				}, function(res) {
 					console.log(res);
@@ -669,27 +669,6 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 				$scope.$apply();
 			} else {
 
-				/*
-				$http({
-					method: 'POST',
-					headers: {
-						"Content-Type": "application/json;charset:UTF-8"
-					},
-					url: api['get_estimate_money'],
-					data: {
-						"insurance_type": $routeParams.type, // 保险类型
-						"coverage_score": scoreObj.fanweiScore, // 保障分
-						"sum_insured_score": scoreObj.moneyScore // 保额分
-					}
-				}).then(function(res) {
-
-					if (res.data.code == 0) {
-						$scope.estimateMoney = Math.floor(res.data.data / 100);
-					}
-				}, function(res) {
-					console.log(res);
-					//util.showToast($rootScope, "服务器错误");
-				});*/
 				$scope.moneyPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_suggestion'], {
 					"open_id": openId,
 					"insurance_type": $routeParams.type, // 保险类型
@@ -702,6 +681,7 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 							res.data.data.scoreFix = Math.round(res.data.data.score*10)/10; 
 						}
 						$scope.data= res.data.data;
+
 					}
 				})
 			}
@@ -719,7 +699,7 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 				'coverage_score': scoreObj.fanweiScore,
 				'sum_insured_score': scoreObj.moneyScore,
 				'estimate_money': $scope.estimateMoney,
-				'sum_score': sum_score
+				'sum_score': $scope.data.scoreFix
 			});
 		}
 		$scope.showIntrod = function() {

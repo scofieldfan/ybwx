@@ -406,39 +406,7 @@
                 var anglePercent = (endA - startA) * options.pieConfig[n].percent + startA;
                 drawSector(ctx, options.pieConfig[n].color, centerX, centerY, startA, anglePercent, innerRadius, outterRadius);
 
-                /*
-                 drawLine(ctx,centerX,centerY,anglePercent,bigRadius+5,secHandLength);
-                 drawLine(ctx,centerX,centerY,startA,bigRadius+5,secHandLength);
-                /*
-                var angDis = (endA + 0.04 - startA) / options.num;
-              
-                ctx.lineWidth = 1;
-                for (var i = 0; i < options.num; i++) {
-                    var angle = startA + angDis * i;
-                    var percent = i / options.num;
-                    ctx.beginPath();
-                    ctx.save();
-                    ctx.translate(center, center);
-                    var x1 = Math.cos(angle) * (secHandLength);
-                    var y1 = Math.sin(angle) * (secHandLength);
-                    var x2 = Math.cos(angle) * (secHandLength + (secHandLength / 8));
-                    var y2 = Math.sin(angle) * (secHandLength + (secHandLength / 8));
-
-                    if (percent < options.pieConfig[n].percent) {
-                        ctx.strokeStyle = options.pieConfig[n].color;
-                    } else {
-                        ctx.strokeStyle = "#bcbcbc";
-                    }
-                    // ctx.strokeStyle="#000";
-                    ctx.moveTo(x1, y1);
-                    ctx.lineTo(x2, y2);
-                    //console.log(x1+":"+y1);
-                    //console.log(x2+":"+y2);
-                    ctx.stroke();
-                    ctx.closePath();
-                    ctx.restore();
-                }
-                */
+                
 
                 var textHandLength = innerRadius + (outterRadius - innerRadius) / 2;
                 var middleAngle = (startA + endA) / 2;
@@ -448,7 +416,7 @@
                 ctx.textAlign = "center";
                 ctx.font = "normal 35px Arial,Microsoft YaHei";
                 ctx.fillStyle = options.pieConfig[n].textColor;
-                ctx.fillText(Math.floor((options.pieConfig[n].percent * 10) * 10) / 10, Math.cos(middleAngle) * textHandLength, Math.sin(middleAngle) * textHandLength + 15);
+                ctx.fillText(Math.round(options.pieConfig[n].percent * 100) / 10, Math.cos(middleAngle) * textHandLength, Math.sin(middleAngle) * textHandLength + 15);
                 ctx.restore();
                 ctx.closePath();
 

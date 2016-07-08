@@ -60,7 +60,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/bd_education_new.html',
       controller: 'ybwxBdEducationNewCtrl',
       title: "保障评分",
-      css:'css/bd_education_new.css?rev=158ed7140a7f36e66cf6a404e91f2c9a'
+      css:'css/bd_education_new.css?rev=3afbcaddbe46f0ed7d73aba7e8a691c8'
     })
     /*
     .when('/bd_education', {

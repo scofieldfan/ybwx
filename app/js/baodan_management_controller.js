@@ -114,11 +114,8 @@ bdControllers.controller('ybwxBdEducationNewCtrl', ['$scope', '$routeParams', '$
 				var openId = sessionStorage.getItem("openId");
 				$scope.myPromise = getHttpPromise($http, $rootScope, 'GET', api['get_score_analysis_new'].replace('{openId}', openId).replace('{type}', type), {}, function(res) {
 					if (res && res.data && res.data.data) {
+						res.data.data.score = Math.round(res.data.data.score*10)/10;
 						$scope.data = res.data.data;
-						 var inputs =  $('input[type="range"]');
-						 for(var i=0;i<inputs.length;i++){
-						 	var input = $(inputs[i]).length;
-						 }
 					}
 				})
 			});

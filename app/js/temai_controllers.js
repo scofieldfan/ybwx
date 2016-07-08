@@ -181,11 +181,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$routeParams', '$locat
     $scope.init = function() {
 
 
-      var code = util.getParameterByName("code");
-      if (!code) {
-        code = $routeParams.code;
-      };
-
+      var code = util.getParameterByName("code") || $routeParams.code;
 
       util.getOpenId(code).then(function() {
 
@@ -226,7 +222,6 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$routeParams', '$locat
               }
 
 
-              console.log();
               plan.main_coverage_beans = plan.coverage_beans.filter(function(item) {
                 return item.coverage_type == 1;
               });
@@ -362,8 +357,6 @@ ybwxControllers.controller('wxDetailCtrl', ['$scope', '$routeParams', '$location
     $("#detail-template").load("template/product_" + $routeParams.product_id + ".html");
 
     _hmt.push(['_trackPageview', $location.path() + "_id:" + $routeParams.product_id + "_" + "from:" + $routeParams.from]);
-
-
 
     $scope.genDanwei = function(type) {
       return coveragePeriodMap[type];
