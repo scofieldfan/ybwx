@@ -62,15 +62,15 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/bd_education_new.html',
       controller: 'ybwxBdEducationNewCtrl',
       title: "保障评分",
-      css:'css/bd_education_new.css?rev=3afbcaddbe46f0ed7d73aba7e8a691c8'
+      css:'css/bd_education_new.css?rev=d02fc94373ceff4446333be0b0fec223'
     })
-    /*
-    .when('/bd_education', {
+    
+    .when('/bd_education_old', {
       templateUrl: 'partials/bd_education.html',
       controller: 'ybwxBdEducationCtrl',
       title: "保障评分",
       css:'css/bd_education.css?rev=f520106f95ff63b6ab7129260491c9d7'
-    })*/
+    })/**/
     .when('/select', {
       templateUrl: 'partials/select_part.html?v=123',
       controller: 'ybwxSelectCtrl',
@@ -96,7 +96,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/toubao_dingzhi_all.html',
       controller: 'ybwxToubaoDingzhiAllCtrl',
       title: "确认投保",
-      css:'css/toubao.css?rev=068e5e2c1f4916439fa5506df6a1e44d'
+      css:'css/toubao.css?rev=f3ffc1c7c6127270ee93c5a79a4b591c'
     }) .when('/verify_information', {
       templateUrl: 'partials/verify_information.html',
       controller: 'ybwxverify_informationCtrl',

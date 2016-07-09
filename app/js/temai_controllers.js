@@ -279,12 +279,12 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$routeParams', '$locat
         $(element).siblings().removeClass("ng-hide");
         $(element).find("span").html("收起");
         $(element).attr("data-switch", "off");
-        $(element).find("img").addClass("up");
+        $(element).find(".icon-arrow").addClass("up");
       } else {
         $(element).siblings(":gt(6)").addClass("ng-hide");
         $(element).find("span").html("查看更多");
         $(element).attr("data-switch", "on");
-        $(element).find("img").removeClass("up");
+        $(element).find(".icon-arrow").removeClass("up");
       }
     }
     $scope.changeTaoCan = function($event, item) {

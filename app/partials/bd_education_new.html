@@ -9,6 +9,8 @@
         border-radius: 4px;
         position:relative;
         background-color:#f0f0f0;
+        box-shadow: none;
+        -webkit-box-shadow:none;
     }
     .rangeslider--vertical .rangeslider__handle{
         left:-5.5px;
@@ -26,6 +28,8 @@
         width:100%;
         background-color:#acd0ff;
         position:absolute;
+        -webkit-box-shadow:none;
+        box-shadow: none;
     }
 
     .rangeslider__handle{
@@ -76,19 +80,21 @@
 <div class="table-container" style="margin-bottom:70px;">
     <div class="table-title">
         <div class="cell_hd cell_primary left"><div class="icon-guard"></div>保障明细</div> 
-        <div class="cell_hd cell_primary right" ng-click="goBdmList()">查看</div>
+        <div class="cell_hd cell_primary right" ng-click="goBdmList()"><span>查看</span> <div class="icon-arrow right-rotate" ></div></div>
     </div>
+
+    <div class="table-wrapper">
     <table ng-if="data.coverages">
         <tr class="bd-tr" ng-repeat="item in data.coverages" ng-hide="$index>=6">
-            <td  style="text-align:left;">{{item.name}}</td>
-            <td  style="text-align:right;"> {{processMoney(item.sum_insured)}}</td>
+            <td style="text-align:left;white-space:nowrap; text-overflow:ellipsis;-o-text-overflow:ellipsis; overflow:hidden;">{{item.name}}</td>
+            <td style="text-align:right;"> {{processMoney(item.sum_insured)}}</td>
         </tr>
-        <tr class="more"  ng-show=" data.coverages.length > 7" data-switch="on"  ng-click="more($event)">
-          <td colspan="2" ><span>查看更多</span><div class="icon-arrow" ></div></td>
-        </tr>
-
     </table>
-    <div class="noresult" ng-if="!data.coverages">
+    </div>
+     <div class="more"  ng-show=" data.coverages.length > 7" data-switch="on"  ng-click="more($event)">
+         <span>查看更多</span><div class="icon-arrow" ></div>
+      </div>
+    <div class="noresult" ng-if="!data.coverages || data.coverages.length==0">
       您暂时没有任何保障 
     </div>
 </div>

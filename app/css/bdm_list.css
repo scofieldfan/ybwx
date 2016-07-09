@@ -254,6 +254,7 @@ header .subtitle {
 	width: 100%;
 	border-top: 1px solid #e2e2e2;
 	z-index: 100;
+	max-width: 640px;
 }
 .pay_container img{
 	width:14px;
