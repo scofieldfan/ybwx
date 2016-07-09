@@ -6,21 +6,42 @@ var ybwxControllers = angular.module('ybwxControllers', []);
 
 
 
-ybwxControllers.controller('ybwxProductInfoCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
-  function($scope, $routeParams, $location, $http, $rootScope) {
+/*保险限制页面*/
+ybwxControllers.controller('ybwxProductInfoCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope', 'sharedRestrictions',
+  function($scope, $routeParams, $location, $http, $rootScope, sharedRestrictions) {
+    $scope.data = sharedRestrictions.getRestrictions();
+    console.log(sharedRestrictions.getRestrictions());
+    if ($scope.data.health_notice) {
+      $scope.data.healths = $scope.data.health_notice.split("\r\n");
+    }
+    if ($scope.data.extra_notice) {
+      $scope.data.extras = $scope.data.health_notice.split("\r\n");
+    }
+    if ($scope.data.locale_notice) {
+      $scope.data.locales = $scope.data.locale_notice.split("\r\n");
+    }
 
-
+    $scope.showTip = function() {
+      _hmt.push(['_trackEvent', 'information', 'information_yesBtn']);
+      util.showToast($rootScope, "很抱歉，被保险人不满足该产品投保规定。详情请联系诺贝：400-992-0205");
+    }
+    $scope.goToubao = function() {
+      _hmt.push(['_trackEvent', 'information', 'information_subBtn']);
+      $location.path('/tb_dz').search($routeParams);
+    }
   }
 ]);
+
+
 ybwxControllers.controller('wxTemaiIndexCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
   function($scope, $routeParams, $location, $http, $rootScope) {
 
     util.share({
-              shareUrl: "http://web.youbaowuxian.com/#/temaiindex",
-              shareImg: "http://web.youbaowuxian.com/img/icon.jpg",
-              shareTitle: "诺贝保险管家-特卖商城",
-              shareDesc: "严选优质产品，全网低价出售，还有更多福利免费领取！"
-    });//定义本页分享形式
+      shareUrl: "http://web.youbaowuxian.com/#/temaiindex",
+      shareImg: "http://web.youbaowuxian.com/img/icon.jpg",
+      shareTitle: "诺贝保险管家-特卖商城",
+      shareDesc: "严选优质产品，全网低价出售，还有更多福利免费领取！"
+    }); //定义本页分享形式
     $scope.loadReady = false;
     var code = util.getParameterByName("code") || $routeParams.code;
     util.getOpenId(code).then(function() {
@@ -31,44 +52,44 @@ ybwxControllers.controller('wxTemaiIndexCtrl', ['$scope', '$routeParams', '$loca
         if (res && res.data && res.data.data) {
           $scope.categorys = res.data.data.categorys;
         }
-         $scope.loadReady = true;
+        $scope.loadReady = true;
       })
     });
-    var cellClass=".cell-footer";
-    $scope.goIndex = function($event){
+    var cellClass = ".cell-footer";
+    $scope.goIndex = function($event) {
       //$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
       //$($event.target).parents(cellClass).addClass("hover");
       $location.path('/index').search();
     }
-    $scope.goTemai = function($event){
+    $scope.goTemai = function($event) {
       //$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
       //$($event.target).parents(cellClass).addClass("hover");
       $location.path('/temaiindex').search();
     }
-    $scope.goService = function($event){
-     // $($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
-     // $($event.target).parents(cellClass).addClass("hover");
+    $scope.goService = function($event) {
+      // $($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
+      // $($event.target).parents(cellClass).addClass("hover");
       $location.path('/service').search();
     }
-      $("#foucs_button").click(function(event){
-        $(".qrcode-wrapper").show();
-        event.preventDefault();
-        event.stopPropagation();
-     })
-      $(".qrcode-container").click(function(event){
-         event.preventDefault();
-         event.stopPropagation();
-     })
-      $(".qrcode-wrapper").click(function(event){
-       $(".qrcode-wrapper").hide();
-     })
+    $("#foucs_button").click(function(event) {
+      $(".qrcode-wrapper").show();
+      event.preventDefault();
+      event.stopPropagation();
+    })
+    $(".qrcode-container").click(function(event) {
+      event.preventDefault();
+      event.stopPropagation();
+    })
+    $(".qrcode-wrapper").click(function(event) {
+      $(".qrcode-wrapper").hide();
+    })
     $scope.goCategory = function(categoryId) {
       $location.path("/temailist").search({
         "category_id": categoryId
       });
     }
     $scope.goDetail = function(id) {
-     // var product_id = [64];
+      // var product_id = [64];
       if (newDetailProductId.indexOf(id) !== -1) {
         $location.path("/temaidetail").search({
           "product_id": id
@@ -79,18 +100,18 @@ ybwxControllers.controller('wxTemaiIndexCtrl', ['$scope', '$routeParams', '$loca
         });
       }
     }
-    $("body").on("click","#showShare",function(){
+    $("body").on("click", "#showShare", function() {
       $("#share_ctrl").show();
     })
     $("body").on("click", "#share_ctrl", function() {
       $("#share_ctrl").hide();
-     }).on("click","#opacity_ctrl",function() {
+    }).on("click", "#opacity_ctrl", function() {
       $("#share_ctrl").hide();
-     })
+    })
   }
 ]);
 // var product_id = [64];
-var newDetailProductId = [64,94,18,100,22,9];
+var newDetailProductId = [64, 94, 18, 100, 22, 9];
 /*特卖list*/
 ybwxControllers.controller('wxTemaiListCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
   function($scope, $routeParams, $location, $http, $rootScope) {
@@ -109,9 +130,6 @@ ybwxControllers.controller('wxTemaiListCtrl', ['$scope', '$routeParams', '$locat
       $scope.listPromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurance_category'], {
         "open_id": openId
       }, function(res) {
-        console.log('tailu........');
-        console.log(res);
-        console.log('tailu........');
         if (res && res.data && res.data.data) {
           $scope.navItems = res.data.data.categories;
         } else {
@@ -139,7 +157,7 @@ ybwxControllers.controller('wxTemaiListCtrl', ['$scope', '$routeParams', '$locat
         $scope.getCateList(defaultCategory);
       });
     }
-   
+
     $scope.goCateDetail = function(id) {
       if (newDetailProductId.indexOf(id) !== -1) {
         $location.path("/temaidetail").search({
@@ -170,8 +188,8 @@ var coveragePeriodMap = {
   5: "天"
 }
 
-ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope', '$sce', 'sharedRestrictions',
-  function($scope, $routeParams, $location, $http, $rootScope, $sce, sharedRestrictions) {
+ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope', 'sharedRestrictions',
+  function($scope, $routeParams, $location, $http, $rootScope, sharedRestrictions) {
 
     _hmt.push(['_trackPageview', $location.path()]);
 
@@ -220,7 +238,6 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$routeParams', '$locat
                   plan.coverage_beans[j].sum_insured = plan.coverage_beans[j].sum_insured.substring(0, plan.coverage_beans[j].sum_insured.length - 1);
                 }
               }
-
 
               plan.main_coverage_beans = plan.coverage_beans.filter(function(item) {
                 return item.coverage_type == 1;
@@ -323,9 +340,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$routeParams', '$locat
         "from": "list",
         "plan_id": selectPlan
       };
-      if ($routeParams.is_test) {
-        postData["is_test"] = $routeParams.is_test;
-      }
+
       if ($scope.coverage_period_type) {
         postData["coverage_period_type"] = $scope.coverage_period_type;
       };
@@ -350,24 +365,20 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$routeParams', '$locat
   }
 ]);
 
-ybwxControllers.controller('wxDetailCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope', '$sce',
-  function($scope, $routeParams, $location, $http, $rootScope, $sce) {
+ybwxControllers.controller('wxDetailCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope', 'sharedRestrictions',
+  function($scope, $routeParams, $location, $http, $rootScope, sharedRestrictions) {
 
 
     $("#detail-template").load("template/product_" + $routeParams.product_id + ".html");
 
     _hmt.push(['_trackPageview', $location.path() + "_id:" + $routeParams.product_id + "_" + "from:" + $routeParams.from]);
-
+    
     $scope.genDanwei = function(type) {
       return coveragePeriodMap[type];
     }
     $scope.init = function() {
 
-
-      var code = util.getParameterByName("code");
-      if (!code) {
-        code = $routeParams.code;
-      };
+      var code = util.getParameterByName("code") || $routeParams.code;
 
       util.getOpenId(code).then(function() {
 
@@ -376,8 +387,7 @@ ybwxControllers.controller('wxDetailCtrl', ['$scope', '$routeParams', '$location
         $scope.maskPromise = getHttpPromise($http, $rootScope, 'GET', api['get_insurances_mask'].replace("{productId}", $routeParams.product_id), {}, function(res) {
 
           if (res.data && res.data.data && res.data.data.plans) {
-            console.log(".................");
-            console.log(res.data.data.plans);
+
             $scope.maskPlans = res.data.data.plans;
             $scope.maskSelectPlan = $scope.maskPlans[Object.keys($scope.maskPlans)[0]];
             $scope.coverage_period = $scope.maskSelectPlan.coverage_periods[0];
@@ -386,15 +396,12 @@ ybwxControllers.controller('wxDetailCtrl', ['$scope', '$routeParams', '$location
               $scope.charge_period = $scope.maskSelectPlan.charge_periods[0];
             }
             $scope.charge_period_type = $scope.maskSelectPlan.charge_period_type;
-
             $scope.haveMask = true;
           } else {
             $scope.haveMask = false;
           }
 
         })
-
-
 
         $scope.myPromise = $http({
           method: 'POST',
@@ -406,7 +413,7 @@ ybwxControllers.controller('wxDetailCtrl', ['$scope', '$routeParams', '$location
             "insurance_id": $routeParams.product_id
           }
         }).then(function(res) {
-          console.log(res);
+
           if (res && res.data && res.data.data) {
             for (var i = 0; i < res.data.data.insurance_plans.length; i++) {
               var plan = res.data.data.insurance_plans[i];
@@ -421,7 +428,11 @@ ybwxControllers.controller('wxDetailCtrl', ['$scope', '$routeParams', '$location
             $scope.money = res.data.data.insurance_plans[0].premium;
             $scope.plan = res.data.data.insurance_plans[0];
             $scope.danwei = genDuration($scope.plan.coverage_period_type);
-
+            sharedRestrictions.setRestrictions({
+              health_notice: res.data.data.health_notice,
+              extra_notice: res.data.data.extra_notice,
+              locale_notice: res.data.data.locale_notice
+            })
             util.share({
               shareUrl: "http://web.youbaowuxian.com/#/detail?product_id=" + $routeParams.product_id,
               shareImg: $scope.data.small_image,
@@ -510,7 +521,11 @@ ybwxControllers.controller('wxDetailCtrl', ['$scope', '$routeParams', '$location
         postData["charge_period"] = $scope.charge_period;
       }
 
-      $location.path("/tb_dz").search(postData);
+      if ($scope.data.health_notice || $scope.data.extra_notice || $scope.data.locale_notice) {
+        $location.path("/productinformation").search(postData);
+      } else {
+        $location.path("/tb_dz").search(postData);
+      }
     }
   }
 ]);

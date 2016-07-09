@@ -83,7 +83,9 @@ gulp.task('cssMin', function() {
 			'app/css/share.css',
 			'app/css/globe.css',
 			'app/css/app.css',
-			'app/css/angular-busy.min.css'
+			'app/css/angular-busy.min.css',
+			'app/wx_bx_gl/css/swiper.min.css',
+			'app/bower_components/rangeslider.js/dist/rangeslider.css'
 		], {
 			base: 'app/'
 		}).pipe(cleanCSS())
@@ -96,16 +98,20 @@ gulp.task('jsMin', function() {
 			'app/bower_components/underscore/underscore-min.js',
 			'app/bower_components/angular/angular.min.js',
 			'app/bower_components/angular-route/angular-route.min.js',
-			'app/bower_components/angular-cookies/angular-cookies.min.js',
-			'app/bower_components/angular-resource/angular-resource.min.js'
-			/*
-			'app/js/util.js'
+			'app/js/angular-busy.min.js',
+			'app/bower_components/angular-route-styles/route-styles.js',
+			'app/bower_components/rangeslider.js/dist/rangeslider.min.js',
+			'app/wx_bx_gl/js/swiper.min.js',
+			'app/js/util.js',
 			'app/js/app.js',
 			'app/js/main_controllers.js',
 			'app/js/temai_controllers.js',
-			'app/js/directives.js',
-			'app/js/jquery.piemenu.js',
-			'app/js/angular-busy.min.js'*/
+			'app/js/baodan_management_controller.js',
+			'app/js/service_controllers.js',
+			'app/js/transaction_controllers.js',
+			'app/js/jquery.piemenu.js'
+			
+			/**/
 
 		], {
 			base: 'app/'

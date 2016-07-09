@@ -4,7 +4,6 @@
 
 var ybwxApp = angular.module('ybwxApp', [
   'ngRoute',
-  'ngCookies',
   'cgBusy',
   'ybwx-directives',
   'ybwxControllers',
@@ -57,7 +56,8 @@ ybwxApp.config(['$routeProvider',
     when('/index', {
       templateUrl: 'partials/index_part.html?v=123',
       controller: 'ybwxIndexCtrl',
-      title: '诺贝保险管家'
+      title: '诺贝保险管家',
+      css:'css/index_part.css?rev=70e9ef4a2d64a2c158e07e16703a5b4f'
     }).when('/bd_education', {
       templateUrl: 'partials/bd_education_new.html',
       controller: 'ybwxBdEducationNewCtrl',
@@ -200,20 +200,6 @@ ybwxApp.config(['$routeProvider',
     });
   }
 ]);
-
-//ng-repeat ready的事件
-ybwxApp.directive('onFinishRender', function ($timeout) {
-    return {
-        restrict: 'A',
-        link: function (scope, element, attr) {
-            if (scope.$last === true) {
-                $timeout(function () {
-                    scope.$emit(attr.onFinishRender);
-                });
-            }
-        }
-    }
-});
 
 
 
