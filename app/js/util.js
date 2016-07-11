@@ -105,7 +105,7 @@ var util = {
 		return $.when();
 	},
 	getSign: function() {
-		var shareUrl = "http://web.youbaowuxian.com";
+		var shareUrl = "http://web.youbaowuxian.com#/index";
 		return $.when($.ajax({
 			type: 'GET',
 			url: util.api["signature"],

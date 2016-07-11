@@ -62,7 +62,7 @@ var util={
 				// config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
 			
 				var shareTitle = shareObj.shareTitle || "送你一份500万航空意外险，买机票立省30元！";
-				var url = shareObj.shareUrl || "http://web.youbaowuxian.com/wx_share.html";
+				var url = shareObj.shareUrl || "http://web.youbaowuxian.com/wx_share.html#/index";
 				var shareDesc = shareObj.shareDesc || "集齐3份航空意外险保险券，即可免费兑换一份航班延误险保险券！";
 				var shareImg = shareObj.shareImg ||"http://web.youbaowuxian.com/wx_share/img/share61.jpg";
 				var openId = shareObj.openId || "";

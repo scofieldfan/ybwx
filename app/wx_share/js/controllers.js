@@ -335,6 +335,9 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 				recommend_times: 0
 			}
 			var code = util.getParameterByName("code") || $routeParams.code;
+			if(!code){
+				redirectWeChatUrl();
+			}
 			$("#loadingToastCommon").show();
 			util.getOpenId(code).then(function() {
 
