@@ -131,6 +131,10 @@
           }
           document.body.removeChild(testEle);
       }
+
+       window.onerror = function(message,file,line){
+        _hmt.push(['_trackEvent', 'window_onerror','file:'+file+'_line:'+line+'_message:'+message]);
+      }
    })
   </script>
   <link rel="stylesheet" href="wx_share/css/sports.css?rev=d08b245890da0fe97e60b3d295a41a67"><!--提前加载css，防止页面卡-->

@@ -13,7 +13,7 @@
 		<p>本产品由<span class="blue">{{order.insurance_company_name}}</span>提供</p>
 	</div>
 
-	<div class="bd_detail_btn_border"  ng-click="showDialog()" ng-if="getBdStatus(status,order.order_status)!=='待支付'">电子保单 <span class="fr blue ">发送</span></div>
+	<div class="bd_detail_btn_border"  ng-click="showDialog()" ng-if="getBdStatus(status,order.order_status)=='待生效' || getBdStatus(status,order.order_status)=='已失效' || getBdStatus(status,order.order_status)=='保障中'"　 >电子保单 <span class="fr blue ">发送</span></div>
 
 </div>
 
@@ -32,71 +32,6 @@
 	</div>
 	
 </div>
-
-<!--
-<header >
-		<nav class="header-nav">
-			<a href="#/bd_list" class="header-left">
-				<img src="wx_share/img/detail_left.png" >
-			</a>
-			<a href="#" class="header-center">保单详情</a>
-		</nav>
-	</header>
-		<ul class="ul_container" >
-
-
-			<li class="list_item" >
-				<div > {{order.order_name}}<span class="fr bd_status_text " >{{order.order_status_text}}</span> </div>
-			
-				<div >保险公司<span class="fr bd_color">{{order.insurance_company_name}}</span></div>
-				<div > 保单号<span class="fr bd_color">{{order.policy_no}}</span></div>
-				
-				<div > 投保时间<span class="fr bd_color">{{order.create_time  |  date:'yyyy-MM-dd HH:mm:ss' }}</span></div>
-				
-				<div > 生效时间<span class="fr bd_color">{{order.effective_date |  date:'yyyy-MM-dd 00:00:00'}}</span></div>
-				
-				<div > 截止时间<span class="fr bd_color">{{order.ineffective_date |  date:'yyyy-MM-dd 23:59:59'}}</span></div>
-				
-				<div >保费<span class="fr red">￥{{order.order_amount/100 | number:2}}</span></div>
-				
-				<div >保额<span class="fr red">￥{{order.sum_insured/100 | number:2 }}</span></div>
-			</li>
-	
-
-			<li class="list_item" >
-				<div>	
-					<div class="fold" ><span class="fl ">保单内容</span></div>
-					<div class="subitem" ><span class="fl bd_color"> {{order.effective_date  |  date:'yyyy-MM-dd 00:00:00' }} 至 {{order.ineffective_date |  date:'yyyy-MM-dd 23:59:59'}}</span></div>
-					<div class="subitem" ><span class="fl bd_color"> 飞机人身意外身故100万</span></div>
-					<div class="subitem" ><span class="fl bd_color"> 飞机人身意外残疾100万</span></div>
-				</div>
-				
-				<div > 电子保单
-				
-				<a href="{{order.policy_url}}" target="_blank"><span class="fr bd_strong">查看</span></a>
-				
-				<span class="fr bd_strong"   style="margin-right:25px;" ng-click="showDialog()">发送</span>
-
-				</div>
-			</li>
-			<li class="list_item" >
-				<div>
-
-					<div class="fold">投保人<span class="fr bd_color" style="margin-right:25px;">{{order.name}}</span></div>
-					<div class="subitem" > 手机号<span class="fr bd_color">{{order.mobile}}</span></div>
-					<div  class="subitem"> 身份证<span class="fr bd_color">{{order.social_id}}</span></div>
-
-				</div>
-				<div>
-					<div class="fold"> 被保人<span class="fr bd_color"  style="margin-right:25px;">{{order.insured_name}}</span></div>
-					<div class="subitem">手机号<span class="fr bd_color">{{order.insured_mobile}}</span></div>
-					<div class="subitem"> 身份证<span class="fr bd_color">{{order.insured_social_id}}</span></div>
-				</div>
-				<div> 生存受益人<span class="fr bd_color"  >无</span></div>
-				<div> 身故受益人<span class="fr bd_color"  >法定</span></div>
-			</li>
-		</ul>
--->
 
   <div class="weui_dialog_confirm" id="email_dialog" style="display:none">
     <form class="" role="form" name="sendForm" novalidate>

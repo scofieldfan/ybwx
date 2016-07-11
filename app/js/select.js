@@ -81,7 +81,7 @@ var CIRCLE = (function() {
 	var MAX_ANGLE_DEGREE = 150;
 	var bgCanvas = document.getElementById("bgchartContainer");
 	var canvas = document.getElementById("chartContainer");
-	var width = $(document).width() - config.paddingSum;
+	var width = document.body.clientWidth  - config.paddingSum;
 	//console.log("document width:" + $(document).width());
 	//if (width > 500) {
 	//	width = 500;
@@ -121,7 +121,9 @@ var CIRCLE = (function() {
 	var angle = MIN_ANGLE_DEGREE;
 	drawFace(ctx, radius, angle);
 	load(); //初始化
-
+	setTimeout(function(){
+		$("#default_text").fadeIn();
+	}, 20);
 
 	function log(ary) {
 		$("#log").html(ary.join("<br/>"));

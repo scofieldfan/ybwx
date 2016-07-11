@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="css/temai_detail.css?rev=5a8b8927fb3ab4df3a6c356c9eb30b1e">
+<link rel="stylesheet" type="text/css" href="css/temai_detail.css?rev=8ca3cd6cffaf6572ac8a2e744d69eeeb">
 
 <div  cg-busy="myPromise" >
 	<header>
@@ -63,7 +63,8 @@
 					<td ng-if="item.sum_insured==0">赠送</td>
 				</tr>
 
-				<tr  class="more_coverages_button" ng-show="plan.second_coverage_beans.length>6" data-switch='on' ng-click="more($event)"><td colspan="2" class=" word_color"><span>查看更多</span><img src="img/temai/blue_arrow.jpg" class="arrow"></td></tr>
+				<!-- <tr  class="more_coverages_button" ng-show="plan.second_coverage_beans.length>6" data-switch='on' ng-click="more($event)"><td colspan="2" class=" word_color"><span>查看更多</span><img src="img/temai/blue_arrow.jpg" class="arrow"></td></tr> -->
+				<tr  class="more_coverages_button" ng-show="plan.second_coverage_beans.length>6" data-switch='on' ng-click="more($event)"><td colspan="2" class=" word_color"><span>查看更多</span><div class="icon-arrow"></div></td></tr>
 			</table>
 		</div>
 	</div>

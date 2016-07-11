@@ -23,6 +23,22 @@ app.directive('chinese', function() {
 });
 
 
+//ng-repeat ready的事件
+app.directive('onFinishRender', function ($timeout) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attr) {
+            if (scope.$last === true) {
+                $timeout(function () {
+                    scope.$emit(attr.onFinishRender);
+                });
+            }
+        }
+    }
+});
+
+
+
 app.directive('ngcDone', function ($timeout) {  
     return function (scope, element, attrs) {  
         scope.$watch(attrs.ngcDone, function (callback) {  

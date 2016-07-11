@@ -161,7 +161,7 @@ var util = {
 		})
 	},
 	share: function(shareObj) {
-		
+		var shareObj = shareObj || {};
 		return $.when($.ajax({
 			type: 'GET',
 			url: util.api["signature"],
@@ -189,7 +189,7 @@ var util = {
 				var shareTitle = shareObj.shareTitle || "诺贝保险管家！";
 				var url = shareObj.shareUrl || shareUrl;
 				var shareDesc = shareObj.shareDesc || "诺贝保险管家，为您定制保险！";
-				var shareImg = shareObj.shareImg ||"http://web.youbaowuxian.com/wx_share/img/share.jpg";
+				var shareImg = shareObj.shareImg ||"http://web.youbaowuxian.com/img/icon.jpg";
 
 				var shareLink = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri=' + encodeURIComponent(url) + '&response_type=code&scope=snsapi_base&state=123#wechat_redirect';
 				wx.onMenuShareTimeline({
@@ -216,8 +216,8 @@ var util = {
 				});
 			});
 			wx.error(function(res) {
-				// alert(res);
 				// config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+				 _hmt.push(['_trackEvent', 'wechat_error',res]);
 			});
 		})
 	},

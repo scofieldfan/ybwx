@@ -436,7 +436,6 @@ overflow: hidden;
 .fix_container {
   box-sizing: border-box;
   position: fixed;
-  left:0;
   bottom: 0;
   width: 100%;
   background-color: rgba(30,78, 142, .2);

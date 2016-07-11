@@ -333,7 +333,7 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 			//获得openId
 			//setTest($routeParams.is_test);
 			var code = util.getParameterByName("code") || $routeParams.code;
-			util.getSign();
+			util.share();
 			util.getOpenId(code).then(function() {
 
 				/*
@@ -428,12 +428,12 @@ mainControllers.controller('ybwxBdEducationNewCtrl', ['$scope', '$routeParams', 
 	      var element = $event.currentTarget;
 	      var switchValue = $(element).attr("data-switch");
 	      if (switchValue === 'on') {
-	        $(element).siblings().removeClass("ng-hide");
+	        $(element).siblings(".table-wrapper").find("tr").removeClass("ng-hide");
 	        $(element).find("span").html("收起");
 	        $(element).attr("data-switch", "off");
 	        $(element).find("div").addClass("up");
 	      } else {
-	        $(element).siblings(":gt(6)").addClass("ng-hide");
+	        $(element).siblings(".table-wrapper").find("tr:gt(6)").addClass("ng-hide");
 	        $(element).find("span").html("查看更多");
 	        $(element).attr("data-switch", "on");
 	        $(element).find("div").removeClass("up");
