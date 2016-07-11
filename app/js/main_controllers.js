@@ -151,6 +151,11 @@ function getBdStatus(orderStatus, bdStatus) {
 
 
 function getHttpPromise($http, $rootScope, method, url, data, callback) {
+	
+	 var openId = sessionStorage.getItem("openId");
+	 if(!data["open_id"]){
+	 	data["open_id"] =  openId;
+	 }
 	return $http({
 		method: method,
 		headers: {
@@ -764,7 +769,9 @@ mainControllers.controller('ybwxBzCtrl', ['$scope', '$routeParams', '$location',
 
 		$scope.init = function() {
 			$scope.data = {};
+			var openId = sessionStorage.getItem("openId");
 			$scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_coverages'], {
+				"open_id": openId,
 				"insurance_type": $routeParams.type,
 				"coverage_score": $routeParams.coverage_score,
 				"sum_insured_score": $routeParams.sum_insured_score
