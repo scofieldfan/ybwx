@@ -62,23 +62,21 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/bd_education_new.html',
       controller: 'ybwxBdEducationNewCtrl',
       title: "保障评分",
-      css:'css/bd_education_new.css?rev=d02fc94373ceff4446333be0b0fec223'
-    })
-    
-    .when('/bd_education_old', {
-      templateUrl: 'partials/bd_education.html',
-      controller: 'ybwxBdEducationCtrl',
-      title: "保障评分",
-      css:'css/bd_education.css?rev=f520106f95ff63b6ab7129260491c9d7'
-    })/**/
-    .when('/select', {
+      css:'css/bd_education_new.css?rev=40f7184c4095a3d26bb6823117d6adb5'
+    }).when('/select', {
       templateUrl: 'partials/select_part.html?v=123',
       controller: 'ybwxSelectCtrl',
       title: "保障提升",
       css:'css/ring.css?rev=95cda24d854100e1c580cdfad09a7ad7'
+    }).when('/solution', {
+      templateUrl: 'partials/solution.html',
+      controller: 'ybwxSolutionCtrl',
+      title: "保障方案",
+      css:'css/solution.css?rev=7acf4168c9d76683ab57f4ce4c9d5cad'
     }).when('/promote', {
       templateUrl: 'partials/bz_ts.html',
-      controller: 'ybwxPromoteCtrl'
+      controller: 'ybwxPromoteCtrl',
+      title: "保障提升",
     }).when('/service', {
       templateUrl: 'partials/service.html',
       controller: 'ybwxServiceCtrl',

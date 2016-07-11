@@ -86,12 +86,13 @@
     <div class="table-wrapper">
     <table ng-if="data.coverages">
         <tr class="bd-tr" ng-repeat="item in data.coverages" ng-hide="$index>=6">
-            <td style="text-align:left;white-space:nowrap; text-overflow:ellipsis;-o-text-overflow:ellipsis; overflow:hidden;">{{item.name}}</td>
+            <td style="text-align:left;">{{item.name}}</td>
             <td style="text-align:right;"> {{processMoney(item.sum_insured)}}</td>
         </tr>
     </table>
     </div>
-     <div class="more"  ng-show=" data.coverages.length > 7" data-switch="on"  ng-click="more($event)">
+     <div class="more"  ng-show=" data.coverages.length > 7" data-switc
+     .                  .... h="on"  ng-click="more($event)">
          <span>查看更多</span><div class="icon-arrow" ></div>
       </div>
     <div class="noresult" ng-if="!data.coverages || data.coverages.length==0">

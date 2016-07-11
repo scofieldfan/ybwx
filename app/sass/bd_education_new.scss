@@ -109,7 +109,11 @@
 		  width: 100%;
 		  border-collapse: collapse;
 		  background-color: #fff;
+		  table-layout: fixed;
 		  td{
+		  	  white-space:nowrap; 
+		  	  text-overflow:ellipsis;
+		  	  -o-text-overflow:ellipsis; overflow:hidden;
     		  padding: 0.1rem 0.05rem;
 			  font-size:0.15rem;
 			  text-align: center;

@@ -1,0 +1,13 @@
+.header {
+  padding: 9px 0;
+  background-color: #006ee9;
+  color: #fff;
+  height: 70px; }
+  .header .logo {
+    float: left;
+    width: 60px;
+    height: 100%;
+    background: url("../img/solution/plane.png") no-repeat center;
+    background-size: 30px; }
+  .header .contaienr .sub-title {
+    color: #97c8ff; }

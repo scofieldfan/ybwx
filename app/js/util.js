@@ -54,6 +54,9 @@ var util = {
 		return (contentOverflows && overflowShown) || (alwaysShowScroll)
 	},
 	processSpecialMoney: function(moneyStr) {
+		if(typeof moneyStr !== 'string'){
+			moneyStr = ''+moneyStr;
+		}
 		var tail = '';
 		var ret = moneyStr;
 		var isTail = false;
