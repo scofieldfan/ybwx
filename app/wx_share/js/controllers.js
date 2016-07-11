@@ -61,10 +61,8 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 				remain_times: 1,
 				recommend_times: 0
 			}*/
-			var code = util.getParameterByName("code");
-			if (!code) {
-				code = $routeParams.code;
-			}
+			var code = util.getParameterByName("code") || $routeParams.code;
+			
 			$("#loadingToastCommon").show();
 			util.getOpenId(code).then(function() {
 				$("#loadingToastCommon").hide();
@@ -337,14 +335,14 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 				recommend_times: 0
 			}
 			var code = util.getParameterByName("code") || $routeParams.code;
-			
 			$("#loadingToastCommon").show();
-
 			util.getOpenId(code).then(function() {
+
 				$("#loadingToastCommon").hide();
 				var openId = sessionStorage.getItem("openId");
+				alert("openId:"+openId);
 				util.share({
-					shareUrl: "http://web.youbaowuxian.com/wx_share.html#/?rec_id=" + openId,
+					shareUrl: "http://web.youbaowuxian.com/wx_share.html#/index?rec_id=" + openId,
 					shareImg: "http://web.youbaowuxian.com/wx_share/img/share61.jpg",
 					shareTitle: "送你一份500万航空意外险，买机票立省30元！",
 					shareDesc: "集齐3份航空意外险保险券，即可免费兑换一份航班延误险保险券！"
