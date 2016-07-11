@@ -336,10 +336,8 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 				remain_times: 1,
 				recommend_times: 0
 			}
-			var code = util.getParameterByName("code");
-			if (!code) {
-				code = $routeParams.code;
-			}
+			var code = util.getParameterByName("code") || $routeParams.code;
+			
 			$("#loadingToastCommon").show();
 
 			util.getOpenId(code).then(function() {
