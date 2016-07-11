@@ -12,7 +12,7 @@
     function redirectWeChatUrl(){
        var WE_CHAT_URL="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri=http%3a%2f%2fweb.youbaowuxian.com&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
        var  openId = sessionStorage.getItem("openId");
-       if(!openId && location.href.indexOf("code")==-1){
+       if(location.href.indexOf("code")==-1){
             window.location.href=WE_CHAT_URL;
        }
     }
