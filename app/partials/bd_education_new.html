@@ -64,6 +64,19 @@
     .img-container img{
         width:150px;
     }
+      .more {
+        border-bottom: 1px solid #cccccc;
+    }
+    .jt {
+        width: 7.5px;
+        height: 13.5px;
+        vertical-align: -2px;
+        margin-left: 5px;
+    }
+    input {
+        -webkit-appearance: none; -moz-appearance: none; -o-appearance: none; appearance: none;
+
+    }
     </style>
     <div class="slider-container" ng-if="type!=3">
         <div class="slider-item" ng-repeat="item in data.elements" on-finish-render="ngRepeatFinished"><div><div class="type">{{item.name}}<div class="percent">{{item.percent}}%</div></div><input type="range" id="rangeInput{{$index}}" data-orientation="vertical" value="{{item.percent}}" disabled=""></div></div>
@@ -76,7 +89,7 @@
 <div class="table-container" style="margin-bottom:70px;">
     <div class="table-title">
         <div class="cell_hd cell_primary left"><div class="icon-guard"></div>保障明细</div> 
-        <div class="cell_hd cell_primary right" ng-click="goBdmList()">查看</div>
+        <div class="cell_hd cell_primary right" ng-click="goBdmList()">查看<img class="jt" src="img/bd_education/pack.jpg" ></div>
     </div>
     <table ng-if="data.coverages">
         <tr class="bd-tr" ng-repeat="item in data.coverages" ng-hide="$index>=6">

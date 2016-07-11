@@ -92,7 +92,15 @@
 			<p>以被保险人身份信息测算为准</p>
 		</div>
 		<div  style="clear:both;"></div>
-
+        <div class="select-container">
+        	<h4>出生日期</h4>
+        	<input type="date"   min="{{minDate | date:'yyyy-MM-dd'}}" max="{{maxDate | date:'yyyy-MM-dd'}}" name="insurance_date"  placeholder="yyyy/MM/dd">
+        </div>
+        <div class="select-container">
+        	<h4>性别</h4>
+        	<a href="javascript:void(0)" class="button button_primary" ng-click="changeTaoCan($event,item)" ng-class="item.id==plan.id?'button_hover':''" >男</a>
+        	<a href="javascript:void(0)" class="button button_primary" ng-click="changeTaoCan($event,item)" ng-class="item.id==plan.id?'button_hover':''" >女</a>
+        </div>
 		<div class="select-container">
 			<h4>保障方案</h4>
 			<a href="javascript:void(0)" class="button button_primary" ng-click="changeTaoCan($event,item)" ng-class="item.id==plan.id?'button_hover':''" ng-repeat="item in data.insurance_plans">{{item.name}}</a>
