@@ -340,7 +340,6 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 
 				$("#loadingToastCommon").hide();
 				var openId = sessionStorage.getItem("openId");
-				alert("openId:"+openId);
 				util.share({
 					shareUrl: "http://web.youbaowuxian.com/wx_share.html#/index?rec_id=" + openId,
 					shareImg: "http://web.youbaowuxian.com/wx_share/img/share61.jpg",
