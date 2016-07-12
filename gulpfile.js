@@ -177,7 +177,7 @@ gulp.task('wx_cssMin', function() {
 })
 gulp.task('wx_jsMin', function() {
 	return gulp.src([
-			'app/wx_share/js/util.js',
+			'app/js/util.js',
 			'app/bower_components/jquery/dist/jquery.min.js',
 			'app/bower_components/angular/angular.min.js',
 			'app/bower_components/angular-route/angular-route.min.js',

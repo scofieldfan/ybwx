@@ -9,15 +9,7 @@
   <title>天寿助富您安享</title>
   <link rel="stylesheet" type="text/css" href="bower_components/normalize-css/normalize.css">
   <link rel="stylesheet" href="anxiang/css/style.css?rev=250fa7ebe1def13cc13a684fd587e980">
-  <script>
-    (function(){
-       var WE_CHAT_URL="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri=http%3a%2f%2fweb.youbaowuxian.com%2fanxiang.html&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
-       var  openId = sessionStorage.getItem("openId");
-       if(!openId && location.href.indexOf("code")==-1){
-            window.location.href=WE_CHAT_URL;
-       }
-    })()
-  </script>
+ 
 
   </head>
 <body >
@@ -30,9 +22,15 @@
   </div>
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-  <script src="anxiang/js/share.js?v=afafa"></script>
+  <script src="js/util.js?v=aafafaf"></script>
   <script>
-    SHARE.init("http://web.youbaowuxian.com/anxiang.html");
+    util.share({
+          shareUrl: "http://web.youbaowuxian.com/anxiang_index.html",
+          shareImg: "http://web.youbaowuxian.com/anxiang/img/money.jpg",
+          shareTitle: "天寿助富您安享",
+          shareDesc: "即交快领高返还，满5年折合年化单利约4.5%!"
+
+    },true);
     var _hmt = _hmt || [];
     _hmt.push(['_setAutoPageview', false]);
     (function() {
