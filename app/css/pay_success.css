@@ -9,13 +9,13 @@
     .pay_success_ctrl .win img {
       width: 20px;
       vertical-align: -2px; }
-  .pay_success_ctrl .hints {
+  .pay_success_ctrl .hint {
     box-sizing: border-box;
     padding: 5px 18px;
-    line-height: 25px;
+    height: 50px;
     font-size: 13px;
     color: #fff;
-    background: url(../img/back_small.png) no-repeat;
+    background: url(../img/win_hint/back_big.png) no-repeat;
     background-size: 100% 100%; }
 .main img {
   width: 100%; }

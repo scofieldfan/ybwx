@@ -142,6 +142,9 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/success.html',
       controller: 'ybwxSuccessCtrl',
       title: "投保成功"
+    }).when('/pay_success', {
+      templateUrl: 'partials/pay_success.html',
+       title: "交易完成提示"
     }).when('/jingzhun', {
       templateUrl: 'partials/jingzhun.html',
       controller: 'ybwxJingzhunCtrl',
