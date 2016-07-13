@@ -73,6 +73,10 @@ ybwxApp.config(['$routeProvider',
       controller: 'ybwxSolutionCtrl',
       title: "保障方案",
       css:'css/solution.css?rev=c4a19432e55789ca69e699f18599a965'
+    }).when('/toubao_new', {
+      templateUrl: 'partials/toubao_new.html',
+      title: "保障方案",
+      css:'css/toubao_new.css?rev=ed57054e7bc5695702709a86b62fb458'
     }).when('/promote', {
       templateUrl: 'partials/bz_ts.html',
       controller: 'ybwxPromoteCtrl',

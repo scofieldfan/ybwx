@@ -1,0 +1,155 @@
+@import "base/classes.scss";
+@import "base/variables.scss";
+
+body{
+	background-color: #f5f5f5;
+}
+.main-wrapper {
+	margin-bottom:60px;
+}
+
+.people-container {
+	border-left: 5px solid #006ee9;
+	border-bottom: 1px solid #ccc;
+	background: #fff url('../img/solution/arrow.png') no-repeat 96% 50%;
+	background-size: 8px;
+	padding: 15px 10px;
+	font-size:13px;
+	.name{
+		margin-bottom: 12px;
+		font-size:18px;
+	}
+	.insured{
+		color:#ff5c00;
+	}
+	.tag{
+		color:#999;
+		vertical-align: -1px;
+		font-size:13px;
+	}
+}
+
+.icon-clock {
+	background: url('../img/toubao/clock.jpg') no-repeat center;
+	background-size: 15px;
+	width: 15px;
+	height: 15px;
+	display: inline-block;
+	vertical-align: -3px;
+}
+
+.solution-title {
+	font-size:15px;
+	padding: 0 30px 0 10px;
+	background-color: #FFF;
+	margin-top: 10px;
+	height: 45px;
+	line-height: 45px;
+	border-bottom: 1px solid #ccc;
+	background: #fff url('../img/solution/arrow.png') no-repeat 96% 47%;
+	background-size: 8px;
+}
+
+.solution-container {
+	background-color: #FFF;
+	padding: 5px 0;
+	border-bottom: 1px solid #ccc;
+
+	li {
+		background-color: #f9f9f9;
+		margin-bottom: 5px;
+
+		.product {
+			padding: 10px;
+			border-bottom: 1px solid #e2e2e2;
+			font-size:13px;
+		}
+
+		.money {
+			color: #999;
+		}
+
+		.fee {
+			color: #ff5c00;
+		}
+
+		.money-container {
+			padding: 10px;
+			height: 45px;
+			line-height: 45px;
+			font-size: 13px;
+		}
+
+		.modify {
+			color: #55a5ff;
+		}
+
+	}
+
+}
+
+.supply-info {
+	margin-top:20px;
+	background-color: #FFF;
+	
+	border-bottom:1px solid #e2e2e2;
+	.title{
+		height:45px;
+		line-height: 45px;
+		padding-left:10px;
+		font-size:14px;
+		border-bottom:1px solid #e2e2e2;
+		margin-bottom: 8px;
+	}
+	.supply-item{
+		@include flexbox;
+		padding-left:10px;
+		height:45px;
+		line-height: 45px;
+		.introd{
+			width:60px;
+		}
+		.content{
+			padding-right:10px;
+			@include flex(1);
+		}
+		.ipt{
+			border:1px solid #e2e2e2;
+		}
+	}
+}
+
+.tip{
+	padding-left:10px;
+	height:70px;
+	line-height:70px;
+	.know-contract{
+		width:20px;
+		height:20px;
+		vertical-align:-5px;;
+	}
+	a{
+		color:#55a5ff;
+	}	
+}
+
+.footer {
+	@include flexbox;
+	.left {
+		@include flex(65);
+		background-color: #FFF;
+		color: #555;
+
+		.money {
+			color: #ff5c00;
+			font-weight: bold;
+			font-size: 16px;
+		}
+	}
+
+	.right {
+		@include flex(35);
+		background-color: #ff5c00;
+	}
+
+}
