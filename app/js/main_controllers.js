@@ -13,6 +13,7 @@ var api = {
 	'get_insurance_category_insurance': '/ybwx-web/api/insurance/insurance_category_insurance',
 	'get_insurances_detail': '/ybwx-web/api/insurance/plans',
 	'get_insurances_mask': '/ybwx-web/api/insurance/float/{productId}',
+	'get_insurances_sex' : 'ybwx-web/api/insurance/premium',
 	'get_recommend': '/ybwx-web/api/recommend_view/{type}',
 	'get_recommend_coverages': '/ybwx-web/api/recommend_coverages',
 	'get_recommend_plans': '/ybwx-web/api/recommend_plans',

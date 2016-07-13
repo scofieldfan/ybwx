@@ -35,6 +35,8 @@ function($routeProvider) {
   }).when('/jixian', {
     templateUrl: 'wx_share/partials/jixian.html',
     controller: 'sportsCtrl'
+  }).when('/special', {
+    templateUrl: 'wx_share/partials/special_offer.html'
   }).otherwise({
     redirectTo: '/index'
   });

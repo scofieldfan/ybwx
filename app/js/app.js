@@ -195,6 +195,14 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/bdm_verfylist.html',
       controller: 'ybwxbaodanVerifyListCtrl',
       title: "保单验真"
+    }).when('/recognizee_first', {
+      templateUrl: 'partials/recognizee_first.html',
+      // controller: 'ybwxbaodanVerifyListCtrl',
+      title: "被保人信息"
+    }).when('/recognizee', {
+      templateUrl: 'partials/recognizee.html',
+      // controller: 'ybwxRecognizeeCtrl',
+      title: "被保人信息"
     }).otherwise({
       redirectTo: '/index'
     });

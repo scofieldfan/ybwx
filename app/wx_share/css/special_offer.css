@@ -1,0 +1,200 @@
+@charset "UTF-8";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 320px) {
+  html {
+    font-size: 100px; }
+  .yuanjia_btn, .youhui_btn {
+    line-height: 40px; }
+  .bottom_Message {
+    padding: 20px 0; } }
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+  html {
+    font-size: 100px; }
+  .yuanjia_btn, .youhui_btn {
+    line-height: 40px; }
+  .bottom_Message {
+    padding: 20px 0; } }
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
+  html {
+    font-size: 117.18px; }
+  .yuanjia_btn, .youhui_btn {
+    line-height: 40px; }
+  .bottom_Message {
+    padding: 20px 0; } }
+
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) {
+  html {
+    font-size: 129.37px; }
+  .yuanjia_btn, .youhui_btn {
+    line-height: 50px; }
+  .bottom_Message {
+    padding: 0 15px;
+    position: absolute;
+    bottom: 16px;
+    left: 0; }
+  .flex_ctrl {
+    padding-bottom: 20px; } }
+
+.special_offer_ctrl .special_main {
+  position: relative; }
+  .special_offer_ctrl .special_main img {
+    width: 100%; }
+  .special_offer_ctrl .special_main .lijian_word {
+    width: 100%;
+    position: absolute;
+    bottom: 16%;
+    left: 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex; }
+    .special_offer_ctrl .special_main .lijian_word .wid_10 {
+      width: 12%; }
+    .special_offer_ctrl .special_main .lijian_word .kong {
+      width: 25px; }
+    .special_offer_ctrl .special_main .lijian_word .kong_btn {
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+      -moz-box-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+       }
+  .special_offer_ctrl .special_main .lijian {
+    font-size: 12px;
+    color: #ff455b;
+    text-align: center; }
+  .special_offer_ctrl .special_main .special_btn {
+    width: 100%;
+    position: absolute;
+    bottom: 8%;
+    left: 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex; }
+    .special_offer_ctrl .special_main .special_btn .wid_10 {
+      width: 12%; }
+    .special_offer_ctrl .special_main .special_btn .kong {
+      width: 25px; }
+    .special_offer_ctrl .special_main .special_btn .yuanjia_btn, .special_offer_ctrl .special_main .special_btn .youhui_btn {
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+      -moz-box-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+      
+      font-size: 15px;
+      color: #fff;
+      text-align: center;
+      border-radius: 5px; }
+    .special_offer_ctrl .special_main .special_btn .yuanjia_btn {
+      position: relative;
+      background: #019cff; }
+    .special_offer_ctrl .special_main .special_btn .yuanjia_btn:hover {
+      background: #0085d9; }
+    .special_offer_ctrl .special_main .special_btn .youhui_btn {
+      background: #ff455b; }
+    .special_offer_ctrl .special_main .special_btn .youhui_btn:hover {
+      background: #e32e44; }
+
+.special_offer_ctrl .index_font_controller {
+  padding: 20px 15px 0;
+  position: relative; }
+
+.special_offer_ctrl .p {
+  list-style: none;
+  color: #2a2008;
+  font-size: 13px;
+  padding-bottom: .05rem;
+  font-weight: 500; }
+
+.special_offer_ctrl .index_font_controller img {
+  width: .13rem;
+  height: .13rem;
+  vertical-align: -1px; }
+
+.special_offer_ctrl .flex_ctrl {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex; }
+
+.special_offer_ctrl .main_font {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  
+  padding-right: .25rem;
+  line-height: .17rem;
+  color: #39617a;
+  font-size: 12px;
+  font-weight: 300; }
+
+.special_offer_ctrl .main_font p {
+  list-style: none;
+  color: #39617a;
+  font-size: 12px; }
+
+.special_offer_ctrl .two_code {
+  width: 85px;
+  height: 85px;
+  overflow: auto; }
+
+.special_offer_ctrl .two_code img {
+  width: 100%;
+  height: 100%; }
+
+.special_offer_ctrl .bottom_Message {
+  font-size: 12px;
+  color: #2a2008;
+  font-weight: 500; }
