@@ -68,6 +68,19 @@
     .img-container img{
         width:150px;
     }
+      .more {
+        border-bottom: 1px solid #cccccc;
+    }
+    .jt {
+        width: 7.5px;
+        height: 13.5px;
+        vertical-align: -2px;
+        margin-left: 5px;
+    }
+    input {
+        -webkit-appearance: none; -moz-appearance: none; -o-appearance: none; appearance: none;
+
+    }
     </style>
     <div class="slider-container" ng-if="type!=3">
         <div class="slider-item" ng-repeat="item in data.elements" on-finish-render="ngRepeatFinished"><div><div class="type">{{item.name}}<div class="percent">{{item.percent}}%</div></div><input type="range" id="rangeInput{{$index}}" data-orientation="vertical" value="{{item.percent}}" disabled=""></div></div>
@@ -101,8 +114,7 @@
 </div>
 
 <div class=" fix_container select_btn" >
-		<div class="cell_hd cell_primary">
-			<a href="javascript:void(0)" class="btn btn_n_primary_new "    ng-click="goDingzhi()" id="submitButton" ><div class="icon-up"></div> 提升保障</a>
-		</div>
-		
+	<div class="cell_hd cell_primary">
+		<a href="javascript:void(0)" class="btn btn_n_primary_new "    ng-click="goDingzhi()" id="submitButton" ><div class="icon-up"></div> 提升保障</a>
+	</div>	
 </div>

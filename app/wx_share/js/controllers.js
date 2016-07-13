@@ -152,6 +152,10 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 
 	}
 ]);
+wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
+	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
+	}
+]);
 wxShareControllers.controller('wxShareBdCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
 	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
 		_hmt.push(['_trackPageview', "/wx_share_toubao"]);

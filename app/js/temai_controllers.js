@@ -224,6 +224,22 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$routeParams', '$locat
 
         })
 
+        $scope.myPromise = $http({
+          method: 'POST',
+          headers: {
+            "Content-Type": "application/json;charset:UTF-8"
+          },
+          url: api['get_insurances_sex'],
+          data: {
+            "gender":$scope.dataNum
+          }
+        }).then(function(res) {
+          console.log("ttttttttttttttttttttt");
+          console.log(res);
+          console.log("ttttttttttttttttttttt");
+          
+        })
+
         $scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurances_detail'], {
           "insurance_id": $routeParams.product_id
         }, function(res) {
@@ -265,7 +281,6 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$routeParams', '$locat
               shareTitle: $scope.data.insurance_name,
               shareDesc: $scope.data.insurance_description
             });
-
           }
 
         });
@@ -287,6 +302,19 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$routeParams', '$locat
         $(element).find(".icon-arrow").removeClass("up");
       }
     }
+    $scope.stopPro=function($event) {
+      $event.stopPropagation();
+    }
+    $scope.changeSex = function($event, item) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      // $scope.genter = item;
+      $scope.genter_id = item;
+      var dataNum=$(".sex_id").data('sex');
+      $scope.dataNum =dataNum;
+    }
+    
+    // console.log($scope.dataNum );
     $scope.changeTaoCan = function($event, item) {
       $event.preventDefault();
       $event.stopPropagation();

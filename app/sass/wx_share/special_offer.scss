@@ -1,0 +1,169 @@
+@import "../base/classes.scss";
+@import "../base/variables.scss";
+@media (max-width: 320px) {
+	html {
+	font-size: 100px; 
+	}
+	.yuanjia_btn,.youhui_btn {
+    	line-height: 40px;
+    }
+    .bottom_Message {
+		padding: 20px 0; 
+	}
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+  html {
+    font-size: 100px; }
+    .yuanjia_btn,.youhui_btn {
+    	line-height: 40px;
+    }
+    .bottom_Message {
+		padding: 20px 0; 
+	}
+}
+
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
+  html {
+    font-size: 117.18px; }
+    .yuanjia_btn,.youhui_btn {
+    	line-height: 40px;
+    }
+    .bottom_Message {
+		padding: 20px 0; 
+	}
+}
+
+
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) {
+  html {
+    font-size: 129.37px; }
+    .yuanjia_btn,.youhui_btn {
+    	line-height: 50px;
+    }
+    .bottom_Message {
+    	padding: 0 15px;
+    	position: absolute;
+    	bottom: 16px;
+    	left: 0;
+    }
+    .flex_ctrl {
+    	padding-bottom: 20px;
+    }
+}
+.special_offer_ctrl {
+	.special_main {
+		position: relative;
+		
+		img {
+		width: 100%;
+		}
+		.lijian_word {
+			width: 100%;
+			position: absolute;
+			bottom: 16%;
+			left: 0;
+			.wid_10 {
+				width: 12%;
+			}
+			@include flexbox;
+			.kong {
+				width: 25px;
+			}
+			.kong_btn {
+				@include flex(1);
+				
+			}
+		}
+		.lijian {
+			// position: absolute;
+			// bottom: 15%;
+			// right: 10%;
+			font-size: 12px;
+			color: #ff455b;
+			text-align: center;
+			// text-align: right;
+		}
+		.special_btn {
+			.wid_10 {
+				width: 12%;
+			}
+			width: 100%;
+			position: absolute;
+			bottom: 8%;
+			left: 0;
+			@include flexbox;
+			.kong {
+				width: 25px;
+			}
+			.yuanjia_btn,.youhui_btn {
+				@include flex(1);
+				// line-height: 50px;
+				font-size: 15px;
+				color: #fff;
+				text-align: center;
+				border-radius: 5px;
+			}
+			.yuanjia_btn {
+				position: relative;
+				background: #019cff;
+			}
+			.yuanjia_btn:hover {
+				background: #0085d9;
+			}
+			.youhui_btn  {
+				background: #ff455b;
+			}
+			.youhui_btn:hover {
+				background: #e32e44;
+			}
+		}
+	}
+	.index_font_controller {
+	  padding:  20px 15px 0;
+	  position: relative;
+	}
+	.p{
+	  list-style: none;
+	  color: #2a2008;
+	  font-size: 13px;
+	  padding-bottom: .05rem;
+      font-weight: 500;
+	}
+	.index_font_controller img{
+	  width: .13rem;
+	  height: .13rem;
+	  vertical-align: -1px;
+	}
+	.flex_ctrl {
+	  @include flexbox;
+	}
+	.main_font {
+	  @include flex(1);
+	  padding-right: .25rem;
+	  line-height: .17rem;
+	  color: #39617a;
+	  font-size: 12px;
+	  font-weight: 300;
+	}
+	.main_font p{
+	  list-style: none;
+	  // line-height: .2rem;
+	  color: #39617a;
+	  font-size: 12px;
+	}
+	.two_code {
+	  width: 85px;
+	  height: 85px;
+	  overflow: auto;
+	}
+	.two_code img {
+	  width: 100%;
+	  height: 100%;
+	}
+	.bottom_Message {  
+		font-size: 12px;
+		color: #2a2008;
+		font-weight: 500;
+	}
+}

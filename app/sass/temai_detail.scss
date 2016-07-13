@@ -292,7 +292,7 @@ header {
 
 .head-container {
   position: absolute;
-  top: 100px;
+  top: 22.7%;
   bottom: 0;
   width: 100%;
   background-color: #fff;
@@ -322,7 +322,7 @@ header {
   background-size: 100% 100%;
 }
 .select-container {
-  margin-left: 0.17rem;
+  margin: 0 0.17rem;
 }
 .select-container h4 {
   margin: 0.14rem 0 0.08rem 0;
@@ -376,4 +376,38 @@ header {
 .more_ctrl {
 	width: 110px;
 	margin: 0 auto 20px;
+}
+.date_ctrl {
+  width: 100%;
+  height: 45px;
+  border: 1px solid #c1c1c1;
+  background: url(../img/down_jian.jpg) no-repeat 97% center ;
+}
+.grade {
+ li {
+  float: left;
+  height: 25px;
+}
+ img {
+  width:9px;
+}
+li:nth-child(1) {
+  line-height: 16px;
+ border-radius: 2px 0 0 2px;
+}
+li:nth-child(1),.grade li:nth-child(3){
+  width: 25px;
+  border: 1px solid #c1c1c1;
+  text-align: center;
+ 
+}
+ li:nth-child(2){
+  width: 70px;
+  border-top: 1px solid #c1c1c1;
+  border-bottom: 1px solid #c1c1c1;
+  text-align: center;
+}
+ li:nth-child(3){
+ border-radius: 0 2px 2px 0;
+}
 }
