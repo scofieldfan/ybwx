@@ -1,8 +1,16 @@
 @charset "UTF-8";
 body {
   background: #f5f5f5; }
+.left {
+  float: left; }
+.right {
+  float: right; }
+input {
+  border: none; }
+.recognizee_compile_ctrl .head_ctrl {
+  padding: 15px 10px;
+  background: #fff; }
 .recognizee_compile_ctrl .head {
-  margin: 15px 10px;
   box-sizing: border-box;
   border-radius: 5px;
   line-height: 45px;
@@ -17,32 +25,44 @@ body {
   border-top: 1px solid #e2e2e2;
   height: 1px; }
 .recognizee_compile_ctrl .main {
-  height: 95px;
   border-bottom: 1px solid #c4c4c4;
   background: #fff;
-  padding: 17px 15px; }
+  padding: 15px 15px 10px 15px;
+  box-sizing: border-box; }
   .recognizee_compile_ctrl .main .main_head {
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
     display: -ms-flexbox;
-    display: flex; }
-    .recognizee_compile_ctrl .main .main_head span {
-      display: block;
-      vertical-align: bottom; }
-    .recognizee_compile_ctrl .main .main_head span:nth-child(1) {
-      font-size: 18px;
-      color: #555; }
-    .recognizee_compile_ctrl .main .main_head span:nth-child(2) {
+    display: flex;
+    padding-bottom: 10px; }
+  .recognizee_compile_ctrl .main .head_left {
+    width: 63px;
+    font-size: 18px;
+    color: #555;
+    vertical-align: bottom;
+    display: table-cell; }
+  .recognizee_compile_ctrl .main .head_right {
+    font-size: 13px;
+    color: #999;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    box-sizing: border-box;
+    padding-top: 5px; }
+  .recognizee_compile_ctrl .main .head_bottom {
+    width: 20px; }
+    .recognizee_compile_ctrl .main .head_bottom img {
+      width: 15px;
+      vertical-align: middle; }
+  .recognizee_compile_ctrl .main .status, .recognizee_compile_ctrl .main .phone {
+    color: #999;
+    font-size: 13px;
+    line-height: 20px; }
+    .recognizee_compile_ctrl .main .status span, .recognizee_compile_ctrl .main .phone span {
       font-size: 13px;
-      color: #999;
-      -webkit-box-flex: 1;
-      -webkit-flex: 1;
-      -moz-box-flex: 1;
-      -ms-flex: 1;
-      flex: 1;
-       }
-    .recognizee_compile_ctrl .main .main_head span:nth-child(3) {
-      width: 15px; }
-      .recognizee_compile_ctrl .main .main_head span:nth-child(3) img {
-        width: 15px; }
+      color: #5aa8ff; }
+    .recognizee_compile_ctrl .main .status img, .recognizee_compile_ctrl .main .phone img {
+      width: 13px; }
