@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="wx_share/css/bd_part.css?rev=f5f401cf36adb7f3e461382bcad256f5">
+<link rel="stylesheet" href="wx_share/css/bd_part.css?rev=dgjfhdghdgj">
 <div id="wrapper" class="wrapper"  data-ng-init="init()">
 	<div class="bd_part_controller">
 		<div class="ul_contrl" >
@@ -63,9 +63,7 @@
 
 		        <div class="date_tit" ng-if="coupon_id==4">失效时间</div>
 		        <div ng-if="coupon_id==4" style="font-size:15px;padding-left:6px;height: .44rem;border: 1px solid #e2e2e2;background: #fff;line-height: .44rem;padding-left: 16px;font-size: 14px;color: #555;" ng-moudle="user.inEnd_date">{{user.inEnd_date | date:'yyyy/MM/dd'}}</div>
-
-                
-				<div class="baofei">该产品由诺贝保险管家<span class="font_red"> ￥{{money}}元</span></div>
+				<div class="baofei" style="text-align: right;"><div class="font_red left"><span style="color: #555;">保费:</span> ￥{{money}}元</div>该产品由诺贝保险管家提供</div>
 			</div>
 			<div class="item">
 				<input type="checkbox" id="chek" checked="checked" ng-model="user.know_contract" name="know_contract" required >

@@ -202,6 +202,7 @@ ybwxApp.config(['$routeProvider',
       title: "保单验真"
     }).when('/recognizee_compile', {
       templateUrl: 'partials/recognizee_compile.html',
+      // controller: 'ybwxRecognizeeComCtrl',
       title: "被保人信息"
     }).when('/recognizee_first', {
       templateUrl: 'partials/recognizee_first.html',
@@ -209,7 +210,7 @@ ybwxApp.config(['$routeProvider',
       title: "被保人信息"
     }).when('/recognizee', {
       templateUrl: 'partials/recognizee.html',
-      // controller: 'ybwxRecognizeeCtrl',
+      controller: 'ybwxRecognizeeCtrl',
       title: "被保人信息"
     }).otherwise({
       redirectTo: '/index'

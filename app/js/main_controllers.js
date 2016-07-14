@@ -40,7 +40,9 @@ var api = {
 	'get_verfiy_policy': '/ybwx-web/api/policies/verify',
 	'policy_verfiy': '/ybwx-web/api/verify',
 	'get_policy_verfiyinfo': '/ybwx-web/api/verify_info/{id}',
-	'temai_index': '/ybwx-web/api/insurance/selling_page'
+	'temai_index': '/ybwx-web/api/insurance/selling_page',
+	'recognizee': '/ybwx-web/api/relation/add'
+	
 }
 
 
