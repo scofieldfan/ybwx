@@ -257,8 +257,8 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 		$scope.original = function() {
 			$location.path('/moneybd').search({
 				plan: 72,
-				money: 50
-			});
+			});				money: 50
+
 		}
 
 		$scope.discount = function() {
@@ -311,7 +311,13 @@ wxShareControllers.controller('wxMoneyBdCtrl', ['$scope', '$filter', '$routePara
 			"open_id": openId,
 			"plans": [$routeParams.plan]
 		}, function(res) {
-			console.log(res.data.plans);
+			var minDate = new Date();
+			minDate.setDate(minDate.getDate() + res.data.data.min_effective_days);
+			$scope.minDate = minDate;
+			var maxDate = new Date();
+			maxDate.setDate(maxDate.getDate() + res.data.data.max_effective_days);
+			$scope.maxDate = maxDate;
+
 			sessionStorage.setItem("sell_plan", JSON.stringify(res.data.data.plans)); //存储需要支付的订单
 		});
 

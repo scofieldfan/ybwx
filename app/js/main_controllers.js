@@ -633,10 +633,11 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 
 	
 		$scope.init = function() {
-	
-		}
-		
+			
 
+
+			
+		}
 
 	}
 ]);
