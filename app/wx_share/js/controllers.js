@@ -274,7 +274,13 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 					});
 				} else {
 					//util.showToast($rootScope, "亲，分享后才能享受10元折扣哦!");
-					$("#share").show();
+					$("#share_ctrl").show();
+					$("body").on("click","#share_ctrl",function(){
+						$("#share_ctrl").hide();
+					});
+					$("body").on("click","#zhen",function(){
+						$("#share_ctrl").hide();
+					})
 				}
 			});
 		}

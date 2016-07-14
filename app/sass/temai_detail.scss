@@ -288,22 +288,22 @@ header {
 	color: #ff5c00;
 }
 
-
-
+.head_ctrl {
+	height: 60%;
+	overflow: auto;
+}
 .head-container {
   position: absolute;
   top: 22.7%;
   bottom: 0;
   width: 100%;
   background-color: #fff;
-
 }
 .small_img_ctrl {
 	box-sizing: border-box;
 	// @include border(1px ,solid #e2e2e2);
 	border: 1px solid #e2e2e2;
 	margin: -0.22rem 0.08rem 0 0.17rem;
-
 }
 .head-container img {
   width: 107px;
