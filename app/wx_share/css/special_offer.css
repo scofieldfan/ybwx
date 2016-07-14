@@ -198,3 +198,40 @@
   font-size: 12px;
   color: #2a2008;
   font-weight: 500; }
+
+.share_friends {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-size: 18px;
+  color: #fff;
+  z-index: 20; }
+  .share_friends .jian_img {
+    height: 1.12rem;
+    padding-top: 10px; }
+    .share_friends .jian_img img {
+      width: 110px;
+      position: relative;
+      left: 25%;
+      top: 0; }
+  .share_friends .share_word {
+    padding: 0 1rem;
+    z-index: 1000; }
+    .share_friends .share_word .zhen {
+      box-sizing: border-box;
+      border: 1px solid #fff;
+      border-radius: 3px;
+      line-height: 45px;
+      margin-top: 20px; }
+
+.opacity_ctrl {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: #000;
+  opacity: .6; }

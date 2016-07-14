@@ -197,7 +197,7 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 				}, function(res) {
 					$scope.isShare = res.data.data.status;
 
-				
+
 				});
 			});
 			$.when($.ajax({
@@ -266,20 +266,26 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 		$scope.original = function() {
 			$location.path('/moneybd').search({
 				plan: 72,
+				money: 50
 			});
-			money: 50
-
 		}
 
 		$scope.discount = function() {
-				if ($scope.isShare) {
-						$location.path('/moneybd').search({
-							plan: 388,
-							money: 40
-						});
-					} else {
-						$("#share").show();
-					}
+			if ($scope.isShare) {
+				$location.path('/moneybd').search({
+					plan: 388,
+					money: 40
+				});
+			} else {
+				$("#share_ctrl").show();
+				$("body").on("click", "#share_ctrl", function() {
+					$("#share_ctrl").hide();
+				});
+				$("body").on("click", "#zhen", function() {
+					$("#share_ctrl").hide();
+				})
+			}
+
 		}
 
 	}
