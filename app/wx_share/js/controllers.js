@@ -12,57 +12,84 @@ var api = {
 	'addFreeBd': '/ybwx-web/api/use_coupon',
 	'send_bd': '/ybwx-web/api/send_policy',
 	'ping_coupon': '/ybwx-web/api/ping_coupon',
-	'exchange': '/ybwx-web/api/exchange_coupon'
+	'exchange': '/ybwx-web/api/exchange_coupon',
+	'prepare_insure': '/ybwx-web/api/insurance/prepare',
+	'purchase': '/ybwx-web/api/insurance/purchase',
+	'share_callback': '/ybwx-web/api/insurance/share',
+	'is_share': '/ybwx-web/api/insurance/share/status'
 }
 
-	function shareTip() {
-		$("#share").show();
-	}
 
-	function submitBd($scope, $http, $location, $filter) {
-		var openId = sessionStorage.getItem("openId");
-		var insuranceDate = $filter('date')($scope.user.insurance_date, "yyyyMMdd");
-		var postData = {
-			coupon_no: $scope.coupon_no,
-			open_id: openId,
-			username: $scope.user.username,
-			social_id: $scope.user.social_id,
-			mobile: $scope.user.mobile,
-			insure_date: insuranceDate
-		};
-		// if ($scope.coupon_id == 2) {
-		postData["flight_no"] = $scope.user.flight_no;
-		// }
-		return $http({
-			method: 'POST',
-			headers: {
-				"Content-Type": "application/json;charset:UTF-8"
-			},
-			url: api['saveBd'],
-			data: postData
-		})
 
+function getHttpPromise($http, $rootScope, method, url, data, callback) {
+
+	var openId = sessionStorage.getItem("openId");
+	if (!data["open_id"]) {
+		data["open_id"] = openId;
 	}
+	return $http({
+		method: method,
+		headers: {
+			"Content-Type": "application/json;charset:UTF-8"
+		},
+		url: url,
+		data: data
+	}).then(function(res) {
+		console.log(res);
+		if ((res && res.data && res.data.data) || (res && res.data && res.data.code === 0)) {
+			callback(res);
+		} else {
+			util.showToast($rootScope, res.data.description);
+		}
+	}, function(res) {
+		console.log(res);
+		_hmt.push(['_trackEvent', 'http_error', "api:" + url]);
+		util.showToast($rootScope, "服务器错误");
+	});
+}
+
+
+
+function shareTip() {
+	$("#share").show();
+}
+
+function submitBd($scope, $http, $location, $filter) {
+	var openId = sessionStorage.getItem("openId");
+	var insuranceDate = $filter('date')($scope.user.insurance_date, "yyyyMMdd");
+	var postData = {
+		coupon_no: $scope.coupon_no,
+		open_id: openId,
+		username: $scope.user.username,
+		social_id: $scope.user.social_id,
+		mobile: $scope.user.mobile,
+		insure_date: insuranceDate
+	};
+	// if ($scope.coupon_id == 2) {
+	postData["flight_no"] = $scope.user.flight_no;
+	// }
+	return $http({
+		method: 'POST',
+		headers: {
+			"Content-Type": "application/json;charset:UTF-8"
+		},
+		url: api['saveBd'],
+		data: postData
+	})
+
+}
 wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
 	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
 
 
-		var qd = util.getParameterByName("qd") || $routeParams.qd  ||  'default';
-
+		var qd = util.getParameterByName("qd") || $routeParams.qd || 'default';
 		_hmt.push(['_trackPageview', '/wx_share_jixian']);
-
-
 		_hmt.push(['_setCustomVar', 1, 'jixian_qudao', qd, 1]);
 
-		//_hmt.push(['_trackPageview', '/wx_share_index'+"_qd_"+qd]);
 		$scope.init = function() {
-			/*
-			$scope.data = {
-				remain_times: 1,
-				recommend_times: 0
-			}*/
+
 			var code = util.getParameterByName("code") || $routeParams.code;
-			
+
 			$("#loadingToastCommon").show();
 			util.getOpenId(code).then(function() {
 				$("#loadingToastCommon").hide();
@@ -154,8 +181,216 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 ]);
 wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
 	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
+
+		var code = util.getParameterByName("code") || $routeParams.code;
+		$("#loadingToastCommon").show();
+
+
+		$scope.init = function() {
+			util.getOpenId(code).then(function() {
+				console.log("openid....");
+				$("#loadingToastCommon").hide();
+			});
+			$.when($.ajax({
+				type: 'GET',
+				url: "/ybwx-web/wechat/js_signature",
+				data: {
+					"url": location.href.split('#')[0]
+				},
+				dataType: "json"
+			})).done(function(res) {
+				//依赖于微信的JS
+				console.log(res);
+				wx.config({
+					debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+					appId: res.data["app_id"], // 必填，公众号的唯一标识
+					timestamp: res.data["timestamp"], // 必填，生成签名的时间戳
+					nonceStr: res.data["noncestr"], // 必填，生成签名的随机串
+					signature: res.data["signature"], // 必填，签名，见附录1
+					jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone']
+					// 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+				});
+				wx.ready(function() {
+					// config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+					var shareUrl = "http://web.youbaowuxian.com/wx_share.html#special";
+					var shareTitle = "还在买捆绑的30元一次的航意险？在这里500万保一年无限次仅需40元！";
+					var shareDesc = "仅需1杯咖啡的花费即可享受1年500万航空意外的保障！";
+					var shareImg = "http://web.youbaowuxian.com/img/icon.jpg";
+
+					var shareLink = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri=' + encodeURIComponent(shareUrl) + '&response_type=code&scope=snsapi_base&state=123#wechat_redirect';
+					wx.onMenuShareTimeline({
+						title: shareTitle,
+						link: shareLink,
+						imgUrl: shareImg,
+						success: function() {
+							//分享成功
+							var openId = sessionStorage.getItem("openId");
+							$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['share_callback'], {
+								"open_id": openId,
+								"insurance_plan_id": 72
+							}, function(res) {
+								// alert("");
+							});
+						},
+						cancel: function() {}
+					});
+					wx.onMenuShareAppMessage({
+						title: shareTitle,
+						desc: shareDesc,
+						link: shareLink,
+						imgUrl: shareImg,
+						dataUrl: '',
+						success: function() {
+							//alert(shareLink);
+							//window.location.href = shareLink;
+						},
+						cancel: function() {}
+					});
+				});
+				wx.error(function(res) {
+					_hmt.push(['_trackEvent', 'wechat_error', res]);
+				});
+			})
+
+		};
+		$scope.original = function() {
+			$location.path('/moneybd').search({
+				plan: 72,
+				money: 50
+			});
+		}
+
+		$scope.discount = function() {
+			var openId = sessionStorage.getItem("openId");
+			$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['is_share'], {
+				"open_id": openId,
+				"insurance_plan_id": 72
+			}, function(res) {
+				if (res.data.data.status) {
+					$location.path('/moneybd').search({
+						plan: 388,
+						money: 40
+					});
+				} else {
+					//util.showToast($rootScope, "亲，分享后才能享受10元折扣哦!");
+					$("#share").show();
+				}
+			});
+		}
+
 	}
 ]);
+//付费投保
+wxShareControllers.controller('wxMoneyBdCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
+	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
+		_hmt.push(['_trackPageview', "/wx_share_toubao"]);
+		$scope.money = $routeParams.money;
+		var testDate = new Date();
+		testDate.setDate(testDate.getDate() + 1);
+		$scope.minDate = testDate;
+		var tmp = new Date(Number($routeParams.expiry_date));
+		tmp.setDate(tmp.getDate() - 1);
+		$scope.maxDate = tmp;
+		$scope.user = {};
+		$scope.user.insurance_date = testDate;
+		var userinfo = JSON.parse(localStorage.getItem('userinfo'));
+		if (userinfo) {
+			$scope.user = {
+				username: userinfo.username,
+				social_id: userinfo.social_id,
+				mobile: userinfo.mobile
+			}
+		} else {
+			$scope.user = {};
+		}
+		$scope.user.know_contract = true;
+		var openId = sessionStorage.getItem("openId");
+
+		$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['prepare_insure'], {
+			"open_id": openId,
+			"plans": [$routeParams.plan]
+		}, function(res) {
+			console.log(res.data.plans);
+			sessionStorage.setItem("sell_plan", JSON.stringify(res.data.data.plans)); //存储需要支付的订单
+		});
+
+
+		$scope.submit = function() {
+			_hmt.push(['_trackEvent', 'wx_share_toubao', 'wx_share_toubao_subtn']);
+
+			if (!$scope.registration.$invalid) {
+
+				//$("#loadingToast").show();
+
+				var insuranceDate = $filter('date')($scope.user.insurance_date, "yyyyMMdd");
+				var plans = {};
+				plans[$routeParams.plan] = $routeParams.money;
+
+				$scope.insurePromise = getHttpPromise($http, $rootScope, 'POST', api['purchase'], {
+					open_id: openId,
+					plans: plans,
+					username: $scope.user.username,
+					social_id: $scope.user.social_id,
+					mobile: $scope.user.mobile,
+					effective_date: insuranceDate
+
+				}, function(res) {
+
+					$("#loadingToast").hide();
+					//存储用户信息
+					localStorage.setItem('userinfo',
+						JSON.stringify({
+							username: $scope.user.username,
+							social_id: $scope.user.social_id,
+							mobile: $scope.user.mobile,
+
+						}));
+
+					if (res.data.code === 0) {
+						var orderId = res.data.data.order_no; //支付
+						var payRequest = {
+							"insurance_name": res.data.data.insurance_name,
+							"insurance_plan_name": res.data.data.insurance_plan_name,
+							"order_amount": res.data.data.order_amount,
+							"order_id": res.data.data.pay_order_id,
+							"order_no": res.data.data.pay_order_no
+						}
+						var paramters = util.genParameters(payRequest);
+						//console.log(paramters);
+						window.location.href = "/index.html#pay_select?" + paramters;
+						//$location.path("/pay_select").search(payRequest);
+					}
+					if (res && res.data && res.data.description) {
+						//$("#loadingToast").hide();
+						util.showToast($rootScope, res.data.description);
+					}
+				});
+
+
+			} else { //表单错误
+				if ($scope.registration.username.$invalid) {
+					util.showToast($rootScope, "姓名填写有误，请修改");
+				}
+				if ($scope.registration.social_id.$invalid) {
+					util.showToast($rootScope, "身份证填写有误，请修改");
+				}
+				if ($scope.registration.mobile.$invalid) {
+					util.showToast($rootScope, "手机号码填写有误，请修改");
+				}
+				if ($scope.registration.insurance_date.$invalid) {
+					util.showToast($rootScope, "保险生效时间不正确");
+				}
+				if ($scope.registration.flight_no && $scope.registration.flight_no.$invalid) {
+					util.showToast($rootScope, "航班号必须填写");
+				}
+			}
+		}
+
+
+	}
+]);
+
+//免费投保
 wxShareControllers.controller('wxShareBdCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
 	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
 		_hmt.push(['_trackPageview', "/wx_share_toubao"]);
@@ -328,7 +563,7 @@ wxShareControllers.controller('wxSharesuccessCouponCtrl', ['$scope', '$routePara
 
 wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$http', '$location', '$rootScope',
 	function($scope, $routeParams, $http, $location, $rootScope) {
-		
+
 		var qd = util.getParameterByName("qd") || $routeParams.qd || 'default';
 		_hmt.push(['_trackPageview', '/wx_share_index']);
 		_hmt.push(['_setCustomVar', 1, 'hangkong_qudao', qd, 1]);
@@ -339,7 +574,7 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 				recommend_times: 0
 			}
 			var code = util.getParameterByName("code") || $routeParams.code;
-			if(!code){
+			if (!code) {
 				redirectWeChatUrl();
 			}
 			$("#loadingToastCommon").show();
@@ -525,7 +760,7 @@ wxShareControllers.controller('myCouponListCtrl', ['$scope', '$routeParams', '$h
 				});
 			})
 		}
-		$scope.goShare =function() {
+		$scope.goShare = function() {
 			$location.path("/jixian");
 		}
 		$scope.goDetail = function(coupon_no, coupon_status, order_no, coupon_id, expiry_date) {

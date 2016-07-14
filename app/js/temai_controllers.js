@@ -188,17 +188,39 @@ var coveragePeriodMap = {
   5: "天"
 }
 
-ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope', 'sharedRestrictions',
-  function($scope, $routeParams, $location, $http, $rootScope, sharedRestrictions) {
+ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q','$filter', '$routeParams', '$location', '$http', '$rootScope', 'sharedRestrictions',
+  function($scope, $q,$filter, $routeParams, $location, $http, $rootScope, sharedRestrictions) {
 
     _hmt.push(['_trackPageview', $location.path()]);
 
     $scope.genDanwei = function(type) {
       return coveragePeriodMap[type];
     }
+    $scope.gender = 1;
+
+    function updateFee() {
+      var openId = sessionStorage.getItem("openId");
+      var birthday = $filter('date')($scope.user.birthday, "yyyyMMdd");
+      $scope.catePromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurances_sex'], {
+        "open_id": openId,
+        "insurance_plan_id": $scope.plan.id,
+        "birthday": birthday,
+        "gender": $scope.gender,
+        "coverage_period_type": $scope.coverage_period_type,
+        "charge_period_type": $scope.charge_period_type,
+        "coverage_period": $scope.coverage_period,
+        "charge_period": $scope.charge_period,
+      }, function(res) {
+        if (res && res.data && res.data.data) {
+          $scope.money = res.data.data.premium;
+        }
+      })
+    }
     $scope.init = function() {
-
-
+      var tmpDate = new Date(1986, 1, 1);
+      $scope.user = {
+        birthday: tmpDate
+      };
       var code = util.getParameterByName("code") || $routeParams.code;
 
       util.getOpenId(code).then(function() {
@@ -224,21 +246,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$routeParams', '$locat
 
         })
 
-        $scope.myPromise = $http({
-          method: 'POST',
-          headers: {
-            "Content-Type": "application/json;charset:UTF-8"
-          },
-          url: api['get_insurances_sex'],
-          data: {
-            "gender":$scope.dataNum
-          }
-        }).then(function(res) {
-          console.log("ttttttttttttttttttttt");
-          console.log(res);
-          console.log("ttttttttttttttttttttt");
-          
-        })
+
 
         $scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurances_detail'], {
           "insurance_id": $routeParams.product_id
@@ -286,6 +294,10 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$routeParams', '$locat
         });
 
       })
+
+      $q.all([$scope.maskPromise, $scope.myPromise]).then(function(res) {
+        updateFee();
+      }); /**/
     }
     $scope.more = function($event) {
       var element = $event.currentTarget;
@@ -302,35 +314,38 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$routeParams', '$locat
         $(element).find(".icon-arrow").removeClass("up");
       }
     }
-    $scope.stopPro=function($event) {
+    $scope.stopPro = function($event) {
       $event.stopPropagation();
     }
-    $scope.changeSex = function($event, item) {
+    $scope.changeSex = function($event, gender) {
       $event.preventDefault();
       $event.stopPropagation();
-      // $scope.genter = item;
-      $scope.genter_id = item;
-      var dataNum=$(".sex_id").data('sex');
-      $scope.dataNum =dataNum;
+      $scope.gender = gender;
+      updateFee();
     }
-    
+
     // console.log($scope.dataNum );
     $scope.changeTaoCan = function($event, item) {
       $event.preventDefault();
       $event.stopPropagation();
       $scope.plan = item;
       $scope.danwei = genDuration($scope.plan.coverage_period_type);
-      $scope.money = $scope.plan.premium;
+      //$scope.money = $scope.plan.premium;
+      updateFee();
     }
+
     $scope.changeDuration = function($event, item) {
       $event.preventDefault();
       $event.stopPropagation();
       $scope.coverage_period = item;
+      updateFee();
     }
+
     $scope.changeFee = function($event, item) {
       $event.preventDefault();
       $event.stopPropagation();
       $scope.charge_period = item;
+      updateFee();
     }
     $scope.headSelect = function($event, plan) {
       var element = $event.currentTarget;
@@ -400,7 +415,7 @@ ybwxControllers.controller('wxDetailCtrl', ['$scope', '$routeParams', '$location
     $("#detail-template").load("template/product_" + $routeParams.product_id + ".html");
 
     _hmt.push(['_trackPageview', $location.path() + "_id:" + $routeParams.product_id + "_" + "from:" + $routeParams.from]);
-    
+
     $scope.genDanwei = function(type) {
       return coveragePeriodMap[type];
     }

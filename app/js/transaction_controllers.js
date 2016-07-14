@@ -232,11 +232,11 @@ transControllers.controller('ybwxPaySelectNewCtrl', ['$scope', '$filter', '$rout
     }
     $scope.ajaxPayInfo = function(channelType) {
       var openId = sessionStorage.getItem("openId");
-      $scope.payPromise = getHttpPromise($http, $rootScope, 'POST', api['pay'], {
+      $scope.payPromise = getHttpPromise($http, $rootScope, 'POST', api['pay_new'], {
         open_id: openId,
-        order_id: $routeParams.order_id,
+        pay_order_id: $routeParams.order_id,
         pay_channel_type: channelType,
-        order_amount: $routeParams.order_amount
+        // order_amount: $routeParams.order_amount*100
       }, function(res) {
         console.log(res);
         if (res && res.data && res.data.data && res.data.code === 0) {

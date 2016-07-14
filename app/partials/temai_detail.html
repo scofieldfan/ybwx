@@ -95,12 +95,12 @@
 		<div  style="clear:both;"></div>
         <div class="select-container">
         	<h4>出生日期</h4>
-        	<input type="date" class="date_ctrl"  min="{{minDate | date:'yyyy-MM-dd'}}" max="{{maxDate | date:'yyyy-MM-dd'}}" name="insurance_date"  placeholder="yyyy/MM/dd" ng-click="stopPro($event)">
+        	<input type="date" class="date_ctrl"  min="{{minDate | date:'yyyy-MM-dd'}}" max="{{maxDate | date:'yyyy-MM-dd'}}" ng-model="user.birthday"  name="birthday"  placeholder="yyyy/MM/dd" ng-click="stopPro($event)">
         </div>
         <div class="select-container"> 
         	<h4>性别</h4>
-        	<a href="javascript:void(0)" class="button button_primary sex_id" ng-click="changeSex($event,item)" ng-class="item.id==genter_id?'button_hover':''" data-sex="1">男</a>
-        	<a href="javascript:void(0)" class="button button_primary sex_id" ng-click="changeSex($event,item)"  ng-class="item.id==genter_id?'button_hover':''" data-sex="2">女</a>
+        	<a href="javascript:void(0)" class="button button_primary sex_id" ng-click="changeSex($event,1)" ng-class="gender==1?'button_hover':''" data-sex="1">男</a>
+        	<a href="javascript:void(0)" class="button button_primary sex_id" ng-click="changeSex($event,2)"  ng-class="gender==2?'button_hover':''" data-sex="2">女</a>
         </div>
 		<div class="select-container">
 			<h4>保障方案</h4>

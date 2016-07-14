@@ -95,9 +95,9 @@ body{
 
 <div class="product-container">
 	<div class="name">产品名称：{{insurance_plan_name}}</div>
-	<div class="item" ng-repeat="plan in plans">{{plan.name}}<span ng-if="plan.premium" style="float:right">{{plan.premium/100}}元</span></div>
+	<div class="item" ng-repeat="plan in plans">{{plan.name}}<span ng-if="plan.premium" style="float:right">{{plan.premium}}元</span></div>
 	<div class="tip" ng-show="isHaveOffical">注：方案中有部分产品，诺贝暂不支持投保请到我的方案中查看详情</div>
-	<div>支付金额：<span class="pay-money">{{order_amount/100 | number}}</span>元</div>
+	<div>支付金额：<span class="pay-money">{{order_amount | number}}</span>元</div>
 </div>
 
 <!--

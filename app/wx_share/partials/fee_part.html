@@ -1,0 +1,91 @@
+<link rel="stylesheet" href="wx_share/css/bd_part.css?rev=8e68c986fb12f10cb8a5bf15d365a6a8">
+<div id="wrapper" class="wrapper"  data-ng-init="init()">
+	<div class="bd_part_controller">
+		<div class="ul_contrl" >
+			<p class="chanpin_name">太平洋慧飞行500万航空意外险</p>
+			<p class="pei_300">航空意外身故/伤残 <span>500</span>万 保1年</p>
+		</div>
+
+		<div class="bd_part_main paddLeft">
+			<form class="" role="form" name="registration" novalidate>
+			<ul class="layout bd_part_tit">
+				<li class="left" >投保信息</li>
+				<!-- <li class="right">
+					<a href="http://web.youbaowuxian.com/ybwx-web/api/web_page/130" class="blue"  ng-if="coupon_id==2">产品条款及投保须知
+					</a>
+					<a href="http://web.youbaowuxian.com/ybwx-web/api/web_page/1" class="blue"  ng-if="coupon_id==1">
+					产品条款及投保须知
+					</a>
+					<a href="http://web.youbaowuxian.com/ybwx-web/api/web_page/11" class="blue"  ng-if="coupon_id==3">
+					产品条款及投保须知
+					</a>
+					<a href="http://web.youbaowuxian.com/ybwx-web/api/web_page/17" class="blue"  ng-if="coupon_id==4">
+					产品条款及投保须知
+					</a>
+				</li> -->
+			</ul>
+			<div class="bd_part_input ">
+				<input type="text" style="margin-top: none" placeholder="姓名"    ng-minlength="1"  name="username" ng-model="user.username" required chinese >
+				<div class="cell"  style="color:red" ng-show="registration.username.$dirty && registration.username.$invalid || username_server_reason">
+					<small class="error" ng-show="registration.username.$error.required">姓名必填</small>
+            		<small class="error"  ng-show="registration.username.$error.chinese">姓名必须是汉字!</small>
+                    <small class="error" ng-show="username_server_reason">{{username_server_reason}}</small>
+		        </div>
+				<input type="text" class="input_top_padd" placeholder="身份证"  ng-minlength="18" ng-maxlength="18"  name="social_id" ng-model="user.social_id" required >
+				<div class="cell" style="color:red" ng-show="registration.social_id.$dirty && registration.social_id.$invalid || card_numer_server_reason">
+					<small class="error" ng-show="registration.social_id.$error.required">身份证必填</small>
+					<small class="error" ng-show="registration.social_id.$error.minlength">身份证必须是18位</small>
+					<small class="error" ng-show="registration.social_id.$error.maxlength">身份证必须是18位</small>
+                    <small class="error" ng-show="card_numer_server_reason">{{card_numer_server_reason}}</small>
+				</div>
+				<input type="number" class="input_top_padd" placeholder="手机号"  ng-minlength="11" ng-maxlength="11" name="mobile" ng-model="user.mobile" required>
+				<div class="cell"  style="color:red" ng-show="registration.mobile.$dirty && registration.mobile.$invalid || mobile_server_reason">
+					<small class="error" ng-show="registration.mobile.$error.required">手机号必填</small>
+					<small class="error" ng-show="registration.mobile.$error.minlength">手机号必须是11位数字</small>
+					<small class="error" ng-show="registration.mobile.$error.maxlength">手机号必须是11位数字</small>
+                    <small class="error" ng-show="mobile_server_reason">{{mobile_server_reason}}</small>
+		        </div>
+				<input type="text" class="input_top_padd" style="background: #fff;" ng-if="coupon_id==1 || coupon_id == 2 || coupon_id==3 " placeholder="航班号"  name="flight_no" ng-model="user.flight_no" required>
+				<div class="cell"  style="color:red" ng-show="registration.flight_no.$dirty && registration.flight_no.$invalid || card_numer_server_reason">
+					<small class="error" ng-show="registration.flight_no.$error.required">航班号必填</small>
+				    <small class="error" ng-show="card_numer_server_reason">{{card_numer_server_reason}}</small>
+				</div>
+				<div class="date_tit" >生效时间</div>
+					<input class="last_input" style="background:url(wx_share/img/jian.jpg) no-repeat 95% center #fff;background-size: .17rem .17rem; -webkit-appearance:none;line-height: .48rem;" type="date" placeholder="保障期间" onfocus="_hmt.push(['_trackEvent', 'toubao', 'toubao_effective_date_focus']);" min="{{minDate | date:'yyyy-MM-dd'}}" max="{{maxDate | date:'yyyy-MM-dd'}}" name="insurance_date" ng-change="genInEffectiveDate()" ng-model="user.insurance_date" placeholder="yyyy/MM/dd" required >
+
+
+				<div class="cell"  style="color:red" ng-show="registration.insurance_date.$dirty && registration.insurance_date.$invalid || insurance_date_server_reason">
+	            	<small class="error" ng-show="registration.insurance_date.$error.min">保障日期最早从明天开始</small>
+	            	<small class="error" ng-if="coupon_id==1 || coupon_id == 2 || coupon_id==3" ng-show="registration.insurance_date.$error.max">生效日期超过产品的最大要求</small>
+	            	<small class="error" ng-if="coupon_id==4" ng-show="registration.insurance_date.$error.max">生效日期超过产品的最大要求</small>
+	                <small class="error" ng-show="insurance_date_server_reason">{{insurance_date_server_reason}}</small>
+		        </div>
+
+		        <div class="date_tit" ng-if="coupon_id==4">失效时间</div>
+		        <div ng-if="coupon_id==4" style="font-size:15px;padding-left:6px;height: .44rem;border: 1px solid #e2e2e2;background: #fff;line-height: .44rem;padding-left: 16px;font-size: 14px;color: #555;" ng-moudle="user.inEnd_date">{{user.inEnd_date | date:'yyyy/MM/dd'}}</div>
+
+                
+				<div class="baofei">该产品由诺贝保险管家<span class="font_red"> ￥{{money}}元</span></div>
+			</div>
+			<div class="item">
+				<input type="checkbox" id="chek" checked="checked" ng-model="user.know_contract" name="know_contract" required >
+					我已阅读
+				<a href="http://web.youbaowuxian.com/ybwx-web/api/web_page/16" class="blue"  >
+					产品条款及投保须知
+				</a>
+				
+			</div>
+		   <!--  <div class="cell"  style="color:red" >
+          	  <small class="error" ng-show="server_reason">{{server_reason}}</small>
+		    </div> -->
+		</div>
+		<form>
+    </div>
+</div>
+<footer class="bd_footer">
+	 <div  ng-click='submit()' id="submitButton"  >立即投保</div>
+</footer>
+
+ 
+
+

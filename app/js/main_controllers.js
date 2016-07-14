@@ -29,6 +29,7 @@ var api = {
 	'insure': '/ybwx-web/api/insurance/insure',
 	'send_bd': '/ybwx-web/api/send_policy',
 	'pay': '/ybwx-web/api/pay',
+	'pay_new':'/ybwx-web/api/insurance/pay',
 	'get_user_info': '/ybwx-web/user/info/wechat/{openId}',
 	'set_user_info': '/ybwx-web/user/info/update',
 	'upload_policy_image': '/ybwx-web/api/upload_policy_image',
@@ -1237,7 +1238,7 @@ mainControllers.controller('ybwxToubaoDingzhiAllCtrl', ['$scope', '$filter', '$r
 
 				$scope.view = res.data.data.view;
 
-				sessionStorage.setItem("sell_plan", JSON.stringify($scope.plans));
+				sessionStorage.setItem("sell_plan", JSON.stringify($scope.plans));//存储需要支付的订单
 
 				if (!$scope.relations) {
 					//$scope.insured.relation = $scope.relations[0];

@@ -26,6 +26,9 @@ function($routeProvider) {
   }).when('/freebd', {
     templateUrl: 'wx_share/partials/bd_part.html',
     controller: 'wxShareBdCtrl'
+  }).when('/moneybd', {
+    templateUrl: 'wx_share/partials/fee_part.html',
+    controller: 'wxMoneyBdCtrl'
   }).when('/couponlist', {
     templateUrl: 'wx_share/partials/coupon_list.html',
     controller: 'myCouponListCtrl'
@@ -36,7 +39,8 @@ function($routeProvider) {
     templateUrl: 'wx_share/partials/jixian.html',
     controller: 'sportsCtrl'
   }).when('/special', {
-    templateUrl: 'wx_share/partials/special_offer.html'
+    templateUrl: 'wx_share/partials/special_offer.html',
+    controller: 'specialCtrl'
   }).otherwise({
     redirectTo: '/index'
   });
