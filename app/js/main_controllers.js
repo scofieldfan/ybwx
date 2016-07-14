@@ -630,6 +630,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 
 		_hmt.push(['_trackPageview', $location.path()]);
 		$scope.money = $routeParams.estimate_money;
+		$scope.type = $routeParams.type;
 		//get_recommend_plans
 		$scope.getCoverageType = util.getCoverageType;
 		$scope.processSpecialMoney = util.processSpecialMoney;
@@ -642,7 +643,21 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 			4: "unsell",
 			5: "unsell"
 		}
-
+		$scope.more = function($event) {
+			var element = $event.currentTarget;
+			var switchValue = $(element).attr("data-switch");
+			if (switchValue === 'on') {
+				$(element).siblings(".table-wrapper").find("tr").removeClass("ng-hide");
+				$(element).find("span").html("收起");
+				$(element).attr("data-switch", "off");
+				$(element).find("div").addClass("up");
+			} else {
+				$(element).siblings(".table-wrapper").find("tr:gt(3)").addClass("ng-hide");
+				$(element).find("span").html("查看更多");
+				$(element).attr("data-switch", "on");
+				$(element).find("div").removeClass("up");
+			}
+		}
 		$scope.get_taocan_css = function(status) {
 			return taocan_css[status];
 		}
@@ -652,7 +667,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 				"open_id": openId,
 				"insurance_type": $routeParams.type,
 				"coverage_score": $routeParams.coverage_score,
-				"sum_insured_score":$routeParams.sum_insured_score
+				"sum_insured_score": $routeParams.sum_insured_score
 			}, function(res) {
 				console.log(res);
 				if (res && res.data && res.data.data) {

@@ -274,7 +274,7 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 		$scope.discount = function() {
 			if ($scope.isShare) {
 				$location.path('/moneybd').search({
-					plan: 388,
+					plan: 72,
 					money: 40
 				});
 			} else {
@@ -295,15 +295,21 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 wxShareControllers.controller('wxMoneyBdCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
 	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
 		_hmt.push(['_trackPageview', "/wx_share_toubao"]);
+
 		$scope.money = $routeParams.money;
-		var testDate = new Date();
+		/*
+	
 		testDate.setDate(testDate.getDate() + 1);
 		$scope.minDate = testDate;
 		var tmp = new Date(Number($routeParams.expiry_date));
 		tmp.setDate(tmp.getDate() - 1);
 		$scope.maxDate = tmp;
+		*/
+		var tomorrow = new Date();
+		tomorrow.setDate(tomorrow.getDate() + 1);
 		$scope.user = {};
-		$scope.user.insurance_date = testDate;
+		$scope.user.insurance_date = tomorrow;
+		/*
 		var userinfo = JSON.parse(localStorage.getItem('userinfo'));
 		if (userinfo) {
 			$scope.user = {
@@ -313,7 +319,7 @@ wxShareControllers.controller('wxMoneyBdCtrl', ['$scope', '$filter', '$routePara
 			}
 		} else {
 			$scope.user = {};
-		}
+		}*/
 		$scope.user.know_contract = true;
 		var openId = sessionStorage.getItem("openId");
 
@@ -327,7 +333,9 @@ wxShareControllers.controller('wxMoneyBdCtrl', ['$scope', '$filter', '$routePara
 			var maxDate = new Date();
 			maxDate.setDate(maxDate.getDate() + res.data.data.max_effective_days);
 			$scope.maxDate = maxDate;
-
+			$scope.user.username = res.data.data.user.username;
+			$scope.user.mobile = parseInt(res.data.data.user.mobile);
+			$scope.user.social_id = res.data.data.user.social_id;
 			sessionStorage.setItem("sell_plan", JSON.stringify(res.data.data.plans)); //存储需要支付的订单
 		});
 

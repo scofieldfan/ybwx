@@ -5,14 +5,31 @@
 }
 
 .header {
-	.logo {
+	.logo{
 		float: left;
 		width: 70px;
 		height: 70px;
-		background: url('../img/solution/plane.png') no-repeat center;
+	}
+	.icon_4{
+		background: url('../img/solution/1.png') no-repeat center;
 		background-size: 30px;
 	}
-
+	.icon_3{
+		background: url('../img/solution/2.png') no-repeat center;
+		background-size: 30px;
+	}
+	.icon_2{
+		background: url('../img/solution/3.png') no-repeat center;
+		background-size: 30px;
+	}
+	.icon_1{
+		background: url('../img/solution/4.png') no-repeat center;
+		background-size: 30px;
+	}
+	.icon_5{
+		background: url('../img/solution/5.png') no-repeat center;
+		background-size: 30px;
+	}
 	.contaienr {
 		padding-top: 13px;
 		font-size:15px;
@@ -39,7 +56,7 @@
 .table-wrapper {
 	padding: 0 .2rem;
 	background-color: #fff;
-	
+	border-bottom:1px solid #cccccc;	
 
 	table {
 		width: 100%;
@@ -96,6 +113,9 @@
 		@include flexbox;
 		.checkbox{
 			@include flex(1);
+			
+		}
+		.checkbox.unchoose{
 			background:url('../img/solution/unchoose.png') no-repeat center;
 			background-size:20px;
 		}

@@ -8,8 +8,21 @@
   .header .logo {
     float: left;
     width: 70px;
-    height: 70px;
-    background: url("../img/solution/plane.png") no-repeat center;
+    height: 70px; }
+  .header .icon_4 {
+    background: url("../img/solution/1.png") no-repeat center;
+    background-size: 30px; }
+  .header .icon_3 {
+    background: url("../img/solution/2.png") no-repeat center;
+    background-size: 30px; }
+  .header .icon_2 {
+    background: url("../img/solution/3.png") no-repeat center;
+    background-size: 30px; }
+  .header .icon_1 {
+    background: url("../img/solution/4.png") no-repeat center;
+    background-size: 30px; }
+  .header .icon_5 {
+    background: url("../img/solution/5.png") no-repeat center;
     background-size: 30px; }
   .header .contaienr {
     padding-top: 13px;
@@ -27,7 +40,8 @@
   vertical-align: -1px; }
 .table-wrapper {
   padding: 0 .2rem;
-  background-color: #fff; }
+  background-color: #fff;
+  border-bottom: 1px solid #cccccc; }
   .table-wrapper table {
     width: 100%;
     border-collapse: collapse;
@@ -80,6 +94,8 @@
       -moz-box-flex: 1;
       -ms-flex: 1;
       flex: 1;
+       }
+    .solution li .checkbox.unchoose {
       background: url("../img/solution/unchoose.png") no-repeat center;
       background-size: 20px; }
     .solution li .checkbox.choose {

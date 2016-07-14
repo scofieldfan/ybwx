@@ -440,10 +440,11 @@ overflow: hidden;
   width: 100%;
   background-color: rgba(30,78, 142, .2);
   box-sizing: border-box;
-  z-index: 10000;
+  z-index: 1000;
   max-width: 640px;
   overflow: hidden;
   border-top: 1px solid #e2e2e2;
+
 }
 .hairlines .fix_container{
   border-width: 0.5px; 
