@@ -282,19 +282,35 @@ var util = {
 		4: "月",
 		5: "天"
 	},
-	getCoverageType:function(type){
+	getCoverageType: function(type) {
 		return util.coverage_types[type];
 	},
-	
-	taocan_status : {
-			1: "",
-			2: "未开售",
-			3: "已购买",
-			4: "已购买",
-			5: "已购买"
+
+	taocan_status: {
+		1: "",
+		2: "未开售",
+		3: "已购买",
+		4: "已购买",
+		5: "已购买"
 
 	},
-	getTaoCanStatus:function(status){
+	getTaoCanStatus: function(status) {
 		return util.taocan_status[status];
-	}
+	},
+	whiteOpenIds : [{
+		openid: "omP9dwb6u-lamgwOhFqFIcU3QLPk",
+		name: "巴信军"
+	}, {
+		openid: "omP9dwbQiEkPbFE0K6NtVa4d5bF0",
+		name: "Fan"
+	}, {
+		openid: "omP9dwThw9op485Y-6NMp6HywJ0M",
+		name: "郭渊敏"
+	}, {
+		openid: "omP9dwSdKKzWA4D9j1I1Lr1EbHMg",
+		name: "许文科"
+	}, {
+		openid: "omP9dwSHJtzwyRFBCBc3z-jpxwj8",
+		name: "岳文甲"
+	}]
 }

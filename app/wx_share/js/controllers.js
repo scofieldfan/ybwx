@@ -380,6 +380,12 @@ wxShareControllers.controller('wxMoneyBdCtrl', ['$scope', '$filter', '$routePara
 							"order_id": res.data.data.pay_order_id,
 							"order_no": res.data.data.pay_order_no
 						}
+						var fitlerResult = util.whiteOpenIds.filter(function(item) {
+						return item.openid === openId
+						});
+						if (fitlerResult && fitlerResult.length > 0) {
+							payRequest["order_amount"] = 0.1;
+						}
 						var paramters = util.genParameters(payRequest);
 						//console.log(paramters);
 						window.location.href = "/index.html#pay_select?" + paramters;
@@ -771,7 +777,6 @@ wxShareControllers.controller('myCouponListCtrl', ['$scope', '$routeParams', '$h
 							if (res.data.data.coupons.length === 0) {
 								$("#reason_container").show();
 							}
-							console.log(res.data.data.coupons);
 							$scope.coupons = res.data.data.coupons;
 							$(".ul_container").show();
 						} else {

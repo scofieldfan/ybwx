@@ -12,7 +12,7 @@
 </div>
 <div class="table-wrapper"  data-ng-init="init()" >
 	<table>
-		<tr ng-repeat="coverage in data.coverages"  ng-hide="$index>3"><td  class="left-td" des="{{coverage.description}}"><div>{{coverage.name}}<div class="qa"></div></div><div  class="des">{{coverage.description}}</div></td><td class="right-td">{{processSpecialMoney(coverage.sum_insured)}}</td></tr>
+		<tr ng-repeat="coverage in data.coverages"  ng-hide="$index>3"><td  class="left-td" des="{{coverage.description}}"><div>{{coverage.name}}<div class="qa"></div></div><div  class="des" style="display: none">{{coverage.description}}</div></td><td class="right-td">{{processSpecialMoney(coverage.sum_insured)}}</td></tr>
 	</table>	
 </div>
 	<div class="more" ng-if="data.coverages.length>4"  data-switch='on' ng-click="more($event)"><span>查看更多</span><div class="icon-arrow"></div></div>
@@ -20,12 +20,12 @@
 <div class="introd">方案内容</div>
 <ul class="solution">
 
-	<li  ng-repeat="plan in data.plans">
+	<li  ng-repeat="plan in data.plans" ng-click="go(plan.official_site)">
 		<div class="checkbox "  ng-class="{'choose': plan.status==1, '': plan.status!=1}"></div>	
 		<div class="product">
 			<div class="product-name">{{plan.name}}</div>	
 			<div class="product-des">最高保额：{{plan.premium}}元 保{{plan.coverage_period}}{{getCoverageType(plan.coverage_period_type)}}</div>	
-			<div class="product-price"> {{processSpecialMoney(plan.sum_insured)}} <span class="status {{get_taocan_css(plan.status)}}" > {{getTaoCanStatus(plan.status)}}</span>
+			<div class="product-price"> {{processSpecialMoney(plan.sum_insured)}} <span ng-if="plan.status!=1" class="status {{get_taocan_css(plan.status)}}" > {{getTaoCanStatus(plan.status)}}</span>
 			</div>
 		</div>	
 		<div class="arrow"></div>	
