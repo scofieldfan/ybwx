@@ -239,6 +239,7 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 								"insurance_plan_id": 72
 							}, function(res) {
 								//$("#special_share").html("点击即可优惠购买");
+								$scope.isShare = true;
 								util.showToast($rootScope, "分享成功，恭喜您获得优惠购买的机会！");
 							});
 						},
