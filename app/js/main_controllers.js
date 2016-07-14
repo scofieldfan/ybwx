@@ -13,7 +13,7 @@ var api = {
 	'get_insurance_category_insurance': '/ybwx-web/api/insurance/insurance_category_insurance',
 	'get_insurances_detail': '/ybwx-web/api/insurance/plans',
 	'get_insurances_mask': '/ybwx-web/api/insurance/float/{productId}',
-	'get_insurances_sex' : 'ybwx-web/api/insurance/premium',
+	'get_insurances_sex': 'ybwx-web/api/insurance/premium',
 	'get_recommend': '/ybwx-web/api/recommend_view/{type}',
 	'get_recommend_coverages': '/ybwx-web/api/recommend_coverages',
 	'get_recommend_plans': '/ybwx-web/api/recommend_plans',
@@ -29,7 +29,7 @@ var api = {
 	'insure': '/ybwx-web/api/insurance/insure',
 	'send_bd': '/ybwx-web/api/send_policy',
 	'pay': '/ybwx-web/api/pay',
-	'pay_new':'/ybwx-web/api/insurance/pay',
+	'pay_new': '/ybwx-web/api/insurance/pay',
 	'get_user_info': '/ybwx-web/user/info/wechat/{openId}',
 	'set_user_info': '/ybwx-web/user/info/update',
 	'upload_policy_image': '/ybwx-web/api/upload_policy_image',
@@ -40,7 +40,8 @@ var api = {
 	'get_verfiy_policy': '/ybwx-web/api/policies/verify',
 	'policy_verfiy': '/ybwx-web/api/verify',
 	'get_policy_verfiyinfo': '/ybwx-web/api/verify_info/{id}',
-	'temai_index': '/ybwx-web/api/insurance/selling_page'
+	'temai_index': '/ybwx-web/api/insurance/selling_page',
+	'get_recommend_plans': '/ybwx-web/api/recommend/plans'
 }
 
 
@@ -153,11 +154,11 @@ function getBdStatus(orderStatus, bdStatus) {
 
 
 function getHttpPromise($http, $rootScope, method, url, data, callback) {
-	
-	 var openId = sessionStorage.getItem("openId");
-	 if(!data["open_id"]){
-	 	data["open_id"] =  openId;
-	 }
+
+	var openId = sessionStorage.getItem("openId");
+	if (!data["open_id"]) {
+		data["open_id"] = openId;
+	}
 	return $http({
 		method: method,
 		headers: {
@@ -205,7 +206,6 @@ mainControllers.controller('ybwxUserinfoCtrl', ['$scope', '$routeParams', '$loca
 
 	}
 ]);
-
 
 
 
@@ -419,60 +419,60 @@ mainControllers.controller('ybwxBdEducationNewCtrl', ['$scope', '$routeParams', 
 
 
 		$scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
-	  	
-				  $('input[type="range"]').rangeslider({
-                      polyfill: false,
-                       rangeClass: 'rangeslider',
-                       disabledClass: 'rangeslider--disabled',
-                       verticalClass: 'rangeslider--vertical',
-                       fillClass: 'rangeslider__fill',
-                       handleClass: 'rangeslider__handle',
-                  });
+
+			$('input[type="range"]').rangeslider({
+				polyfill: false,
+				rangeClass: 'rangeslider',
+				disabledClass: 'rangeslider--disabled',
+				verticalClass: 'rangeslider--vertical',
+				fillClass: 'rangeslider__fill',
+				handleClass: 'rangeslider__handle',
+			});
 
 		});
-		
+
 		$scope.more = function($event) {
-	      var element = $event.currentTarget;
-	      var switchValue = $(element).attr("data-switch");
-	      if (switchValue === 'on') {
-	        $(element).siblings(".table-wrapper").find("tr").removeClass("ng-hide");
-	        $(element).find("span").html("收起");
-	        $(element).attr("data-switch", "off");
-	        $(element).find("div").addClass("up");
-	      } else {
-	        $(element).siblings(".table-wrapper").find("tr:gt(6)").addClass("ng-hide");
-	        $(element).find("span").html("查看更多");
-	        $(element).attr("data-switch", "on");
-	        $(element).find("div").removeClass("up");
-	      }
-	    }
+			var element = $event.currentTarget;
+			var switchValue = $(element).attr("data-switch");
+			if (switchValue === 'on') {
+				$(element).siblings(".table-wrapper").find("tr").removeClass("ng-hide");
+				$(element).find("span").html("收起");
+				$(element).attr("data-switch", "off");
+				$(element).find("div").addClass("up");
+			} else {
+				$(element).siblings(".table-wrapper").find("tr:gt(6)").addClass("ng-hide");
+				$(element).find("span").html("查看更多");
+				$(element).attr("data-switch", "on");
+				$(element).find("div").removeClass("up");
+			}
+		}
 		$scope.processMoney = function(money) {
-			if(money==0){
+			if (money == 0) {
 				return "已投保";
-			}else{
+			} else {
 				return util.processSpecialMoney(money);
 			}
 		}
-		$scope.getInsuranceCNname = function(){
+		$scope.getInsuranceCNname = function() {
 			return insureanceCNMap[$routeParams.type];
 		}
 
 		$scope.goOldEducation = function() {
 			$location.path('/education').search({
-				"type":	$routeParams.type
+				"type": $routeParams.type
 			});
 			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_goEducation']);
 		}
 
-		$scope.goUpBd = function(){
+		$scope.goUpBd = function() {
 			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_goBdIndex']);
 			$location.path('/bd_index');
 		}
 
-		$scope.goBdmList = function(){
+		$scope.goBdmList = function() {
 			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_goBdmList']);
 			$location.path('/bdm_list').search({
-				"type":	$routeParams.type
+				"type": $routeParams.type
 			});
 		}
 
@@ -489,18 +489,17 @@ mainControllers.controller('ybwxBdEducationNewCtrl', ['$scope', '$routeParams', 
 			})
 		}
 		$scope.init = function() {
-			
+
 			var code = util.getParameterByName("code") || $routeParams.code;
-		
-			util.getOpenId(code).then(function() {                                                                               
+
+			util.getOpenId(code).then(function() {
 				var type = $routeParams.type;
-				$scope.type =  $routeParams.type;
-				console.log("type:"+$scope.type);
+				$scope.type = $routeParams.type;
 				$scope.getUserInfo();
 				var openId = sessionStorage.getItem("openId");
 				$scope.myPromise = getHttpPromise($http, $rootScope, 'GET', api['get_score_analysis_new'].replace('{openId}', openId).replace('{type}', type), {}, function(res) {
 					if (res && res.data && res.data.data) {
-						res.data.data.score = Math.round(res.data.data.score*10)/10;
+						res.data.data.score = Math.round(res.data.data.score * 10) / 10;
 						$scope.data = res.data.data;
 					}
 				})
@@ -563,7 +562,7 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 			});
 		}
 		$scope.data = {
-			scoreFix:0
+			scoreFix: 0
 		}
 		var openId = sessionStorage.getItem("openId");
 		//get_recommend_suggestion
@@ -581,17 +580,17 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 				}, function(res) {
 					console.log(res);
 					if (res && res.data && res.data.data) {
-						if(res.data.data.score>0){
-							res.data.data.scoreFix = Math.round(res.data.data.score*10)/10; 
+						if (res.data.data.score > 0) {
+							res.data.data.scoreFix = Math.round(res.data.data.score * 10) / 10;
 						}
-						$scope.data= res.data.data;
+						$scope.data = res.data.data;
 
 					}
 				})
 			}
 		}
 
-		
+
 		$scope.goBz = function() {
 			_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_subBtn']);
 			if (scoreObj.fanweiScore == 0 || scoreObj.moneyScore == 0) {
@@ -628,20 +627,41 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
 
-		
+
 		_hmt.push(['_trackPageview', $location.path()]);
+		$scope.money = $routeParams.estimate_money;
+		//get_recommend_plans
+		$scope.getCoverageType = util.getCoverageType;
+		$scope.processSpecialMoney = util.processSpecialMoney;
+		$scope.getTaoCanStatus = util.getTaoCanStatus;
 
-	
-		$scope.init = function() {
-			
-
-
-			
+		var taocan_css = {
+			1: "",
+			2: "unsell",
+			3: "selled",
+			4: "unsell",
+			5: "unsell"
 		}
 
+		$scope.get_taocan_css = function(status) {
+			return taocan_css[status];
+		}
+		$scope.init = function() {
+			var openId = sessionStorage.getItem("openId");
+			$scope.solutionPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_plans'], {
+				"open_id": openId,
+				"insurance_type": $routeParams.type,
+				"coverage_score": $routeParams.coverage_score,
+				"sum_insured_score":$routeParams.sum_insured_score
+			}, function(res) {
+				console.log(res);
+				if (res && res.data && res.data.data) {
+					$scope.data = res.data.data;
+				}
+			})
+		}
 	}
 ]);
-
 
 
 
@@ -832,7 +852,7 @@ mainControllers.controller('ybwxEducationCtrl', ['$scope', '$routeParams', '$loc
 			$scope.type = type;
 			$scope.getUserInfo();
 			var openId = sessionStorage.getItem("openId");
-			
+
 		}
 		$scope.goDingzhi = function() {
 			_hmt.push(['_trackEvent', 'eduction', 'eduction_subBtn']);
@@ -1239,7 +1259,7 @@ mainControllers.controller('ybwxToubaoDingzhiAllCtrl', ['$scope', '$filter', '$r
 
 				$scope.view = res.data.data.view;
 
-				sessionStorage.setItem("sell_plan", JSON.stringify($scope.plans));//存储需要支付的订单
+				sessionStorage.setItem("sell_plan", JSON.stringify($scope.plans)); //存储需要支付的订单
 
 				if (!$scope.relations) {
 					//$scope.insured.relation = $scope.relations[0];

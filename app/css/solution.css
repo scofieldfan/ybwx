@@ -100,6 +100,15 @@
         font-size: 13px; }
       .solution li .product .product-price {
         color: #ff5c00; }
+      .solution li .product .status {
+        background-color: #999;
+        color: #fff;
+        padding: 2px;
+        font-size: 12px; }
+      .solution li .product .status.un-sell {
+        background-color: #999; }
+      .solution li .product .status.selled {
+        background-color: #006ee9; }
     .solution li .arrow {
       -webkit-box-flex: 1;
       -webkit-flex: 1;

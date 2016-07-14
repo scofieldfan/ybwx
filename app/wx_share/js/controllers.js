@@ -182,14 +182,23 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
 	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
 
-		var code = util.getParameterByName("code") || $routeParams.code;
+
 		$("#loadingToastCommon").show();
 
-
+		var code = util.getParameterByName("code") || $routeParams.code;
 		$scope.init = function() {
 			util.getOpenId(code).then(function() {
-				console.log("openid....");
 				$("#loadingToastCommon").hide();
+
+				var openId = sessionStorage.getItem("openId");
+				$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['is_share'], {
+					"open_id": openId,
+					"insurance_plan_id": 72
+				}, function(res) {
+					$scope.isShare = res.data.data.status;
+
+				
+				});
 			});
 			$.when($.ajax({
 				type: 'GET',
@@ -229,7 +238,7 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 								"open_id": openId,
 								"insurance_plan_id": 72
 							}, function(res) {
-								// alert("");
+								//$("#special_share").html("点击即可优惠购买");
 								util.showToast($rootScope, "分享成功，恭喜您获得优惠购买的机会！");
 							});
 						},
@@ -257,26 +266,20 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 		$scope.original = function() {
 			$location.path('/moneybd').search({
 				plan: 72,
-			});				money: 50
+			});
+			money: 50
 
 		}
 
 		$scope.discount = function() {
-			var openId = sessionStorage.getItem("openId");
-			$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['is_share'], {
-				"open_id": openId,
-				"insurance_plan_id": 72
-			}, function(res) {
-				if (res.data.data.status) {
-					$location.path('/moneybd').search({
-						plan: 388,
-						money: 40
-					});
-				} else {
-					//util.showToast($rootScope, "亲，分享后才能享受10元折扣哦!");
-					$("#share").show();
-				}
-			});
+				if ($scope.isShare) {
+						$location.path('/moneybd').search({
+							plan: 388,
+							money: 40
+						});
+					} else {
+						$("#share").show();
+					}
 		}
 
 	}

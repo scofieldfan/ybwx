@@ -117,6 +117,18 @@
 			.product-price{
 				color:#ff5c00;
 			}
+			.status{
+				background-color: #999;
+				color:#fff;
+				padding:2px;
+				font-size:12px;
+			}
+			.status.un-sell{
+				background-color: #999;
+			}
+			.status.selled{
+				background-color: #006ee9;
+			}
 		}
 		.arrow{
 			@include flex(1);

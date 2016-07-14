@@ -16,12 +16,12 @@ var util = {
 			$("#toast").fadeOut();
 		}, 2000);
 	},
-	genParameters:function(obj){
-        var str = [];
-         for(var key in obj){
-                str.push(key+"="+obj[key]);
-        }
-         return  str.join("&");
+	genParameters: function(obj) {
+		var str = [];
+		for (var key in obj) {
+			str.push(key + "=" + obj[key]);
+		}
+		return str.join("&");
 	},
 	hasScrollbar: function() {
 		// The Modern solution
@@ -54,8 +54,8 @@ var util = {
 		return (contentOverflows && overflowShown) || (alwaysShowScroll)
 	},
 	processSpecialMoney: function(moneyStr) {
-		if(typeof moneyStr !== 'string'){
-			moneyStr = ''+moneyStr;
+		if (typeof moneyStr !== 'string') {
+			moneyStr = '' + moneyStr;
 		}
 		var tail = '';
 		var ret = moneyStr;
@@ -69,7 +69,7 @@ var util = {
 			ret = ret / 10000;
 			tail = '万'
 		} else {
-			ret = ret ;
+			ret = ret;
 			tail = '元'
 		}
 		if (isTail) {
@@ -97,7 +97,7 @@ var util = {
 			})).done(function(res) {
 				if (res && res.data && res.data["openid"]) {
 					sessionStorage.setItem("openId", res.data["openid"]);
-				}else{
+				} else {
 					console.error("invalid code......");
 				}
 			});
@@ -122,8 +122,7 @@ var util = {
 				timestamp: res.data["timestamp"], // 必填，生成签名的时间戳
 				nonceStr: res.data["noncestr"], // 必填，生成签名的随机串
 				signature: res.data["signature"], // 必填，签名，见附录1
-				jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone'
-				]
+				jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone']
 				// 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 			});
 			wx.ready(function() {
@@ -163,7 +162,7 @@ var util = {
 			});
 		})
 	},
-	share: function(shareObj,isNotEncode) {
+	share: function(shareObj, isNotEncode) {
 		var shareObj = shareObj || {};
 		return $.when($.ajax({
 			type: 'GET',
@@ -181,8 +180,7 @@ var util = {
 				timestamp: res.data["timestamp"], // 必填，生成签名的时间戳
 				nonceStr: res.data["noncestr"], // 必填，生成签名的随机串
 				signature: res.data["signature"], // 必填，签名，见附录1
-				jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone'
-				]
+				jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone']
 				// 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 			});
 			wx.ready(function() {
@@ -192,9 +190,9 @@ var util = {
 				var shareTitle = shareObj.shareTitle || "诺贝保险管家！";
 				var url = shareObj.shareUrl || shareUrl;
 				var shareDesc = shareObj.shareDesc || "诺贝保险管家，为您定制保险！";
-				var shareImg = shareObj.shareImg ||"http://web.youbaowuxian.com/img/icon.jpg";
+				var shareImg = shareObj.shareImg || "http://web.youbaowuxian.com/img/icon.jpg";
 
-				var shareLink = isNotEncode? url: 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri=' + encodeURIComponent(url) + '&response_type=code&scope=snsapi_base&state=123#wechat_redirect';
+				var shareLink = isNotEncode ? url : 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri=' + encodeURIComponent(url) + '&response_type=code&scope=snsapi_base&state=123#wechat_redirect';
 				wx.onMenuShareTimeline({
 					title: shareTitle,
 					link: shareLink,
@@ -220,11 +218,11 @@ var util = {
 			});
 			wx.error(function(res) {
 				// config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
-				 _hmt.push(['_trackEvent', 'wechat_error',res]);
+				_hmt.push(['_trackEvent', 'wechat_error', res]);
 			});
 		})
 	},
-	uploadImgConfig:function(successCallback){
+	uploadImgConfig: function(successCallback) {
 
 
 		return $.when($.ajax({
@@ -243,7 +241,7 @@ var util = {
 				timestamp: res.data["timestamp"], // 必填，生成签名的时间戳
 				nonceStr: res.data["noncestr"], // 必填，生成签名的随机串
 				signature: res.data["signature"], // 必填，签名，见附录1
-				jsApiList: [ 'chooseImage', 'previewImage', 'uploadImage', 'downloadImage']
+				jsApiList: ['chooseImage', 'previewImage', 'uploadImage', 'downloadImage']
 				// 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 			});
 			wx.ready(function() {
@@ -276,5 +274,27 @@ var util = {
 			console.log(res);
 			util.showToast($rootScope, "服务器错误");
 		});
+	},
+	coverage_types: {
+		1: "保终身",
+		2: "年",
+		3: "岁",
+		4: "月",
+		5: "天"
+	},
+	getCoverageType:function(type){
+		return util.coverage_types[type];
+	},
+	
+	taocan_status : {
+			1: "",
+			2: "未开售",
+			3: "已购买",
+			4: "已购买",
+			5: "已购买"
+
+	},
+	getTaoCanStatus:function(status){
+		return util.taocan_status[status];
 	}
 }
