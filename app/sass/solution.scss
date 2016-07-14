@@ -66,6 +66,7 @@
 		tr:not(:last-child){
 			border-bottom: 1px solid #e2e2e2;
 		}
+		
 		td{
 			padding: 0.1rem 0.05rem;
 			text-align: center;
@@ -92,6 +93,7 @@
 		text-align: center;
 		border-top:1px solid #e2e2e2;
 		border-bottom: 1px solid #ccc;
+		margin-top:-1px;
 }
 .introd{
 	color:#555;

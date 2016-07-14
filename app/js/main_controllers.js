@@ -41,7 +41,8 @@ var api = {
 	'policy_verfiy': '/ybwx-web/api/verify',
 	'get_policy_verfiyinfo': '/ybwx-web/api/verify_info/{id}',
 	'temai_index': '/ybwx-web/api/insurance/selling_page',
-	'get_recommend_plans': '/ybwx-web/api/recommend/plans'
+	'get_recommend_plans': '/ybwx-web/api/recommend/plans',
+	'recognizee': '/ybwx-web/api/relation/add'
 }
 
 
@@ -644,8 +645,11 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 			5: "unsell"
 		}
 		$scope.go = function(url){
-			window.location.href = url;
+			if(url){
+				window.location.href = url;
+			}
 		}
+		$scope.showNum = 3;
 		$scope.more = function($event) {
 			var element = $event.currentTarget;
 			var switchValue = $(element).attr("data-switch");
@@ -655,7 +659,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 				$(element).attr("data-switch", "off");
 				$(element).find("div").addClass("up");
 			} else {
-				$(element).siblings(".table-wrapper").find("tr:gt(3)").addClass("ng-hide");
+				$(element).siblings(".table-wrapper").find("tr:gt("+$scope.showNum+")").addClass("ng-hide");
 				$(element).find("span").html("查看更多");
 				$(element).attr("data-switch", "on");
 				$(element).find("div").removeClass("up");
@@ -675,6 +679,9 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 				console.log(res);
 				if (res && res.data && res.data.data) {
 					$scope.data = res.data.data;
+					//if( $scope.data.coverages.length > ($scope.showNum +1) ){
+						//$(".table-wrapper").find("tr:eq("+$scope.showNum+")").css("border","none");
+					//}
 				}
 			})
 		}

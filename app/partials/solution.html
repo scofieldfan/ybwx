@@ -12,10 +12,10 @@
 </div>
 <div class="table-wrapper"  data-ng-init="init()" >
 	<table>
-		<tr ng-repeat="coverage in data.coverages"  ng-hide="$index>3"><td  class="left-td" des="{{coverage.description}}"><div>{{coverage.name}}<div class="qa"></div></div><div  class="des" style="display: none">{{coverage.description}}</div></td><td class="right-td">{{processSpecialMoney(coverage.sum_insured)}}</td></tr>
+		<tr ng-repeat="coverage in data.coverages"  ng-hide="$index>showNum"><td  class="left-td" des="{{coverage.description}}"><div>{{coverage.name}}<div class="qa"></div></div><div  class="des" style="display: none">{{coverage.description}}</div></td><td class="right-td">{{processSpecialMoney(coverage.sum_insured)}}</td></tr>
 	</table>	
 </div>
-	<div class="more" ng-if="data.coverages.length>4"  data-switch='on' ng-click="more($event)"><span>查看更多</span><div class="icon-arrow"></div></div>
+	<div class="more" ng-if="data.coverages.length>(showNum+1)"  data-switch='on' ng-click="more($event)"><span>查看更多</span><div class="icon-arrow"></div></div>
 
 <div class="introd">方案内容</div>
 <ul class="solution">

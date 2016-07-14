@@ -341,7 +341,26 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 
 	}
 ])
-
+bdControllers.controller('ybwxRecognizeeCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $routeParams, $location, $http, $rootScope) {
+		_hmt.push(['_trackPageview', $location.path()]);
+		
+		$scope.save = function (){
+			var openId = sessionStorage.getItem("openId");
+			var relation= $("#relation").val();
+			$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['recognizee'], {
+				'open_id': openId,
+				'relation': relation,
+				'is_default':'true',
+				'username':$scope.username,
+				'social_id':$scope.social_id,
+				'mobile':$scope.mobile
+			},function(res) {
+				console.log(res.data.data);
+				$location.path('/recognizee_compile').search();
+			})
+		}
+	}]);
 bdControllers.controller('ybwxBDPicCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 		_hmt.push(['_trackPageview', $location.path()]);

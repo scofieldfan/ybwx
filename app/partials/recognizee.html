@@ -6,21 +6,23 @@
 	</ul>
 	<div class="regenizee_main">
 		<ul>
-			<li>姓名</li><input type="text" placeholder="宋仲基">
+			<li>姓名</li><input type="text" ng-model="username" placeholder="宋仲基">
 		</ul>
 		<ul>
-			<li>身份证号</li><input type="text" placeholder="1525454544545454545454">
+			<li>身份证号</li><input type="text" ng-model="social_id" placeholder="1525454544545454545454">
 		</ul>
 		<ul>
-			<li>手机号码</li><input type="text" placeholder="13639765495">
+			<li>手机号码</li><input type="text" ng-model="mobile" placeholder="13639765495">
 		</ul>
 		<ul class="weui_cell">
 			<li>关系</li>
-			<select>
-				<option value="spouse" selected="selected">配偶</option>
-				<option value="">父亲</option>
-				<option value="">母亲</option>
-				<option value="">子女</option>
+			<select id="relation">
+				<option value="spouse" value="1" selected="selected">本人</option>
+				<option value="2">父亲</option>
+				<option value="3">子女</option>
+				<option value="4">配偶</option>
+				<option value="5">同事</option>
+				<option value="6">其他</option>
 				<img  style="width: 14px;" src="img/down_jian.jpg">
 			</select>
 		</ul>
@@ -32,4 +34,4 @@
 		</ul>
 	</div>
 </div>
-<div class="recognizee_btn">保存</div>
+<div class="recognizee_btn" ng-click="save()">保存</div>
