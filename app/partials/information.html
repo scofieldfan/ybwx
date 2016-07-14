@@ -1,9 +1,9 @@
 <!-- 投保须知 -->
 <link rel="stylesheet" href="css/information.css?rev=c890e5f15aff39b655146c8b6aafb66f">
 <div  data-ng-init="init()" cg-busy="myPromise">
-	<div class="claim_controller">
-		<div class="claim_head"><img src="img/claim_information/logo.jpg"></div>
-		<!-- <li ng-if="data.age_notice">
+	<ul class="claim_controller">
+		<!-- <div class="claim_head"><img src="img/claim_information/logo.jpg"></div> -->
+		<li ng-if="data.age_notice">
 			<p><img src="img/claim_information/logo.jpg" alt=""><span class="font_size29">年龄限制</span></p>
 			<a class="content"  >{{data.age_notice}}</a>
 		</li>
@@ -37,8 +37,8 @@
 				{{notice.insurance_name}} 	{{notice.plan_name}}<br/>
 				{{notice.extra_notice}} 	
 			</a>
-		</li> -->
-	</div>
+		</li>
+	</ul>
 
 
 
