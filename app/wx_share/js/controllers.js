@@ -215,7 +215,7 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 					var shareUrl = "http://web.youbaowuxian.com/wx_share.html#special";
 					var shareTitle = "还在买捆绑的30元一次的航意险？在这里500万保一年无限次仅需40元！";
 					var shareDesc = "仅需1杯咖啡的花费即可享受1年500万航空意外的保障！";
-					var shareImg = "http://web.youbaowuxian.com/img/icon.jpg";
+					var shareImg = "http://web.youbaowuxian.com/wx_share/img/share_s.png";
 
 					var shareLink = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri=' + encodeURIComponent(shareUrl) + '&response_type=code&scope=snsapi_base&state=123#wechat_redirect';
 					wx.onMenuShareTimeline({
@@ -230,6 +230,7 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 								"insurance_plan_id": 72
 							}, function(res) {
 								// alert("");
+								util.showToast($rootScope, "分享成功，恭喜您获得优惠购买的机会！");
 							});
 						},
 						cancel: function() {}
