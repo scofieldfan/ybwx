@@ -144,6 +144,9 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/success.html',
       controller: 'ybwxSuccessCtrl',
       title: "投保成功"
+    }).when('/pay_success', {
+      templateUrl: 'partials/pay_success.html',
+       title: "交易完成提示"
     }).when('/jingzhun', {
       templateUrl: 'partials/jingzhun.html',
       controller: 'ybwxJingzhunCtrl',
@@ -197,6 +200,9 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/bdm_verfylist.html',
       controller: 'ybwxbaodanVerifyListCtrl',
       title: "保单验真"
+    }).when('/recognizee_compile', {
+      templateUrl: 'partials/recognizee_compile.html',
+      title: "被保人信息"
     }).when('/recognizee_first', {
       templateUrl: 'partials/recognizee_first.html',
       // controller: 'ybwxrecognizeeFirstCtrl',

@@ -1,0 +1,56 @@
+@import "base/classes.scss";
+@import "base/variables.scss";
+body {
+	background: #f5f5f5;
+}
+.recognizee_compile_ctrl {
+	.head {
+		margin: 15px 10px;
+		box-sizing: border-box;
+		border-radius: 5px;
+		line-height: 45px;
+		text-align: center;
+		background: #5aa8ff;
+		font-size: 15px;
+		color: #fff;
+		border: qpx solid #ccc;
+		img {
+		 width: 10px;
+		}
+	}
+	.bor {
+		border-top: 1px solid #e2e2e2;
+		height: 1px;
+	}
+	.main {
+		height: 95px;
+		// @include border(0 0 1px 0,#c4c4c4);
+		border-bottom: 1px solid #c4c4c4;
+		background: #fff;
+		padding: 17px 15px;
+		.main_head {
+			@include flexbox;
+			span {
+				display: block;
+				// line-height: 18px;
+				vertical-align: bottom;
+			}
+			span:nth-child(1) {
+				font-size: 18px;
+				color: #555;
+			}
+			span:nth-child(2) {
+				font-size: 13px;
+				color: #999;
+				@include flex(1);
+			}
+			span:nth-child(3) {
+				width: 15px;
+				img {
+					width: 15px;
+				}
+
+			}
+		}
+	}
+}

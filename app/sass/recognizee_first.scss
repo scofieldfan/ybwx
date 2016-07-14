@@ -5,6 +5,7 @@ body {
 	background: #f5f5f5;
 }
 .recognizee_first_ctrl {
+	padding-bottom: 60px;
 	.rgn_head {
 		line-height: 54px;
 		background: #006ee9;
@@ -14,5 +15,63 @@ body {
 	}
 	.choose {
 		line-height: 80px;
+		background: #fff;
+		border-bottom: 1px solid #c4c4c4;
+		font-size: 15px; 
+		color: #555;
+		@include flexbox;
+		padding: 0 20px;
+		.self ,.others{
+			@include flex(1);
+		}
+	}
+	.ziliao {
+		margin-top: 10px;
+		color:#555;
+		padding: 0 10px;
+		line-height: 45px;
+		border-bottom: 1px solid #e2e2e2;
+		font-size: 15px;
+		color: #555;
+		background: #fff;
+	}
+	.main {
+		padding: 0 10px;
+		background: #fff;
+		border-bottom: 1px solid #c4c4c4;
+		ul {
+			@include flexbox;
+			line-height: 45px;
+			border-bottom: 1px solid #e2e2e2;
+			li {
+				padding-left: 5px; 
+				width: 70px;
+				color: #999;
+				font-size: 13px;
+			}
+			input {
+				@include flex(1);
+				border:none;
+			}
+		}
 	}
 }
+.recognizee_first_btn {
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	border-top: 1px solid #e2e2e2;
+	background: #006ee9;
+	font-size: 15px;
+	color:  #fff;
+	text-align: center;
+	line-height: 49px;
+}
+
+
+.demo--label{display:inline-block}
+.demo--radio{display:none}
+.demo--radioInput{background-color:#fff;border:1px solid rgba(0,0,0,0.15);border-radius:100%;display:inline-block;height:16px;margin-right:10px;margin-top:-1px;vertical-align:middle;width:16px;line-height:1}
+.demo--radio:checked + .demo--radioInput:after{background-color:#57ad68;border-radius:100%;content:"";display:inline-block;height:12px;margin:2px;width:12px}
+.demo--checkbox.demo--radioInput,.demo--radio:checked + .demo--checkbox.demo--radioInput:after{border-radius:0}
