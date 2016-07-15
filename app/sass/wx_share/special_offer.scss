@@ -64,11 +64,11 @@
 			bottom: 16%;
 			left: 0;
 			.wid_10 {
-				width: 12%;
+				width: 11%;
 			}
 			@include flexbox;
 			.kong {
-				width: 25px;
+				width: 22px;
 			}
 			.kong_btn {
 				@include flex(1);

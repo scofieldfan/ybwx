@@ -1,16 +1,16 @@
 <link rel="stylesheet" href="css/recognizee_compile.css">
-<div class="recognizee_compile_ctrl">
+<div class="recognizee_compile_ctrl" data-ng-init="init()">
 	<div class="head_ctrl">
-		<div class="head"><img src="wx_share/img/rc/jia.png" >  新增被保险人</div>
+		<div class="head" ng-click="addPeople()"><img src="wx_share/img/rc/jia.png" >  新增被保险人</div>
 	</div>
 	<div class="bor"></div>
-	<div class="main">
+	<div class="main" ng-repeat="item in data">
 		<div class="main_head">
-			<div class="head_left">宋仲基</div>
-			<div class="head_right">本人</div>
-			<div class="head_bottom"><img src="img/pianji.png" ></div>
+			<div class="head_left">{{item.username}}</div>
+			<div class="head_right">{{getRelation(item.relation)}}</div>
+			<div class="head_bottom" ng-click="editUserInfo(item.id)"><img src="img/pianji.png" ></div>
 		</div>
-		<div class="status">身份证号： <input type="text" placeholder="30721198806252016"></div>
-		<div class="phone">手机号码：<input type="text " placeholder="15661035282"><span class="right">默认&nbsp;&nbsp;  <img src="img/gou.png"></span></div>
+		<div class="status">身份证号： <input type="text" placeholder="{{item.social_id}}"></div>
+		<div class="phone">手机号码：<input type="text " placeholder="{{item.mobile}}"><span class="right" ng-if="item.is_default==true">默认&nbsp;&nbsp;  <img src="img/gou.png"></span></div>
 	</div>
 </div>

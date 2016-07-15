@@ -41,8 +41,11 @@ var api = {
 	'policy_verfiy': '/ybwx-web/api/verify',
 	'get_policy_verfiyinfo': '/ybwx-web/api/verify_info/{id}',
 	'temai_index': '/ybwx-web/api/insurance/selling_page',
-	'recognizee': '/ybwx-web/api/relation/add'
-	
+	'addPeople': '/ybwx-web/api/relation/add',
+	'recognizee_compile': '/ybwx-web/api/relations',
+	'getData': '/ybwx-web/api/relation',
+	'deleteMessage': '/ybwx-web/api/relation/delete',
+	'update': '/ybwx-web/api/relation/update'
 }
 
 
@@ -203,8 +206,6 @@ mainControllers.controller('ybwxUserinfoCtrl', ['$scope', '$routeParams', '$loca
 				});
 			})
 		}
-
-
 	}
 ]);
 
