@@ -203,7 +203,7 @@ ybwxApp.config(['$routeProvider',
       title: "保单验真"
     }).when('/recognizee_compile', {
       templateUrl: 'partials/recognizee_compile.html',
-      // controller: 'ybwxRecognizeeComCtrl',
+      controller: 'ybwxRecognizeeComCtrl',
       title: "被保人信息"
     }).when('/supply_userinfo', {
       templateUrl: 'partials/supply_userinfo.html',

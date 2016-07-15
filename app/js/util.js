@@ -316,5 +316,26 @@ var util = {
 	}, {
 		openid: "omP9dwSHJtzwyRFBCBc3z-jpxwj8",
 		name: "岳文甲"
-	}]
+	}],
+	relationShip: [{
+			id: 1,
+			name: '本人'
+		}, {
+			id: 2,
+			name: '父亲'
+		}, {
+			id: 3,
+			name: '子女'
+		}, {
+			id: 4,
+			name: '配偶'
+		}, {
+			id: 5,
+			name: '同事'
+		}, {
+			id: 6,
+			name: '其他'
+		}
+		
+	]
 }

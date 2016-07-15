@@ -38,6 +38,7 @@ input {
 	.main {
 		// height: 95px;
 		// @include border(0 0 1px 0,#c4c4c4);
+		margin-bottom: 10px;
 		border-bottom: 1px solid #c4c4c4;
 		background: #fff;
 		padding: 15px 15px 10px 15px;   
@@ -47,11 +48,12 @@ input {
 			padding-bottom: 10px;
 			}
 			.head_left {
-				width: 63px;
+				min-width: 63px;
 				font-size: 18px;
 				color: #555;
 				vertical-align: bottom;
 				display:table-cell; 
+				margin-right: 8px;
 			}
 			.head_right {
 				font-size: 13px;

@@ -152,7 +152,7 @@ bdControllers.controller('ybwxbaodanManageListCtrl', ['$scope', '$routeParams', 
 			_hmt.push(['_trackEvent', 'bdm_list', 'bdmList_nav']);
 			$scope.type = type;
 		}
-		
+
 		$scope.init();
 
 		$scope.filterFn = function(policy) {
@@ -271,7 +271,7 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 		$scope.showTip = function() {
 			_hmt.push(['_trackEvent', 'bdm_detail', 'bdmDetail_shareTip']);
 			$("#share").show();
-			
+
 		}
 		$scope.shareConfig = function() {
 
@@ -283,10 +283,10 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 			var paramStr = util.genParameters(params);
 			var shareUrl = "http://web.youbaowuxian.com/#bdm_detail?" + paramStr;
 			util.share({
-				"shareTitle":"我的保单",
-				"shareUrl":shareUrl,
-				"shareDesc":"这是我在诺贝保险管家的保单。诺贝保险管家，保险本该如此!",
-				"shareImg":"http://web.youbaowuxian.com/img/icon.jpg"
+				"shareTitle": "我的保单",
+				"shareUrl": shareUrl,
+				"shareDesc": "这是我在诺贝保险管家的保单。诺贝保险管家，保险本该如此!",
+				"shareImg": "http://web.youbaowuxian.com/img/icon.jpg"
 			});
 
 			/*
@@ -337,30 +337,161 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 			});
 		}
 		$scope.init();
-
-
 	}
 ])
 bdControllers.controller('ybwxRecognizeeCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 		_hmt.push(['_trackPageview', $location.path()]);
-		
-		$scope.save = function (){
-			var openId = sessionStorage.getItem("openId");
-			var relation= $("#relation").val();
-			$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['recognizee'], {
+		$scope.getState = function() {
+			$scope.state = document.getElementById("checkbox").checked;
+			// console.log($scope.state);
+		}
+		var openId = sessionStorage.getItem("openId");
+		var userId = $routeParams.user_id;
+		console.log(userId);
+		var isUpdate = false;
+		if (userId) {
+			//修改逻辑
+			isUpdate = true;
+		}
+
+		$scope.relations = util.relationShip;
+		$scope.save = function() {
+			if (isUpdate) {
+				//更新
+				$scope.editUserInfo(userId);
+
+			} else {
+				//添加
+				$scope.addPeople();
+			}
+		}
+		$scope.addPeople = function() {
+			// 新增被保险人
+			$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['addPeople'], {
 				'open_id': openId,
-				'relation': relation,
-				'is_default':'true',
-				'username':$scope.username,
-				'social_id':$scope.social_id,
-				'mobile':$scope.mobile
-			},function(res) {
+				'relation': $scope.relation.id,
+				'is_default': $scope.state,
+				'username': $scope.username,
+				'social_id': $scope.social_id,
+				'mobile': $scope.mobile
+			}, function(res) {
 				console.log(res.data.data);
 				$location.path('/recognizee_compile').search();
 			})
 		}
-	}]);
+		// 删除被保险人资料
+
+		$scope.deleteMessage = function() {
+			$("#dialog1").show(function() {
+				$scope.sure = function() {
+					$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['deleteMessage'], {
+						'open_id': openId,
+						'insured_id': userId
+					}, function(res) {
+						// if(res && res.data && res.data.data.){
+						$location.path("/recognizee_compile").search();
+						// }
+
+					});
+				}
+				$scope.cancel = function() {
+					$("#dialog1").hide();
+				}
+			});
+		}
+		// $scope.relation = {
+		// 	id: 4,
+		// 	name: '配偶'
+		// };
+		// 获取被保险人资料
+		$scope.getUserInfo = function(userId) {
+			$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['getData'], {
+				'open_id': openId,
+				"insured_id": userId
+			}, function(res) {
+				if (res && res.data && res.data.data.relations) {
+					console.log("getDategetDategetDategetDategetDategetDategetDategetDate");
+					console.log(res);
+					if (res.data.data.relations[0]) {
+						$scope.username = res.data.data.relations[0].username;
+						$scope.social_id = res.data.data.relations[0].social_id;
+						$scope.mobile = res.data.data.relations[0].mobile;
+
+						var relationAry = util.relationShip.filter(function(item) {
+							return item.id === res.data.data.relations[0].relation;
+						});
+						console.log(relationAry);
+						if (Array.isArray(relationAry) && relationAry[0]) {
+							$scope.relation = relationAry[0];
+						}
+
+						console.log($scope.relation);
+						$scope.state = res.data.data.relations[0].is_default;
+					}
+				}
+				// console.log(res.data.data);
+			})
+		}
+		if (isUpdate) {
+			//修改页面
+			$scope.getUserInfo(userId);
+		}
+		// 更新被保险人
+		$scope.editUserInfo = function(insured_id) {
+			$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['update'], {
+				'open_id': openId,
+				"insured_id": insured_id,
+				'relation': $scope.relation.id,
+				'is_default': $scope.state,
+				'username': $scope.username,
+				'social_id': $scope.social_id,
+				'mobile': $scope.mobile
+			}, function(res) {
+				if (res && res.data && res.data.data.relations) {
+					$scope.data = res.data.data.relations;
+				}
+				$location.path("/recognizee_compile").search();
+				// console.log(res.data.data);
+			})
+		}
+	}
+]);
+bdControllers.controller('ybwxRecognizeeComCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $routeParams, $location, $http, $rootScope) {
+		//var relationShip = util.relationShip;
+		$scope.getRelation = function(relation) {
+			var relationAry = util.relationShip.filter(function(item) {
+				return item.id === relation;
+			});
+			if (Array.isArray(relationAry) && relationAry[0]) { 
+				return relationAry[0].name;
+			}
+
+		}
+		var openId = sessionStorage.getItem("openId");
+		$scope.init = function() {
+			$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['recognizee_compile'], {
+				'open_id': openId
+			}, function(res) {
+				if (res && res.data && res.data.data.relations) {
+					$scope.data = res.data.data.relations;
+				}
+				// console.log(res.data.data);
+			})
+		}
+		// 跳转and获取资料
+		$scope.editUserInfo = function(id) {
+			$location.path('/recognizee').search({
+				"user_id": id
+			});
+		}
+		// 跳转and新增被保险人
+		$scope.addPeople = function() {
+			$location.path('/recognizee').search();
+		}
+	}
+]);
 bdControllers.controller('ybwxBDPicCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 		_hmt.push(['_trackPageview', $location.path()]);
@@ -387,6 +518,7 @@ bdControllers.controller('ybwxBDPicCtrl', ['$scope', '$routeParams', '$location'
 		var margin  =  Math.floor((width - number*li_width)/number);
 		$("#pre_view_image_container").find("li").css("margin-right",8+margin).css("margin-left",8+margin);
 		*/
+
 		function uploadImg2Server(mediaIds, source) {
 			var openId = sessionStorage.getItem("openId");
 			$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['upload_policy_image'], {

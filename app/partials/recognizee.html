@@ -1,8 +1,8 @@
-<link rel="stylesheet" href="css/recognizee.css?rev=ad019bee92aa43377d20af3b41ac4af0">
+<link rel="stylesheet" href="css/recognizee.css?rev=e067e5863526c070ac3e7db93194e97e">
 <div class="recognizee_contrl">
 	<ul class="delete">
 		<li>被保人资料</li>
-		<li>删 除</li>
+		<li ng-click="deleteMessage()">删 除</li>
 	</ul>
 	<div class="regenizee_main">
 		<ul>
@@ -16,22 +16,38 @@
 		</ul>
 		<ul class="weui_cell">
 			<li>关系</li>
-			<select id="relation">
-				<option value="spouse" value="1" selected="selected">本人</option>
+		
+			
+			<select id="relation" ng-model="relation"   ng-options="option.name for option in relations track by option.id" >
+					
+					
+			<!-- 	<option value="1" selected="selected">本人</option>
 				<option value="2">父亲</option>
 				<option value="3">子女</option>
 				<option value="4">配偶</option>
 				<option value="5">同事</option>
-				<option value="6">其他</option>
+				<option value="6">其他</option> -->
+
 				<img  style="width: 14px;" src="img/down_jian.jpg">
 			</select>
 		</ul>
 		<ul class="moren">
 			<li>设为默认被保人</li>
             <div class="weui_cell_ft">
-                <input class="weui_switch" type="checkbox"/>
+                <input class="weui_switch" id="checkbox" ng-click="getState()" ng-model="state" type="checkbox"/>
             </div>
 		</ul>
 	</div>
 </div>
 <div class="recognizee_btn" ng-click="save()">保存</div>
+<div class="weui_dialog_confirm" id="dialog1" style="display: none;">
+    <div class="weui_mask"></div>
+    <div class="weui_dialog">
+        <div class="weui_dialog_hd"><strong class="weui_dialog_title">删除该用户？</strong></div>
+        <div class="weui_dialog_bd">删除后将无法为该用户直接投保</div>
+        <div class="weui_dialog_t">
+            <a href="javascript:;" class="weui_btn_dialog default" ng-click="cancel()">取消</a>
+            <a href="javascript:;" class="weui_btn_dialog primary" ng-click="sure()">确定</a>
+        </div>
+    </div>
+</div>
