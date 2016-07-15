@@ -450,7 +450,6 @@ bdControllers.controller('ybwxRecognizeeCtrl', ['$scope', '$routeParams', '$loca
 			}, function(res) {
 				if (res && res.data && res.data.data.relations) {
 					$scope.data = res.data.data.relations;
-					
 				}
 				$location.path("/recognizee_compile").search();
 				// console.log(res.data.data);
