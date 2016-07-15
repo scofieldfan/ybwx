@@ -72,11 +72,12 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/solution.html',
       controller: 'ybwxSolutionCtrl',
       title: "保障方案",
-      css:'css/solution.css?rev=25c932943b85703242e0b6d49379353e'
+      css:'css/solution.css?rev=ba22fcff0d78dd9d4213bfa4f46344f8'
     }).when('/toubao_new', {
       templateUrl: 'partials/toubao_new.html',
+      controller: 'ybwxToubaoNewCtrl',
       title: "保障方案",
-      css:'css/toubao_new.css?rev=ed57054e7bc5695702709a86b62fb458'
+      css:'css/toubao_new.css?rev=1a9bccab90db1694a628488915d4c008'
     }).when('/promote', {
       templateUrl: 'partials/bz_ts.html',
       controller: 'ybwxPromoteCtrl',
@@ -204,9 +205,9 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/recognizee_compile.html',
       // controller: 'ybwxRecognizeeComCtrl',
       title: "被保人信息"
-    }).when('/recognizee_first', {
-      templateUrl: 'partials/recognizee_first.html',
-      // controller: 'ybwxrecognizeeFirstCtrl',
+    }).when('/supply_userinfo', {
+      templateUrl: 'partials/supply_userinfo.html',
+       controller: 'ybwxSupplayInfoCtrl',
       title: "被保人信息"
     }).when('/recognizee', {
       templateUrl: 'partials/recognizee.html',

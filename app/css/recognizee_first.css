@@ -39,9 +39,8 @@ body {
     background: #fff; }
   .recognizee_first_ctrl .main {
     padding: 0 10px;
-    background: #fff;
-    border-bottom: 1px solid #c4c4c4; }
-    .recognizee_first_ctrl .main ul {
+    background: #fff; }
+    .recognizee_first_ctrl .main .line-box {
       display: -webkit-box;
       display: -webkit-flex;
       display: -moz-box;
@@ -49,18 +48,20 @@ body {
       display: flex;
       line-height: 45px;
       border-bottom: 1px solid #e2e2e2; }
-      .recognizee_first_ctrl .main ul li {
+      .recognizee_first_ctrl .main .line-box .lable {
         padding-left: 5px;
         width: 70px;
         color: #999;
         font-size: 13px; }
-      .recognizee_first_ctrl .main ul input {
+      .recognizee_first_ctrl .main .line-box input {
         -webkit-box-flex: 1;
         -webkit-flex: 1;
         -moz-box-flex: 1;
         -ms-flex: 1;
         flex: 1;
         border: none; }
+    .recognizee_first_ctrl .main .line-box:not(:last-child) {
+      border-bottom: 1px solid #c4c4c4; }
 .recognizee_first_btn {
   width: 100%;
   position: fixed;

@@ -285,7 +285,11 @@ var util = {
 	getCoverageType: function(type) {
 		return util.coverage_types[type];
 	},
-
+	addDays :function addDays(date, days) {
+			var result = new Date(date);
+			result.setDate(result.getDate() + days);
+			return result;
+	},
 	taocan_status: {
 		1: "",
 		2: "未开售",

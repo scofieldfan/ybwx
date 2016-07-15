@@ -38,6 +38,8 @@
   line-height: 0px;
   display: inline-block;
   vertical-align: -1px; }
+.border-bt {
+  border-bottom: 1px solid #cccccc; }
 .table-wrapper {
   padding: 0 .2rem;
   background-color: #fff; }

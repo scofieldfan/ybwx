@@ -26,6 +26,7 @@ var api = {
 	'get_industries_2': '/ybwx-web/api/occupations/',
 	'get_industries_3': '/ybwx-web/api/jobs/',
 	'pre_insure': '/ybwx-web/api/insurance/pre_insure',
+	'prepare_insure': '/ybwx-web/api/insurance/prepare',
 	'insure': '/ybwx-web/api/insurance/insure',
 	'send_bd': '/ybwx-web/api/send_policy',
 	'pay': '/ybwx-web/api/pay',
@@ -42,7 +43,8 @@ var api = {
 	'get_policy_verfiyinfo': '/ybwx-web/api/verify_info/{id}',
 	'temai_index': '/ybwx-web/api/insurance/selling_page',
 	'get_recommend_plans': '/ybwx-web/api/recommend/plans',
-	'recognizee': '/ybwx-web/api/relation/add'
+	'recognizee': '/ybwx-web/api/relation/add',
+	'firstToubao': '/ybwx-web/api/relation/first'
 }
 
 
@@ -598,7 +600,7 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 				util.showToast($rootScope, "请选择保障范围和保障额度");
 				return false;
 			}
-			$location.path('/bz').search({
+			$location.path('/solution').search({
 				'type': $routeParams.type,
 				'coverage_score': scoreObj.fanweiScore,
 				'sum_insured_score': scoreObj.moneyScore,
@@ -644,8 +646,8 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 			4: "unsell",
 			5: "unsell"
 		}
-		$scope.go = function(url){
-			if(url){
+		$scope.go = function(url) {
+			if (url) {
 				window.location.href = url;
 			}
 		}
@@ -659,7 +661,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 				$(element).attr("data-switch", "off");
 				$(element).find("div").addClass("up");
 			} else {
-				$(element).siblings(".table-wrapper").find("tr:gt("+$scope.showNum+")").addClass("ng-hide");
+				$(element).siblings(".table-wrapper").find("tr:gt(" + $scope.showNum + ")").addClass("ng-hide");
 				$(element).find("span").html("查看更多");
 				$(element).attr("data-switch", "on");
 				$(element).find("div").removeClass("up");
@@ -679,12 +681,44 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 				console.log(res);
 				if (res && res.data && res.data.data) {
 					$scope.data = res.data.data;
-					//if( $scope.data.coverages.length > ($scope.showNum +1) ){
-						//$(".table-wrapper").find("tr:eq("+$scope.showNum+")").css("border","none");
-					//}
+					$scope.choosePlansIds = res.data.data.plans.filter(function(item) {
+						return item.status === 1;
+					}).map(function(item) {
+						return item.id;
+					});
 				}
 			})
 		}
+		$scope.isHaveRestrictions = false;
+		$scope.goInfo = function() {
+			_hmt.push(['_trackEvent', 'solution', 'solution_subBtn']);
+
+			if ($scope.choosePlansIds.length === 0) {
+				util.showToast($rootScope, "没有可以购买的产品");
+				return;
+			}
+
+			if ($scope.isHaveRestrictions) {
+				$location.path('/information').search({
+					'type': $routeParams.type,
+					'coverage_score': $routeParams.coverage_score,
+					'sum_insured_score': $routeParams.sum_insured_score,
+					'estimate_money': $routeParams.estimate_money,
+					'sum_score': $routeParams.sum_score,
+					'choose_plans': JSON.stringify($scope.choosePlansIds)
+				});
+			} else {
+				$location.path('/toubao_new').search({
+					'type': $routeParams.type,
+					'coverage_score': $routeParams.coverage_score,
+					'sum_insured_score': $routeParams.sum_insured_score,
+					'estimate_money': $routeParams.estimate_money,
+					'sum_score': $routeParams.sum_score,
+					'choose_plans': JSON.stringify($scope.choosePlansIds)
+				});
+			}
+		}
+
 	}
 ]);
 
@@ -964,7 +998,96 @@ mainControllers.controller('ybwxOfficalSiteCtrl', ['$scope', '$routeParams', '$l
 
 	}
 ]);
+mainControllers.controller('ybwxSupplayInfoCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $routeParams, $location, $http, $rootScope) {
 
+		_hmt.push(['_trackPageview', $location.path()]);
+		$scope.for = 'self';
+		$scope.init = function() {
+			
+		}
+
+		$scope.submit = function(){
+			$scope.firstToubao = getHttpPromise($http, $rootScope, 'POST', api['firstToubao'], {
+				'open_id': openId
+			}, function(res) {
+				$scope.data = res.data.data;
+				// $scope.genPlansInEffectiveDate();
+			});
+		}
+	}
+]);
+
+mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $routeParams, $location, $http, $rootScope) {
+		//得兼容定制页投保，特卖投保
+		_hmt.push(['_trackPageview', $location.path()]);
+
+		function genInEffectiveDate(coverage_period, coverage_period_type) {
+			//计算失效日期
+			var startDate = $scope.user.effective_date;
+			if (coverage_period && coverage_period_type) {
+				var period = coverage_period;
+				var effDate = new Date();
+				if (coverage_period_type == 5) {
+					effDate = util.addDays(startDate, parseInt(coverage_period));
+				}
+				if (coverage_period_type == 2) {
+					effDate = util.addDays(startDate, 365 * parseInt(coverage_period));
+				}
+				return effDate;
+			}
+		}
+		$scope.genPlansInEffectiveDate = function() {
+			$scope.data.plans.forEach(function(element, index) {
+				return element.endDate = genInEffectiveDate(element.coverage_period, element.coverage_period_type);
+			});
+			console.log($scope.data.plans);
+		}
+		$scope.goRoute = function() {
+			if ($scope.data.user) {
+				//去list页	
+				$location.path('/recognizee_compile').search();
+			} else {
+				//去补充信息页
+				$location.path('/supply_userinfo').search();
+			}
+		}
+		$scope.init = function() {
+			var effectiveDate = new Date();
+			effectiveDate.setDate(effectiveDate.getDate() + 1);
+			$scope.minDate = effectiveDate;
+			$scope.user = {};
+			$scope.user.effective_date = effectiveDate;
+			$scope.know_contract = true;
+
+			var openId = sessionStorage.getItem("openId");
+			$scope.money = $routeParams.estimate_money;
+			$scope.getCoverageType = util.getCoverageType;
+			$scope.processSpecialMoney = util.processSpecialMoney;
+			if ($routeParams.coverage_period_type) {
+				$scope.coverage_period_type = $routeParams.coverage_period_type;
+			}
+			if ($routeParams.coverage_period) {
+				$scope.coverage_period = $routeParams.coverage_period;
+			}
+			if ($routeParams.charge_period_type) {
+				$scope.charge_period_type = $routeParams.charge_period_type;
+			}
+			if ($routeParams.charge_period) {
+				$scope.charge_period = $routeParams.charge_period;
+			}
+
+			$scope.preparePromise = getHttpPromise($http, $rootScope, 'POST', api['prepare_insure'], {
+				'open_id': openId,
+				'plans': JSON.parse($routeParams.choose_plans)
+			}, function(res) {
+				$scope.data = res.data.data;
+				$scope.genPlansInEffectiveDate();
+			});
+		}
+	}
+]);
 
 
 mainControllers.controller('ybwxToubaoDingzhiAllCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
@@ -1197,6 +1320,8 @@ mainControllers.controller('ybwxToubaoDingzhiAllCtrl', ['$scope', '$filter', '$r
 				console.log("inEffective_date:"+$scope.user.inEffective_date);*/
 			}
 		}
+
+
 		$scope.changeEffectiveDate = function() {
 			//选择保险期间
 			genInEffectiveDate();
@@ -1219,15 +1344,15 @@ mainControllers.controller('ybwxToubaoDingzhiAllCtrl', ['$scope', '$filter', '$r
 			/*
 			if (isSocial) {
 				if ($scope.order) {
-					if (!$scope.order.social_id.$invalid) {//如果身份证正确，则包含身份证
-						postData["social_id"] = $scope.insured.social_id;
+					if (!$scope.order.social_id.$scope.insured.social_id;
 					} else {
 						return;
 					}
 				} else {
 
 					if ($scope.insured.social_id) {
-						postData["social_id"] = $scope.insured.social_id;
+						postData["social_id"] $invalid) {//如果身份证正确，则包含身份证
+						postData["social_id"] = = $scope.insured.social_id;
 					} else {
 						return;
 					}

@@ -38,12 +38,12 @@ body {
 	.main {
 		padding: 0 10px;
 		background: #fff;
-		border-bottom: 1px solid #c4c4c4;
-		ul {
+	
+		.line-box {
 			@include flexbox;
 			line-height: 45px;
 			border-bottom: 1px solid #e2e2e2;
-			li {
+			.lable {
 				padding-left: 5px; 
 				width: 70px;
 				color: #999;
@@ -54,6 +54,10 @@ body {
 				border:none;
 			}
 		}
+		.line-box:not(:last-child){
+			border-bottom: 1px solid #c4c4c4;
+		}
+
 	}
 }
 .recognizee_first_btn {
