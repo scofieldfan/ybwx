@@ -301,6 +301,12 @@ var util = {
 	getTaoCanStatus: function(status) {
 		return util.taocan_status[status];
 	},
+	redirectWeChatUrl:function(redirectUrl){
+		if(typeof redirectUrl === "string" && redirectUrl.indexOf("http")==0){
+			var WE_CHAT_URL="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri="+encodeURIComponent(redirectUrl)+"&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
+    	    window.location.href=WE_CHAT_URL;
+		}
+	},
 	whiteOpenIds : [{
 		openid: "omP9dwb6u-lamgwOhFqFIcU3QLPk",
 		name: "巴信军"
