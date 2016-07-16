@@ -344,10 +344,10 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 		$scope.init = function() {
 			//获得openId
 			//setTest($routeParams.is_test);
-			var code = util.getParameterByName("code") || $routeParams.code;
-			util.share();
-			util.getOpenId(code).then(function() {
-
+			var currentUrl = "http://web.youbaowuxian.com/#/index";
+			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
+				
+				util.share();
 				/*
 					判断是否第一次进入
 				*/
@@ -355,7 +355,6 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 				if (!isFirstTime) {
 					$location.path('/edindex');
 				}
-
 				var openId = sessionStorage.getItem("openId");
 				$http({
 					method: 'GET',
@@ -378,8 +377,7 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 					console.log(res);
 					util.showToast($rootScope, "服务器错误");
 				});
-			})
-
+			});
 		}
 	}
 ]);
