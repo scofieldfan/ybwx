@@ -88,7 +88,7 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 		var currentUrl = "http://web.youbaowuxian.com/wx_share.html#/jixian";
 		$scope.init = function() {
 
-			checkCodeAndOpenId($routeParams.code, currentUrl, function() {
+			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
 				$("#loadingToastCommon").hide();
 				var openId = sessionStorage.getItem("openId");
 
@@ -201,26 +201,7 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 	}
 ]);
 
-function checkCodeAndOpenId(angularCode, currentUrl, callback) {
-	var code = util.getParameterByName("code") || angularCode;
-	if (!sessionStorage.getItem("openId") && !code) {
-		//如果没有openId,也没有code，那么就跳转一次
-		util.redirectWeChatUrl(currentUrl);
-	} else {
-		util.getOpenId(code).then(function() {
-			var openId = sessionStorage.getItem("openId");
-			if (!openId) {
-				//如果用当前的code如法获得openId，那么就重新跳转获得一次openId
-				util.redirectWeChatUrl(currentUrl);
-			} else {
-				if (typeof callback === "function") {
-					callback();
-				}
-			}
-		});
-	}
 
-}
 wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
 	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
 
@@ -231,7 +212,7 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 		//没有code跳转，如果没有获得openId也跳转
 		$scope.init = function() {
 			$("#loadingToastCommon").show();
-			checkCodeAndOpenId($routeParams.code, currentUrl, function() {
+			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
 				$("#loadingToastCommon").hide();
 				var openId = sessionStorage.getItem("openId");
 				$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['is_share'], {
@@ -648,7 +629,7 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 				recommend_times: 0
 			}
 
-			checkCodeAndOpenId($routeParams.code, currentUrl, function() {
+			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
 				$("#loadingToastCommon").hide();
 				util.share({
 					shareUrl: "http://web.youbaowuxian.com/wx_share.html#/index?rec_id=" + openId,

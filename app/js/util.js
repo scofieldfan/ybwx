@@ -285,10 +285,10 @@ var util = {
 	getCoverageType: function(type) {
 		return util.coverage_types[type];
 	},
-	addDays :function addDays(date, days) {
-			var result = new Date(date);
-			result.setDate(result.getDate() + days);
-			return result;
+	addDays: function addDays(date, days) {
+		var result = new Date(date);
+		result.setDate(result.getDate() + days);
+		return result;
 	},
 	taocan_status: {
 		1: "",
@@ -301,13 +301,33 @@ var util = {
 	getTaoCanStatus: function(status) {
 		return util.taocan_status[status];
 	},
-	redirectWeChatUrl:function(redirectUrl){
-		if(typeof redirectUrl === "string" && redirectUrl.indexOf("http")==0){
-			var WE_CHAT_URL="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri="+encodeURIComponent(redirectUrl)+"&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
-    	    window.location.href=WE_CHAT_URL;
+	redirectWeChatUrl: function(redirectUrl) {
+		if (typeof redirectUrl === "string" && redirectUrl.indexOf("http") == 0) {
+			var WE_CHAT_URL = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri=" + encodeURIComponent(redirectUrl) + "&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
+			window.location.href = WE_CHAT_URL;
 		}
 	},
-	whiteOpenIds : [{
+	checkCodeAndOpenId: function(angularCode, currentUrl, callback) {
+		var code = util.getParameterByName("code") || angularCode;
+		if (!sessionStorage.getItem("openId") && !code) {
+			//如果没有openId,也没有code，那么就跳转一次
+			util.redirectWeChatUrl(currentUrl);
+		} else {
+			util.getOpenId(code).then(function() {
+				var openId = sessionStorage.getItem("openId");
+				if (!openId) {
+					//如果用当前的code如法获得openId，那么就重新跳转获得一次openId
+					util.redirectWeChatUrl(currentUrl);
+				} else {
+					if (typeof callback === "function") {
+						callback();
+					}
+				}
+			});
+		}
+
+	},
+	whiteOpenIds: [{
 		openid: "omP9dwb6u-lamgwOhFqFIcU3QLPk",
 		name: "巴信军"
 	}, {
@@ -342,6 +362,6 @@ var util = {
 			id: 6,
 			name: '其他'
 		}
-		
+
 	]
 }
