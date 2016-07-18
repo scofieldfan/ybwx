@@ -57,7 +57,8 @@
       color: #555; }
     .table-wrapper table .left-td {
       text-align: left;
-      width: 80%; }
+      width: 80%;
+      cursor: pointer; }
     .table-wrapper table .right-td {
       text-align: right;
       vertical-align: top; }
@@ -92,7 +93,8 @@
     display: -webkit-flex;
     display: -moz-box;
     display: -ms-flexbox;
-    display: flex; }
+    display: flex;
+    cursor: pointer; }
     .solution li .checkbox {
       -webkit-box-flex: 1;
       -webkit-flex: 1;
@@ -163,3 +165,6 @@
     -ms-flex: 35;
     flex: 35;
     background-color: #ff5c00; }
+.toast {
+  max-height: 325px;
+  overflow: auto; }
