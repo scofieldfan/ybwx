@@ -89,11 +89,11 @@ ybwxControllers.controller('wxTemaiIndexCtrl', ['$scope', '$routeParams', '$loca
       });
     }
     $scope.goDetail = function(id) {
-       /*
+      
        $location.path("/temaidetail").search({
           "product_id": id
         });
-      */
+      /*
       if (newDetailProductId.indexOf(id) !== -1) {
         $location.path("/temaidetail").search({
           "product_id": id
@@ -102,7 +102,7 @@ ybwxControllers.controller('wxTemaiIndexCtrl', ['$scope', '$routeParams', '$loca
         $location.path("/detail").search({
           "product_id": id
         });
-      }
+      } */
     }
     $("body").on("click", "#showShare", function() {
       $("#share_ctrl").show();
@@ -163,10 +163,10 @@ ybwxControllers.controller('wxTemaiListCtrl', ['$scope', '$routeParams', '$locat
     }
 
     $scope.goCateDetail = function(id) {
-       /* $location.path("/temaidetail").search({
+       $location.path("/temaidetail").search({
           "product_id": id
-        });*/
-      
+        });
+       /*
       if (newDetailProductId.indexOf(id) !== -1) {
         $location.path("/temaidetail").search({
           "product_id": id
@@ -175,7 +175,7 @@ ybwxControllers.controller('wxTemaiListCtrl', ['$scope', '$routeParams', '$locat
         $location.path("/detail").search({
           "product_id": id
         });
-      }
+      }*/
 
     }
   }
@@ -410,7 +410,8 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q','$filter', '$route
       if ($scope.data.health_notice || $scope.data.extra_notice || $scope.data.locale_notice) {
         $location.path("/productinformation").search(postData);
       } else {
-        $location.path("/toubao_new").search(postData);
+        // $location.path("/toubao_new").search(postData);
+           $location.path("/tb_dz").search(postData);
       }
 
     }

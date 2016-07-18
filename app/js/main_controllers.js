@@ -501,7 +501,7 @@ mainControllers.controller('ybwxBdEducationNewCtrl', ['$scope', '$routeParams', 
 				$scope.type = $routeParams.type;
 				$scope.getUserInfo();
 				var openId = sessionStorage.getItem("openId");
-				$scope.myPromise = getHttpPromise($http, $rootScope, 'GET', api['get_score_analysis_new'].replace('{openId}', openId).replace('{type}', type), {}, function(res) {
+				$scope.educationPromise = getHttpPromise($http, $rootScope, 'GET', api['get_score_analysis_new'].replace('{openId}', openId).replace('{type}', type), {}, function(res) {
 					if (res && res.data && res.data.data) {
 						res.data.data.score = Math.round(res.data.data.score * 10) / 10;
 						$scope.data = res.data.data;
@@ -532,7 +532,7 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 		$scope.init = function() {
 			$scope.type = $routeParams.type;
 			$scope.estimateMoney = 0;
-			$http({
+			$scope.selectPromise = $http({
 				method: 'GET',
 				headers: {
 					"Content-Type": "application/json;charset:UTF-8"
@@ -601,7 +601,7 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 				util.showToast($rootScope, "请选择保障范围和保障额度");
 				return false;
 			}
-			/*
+			
 			$location.path('/bz').search({
 				'type': $routeParams.type,
 				'coverage_score': scoreObj.fanweiScore,
@@ -609,14 +609,14 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 				'estimate_money': $scope.data.premium,
 				'sum_score': $scope.data.scoreFix
 			});
-			*/
+			/*
 			$location.path('/solution').search({
 				'type': $routeParams.type,
 				'coverage_score': scoreObj.fanweiScore,
 				'sum_insured_score': scoreObj.moneyScore,
 				'estimate_money': $scope.data.premium,
 				'sum_score': $scope.data.scoreFix
-			});
+			});*/
 		}
 		$scope.showIntrod = function() {
 			_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_showIntrod']);
@@ -1156,7 +1156,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 
 			var effectiveDate = $filter('date')($scope.user.effective_date, "yyyyMMdd");
 
-			$scope.preparePromise = getHttpPromise($http, $rootScope, 'POST', api['purchase'], {
+			$scope.submitPromise = getHttpPromise($http, $rootScope, 'POST', api['purchase'], {
 				'open_id': openId,
 				"insured_id": $scope.data.insured.id,
 				'plans': plans,
@@ -1212,7 +1212,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				$scope.charge_period = $routeParams.charge_period;
 			}
 
-			$scope.preparePromise = getHttpPromise($http, $rootScope, 'POST', api['prepare_insure'], {
+			$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['prepare_insure'], {
 				'open_id': openId,
 				'plans': JSON.parse($routeParams.choose_plans),
 				'coverage_period':$routeParams.coverage_period,

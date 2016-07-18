@@ -435,7 +435,6 @@ bdControllers.controller('ybwxRecognizeeComCtrl', ['$scope', '$routeParams', '$l
 				if (res && res.data && res.data.data.relations) {
 					$scope.data = res.data.data.relations;
 				}
-				// console.log(res.data.data);
 			})
 		}
 		// 跳转and获取资料

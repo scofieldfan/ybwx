@@ -1,5 +1,5 @@
-
-<div class="main-wrapper"  data-ng-init="init()" >
+<div cg-busy="prePromise" >
+<div class="main-wrapper"  data-ng-init="init()"  >
 	<div class="people-container" ng-click="goRoute()">
 		<div ng-show="isFirst" class="default-info">
 			<div>请填写被保人、投保人信息</div>				
@@ -52,8 +52,8 @@
 		<input type="checkbox" class="know-contract" ng-model="know_contract" name="know_contract"  >
 		我已经阅读<a href="">产品条款</a>和<a href="">投保须知</a>
 	</div>
-
 </div>
+
 
 <div class="fix_container">
 		<div class="footer">
