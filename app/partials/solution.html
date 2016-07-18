@@ -7,7 +7,7 @@
 	<div class="logo icon_{{type}}"> </div>
 	<div class="contaienr">
 		<div class="title">意外保障方案 {{data.score}}分</div>	
-		<div class="sub-title">方案金额:{{data.premium}} 元</div>	
+		<div class="sub-title">方案金额:{{sumMoney}} 元</div>	
 	</div>
 </div>
 <div class="table-wrapper"  data-ng-init="init()"  ng-class="{'border-bt': data.coverages.length<=(showNum+1)}">
@@ -20,8 +20,8 @@
 <div class="introd">方案内容</div>
 <ul class="solution">
 
-	<li  ng-repeat="plan in data.plans" ng-click="go(plan.official_site)">
-		<div class="checkbox "  ng-class="{'choose': plan.status==1, '': plan.status!=1}"></div>	
+	<li  ng-repeat="plan in data.plans" ng-click="go(plan)">
+		<div class="checkbox "  ng-class="{'choose': plan.status==1 && !plan.unchecked, '': plan.status!=1 , 'unchoose':plan.status==1 && plan.unchecked }"></div>	
 		<div class="product">
 			<div class="product-name">{{plan.name}}</div>	
 			<div class="product-des">最高保额：{{plan.premium}}元 保{{plan.coverage_period}}{{getCoverageType(plan.coverage_period_type)}}</div>	
@@ -46,7 +46,7 @@
 
 <div class="fix_container">
 	<div class="footer">
-	<a href="javascript:void(0)" class="btn btn_n_primary left">投保金额<span class="money">{{money}}</span> 元</a>
+	<a href="javascript:void(0)" class="btn btn_n_primary left">投保金额<span class="money">{{sumMoney}}</span> 元</a>
 	<a href="javascript:void(0)" class="btn btn_n_primary right" ng-click="goInfo()">立即投保</a>
 	</div>
 </div>

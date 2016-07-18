@@ -23,7 +23,7 @@
 			<div class="product">	
 				<div class="name">{{plan.name}}</div>	
 				<div class="duration">{{user.effective_date | date:'yyyy-MM-dd'}}至{{plan.endDate | date:'yyyy-MM-dd'}}</div>
-				<div class="money">保额:{{processSpecialMoney(plan.sum_insured)}}元  保{{plan.coverage_period}}{{getCoverageType(plan.coverage_period_type)}}</div>
+				<div class="money">保额:{{processSpecialMoney(plan.sum_insured)}}元  保{{coverage_period ||  plan.coverage_period}}{{getCoverageType(plan.coverage_period_type)}}</div>
 			</div>
 			<div class="money-container">
 				<span class="fee">{{plan.premium}}元</span>		<span class="fr" style="display: none">20年交清  <span class="modify">修改</span></span>

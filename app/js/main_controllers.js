@@ -601,6 +601,7 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 				util.showToast($rootScope, "请选择保障范围和保障额度");
 				return false;
 			}
+			/*
 			$location.path('/bz').search({
 				'type': $routeParams.type,
 				'coverage_score': scoreObj.fanweiScore,
@@ -608,14 +609,14 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 				'estimate_money': $scope.data.premium,
 				'sum_score': $scope.data.scoreFix
 			});
-			/*
+			*/
 			$location.path('/solution').search({
 				'type': $routeParams.type,
 				'coverage_score': scoreObj.fanweiScore,
 				'sum_insured_score': scoreObj.moneyScore,
 				'estimate_money': $scope.data.premium,
 				'sum_score': $scope.data.scoreFix
-			});*/
+			});
 		}
 		$scope.showIntrod = function() {
 			_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_showIntrod']);
@@ -655,9 +656,18 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 			4: "unsell",
 			5: "unsell"
 		}
-		$scope.go = function(url) {
-			if (url) {
-				window.location.href = url;
+		$scope.go = function(plan) {
+			if (plan.status === 1) {
+				if(plan.unchecked){
+					plan.unchecked =false;
+				}else{
+					plan.unchecked = true;
+				}
+				$scope.choosePlan();
+			} else {
+				if (plan.url) {
+					window.location.href = url;
+				}
 			}
 		}
 		$scope.showNum = 3;
@@ -679,7 +689,24 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 		$scope.get_taocan_css = function(status) {
 			return taocan_css[status];
 		}
+		$scope.choosePlan = function(){
+			var filteredPlans =  $scope.data.plans.filter(function(item) {
+						return item.status === 1 && !item.unchecked;
+			});
+			var sumMoney = filteredPlans.map(function(item) {
+						return item.premium;
+			}).reduce(function(preVal,curVal,index,array){
+				return preVal+curVal;
+
+			},0);
+			$scope.choosePlansIds = filteredPlans.map(function(item) {
+						return item.id;
+			});
+			$scope.sumMoney = sumMoney;
+
+		}
 		$scope.init = function() {
+			$scope.sumMoney = 0;
 			var openId = sessionStorage.getItem("openId");
 			$scope.solutionPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_plans'], {
 				"open_id": openId,
@@ -690,11 +717,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 				console.log(res);
 				if (res && res.data && res.data.data) {
 					$scope.data = res.data.data;
-					$scope.choosePlansIds = res.data.data.plans.filter(function(item) {
-						return item.status === 1;
-					}).map(function(item) {
-						return item.id;
-					});
+					$scope.choosePlan();
 				}
 			})
 		}
@@ -719,10 +742,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 			} else {
 				$location.path('/toubao_new').search({
 					'type': $routeParams.type,
-					'coverage_score': $routeParams.coverage_score,
-					'sum_insured_score': $routeParams.sum_insured_score,
-					'estimate_money': $routeParams.estimate_money,
-					'sum_score': $routeParams.sum_score,
+					'estimate_money': $routeParams.sumMoney,
 					'choose_plans': JSON.stringify($scope.choosePlansIds)
 				});
 			}
@@ -1090,7 +1110,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 		//得兼容定制页投保，特卖投保
 		_hmt.push(['_trackPageview', $location.path()]);
-		$scope.isFirst = false;
+
 		var openId = sessionStorage.getItem("openId");
 
 		function genInEffectiveDate(coverage_period, coverage_period_type) {
@@ -1147,7 +1167,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				'destination': $scope.destination,
 				'car_no': $scope.car_no
 			}, function(res) {
-				
+
 				var payRequest = {
 					"insurance_name": res.data.data.insurance_name,
 					"insurance_plan_name": res.data.data.insurance_plan_name,
@@ -1159,7 +1179,14 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 
 			});
 		}
+		$scope.getCoverageType = function(coverage_type){
+			var type = $routeParams.coverage_period?$routeParams.coverage_period:coverage_type;
+			console.log('type:'+type);
+			return util.getCoverageType(type);
+		}
 		$scope.init = function() {
+			
+			$scope.isFirst = true;
 			var effectiveDate = new Date();
 			effectiveDate.setDate(effectiveDate.getDate() + 1);
 			$scope.minDate = effectiveDate;
@@ -1170,6 +1197,8 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 			//$scope.money = $routeParams.estimate_money;
 			$scope.getCoverageType = util.getCoverageType;
 			$scope.processSpecialMoney = util.processSpecialMoney;
+
+			
 			if ($routeParams.coverage_period_type) {
 				$scope.coverage_period_type = $routeParams.coverage_period_type;
 			}
@@ -1184,28 +1213,31 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 			}
 
 			$scope.preparePromise = getHttpPromise($http, $rootScope, 'POST', api['prepare_insure'], {
-				'plans': JSON.parse($routeParams.choose_plans)
+				'open_id': openId,
+				'plans': JSON.parse($routeParams.choose_plans),
+				'coverage_period':$routeParams.coverage_period,
+				'charge_period':$routeParams.charge_period
 			}, function(res) {
 				$scope.data = res.data.data;
 				sessionStorage.setItem("sell_plan", JSON.stringify($scope.data.plans)); //存储需要支付的订单
 				var sumMoney = $scope.data.plans.map(function(item){
 					return item.premium;
-				}).reduce(function(preValue,currentValue,index,array){
-							return preValue + currentValue;
+				}).reduce(function(preValue, currentValue, index, array) {
+					return preValue + currentValue;
 				});
+				$scope.isFirst = !($scope.data.user && $scope.data.user.username && $scope.data.user.social_id && $scope.data.user.mobile) ;
 				$scope.money = sumMoney;
-				if(res.data.data && res.data.data.insured){
-					var relations = util.relationShip.filter(function(item){
+				if (res.data.data && res.data.data.insured) {
+					var relations = util.relationShip.filter(function(item) {
 						return item.id == res.data.data.insured.relation;
 					});
-					console.log(relations);
-					if(relations && relations[0]){
+					if (relations && relations[0]) {
 						$scope.userRelation = relations[0].name;
 					}
 					//console.log(relations);
 				}
-				
-				$scope.genPlansInEffectiveDate(); 
+
+				$scope.genPlansInEffectiveDate();
 			});
 		}
 	}
