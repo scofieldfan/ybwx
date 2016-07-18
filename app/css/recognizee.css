@@ -18,7 +18,7 @@ select {
     display: -ms-flexbox;
     display: flex;
     color: #555;
-    padding: 0 10px;
+    padding: 0 15px;
     line-height: 45px;
     border-bottom: 1px solid #e2e2e2; }
     .recognizee_contrl .delete li {
@@ -65,7 +65,8 @@ select {
         -ms-flex: 1;
         flex: 1;
         z-index: 10;
-        background: url("../img/down_jian.jpg") no-repeat right center; }
+        background: url("../img/down_jian.jpg") no-repeat right center;
+        background-size: 14px; }
     .recognizee_contrl .regenizee_main ol {
       list-style: none; }
     .recognizee_contrl .regenizee_main .moren {

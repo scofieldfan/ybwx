@@ -47,13 +47,14 @@
   .table-wrapper table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 16px;
+    font-size: 15px;
     table-layout: fixed; }
     .table-wrapper table tr:not(:last-child) {
       border-bottom: 1px solid #e2e2e2; }
     .table-wrapper table td {
       padding: 0.1rem 0.05rem;
-      text-align: center; }
+      text-align: center;
+      color: #555; }
     .table-wrapper table .left-td {
       text-align: left;
       width: 80%; }
