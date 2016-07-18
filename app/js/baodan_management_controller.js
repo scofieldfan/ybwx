@@ -83,10 +83,8 @@ bdControllers.controller('ybwxbaodanVerifyListCtrl', ['$scope', '$routeParams', 
 		$scope.type = "4";
 		$scope.init = function() {
 
-			var code = util.getParameterByName("code");
-			if (!code) {
-				code = $routeParams.code;
-			}
+			var code = util.getParameterByName("code") || code;
+			
 			util.getOpenId(code).then(function() {
 				var openId = sessionStorage.getItem("openId");
 				$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_verfiy_policy'] + "?open_id=" + openId, {}, function(res) {
@@ -289,45 +287,6 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 				"shareImg": "http://web.youbaowuxian.com/img/icon.jpg"
 			});
 
-			/*
-			$scope.thirdPromise = getHttpPromise($http, $rootScope, 'GET', api['signature'] + "?url=" + encodeURIComponent(location.href.split('#')[0]), {}, function(res) {
-				console.log(res);
-				wx.config({
-					debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-					appId: res.data.data["app_id"], // 必填，公众号的唯一标识
-					timestamp: res.data.data["timestamp"], // 必填，生成签名的时间戳
-					nonceStr: res.data.data["noncestr"], // 必填，生成签名的随机串
-					signature: res.data.data["signature"], // 必填，签名，见附录1
-					jsApiList: ['previewImage', 'onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone']
-				});
-				wx.ready(function() {
-					console.log("wexin success....")
-					// config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
-					var shareTitle = "我的保单";
-					var shareLink = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri=' + encodeURIComponent(shareUrl) + '&response_type=code&scope=snsapi_base&state=123#wechat_redirect';
-					//var shareLink = shareUrl;
-					var shareDesc = "这是我在诺贝保险管家的保单。诺贝保险管家，保险本该如此!";
-					var shareImg = "http://web.youbaowuxian.com/img/icon.jpg";
-
-					wx.onMenuShareTimeline({
-						title: shareTitle,
-						link: shareLink,
-						imgUrl: shareImg,
-						success: function() {},
-						cancel: function() {}
-					});
-					wx.onMenuShareAppMessage({
-						title: shareTitle,
-						desc: shareDesc,
-						link: shareLink,
-						imgUrl: shareImg,
-						dataUrl: '',
-						success: function() {},
-						cancel: function() {}
-					});
-				});
-
-			})*/
 		}
 		$scope.preview = function() {
 			_hmt.push(['_trackEvent', 'bdm_detail', 'bdmDetail_previewImg']);
@@ -350,7 +309,7 @@ bdControllers.controller('ybwxRecognizeeCtrl', ['$scope', '$routeParams', '$loca
 		var userId = $routeParams.user_id;
 		console.log(userId);
 		var isUpdate = false;
-		if (userId) {
+		if ($routeParams.method && $routeParams.method==="edit") {
 			//修改逻辑
 			isUpdate = true;
 		}
@@ -483,13 +442,16 @@ bdControllers.controller('ybwxRecognizeeComCtrl', ['$scope', '$routeParams', '$l
 		// 跳转and获取资料
 		$scope.editUserInfo = function(id) {
 			$location.path('/recognizee').search({
-				"user_id": id
+				user_id: id,
+ 				method:"edit"
 			});
 		}
 		// 跳转and新增被保险人
 		$scope.addPeople = function() {
-			$location.path('/recognizee').search();
-		}
+			$location.path('/recognizee').search({
+				method:"add"
+			} );
+		 }
 	}
 ]);
 bdControllers.controller('ybwxBDPicCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',

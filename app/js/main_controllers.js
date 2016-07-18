@@ -48,7 +48,8 @@ var api = {
 	'recognizee_compile': '/ybwx-web/api/relations',
 	'getData': '/ybwx-web/api/relation',
 	'deleteMessage': '/ybwx-web/api/relation/delete',
-	'update': '/ybwx-web/api/relation/update'
+	'update': '/ybwx-web/api/relation/update',
+	'purchase':'/ybwx-web/api/insurance/purchase'
 }
 
 
@@ -346,7 +347,7 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 			//setTest($routeParams.is_test);
 			var currentUrl = "http://web.youbaowuxian.com/#/index";
 			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
-				
+
 				util.share();
 				/*
 					判断是否第一次进入
@@ -600,6 +601,7 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 				util.showToast($rootScope, "请选择保障范围和保障额度");
 				return false;
 			}
+			/*
 			$location.path('/bz').search({
 				'type': $routeParams.type,
 				'coverage_score': scoreObj.fanweiScore,
@@ -607,14 +609,14 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 				'estimate_money': $scope.data.premium,
 				'sum_score': $scope.data.scoreFix
 			});
-			/*
+			*/
 			$location.path('/solution').search({
 				'type': $routeParams.type,
 				'coverage_score': scoreObj.fanweiScore,
 				'sum_insured_score': scoreObj.moneyScore,
 				'estimate_money': $scope.data.premium,
 				'sum_score': $scope.data.scoreFix
-			});*/
+			});
 		}
 		$scope.showIntrod = function() {
 			_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_showIntrod']);
@@ -1011,17 +1013,76 @@ mainControllers.controller('ybwxSupplayInfoCtrl', ['$scope', '$routeParams', '$l
 
 		_hmt.push(['_trackPageview', $location.path()]);
 		$scope.for = 'self';
+		$scope.relations = util.relationShip;
+		$scope.data = {
+			relation: {
+				id: 2,
+				name: '父亲'
+			}
+		};
 		$scope.init = function() {
-			
+
 		}
 
-		$scope.submit = function(){
-			$scope.firstToubao = getHttpPromise($http, $rootScope, 'POST', api['firstToubao'], {
-				'open_id': openId
-			}, function(res) {
-				$scope.data = res.data.data;
-				// $scope.genPlansInEffectiveDate();
-			});
+
+		$scope.submit = function() {
+			var openId = sessionStorage.getItem("openId");
+			if (baseValid()) {
+
+				var postData = {
+					'open_id': openId,
+					"insured_username": $scope.insured_username,
+					"insured_social_id": $scope.insured_social_id,
+					"mobile": $scope.mobile,
+					"relation": "1"
+				};
+				// console.log($scope.data.relation);
+
+				if ($scope.for === 'other') {
+					postData["relation"] = $scope.data.relation.id;
+					postData["username"] = $scope.username;
+					postData["social_id"] = $scope.social_id;
+				}
+
+				$scope.firstToubao = getHttpPromise($http, $rootScope, 'POST', api['firstToubao'], postData, function(res) {
+					$location.path('/toubao_new').search();
+				});
+			}
+		}
+
+
+		function baseValid() {
+			if (!$scope.userform) {
+				util.showToast($rootScope, "表单错误");
+				return false;
+			}
+			if ($scope.userform.insured_username.$invalid) {
+				util.showToast($rootScope, "被保人姓名不正确");
+				return false;
+			}
+
+			if ($scope.userform.insured_social_id.$invalid) {
+				util.showToast($rootScope, "被保人身份证号不正确");
+				return false;
+			}
+			if ($scope.userform.mobile.$invalid) {
+				util.showToast($rootScope, "手机号不正确");
+				return false;
+			}
+			if ($scope.for === 'other') {
+				
+				if ($scope.userform.username && $scope.userform.username.$invalid) {
+					util.showToast($rootScope, "投保人姓名不正确");
+					return false;
+				}
+				if ($scope.userform.social_id && $scope.userform.social_id.$invalid) {
+					util.showToast($rootScope, "投保人身份证不正确");
+					return false;
+				}
+
+			}
+
+			return true;
 		}
 	}
 ]);
@@ -1030,7 +1091,8 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$routeParams', '$loc
 	function($scope, $routeParams, $location, $http, $rootScope) {
 		//得兼容定制页投保，特卖投保
 		_hmt.push(['_trackPageview', $location.path()]);
-
+		$scope.isFirst = false;
+		var openId = sessionStorage.getItem("openId");
 		function genInEffectiveDate(coverage_period, coverage_period_type) {
 			//计算失效日期
 			var startDate = $scope.user.effective_date;
@@ -1053,13 +1115,37 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$routeParams', '$loc
 			console.log($scope.data.plans);
 		}
 		$scope.goRoute = function() {
-			if ($scope.data.user) {
-				//去list页	
-				$location.path('/recognizee_compile').search();
-			} else {
+			if ($scope.isFirst) {
 				//去补充信息页
 				$location.path('/supply_userinfo').search();
+			} else {
+				//去list页	
+				$location.path('/recognizee_compile').search();
 			}
+		}
+
+
+
+		$scope.submit = function() {
+			var plans = {};
+			data.plans.forEach(function(element, index) {
+				plans[element.id] = element.premium;
+				// statements
+			});	
+			$scope.preparePromise = getHttpPromise($http, $rootScope, 'POST', api['purchase'], {
+				'open_id': openId,
+				"insured_id":$scope.data.insured.id,
+				'plans': plans,
+				'coverage_period':$scope.coverage_period ,                              
+				'charge_period':$scope.charge_period , 
+				'effective_date':$scope.user.effective_date , 
+				'address': $scope.address,
+				'destination': $scope.destination,
+				'car_no': $scope.car_no
+			}, function(res) {
+				$scope.data = res.data.data;
+			
+			});
 		}
 		$scope.init = function() {
 			var effectiveDate = new Date();
@@ -1069,7 +1155,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$routeParams', '$loc
 			$scope.user.effective_date = effectiveDate;
 			$scope.know_contract = true;
 
-			var openId = sessionStorage.getItem("openId");
+			
 			$scope.money = $routeParams.estimate_money;
 			$scope.getCoverageType = util.getCoverageType;
 			$scope.processSpecialMoney = util.processSpecialMoney;
