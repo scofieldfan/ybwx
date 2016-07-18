@@ -72,12 +72,12 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/solution.html',
       controller: 'ybwxSolutionCtrl',
       title: "保障方案",
-      css:'css/solution.css?rev=c3e690e9ccb778ba8a49b610925b3253'
+      css:'css/solution.css?rev=b66136d0bab21c4db56ed54e845c7510'
     }).when('/toubao_new', {
       templateUrl: 'partials/toubao_new.html',
       controller: 'ybwxToubaoNewCtrl',
       title: "保障方案",
-      css:'css/toubao_new.css?rev=84d43fe7c4807c95dad6bd49c57bb91c'
+      css:'css/toubao_new.css?rev=7f72be63dfdf386a79a6878b57f0b35a'
     }).when('/promote', {
       templateUrl: 'partials/bz_ts.html',
       controller: 'ybwxPromoteCtrl',

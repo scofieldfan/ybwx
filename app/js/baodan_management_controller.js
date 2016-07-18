@@ -437,18 +437,31 @@ bdControllers.controller('ybwxRecognizeeComCtrl', ['$scope', '$routeParams', '$l
 			}
 
 		}
-		var curUserId = "";
+		// var curUserId = "";
 		$scope.return = function() {
 			$location.path('/toubao_new').search({
 				'type': $routeParams.type,
 				'choose_plans': $routeParams.choose_plans,
-				'userId': curUserId
+				'user_id': $scope.chooseUser.id
 			});
 		}
 		$scope.choose = function($event, item) {
-			$($event.target).parent(".recognizee_compile_ctrl").removeClass("current");
-			$($event.target).addClass("current");
-			curUserId = item.id;
+			//$($event.target).parent(".recognizee_compile_ctrl").removeClass("current");
+			//$($event.target).addClass("current");
+			//curUserId = item.id;
+			$scope.data.filter(function(filtedItem){
+				return item.id !== filtedItem.id;
+			}).forEach( function(element, index) {
+				element.is_current = false;
+				// statements
+			});
+			$scope.chooseUser = item;
+			item.is_current = true;
+			$location.path('/toubao_new').search({
+				'type': $routeParams.type,
+				'choose_plans': $routeParams.choose_plans,
+				'user_id': item.id
+			});
 		}
 
 		var openId = sessionStorage.getItem("openId");
@@ -462,9 +475,13 @@ bdControllers.controller('ybwxRecognizeeComCtrl', ['$scope', '$routeParams', '$l
 						return item.default === true;
 					});
 					if (defaultRelations && defaultRelations.length > 0) {
-						curUserId = defaultRelations[0].id;
+						//默认选择,数据返回的默认人
+						defaultRelations[0].is_current = true;
+						$scope.chooseUser = defaultRelations[0];
 					} else {
-						curUserId = res.data.data.relations[0].id;
+						//如果后台没有默认，选择第一个人
+						res.data.data.relations[0].is_current = true;
+						$scope.chooseUser = res.data.data.relations[0];
 					}
 
 				}
