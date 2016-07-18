@@ -15,6 +15,7 @@ input {
 }
 select {
 	border:none;
+
 }
 .recognizee_contrl {
 	background: #fff;
@@ -22,7 +23,7 @@ select {
 		@include flexbox;
 		color:#555;
 		padding: 0 15px;
-		line-height: 45px;
+		line-height: .58rem;
 		border-bottom: 1px solid #e2e2e2;
 		li{
 			@include flex(1);
@@ -40,11 +41,11 @@ select {
 		ul {
 			@include flexbox;
 			border-bottom: 1px solid #e2e2e2; 
-			line-height: 45px;
+			line-height: .58rem;
 			font-size: 15px;
 			li:nth-child(1) {
 				padding-left: 5px;
-				width: 70px;
+				width: .96rem;
 				font-size: 13px;
 				color: #999;
 				}
@@ -60,6 +61,7 @@ select {
 			  	z-index: 10;
 			    background: url("../img/down_jian.jpg") no-repeat right center;
 			    background-size: 14px;
+			    margin-right: 5px;
 			  }
 		}
 		ol {
@@ -75,6 +77,7 @@ select {
 				color: #888;
 				@include flexbox;
 				@include align-items(center);
+				margin-right: 5px;
 			}
 			.weui_switch {
 			  -webkit-appearance: none;
