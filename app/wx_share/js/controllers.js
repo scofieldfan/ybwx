@@ -200,7 +200,16 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 
 	}
 ]);
-
+wxShareControllers.controller('shenheCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
+	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
+		$scope.buy = function() {
+			$location.path("/moneybd").search({
+				plan: 72,
+				money: 50
+			});
+		}
+	}
+]);
 
 wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
 	function($scope, $filter, $routeParams, $http, $location, $rootScope) {

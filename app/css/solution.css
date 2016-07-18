@@ -37,7 +37,8 @@
   height: 15px;
   line-height: 0px;
   display: inline-block;
-  vertical-align: -1px; }
+  vertical-align: -1px;
+  margin-left: 5px; }
 .border-bt {
   border-bottom: 1px solid #cccccc; }
 .table-wrapper {
@@ -73,11 +74,12 @@
 .introd {
   color: #555;
   padding-left: 10px;
-  margin-top: 20px;
+  margin-top: 10px;
   background-color: #fff;
   height: 45px;
   line-height: 45px;
-  border-bottom: 1px solid #e2e2e2; }
+  border-bottom: 1px solid #e2e2e2;
+  font-size: 15px; }
 .solution {
   background-color: #FFF;
   padding-top: 5px;
@@ -151,7 +153,8 @@
     .footer .left .money {
       color: #ff5c00;
       font-weight: bold;
-      font-size: 16px; }
+      font-size: 18px;
+      margin-left: 6px; }
   .footer .right {
     -webkit-box-flex: 35;
     -webkit-flex: 35;
