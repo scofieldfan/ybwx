@@ -85,22 +85,43 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 		var qd = util.getParameterByName("qd") || $routeParams.qd || 'default';
 		_hmt.push(['_trackPageview', '/wx_share_jixian']);
 		_hmt.push(['_setCustomVar', 1, 'jixian_qudao', qd, 1]);
-
+		var currentUrl = "http://web.youbaowuxian.com/wx_share.html#/jixian";
 		$scope.init = function() {
 
-			var code = util.getParameterByName("code") || $routeParams.code;
-
-			$("#loadingToastCommon").show();
-			util.getOpenId(code).then(function() {
+			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
 				$("#loadingToastCommon").hide();
 				var openId = sessionStorage.getItem("openId");
+
 				util.share({
 					shareUrl: "http://web.youbaowuxian.com/wx_share.html#/jixian?rec_id=" + openId,
 					shareImg: "http://web.youbaowuxian.com/wx_share/img/share_sport.png",
 					shareTitle: "免费领取10万元极限运动险！要酷，更要安全！",
 					shareDesc: "每月均可领取1份，每邀请1位好友，即可再免费领取1份。约上朋友一起突破极限吧！"
-
 				});
+
+				$scope.jixianPromise = getHttpPromise($http, $rootScope, 'POST', api['ping_coupon'], {
+					"open_id": openId,
+					"coupon_id": "4",
+					"time": new Date().getTime()
+				}, function(res) {
+					if (res.data && res.data.description) {
+						util.showToast($rootScope, res.data.description);
+					} else if (res.data.code === 0) {
+						$scope.data = res.data.data;
+						if (res.data.data.recommend_times > 0) {
+							$("#coupons_container").show();
+						}
+					}
+				});
+			});
+
+			/*
+			var code = util.getParameterByName("code") || $routeParams.code;
+			$("#loadingToastCommon").show();
+			util.getOpenId(code).then(function() {
+				$("#loadingToastCommon").hide();
+				var openId = sessionStorage.getItem("openId");
+
 				// alert("get openId ok:"+openId);
 				//alert("get openId ok:"+api['ping_coupon']);
 				$http({
@@ -130,7 +151,7 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 					console.log(res);
 					util.showToast($rootScope, "服务器错误");
 				});
-			})
+			})*/
 		}
 		$scope.init();
 		$scope.sportsAddCoupon = function() {
@@ -179,18 +200,29 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 
 	}
 ]);
+
+
 wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
 	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
 
-		var code = util.getParameterByName("code") || $routeParams.code;
-		$("#loadingToastCommon").show();
+		var currentUrl = "http://web.youbaowuxian.com/wx_share.html#/special";
 
 
+
+		//没有code跳转，如果没有获得openId也跳转
 		$scope.init = function() {
-			util.getOpenId(code).then(function() {
-				console.log("openid....");
+			$("#loadingToastCommon").show();
+			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
 				$("#loadingToastCommon").hide();
+				var openId = sessionStorage.getItem("openId");
+				$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['is_share'], {
+					"open_id": openId,
+					"insurance_plan_id": 72
+				}, function(res) {
+					$scope.isShare = res.data.data.status;
+				});
 			});
+
 			$.when($.ajax({
 				type: 'GET',
 				url: "/ybwx-web/wechat/js_signature",
@@ -212,7 +244,7 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 				});
 				wx.ready(function() {
 					// config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
-					var shareUrl = "http://web.youbaowuxian.com/wx_share.html#special";
+					var shareUrl = "http://web.youbaowuxian.com/wx_share.html#/special";
 					var shareTitle = "还在买捆绑的30元一次的航意险？在这里500万保一年无限次仅需40元！";
 					var shareDesc = "仅需1杯咖啡的花费即可享受1年500万航空意外的保障！";
 					var shareImg = "http://web.youbaowuxian.com/wx_share/img/share_s.png";
@@ -229,7 +261,8 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 								"open_id": openId,
 								"insurance_plan_id": 72
 							}, function(res) {
-								// alert("");
+								//$("#special_share").html("点击即可优惠购买");
+								$scope.isShare = true;
 								util.showToast($rootScope, "分享成功，恭喜您获得优惠购买的机会！");
 							});
 						},
@@ -262,27 +295,21 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 		}
 
 		$scope.discount = function() {
-			var openId = sessionStorage.getItem("openId");
-			$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['is_share'], {
-				"open_id": openId,
-				"insurance_plan_id": 72
-			}, function(res) {
-				if (res.data.data.status) {
-					$location.path('/moneybd').search({
-						plan: 388,
-						money: 40
-					});
-				} else {
-					//util.showToast($rootScope, "亲，分享后才能享受10元折扣哦!");
-					$("#share_ctrl").show();
-					$("body").on("click","#share_ctrl",function(){
-						$("#share_ctrl").hide();
-					});
-					$("body").on("click","#zhen",function(){
-						$("#share_ctrl").hide();
-					})
-				}
-			});
+			if ($scope.isShare) {
+				$location.path('/moneybd').search({
+					plan: 72,
+					money: 40
+				});
+			} else {
+				$("#share_ctrl").show();
+				$("body").on("click", "#share_ctrl", function() {
+					$("#share_ctrl").hide();
+				});
+				$("body").on("click", "#zhen", function() {
+					$("#share_ctrl").hide();
+				})
+			}
+
 		}
 
 	}
@@ -291,15 +318,21 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 wxShareControllers.controller('wxMoneyBdCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
 	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
 		_hmt.push(['_trackPageview', "/wx_share_toubao"]);
+
 		$scope.money = $routeParams.money;
-		var testDate = new Date();
+		/*
+
 		testDate.setDate(testDate.getDate() + 1);
 		$scope.minDate = testDate;
 		var tmp = new Date(Number($routeParams.expiry_date));
 		tmp.setDate(tmp.getDate() - 1);
 		$scope.maxDate = tmp;
+		*/
+		var tomorrow = new Date();
+		tomorrow.setDate(tomorrow.getDate() + 1);
 		$scope.user = {};
-		$scope.user.insurance_date = testDate;
+		$scope.user.insurance_date = tomorrow;
+		/*
 		var userinfo = JSON.parse(localStorage.getItem('userinfo'));
 		if (userinfo) {
 			$scope.user = {
@@ -309,7 +342,7 @@ wxShareControllers.controller('wxMoneyBdCtrl', ['$scope', '$filter', '$routePara
 			}
 		} else {
 			$scope.user = {};
-		}
+		}*/
 		$scope.user.know_contract = true;
 		var openId = sessionStorage.getItem("openId");
 
@@ -317,7 +350,15 @@ wxShareControllers.controller('wxMoneyBdCtrl', ['$scope', '$filter', '$routePara
 			"open_id": openId,
 			"plans": [$routeParams.plan]
 		}, function(res) {
-			console.log(res.data.plans);
+			var minDate = new Date();
+			minDate.setDate(minDate.getDate() + res.data.data.min_effective_days);
+			$scope.minDate = minDate;
+			var maxDate = new Date();
+			maxDate.setDate(maxDate.getDate() + res.data.data.max_effective_days);
+			$scope.maxDate = maxDate;
+			$scope.user.username = res.data.data.user.username;
+			$scope.user.mobile = parseInt(res.data.data.user.mobile);
+			$scope.user.social_id = res.data.data.user.social_id;
 			sessionStorage.setItem("sell_plan", JSON.stringify(res.data.data.plans)); //存储需要支付的订单
 		});
 
@@ -361,6 +402,12 @@ wxShareControllers.controller('wxMoneyBdCtrl', ['$scope', '$filter', '$routePara
 							"order_amount": res.data.data.order_amount,
 							"order_id": res.data.data.pay_order_id,
 							"order_no": res.data.data.pay_order_no
+						}
+						var fitlerResult = util.whiteOpenIds.filter(function(item) {
+							return item.openid === openId
+						});
+						if (fitlerResult && fitlerResult.length > 0) {
+							payRequest["order_amount"] = 0.1;
 						}
 						var paramters = util.genParameters(payRequest);
 						//console.log(paramters);
@@ -575,11 +622,40 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 		_hmt.push(['_trackPageview', '/wx_share_index']);
 		_hmt.push(['_setCustomVar', 1, 'hangkong_qudao', qd, 1]);
 		//_hmt.push(['_trackPageview', '/wx_share_index'+"_qd_"+qd]);
+		var currentUrl = "http://web.youbaowuxian.com/wx_share.html#/index"
 		$scope.init = function() {
 			$scope.data = {
 				remain_times: 1,
 				recommend_times: 0
 			}
+
+			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
+				$("#loadingToastCommon").hide();
+				util.share({
+					shareUrl: "http://web.youbaowuxian.com/wx_share.html#/index?rec_id=" + openId,
+					shareImg: "http://web.youbaowuxian.com/wx_share/img/share61.jpg",
+					shareTitle: "送你一份500万航空意外险，买机票立省30元！",
+					shareDesc: "集齐3份航空意外险保险券，即可免费兑换一份航班延误险保险券！"
+
+				});
+				var openId = sessionStorage.getItem("openId");
+				$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['ping_coupon'], {
+					"open_id": openId,
+					"coupon_id": "2"
+				}, function(res) {
+					if (res.data && res.data.description) {
+						//util.showToast($rootScope, res.data.description);
+					} else if (res.data.code === 0) {
+						$scope.data = res.data.data;
+						//console.log($scope.data);
+						if (res.data.data.recommend_times > 0) {
+							$("#coupons_container").show();
+						}
+					}
+				});
+			});
+
+			/*
 			var code = util.getParameterByName("code") || $routeParams.code;
 			if (!code) {
 				redirectWeChatUrl();
@@ -623,6 +699,7 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 					util.showToast($rootScope, "服务器错误");
 				});
 			})
+			*/
 		}
 		$scope.init();
 		$scope.addCoupon = function() {
@@ -753,7 +830,6 @@ wxShareControllers.controller('myCouponListCtrl', ['$scope', '$routeParams', '$h
 							if (res.data.data.coupons.length === 0) {
 								$("#reason_container").show();
 							}
-							console.log(res.data.data.coupons);
 							$scope.coupons = res.data.data.coupons;
 							$(".ul_container").show();
 						} else {

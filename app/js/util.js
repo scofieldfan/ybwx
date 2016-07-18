@@ -275,6 +275,74 @@ var util = {
 			util.showToast($rootScope, "服务器错误");
 		});
 	},
+	coverage_types: {
+		1: "保终身",
+		2: "年",
+		3: "岁",
+		4: "月",
+		5: "天"
+	},
+	getCoverageType: function(type) {
+		return util.coverage_types[type];
+	},
+	addDays: function addDays(date, days) {
+		var result = new Date(date);
+		result.setDate(result.getDate() + days);
+		return result;
+	},
+	taocan_status: {
+		1: "",
+		2: "未开售",
+		3: "已购买",
+		4: "已购买",
+		5: "已购买"
+
+	},
+	getTaoCanStatus: function(status) {
+		return util.taocan_status[status];
+	},
+	redirectWeChatUrl: function(redirectUrl) {
+		if (typeof redirectUrl === "string" && redirectUrl.indexOf("http") == 0) {
+			var WE_CHAT_URL = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri=" + encodeURIComponent(redirectUrl) + "&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
+			window.location.href = WE_CHAT_URL;
+		}
+	},
+	checkCodeAndOpenId: function(angularCode, currentUrl, callback) {
+		var code = util.getParameterByName("code") || angularCode;
+		if (!sessionStorage.getItem("openId") && !code) {
+			//如果没有openId,也没有code，那么就跳转一次
+			util.redirectWeChatUrl(currentUrl);
+		} else {
+			util.getOpenId(code).then(function() {
+				var openId = sessionStorage.getItem("openId");
+				if (!openId) {
+					//如果用当前的code如法获得openId，那么就重新跳转获得一次openId
+					util.redirectWeChatUrl(currentUrl);
+				} else {
+					if (typeof callback === "function") {
+						callback();
+					}
+				}
+			});
+		}
+
+	},
+	whiteOpenIds: [{
+		openid: "omP9dwb6u-lamgwOhFqFIcU3QLPk",
+		name: "巴信军"
+	}, {
+		openid: "omP9dwbQiEkPbFE0K6NtVa4d5bF0",
+		name: "Fan"
+	}, {
+		openid: "omP9dwThw9op485Y-6NMp6HywJ0M",
+		name: "郭渊敏"
+	}, {
+		openid: "omP9dwSdKKzWA4D9j1I1Lr1EbHMg",
+		name: "许文科"
+	}, {
+		openid: "omP9dwSHJtzwyRFBCBc3z-jpxwj8",
+		name: "岳文甲"
+	}],
 	relationShip: [{
 			id: 1,
 			name: '本人'
@@ -294,6 +362,6 @@ var util = {
 			id: 6,
 			name: '其他'
 		}
-		
+
 	]
 }

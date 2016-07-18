@@ -13,7 +13,7 @@ var api = {
 	'get_insurance_category_insurance': '/ybwx-web/api/insurance/insurance_category_insurance',
 	'get_insurances_detail': '/ybwx-web/api/insurance/plans',
 	'get_insurances_mask': '/ybwx-web/api/insurance/float/{productId}',
-	'get_insurances_sex' : 'ybwx-web/api/insurance/premium',
+	'get_insurances_sex': 'ybwx-web/api/insurance/premium',
 	'get_recommend': '/ybwx-web/api/recommend_view/{type}',
 	'get_recommend_coverages': '/ybwx-web/api/recommend_coverages',
 	'get_recommend_plans': '/ybwx-web/api/recommend_plans',
@@ -26,10 +26,11 @@ var api = {
 	'get_industries_2': '/ybwx-web/api/occupations/',
 	'get_industries_3': '/ybwx-web/api/jobs/',
 	'pre_insure': '/ybwx-web/api/insurance/pre_insure',
+	'prepare_insure': '/ybwx-web/api/insurance/prepare',
 	'insure': '/ybwx-web/api/insurance/insure',
 	'send_bd': '/ybwx-web/api/send_policy',
 	'pay': '/ybwx-web/api/pay',
-	'pay_new':'/ybwx-web/api/insurance/pay',
+	'pay_new': '/ybwx-web/api/insurance/pay',
 	'get_user_info': '/ybwx-web/user/info/wechat/{openId}',
 	'set_user_info': '/ybwx-web/user/info/update',
 	'upload_policy_image': '/ybwx-web/api/upload_policy_image',
@@ -41,11 +42,14 @@ var api = {
 	'policy_verfiy': '/ybwx-web/api/verify',
 	'get_policy_verfiyinfo': '/ybwx-web/api/verify_info/{id}',
 	'temai_index': '/ybwx-web/api/insurance/selling_page',
+	'get_recommend_plans': '/ybwx-web/api/recommend/plans',
+	'firstToubao': '/ybwx-web/api/relation/first',
 	'addPeople': '/ybwx-web/api/relation/add',
 	'recognizee_compile': '/ybwx-web/api/relations',
 	'getData': '/ybwx-web/api/relation',
 	'deleteMessage': '/ybwx-web/api/relation/delete',
-	'update': '/ybwx-web/api/relation/update'
+	'update': '/ybwx-web/api/relation/update',
+	'purchase':'/ybwx-web/api/insurance/purchase'
 }
 
 
@@ -158,11 +162,11 @@ function getBdStatus(orderStatus, bdStatus) {
 
 
 function getHttpPromise($http, $rootScope, method, url, data, callback) {
-	
-	 var openId = sessionStorage.getItem("openId");
-	 if(!data["open_id"]){
-	 	data["open_id"] =  openId;
-	 }
+
+	var openId = sessionStorage.getItem("openId");
+	if (!data["open_id"]) {
+		data["open_id"] = openId;
+	}
 	return $http({
 		method: method,
 		headers: {
@@ -208,7 +212,6 @@ mainControllers.controller('ybwxUserinfoCtrl', ['$scope', '$routeParams', '$loca
 		}
 	}
 ]);
-
 
 
 
@@ -342,10 +345,10 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 		$scope.init = function() {
 			//获得openId
 			//setTest($routeParams.is_test);
-			var code = util.getParameterByName("code") || $routeParams.code;
-			util.share();
-			util.getOpenId(code).then(function() {
+			var currentUrl = "http://web.youbaowuxian.com/#/index";
+			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
 
+				util.share();
 				/*
 					判断是否第一次进入
 				*/
@@ -353,7 +356,6 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 				if (!isFirstTime) {
 					$location.path('/edindex');
 				}
-
 				var openId = sessionStorage.getItem("openId");
 				$http({
 					method: 'GET',
@@ -376,8 +378,7 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 					console.log(res);
 					util.showToast($rootScope, "服务器错误");
 				});
-			})
-
+			});
 		}
 	}
 ]);
@@ -422,60 +423,60 @@ mainControllers.controller('ybwxBdEducationNewCtrl', ['$scope', '$routeParams', 
 
 
 		$scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
-	  	
-				  $('input[type="range"]').rangeslider({
-                      polyfill: false,
-                       rangeClass: 'rangeslider',
-                       disabledClass: 'rangeslider--disabled',
-                       verticalClass: 'rangeslider--vertical',
-                       fillClass: 'rangeslider__fill',
-                       handleClass: 'rangeslider__handle',
-                  });
+
+			$('input[type="range"]').rangeslider({
+				polyfill: false,
+				rangeClass: 'rangeslider',
+				disabledClass: 'rangeslider--disabled',
+				verticalClass: 'rangeslider--vertical',
+				fillClass: 'rangeslider__fill',
+				handleClass: 'rangeslider__handle',
+			});
 
 		});
-		
+
 		$scope.more = function($event) {
-	      var element = $event.currentTarget;
-	      var switchValue = $(element).attr("data-switch");
-	      if (switchValue === 'on') {
-	        $(element).siblings(".table-wrapper").find("tr").removeClass("ng-hide");
-	        $(element).find("span").html("收起");
-	        $(element).attr("data-switch", "off");
-	        $(element).find("div").addClass("up");
-	      } else {
-	        $(element).siblings(".table-wrapper").find("tr:gt(6)").addClass("ng-hide");
-	        $(element).find("span").html("查看更多");
-	        $(element).attr("data-switch", "on");
-	        $(element).find("div").removeClass("up");
-	      }
-	    }
+			var element = $event.currentTarget;
+			var switchValue = $(element).attr("data-switch");
+			if (switchValue === 'on') {
+				$(element).siblings(".table-wrapper").find("tr").removeClass("ng-hide");
+				$(element).find("span").html("收起");
+				$(element).attr("data-switch", "off");
+				$(element).find("div").addClass("up");
+			} else {
+				$(element).siblings(".table-wrapper").find("tr:gt(6)").addClass("ng-hide");
+				$(element).find("span").html("查看更多");
+				$(element).attr("data-switch", "on");
+				$(element).find("div").removeClass("up");
+			}
+		}
 		$scope.processMoney = function(money) {
-			if(money==0){
+			if (money == 0) {
 				return "已投保";
-			}else{
+			} else {
 				return util.processSpecialMoney(money);
 			}
 		}
-		$scope.getInsuranceCNname = function(){
+		$scope.getInsuranceCNname = function() {
 			return insureanceCNMap[$routeParams.type];
 		}
 
 		$scope.goOldEducation = function() {
 			$location.path('/education').search({
-				"type":	$routeParams.type
+				"type": $routeParams.type
 			});
 			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_goEducation']);
 		}
 
-		$scope.goUpBd = function(){
+		$scope.goUpBd = function() {
 			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_goBdIndex']);
 			$location.path('/bd_index');
 		}
 
-		$scope.goBdmList = function(){
+		$scope.goBdmList = function() {
 			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_goBdmList']);
 			$location.path('/bdm_list').search({
-				"type":	$routeParams.type
+				"type": $routeParams.type
 			});
 		}
 
@@ -492,18 +493,17 @@ mainControllers.controller('ybwxBdEducationNewCtrl', ['$scope', '$routeParams', 
 			})
 		}
 		$scope.init = function() {
-			
+
 			var code = util.getParameterByName("code") || $routeParams.code;
-		
-			util.getOpenId(code).then(function() {                                                                               
+
+			util.getOpenId(code).then(function() {
 				var type = $routeParams.type;
-				$scope.type =  $routeParams.type;
-				console.log("type:"+$scope.type);
+				$scope.type = $routeParams.type;
 				$scope.getUserInfo();
 				var openId = sessionStorage.getItem("openId");
 				$scope.myPromise = getHttpPromise($http, $rootScope, 'GET', api['get_score_analysis_new'].replace('{openId}', openId).replace('{type}', type), {}, function(res) {
 					if (res && res.data && res.data.data) {
-						res.data.data.score = Math.round(res.data.data.score*10)/10;
+						res.data.data.score = Math.round(res.data.data.score * 10) / 10;
 						$scope.data = res.data.data;
 					}
 				})
@@ -566,7 +566,7 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 			});
 		}
 		$scope.data = {
-			scoreFix:0
+			scoreFix: 0
 		}
 		var openId = sessionStorage.getItem("openId");
 		//get_recommend_suggestion
@@ -584,24 +584,33 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 				}, function(res) {
 					console.log(res);
 					if (res && res.data && res.data.data) {
-						if(res.data.data.score>0){
-							res.data.data.scoreFix = Math.round(res.data.data.score*10)/10; 
+						if (res.data.data.score > 0) {
+							res.data.data.scoreFix = Math.round(res.data.data.score * 10) / 10;
 						}
-						$scope.data= res.data.data;
+						$scope.data = res.data.data;
 
 					}
 				})
 			}
 		}
 
-		
+
 		$scope.goBz = function() {
 			_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_subBtn']);
 			if (scoreObj.fanweiScore == 0 || scoreObj.moneyScore == 0) {
 				util.showToast($rootScope, "请选择保障范围和保障额度");
 				return false;
 			}
+			/*
 			$location.path('/bz').search({
+				'type': $routeParams.type,
+				'coverage_score': scoreObj.fanweiScore,
+				'sum_insured_score': scoreObj.moneyScore,
+				'estimate_money': $scope.data.premium,
+				'sum_score': $scope.data.scoreFix
+			});
+			*/
+			$location.path('/solution').search({
 				'type': $routeParams.type,
 				'coverage_score': scoreObj.fanweiScore,
 				'sum_insured_score': scoreObj.moneyScore,
@@ -631,19 +640,97 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
 
-		
+
 		_hmt.push(['_trackPageview', $location.path()]);
+		$scope.money = $routeParams.estimate_money;
+		$scope.type = $routeParams.type;
+		//get_recommend_plans
+		$scope.getCoverageType = util.getCoverageType;
+		$scope.processSpecialMoney = util.processSpecialMoney;
+		$scope.getTaoCanStatus = util.getTaoCanStatus;
 
-	
-		$scope.init = function() {
-	
+		var taocan_css = {
+			1: "",
+			2: "unsell",
+			3: "selled",
+			4: "unsell",
+			5: "unsell"
 		}
-		
+		$scope.go = function(url) {
+			if (url) {
+				window.location.href = url;
+			}
+		}
+		$scope.showNum = 3;
+		$scope.more = function($event) {
+			var element = $event.currentTarget;
+			var switchValue = $(element).attr("data-switch");
+			if (switchValue === 'on') {
+				$(element).siblings(".table-wrapper").find("tr").removeClass("ng-hide");
+				$(element).find("span").html("收起");
+				$(element).attr("data-switch", "off");
+				$(element).find("div").addClass("up");
+			} else {
+				$(element).siblings(".table-wrapper").find("tr:gt(" + $scope.showNum + ")").addClass("ng-hide");
+				$(element).find("span").html("查看更多");
+				$(element).attr("data-switch", "on");
+				$(element).find("div").removeClass("up");
+			}
+		}
+		$scope.get_taocan_css = function(status) {
+			return taocan_css[status];
+		}
+		$scope.init = function() {
+			var openId = sessionStorage.getItem("openId");
+			$scope.solutionPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_plans'], {
+				"open_id": openId,
+				"insurance_type": $routeParams.type,
+				"coverage_score": $routeParams.coverage_score,
+				"sum_insured_score": $routeParams.sum_insured_score
+			}, function(res) {
+				console.log(res);
+				if (res && res.data && res.data.data) {
+					$scope.data = res.data.data;
+					$scope.choosePlansIds = res.data.data.plans.filter(function(item) {
+						return item.status === 1;
+					}).map(function(item) {
+						return item.id;
+					});
+				}
+			})
+		}
+		$scope.isHaveRestrictions = false;
+		$scope.goInfo = function() {
+			_hmt.push(['_trackEvent', 'solution', 'solution_subBtn']);
 
+			if ($scope.choosePlansIds.length === 0) {
+				util.showToast($rootScope, "没有可以购买的产品");
+				return;
+			}
+
+			if ($scope.isHaveRestrictions) {
+				$location.path('/information').search({
+					'type': $routeParams.type,
+					'coverage_score': $routeParams.coverage_score,
+					'sum_insured_score': $routeParams.sum_insured_score,
+					'estimate_money': $routeParams.estimate_money,
+					'sum_score': $routeParams.sum_score,
+					'choose_plans': JSON.stringify($scope.choosePlansIds)
+				});
+			} else {
+				$location.path('/toubao_new').search({
+					'type': $routeParams.type,
+					'coverage_score': $routeParams.coverage_score,
+					'sum_insured_score': $routeParams.sum_insured_score,
+					'estimate_money': $routeParams.estimate_money,
+					'sum_score': $routeParams.sum_score,
+					'choose_plans': JSON.stringify($scope.choosePlansIds)
+				});
+			}
+		}
 
 	}
 ]);
-
 
 
 
@@ -834,7 +921,7 @@ mainControllers.controller('ybwxEducationCtrl', ['$scope', '$routeParams', '$loc
 			$scope.type = type;
 			$scope.getUserInfo();
 			var openId = sessionStorage.getItem("openId");
-			
+
 		}
 		$scope.goDingzhi = function() {
 			_hmt.push(['_trackEvent', 'eduction', 'eduction_subBtn']);
@@ -921,7 +1008,180 @@ mainControllers.controller('ybwxOfficalSiteCtrl', ['$scope', '$routeParams', '$l
 
 	}
 ]);
+mainControllers.controller('ybwxSupplayInfoCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $routeParams, $location, $http, $rootScope) {
 
+		_hmt.push(['_trackPageview', $location.path()]);
+		$scope.for = 'self';
+		$scope.relations = util.relationShip;
+		$scope.data = {
+			relation: {
+				id: 2,
+				name: '父亲'
+			}
+		};
+		$scope.init = function() {
+
+		}
+
+
+		$scope.submit = function() {
+			var openId = sessionStorage.getItem("openId");
+			if (baseValid()) {
+
+				var postData = {
+					'open_id': openId,
+					"insured_username": $scope.insured_username,
+					"insured_social_id": $scope.insured_social_id,
+					"mobile": $scope.mobile,
+					"relation": "1"
+				};
+				// console.log($scope.data.relation);
+
+				if ($scope.for === 'other') {
+					postData["relation"] = $scope.data.relation.id;
+					postData["username"] = $scope.username;
+					postData["social_id"] = $scope.social_id;
+				}
+
+				$scope.firstToubao = getHttpPromise($http, $rootScope, 'POST', api['firstToubao'], postData, function(res) {
+					$location.path('/toubao_new').search();
+				});
+			}
+		}
+
+
+		function baseValid() {
+			if (!$scope.userform) {
+				util.showToast($rootScope, "表单错误");
+				return false;
+			}
+			if ($scope.userform.insured_username.$invalid) {
+				util.showToast($rootScope, "被保人姓名不正确");
+				return false;
+			}
+
+			if ($scope.userform.insured_social_id.$invalid) {
+				util.showToast($rootScope, "被保人身份证号不正确");
+				return false;
+			}
+			if ($scope.userform.mobile.$invalid) {
+				util.showToast($rootScope, "手机号不正确");
+				return false;
+			}
+			if ($scope.for === 'other') {
+				
+				if ($scope.userform.username && $scope.userform.username.$invalid) {
+					util.showToast($rootScope, "投保人姓名不正确");
+					return false;
+				}
+				if ($scope.userform.social_id && $scope.userform.social_id.$invalid) {
+					util.showToast($rootScope, "投保人身份证不正确");
+					return false;
+				}
+
+			}
+
+			return true;
+		}
+	}
+]);
+
+mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $routeParams, $location, $http, $rootScope) {
+		//得兼容定制页投保，特卖投保
+		_hmt.push(['_trackPageview', $location.path()]);
+		$scope.isFirst = false;
+		var openId = sessionStorage.getItem("openId");
+		function genInEffectiveDate(coverage_period, coverage_period_type) {
+			//计算失效日期
+			var startDate = $scope.user.effective_date;
+			if (coverage_period && coverage_period_type) {
+				var period = coverage_period;
+				var effDate = new Date();
+				if (coverage_period_type == 5) {
+					effDate = util.addDays(startDate, parseInt(coverage_period));
+				}
+				if (coverage_period_type == 2) {
+					effDate = util.addDays(startDate, 365 * parseInt(coverage_period));
+				}
+				return effDate;
+			}
+		}
+		$scope.genPlansInEffectiveDate = function() {
+			$scope.data.plans.forEach(function(element, index) {
+				return element.endDate = genInEffectiveDate(element.coverage_period, element.coverage_period_type);
+			});
+			console.log($scope.data.plans);
+		}
+		$scope.goRoute = function() {
+			if ($scope.isFirst) {
+				//去补充信息页
+				$location.path('/supply_userinfo').search();
+			} else {
+				//去list页	
+				$location.path('/recognizee_compile').search();
+			}
+		}
+
+
+
+		$scope.submit = function() {
+			var plans = {};
+			data.plans.forEach(function(element, index) {
+				plans[element.id] = element.premium;
+				// statements
+			});	
+			$scope.preparePromise = getHttpPromise($http, $rootScope, 'POST', api['purchase'], {
+				'open_id': openId,
+				"insured_id":$scope.data.insured.id,
+				'plans': plans,
+				'coverage_period':$scope.coverage_period ,                              
+				'charge_period':$scope.charge_period , 
+				'effective_date':$scope.user.effective_date , 
+				'address': $scope.address,
+				'destination': $scope.destination,
+				'car_no': $scope.car_no
+			}, function(res) {
+				$scope.data = res.data.data;
+			
+			});
+		}
+		$scope.init = function() {
+			var effectiveDate = new Date();
+			effectiveDate.setDate(effectiveDate.getDate() + 1);
+			$scope.minDate = effectiveDate;
+			$scope.user = {};
+			$scope.user.effective_date = effectiveDate;
+			$scope.know_contract = true;
+
+			
+			$scope.money = $routeParams.estimate_money;
+			$scope.getCoverageType = util.getCoverageType;
+			$scope.processSpecialMoney = util.processSpecialMoney;
+			if ($routeParams.coverage_period_type) {
+				$scope.coverage_period_type = $routeParams.coverage_period_type;
+			}
+			if ($routeParams.coverage_period) {
+				$scope.coverage_period = $routeParams.coverage_period;
+			}
+			if ($routeParams.charge_period_type) {
+				$scope.charge_period_type = $routeParams.charge_period_type;
+			}
+			if ($routeParams.charge_period) {
+				$scope.charge_period = $routeParams.charge_period;
+			}
+
+			$scope.preparePromise = getHttpPromise($http, $rootScope, 'POST', api['prepare_insure'], {
+				'open_id': openId,
+				'plans': JSON.parse($routeParams.choose_plans)
+			}, function(res) {
+				$scope.data = res.data.data;
+				$scope.genPlansInEffectiveDate();
+			});
+		}
+	}
+]);
 
 
 mainControllers.controller('ybwxToubaoDingzhiAllCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
@@ -1154,6 +1414,8 @@ mainControllers.controller('ybwxToubaoDingzhiAllCtrl', ['$scope', '$filter', '$r
 				console.log("inEffective_date:"+$scope.user.inEffective_date);*/
 			}
 		}
+
+
 		$scope.changeEffectiveDate = function() {
 			//选择保险期间
 			genInEffectiveDate();
@@ -1176,15 +1438,15 @@ mainControllers.controller('ybwxToubaoDingzhiAllCtrl', ['$scope', '$filter', '$r
 			/*
 			if (isSocial) {
 				if ($scope.order) {
-					if (!$scope.order.social_id.$invalid) {//如果身份证正确，则包含身份证
-						postData["social_id"] = $scope.insured.social_id;
+					if (!$scope.order.social_id.$scope.insured.social_id;
 					} else {
 						return;
 					}
 				} else {
 
 					if ($scope.insured.social_id) {
-						postData["social_id"] = $scope.insured.social_id;
+						postData["social_id"] $invalid) {//如果身份证正确，则包含身份证
+						postData["social_id"] = = $scope.insured.social_id;
 					} else {
 						return;
 					}
@@ -1241,7 +1503,7 @@ mainControllers.controller('ybwxToubaoDingzhiAllCtrl', ['$scope', '$filter', '$r
 
 				$scope.view = res.data.data.view;
 
-				sessionStorage.setItem("sell_plan", JSON.stringify($scope.plans));//存储需要支付的订单
+				sessionStorage.setItem("sell_plan", JSON.stringify($scope.plans)); //存储需要支付的订单
 
 				if (!$scope.relations) {
 					//$scope.insured.relation = $scope.relations[0];
@@ -1508,7 +1770,7 @@ mainControllers.controller('ybwxToubaoDingzhiAllCtrl', ['$scope', '$filter', '$r
 					if (whiteOpenIds.indexOf(openId)!==-1) {
 						payResponse["order_amount"] = 10;
 					}*/
-					var fitlerResult = whiteOpenIds.filter(function(item) {
+					var fitlerResult = util.whiteOpenIds.filter(function(item) {
 						return item.openid === openId
 					});
 					if (fitlerResult && fitlerResult.length > 0) {
@@ -1520,19 +1782,3 @@ mainControllers.controller('ybwxToubaoDingzhiAllCtrl', ['$scope', '$filter', '$r
 		}
 	}
 ]);
-var whiteOpenIds = [{
-	openid: "omP9dwb6u-lamgwOhFqFIcU3QLPk",
-	name: "巴信军"
-}, {
-	openid: "omP9dwbQiEkPbFE0K6NtVa4d5bF0",
-	name: "Fan"
-}, {
-	openid: "omP9dwThw9op485Y-6NMp6HywJ0M",
-	name: "郭渊敏"
-}, {
-	openid: "omP9dwSdKKzWA4D9j1I1Lr1EbHMg",
-	name: "许文科"
-}, {
-	openid: "omP9dwSHJtzwyRFBCBc3z-jpxwj8",
-	name: "岳文甲"
-}];

@@ -8,8 +8,21 @@
   .header .logo {
     float: left;
     width: 70px;
-    height: 70px;
-    background: url("../img/solution/plane.png") no-repeat center;
+    height: 70px; }
+  .header .icon_4 {
+    background: url("../img/solution/1.png") no-repeat center;
+    background-size: 30px; }
+  .header .icon_3 {
+    background: url("../img/solution/2.png") no-repeat center;
+    background-size: 30px; }
+  .header .icon_2 {
+    background: url("../img/solution/3.png") no-repeat center;
+    background-size: 30px; }
+  .header .icon_1 {
+    background: url("../img/solution/4.png") no-repeat center;
+    background-size: 30px; }
+  .header .icon_5 {
+    background: url("../img/solution/5.png") no-repeat center;
     background-size: 30px; }
   .header .contaienr {
     padding-top: 13px;
@@ -25,6 +38,8 @@
   line-height: 0px;
   display: inline-block;
   vertical-align: -1px; }
+.border-bt {
+  border-bottom: 1px solid #cccccc; }
 .table-wrapper {
   padding: 0 .2rem;
   background-color: #fff; }
@@ -53,7 +68,8 @@
   padding: 0.1rem;
   text-align: center;
   border-top: 1px solid #e2e2e2;
-  border-bottom: 1px solid #ccc; }
+  border-bottom: 1px solid #ccc;
+  margin-top: -1px; }
 .introd {
   color: #555;
   padding-left: 10px;
@@ -80,6 +96,8 @@
       -moz-box-flex: 1;
       -ms-flex: 1;
       flex: 1;
+       }
+    .solution li .checkbox.unchoose {
       background: url("../img/solution/unchoose.png") no-repeat center;
       background-size: 20px; }
     .solution li .checkbox.choose {
@@ -100,6 +118,15 @@
         font-size: 13px; }
       .solution li .product .product-price {
         color: #ff5c00; }
+      .solution li .product .status {
+        background-color: #999;
+        color: #fff;
+        padding: 2px;
+        font-size: 12px; }
+      .solution li .product .status.un-sell {
+        background-color: #999; }
+      .solution li .product .status.selled {
+        background-color: #006ee9; }
     .solution li .arrow {
       -webkit-box-flex: 1;
       -webkit-flex: 1;

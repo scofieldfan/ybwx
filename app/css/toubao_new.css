@@ -1,4 +1,6 @@
 @charset "UTF-8";
+* {
+  box-sizing: border-box; }
 body {
   background-color: #f5f5f5; }
 .main-wrapper {
@@ -6,10 +8,11 @@ body {
 .people-container {
   border-left: 5px solid #006ee9;
   border-bottom: 1px solid #ccc;
-  background: #fff url("../img/solution/arrow.png") no-repeat 96% 50%;
+  background: #fff url("../img/solution/arrow.jpg") no-repeat 96% 50%;
   background-size: 8px;
   padding: 15px 10px;
-  font-size: 13px; }
+  font-size: 13px;
+  line-height: 21px; }
   .people-container .name {
     margin-bottom: 12px;
     font-size: 18px; }
@@ -34,7 +37,7 @@ body {
   height: 45px;
   line-height: 45px;
   border-bottom: 1px solid #ccc;
-  background: #fff url("../img/solution/arrow.png") no-repeat 96% 47%;
+  background: #fff url("../img/solution/arrow.jpg") no-repeat 96% 47%;
   background-size: 8px; }
 .solution-container {
   background-color: #FFF;
@@ -46,13 +49,15 @@ body {
     .solution-container li .product {
       padding: 10px;
       border-bottom: 1px solid #e2e2e2;
-      font-size: 13px; }
+      font-size: 12px;
+      line-height: 20px; }
     .solution-container li .money {
       color: #999; }
     .solution-container li .fee {
-      color: #ff5c00; }
+      color: #ff5c00;
+      font-weight: bold; }
     .solution-container li .money-container {
-      padding: 10px;
+      padding: 0 15px;
       height: 45px;
       line-height: 45px;
       font-size: 13px; }
@@ -77,7 +82,8 @@ body {
     display: flex;
     padding-left: 10px;
     height: 45px;
-    line-height: 45px; }
+    line-height: 45px;
+    margin-bottom: 10px; }
     .supply-info .supply-item .introd {
       width: 60px; }
     .supply-info .supply-item .content {
@@ -89,7 +95,8 @@ body {
       flex: 1;
        }
     .supply-info .supply-item .ipt {
-      border: 1px solid #e2e2e2; }
+      border: 1px solid #e2e2e2;
+      height: 45px; }
 .tip {
   padding-left: 10px;
   height: 70px;

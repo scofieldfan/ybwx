@@ -89,7 +89,11 @@ ybwxControllers.controller('wxTemaiIndexCtrl', ['$scope', '$routeParams', '$loca
       });
     }
     $scope.goDetail = function(id) {
-      // var product_id = [64];
+       /*
+       $location.path("/temaidetail").search({
+          "product_id": id
+        });
+      */
       if (newDetailProductId.indexOf(id) !== -1) {
         $location.path("/temaidetail").search({
           "product_id": id
@@ -111,7 +115,7 @@ ybwxControllers.controller('wxTemaiIndexCtrl', ['$scope', '$routeParams', '$loca
   }
 ]);
 // var product_id = [64];
-var newDetailProductId = [64, 94, 18, 100, 22, 9];
+ var newDetailProductId = [64, 94, 18, 100, 22, 9];
 /*特卖list*/
 ybwxControllers.controller('wxTemaiListCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
   function($scope, $routeParams, $location, $http, $rootScope) {
@@ -159,6 +163,10 @@ ybwxControllers.controller('wxTemaiListCtrl', ['$scope', '$routeParams', '$locat
     }
 
     $scope.goCateDetail = function(id) {
+       /* $location.path("/temaidetail").search({
+          "product_id": id
+        });*/
+      
       if (newDetailProductId.indexOf(id) !== -1) {
         $location.path("/temaidetail").search({
           "product_id": id
@@ -168,6 +176,7 @@ ybwxControllers.controller('wxTemaiListCtrl', ['$scope', '$routeParams', '$locat
           "product_id": id
         });
       }
+
     }
   }
 ]);

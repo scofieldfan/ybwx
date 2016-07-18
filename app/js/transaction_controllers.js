@@ -16,73 +16,20 @@ transControllers.controller('wxBaoDanListCtrl', ['$scope', '$routeParams', '$loc
 			return insuranceColorMap[status]
 		}
 
-		/*
-		$scope.page_no = 1;
-		$scope.page_size = 5;
-		$scope.orders = [];
-		$scope.isBusy = true;
-		$scope.nextPage = function() {
-			if ($scope.isBusy) return;
-			$scope.isBusy = true;
-			var openId = sessionStorage.getItem("openId");
-			$http({
-				method: 'POST',
-				headers: {
-					"Content-Type": "application/json;charset:UTF-8"
-				},
-				url: api['get_insurances'],
-				data: {
-					"open_id": openId,
-					"page_no": $scope.page_no,
-					"page_size": $scope.page_size
-				}
-			}).then(function(res) {
-				console.log(res);
-				$scope.isBusy = false;
-				if (res.data && res.data.description) {
-					util.showToast($rootScope, res.data.description);
-					//  $(".default_text").show();
-				}
-				if (res.data.code == 0) {
-					if (res.data.data.orders) {
-						$scope.page_no++;
-						console.log(res.data.data.orders);
-						res.data.data.orders.forEach(function(element, index) {
-							$scope.orders.push(element);
-							// statements
-						});
-						//$scope.orders.concat(res.data.data.orders);
-						console.log("...............");
-					}
-				}
-			}, function(res) {
-				$scope.isBusy = false;
-				console.log(res);
-				util.showToast($rootScope, "服务器错误");
-				// $(".default_text").show();
-			});
-		}*/
+		var currentUrl = "http://web.youbaowuxian.com/#bd_list";
 		$scope.init = function() {
-
-			var code = util.getParameterByName("code");
-			if (!code) {
-				code = $routeParams.code;
-			}
-			util.getOpenId(code).then(function() {
-				var openId = sessionStorage.getItem("openId");
-				$scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurances'], {
+			
+			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
+					var openId = sessionStorage.getItem("openId");
+					$scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurances'], {
 					'open_id': openId
 				}, function(res) {
 					console.log("result ......");
 					$scope.orders = res.data.data.orders;
 				})
 
-				//$scope.isBusy = false;
-				//$scope.nextPage();
-				//$scope.reason="您没有领取任何优惠券。";
-				// $("#reason_container").show();
+			});
 
-			})
 		}
 
 

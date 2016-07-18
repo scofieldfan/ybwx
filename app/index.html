@@ -13,11 +13,11 @@
     function redirectWeChatUrl(){
        var WE_CHAT_URL="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri=http%3a%2f%2fweb.youbaowuxian.com&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
        var  openId = sessionStorage.getItem("openId");
-       if(!openId && location.href.indexOf("code")==-1){  //如果跳转的话，那么没法回退
+       if(!openId && location.href.indexOf("code") == -1){  //如果跳转的话，那么没法回退
             window.location.href=WE_CHAT_URL;
        }
     }
-    redirectWeChatUrl();
+    //redirectWeChatUrl();
    
     </script>
      
@@ -27,7 +27,7 @@
     }
   </style>
 
- <link rel="stylesheet" href="css/output/application.min.css?rev=a4497c9b75a7cd4b8a10e63cbc1b3ed1"> 
+ <link rel="stylesheet" href="css/output/application.min.css?rev=ee09f4e8b0b96b88f667fe0d3c0d0670"> 
   </head>
 
 <body ontouchstart="" onselectstart="return false">
@@ -72,11 +72,10 @@
 
 <!-- /wrapper -->
   <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-  <script src="js/output/application.min.js?rev=c7bfdac4c6dea12541f355c8653cac5c"></script>
-
-    <!-- <script src="js/temai_controllers.js?rev=d227edc118487114ff394e0b214185f6"></script> -->
-
-
+  <script src="js/output/application.min.js?rev=b58e3ddd0c8cff42dd584c19c7b9f6a3"></script>
+  
+    <!-- <script src="js/temai_controllers.js?rev=4d04860e098d859f85ba21b632c475ad"></script> -->
+    <!-- <script src="js/temai_controllers.js?rev=4d04860e098d859f85ba21b632c475ad"></script> -->
   <!--
   <script src="wx_bx_gl/js/swiper.min.js"></script>
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -88,25 +87,14 @@
   <script src="js/angular-busy.min.js?rev=5e39cee156fc10cdfb02e35cbf2da5aa"></script>
   <script src="bower_components/angular-route-styles/route-styles.js"></script>
    <script src="bower_components/rangeslider.js/dist/rangeslider.min.js"></script>
-<<<<<<< HEAD
-   <script src="js/util.js?rev=9eb4e03aa67c0ddde6f8561e9c3acf27"></script>
-  <script src="js/app.js?rev=0f885a9d87872da45aa106d298e12b28"></script>
-  <script src="js/main_controllers.js?rev=2ebd77836c81a4b17161663e65154bd6"></script>
-    <script src="js/util.js?rev=9eb4e03aa67c0ddde6f8561e9c3acf27"></script>
-    <script src="js/baodan_management_controller.js?rev=88aa53bef78834363269bfd45cb7f13e"></script>
-   <script src="js/util.js?rev=9eb4e03aa67c 0ddde6f8561e9c3acf27"></script>
-  <script src="js/app.js?rev=0f885a9d87872da45aa106d298e12b28"></script>
-  <script src="js/main_controllers.js?rev=2ebd77836c81a4b17161663e65154bd6"></script>
-
-=======
-   <script src="js/util.js?rev=9eb4e03aa67c0ddde6f8561e9c3acf27"></script>
-  <script src="js/app.js?rev=0f885a9d87872da45aa106d298e12b28"></script>
-  <script src="js/main_controllers.js?rev=2ebd77836c81a4b17161663e65154bd6"></script>
-  <script src="js/temai_controllers.js?rev=d227edc118487114ff394e0b214185f6"></script>
->>>>>>> dev
-  <script src="js/baodan_management_controller.js?rev=88aa53bef78834363269bfd45cb7f13e"></script>
+   
+   <script src="js/util.js?rev=2d4fc773f94414682499fec275838b88"></script>
+  <script src="js/app.js?rev=6b2c4836b28c62f620f1c4b842a3aafa"></script>
+  <script src="js/main_controllers.js?rev=47c7b3cf9038dfb6d2ca317b4959ab59"></script>
+  <script src="js/temai_controllers.js?rev=4d04860e098d859f85ba21b632c475ad"></script>
+  <script src="js/baodan_management_controller.js?rev=f16b2cf115f68584af5022b562fac117"></script>
    <script src="js/service_controllers.js?rev=9cb4f1699258bd8c4e1b564785f6778e"></script>
-  <script src="js/transaction_controllers.js?rev=2b706054a395cb0ae01fa3981fb8fc33"></script>
+  <script src="js/transaction_controllers.js?rev=e883055453bc9eaf9f87dad7e70a5d64"></script>
 
   <script src="js/jquery.piemenu.js?rev=b68ce9fa2176f8780ac1740577fe0cdf"></script>
    -->

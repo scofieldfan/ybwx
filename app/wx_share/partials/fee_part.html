@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="wx_share/css/bd_part.css?rev=dgjfhdghdgj">
+<link rel="stylesheet" href="wx_share/css/bd_part.css?rev=8e68c986fb12f10cb8a5bf15d365a6a8">
 <div id="wrapper" class="wrapper"  data-ng-init="init()">
 	<div class="bd_part_controller">
 		<div class="ul_contrl" >
@@ -56,8 +56,7 @@
 
 				<div class="cell"  style="color:red" ng-show="registration.insurance_date.$dirty && registration.insurance_date.$invalid || insurance_date_server_reason">
 	            	<small class="error" ng-show="registration.insurance_date.$error.min">保障日期最早从明天开始</small>
-	            	<small class="error" ng-if="coupon_id==1 || coupon_id == 2 || coupon_id==3" ng-show="registration.insurance_date.$error.max">生效日期超过产品的最大要求</small>
-	            	<small class="error" ng-if="coupon_id==4" ng-show="registration.insurance_date.$error.max">生效日期超过产品的最大要求</small>
+	            	<small class="error"  ng-show="registration.insurance_date.$error.max">生效日期超过产品的最大要求</small>
 	                <small class="error" ng-show="insurance_date_server_reason">{{insurance_date_server_reason}}</small>
 		        </div>
 

@@ -5,14 +5,31 @@
 }
 
 .header {
-	.logo {
+	.logo{
 		float: left;
 		width: 70px;
 		height: 70px;
-		background: url('../img/solution/plane.png') no-repeat center;
+	}
+	.icon_4{
+		background: url('../img/solution/1.png') no-repeat center;
 		background-size: 30px;
 	}
-
+	.icon_3{
+		background: url('../img/solution/2.png') no-repeat center;
+		background-size: 30px;
+	}
+	.icon_2{
+		background: url('../img/solution/3.png') no-repeat center;
+		background-size: 30px;
+	}
+	.icon_1{
+		background: url('../img/solution/4.png') no-repeat center;
+		background-size: 30px;
+	}
+	.icon_5{
+		background: url('../img/solution/5.png') no-repeat center;
+		background-size: 30px;
+	}
 	.contaienr {
 		padding-top: 13px;
 		font-size:15px;
@@ -36,10 +53,12 @@
 	display:inline-block;
 	vertical-align:-1px;
 }
+.border-bt{
+	 border-bottom:1px solid #cccccc;	
+}
 .table-wrapper {
 	padding: 0 .2rem;
 	background-color: #fff;
-	
 
 	table {
 		width: 100%;
@@ -49,6 +68,7 @@
 		tr:not(:last-child){
 			border-bottom: 1px solid #e2e2e2;
 		}
+		
 		td{
 			padding: 0.1rem 0.05rem;
 			text-align: center;
@@ -75,6 +95,7 @@
 		text-align: center;
 		border-top:1px solid #e2e2e2;
 		border-bottom: 1px solid #ccc;
+		margin-top:-1px;
 }
 .introd{
 	color:#555;
@@ -96,6 +117,9 @@
 		@include flexbox;
 		.checkbox{
 			@include flex(1);
+			
+		}
+		.checkbox.unchoose{
 			background:url('../img/solution/unchoose.png') no-repeat center;
 			background-size:20px;
 		}
@@ -116,6 +140,18 @@
 			}
 			.product-price{
 				color:#ff5c00;
+			}
+			.status{
+				background-color: #999;
+				color:#fff;
+				padding:2px;
+				font-size:12px;
+			}
+			.status.un-sell{
+				background-color: #999;
+			}
+			.status.selled{
+				background-color: #006ee9;
 			}
 		}
 		.arrow{
