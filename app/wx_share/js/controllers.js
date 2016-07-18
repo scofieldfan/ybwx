@@ -202,6 +202,10 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 ]);
 wxShareControllers.controller('shenheCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
 	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
+		var currentUrl = "http://web.youbaowuxian.com/wx_share.html#/shenhe";
+		util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
+			
+		});
 		$scope.buy = function() {
 			$location.path("/moneybd").search({
 				plan: 72,
