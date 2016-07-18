@@ -1,12 +1,19 @@
 
 <div class="main-wrapper"  data-ng-init="init()" >
 	<div class="people-container" ng-click="goRoute()">
-		<div class="name">{{data.insured.username}} <span class="tag">被保人</span></div>
-		<div class="mobile">手机号:{{data.user.username}}</div>
-		<div class="card">证件号:{{data.user.social_id}}</div>
-		<div class="insured">投保人:{{data.user.username}}(被保人父母)</div>
-		<div>受益人:法定受益人</div>
+		<div ng-show="isFirst" class="default-info">
+			<div>请填写被保人、投保人信息</div>				
+		</div>
+		<div ng-show="!isFirst">
+			<div class="name">{{data.insured.username}} <span class="tag">被保人</span></div>
+			<div class="mobile">手机号:{{data.user.mobile}}</div>
+			<div class="card">证件号:{{data.user.social_id}}</div>
+			<div class="insured">投保人:{{data.user.username}}(被保人父母)</div>
+			<div>受益人:法定受益人</div>	
+		</div>
+		
 	</div>
+
 
 	<div class="solution-title">
 		<div class="icon-clock"></div>&nbsp;方案生效时间 <span class="fr"><input type="date" name="effectivedate" ng-model="user.effective_date" ng-change="genPlansInEffectiveDate()"  class="ipt"   placeholder="请输入目的地" required></span>
