@@ -410,8 +410,8 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q','$filter', '$route
       if ($scope.data.health_notice || $scope.data.extra_notice || $scope.data.locale_notice) {
         $location.path("/productinformation").search(postData);
       } else {
-        // $location.path("/toubao_new").search(postData);
-           $location.path("/tb_dz").search(postData);
+           $location.path("/toubao_new").search(postData);
+          //  $location.path("/tb_dz").search(postData);
       }
 
     }

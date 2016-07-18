@@ -4,7 +4,7 @@
 		<div class="head" ng-click="addPeople()"><img src="wx_share/img/rc/jia.png" >  新增被保险人</div>
 	</div>
 	<div class="bor"></div>
-	<div class="main" ng-repeat="item in data">
+	<div class="main" ng-repeat="item in data" ng-click="choose($event,item)">
 		<div class="main_head">
 			<div class="head_left">{{item.username}}</div>
 			<div class="head_right">{{getRelation(item.relation)}}</div>
@@ -12,5 +12,9 @@
 		</div>
 		<div class="status">身份证号： <div style="display: inline-block">{{item.social_id}}</div></div>
 		<div class="phone">手机号码：<div style="display: inline-block">{{item.mobile}}</div><span class="right" ng-if="item.is_default==true">默认&nbsp;&nbsp;  <img src="img/gou.png"></span></div>
+	</div>
+
+	<div class="head_ctrl">
+		<div class="head" ng-click="return()">  返回</div>
 	</div>
 </div>
