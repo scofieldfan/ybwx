@@ -360,7 +360,6 @@ bdControllers.controller('ybwxRecognizeeCtrl', ['$scope', '$routeParams', '$loca
 			if (isUpdate) {
 				//更新
 				$scope.editUserInfo(userId);
-
 			} else {
 				//添加
 				$scope.addPeople();
