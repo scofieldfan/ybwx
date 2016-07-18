@@ -601,7 +601,6 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 				util.showToast($rootScope, "请选择保障范围和保障额度");
 				return false;
 			}
-			/*
 			$location.path('/bz').search({
 				'type': $routeParams.type,
 				'coverage_score': scoreObj.fanweiScore,
@@ -609,14 +608,14 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 				'estimate_money': $scope.data.premium,
 				'sum_score': $scope.data.scoreFix
 			});
-			*/
+			/*
 			$location.path('/solution').search({
 				'type': $routeParams.type,
 				'coverage_score': scoreObj.fanweiScore,
 				'sum_insured_score': scoreObj.moneyScore,
 				'estimate_money': $scope.data.premium,
 				'sum_score': $scope.data.scoreFix
-			});
+			});*/
 		}
 		$scope.showIntrod = function() {
 			_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_showIntrod']);
@@ -1168,7 +1167,6 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 			$scope.user.effective_date = effectiveDate;
 			$scope.know_contract = true;
 
-
 			//$scope.money = $routeParams.estimate_money;
 			$scope.getCoverageType = util.getCoverageType;
 			$scope.processSpecialMoney = util.processSpecialMoney;
@@ -1200,8 +1198,9 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 					var relations = util.relationShip.filter(function(item){
 						return item.id == res.data.data.insured.relation;
 					});
+					console.log(relations);
 					if(relations && relations[0]){
-						$scope.
+						$scope.userRelation = relations[0].name;
 					}
 					//console.log(relations);
 				}
