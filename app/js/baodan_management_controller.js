@@ -461,6 +461,7 @@ bdControllers.controller('ybwxRecognizeeComCtrl', ['$scope', '$routeParams', '$l
 				'type': $routeParams.type,
 				'choose_plans': $routeParams.choose_plans,
 				'user_id': item.id
+				
 			});
 		}
 
