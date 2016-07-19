@@ -16,10 +16,7 @@
 
 		<tr class="ng-hide"><td colspan="2"  style="text-align:left;font-size:17px;">免除责任</td></tr>
 		<tr ng-repeat="coverage in data.escape_coverages" class="ng-hide"><td  class="left-td" des="{{coverage.desc}}"><div>{{coverage.name}}<div class="qa" ng-show="coverage.desc"></div></div><div  class="des" style="display: none">{{coverage.desc}}</div></td><td class="right-td"></td></tr>
-
-
 	</table>	
-	
 
 </div>
 	<div class="more" ng-if="data.coverages.length>(showNum+1)"  data-switch='on' ng-click="more($event)"><span>查看更多</span><div class="icon-arrow"></div></div>
@@ -75,6 +72,4 @@
 	   	$("#popup").show();
  	}
  });
- 
-
 </script>

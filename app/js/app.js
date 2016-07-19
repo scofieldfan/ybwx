@@ -67,7 +67,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/select_part.html?v=123',
       controller: 'ybwxSelectCtrl',
       title: "保障提升",
-      css:'css/ring.css?rev=95cda24d854100e1c580cdfad09a7ad7'
+      css:'css/ring.css?rev=96f2f48ed9d9794634a8da2f3a5e3d34'
     }).when('/solution', {
       templateUrl: 'partials/solution.html',
       controller: 'ybwxSolutionCtrl',

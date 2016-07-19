@@ -36,6 +36,7 @@ input {
     display: -moz-box;
     display: -ms-flexbox;
     display: flex;
+    position: relative;
     padding-bottom: 10px; }
   .recognizee_compile_ctrl .main .head_left {
     min-width: 63px;
@@ -59,12 +60,15 @@ input {
       color: #5aa8ff; }
   .recognizee_compile_ctrl .main .head_bottom {
     width: 60px;
-    position: relative; }
+    height: 60px;
+    position: absolute;
+    right: -10px;
+    top: -10px; }
     .recognizee_compile_ctrl .main .head_bottom img {
       width: 15px;
       position: absolute;
-      right: 0;
-      top: 0;
+      right: 10px;
+      top: 10px;
       vertical-align: middle; }
   .recognizee_compile_ctrl .main .status, .recognizee_compile_ctrl .main .phone {
     color: #999;
