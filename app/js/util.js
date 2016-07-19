@@ -313,6 +313,16 @@ var util = {
 		5: "已购买"
 
 	},
+	/*
+			保险产品状态：
+			UNKNOWN(0, "保险产品状态未知"),
+			CREATED(1, "创建成功"),
+			SELLING(2, "出售"),
+			TEST(3, "测试"),
+			HOT(4, "热卖"),
+			DISCOUNT(5, "特惠");
+
+	*/
 	getTaoCanStatus: function(status) {
 		return util.taocan_status[status];
 	},
@@ -362,6 +372,25 @@ var util = {
 			id: 1,
 			name: '本人'
 		}, {
+			id: 2,
+			name: '父亲'
+		}, {
+			id: 3,
+			name: '子女'
+		}, {
+			id: 4,
+			name: '配偶'
+		}, {
+			id: 5,
+			name: '同事'
+		}, {
+			id: 6,
+			name: '其他'
+		}
+
+	],
+	//不含本人信息
+	modifyRelationShip: [ {
 			id: 2,
 			name: '父亲'
 		}, {

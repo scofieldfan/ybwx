@@ -220,8 +220,6 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 
 		var currentUrl = "http://web.youbaowuxian.com/wx_share.html#/special";
 
-
-
 		//没有code跳转，如果没有获得openId也跳转
 		$scope.init = function() {
 			$("#loadingToastCommon").show();

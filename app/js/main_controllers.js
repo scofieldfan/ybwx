@@ -52,6 +52,7 @@ var api = {
 	'purchase': '/ybwx-web/api/insurance/purchase'
 }
 
+var isNew = false;
 
 var insuranceMap = {
 	'1': '投保中',
@@ -412,8 +413,6 @@ function updateSumScore() {
 	if (element && element.scope() && element.scope().goEstimateMoney) {
 		element.scope().goEstimateMoney();
 	}
-
-
 }
 
 
@@ -601,22 +600,26 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 				util.showToast($rootScope, "请选择保障范围和保障额度");
 				return false;
 			}
+			if (!isNew) {
+				$location.path('/bz').search({
+					'type': $routeParams.type,
+					'coverage_score': scoreObj.fanweiScore,
+					'sum_insured_score': scoreObj.moneyScore,
+					'estimate_money': $scope.data.premium,
+					'sum_score': $scope.data.scoreFix
+				});
+			} else {
+				$location.path('/solution').search({
+					'type': $routeParams.type,
+					'coverage_score': scoreObj.fanweiScore,
+					'sum_insured_score': scoreObj.moneyScore,
+					'estimate_money': $scope.data.premium,
+					'sum_score': $scope.data.scoreFix
+				});
+			}
+
 			/*
-			$location.path('/bz').search({
-				'type': $routeParams.type,
-				'coverage_score': scoreObj.fanweiScore,
-				'sum_insured_score': scoreObj.moneyScore,
-				'estimate_money': $scope.data.premium,
-				'sum_score': $scope.data.scoreFix
-			});
-			*/
-			$location.path('/solution').search({
-				'type': $routeParams.type,
-				'coverage_score': scoreObj.fanweiScore,
-				'sum_insured_score': scoreObj.moneyScore,
-				'estimate_money': $scope.data.premium,
-				'sum_score': $scope.data.scoreFix
-			});
+			 */
 		}
 		$scope.showIntrod = function() {
 			_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_showIntrod']);
@@ -657,17 +660,16 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 			5: "unsell"
 		}
 		$scope.go = function(plan) {
+
 			if (plan.status === 1) {
-				if(plan.unchecked){
-					plan.unchecked =false;
-				}else{
-					plan.unchecked = true;
-				}
+				plan.unchecked = !plan.unchecked;
 				$scope.choosePlan();
-			} else {
-				if (plan.url) {
-					window.location.href = url;
-				}
+			} 
+			
+		}
+		$scope.goDetail = function(plan){
+			if (plan.official_site) {
+				window.location.href = plan.official_site;
 			}
 		}
 		$scope.showNum = 3;
@@ -689,18 +691,18 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 		$scope.get_taocan_css = function(status) {
 			return taocan_css[status];
 		}
-		$scope.choosePlan = function(){
-			var filteredPlans =  $scope.data.plans.filter(function(item) {
-						return item.status === 1 && !item.unchecked;
+		$scope.choosePlan = function() {
+			var filteredPlans = $scope.data.plans.filter(function(item) {
+				return item.status === 1 && !item.unchecked;
 			});
 			var sumMoney = filteredPlans.map(function(item) {
-						return item.premium;
-			}).reduce(function(preVal,curVal,index,array){
-				return preVal+curVal;
+				return item.premium;
+			}).reduce(function(preVal, curVal, index, array) {
+				return preVal + curVal;
 
-			},0);
+			}, 0);
 			$scope.choosePlansIds = filteredPlans.map(function(item) {
-						return item.id;
+				return item.id;
 			});
 			$scope.sumMoney = sumMoney;
 
@@ -717,6 +719,19 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 				console.log(res);
 				if (res && res.data && res.data.data) {
 					$scope.data = res.data.data;
+					//如果方案中所有的套餐都已购买或者为开售按钮变成灰色
+					 $scope.unsellPlans = res.data.data.plans.filter(function(item){
+					 	 return item.status === 2;//过滤得到未开售的产品
+					 });
+					  $scope.buyedPlans = res.data.data.plans.filter(function(item){
+					 	 return item.status === 3 || item.status ===4 || item.status ===5;//过滤得到已经购买的产品
+					 });
+					  console.log($scope.unsellPlans)
+					 if(　$scope.unsellPlans.length === res.data.data.plans.length ||　$scope.buyedPlans.length === res.data.data.plans.length){
+					 	$(".footer").find(".right").css({
+					 		"background-color":"#999"
+					 	})
+					 }
 					$scope.choosePlan();
 				}
 			})
@@ -725,10 +740,16 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 		$scope.goInfo = function() {
 			_hmt.push(['_trackEvent', 'solution', 'solution_subBtn']);
 
-			if ($scope.choosePlansIds.length === 0) {
-				util.showToast($rootScope, "没有可以购买的产品");
+			if ($scope.unsellPlans.length === $scope.data.plans.length) {
+				util.showToast($rootScope, "方案中的产品全都未开售，请至官方购买");
 				return;
 			}
+
+			if ($scope.buyedPlans.length === $scope.data.plans.length) {
+				util.showToast($rootScope, "方案中的产品您都已购买");
+				return;
+			}
+
 
 			if ($scope.isHaveRestrictions) {
 				$location.path('/information').search({
@@ -1179,13 +1200,13 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 
 			});
 		}
-		$scope.getCoverageType = function(coverage_type){
-			var type = $routeParams.coverage_period?$routeParams.coverage_period:coverage_type;
-			console.log('type:'+type);
+		$scope.getCoverageType = function(coverage_type) {
+			var type = $routeParams.coverage_period ? $routeParams.coverage_period : coverage_type;
+			console.log('type:' + type);
 			return util.getCoverageType(type);
 		}
 		$scope.init = function() {
-			
+
 			$scope.isFirst = true;
 			var effectiveDate = new Date();
 			effectiveDate.setDate(effectiveDate.getDate() + 1);
@@ -1198,7 +1219,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 			$scope.getCoverageType = util.getCoverageType;
 			$scope.processSpecialMoney = util.processSpecialMoney;
 
-			
+
 			if ($routeParams.coverage_period_type) {
 				$scope.coverage_period_type = $routeParams.coverage_period_type;
 			}
@@ -1216,17 +1237,17 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				'open_id': openId,
 				"insured_id": $routeParams.user_id,
 				'plans': JSON.parse($routeParams.choose_plans),
-				'coverage_period':$routeParams.coverage_period,
-				'charge_period':$routeParams.charge_period
+				'coverage_period': $routeParams.coverage_period,
+				'charge_period': $routeParams.charge_period
 			}, function(res) {
 				$scope.data = res.data.data;
 				sessionStorage.setItem("sell_plan", JSON.stringify($scope.data.plans)); //存储需要支付的订单
-				var sumMoney = $scope.data.plans.map(function(item){
+				var sumMoney = $scope.data.plans.map(function(item) {
 					return item.premium;
 				}).reduce(function(preValue, currentValue, index, array) {
 					return preValue + currentValue;
 				});
-				$scope.isFirst = !($scope.data.user && $scope.data.user.username && $scope.data.user.social_id && $scope.data.user.mobile) ;
+				$scope.isFirst = !($scope.data.user && $scope.data.user.username && $scope.data.user.social_id && $scope.data.user.mobile);
 				$scope.money = sumMoney;
 				if (res.data.data && res.data.data.insured) {
 					var relations = util.relationShip.filter(function(item) {

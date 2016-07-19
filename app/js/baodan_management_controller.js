@@ -321,7 +321,7 @@ bdControllers.controller('ybwxRecognizeeCtrl', ['$scope', '$routeParams', '$loca
 			isUpdate = true;
 		}
 
-		$scope.relations = util.relationShip;
+		$scope.relations = util.modifyRelationShip;
 		$scope.save = function() {
 			if (isUpdate) {
 				//更新
@@ -342,7 +342,13 @@ bdControllers.controller('ybwxRecognizeeCtrl', ['$scope', '$routeParams', '$loca
 				'mobile': $scope.mobile
 			}, function(res) {
 				console.log(res.data.data);
-				$location.path('/recognizee_compile').search();
+				$location.path('/recognizee_compile').search({
+						'choose_plans': $routeParams.choose_plans,
+						coverage_period_type:$routeParams.coverage_period_type,
+						coverage_period:$routeParams.coverage_period,
+						charge_period_type:$routeParams.charge_period_type,
+						charge_period:$routeParams.charge_period
+					});
 			})
 		}
 		// 删除被保险人资料
@@ -355,7 +361,13 @@ bdControllers.controller('ybwxRecognizeeCtrl', ['$scope', '$routeParams', '$loca
 						'insured_id': userId
 					}, function(res) {
 						// if(res && res.data && res.data.data.){
-						$location.path("/recognizee_compile").search();
+						$location.path("/recognizee_compile").search({
+						'choose_plans': $routeParams.choose_plans,
+						coverage_period_type:$routeParams.coverage_period_type,
+						coverage_period:$routeParams.coverage_period,
+						charge_period_type:$routeParams.charge_period_type,
+						charge_period:$routeParams.charge_period
+					});
 						// }
 
 					});
@@ -376,8 +388,9 @@ bdControllers.controller('ybwxRecognizeeCtrl', ['$scope', '$routeParams', '$loca
 				"insured_id": userId
 			}, function(res) {
 				if (res && res.data && res.data.data.relations) {
-					console.log("getDategetDategetDategetDategetDategetDategetDategetDate");
-					console.log(res);
+		
+
+				
 					if (res.data.data.relations[0]) {
 						$scope.username = res.data.data.relations[0].username;
 						$scope.social_id = res.data.data.relations[0].social_id;
@@ -386,7 +399,7 @@ bdControllers.controller('ybwxRecognizeeCtrl', ['$scope', '$routeParams', '$loca
 						var relationAry = util.relationShip.filter(function(item) {
 							return item.id === res.data.data.relations[0].relation;
 						});
-						console.log(relationAry);
+						
 						if (Array.isArray(relationAry) && relationAry[0]) {
 							$scope.relation = relationAry[0];
 						}
@@ -416,7 +429,11 @@ bdControllers.controller('ybwxRecognizeeCtrl', ['$scope', '$routeParams', '$loca
 				if (res && res.data && res.data.data.user) {
 					//$scope.data = res.data.data.relations;
 					$location.path("/recognizee_compile").search({
-						'choose_plans': $routeParams.choose_plans
+						'choose_plans': $routeParams.choose_plans,
+						coverage_period_type:$routeParams.coverage_period_type,
+						coverage_period:$routeParams.coverage_period,
+						charge_period_type:$routeParams.charge_period_type,
+						charge_period:$routeParams.charge_period
 					});
 
 				}
@@ -439,28 +456,40 @@ bdControllers.controller('ybwxRecognizeeComCtrl', ['$scope', '$routeParams', '$l
 		}
 		// var curUserId = "";
 		$scope.return = function() {
+
 			$location.path('/toubao_new').search({
 				'type': $routeParams.type,
 				'choose_plans': $routeParams.choose_plans,
-				'user_id': $scope.chooseUser.id
+				'user_id': $scope.chooseUser.id,
+				coverage_period_type:$routeParams.coverage_period_type,
+				coverage_period:$routeParams.coverage_period,
+				charge_period_type:$routeParams.charge_period_type,
+				charge_period:$routeParams.charge_period
 			});
+
+
 		}
 		$scope.choose = function($event, item) {
-			//$($event.target).parent(".recognizee_compile_ctrl").removeClass("current");
-			//$($event.target).addClass("current");
-			//curUserId = item.id;
+			//列表页，选择用户作为默认用户
 			$scope.data.filter(function(filtedItem){
 				return item.id !== filtedItem.id;
 			}).forEach( function(element, index) {
 				element.is_current = false;
 				// statements
 			});
+
+
+
 			$scope.chooseUser = item;
 			item.is_current = true;
 			$location.path('/toubao_new').search({
 				'type': $routeParams.type,
 				'choose_plans': $routeParams.choose_plans,
-				'user_id': item.id
+				'user_id': item.id,
+				coverage_period_type:$routeParams.coverage_period_type,
+				coverage_period:$routeParams.coverage_period,
+				charge_period_type:$routeParams.charge_period_type,
+				charge_period:$routeParams.charge_period
 			});
 		}
 
@@ -493,6 +522,10 @@ bdControllers.controller('ybwxRecognizeeComCtrl', ['$scope', '$routeParams', '$l
 				user_id: id,
 				method: "edit",
 				'choose_plans': $routeParams.choose_plans,
+				coverage_period_type:$routeParams.coverage_period_type,
+				coverage_period:$routeParams.coverage_period,
+				charge_period_type:$routeParams.charge_period_type,
+				charge_period:$routeParams.charge_period
 			});
 		}
 		// 跳转and新增被保险人
@@ -500,6 +533,10 @@ bdControllers.controller('ybwxRecognizeeComCtrl', ['$scope', '$routeParams', '$l
 			$location.path('/recognizee').search({
 				method: "add",
 				'choose_plans': $routeParams.choose_plans,
+				coverage_period_type:$routeParams.coverage_period_type,
+				coverage_period:$routeParams.coverage_period,
+				charge_period_type:$routeParams.charge_period_type,
+				charge_period:$routeParams.charge_period
 			});
 		}
 	}

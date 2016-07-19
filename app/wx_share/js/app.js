@@ -42,8 +42,8 @@ function($routeProvider) {
     templateUrl: 'wx_share/partials/special_offer.html',
     controller: 'specialCtrl'
   }).when('/shenhe', {
-    templateUrl: 'wx_share/partials/shenhe_special.html',
-    controller: 'shenheCtrl'
+    templateUrl: 'wx_share/partials/special_offer.html',
+    controller: 'specialCtrl'
   }).otherwise({
     redirectTo: '/index'
   });
