@@ -10,9 +10,13 @@
     width:200px;
     margin:15px auto 25px;
 }
-.head-container .cell_hd {
+.head-container .select_cell_hd {
   width: 200px;
   height:auto;
+  display: table-cell;
+}
+.cell_hd {
+  display: table-cell;
 }
 .head-container .btn {
   height: 34px;

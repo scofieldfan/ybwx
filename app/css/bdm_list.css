@@ -137,8 +137,8 @@ header .subtitle {
 	height: 35px;
 }
 .success {
-	background: #fff url('img/cover.png?v=32') no-repeat center;
-	background-size: 100px;
+	background: #fff url('../img/cover.png?v=32') no-repeat center;
+	background-size: 80px;
 }
 
 .bd-effective{
