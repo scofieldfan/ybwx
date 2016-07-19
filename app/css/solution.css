@@ -75,7 +75,7 @@ body {
   border-top: 1px solid #e2e2e2;
   border-bottom: 1px solid #ccc;
   margin-top: -1px; }
-.introd {
+.contents {
   color: #555;
   padding-left: 10px;
   margin-top: 10px;
@@ -161,8 +161,6 @@ body {
 .toast {
   max-height: 325px;
   overflow: auto;
-  overflow: scroll;
-  overflow-y: scroll;
-  height: auto;
   border: 30px solid #fff;
-  padding: 0; }
+  padding: 0;
+  -webkit-overflow-scrolling: touch; }

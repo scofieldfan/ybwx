@@ -648,7 +648,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 		$scope.getCoverageType = util.getCoverageType;
 		$scope.processSpecialMoney = util.processSpecialMoney;
 		$scope.getTaoCanStatus = util.getTaoCanStatus;
-
+        // $('#stopPro').css('-webkit-overflow-scrolling','auto');
 		$scope.getInsuranceCNname = function() {
 			return insureanceCNMap[$routeParams.type];
 		}
@@ -747,7 +747,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 					'type': $routeParams.type,
 					'estimate_money': $routeParams.sumMoney,
 					'choose_plans': JSON.stringify($scope.choosePlansIds)
-				});!
+				});
 			}
 		}
 

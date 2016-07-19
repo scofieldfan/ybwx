@@ -66,9 +66,13 @@ input {
 				}
 			}
 			.head_bottom {
-				width: 40px;
+				width: 60px;
+				position: relative;
 				img {
 					width: 15px;
+					position: absolute;
+					right: 0;
+					top: 0;
 					vertical-align: middle;
 				}
 			}
