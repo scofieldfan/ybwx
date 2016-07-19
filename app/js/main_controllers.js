@@ -1214,6 +1214,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 
 			$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['prepare_insure'], {
 				'open_id': openId,
+				"insured_id": $routeParams.user_id,
 				'plans': JSON.parse($routeParams.choose_plans),
 				'coverage_period':$routeParams.coverage_period,
 				'charge_period':$routeParams.charge_period
