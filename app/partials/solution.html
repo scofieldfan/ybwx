@@ -2,12 +2,12 @@
 	<div class="toast"></div>
 </div>
 
-<div class="solution-container">
+<div class="solution-container"  cg-busy="solutionPromise">
 <div class="header">
 	<div class="logo icon_{{type}}"> </div>
 	<div class="contaienr">
 		<div class="title">意外保障方案 {{data.score}}分</div>	
-		<div class="sub-title">方案金额:{{data.premium}} 元</div>	
+		<div class="sub-title">方案金额:{{money}} 元</div>	
 	</div>
 </div>
 <div class="table-wrapper"  data-ng-init="init()"  ng-class="{'border-bt': data.coverages.length<=(showNum+1)}">
@@ -20,12 +20,12 @@
 <div class="introd">方案内容</div>
 <ul class="solution">
 
-	<li  ng-repeat="plan in data.plans" ng-click="go(plan.official_site)">
-		<div class="checkbox "  ng-class="{'choose': plan.status==1, '': plan.status!=1}"></div>	
+	<li  ng-repeat="plan in data.plans" ng-click="go(plan)">
+		<div class="checkbox "  ng-class="{'choose': plan.status==1 && !plan.unchecked, '': plan.status!=1 , 'unchoose':plan.status==1 && plan.unchecked }"></div>	
 		<div class="product">
 			<div class="product-name">{{plan.name}}</div>	
-			<div class="product-des">最高保额：{{plan.premium}}元 保{{plan.coverage_period}}{{getCoverageType(plan.coverage_period_type)}}</div>	
-			<div class="product-price"> {{processSpecialMoney(plan.sum_insured)}} <span ng-if="plan.status!=1" class="status {{get_taocan_css(plan.status)}}" > {{getTaoCanStatus(plan.status)}}</span>
+			<div class="product-des">最高保额：{{processSpecialMoney(plan.sum_insured)}}元  &nbsp; &nbsp;保{{plan.coverage_period}}{{getCoverageType(plan.coverage_period_type)}}</div>	
+			<div class="product-price"> {{plan.premium}}元   <span ng-if="plan.status!=1" class="status {{get_taocan_css(plan.status)}}" > {{getTaoCanStatus(plan.status)}}</span>
 			</div>
 		</div>	
 		<div class="arrow"></div>	
@@ -41,12 +41,12 @@
 		<div class="arrow"></div>	
 	</li>	
 	-->
+	<li style="border-top:1px solid #ccc;height: 10px;background: #f5f5f5;box-sizing: border-box;"></li>
 </ul>
-
 
 <div class="fix_container">
 	<div class="footer">
-	<a href="javascript:void(0)" class="btn btn_n_primary left">投保金额<span class="money">{{money}}</span> 元</a>
+	<a href="javascript:void(0)" class="btn btn_n_primary left">投保金额<span class="money">{{sumMoney}}</span> 元</a>
 	<a href="javascript:void(0)" class="btn btn_n_primary right" ng-click="goInfo()">立即投保</a>
 	</div>
 </div>

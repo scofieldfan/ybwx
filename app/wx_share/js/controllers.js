@@ -202,6 +202,10 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 ]);
 wxShareControllers.controller('shenheCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
 	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
+		var currentUrl = "http://web.youbaowuxian.com/wx_share.html#/shenhe";
+		util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
+
+		});
 		$scope.buy = function() {
 			$location.path("/moneybd").search({
 				plan: 72,
@@ -374,8 +378,17 @@ wxShareControllers.controller('wxMoneyBdCtrl', ['$scope', '$filter', '$routePara
 
 		$scope.submit = function() {
 			_hmt.push(['_trackEvent', 'wx_share_toubao', 'wx_share_toubao_subtn']);
+			var socialId =  $scope.user.social_id ;
+			var age = 0;
+			if(socialId && socialId.length === 18){
+				var birthday = socialId.substring(6,14);
+				var birthMonth = birthday.substring(4,6);
+				var birthDay = birthday.substring(6,8);
+				var birthYear = birthday.substring(0,4);
+				age = util.calculate_age(birthMonth,birthDay,birthYear);
+			}
 
-			if (!$scope.registration.$invalid) {
+			if (!$scope.registration.$invalid && age>=18) {
 
 				//$("#loadingToast").show();
 
@@ -395,13 +408,7 @@ wxShareControllers.controller('wxMoneyBdCtrl', ['$scope', '$filter', '$routePara
 
 					$("#loadingToast").hide();
 					//存储用户信息
-					localStorage.setItem('userinfo',
-						JSON.stringify({
-							username: $scope.user.username,
-							social_id: $scope.user.social_id,
-							mobile: $scope.user.mobile,
 
-						}));
 
 					if (res.data.code === 0) {
 						var orderId = res.data.data.order_no; //支付
@@ -436,6 +443,9 @@ wxShareControllers.controller('wxMoneyBdCtrl', ['$scope', '$filter', '$routePara
 				}
 				if ($scope.registration.social_id.$invalid) {
 					util.showToast($rootScope, "身份证填写有误，请修改");
+				}
+				if(age<18){
+					util.showToast($rootScope, "投保人年龄必须大于18岁");
 				}
 				if ($scope.registration.mobile.$invalid) {
 					util.showToast($rootScope, "手机号码填写有误，请修改");

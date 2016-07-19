@@ -3,7 +3,9 @@
 .solution-container{
 	background-color: #f5f5f5;
 }
-
+body {
+	background: #fff;
+}
 .header {
 	.logo{
 		float: left;
@@ -114,14 +116,15 @@
 .solution{
 	background-color: #FFF;
 	padding-top:5px;
-	margin-bottom:60px;
+	margin-bottom: 49px;
 	li{
 		margin-bottom:5px;
 		background-color: #f9f9f9;
 		@include flexbox;
 		cursor: pointer;
 		.checkbox{
-			@include flex(1);
+			// @include flex(1);
+			width: 40px;
 			
 		}
 		.checkbox.unchoose{
@@ -137,8 +140,9 @@
 			background-size:8px;
 		}
 		.product{
-			@include flex(4);
+			@include flex(1);
 			padding:10px 0;
+			font-size: 13px;
 			.product-des{
 				color:#999;
 				font-size:13px;
@@ -160,7 +164,8 @@
 			}
 		}
 		.arrow{
-			@include flex(1);
+			// @include flex(1);
+			width: 40px;
 		}
 	}
 }

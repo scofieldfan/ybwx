@@ -1,6 +1,8 @@
 @charset "UTF-8";
 .solution-container {
   background-color: #f5f5f5; }
+body {
+  background: #fff; }
 .header {
   background-color: #006ee9;
   color: #fff;
@@ -85,7 +87,7 @@
 .solution {
   background-color: #FFF;
   padding-top: 5px;
-  margin-bottom: 60px; }
+  margin-bottom: 49px; }
   .solution li {
     margin-bottom: 5px;
     background-color: #f9f9f9;
@@ -96,12 +98,7 @@
     display: flex;
     cursor: pointer; }
     .solution li .checkbox {
-      -webkit-box-flex: 1;
-      -webkit-flex: 1;
-      -moz-box-flex: 1;
-      -ms-flex: 1;
-      flex: 1;
-       }
+      width: 40px; }
     .solution li .checkbox.unchoose {
       background: url("../img/solution/unchoose.png") no-repeat center;
       background-size: 20px; }
@@ -112,12 +109,13 @@
       background: url("../img/solution/arrow.png") no-repeat center;
       background-size: 8px; }
     .solution li .product {
-      -webkit-box-flex: 4;
-      -webkit-flex: 4;
-      -moz-box-flex: 4;
-      -ms-flex: 4;
-      flex: 4;
-      padding: 10px 0; }
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+      -moz-box-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+      padding: 10px 0;
+      font-size: 13px; }
       .solution li .product .product-des {
         color: #999;
         font-size: 13px; }
@@ -133,12 +131,7 @@
       .solution li .product .status.selled {
         background-color: #006ee9; }
     .solution li .arrow {
-      -webkit-box-flex: 1;
-      -webkit-flex: 1;
-      -moz-box-flex: 1;
-      -ms-flex: 1;
-      flex: 1;
-       }
+      width: 40px; }
 .footer {
   display: -webkit-box;
   display: -webkit-flex;

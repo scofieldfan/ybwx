@@ -84,7 +84,7 @@ bdControllers.controller('ybwxbaodanVerifyListCtrl', ['$scope', '$routeParams', 
 		$scope.init = function() {
 
 			var code = util.getParameterByName("code") || code;
-			
+
 			util.getOpenId(code).then(function() {
 				var openId = sessionStorage.getItem("openId");
 				$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_verfiy_policy'] + "?open_id=" + openId, {}, function(res) {
@@ -301,6 +301,13 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 bdControllers.controller('ybwxRecognizeeCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 		_hmt.push(['_trackPageview', $location.path()]);
+		$scope.state = false;
+		$scope.relation = {
+
+			id: 1,
+			name: '本人'
+
+		};
 		$scope.getState = function() {
 			$scope.state = document.getElementById("checkbox").checked;
 			// console.log($scope.state);
@@ -309,7 +316,7 @@ bdControllers.controller('ybwxRecognizeeCtrl', ['$scope', '$routeParams', '$loca
 		var userId = $routeParams.user_id;
 		console.log(userId);
 		var isUpdate = false;
-		if ($routeParams.method && $routeParams.method==="edit") {
+		if ($routeParams.method && $routeParams.method === "edit") {
 			//修改逻辑
 			isUpdate = true;
 		}
@@ -406,11 +413,14 @@ bdControllers.controller('ybwxRecognizeeCtrl', ['$scope', '$routeParams', '$loca
 				'social_id': $scope.social_id,
 				'mobile': $scope.mobile
 			}, function(res) {
-				if (res && res.data && res.data.data.relations) {
-					$scope.data = res.data.data.relations;
+				if (res && res.data && res.data.data.user) {
+					//$scope.data = res.data.data.relations;
+					$location.path("/recognizee_compile").search({
+						'choose_plans': $routeParams.choose_plans
+					});
+
 				}
-				$location.path("/recognizee_compile").search();
-				// console.log(res.data.data);
+
 			})
 		}
 	}
@@ -422,11 +432,25 @@ bdControllers.controller('ybwxRecognizeeComCtrl', ['$scope', '$routeParams', '$l
 			var relationAry = util.relationShip.filter(function(item) {
 				return item.id === relation;
 			});
-			if (Array.isArray(relationAry) && relationAry[0]) { 
+			if (Array.isArray(relationAry) && relationAry[0]) {
 				return relationAry[0].name;
 			}
 
 		}
+		var curUserId = "";
+		$scope.return = function() {
+			$location.path('/toubao_new').search({
+				'type': $routeParams.type,
+				'choose_plans': $routeParams.choose_plans,
+				'userId': curUserId
+			});
+		}
+		$scope.choose = function($event, item) {
+			$($event.target).parent(".recognizee_compile_ctrl").removeClass("current");
+			$($event.target).addClass("current");
+			curUserId = item.id;
+		}
+
 		var openId = sessionStorage.getItem("openId");
 		$scope.init = function() {
 			$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['recognizee_compile'], {
@@ -434,23 +458,33 @@ bdControllers.controller('ybwxRecognizeeComCtrl', ['$scope', '$routeParams', '$l
 			}, function(res) {
 				if (res && res.data && res.data.data.relations) {
 					$scope.data = res.data.data.relations;
+					var defaultRelations = res.data.data.relations.filter(function(item) {
+						return item.default === true;
+					});
+					if (defaultRelations && defaultRelations.length > 0) {
+						curUserId = defaultRelations[0].id;
+					} else {
+						curUserId = res.data.data.relations[0].id;
+					}
+
 				}
-				// console.log(res.data.data);
 			})
 		}
 		// 跳转and获取资料
 		$scope.editUserInfo = function(id) {
 			$location.path('/recognizee').search({
 				user_id: id,
- 				method:"edit"
+				method: "edit",
+				'choose_plans': $routeParams.choose_plans,
 			});
 		}
 		// 跳转and新增被保险人
 		$scope.addPeople = function() {
 			$location.path('/recognizee').search({
-				method:"add"
-			} );
-		 }
+				method: "add",
+				'choose_plans': $routeParams.choose_plans,
+			});
+		}
 	}
 ]);
 bdControllers.controller('ybwxBDPicCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',

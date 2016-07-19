@@ -290,6 +290,21 @@ var util = {
 		result.setDate(result.getDate() + days);
 		return result;
 	},
+	calculate_age: function(birth_month, birth_day, birth_year) {
+		today_date = new Date();
+		today_year = today_date.getFullYear();
+		today_month = today_date.getMonth();
+		today_day = today_date.getDate();
+		age = today_year - birth_year;
+
+		if (today_month < (birth_month - 1)) {
+			age--;
+		}
+		if (((birth_month - 1) == today_month) && (today_day < birth_day)) {
+			age--;
+		}
+		return age;
+	},
 	taocan_status: {
 		1: "",
 		2: "未开售",
@@ -348,7 +363,7 @@ var util = {
 			name: '本人'
 		}, {
 			id: 2,
-			name: '父亲'
+			name: '父母'
 		}, {
 			id: 3,
 			name: '子女'

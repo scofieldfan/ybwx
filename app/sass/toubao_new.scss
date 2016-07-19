@@ -18,7 +18,15 @@ body{
 	background-size: 8px;
 	padding: 15px 10px;
 	font-size:13px;
+	min-height:135px;
 	line-height:21px;
+	
+	.default-info{
+		min-height:135px;
+		@include flexbox;
+		@include justify-content(center);
+		@include align-items(center);
+	}
 	.name{
 		margin-bottom: 12px;
 		font-size:18px;
@@ -30,6 +38,7 @@ body{
 		color:#999;
 		vertical-align: -1px;
 		font-size:13px;
+		margin-left: 10px;
 	}
 }
 
@@ -66,7 +75,7 @@ body{
 		.product {
 			padding: 10px;
 			border-bottom: 1px solid #e2e2e2;
-			font-size:12px;
+			font-size:13px;
 			line-height: 20px;
 		}
 
@@ -144,6 +153,7 @@ body{
 
 .footer {
 	@include flexbox;
+	z-index: 99;
 	.left {
 		@include flex(65);
 		background-color: #FFF;
@@ -159,6 +169,7 @@ body{
 	.right {
 		@include flex(35);
 		background-color: #ff5c00;
+		cursor: pointer;
 	}
 
 }

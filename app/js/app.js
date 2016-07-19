@@ -72,12 +72,12 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/solution.html',
       controller: 'ybwxSolutionCtrl',
       title: "保障方案",
-      css:'css/solution.css?rev=gfhfdhghdgdg'
+      css:'css/solution.css?rev=c3e690e9ccb778ba8a49b610925b3253'
     }).when('/toubao_new', {
       templateUrl: 'partials/toubao_new.html',
       controller: 'ybwxToubaoNewCtrl',
-      title: "保障方案",
-      css:'css/toubao_new.css?rev=1a9bccab90db1694a628488915d4c008'
+      title: "投保确认",
+      css:'css/toubao_new.css?rev=84d43fe7c4807c95dad6bd49c57bb91c'
     }).when('/promote', {
       templateUrl: 'partials/bz_ts.html',
       controller: 'ybwxPromoteCtrl',
@@ -204,7 +204,7 @@ ybwxApp.config(['$routeProvider',
     }).when('/recognizee_compile', {
       templateUrl: 'partials/recognizee_compile.html',
       controller: 'ybwxRecognizeeComCtrl',
-      title: "被保人信息"
+      title: "常用被保人"
     }).when('/supply_userinfo', {
       templateUrl: 'partials/supply_userinfo.html',
        controller: 'ybwxSupplayInfoCtrl',
