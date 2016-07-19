@@ -52,7 +52,7 @@ var api = {
 	'purchase': '/ybwx-web/api/insurance/purchase'
 }
 
-var isNew = false;
+var isNew = true;
 
 var insuranceMap = {
 	'1': '投保中',
@@ -61,6 +61,7 @@ var insuranceMap = {
 	'8': '保障中',
 	'9': '已失效'
 }
+
 var chargePeriodTypeMap = {
 	'1': '趸交',
 	'2': '按月缴',
@@ -1831,13 +1832,13 @@ mainControllers.controller('ybwxToubaoDingzhiAllCtrl', ['$scope', '$filter', '$r
 					/*
 					if (whiteOpenIds.indexOf(openId)!==-1) {
 						payResponse["order_amount"] = 10;
-					}*/
+					}
 					var fitlerResult = util.whiteOpenIds.filter(function(item) {
 						return item.openid === openId
 					});
 					if (fitlerResult && fitlerResult.length > 0) {
 						payResponse["order_amount"] = 10;
-					}
+					}*/
 					$location.path("/pay_select").search(payResponse);
 				});
 			}

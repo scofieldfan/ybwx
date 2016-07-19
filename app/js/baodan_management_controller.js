@@ -314,7 +314,7 @@ bdControllers.controller('ybwxRecognizeeCtrl', ['$scope', '$routeParams', '$loca
 		}
 		var openId = sessionStorage.getItem("openId");
 		var userId = $routeParams.user_id;
-		console.log(userId);
+		$scope.method = $routeParams.method;
 		var isUpdate = false;
 		if ($routeParams.method && $routeParams.method === "edit") {
 			//修改逻辑
