@@ -1,12 +1,12 @@
 <div class="mask" id="popup">
-	<div class="toast"></div>
+	<div class="toast" id="stopPro"></div>
 </div>
 
 <div class="solution-container"  cg-busy="solutionPromise">
 <div class="header">
 	<div class="logo icon_{{type}}"> </div>
 	<div class="contaienr">
-		<div class="title">意外保障方案 {{data.score | number:1}}分</div>	
+		<div class="title">{{getInsuranceCNname()}}保障方案 {{data.score | number:1}}分</div>	
 		<div class="sub-title">方案金额:{{money}} 元</div>	
 	</div>
 </div>
@@ -17,15 +17,15 @@
 </div>
 	<div class="more" ng-if="data.coverages.length>(showNum+1)"  data-switch='on' ng-click="more($event)"><span>查看更多</span><div class="icon-arrow"></div></div>
 
-<div class="introd">方案内容</div>
+<div class="contents">方案内容</div>
 <ul class="solution">
 
 	<li  ng-repeat="plan in data.plans" >
 		<div class="checkbox " ng-click="go(plan)"  ng-class="{'choose': plan.status==1 && !plan.unchecked, '': plan.status!=1 , 'unchoose':plan.status==1 && plan.unchecked }"></div>	
 		<div class="product"  ng-click = "goDetail(plan)">
 			<div class="product-name">{{plan.name}}</div>	
-			<div class="product-des">最高保额：{{plan.premium}}元 保{{plan.coverage_period}}{{getCoverageType(plan.coverage_period_type)}}</div>	
-			<div class="product-price"> {{processSpecialMoney(plan.sum_insured)}} <span ng-if="plan.status!=1" class="status {{get_taocan_css(plan.status)}}" > {{getTaoCanStatus(plan.status)}}</span>
+			<div class="product-des">最高保额：{{processSpecialMoney(plan.sum_insured)}}元  &nbsp; &nbsp;保{{plan.coverage_period}}{{getCoverageType(plan.coverage_period_type)}}</div>	
+			<div class="product-price"> {{plan.premium}}元   <span ng-if="plan.status!=1" class="status {{get_taocan_css(plan.status)}}" > {{getTaoCanStatus(plan.status)}}</span>
 			</div>
 		</div>	
 		<div class="arrow" ng-class="{'noclick': !plan.official_site}"  ng-click = "goDetail(plan)"></div>	
@@ -42,8 +42,8 @@
 		<div class="arrow"></div>	
 	</li>	
 	-->
+	<li style="border-top:1px solid #ccc;height: 10px;background: #f5f5f5;box-sizing: border-box;"></li>
 </ul>
-
 
 <div class="fix_container">
 	<div class="footer">
@@ -61,7 +61,7 @@
 		$("#popup").find(".toast").html(des);
 	   	$("#popup").show();
  	}
-    
  });
+ 
 
 </script>

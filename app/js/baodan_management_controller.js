@@ -510,9 +510,8 @@ bdControllers.controller('ybwxRecognizeeComCtrl', ['$scope', '$routeParams', '$l
 					} else {
 						//如果后台没有默认，选择第一个人
 						res.data.data.relations[0].is_current = true;
-						$scope.chooseUser = res.data.data.relations[0];
+						$scope.chooseUser = res.data.data.relations[0]
 					}
-
 				}
 			})
 		}

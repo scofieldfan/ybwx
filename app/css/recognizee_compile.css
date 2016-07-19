@@ -9,7 +9,7 @@ input {
   border: none; }
 .recognizee_compile_ctrl .head_ctrl {
   padding: 15px 10px;
-  background: #fff; }
+  background: #f5f5f5; }
 .recognizee_compile_ctrl .head {
   box-sizing: border-box;
   border-radius: 5px;
@@ -58,9 +58,13 @@ input {
       margin-left: 10px;
       color: #5aa8ff; }
   .recognizee_compile_ctrl .main .head_bottom {
-    width: 20px; }
+    width: 60px;
+    position: relative; }
     .recognizee_compile_ctrl .main .head_bottom img {
       width: 15px;
+      position: absolute;
+      right: 0;
+      top: 0;
       vertical-align: middle; }
   .recognizee_compile_ctrl .main .status, .recognizee_compile_ctrl .main .phone {
     color: #999;

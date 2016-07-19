@@ -3,8 +3,10 @@
   box-sizing: border-box; }
 body {
   background-color: #f5f5f5; }
+.toubao_new_ctrl {
+  margin-bottom: 48px; }
 .main-wrapper {
-  margin-bottom: 60px; }
+  margin-bottom: 10px; }
 .people-container {
   border-left: 5px solid #006ee9;
   border-bottom: 1px solid #ccc;
@@ -35,7 +37,8 @@ body {
   .people-container .tag {
     color: #999;
     vertical-align: -1px;
-    font-size: 13px; }
+    font-size: 13px;
+    margin-left: 10px; }
 .icon-clock {
   background: url("../img/toubao/clock.jpg") no-repeat center;
   background-size: 15px;
@@ -53,29 +56,29 @@ body {
   border-bottom: 1px solid #ccc;
   background: #fff url("../img/solution/arrow.jpg") no-repeat 96% 47%;
   background-size: 8px; }
-.solution-container {
+.toubao-container {
   background-color: #FFF;
   padding: 5px 0;
   border-bottom: 1px solid #ccc; }
-  .solution-container li {
+  .toubao-container li {
     background-color: #f9f9f9;
     margin-bottom: 5px; }
-    .solution-container li .product {
+    .toubao-container li .product {
       padding: 10px;
       border-bottom: 1px solid #e2e2e2;
-      font-size: 12px;
+      font-size: 13px;
       line-height: 20px; }
-    .solution-container li .money {
+    .toubao-container li .money {
       color: #999; }
-    .solution-container li .fee {
+    .toubao-container li .fee {
       color: #ff5c00;
       font-weight: bold; }
-    .solution-container li .money-container {
+    .toubao-container li .money-container {
       padding: 0 15px;
       height: 45px;
       line-height: 45px;
       font-size: 13px; }
-    .solution-container li .modify {
+    .toubao-container li .modify {
       color: #55a5ff; }
 .supply-info {
   margin-top: 20px;
@@ -126,7 +129,8 @@ body {
   display: -webkit-flex;
   display: -moz-box;
   display: -ms-flexbox;
-  display: flex; }
+  display: flex;
+  z-index: 99; }
   .footer .left {
     -webkit-box-flex: 65;
     -webkit-flex: 65;
@@ -145,4 +149,5 @@ body {
     -moz-box-flex: 35;
     -ms-flex: 35;
     flex: 35;
-    background-color: #ff5c00; }
+    background-color: #ff5c00;
+    cursor: pointer; }

@@ -72,16 +72,16 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/solution.html',
       controller: 'ybwxSolutionCtrl',
       title: "保障方案",
-      css:'css/solution.css?rev=22e0cd83e061126f9730d8939be99137'
+      css:'css/solution.css?rev=4e5ab81ac83b3dcc5b34a3245007b24c'
     }).when('/toubao_new', {
       templateUrl: 'partials/toubao_new.html',
       controller: 'ybwxToubaoNewCtrl',
-      title: "保障方案",
-      css:'css/toubao_new.css?rev=7f72be63dfdf386a79a6878b57f0b35a'
+      title: "投保确认",
+      css:'css/toubao_new.css?rev=6ec9369bae4954eafef66a10ece09879'
     }).when('/promote', {
       templateUrl: 'partials/bz_ts.html',
       controller: 'ybwxPromoteCtrl',
-      title: "保障提升",
+      title: "保障提升"
     }).when('/service', {
       templateUrl: 'partials/service.html',
       controller: 'ybwxServiceCtrl',
@@ -89,7 +89,7 @@ ybwxApp.config(['$routeProvider',
       css:'css/service.css?rev=473126171dfc19c112d9a2112fc7fe64'
     }).when('/contact', {
       templateUrl: 'partials/contact.html',
-      title: "联系我们",
+      title: "联系我们"
     }).when('/bz', {
       templateUrl: 'partials/bz_list.html?v=123',
       controller: 'ybwxBzCtrl',
@@ -204,7 +204,7 @@ ybwxApp.config(['$routeProvider',
     }).when('/recognizee_compile', {
       templateUrl: 'partials/recognizee_compile.html',
       controller: 'ybwxRecognizeeComCtrl',
-      title: "被保人信息"
+      title: "常用被保人"
     }).when('/supply_userinfo', {
       templateUrl: 'partials/supply_userinfo.html',
        controller: 'ybwxSupplayInfoCtrl',
@@ -218,8 +218,6 @@ ybwxApp.config(['$routeProvider',
     });
   }
 ]);
-
-
 
 ybwxApp.run(['$rootScope',
   function($rootScope) {

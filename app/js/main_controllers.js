@@ -652,7 +652,10 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 		$scope.getCoverageType = util.getCoverageType;
 		$scope.processSpecialMoney = util.processSpecialMoney;
 		$scope.getTaoCanStatus = util.getTaoCanStatus;
-
+        // $('#stopPro').css('-webkit-overflow-scrolling','auto');
+		$scope.getInsuranceCNname = function() {
+			return insureanceCNMap[$routeParams.type];
+		}
 		var taocan_css = {
 			1: "",
 			2: "unsell",

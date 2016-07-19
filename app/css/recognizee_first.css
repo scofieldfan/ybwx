@@ -28,6 +28,13 @@ body {
       -ms-flex: 1;
       flex: 1;
        }
+  .recognizee_first_ctrl .insured {
+    color: #ff5c00;
+    text-align: center;
+    line-height: 1.03rem;
+    background: #fff;
+    border-bottom: 1px solid #c4c4c4;
+    font-size: 15px; }
   .recognizee_first_ctrl .ziliao {
     margin-top: .13rem;
     color: #555;

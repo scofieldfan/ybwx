@@ -1,15 +1,16 @@
-<div cg-busy="prePromise" >
+<div cg-busy="prePromise" class="toubao_new_ctrl">
 <div class="main-wrapper"  data-ng-init="init()"  >
 	<div class="people-container" ng-click="goRoute()">
 		<div ng-show="isFirst" class="default-info">
 			<div>请填写被保人、投保人信息</div>				
 		</div>
 		<div ng-show="!isFirst">
-			<div class="name">{{data.insured.username}} <span class="tag">被保人</span></div>
-			<div class="mobile">手机号:{{data.user.mobile}}</div>
-			<div class="card">证件号:{{data.user.social_id}}</div>
-			<div class="insured">投保人:{{data.user.username}}(被保人{{userRelation}})</div>
-			<div>受益人:法定受益人</div>	
+			<div class="name">{{data.insured.username}}<span class="tag">被保人<span class="insured">（{{userRelation}}）</span></span></div>
+			<div class="mobile">手机号：{{data.user.mobile}}</div>
+			<div class="card">证件号：{{data.user.social_id}}</div>
+			<div >投保人：{{data.user.username}}<!-- (被保人{{userRelation}}) --></div>
+			<div>受益人：法定受益人</div>	
+			
 		</div>
 	</div>
 
@@ -17,15 +18,15 @@
 	<div class="solution-title">
 		<div class="icon-clock"></div>&nbsp;方案生效时间 <span class="fr"><input type="date" name="effectivedate" ng-model="user.effective_date" ng-change="genPlansInEffectiveDate()"  class="ipt"   placeholder="请输入目的地" required></span>
 	</div>
-	<ul class="solution-container">
+	<ul class="toubao-container">
 		<li ng-repeat="plan in data.plans">
 			<div class="product">	
 				<div class="name">{{plan.name}}</div>	
 				<div class="duration">{{user.effective_date | date:'yyyy-MM-dd'}}至{{plan.endDate | date:'yyyy-MM-dd'}}</div>
-				<div class="money">保额:{{processSpecialMoney(plan.sum_insured)}} 元  保{{coverage_period ||  plan.coverage_period}}{{getCoverageType(plan.coverage_period_type)}}</div>
+				<div class="money">保额:{{processSpecialMoney(plan.sum_insured)}}元  &nbsp;&nbsp;保{{coverage_period ||  plan.coverage_period}}{{getCoverageType(plan.coverage_period_type)}}</div>
 			</div>
 			<div class="money-container">
-				<span class="fee">{{plan.premium}} 元</span>		<span class="fr" style="display: none">20年交清  <span class="modify">修改</span></span>
+				<span class="fee">{{plan.premium}}元</span>		<span class="fr" style="display: none">20年交清  <span class="modify">修改</span></span>
 			</div>
 		</li>
 	</ul>
@@ -57,7 +58,7 @@
 
 <div class="fix_container">
 		<div class="footer">
-		<a href="javascript:void(0)" class="btn btn_n_primary left" >投保金额<span class="money">{{money}}</span>元</a>
+		<a href="javascript:void(0)" class="btn btn_n_primary left" >投保金额<span class="money">  {{money}}</span>元</a>
 		<a href="javascript:void(0)" class="btn btn_n_primary right" ng-click="submit()">立即投保</a>
 		</div>
 </div>
