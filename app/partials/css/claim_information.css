@@ -1,0 +1,41 @@
+*{margin:0;padding:0;}
+body{
+	background: #f5f5f5;
+}
+.claim_controller {
+	padding: 0 .19rem;
+
+}
+.claim_controller li {
+	padding-top: .38rem;
+}
+	
+p{
+	color: #555;
+	font-size: .17rem;
+	font-weight: bold;
+}
+span {
+	font-size: .18rem;
+	display: inline;
+	color: #555;
+	padding-left: .06rem;
+	font-weight: bold;
+	vertical-align: middle;
+	
+}
+img{
+	width: .2rem;
+	height: .2rem;
+	vertical-align: middle;
+}
+a{
+	color: #555;
+	text-decoration: underline;
+	font-size: 14px;
+	display: block; 
+}
+.content {
+	color: #555;
+	text-decoration: none;
+}	

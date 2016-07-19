@@ -160,4 +160,9 @@ body {
     background-color: #ff5c00; }
 .toast {
   max-height: 325px;
-  overflow: auto; }
+  overflow: auto;
+  overflow: scroll;
+  overflow-y: scroll;
+  height: auto;
+  border: 30px solid #fff;
+  padding: 0; }

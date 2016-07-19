@@ -6,7 +6,7 @@
 <div class="header">
 	<div class="logo icon_{{type}}"> </div>
 	<div class="contaienr">
-		<div class="title">意外保障方案 {{data.score}}分</div>	
+		<div class="title">{{getInsuranceCNname()}}保障方案 {{data.score}}分</div>	
 		<div class="sub-title">方案金额:{{money}} 元</div>	
 	</div>
 </div>
@@ -55,7 +55,6 @@
 <script type="text/javascript">
 
  $("body").on("click",".left-td",function(){
- 	
     $("#popup").find(".toast").html($(this).attr("des"));
    	$("#popup").show();
  });

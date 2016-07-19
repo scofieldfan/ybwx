@@ -649,6 +649,9 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 		$scope.processSpecialMoney = util.processSpecialMoney;
 		$scope.getTaoCanStatus = util.getTaoCanStatus;
 
+		$scope.getInsuranceCNname = function() {
+			return insureanceCNMap[$routeParams.type];
+		}
 		var taocan_css = {
 			1: "",
 			2: "unsell",
@@ -744,7 +747,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 					'type': $routeParams.type,
 					'estimate_money': $routeParams.sumMoney,
 					'choose_plans': JSON.stringify($scope.choosePlansIds)
-				});
+				});!
 			}
 		}
 

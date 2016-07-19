@@ -1,0 +1,69 @@
+.wrapper {
+  padding: 0 10px;
+  position: relative; }
+body {
+  background-color: #fff; }
+.gift {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: -4px;
+  right: 0;
+  background: url(../img/index/gift.png) no-repeat center;
+  background-size: 22px;
+  z-index: 10;
+  cursor: pointer; }
+.gift-message {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: url(../img/index/message.png) no-repeat center;
+  background-size: 22px; }
+.text_container {
+   }
+.text_container p {
+  text-align: center;
+  line-height: 0.07rem; }
+.text_container .subtitle {
+  font-size: 0.16rem;
+  color: #999; }
+.text_container .tip {
+  font-size: 0.2rem;
+  color: #ffb594; }
+.text_container .bd_yz {
+  margin-top: 0.7rem;
+  font-size: 0.17rem;
+  color: #588dd4; }
+#loadingContainer {
+  height: 4.5rem;
+  background: #fff url(../img/loading.gif) no-repeat center/50px; }
+#pieChartContainer {
+  padding-top: 0.1rem; }
+.cell_hd {
+  height: 50px; }
+.cell-circle {
+  box-sizing: border-box;
+  width: 1.29rem;
+  height: 1.29rem;
+  border-radius: 100%;
+  color: #1e4e8e;
+  background-color: #FFF;
+  background: url("../img/index/circle.png") no-repeat center;
+  background-size: 1.29rem;
+  text-align: center;
+  padding: .3rem 0;
+  margin: 0 auto; }
+  .cell-circle .icon {
+    height: 30px; }
+  .cell-circle .icon.icon-mangment {
+    background: url("../img/index/guanli.png") no-repeat center;
+    background-size: 22px; }
+  .cell-circle .icon.icon-up {
+    background: url("../img/index/up.png") no-repeat center;
+    background-size: 22px; }
+.cell-circle:active {
+  background-color: #f5f5f5; }
+.mag-container {
+  margin-top: 1rem; }
