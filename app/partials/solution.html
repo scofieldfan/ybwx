@@ -12,7 +12,7 @@
 </div>
 <div class="table-wrapper"  data-ng-init="init()"  ng-class="{'border-bt': data.coverages.length<=(showNum+1)}">
 	<table>
-		<tr ng-repeat="coverage in data.coverages"  ng-hide="$index>showNum"><td  class="left-td" des="{{coverage.description}}"><div>{{coverage.name}}<div class="qa"></div></div><div  class="des" style="display: none">{{coverage.description}}</div></td><td class="right-td">{{processSpecialMoney(coverage.sum_insured)}}</td></tr>
+		<tr ng-repeat="coverage in data.coverages"  ng-hide="$index>showNum"><td  class="left-td" des="{{coverage.description}}"><div>{{coverage.name}}<div class="qa" id="qa"></div></div><div  class="des" style="display: none">{{coverage.description}}</div></td><td class="right-td">{{processSpecialMoney(coverage.sum_insured)}}</td></tr>
 	</table>	
 </div>
 	<div class="more" ng-if="data.coverages.length>(showNum+1)"  data-switch='on' ng-click="more($event)"><span>查看更多</span><div class="icon-arrow"></div></div>
@@ -62,6 +62,4 @@
 	   	$("#popup").show();
  	}
  });
- 
-
 </script>
