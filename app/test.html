@@ -1,19 +1,50 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>Demo with jQuery</title>
+<html>	<head>
+		<title>前端工具集合</title>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	    <meta name="description" content="Demo project with jQuery">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">	
-		<style type="text/css"></style>
+		<style type="text/css">
+			body{
+				margin:30px;
+			}
+		</style>
 	</head>
 	<body>
-		<p>Let the game begin!</p>
-	</body>
-	<div class="container-fluid">
-		<a  class="btn btn-default">（默认样式）Default</a>
+		<script src="bower_components/jquery/dist/jquery.min.js"></script>
+		<div class="container-fluid">
+			<a  class="btn btn-primary btn-block" id="genOpenIdBtn">随机生成openId 并访问首页</a>
 
+			<a  class="btn btn-primary btn-block" id="getLocationBtn">获得您的地理位置</a>
 		</div>
+		<script>
+
+			
+			$(function(){
+					$("#genOpenIdBtn").click(function(){
+								sessionStorage.setItem("openId","test_"+Math.round(Math.random()*10000));
+								window.location.href="/";
+
+					});
+					function showPosition(position){
+							 alert("Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude);
+
+							 
+					}
+					$("#getLocationBtn").click(function(){
+						 if (navigator.geolocation){
+					   		 navigator.geolocation.getCurrentPosition(showPosition);
+					    } else{
+					    	alert("该浏览器不支持获取地理位置。");
+				   		 }
+					});
+
+			})	
+
+		</script>
+
+	</body>
+
 </html>

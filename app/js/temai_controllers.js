@@ -27,7 +27,12 @@ ybwxControllers.controller('ybwxProductInfoCtrl', ['$scope', '$routeParams', '$l
     }
     $scope.goToubao = function() {
       _hmt.push(['_trackEvent', 'information', 'information_subBtn']);
-      $location.path('/tb_dz').search($routeParams);
+      if(isNew){
+          $location.path('/toubao_new').search($routeParams);
+      }else{
+
+          $location.path('/tb_dz').search($routeParams);
+      }
     }
   }
 ]);

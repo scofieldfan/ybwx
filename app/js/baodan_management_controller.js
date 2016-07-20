@@ -304,8 +304,8 @@ bdControllers.controller('ybwxRecognizeeCtrl', ['$scope', '$routeParams', '$loca
 		$scope.state = false;
 		$scope.relation = {
 
-			id: 1,
-			name: '本人'
+			id: 3,
+			name: '子女'
 
 		};
 		$scope.getState = function() {
@@ -333,17 +333,21 @@ bdControllers.controller('ybwxRecognizeeCtrl', ['$scope', '$routeParams', '$loca
 		}
 		$scope.addPeople = function() {
 			// 新增被保险人
+
+			console.log("social_id:"+$scope.social_id);
+			
+			console.log("mobile:"+$scope.mobile);
 			$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['addPeople'], {
-				'open_id': openId,
-				'relation': $scope.relation.id,
-				'is_default': $scope.state,
-				'username': $scope.username,
-				'social_id': $scope.social_id,
-				'mobile': $scope.mobile
+				open_id: openId,
+				relation: $scope.relation.id,
+				is_default: $scope.state,
+				username: $scope.username,
+				social_id: $scope.social_id,
+				mobile: $scope.mobile
 			}, function(res) {
 				console.log(res.data.data);
 				$location.path('/recognizee_compile').search({
-						'choose_plans': $routeParams.choose_plans,
+						choose_plans: $routeParams.choose_plans,
 						coverage_period_type:$routeParams.coverage_period_type,
 						coverage_period:$routeParams.coverage_period,
 						charge_period_type:$routeParams.charge_period_type,

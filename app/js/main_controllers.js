@@ -1151,113 +1151,120 @@ mainControllers.controller('ybwxSupplayInfoCtrl', ['$scope', '$routeParams', '$l
 ]);
 
 mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
-function($scope, $filter, $routeParams, $location, $http, $rootScope) {
-	//得兼容定制页投保，特卖投保
-	_hmt.push(['_trackPageview', $location.path()]);
+	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
+		//得兼容定制页投保，特卖投保
+		_hmt.push(['_trackPageview', $location.path()]);
 
-	var openId = sessionStorage.getItem("openId");
+		var openId = sessionStorage.getItem("openId");
 
-	function genInEffectiveDate(coverage_period, coverage_period_type) {
-		//计算失效日期
-		var startDate = $scope.user.effective_date;
-		if (coverage_period && coverage_period_type) {
-			var period = coverage_period;
-			var effDate = new Date();
-			if (coverage_period_type == 5) {
-				effDate = util.addDays(startDate, parseInt(coverage_period));
+		function genInEffectiveDate(coverage_period, coverage_period_type) {
+			//计算失效日期
+			var startDate = $scope.user.effective_date;
+			if (startDate && coverage_period && coverage_period_type) {
+				var period = coverage_period;
+				var effDate = new Date();
+				if (coverage_period_type == 5) {
+					effDate = util.addDays(startDate, parseInt(coverage_period));
+				}
+				if (coverage_period_type == 2) {
+					effDate = util.addDays(startDate, 365 * parseInt(coverage_period));
+				}
+				return effDate;
 			}
-			if (coverage_period_type == 2) {
-				effDate = util.addDays(startDate, 365 * parseInt(coverage_period));
+		}
+		$scope.genPlansInEffectiveDate = function() {
+			$scope.data.plans.forEach(function(element, index) {
+				return element.endDate = genInEffectiveDate(element.coverage_period, element.coverage_period_type);
+			});
+			console.log($scope.data.plans);
+		}
+		$scope.goRoute = function() {
+			if ($scope.isFirst) {
+				//去补充信息页
+				$location.path('/supply_userinfo').search();
+			} else {
+				//去list页	
+				$location.path('/recognizee_compile').search();
 			}
-			return effDate;
 		}
-	}
-	$scope.genPlansInEffectiveDate = function() {
-		$scope.data.plans.forEach(function(element, index) {
-			return element.endDate = genInEffectiveDate(element.coverage_period, element.coverage_period_type);
-		});
-		console.log($scope.data.plans);
-	}
-	$scope.goRoute = function() {
-		if ($scope.isFirst) {
-			//去补充信息页
-			$location.path('/supply_userinfo').search();
-		} else {
-			//去list页	
-			$location.path('/recognizee_compile').search();
-		}
-	}
 
 
 
-	$scope.submit = function() {
+		$scope.submit = function() {
 
-		var plans = {};
-		$scope.data.plans.forEach(function(element, index) {
-			plans[element.id] = element.premium;
-			// statements
-		});
+			if (!$scope.tbform.$invalid) {
+				var plans = {};
+				$scope.data.plans.forEach(function(element, index) {
+					plans[element.id] = element.premium;
+					// statements
+				});
 
-		var effectiveDate = $filter('date')($scope.user.effective_date, "yyyyMMdd");
+				var effectiveDate = $filter('date')($scope.user.effective_date, "yyyyMMdd");
 
-		$scope.submitPromise = getHttpPromise($http, $rootScope, 'POST', api['purchase'], {
-			'open_id': openId,
-			"insured_id": $scope.data.insured.id,
-			'plans': plans,
-			'coverage_period': $scope.coverage_period,
-			'charge_period': $scope.charge_period,
-			'effective_date': effectiveDate,
-			'address': $scope.address,
-			'destination': $scope.destination,
-			'car_no': $scope.car_no
-		}, function(res) {
+				$scope.submitPromise = getHttpPromise($http, $rootScope, 'POST', api['purchase'], {
+					'open_id': openId,
+					"insured_id": $scope.data.insured.id,
+					'plans': plans,
+					'coverage_period': $scope.coverage_period,
+					'charge_period': $scope.charge_period,
+					'effective_date': effectiveDate,
+					'address': $scope.address,
+					'destination': $scope.destination,
+					'car_no': $scope.car_no
+				}, function(res) {
 
-			var payRequest = {
-				"insurance_name": res.data.data.insurance_name,
-				"insurance_plan_name": res.data.data.insurance_plan_name,
-				"order_amount": res.data.data.order_amount,
-				"order_id": res.data.data.pay_order_id,
-				"order_no": res.data.data.pay_order_no
+					var payRequest = {
+						"insurance_name": res.data.data.insurance_name,
+						"insurance_plan_name": res.data.data.insurance_plan_name,
+						"order_amount": res.data.data.order_amount,
+						"order_id": res.data.data.pay_order_id,
+						"order_no": res.data.data.pay_order_no
+					}
+					$location.path("/pay_select").search(payRequest);
+
+				});
+			} else {
+				if ($scope.tbform.effectivedate.$invalid) {
+					util.showToast($rootScope, "生效时间填写有误，请修改");
+				}
 			}
-			$location.path("/pay_select").search(payRequest);
 
-		});
-	}
-	$scope.getCoverageType = function(coverage_type) {
-		var type = $routeParams.coverage_period ? $routeParams.coverage_period : coverage_type;
-		console.log('type:' + type);
-		return util.getCoverageType(type);
-	}
-	$scope.init = function() {
-
-		$scope.isFirst = true;
-		var effectiveDate = util.addDays(new Date(), 1)
-		$scope.minDate = effectiveDate;
-		$scope.user = {};
-		$scope.user.effective_date = effectiveDate;
-		$scope.know_contract = true;
-
-		var effectiveDate = util.addDays(new Date(), 1);
-
-		//$scope.money = $routeParams.estimate_money;
-		$scope.getCoverageType = util.getCoverageType;
-		$scope.processSpecialMoney = util.processSpecialMoney;
-
-
-		if ($routeParams.coverage_period_type) {
-			$scope.coverage_period_type = $routeParams.coverage_period_type;
 		}
-		if ($routeParams.coverage_period) {
-			$scope.coverage_period = $routeParams.coverage_period;
+		$scope.getCoverageType = function(coverage_type) {
+			var type = $routeParams.coverage_period ? $routeParams.coverage_period : coverage_type;
+			console.log('type:' + type);
+			return util.getCoverageType(type);
 		}
-		if ($routeParams.charge_period_type) {
-			$scope.charge_period_type = $routeParams.charge_period_type;
-		}
-		if ($routeParams.charge_period) {
-			$scope.charge_period = $routeParams.charge_period;
-		}
+		$scope.init = function() {
 
-		$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['prepare_insure'], {
+			$scope.isFirst = true;
+			var effectiveDate = util.addDays(new Date(), 1)
+			$scope.minDate = effectiveDate;
+			$scope.user = {};
+			$scope.user.effective_date = effectiveDate;
+			$scope.know_contract = true;
+
+			var effectiveDate = util.addDays(new Date(), 1);
+
+			//$scope.money = $routeParams.estimate_money;
+			$scope.getCoverageType = util.getCoverageType;
+			$scope.processSpecialMoney = util.processSpecialMoney;
+
+
+			if ($routeParams.coverage_period_type) {
+				$scope.coverage_period_type = $routeParams.coverage_period_type;
+			}
+			if ($routeParams.coverage_period) {
+				$scope.coverage_period = $routeParams.coverage_period;
+			}
+			if ($routeParams.charge_period_type) {
+				$scope.charge_period_type = $routeParams.charge_period_type;
+			}
+			if ($routeParams.charge_period) {
+				$scope.charge_period = $routeParams.charge_period;
+			}
+
+			$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['prepare_insure'], {
 				'open_id': openId,
 				"insured_id": $routeParams.user_id,
 				'plans': JSON.parse($routeParams.choose_plans),
@@ -1291,10 +1298,11 @@ function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 				}
 
 
-			$scope.genPlansInEffectiveDate();
-		});
-}
-}]);
+				$scope.genPlansInEffectiveDate();
+			});
+		}
+	}
+]);
 
 
 mainControllers.controller('ybwxToubaoDingzhiAllCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
