@@ -128,7 +128,19 @@ PAY_FAILURE(5, "保单支付失败"),
 INSURE_SUCCESS(6, "保单投保成功"),                    
 INSURE_FAILURE(7, "保单投保失败"),                     
 INSURANCE_EFFECTIVE(8, "保单生效"),                 
-INSURANCE_INEFFECTIVE(9, "保单失效");             
+INSURANCE_INEFFECTIVE(9, "保单失效");     
+
+//套餐状态
+(0, "套餐不可购买")
+(1, "套餐可购买")
+(2, "套餐未开售")
+(3, "保险产品份数超过限制")
+(4, "保险套餐份数超过限制")
+(5, "保额超过限制")
+(6, "投保人年龄超过限制")
+(7, "被保人年龄超过限制")
+(8, "被保人性别超过限制")
+(9, "被保人关系在此产品不能投保")        
 */
 
 
@@ -660,9 +672,18 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 			1: "",
 			2: "unsell",
 			3: "selled",
-			4: "unsell",
-			5: "unsell"
+			4: "selled",
+			5: "selled",
+			6: "unsell",
+			7: "unsell",
+			8: "unsell",
+			9: "unsell"
 		}
+
+		$scope.get_taocan_css = function(status) {
+			return taocan_css[status];
+		}
+
 		$scope.go = function(plan) {
 
 			if (plan.status === 1) {
@@ -692,9 +713,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 				$(element).find("div").removeClass("up");
 			}
 		}
-		$scope.get_taocan_css = function(status) {
-			return taocan_css[status];
-		}
+		
 		$scope.choosePlan = function() {
 			var filteredPlans = $scope.data.plans.filter(function(item) {
 				return item.status === 1 && !item.unchecked;
@@ -1251,7 +1270,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				}).reduce(function(preValue, currentValue, index, array) {
 					return preValue + currentValue;
 				});
-				$scope.isFirst = !($scope.data.user && $scope.data.user.username && $scope.data.user.social_id && $scope.data.user.mobile);
+				$scope.isFirst = !($scope.data.user && $scope.data.user.username);
 				$scope.money = sumMoney;
 				if (res.data.data && res.data.data.insured) {
 					var relations = util.relationShip.filter(function(item) {

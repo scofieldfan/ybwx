@@ -7,7 +7,7 @@
 	<div class="main" ng-repeat="item in data" ng-click="choose($event,item)">
 		<div class="main_head">
 			<div class="head_left">{{item.username}}</div>
-			<div class="head_right">{{getRelation(item.relation)}}<span class="moren" ng-if="item.is_default==true">默认</span></div>
+			<div class="head_right">{{getRelation(item.relation)}} <!--<span class="moren" ng-if="item.is_default==true">默认</span> --></div>
 			<div class="head_bottom" ng-click="editUserInfo(item.id)" ng-show="item.relation!=1"><img src="img/pianji.png" ></div>
 		</div>
 		<div class="status">身份证号： <div style="display: inline-block">{{item.social_id}}</div></div>
