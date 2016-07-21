@@ -53,7 +53,7 @@ var api = {
 	'purchase': '/ybwx-web/api/insurance/purchase'
 }
 
-var isNew = false;
+var isNew = true;
 
 var insuranceMap = {
 	'1': '投保中',
@@ -319,7 +319,7 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
 		_hmt.push(['_trackPageview', $location.path()]);
-		isNew = sessionStorage.getItem("isNew");
+		//isNew = sessionStorage.getItem("isNew");
 		//isNew = true;
 		$scope.data = {
 			aggregate_score: 0
