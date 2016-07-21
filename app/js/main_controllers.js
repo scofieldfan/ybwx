@@ -927,6 +927,7 @@ mainControllers.controller('ybwxInfoCtrl', ['$scope', '$routeParams', '$location
 					return notice.extra_notice
 				})
 				// console.log("extranotice:" + $scope.isExtraNotice.length);
+				
 			})
 		}
 	}
