@@ -829,7 +829,7 @@ mainControllers.controller('ybwxJingzhunCtrl', ['$scope', '$routeParams', '$loca
 			})
 		}
 		$scope.goDetail = function(id) {
-			$location.path("/detail").search({
+			$location.path("/temaidetail").search({
 				"product_id": id
 			});
 		}
