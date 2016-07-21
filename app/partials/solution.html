@@ -14,9 +14,9 @@
 <div class="table-wrapper" id="coverage_table"  data-ng-init="init()">
 	<table>
 		<tr ng-repeat="coverage in data.mainCoverages"   style="display: none"  on-finish-render="ngRepeatFinished"><td  class="left-td" des="{{coverage.description}}"><div>{{coverage.name}}<div class="qa" ng-show="coverage.description"></div></div><!--<div  class="des" class="ng-hide">{{coverage.description}}</div>--></td><td class="right-td">{{processSpecialMoney(coverage.sum_insured)}}</td></tr>
-		<tr  ng-if="data.secondCoverages.length>0"  style="display: none"><td colspan="2"  style="text-align:left;font-size:15px;font-weight: bold;">次要责任</td></tr>
+		<tr  ng-if="data.secondCoverages.length>0"  style="display: none"><td colspan="2"  style="text-align:left;font-size:15px;font-weight: bold;"><span style="display:inline-block;width: 2px;background:#55a5ff;height: 15px;position:relative;top:0;left:0;"></span> 次要责任</td></tr>
 		<tr ng-repeat="coverage in data.secondCoverages"  style="display: none"  on-finish-render="ngRepeatFinished"><td  class="left-td" des="{{coverage.description}}"><div>{{coverage.name}}<div class="qa" ng-show="coverage.description"></div></div><!--<div  class="des" class="ng-hide">{{coverage.description}}</div>--></td><td class="right-td">{{processSpecialMoney(coverage.sum_insured)}}</td></tr>
-		<tr   ng-if="data.escape_coverages.length>0"  style="display: none"><td colspan="2"  style="text-align:left;font-size:15px;font-weight: bold;">免除责任</td></tr>
+		<tr   ng-if="data.escape_coverages.length>0"  style="display: none"><td colspan="2"  style="text-align:left;font-size:15px;font-weight: bold;"><span style="display:inline-block;width: 2px;background:#55a5ff;height: 15px;position:relative;top:0;left:0;"></span> 免除责任</td></tr>
 		<tr ng-repeat="coverage in data.escape_coverages"  style="display: none"  on-finish-render="ngRepeatFinished"><td  class="left-td" des="{{coverage.desc}}"><div>{{coverage.name}}<div class="qa" ng-show="coverage.desc"></div></div><!--<div  class="des" class="ng-hide">{{coverage.description}}</div>--></td><td class="right-td"></td></tr>
 	</table>	
 
