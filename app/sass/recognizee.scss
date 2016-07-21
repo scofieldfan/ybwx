@@ -38,9 +38,21 @@ select {
 	.regenizee_main {
 		padding: 0 10px;
 		border-bottom: 1px solid #c4c4c4;
+		.cell {
+			padding: 0 0 10px .96rem;
+			margin-left: 3px;
+			box-sizing: border-box;
+			small {
+				color: #ff5c00;
+			    font-size: 13px;
+			}
+		}
+		.bottom_line {
+			border-bottom: 1px solid #e2e2e2;
+		}
 		ul {
 			@include flexbox;
-			border-bottom: 1px solid #e2e2e2; 
+			// border-bottom: 1px solid #e2e2e2; 
 			line-height: .58rem;
 			font-size: 15px;
 			li:nth-child(1) {

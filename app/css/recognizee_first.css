@@ -47,14 +47,17 @@ body {
   .recognizee_first_ctrl .main {
     padding: 0 10px;
     background: #fff; }
+    .recognizee_first_ctrl .main .bottom_line {
+      border-bottom: 1px solid #e2e2e2; }
+    .recognizee_first_ctrl .main .cell {
+      padding: 0 0 10px 75px; }
     .recognizee_first_ctrl .main .line-box {
       display: -webkit-box;
       display: -webkit-flex;
       display: -moz-box;
       display: -ms-flexbox;
       display: flex;
-      line-height: .58rem;
-      border-bottom: 1px solid #e2e2e2; }
+      line-height: .58rem; }
       .recognizee_first_ctrl .main .line-box .lable {
         padding-left: 5px;
         width: 70px;
