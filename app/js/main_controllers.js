@@ -757,15 +757,18 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 						return item.coverage_type === 2;
 					});
 
+
+
 					//如果方案中所有的套餐都已购买或者为开售按钮变成灰色
-					$scope.unsellPlans = res.data.data.plans.filter(function(item) {
-						return item.status === 2; //过滤得到未开售的产品
+					$scope.canNotBuyPlans = res.data.data.plans.filter(function(item) {
+						return item.status !== 1; //过滤得到不能购买的产品
 					});
+					/*
 					$scope.buyedPlans = res.data.data.plans.filter(function(item) {
 						return item.status === 3 || item.status === 4 || item.status === 5; //过滤得到已经购买的产品
-					});
-					console.log($scope.unsellPlans)
-					if (　$scope.unsellPlans.length === res.data.data.plans.length || 　$scope.buyedPlans.length === res.data.data.plans.length) {
+					});*/
+					// console.log($scope.unsellPlans)
+					if (　$scope.canNotBuyPlans.length === res.data.data.plans.length ) {
 						$(".footer").find(".right").css({
 							"background-color": "#999"
 						})
@@ -777,7 +780,11 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 		$scope.isHaveRestrictions = false;
 		$scope.goInfo = function() {
 			_hmt.push(['_trackEvent', 'solution', 'solution_subBtn']);
-
+			if($scope.canNotBuyPlans.length  === $scope.data.plans.length ){
+				util.showToast($rootScope, "方案中的产品全都不可购买，请至官方购买");
+				return;
+			}
+			/*
 			if ($scope.unsellPlans.length === $scope.data.plans.length) {
 				util.showToast($rootScope, "方案中的产品全都未开售，请至官方购买");
 				return;
@@ -786,7 +793,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 			if ($scope.buyedPlans.length === $scope.data.plans.length) {
 				util.showToast($rootScope, "方案中的产品您都已购买");
 				return;
-			}
+			}*/
 
 
 			if ($scope.isHaveRestrictions) {
