@@ -705,17 +705,18 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 				window.location.href = plan.official_site;
 			}
 		}
-		$scope.showNum = 3;
+		
 		$scope.more = function($event) {
 			var element = $event.currentTarget;
 			var switchValue = $(element).attr("data-switch");
+			var num = $scope.showNum-1;
 			if (switchValue === 'on') {
-				$(element).siblings(".table-wrapper").find("tr").removeClass("ng-hide");
+				$(element).siblings(".table-wrapper").find("tr").show();
 				$(element).find("span").html("收起");
 				$(element).attr("data-switch", "off");
 				$(element).find("div").addClass("up");
 			} else {
-				$(element).siblings(".table-wrapper").find("tr:gt(" + $scope.showNum + ")").addClass("ng-hide");
+				$(element).siblings(".table-wrapper").find("tr:gt(" + num + ")").hide();
 				$(element).find("span").html("查看更多");
 				$(element).attr("data-switch", "on");
 				$(element).find("div").removeClass("up");
@@ -739,6 +740,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 
 		}
 		$scope.init = function() {
+			$scope.showNum = 4;
 			$scope.sumMoney = 0;
 			var openId = sessionStorage.getItem("openId");
 			$scope.solutionPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_plans'], {
@@ -771,8 +773,22 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 						})
 					}
 					$scope.choosePlan();
+					
 				}
 			})
+		}
+		$scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+			$("#coverage_table").find("tr:lt("+$scope.showNum +")").show();
+					if($("#coverage_table").find("tr").length>$scope.showNum ){
+						$("#more_button").show();
+			}
+		});
+		$scope.showCoverages = function(){
+			console.log("show coverages.......");
+			$("#coverage_table").find("tr:lt("+$scope.showNum +")").show();
+			if($("#coverage_table").find("tr").length>$scope.showNum ){
+						$("#more_button").show();
+			}
 		}
 		$scope.isHaveRestrictions = false;
 		$scope.goInfo = function() {

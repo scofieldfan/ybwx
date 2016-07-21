@@ -31,7 +31,7 @@
 			
 			$(function(){
 					$("#genOpenIdBtn").click(function(){
-								sessionStorage.setItem("openId","test_"+Math.round(Math.random()*10000));
+								sessionStorage.setItem("openId","test_"+new Date().getTime());
 								sessionStorage.setItem("isNew","false");
 								window.location.href="/";
 
