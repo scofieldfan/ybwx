@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="css/recognizee.css?rev=d8e5dffc79282a4aa53a0ed6e0591335">
+<link rel="stylesheet" href="css/recognizee.css?rev=b4be30538d26e76510a4b8c66ec9e133">
 <div class="recognizee_contrl">
 	<ul class="delete">
 		<li>被保人资料</li>
@@ -6,36 +6,40 @@
 	</ul>
 	<div class="regenizee_main">
 		<form  role="form" name="userform" novalidate >
-			<ul>
-				<li class="lable">姓名</li>
-				<input type="text" ng-model="username"  name="username" onfocus="this.placeholder=''" onblur="this.placeholder='请输入被保人姓名'" placeholder="请输入被保人姓名" required chinese >
-				<div class="cell"  style="color:red"
-			            ng-show="userform.username.$dirty && userform.username.$invalid">
-					<small class="error" 
-			            ng-show="userform.username.$error.required">姓名必填</small>
-					<small class="error"  ng-show="userform.username.$error.chinese">姓名必须是汉字!</small>
+			<div class="bottom_line">
+				<ul>
+					<li class="lable">姓名</li>
+					<input type="text" ng-model="username"  name="username" onfocus="this.placeholder=''" onblur="this.placeholder='请输入被保人姓名'" placeholder="请输入被保人姓名" required chinese >
+			    </ul>
+			    <div class="cell"  style="color:red" ng-show="userform.username.$dirty && userform.username.$invalid">
+					<small class="error" ng-show="userform.username.$error.required">姓名必填</small>
+					<small class="error"  ng-show="userform.username.$error.chinese">姓名必须是汉字</small>
 				</div>
-			</ul>
-			<ul>
-				<li>身份证号</li><input type="text" ng-model="social_id" name="social_id" onfocus="this.placeholder=''" onblur="this.placeholder='请输入投保人的身份证号'" placeholder="请输入被保人身份证号" required  ng-minlength="18" ng-maxlength="18" >
+			</div>
+			
+			<div class="bottom_line">
+				<ul>
+					<li>身份证号</li><input type="text" ng-model="social_id" name="social_id" onfocus="this.placeholder=''" onblur="this.placeholder='请输入投保人的身份证号'" placeholder="请输入被保人身份证号" required  ng-minlength="18" ng-maxlength="18" >
+				</ul>
 				<div class="cell"  style="color:red" ng-show="userform.social_id.$dirty && userform.social_id.$invalid ">
-					<small class="error" ng-show="userform.social_id.$error.required">身份证必填</small>
-					<small class="error" ng-show="userform.social_id.$error.minlength">身份证必须是18位</small>
-					<small class="error" ng-show="userform.social_id.$error.maxlength">身份证必须是18位</small>
+						<small class="error" ng-show="userform.social_id.$error.required">身份证必填</small>
+						<small class="error" ng-show="userform.social_id.$error.minlength">身份证必须是18位</small>
+						<small class="error" ng-show="userform.social_id.$error.maxlength">身份证必须是18位</small>
 				</div>
-			</ul>
-			<ul>
-				<li>手机号码</li><input type="text" ng-model="mobile" name="mobile" placeholder="用于接收保单信息" ng-minlength="11" ng-maxlength="11" required >
-				<div class="cell"  style="color:red"
-				            ng-show="userform.mobile.$dirty && userform.mobile.$invalid ">
-						<small class="error" 
-				            ng-show="userform.mobile.$error.required">手机号必填</small>
-						<small class="error" 
-				                ng-show="userform.mobile.$error.minlength">手机号必须是11位数字</small>
-						<small class="error" 
-				                ng-show="userform.mobile.$error.maxlength" >手机号必须是11位数字</small>
+		    </div>
+			<div class="bottom_line">
+				<ul>
+					<li>手机号码</li><input type="text" ng-model="mobile" name="mobile" placeholder="用于接收保单信息" ng-minlength="11" ng-maxlength="11" required >
+				</ul>
+				<div class="cell"  style="color:red" ng-show="userform.mobile.$dirty && userform.mobile.$invalid ">
+					<small class="error" 
+			            ng-show="userform.mobile.$error.required">手机号必填</small>
+					<small class="error" 
+			                ng-show="userform.mobile.$error.minlength">手机号必须是11位数字</small>
+					<small class="error" 
+			                ng-show="userform.mobile.$error.maxlength" >手机号必须是11位数字</small>
 				</div>
-			</ul>
+			</div>
 	    </form>
 		<ul class="weui_cell">
 			<li>他是您的</li>

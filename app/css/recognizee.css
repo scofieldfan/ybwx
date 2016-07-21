@@ -35,13 +35,21 @@ select {
   .recognizee_contrl .regenizee_main {
     padding: 0 10px;
     border-bottom: 1px solid #c4c4c4; }
+    .recognizee_contrl .regenizee_main .cell {
+      padding: 0 0 10px .96rem;
+      margin-left: 3px;
+      box-sizing: border-box; }
+      .recognizee_contrl .regenizee_main .cell small {
+        color: #ff5c00;
+        font-size: 13px; }
+    .recognizee_contrl .regenizee_main .bottom_line {
+      border-bottom: 1px solid #e2e2e2; }
     .recognizee_contrl .regenizee_main ul {
       display: -webkit-box;
       display: -webkit-flex;
       display: -moz-box;
       display: -ms-flexbox;
       display: flex;
-      border-bottom: 1px solid #e2e2e2;
       line-height: .58rem;
       font-size: 15px; }
       .recognizee_contrl .regenizee_main ul li:nth-child(1) {

@@ -19,7 +19,8 @@ var api = {
 	'get_recommend_plans': '/ybwx-web/api/recommend_plans',
 	'get_estimate_money': '/ybwx-web/api/recommend_premium',
 	'get_recommend_suggestion': '/ybwx-web/api/recommend/suggestion',
-	'get_restrictions': '/ybwx-web/api/recommend_restrictions',
+	// 'get_restrictions': '/ybwx-web/api/recommend_restrictions',
+	'get_restrictions': '/ybwx-web/api/insurance/notice',
 	'get_score_analysis_new': '/ybwx-web/api/single_score/{openId}/{type}',
 	'get_score_analysis': '/ybwx-web/api/score_analysis/{openId}/{type}',
 	'get_industries_1': '/ybwx-web/api/industries',
@@ -863,30 +864,56 @@ mainControllers.controller('ybwxInfoCtrl', ['$scope', '$routeParams', '$location
 				'from': 'dingzhi'
 			});
 		}
+		$scope.showJobDes = function(jobValue){
+			var des = [];
+			jobValue.forEach(function(item){
+				des.push(item.name);
+			});
+
+			$("#popup").find(".info_toast").html(des.join(" "));
+	   		 $("#popup").show();
+		}
 		$scope.init = function() {
 
+			// $scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_restrictions'], {
+			// 	"insurance_type": $routeParams.type,
+			// 	"coverage_score": $routeParams.coverage_score,
+			// 	"sum_insured_score": $routeParams.sum_insured_score
+			// }
+			var openId = sessionStorage.getItem("openId");
 			$scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_restrictions'], {
-				"insurance_type": $routeParams.type,
-				"coverage_score": $routeParams.coverage_score,
-				"sum_insured_score": $routeParams.sum_insured_score
+				"open_id": openId,
+				// "plan_id": 121,
+				"insurance_type": 4,
+				"coverage_score": 6.9,
+				"sum_insured_score": 3.9
 			}, function(res) {
+				console.log(res);
 				$scope.data = res.data.data;
+				console.log("///////////////////");
+				// $scope.job_notice = Object.keys($scope.data.job_notice);
+				//$scope.job_name = $scope.data.job_notice[$scope.job_notice[0]];
+				console.log($scope.job_name);
+				// console.log($scope.job_notice);
 				if ($scope.data.notices) {
 					_.map($scope.data.notices, function(item) {
 						if (item.health_notice) {
 							item.healthNotices = item.health_notice.split("\r\n");
 						}
 						return item;
-					})
-					console.log($scope.data.notices);
-					$scope.isHaveHealth = _.filter($scope.data.notices, function(notice) {
-						return notice.health_notice
-					})
-					$scope.isExtraNotice = _.filter($scope.data.notices, function(notice) {
-						return notice.extra_notice
-					})
-					console.log("extranotice:" + $scope.isExtraNotice.length);
+					});
 				}
+				$scope.isHaveJob = _.filter($scope.data.job_notice, function(job_notice) {
+					return job_notice
+				})
+				$scope.isHaveHealth = _.filter($scope.data.notices, function(notice) {
+					return notice.health_notice
+				})
+				// 	$scope.isExtraNotice = _.filter($scope.data.notices, function(notice) {
+				// 		return notice.extra_notice
+				// 	})
+				// 	console.log("extranotice:" + $scope.isExtraNotice.length);
+				// }
 			})
 		}
 	}
