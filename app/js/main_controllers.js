@@ -914,8 +914,7 @@ mainControllers.controller('ybwxInfoCtrl', ['$scope', '$routeParams', '$location
 			// }
 			var openId = sessionStorage.getItem("openId");
 			$scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_restrictions'], {
-				// "open_id": openId,
-				"open_id": "omP9dwQ3GFCL-GdOgUiMy7QwbO6k",
+				"open_id": openId,
 				// "plan_id": 121,
 				"insurance_type": 4,
 				"coverage_score": 6.9,

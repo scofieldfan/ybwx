@@ -10,7 +10,8 @@ input {
 select {
   border: none; }
 .recognizee_contrl {
-  background: #fff; }
+  background: #fff;
+  width: 100%; }
   .recognizee_contrl .delete {
     display: -webkit-box;
     display: -webkit-flex;
@@ -19,7 +20,7 @@ select {
     display: flex;
     color: #555;
     padding: 0 15px;
-    line-height: .58rem;
+    line-height: 45px;
     border-bottom: 1px solid #e2e2e2; }
     .recognizee_contrl .delete li {
       -webkit-box-flex: 1;
@@ -50,7 +51,7 @@ select {
       display: -moz-box;
       display: -ms-flexbox;
       display: flex;
-      line-height: .58rem;
+      line-height: 45px;
       font-size: 15px; }
       .recognizee_contrl .regenizee_main ul li:nth-child(1) {
         padding-left: 5px;
@@ -66,6 +67,16 @@ select {
          }
       .recognizee_contrl .regenizee_main ul input {
         color: #555; }
+      .recognizee_contrl .regenizee_main ul input::input-placeholder {
+        color: #ccc; }
+      .recognizee_contrl .regenizee_main ul input::-webkit-input-placeholder {
+        color: #ccc; }
+      .recognizee_contrl .regenizee_main ul input::-moz-input-placeholder {
+        color: #ccc; }
+      .recognizee_contrl .regenizee_main ul input::-webkit-input-placeholder {
+        color: #ccc; }
+      .recognizee_contrl .regenizee_main ul input::-ms-input-placeholder {
+        color: #ccc; }
       .recognizee_contrl .regenizee_main ul select {
         -webkit-box-flex: 1;
         -webkit-flex: 1;
@@ -239,3 +250,9 @@ select {
   color: #5aa8ff; }
 .weui_mask {
   z-index: 10; }
+.recognizee_contrl {
+  position: fixed;
+  top: 0;
+  bottom: 50px;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch; }
