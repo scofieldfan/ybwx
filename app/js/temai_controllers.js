@@ -311,10 +311,20 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
     $scope.stopPro = function($event) {
       $event.stopPropagation();
     }
-    $scope.changeBirthday = function($event){
-        $event.stopPropagation();
-        updateFee();
+   
+
+    $scope.clickBirthDay = function($event){
+       $event.stopPropagation();
+      // updateFee();
     }
+
+    $scope.changeBirthday = function($event){
+      // $event.stopPropagation();
+     //  $event.preventDefault();
+       updateFee();
+    }
+
+
     $scope.changeSex = function($event, gender) {
       $event.preventDefault();
       $event.stopPropagation();

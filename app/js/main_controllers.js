@@ -1111,7 +1111,7 @@ mainControllers.controller('ybwxSupplayInfoCtrl', ['$scope', '$routeParams', '$l
 					'open_id': openId,
 					"insured_username": $scope.insured_username,
 					"insured_social_id": $scope.insured_social_id,
-					"mobile": $scope.mobile,
+					"insured_mobile": $scope.insured_mobile,
 					"relation": "1"
 				};
 				// console.log($scope.data.relation);
@@ -1120,10 +1120,15 @@ mainControllers.controller('ybwxSupplayInfoCtrl', ['$scope', '$routeParams', '$l
 					postData["relation"] = $scope.data.relation.id;
 					postData["username"] = $scope.username;
 					postData["social_id"] = $scope.social_id;
+					postData["mobile"] = $scope.mobile;
 				}
 
 				$scope.firstToubao = getHttpPromise($http, $rootScope, 'POST', api['firstToubao'], postData, function(res) {
-					$location.path('/toubao_new').search();
+					$location.path('/toubao_new').search({
+						type:$routeParams.type,
+						choose_plans:$routeParams.choose_plans,
+						user_id:res.data.data.user.id
+					});
 				});
 			}
 		}
@@ -1205,10 +1210,10 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 		$scope.goRoute = function() {
 			if ($scope.isFirst) {
 				//去补充信息页
-				$location.path('/supply_userinfo').search();
+				$location.path('/supply_userinfo').search($routeParams);
 			} else {
 				//去list页	
-				$location.path('/recognizee_compile').search();
+				$location.path('/recognizee_compile').search($routeParams);
 			}
 		}
 
@@ -1216,7 +1221,11 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 
 		$scope.submit = function() {
 
-			if (!$scope.tbform.$invalid) {
+			var canNotBuyPlans = $scope.data.plans.filter(function(plan){
+					return plan.status!==1;
+			});
+
+			if (!$scope.tbform.$invalid && canNotBuyPlans.length===0) {
 				var plans = {};
 				$scope.data.plans.forEach(function(element, index) {
 					plans[element.id] = element.premium;
@@ -1248,8 +1257,11 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 
 				});
 			} else {
-				if ($scope.tbform.effectivedate.$invalid) {
+				if ($scope.tbform.effectivedate &&　$scope.tbform.effectivedate.$invalid) {
 					util.showToast($rootScope, "生效时间填写有误，请修改");
+				}
+				if(canNotBuyPlans.length>0){
+					util.showToast($rootScope, $scope.getTaocanReason(canNotBuyPlans[0].status));
 				}
 			}
 

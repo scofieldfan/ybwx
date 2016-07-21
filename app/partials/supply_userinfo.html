@@ -43,20 +43,20 @@
 					</div>
 			</div>
 			<div class="line-box noBor">
-				<div class="lable">手机号码</div><input type="text" onfocus="this.placeholder=''" onblur="this.placeholder='用于接收保单信息'" placeholder="用于接收保单信息" ng-model="mobile" name="mobile"  required  ng-minlength="11" ng-maxlength="11">
+				<div class="lable">手机号码</div><input type="text" onfocus="this.placeholder=''" onblur="this.placeholder='用于接收保单信息'" placeholder="用于接收保单信息" ng-model="insured_mobile" name="insured_mobile"  required  ng-minlength="11" ng-maxlength="11">
 				<div class="cell"  style="color:red"
-			            ng-show="userform.mobile.$dirty && userform.mobile.$invalid">
+			            ng-show="userform.insured_mobile.$dirty && userform.insured_mobile.$invalid">
 					<small class="error" 
-			            ng-show="userform.mobile.$error.required">手机号必填</small>
+			            ng-show="userform.insured_mobile.$error.required">手机号必填</small>
 					<small class="error" 
-			                ng-show="userform.mobile.$error.minlength">手机号必须是11位数字</small>
+			                ng-show="userform.insured_mobile.$error.minlength">手机号必须是11位数字</small>
 					<small class="error" 
-			                ng-show="userform.mobile.$error.maxlength" >手机号必须是11位数字</small>
+			                ng-show="userform.insured_mobile.$error.maxlength" >手机号必须是11位数字</small>
 				</div>
 
 			</div>
 			<div class="line-box noBor"  ng-if="for=='other'" >
-                  <div class="lable ">关系</div>
+                  <div class="lable ">他是您的</div>
                   <select  ng-model="data.relation" name="relation"    ng-options="option.name for option in relations track by option.id" style="border:none;width:100%;" >
                   </select>
            </div>
@@ -86,6 +86,20 @@
 						<small class="error" 
 				                ng-show="userform.social_id.$error.maxlength">身份证必须是18位</small>
 					</div>
+				</div>
+
+				<div class="line-box noBor">
+				<div class="lable">手机号码</div><input type="text" onfocus="this.placeholder=''" onblur="this.placeholder='用于接收保单信息'" placeholder="用于接收保单信息" ng-model="mobile" name="mobile"  required  ng-minlength="11" ng-maxlength="11">
+				<div class="cell"  style="color:red"
+			            ng-show="userform.mobile.$dirty && userform.mobile.$invalid">
+					<small class="error" 
+			            ng-show="userform.mobile.$error.required">手机号必填</small>
+					<small class="error" 
+			                ng-show="userform.mobile.$error.minlength">手机号必须是11位数字</small>
+					<small class="error" 
+			                ng-show="userform.mobile.$error.maxlength" >手机号必须是11位数字</small>
+				</div>
+
 				</div>
 			</div>
 	</div>
