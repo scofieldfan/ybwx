@@ -41,8 +41,8 @@
 			</div>
 		</li>
 	</ul>
-	<div class="supply-info">
-		<div class="title" ng-if="data.address || data.car_no || data.destination">补充信息</div>
+	<div class="supply-info" ng-if="data.address || data.car_no || data.destination">
+		<div class="title" >补充信息</div>
 		<div class="supply-item" ng-if="data.address">
 			<div class="introd">地址</div>
 			<div class="content"><input type="text" name="address" ng-model="user.address" class="ipt"   placeholder="请输入地址" required></div>
