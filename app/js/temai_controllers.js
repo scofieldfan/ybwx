@@ -405,16 +405,17 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       if ($scope.charge_period) {
         postData["charge_period"] = $scope.charge_period;
       }
-
-      if ($scope.data.health_notice || $scope.data.extra_notice || $scope.data.locale_notice) {
-        $location.path("/productinformation").search(postData);
-      } else {
-        if (isNew) {
+       if (isNew) {
           $location.path("/toubao_new").search(postData);
         } else {
           $location.path("/tb_dz").search(postData);
         }
-      }
+       /* 
+      if ($scope.data.health_notice || $scope.data.extra_notice || $scope.data.locale_notice) {
+        $location.path("/productinformation").search(postData);
+      } else {
+       
+      }*/
     }
   }
 ]);

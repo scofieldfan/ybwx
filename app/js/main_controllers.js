@@ -53,7 +53,7 @@ var api = {
 	'purchase': '/ybwx-web/api/insurance/purchase'
 }
 
-var isNew = true;
+var isNew = false;
 
 var insuranceMap = {
 	'1': '投保中',
@@ -319,8 +319,8 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
 		_hmt.push(['_trackPageview', $location.path()]);
-		//isNew = sessionStorage.getItem("isNew");
-		isNew = true;
+		isNew = sessionStorage.getItem("isNew");
+		//isNew = true;
 		$scope.data = {
 			aggregate_score: 0
 		}
@@ -935,7 +935,15 @@ mainControllers.controller('ybwxBzCtrl', ['$scope', '$routeParams', '$location',
 		$scope.goInfo = function() {
 
 			_hmt.push(['_trackEvent', 'baozhangzeren', 'baozhangzeren_subBtn']);
-
+			$location.path('/tb_dz').search({
+					'type': $routeParams.type,
+					'coverage_score': $routeParams.coverage_score,
+					'sum_insured_score': $routeParams.sum_insured_score,
+					'estimate_money': $routeParams.estimate_money,
+					'sum_score': $routeParams.sum_score,
+					'from': 'dingzhi'
+				});
+			/*
 			if (isHaveRestrictions) {
 				$location.path('/information').search({
 					'type': $routeParams.type,
@@ -953,7 +961,9 @@ mainControllers.controller('ybwxBzCtrl', ['$scope', '$routeParams', '$location',
 					'sum_score': $routeParams.sum_score,
 					'from': 'dingzhi'
 				});
-			}
+			}*/
+
+
 		}
 		var isHaveRestrictions = false;
 
