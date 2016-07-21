@@ -135,18 +135,6 @@ transControllers.controller('ybwxPaySelectNewCtrl', ['$scope', '$filter', '$rout
 
 		$scope.plans = JSON.parse(sessionStorage.getItem("sell_plan"));
 
-		/*
-		$scope.isHaveOffical = false;
-		//判断显示活动方案不可购买，需要修改逻辑
-		if ($routeParams.source === "dingzhi") {
-			if ($scope.plans) {
-				$scope.isHaveOffical = $scope.plans.some(function(item) {
-					return !item.premium;
-				});
-			} else {
-				$scope.isHaveOffical = false;
-			}
-		}*/
 
 
 

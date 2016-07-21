@@ -763,11 +763,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 					$scope.canNotBuyPlans = res.data.data.plans.filter(function(item) {
 						return item.status !== 1; //过滤得到不能购买的产品
 					});
-					/*
-					$scope.buyedPlans = res.data.data.plans.filter(function(item) {
-						return item.status === 3 || item.status === 4 || item.status === 5; //过滤得到已经购买的产品
-					});*/
-					// console.log($scope.unsellPlans)
+				
 					if (　$scope.canNotBuyPlans.length === res.data.data.plans.length ) {
 						$(".footer").find(".right").css({
 							"background-color": "#999"
@@ -784,17 +780,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 				util.showToast($rootScope, "方案中的产品全都不可购买，请至官方购买");
 				return;
 			}
-			/*
-			if ($scope.unsellPlans.length === $scope.data.plans.length) {
-				util.showToast($rootScope, "方案中的产品全都未开售，请至官方购买");
-				return;
-			}
-
-			if ($scope.buyedPlans.length === $scope.data.plans.length) {
-				util.showToast($rootScope, "方案中的产品您都已购买");
-				return;
-			}*/
-
+		
 
 			if ($scope.isHaveRestrictions) {
 				$location.path('/information').search({
@@ -1228,15 +1214,14 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 
 		$scope.submit = function() {
 
-			var canNotBuyPlans = $scope.data.plans.filter(function(plan){
-					return plan.status!==1;
-			});
+			console.log('can not buy:'+ $scope.canNotBuyPlans.length);
 
-			if (!$scope.tbform.$invalid && canNotBuyPlans.length===0) {
+			if (!$scope.tbform.$invalid && $scope.canNotBuyPlans.length<$scope.data.plans.length) {
 				var plans = {};
 				$scope.data.plans.forEach(function(element, index) {
-					plans[element.id] = element.premium;
-					// statements
+					if(element.status===1){
+						plans[element.id] = element.premium;
+					}
 				});
 
 				var effectiveDate = $filter('date')($scope.user.effective_date, "yyyyMMdd");
@@ -1267,8 +1252,8 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				if ($scope.tbform.effectivedate &&　$scope.tbform.effectivedate.$invalid) {
 					util.showToast($rootScope, "生效时间填写有误，请修改");
 				}
-				if(canNotBuyPlans.length>0){
-					util.showToast($rootScope, $scope.getTaocanReason(canNotBuyPlans[0].status));
+				if($scope.canNotBuyPlans.length>0){
+					util.showToast($rootScope, $scope.getTaocanReason($scope.canNotBuyPlans[0].status));
 				}
 			}
 
@@ -1315,8 +1300,10 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				'charge_period': $routeParams.charge_period
 			}, function(res) {
 				$scope.data = res.data.data;
-				sessionStorage.setItem("sell_plan", JSON.stringify($scope.data.plans)); //存储需要支付的订单
-				var sumMoney = $scope.data.plans.map(function(item) {
+				 //存储需要支付的订单
+				var sumMoney = $scope.data.plans.filter(function(item){
+					return item.status===1;
+				}).map(function(item) {
 					return item.premium;
 				}).reduce(function(preValue, currentValue, index, array) {
 					return preValue + currentValue;
@@ -1331,8 +1318,19 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 						$scope.userRelation = relations[0].name;
 					}
 				}
+				$scope.canNotBuyPlans = $scope.data.plans.filter(function(plan){
+					return plan.status!==1;
+				});
+				$scope.canBuyPlans = $scope.data.plans.filter(function(plan){
+					return plan.status===1;
+				});
 
-
+				sessionStorage.setItem("sell_plan", JSON.stringify($scope.canBuyPlans));
+				if($scope.canNotBuyPlans.length===$scope.data.plans.length){//全都不可购买
+					$(".footer").find(".right").css({
+							"background-color": "#999"
+					})
+				}
 				if ($scope.data.min_effective_days) {
 					$scope.user.effective_date = util.addDays(new Date(), $scope.data.min_effective_days);
 					$scope.minDate = $scope.user.effective_date;
