@@ -12,15 +12,13 @@
 		color:#fff;
 		height:0.6rem;
 		line-height: 0.6rem;
-		padding:0 0.2rem 0 50px;
+		padding:5px 0.2rem 5px 50px;
 		// font-size:0.18rem;
 		font-size: 15px;
 	}
 	header.icon_4{
 		background: #006ee9 url('../img/bd_education/plane.png') no-repeat 18px center;
 		background-size: 20px;
-	
-
 	}
 	header.icon_3{
 		background: #006ee9 url('../img/health_icon.png') no-repeat 18px center;
@@ -30,8 +28,19 @@
 		background: #006ee9 url('../img/heart_icon.png') no-repeat 18px center;
 		background-size: 20px;
 	}
+	.table-title {
+		@include flexbox;
+		padding: 15px;
+		font-weight: bold;
+		.bd_mx {
+			@include flex(1);
+		}
+		.bd_word {
+			@include flex(1);
+			text-align: right;
+		}
+	}
 	
-
 	header .how{
 		float:right;
 		vertical-align: middle;
