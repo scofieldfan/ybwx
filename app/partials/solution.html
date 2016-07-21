@@ -14,7 +14,7 @@
 	<table>
 		<tr ng-repeat="coverage in data.coverages"  ng-hide="$index>showNum"><td  class="left-td" des="{{coverage.description}}"><div>{{coverage.name}}<div class="qa" ng-show="coverage.description"></div></div><div  class="des" style="display: none">{{coverage.description}}</div></td><td class="right-td">{{processSpecialMoney(coverage.sum_insured)}}</td></tr>
 
-		<tr class="ng-hide"><td colspan="2"  style="text-align:left;font-size:17px;">免除责任</td></tr>
+		<tr class="ng-hide"><td colspan="2"  style="text-align:left;font-size:15px;font-weight: bold;">免除责任</td></tr>
 		<tr ng-repeat="coverage in data.escape_coverages" class="ng-hide"><td  class="left-td" des="{{coverage.desc}}"><div>{{coverage.name}}<div class="qa" ng-show="coverage.desc"></div></div><div  class="des" style="display: none">{{coverage.desc}}</div></td><td class="right-td"></td></tr>
 	</table>	
 

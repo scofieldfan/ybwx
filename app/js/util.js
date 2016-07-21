@@ -398,7 +398,7 @@ var util = {
 	//不含本人信息
 	modifyRelationShip: [ {
 			id: 2,
-			name: '父亲'
+			name: '父母'
 		}, {
 			id: 3,
 			name: '子女'
