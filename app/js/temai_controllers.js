@@ -27,7 +27,11 @@ ybwxControllers.controller('ybwxProductInfoCtrl', ['$scope', '$routeParams', '$l
     }
     $scope.goToubao = function() {
       _hmt.push(['_trackEvent', 'information', 'information_subBtn']);
-      $location.path('/tb_dz').search($routeParams);
+      if(isNew){
+          $location.path('/toubao_new').search($routeParams);
+      }else{
+          $location.path('/tb_dz').search($routeParams);
+      }
     }
   }
 ]);
@@ -307,6 +311,10 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
     $scope.stopPro = function($event) {
       $event.stopPropagation();
     }
+    $scope.changeBirthday = function($event){
+        $event.stopPropagation();
+        updateFee();
+    }
     $scope.changeSex = function($event, gender) {
       $event.preventDefault();
       $event.stopPropagation();
@@ -392,18 +400,15 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
         $location.path("/productinformation").search(postData);
       } else {
         if (isNew) {
-
           $location.path("/toubao_new").search(postData);
         } else {
-
           $location.path("/tb_dz").search(postData);
         }
       }
-
     }
   }
 ]);
-
+/*
 ybwxControllers.controller('wxDetailCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope', 'sharedRestrictions',
   function($scope, $routeParams, $location, $http, $rootScope, sharedRestrictions) {
 
@@ -519,14 +524,7 @@ ybwxControllers.controller('wxDetailCtrl', ['$scope', '$routeParams', '$location
       $scope.danwei = genDuration($scope.plan.coverage_period_type);
       $scope.money = plan.premium;
     }
-    /*
-    Coverage_Period_Type:
-      (0, "保障期间类型未知"),
-      (1, "保终身"),
-      (2, "按年保"),
-      (3, "按年龄限保"),
-      (4, "按月保"),
-      (5, "按天保");*/
+  
 
     $scope.showMask = function() {
       if ($scope.haveMask) {
@@ -569,6 +567,7 @@ ybwxControllers.controller('wxDetailCtrl', ['$scope', '$routeParams', '$location
   }
 ]);
 
+*/
 ybwxControllers.controller('ybwxSuccessCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
   function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 

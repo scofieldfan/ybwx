@@ -1,4 +1,5 @@
 <div cg-busy="prePromise" class="toubao_new_ctrl">
+<form class="" role="form" name="tbform" novalidate>
 <div class="main-wrapper"  data-ng-init="init()"  >
 	<div class="people-container" ng-click="goRoute()">
 		<div ng-show="isFirst" class="default-info">
@@ -15,14 +16,24 @@
 	</div>
 
 
-	<div class="solution-title">
-		<div class="icon-clock"></div>&nbsp;方案生效时间 <span class="fr"><input type="date" name="effectivedate" ng-model="user.effective_date" ng-change="genPlansInEffectiveDate()"  class="ipt"   placeholder="请输入目的地" required></span>
+	<div class="solution-title" ng-if="data.effective_date">
+
+		<div class="icon-clock"></div>&nbsp;方案生效时间 <span class="fr"><input type="date" name="effectivedate" ng-model="user.effective_date" ng-change="genPlansInEffectiveDate()"   min="{{minDate | date:'yyyy-MM-dd'}}" max="{{maxDate | date:'yyyy-MM-dd'}}"   class="ipt"   placeholder="请输入目的地" required></span>
 	</div>
+	
+
 	<ul class="toubao-container">
 		<li ng-repeat="plan in data.plans">
 			<div class="product">	
 				<div class="name">{{plan.name}}</div>	
-				<div class="duration">{{user.effective_date | date:'yyyy-MM-dd'}}至{{plan.endDate | date:'yyyy-MM-dd'}}</div>
+				<div class="duration" ng-show="plan.startDate && plan.endDate">{{plan.startDate | date:'yyyy-MM-dd'}}至{{plan.endDate | date:'yyyy-MM-dd'}}</div>
+				<div class="reason">{{getTaocanReason(plan.status)}}</div>
+
+				<div class="reason"  ng-show="tbform.effectivedate.$dirty && tbform.effectivedate.$invalid ">
+					<small class="error" ng-show="tbform.effectivedate.$error.required">生效日期必填</small>
+					<small class="error" ng-show="tbform.effectivedate.$error.min">生效日期不得早于{{minDate | date:'yyyy-MM-dd'}}</small>
+					<small class="error" ng-show="tbform.effectivedate.$error.max">生效日期不得大于{{maxDate | date:'yyyy-MM-dd'}}</small>
+				</div>
 				<div class="money">保额:{{processSpecialMoney(plan.sum_insured)}}元  &nbsp;&nbsp;保{{coverage_period ||  plan.coverage_period}}{{getCoverageType(plan.coverage_period_type)}}</div>
 			</div>
 			<div class="money-container">
@@ -35,10 +46,19 @@
 		<div class="supply-item"  ng-show="address">
 			<div class="introd">地址</div>
 			<div class="content"><input type="text" name="address" class="ipt"   placeholder="请输入地址" required></div>
+			
+		</div>
+		<div class="supply-item"  style="color:red" ng-show="tbform.address.$dirty && tbform.address.$invalid ">
+			<small class="error" ng-show="tbform.address.$error.required">地址必填</small>
+			<small class="error" ng-show="tbform.address.$error.email">地址格式不正确</small>
 		</div>
 		<div class="supply-item" ng-show="car_no">
 			<div class="introd">车牌号</div>
 			<div class="content"><input type="text" name="car_no"  class="ipt"   placeholder="请输入车牌号" required></div>
+		</div>
+		<div class="supply-item"  style="color:red" ng-show="tbform.car_no.$dirty && tbform.car_no.$invalid ">
+			<small class="error" ng-show="tbform.car_no.$error.required">地址必填</small>
+			<small class="error" ng-show="tbform.car_no.$error.email">地址格式不正确</small>
 		</div>
 
 		<div class="supply-item" ng-show="destination">
@@ -46,13 +66,19 @@
 			<div class="content"><input type="date" name="destination"  class="ipt"   placeholder="请输入目的地" required></div>
 		</div>
 
+		<div class="supply-item"  style="color:red" ng-show="tbform.destination.$dirty && tbform.destination.$invalid ">
+			<small class="error" ng-show="tbform.destination.$error.required">地址必填</small>
+			<small class="error" ng-show="tbform.destination.$error.email">地址格式不正确</small>
+		</div>
+
 	</div>
 
 
 	<div class="tip">
 		<input type="checkbox" class="know-contract" ng-model="know_contract" name="know_contract"  >
-		我已经阅读<a href="">产品条款</a>和<a href="">投保须知</a>
+		我已经阅读<a href="/ybwx-web/api/web_page/15">平台协议</a>及产品条款
 	</div>
+	</form>
 </div>
 
 

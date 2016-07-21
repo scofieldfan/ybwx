@@ -17,7 +17,7 @@
 				</div>
 			</ul>
 			<ul>
-				<li>身份证号</li><input type="text" ng-model="social_id" name="social_id" onfocus="this.placeholder=''" onblur="this.placeholder='请输入投保人的身份证号'" placeholder="请输入被保人身份证号" required chinese ng-minlength="18" ng-maxlength="18" ng-model="social_id" >
+				<li>身份证号</li><input type="text" ng-model="social_id" name="social_id" onfocus="this.placeholder=''" onblur="this.placeholder='请输入投保人的身份证号'" placeholder="请输入被保人身份证号" required  ng-minlength="18" ng-maxlength="18" >
 				<div class="cell"  style="color:red" ng-show="userform.social_id.$dirty && userform.social_id.$invalid ">
 					<small class="error" ng-show="userform.social_id.$error.required">身份证必填</small>
 					<small class="error" ng-show="userform.social_id.$error.minlength">身份证必须是18位</small>
@@ -25,7 +25,7 @@
 				</div>
 			</ul>
 			<ul>
-				<li>手机号码</li><input type="text" ng-model="mobile" name="mobile" placeholder="用于接收保单信息" ng-minlength="11" ng-maxlength="11" required chinese>
+				<li>手机号码</li><input type="text" ng-model="mobile" name="mobile" placeholder="用于接收保单信息" ng-minlength="11" ng-maxlength="11" required >
 				<div class="cell"  style="color:red"
 				            ng-show="userform.mobile.$dirty && userform.mobile.$invalid ">
 						<small class="error" 
@@ -38,7 +38,7 @@
 			</ul>
 	    </form>
 		<ul class="weui_cell">
-			<li>关系</li>
+			<li>他是您的</li>
 		
 			
 			<select id="relation" ng-model="relation"   ng-options="option.name for option in relations track by option.id" >

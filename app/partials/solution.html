@@ -12,14 +12,15 @@
 </div>
 <div class="table-wrapper"  data-ng-init="init()"  ng-class="{'border-bt': data.coverages.length<=(showNum+1)}">
 	<table>
-		<tr ng-repeat="coverage in data.coverages"  ng-hide="$index>showNum"><td  class="left-td" des="{{coverage.description}}"><div>{{coverage.name}}<div class="qa" ng-show="coverage.description"></div></div><div  class="des" style="display: none">{{coverage.description}}</div></td><td class="right-td">{{processSpecialMoney(coverage.sum_insured)}}</td></tr>
-
-		<tr class="ng-hide"><td colspan="2"  style="text-align:left;font-size:15px;font-weight: bold;">免除责任</td></tr>
+		<tr ng-repeat="coverage in data.mainCoverages"  ng-hide="$index>showNum"><td  class="left-td" des="{{coverage.description}}"><div>{{coverage.name}}<div class="qa" ng-show="coverage.description"></div></div><div  class="des" style="display: none">{{coverage.description}}</div></td><td class="right-td">{{processSpecialMoney(coverage.sum_insured)}}</td></tr>
+		<tr class="ng-hide" ng-if="data.secondCoverages.length>0"><td colspan="2"  style="text-align:left;font-size:17px;">次要责任</td></tr>
+		<tr ng-repeat="coverage in data.secondCoverages" class="ng-hide"><td  class="left-td" des="{{coverage.description}}"><div>{{coverage.name}}<div class="qa" ng-show="coverage.description"></div></div><div  class="des" style="display: none">{{coverage.description}}</div></td><td class="right-td">{{processSpecialMoney(coverage.sum_insured)}}</td></tr>
+		<tr class="ng-hide"  ng-if="data.escape_coverages.length>0"><td colspan="2"  style="text-align:left;font-size:17px;">免除责任</td></tr>
 		<tr ng-repeat="coverage in data.escape_coverages" class="ng-hide"><td  class="left-td" des="{{coverage.desc}}"><div>{{coverage.name}}<div class="qa" ng-show="coverage.desc"></div></div><div  class="des" style="display: none">{{coverage.desc}}</div></td><td class="right-td"></td></tr>
 	</table>	
 
 </div>
-	<div class="more" ng-if="data.coverages.length>(showNum+1)"  data-switch='on' ng-click="more($event)"><span>查看更多</span><div class="icon-arrow"></div></div>
+	<div class="more" ng-if="data.mainCoverages.length>(showNum+1)  ||  data.secondCoverages.length>0 || data.escape_coverages.length>0"  data-switch='on' ng-click="more($event)"><span>查看更多</span><div class="icon-arrow"></div></div>
 
 <div class="contents">方案内容</div>
 <ul class="solution">
@@ -30,7 +31,7 @@
 			<div class="product-name">{{plan.name}}</div>	
 			<div class="product-des">最高保额：{{processSpecialMoney(plan.sum_insured)}}元  &nbsp; &nbsp;保{{plan.coverage_period}}{{getCoverageType(plan.coverage_period_type)}}</div>	
 			<div class="product-price"> 
-			<span ng-show="plan.status == 1">{{plan.premium}}元 </span> 
+			<span >{{plan.premium}}元 </span> 
 			<span ng-show="plan.status == 0 " style="color:#999">不符合投保条件</span>
 			<span ng-show="plan.status == 6 "  style="color:#999">投保人年龄超过限制</span>
 			<span ng-show="plan.status == 7 "  style="color:#999">被保人年龄超过限制</span>
@@ -39,7 +40,7 @@
 			 <span ng-if="plan.status!=1" class="status {{get_taocan_css(plan.status)}}" > {{getTaoCanStatus(plan.status)}}</span>
 			</div>
 		</div>	
-		<div class="arrow" ng-class="{'noclick': !plan.official_site}"  ng-click="goDetail(plan)" ></div>	
+		<div class="arrow" ng-class="{'noclick': !plan.official_site && plan.status!==1 }"  ng-click="goDetail(plan)" ></div>	
 	</li>	
 	<!--
 	<li>

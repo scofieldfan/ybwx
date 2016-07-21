@@ -68,6 +68,8 @@ body {
       border-bottom: 1px solid #e2e2e2;
       font-size: 13px;
       line-height: 20px; }
+    .toubao-container li .reason {
+      color: #ff5c00; }
     .toubao-container li .money {
       color: #999; }
     .toubao-container li .fee {
