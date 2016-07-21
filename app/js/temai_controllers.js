@@ -311,10 +311,20 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
     $scope.stopPro = function($event) {
       $event.stopPropagation();
     }
-    $scope.changeBirthday = function($event){
-        $event.stopPropagation();
-        updateFee();
+   
+
+    $scope.clickBirthDay = function($event){
+       $event.stopPropagation();
+      // updateFee();
     }
+
+    $scope.changeBirthday = function($event){
+      // $event.stopPropagation();
+     //  $event.preventDefault();
+       updateFee();
+    }
+
+
     $scope.changeSex = function($event, gender) {
       $event.preventDefault();
       $event.stopPropagation();
@@ -395,179 +405,21 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       if ($scope.charge_period) {
         postData["charge_period"] = $scope.charge_period;
       }
-
-      if ($scope.data.health_notice || $scope.data.extra_notice || $scope.data.locale_notice) {
-        $location.path("/productinformation").search(postData);
-      } else {
-        if (isNew) {
+       if (isNew) {
           $location.path("/toubao_new").search(postData);
         } else {
           $location.path("/tb_dz").search(postData);
         }
-      }
-    }
-  }
-]);
-/*
-ybwxControllers.controller('wxDetailCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope', 'sharedRestrictions',
-  function($scope, $routeParams, $location, $http, $rootScope, sharedRestrictions) {
-
-
-    $("#detail-template").load("template/product_" + $routeParams.product_id + ".html");
-
-    _hmt.push(['_trackPageview', $location.path() + "_id:" + $routeParams.product_id + "_" + "from:" + $routeParams.from]);
-
-    $scope.genDanwei = function(type) {
-      return coveragePeriodMap[type];
-    }
-    $scope.init = function() {
-
-      var code = util.getParameterByName("code") || $routeParams.code;
-
-      util.getOpenId(code).then(function() {
-
-        $scope.haveMask = false;
-        $scope.selectTable = 0;
-        $scope.maskPromise = getHttpPromise($http, $rootScope, 'GET', api['get_insurances_mask'].replace("{productId}", $routeParams.product_id), {}, function(res) {
-
-          if (res.data && res.data.data && res.data.data.plans) {
-
-            $scope.maskPlans = res.data.data.plans;
-            $scope.maskSelectPlan = $scope.maskPlans[Object.keys($scope.maskPlans)[0]];
-            $scope.coverage_period = $scope.maskSelectPlan.coverage_periods[0];
-            $scope.coverage_period_type = $scope.maskSelectPlan.coverage_period_type;
-            if ($scope.maskSelectPlan.charge_periods) {
-              $scope.charge_period = $scope.maskSelectPlan.charge_periods[0];
-            }
-            $scope.charge_period_type = $scope.maskSelectPlan.charge_period_type;
-            $scope.haveMask = true;
-          } else {
-            $scope.haveMask = false;
-          }
-
-        })
-
-        $scope.myPromise = $http({
-          method: 'POST',
-          headers: {
-            "Content-Type": "application/json;charset:UTF-8"
-          },
-          url: api['get_insurances_detail'],
-          data: {
-            "insurance_id": $routeParams.product_id
-          }
-        }).then(function(res) {
-
-          if (res && res.data && res.data.data) {
-            for (var i = 0; i < res.data.data.insurance_plans.length; i++) {
-              var plan = res.data.data.insurance_plans[i];
-              for (var j = 0; j < plan.coverage_beans.length; j++) {
-                if (plan.coverage_beans[j].sum_insured.charAt(plan.coverage_beans[j].sum_insured.length - 1) === "d") {
-                  plan.coverage_beans[j].danwei = "/天";
-                  plan.coverage_beans[j].sum_insured = plan.coverage_beans[j].sum_insured.substring(0, plan.coverage_beans[j].sum_insured.length - 1);
-                }
-              }
-            }
-            $scope.data = res.data.data;
-            $scope.money = res.data.data.insurance_plans[0].premium;
-            $scope.plan = res.data.data.insurance_plans[0];
-            $scope.danwei = genDuration($scope.plan.coverage_period_type);
-            sharedRestrictions.setRestrictions({
-              health_notice: res.data.data.health_notice,
-              extra_notice: res.data.data.extra_notice,
-              locale_notice: res.data.data.locale_notice
-            })
-            util.share({
-              shareUrl: "http://web.youbaowuxian.com/#/detail?product_id=" + $routeParams.product_id,
-              shareImg: $scope.data.small_image,
-              shareTitle: $scope.data.insurance_name,
-              shareDesc: $scope.data.insurance_description
-            });
-
-          }
-        }, function(res) {
-          console.log(res);
-          util.showToast($rootScope, "服务器错误");
-        })
-
-      })
-    }
-
-
-
-    $scope.changeTaoCan = function($event, item) {
-      $event.preventDefault();
-      $event.stopPropagation();
-      $scope.plan = item;
-      $scope.danwei = genDuration($scope.plan.coverage_period_type);
-      $scope.money = $scope.plan.premium;
-    }
-    $scope.changeDuration = function($event, item) {
-      $event.preventDefault();
-      $event.stopPropagation();
-      $scope.coverage_period = item;
-    }
-    $scope.changeFee = function($event, item) {
-      $event.preventDefault();
-      $event.stopPropagation();
-      $scope.charge_period = item;
-    }
-    $scope.headSelect = function($event, plan) {
-      var element = $event.currentTarget;
-      $("#title-table").find("td").removeClass("choose")
-      $(element).addClass("choose");
-      var index = $(element).attr("data-index");
-      $scope.selectTable = index;
-      // $("#title-table").attr("data-current-select-id", plan.id);
-      //console.log($(element));
-      $scope.plan = plan;
-      $scope.danwei = genDuration($scope.plan.coverage_period_type);
-      $scope.money = plan.premium;
-    }
-  
-
-    $scope.showMask = function() {
-      if ($scope.haveMask) {
-        $("#detail_mask_container").show();
-      } else {
-        $scope.submit();
-      }
-    }
-    $scope.submit = function() {
-      //获得当前的plan
-      var selectPlan = $scope.plan.id;
-
-      var postData = {
-        "from": "list",
-        "plan_id": selectPlan
-      };
-      if ($routeParams.is_test) {
-        postData["is_test"] = $routeParams.is_test;
-      }
-      if ($scope.coverage_period_type) {
-        postData["coverage_period_type"] = $scope.coverage_period_type;
-      };
-      if ($scope.charge_period_type) {
-        postData["charge_period_type"] = $scope.charge_period_type;
-      };
-
-      if ($scope.coverage_period) {
-        postData["coverage_period"] = $scope.coverage_period;
-      };
-      if ($scope.charge_period) {
-        postData["charge_period"] = $scope.charge_period;
-      }
-
+       /* 
       if ($scope.data.health_notice || $scope.data.extra_notice || $scope.data.locale_notice) {
         $location.path("/productinformation").search(postData);
       } else {
-        $location.path("/tb_dz").search(postData);
-      }
+       
+      }*/
     }
   }
 ]);
 
-*/
 ybwxControllers.controller('ybwxSuccessCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
   function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 
