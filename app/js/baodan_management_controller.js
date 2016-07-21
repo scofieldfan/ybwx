@@ -474,15 +474,19 @@ bdControllers.controller('ybwxRecognizeeComCtrl', ['$scope', '$routeParams', '$l
 
 		}
 		$scope.choose = function($event, item) {
+
 			//列表页，选择用户作为默认用户
+
+			/*
 			$scope.data.filter(function(filtedItem){
 				return item.id !== filtedItem.id;
 			}).forEach( function(element, index) {
 				element.is_current = false;
 				// statements
 			});
+			*/
 
-
+			sessionStorage.setItem("selectUser",item.social_id);
 
 			$scope.chooseUser = item;
 			item.is_current = true;
@@ -504,6 +508,19 @@ bdControllers.controller('ybwxRecognizeeComCtrl', ['$scope', '$routeParams', '$l
 			}, function(res) {
 				if (res && res.data && res.data.data.relations) {
 					$scope.data = res.data.data.relations;
+					var userSocialId = sessionStorage.getItem("selectUser");
+					var defaultRelations = res.data.data.relations.filter(function(item) {
+						return item.social_id === userSocialId;
+					});
+					console.log(defaultRelations);
+					if(defaultRelations && defaultRelations.length > 0){
+							$scope.chooseUser = defaultRelations[0];
+							$scope.chooseUser.is_current = true;
+						}else{
+								res.data.data.relations[0].is_current = true;
+							    $scope.chooseUser = res.data.data.relations[0]
+						}
+					/*
 					var defaultRelations = res.data.data.relations.filter(function(item) {
 						return item.default === true;
 					});
@@ -515,7 +532,7 @@ bdControllers.controller('ybwxRecognizeeComCtrl', ['$scope', '$routeParams', '$l
 						//如果后台没有默认，选择第一个人
 						res.data.data.relations[0].is_current = true;
 						$scope.chooseUser = res.data.data.relations[0]
-					}
+					}*/
 				}
 			})
 		}

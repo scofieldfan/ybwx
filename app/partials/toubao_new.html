@@ -41,38 +41,35 @@
 			</div>
 		</li>
 	</ul>
-
+	<div class="supply-info">
 		<div class="title" ng-if="data.address || data.car_no || data.destination">补充信息</div>
-		<div class="supply-item"  ng-show="address">
+		<div class="supply-item"  ng-show="data.address">
 			<div class="introd">地址</div>
-			<div class="content"><input type="text" name="address" class="ipt"   placeholder="请输入地址" required></div>
+			<div class="content"><input type="text" name="address" ng-model="user.address" class="ipt"   placeholder="请输入地址" required></div>
 			
 		</div>
 		<div class="supply-item"  style="color:red" ng-show="tbform.address.$dirty && tbform.address.$invalid ">
 			<small class="error" ng-show="tbform.address.$error.required">地址必填</small>
-			<small class="error" ng-show="tbform.address.$error.email">地址格式不正确</small>
 		</div>
-		<div class="supply-item" ng-show="car_no">
+		<div class="supply-item" ng-show="data.car_no">
 			<div class="introd">车牌号</div>
-			<div class="content"><input type="text" name="car_no"  class="ipt"   placeholder="请输入车牌号" required></div>
+			<div class="content"><input type="text" name="car_no"  ng-model="user.car_no"   class="ipt"   placeholder="请输入车牌号" required></div>
 		</div>
 		<div class="supply-item"  style="color:red" ng-show="tbform.car_no.$dirty && tbform.car_no.$invalid ">
-			<small class="error" ng-show="tbform.car_no.$error.required">地址必填</small>
-			<small class="error" ng-show="tbform.car_no.$error.email">地址格式不正确</small>
+			<small class="error" ng-show="tbform.car_no.$error.required">车牌号必填</small>
 		</div>
 
-		<div class="supply-item" ng-show="destination">
+		<div class="supply-item" ng-show="data.destination">
 			<div class="introd">目的地</div>
-			<div class="content"><input type="date" name="destination"  class="ipt"   placeholder="请输入目的地" required></div>
+			<div class="content"><input type="date" name="destination"  ng-model="user.destination"   class="ipt"   placeholder="请输入目的地" required></div>
 		</div>
 
 		<div class="supply-item"  style="color:red" ng-show="tbform.destination.$dirty && tbform.destination.$invalid ">
 			<small class="error" ng-show="tbform.destination.$error.required">地址必填</small>
-			<small class="error" ng-show="tbform.destination.$error.email">地址格式不正确</small>
 		</div>
 
 	</div>
-
+	</div>
 
 	<div class="tip">
 		<input type="checkbox" class="know-contract" ng-model="know_contract" name="know_contract"  >

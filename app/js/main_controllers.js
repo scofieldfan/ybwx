@@ -1319,6 +1319,17 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				if($scope.canNotBuyPlans.length>0){
 					util.showToast($rootScope, $scope.getTaocanReason($scope.canNotBuyPlans[0].status));
 				}
+
+				if($scope.data.address && $scope.tbform.address &&　$scope.tbform.address.$invalid ){
+					util.showToast($rootScope,  "地址填写错误，请修改");
+				}
+				if($scope.data.car_no && $scope.tbform.car_no &&　$scope.tbform.car_no.$invalid ){
+					util.showToast($rootScope,  "车牌号填写错误，请修改");
+				}
+				if($scope.data.destination  && $scope.tbform.destination &&　$scope.tbform.destination.$invalid ){
+					util.showToast($rootScope,  "目的地填写错误，请修改");
+				}
+
 			}
 
 		}
