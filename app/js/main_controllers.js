@@ -1202,8 +1202,8 @@ mainControllers.controller('ybwxSupplayInfoCtrl', ['$scope', '$routeParams', '$l
 				util.showToast($rootScope, "被保人身份证号不正确");
 				return false;
 			}
-			if ($scope.userform.mobile.$invalid) {
-				util.showToast($rootScope, "手机号不正确");
+			if ($scope.userform.insured_mobile.$invalid) {
+				util.showToast($rootScope, "被保人手机号不正确");
 				return false;
 			}
 			if ($scope.for === 'other') {
@@ -1214,6 +1214,10 @@ mainControllers.controller('ybwxSupplayInfoCtrl', ['$scope', '$routeParams', '$l
 				}
 				if ($scope.userform.social_id && $scope.userform.social_id.$invalid) {
 					util.showToast($rootScope, "投保人身份证不正确");
+					return false;
+				}
+				if ($scope.userform.mobile && $scope.userform.mobile.$invalid) {
+					util.showToast($rootScope, "投保人手机号不正确");
 					return false;
 				}
 
