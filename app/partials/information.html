@@ -1,5 +1,5 @@
 <!--投保须知 -->
-<link rel="stylesheet" href="css/information.css?rev=e06f06668c4d003dc2862b09e1222ec6">
+<link rel="stylesheet" href="css/information.css?rev=db2867c7792882d13fdd046ed18225ce">
 <div  data-ng-init="init()" cg-busy="myPromise" class="information_controller">
 	<div class="infor_head" ng-if="isHaveJob">
 		<img src="img/claim_information/logo.jpg"><span class="head_info">职业告知</span><span class="orange">是否从事以下高危职业？</span>
@@ -17,15 +17,21 @@
 		<img src="img/claim_information/logo.jpg"><span class="head_info">区域限制</span>
 	</div>
 	<div class="info_word"  ng-if="data.locale_notice" ng-repeat="item in data.notices[0].healthNotices">{{data.locale_notice}}</div>
-	<div class="infor_head" ng-if="data.locale_notice">
+	<div class="infor_head" ng-if="data.age_notice">
+		<img src="img/claim_information/logo.jpg"><span class="head_info">年龄限制</span>
+	</div>
+	<div class="info_word"  ng-if="data.age_notice">{{data.age_notice}}</div>
+	<div class="infor_head" ng-if="isExtraNotice.length>0">
 		<img src="img/claim_information/logo.jpg"><span class="head_info">其他限制</span>
 	</div>
-	<div class="info_word"  ng-if="data.locale_notice" ng-repeat="item in data.notices[0].healthNotices">{{data.locale_notice}}</div>
+	<div class="info_word"  ng-if="isExtraNotice.length>0" ng-repeat="item in data.notices[0].healthNotices">{{notice.insurance_name}} 	{{notice.plan_name}}<br/>
+				{{notice.extra_notice}} </div>
 
 	<!-- 职业扩展详情 弹窗 -->
 	<div class="mask" id="popup">
 		<div class="toast info_toast">
-			
+			<!-- <div class="toast_head" ></div> -->
+			<!-- <div class="toast_main"></div> -->
 		</div>
 	</div>
 </div>
@@ -37,16 +43,6 @@
 		以上情况全无
 	</a>
 </div>
-
-<script>
-	// $("body").on("click",".job_info",function(){
-	//  	var des =  $(this).attr("des");
-	//  	console.log("des");
-	//  	console.log(des);
-	// 	$("#popup").find(".info_toast").html(des);
-	//     $("#popup").show();
-	//  });
-</script>
 
 
 <!-- <ul class="claim_controller">
@@ -85,4 +81,4 @@
 				{{notice.extra_notice}} 	
 			</a>
 		</li>
-	</ul>-->
+	</ul>
