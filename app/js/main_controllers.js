@@ -1288,6 +1288,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 		$scope.submit = function() {
 
 			console.log('can not buy:' + $scope.canNotBuyPlans.length);
+			console.log('can not buy:' + $scope.canNotBuyPlans.length);
 
 			if (!$scope.tbform.$invalid && $scope.canNotBuyPlans.length < $scope.data.plans.length) {
 				var plans = {};
@@ -1322,6 +1323,8 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 
 				});
 			} else {
+				console.log("error.......");
+				console.log($scope.tbform);
 				if ($scope.tbform.effectivedate && 　$scope.tbform.effectivedate.$invalid) {
 					util.showToast($rootScope, "生效时间填写有误，请修改");
 				}
