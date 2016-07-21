@@ -871,13 +871,21 @@ mainControllers.controller('ybwxInfoCtrl', ['$scope', '$routeParams', '$location
 				'from': 'dingzhi'
 			});
 		}
-		$scope.showJobDes = function(jobValue){
-			var des = [];
-			jobValue.forEach(function(item){
-				des.push(item.name);
-			});
+		$scope.showJobDes = function(sencondJob){
+			
+			var html = [];
+			sencondJob.forEach(function(item){
+				html.push(' <div class="toast_head" >' + item.name + '</div>');
+				var des = [];
+				item.jobs.forEach(function(element){
+					des.push(element.name);
+				});
 
-			$("#popup").find(".info_toast").html(des.join(" "));
+				html.push(' <div class="toast_main" >' + des.join(" 、") + '</div>');
+			
+			});
+			//console.log(html.join(""));
+			$("#popup").find(".toast").html(html.join(""));
 	   		 $("#popup").show();
 		}
 		$scope.init = function() {
@@ -897,7 +905,6 @@ mainControllers.controller('ybwxInfoCtrl', ['$scope', '$routeParams', '$location
 			}, function(res) {
 				console.log(res);
 				$scope.data = res.data.data;
-				console.log("///////////////////");
 				// $scope.job_notice = Object.keys($scope.data.job_notice);
 				//$scope.job_name = $scope.data.job_notice[$scope.job_notice[0]];
 				console.log($scope.job_name);
@@ -916,11 +923,10 @@ mainControllers.controller('ybwxInfoCtrl', ['$scope', '$routeParams', '$location
 				$scope.isHaveHealth = _.filter($scope.data.notices, function(notice) {
 					return notice.health_notice
 				})
-				// 	$scope.isExtraNotice = _.filter($scope.data.notices, function(notice) {
-				// 		return notice.extra_notice
-				// 	})
-				// 	console.log("extranotice:" + $scope.isExtraNotice.length);
-				// }
+				$scope.isExtraNotice = _.filter($scope.data.notices, function(notice) {
+					return notice.extra_notice
+				})
+				// console.log("extranotice:" + $scope.isExtraNotice.length);
 			})
 		}
 	}

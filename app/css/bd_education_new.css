@@ -6,7 +6,7 @@ header {
   height: 0.6rem;
   line-height: 0.6rem;
   padding: 0 0.2rem 0 50px;
-  font-size: 0.18rem; }
+  font-size: 15px; }
 header.icon_4 {
   background: #006ee9 url("../img/bd_education/plane.png") no-repeat 18px center;
   background-size: 20px; }
@@ -76,7 +76,7 @@ header .how {
   color: #555555; }
   .table-container .table-title {
     border-bottom: 1px solid #e2e2e2;
-    font-size: .15rem; }
+    font-size: 15px; }
     .table-container .table-title .left {
       padding-left: 0.2rem; }
     .table-container .table-title .right {
@@ -100,7 +100,7 @@ header .how {
       -o-text-overflow: ellipsis;
       overflow: hidden;
       padding: 0.1rem 0.05rem;
-      font-size: 0.15rem;
+      font-size: 15px;
       text-align: center;
       border-bottom: 1px solid #e2e2e2; }
 .btn_n_primary_new {
