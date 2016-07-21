@@ -740,6 +740,11 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 				return item.id;
 			});
 			$scope.sumMoney = sumMoney;
+			var allMoney =  $scope.data.plans.reduce(function(preVal, curVal, index, array) {
+				return preVal + curVal.premium;
+			}, 0);
+			
+			$scope.planAllMoney = allMoney;
 
 		}
 		$scope.init = function() {
