@@ -749,6 +749,14 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 				console.log(res);
 				if (res && res.data && res.data.data) {
 					$scope.data = res.data.data;
+
+					$scope.data.mainCoverages = res.data.data.coverages.filter(function(item){
+						return item.coverage_type === 1;
+					});
+					$scope.data.secondCoverages = res.data.data.coverages.filter(function(item){
+						return item.coverage_type === 2;
+					});
+
 					//如果方案中所有的套餐都已购买或者为开售按钮变成灰色
 					$scope.unsellPlans = res.data.data.plans.filter(function(item) {
 						return item.status === 2; //过滤得到未开售的产品

@@ -29,7 +29,7 @@
 				<div class="duration" ng-show="plan.startDate && plan.endDate">{{plan.startDate | date:'yyyy-MM-dd'}}至{{plan.endDate | date:'yyyy-MM-dd'}}</div>
 				<div class="reason">{{getTaocanReason(plan.status)}}</div>
 
-				<div class="reson"  ng-show="tbform.effectivedate.$dirty && tbform.effectivedate.$invalid ">
+				<div class="reason"  ng-show="tbform.effectivedate.$dirty && tbform.effectivedate.$invalid ">
 					<small class="error" ng-show="tbform.effectivedate.$error.required">生效日期必填</small>
 					<small class="error" ng-show="tbform.effectivedate.$error.min">生效日期不得早于{{minDate | date:'yyyy-MM-dd'}}</small>
 					<small class="error" ng-show="tbform.effectivedate.$error.max">生效日期不得大于{{maxDate | date:'yyyy-MM-dd'}}</small>
@@ -76,7 +76,7 @@
 
 	<div class="tip">
 		<input type="checkbox" class="know-contract" ng-model="know_contract" name="know_contract"  >
-		我已经阅读<a href="">产品条款</a>和<a href="">投保须知</a>
+		我已经阅读<a href="/ybwx-web/api/web_page/15">平台协议</a>及产品条款
 	</div>
 	</form>
 </div>
