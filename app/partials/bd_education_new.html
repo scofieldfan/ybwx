@@ -81,6 +81,7 @@
         -webkit-appearance: none; -moz-appearance: none; -o-appearance: none; appearance: none;
 
     }
+    
     </style>
     <div class="slider-container" ng-if="type!=3">
         <div class="slider-item" ng-repeat="item in data.elements" on-finish-render="ngRepeatFinished"><div><div class="type">{{item.name}}<div class="percent">{{item.percent}}%</div></div><input type="range" id="rangeInput{{$index}}" data-orientation="vertical" value="{{item.percent}}" disabled=""></div></div>
@@ -92,8 +93,8 @@
 
 <div class="table-container" style="margin-bottom:70px;">
     <div class="table-title">
-        <div class="cell_hd cell_primary left"><div class="icon-guard"></div>保障明细</div> 
-        <div class="cell_hd cell_primary right" ng-click="goBdmList()"><span>查看</span> <div class="icon-arrow right-rotate" ></div></div>
+        <div class="bd_mx"><div class="icon-guard"></div>保障明细</div> 
+        <div class="bd_word" ng-click="goBdmList()"><span>查看</span> <div class="icon-arrow right-rotate" ></div></div>
     </div>
 
     <div class="table-wrapper">

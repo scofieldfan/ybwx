@@ -137,6 +137,8 @@ table td, th {
   clear: left; }
 .white-special {
   color: #91bfff; }
+.cell_hd {
+  display: table-cell; }
 .hex-v-center {
   display: table-cell;
   vertical-align: middle;

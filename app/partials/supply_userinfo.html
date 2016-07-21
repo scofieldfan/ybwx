@@ -98,6 +98,7 @@
 
 				<div class="line-box noBor">
 				<div class="lable">手机号码</div><input type="text" onfocus="this.placeholder=''" onblur="this.placeholder='用于接收保单信息'" placeholder="用于接收保单信息" ng-model="mobile" name="mobile"  required  ng-minlength="11" ng-maxlength="11">
+				</div>
 				<div class="cell"  style="color:red"
 			            ng-show="userform.mobile.$dirty && userform.mobile.$invalid">
 					<small class="error" 
@@ -106,8 +107,6 @@
 			                ng-show="userform.mobile.$error.minlength">手机号必须是11位数字</small>
 					<small class="error" 
 			                ng-show="userform.mobile.$error.maxlength" >手机号必须是11位数字</small>
-				</div>
-
 				</div>
 			</div>
 	</div>

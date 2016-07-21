@@ -5,7 +5,7 @@ header {
   color: #fff;
   height: 0.6rem;
   line-height: 0.6rem;
-  padding: 0 0.2rem 0 50px;
+  padding: 5px 0.2rem 5px 50px;
   font-size: 15px; }
 header.icon_4 {
   background: #006ee9 url("../img/bd_education/plane.png") no-repeat 18px center;
@@ -16,6 +16,27 @@ header.icon_3 {
 header.icon_2 {
   background: #006ee9 url("../img/heart_icon.png") no-repeat 18px center;
   background-size: 20px; }
+.table-title {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 15px; }
+  .table-title .bd_mx {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+     }
+  .table-title .bd_word {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    text-align: right; }
 header .how {
   float: right;
   vertical-align: middle;
