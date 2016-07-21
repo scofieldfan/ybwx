@@ -1360,7 +1360,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 					return item.premium;
 				}).reduce(function(preValue, currentValue, index, array) {
 					return preValue + currentValue;
-				});
+				},0);
 				$scope.isFirst = !($scope.data.user && $scope.data.user.username);
 				$scope.money = sumMoney;
 				if (res.data.data && res.data.data.insured) {
