@@ -696,20 +696,23 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 
 		}
 		$scope.goDetail = function(plan) {
-			if(plan.status===1){//可购买跳转至产品详情页
-				$location.path('/temaidetail').search({
-					product_id:plan.id
-				});
-			}else
+			if (plan.status === 1) { //可购买跳转至产品详情页
+				if (plan.insurance_status !== 1) {
+					$location.path('/temaidetail').search({
+						product_id: plan.id
+					});
+				}
+
+			} else
 			if (plan.official_site) {
 				window.location.href = plan.official_site;
 			}
 		}
-		
+
 		$scope.more = function($event) {
 			var element = $event.currentTarget;
 			var switchValue = $(element).attr("data-switch");
-			var num = $scope.showNum-1;
+			var num = $scope.showNum - 1;
 			if (switchValue === 'on') {
 				$(element).siblings(".table-wrapper").find("tr").show();
 				$(element).find("span").html("收起");
@@ -753,10 +756,10 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 				if (res && res.data && res.data.data) {
 					$scope.data = res.data.data;
 
-					$scope.data.mainCoverages = res.data.data.coverages.filter(function(item){
+					$scope.data.mainCoverages = res.data.data.coverages.filter(function(item) {
 						return item.coverage_type === 1;
 					});
-					$scope.data.secondCoverages = res.data.data.coverages.filter(function(item){
+					$scope.data.secondCoverages = res.data.data.coverages.filter(function(item) {
 						return item.coverage_type === 2;
 					});
 
@@ -766,38 +769,38 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 					$scope.canNotBuyPlans = res.data.data.plans.filter(function(item) {
 						return item.status !== 1; //过滤得到不能购买的产品
 					});
-				
-					if (　$scope.canNotBuyPlans.length === res.data.data.plans.length ) {
+
+					if (　$scope.canNotBuyPlans.length === res.data.data.plans.length) {
 						$(".footer").find(".right").css({
 							"background-color": "#999"
 						})
 					}
 					$scope.choosePlan();
-					
+
 				}
 			})
 		}
 		$scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
-			$("#coverage_table").find("tr:lt("+$scope.showNum +")").show();
-					if($("#coverage_table").find("tr").length>$scope.showNum ){
-						$("#more_button").show();
+			$("#coverage_table").find("tr:lt(" + $scope.showNum + ")").show();
+			if ($("#coverage_table").find("tr").length > $scope.showNum) {
+				$("#more_button").show();
 			}
 		});
-		$scope.showCoverages = function(){
+		$scope.showCoverages = function() {
 			console.log("show coverages.......");
-			$("#coverage_table").find("tr:lt("+$scope.showNum +")").show();
-			if($("#coverage_table").find("tr").length>$scope.showNum ){
-						$("#more_button").show();
+			$("#coverage_table").find("tr:lt(" + $scope.showNum + ")").show();
+			if ($("#coverage_table").find("tr").length > $scope.showNum) {
+				$("#more_button").show();
 			}
 		}
 		$scope.isHaveRestrictions = false;
 		$scope.goInfo = function() {
 			_hmt.push(['_trackEvent', 'solution', 'solution_subBtn']);
-			if($scope.canNotBuyPlans.length  === $scope.data.plans.length ){
+			if ($scope.canNotBuyPlans.length === $scope.data.plans.length) {
 				util.showToast($rootScope, "方案中的产品全都不可购买，请至官方购买");
 				return;
 			}
-		
+
 
 			if ($scope.isHaveRestrictions) {
 				$location.path('/information').search({
@@ -880,22 +883,22 @@ mainControllers.controller('ybwxInfoCtrl', ['$scope', '$routeParams', '$location
 				'from': 'dingzhi'
 			});
 		}
-		$scope.showJobDes = function(sencondJob){
-			
+		$scope.showJobDes = function(sencondJob) {
+
 			var html = [];
-			sencondJob.forEach(function(item){
+			sencondJob.forEach(function(item) {
 				html.push(' <div class="toast_head" >' + item.name + '</div>');
 				var des = [];
-				item.jobs.forEach(function(element){
+				item.jobs.forEach(function(element) {
 					des.push(element.name);
 				});
 
 				html.push(' <div class="toast_main" >' + des.join(" 、") + '</div>');
-			
+
 			});
 			//console.log(html.join(""));
 			$("#popup").find(".toast").html(html.join(""));
-	   		 $("#popup").show();
+			$("#popup").show();
 		}
 		$scope.init = function() {
 
@@ -936,7 +939,7 @@ mainControllers.controller('ybwxInfoCtrl', ['$scope', '$routeParams', '$location
 					return notice.extra_notice
 				})
 				// console.log("extranotice:" + $scope.isExtraNotice.length);
-				
+
 			})
 		}
 	}
@@ -959,13 +962,13 @@ mainControllers.controller('ybwxBzCtrl', ['$scope', '$routeParams', '$location',
 
 			_hmt.push(['_trackEvent', 'baozhangzeren', 'baozhangzeren_subBtn']);
 			$location.path('/tb_dz').search({
-					'type': $routeParams.type,
-					'coverage_score': $routeParams.coverage_score,
-					'sum_insured_score': $routeParams.sum_insured_score,
-					'estimate_money': $routeParams.estimate_money,
-					'sum_score': $routeParams.sum_score,
-					'from': 'dingzhi'
-				});
+				'type': $routeParams.type,
+				'coverage_score': $routeParams.coverage_score,
+				'sum_insured_score': $routeParams.sum_insured_score,
+				'estimate_money': $routeParams.estimate_money,
+				'sum_score': $routeParams.sum_score,
+				'from': 'dingzhi'
+			});
 			/*
 			if (isHaveRestrictions) {
 				$location.path('/information').search({
@@ -1178,9 +1181,9 @@ mainControllers.controller('ybwxSupplayInfoCtrl', ['$scope', '$routeParams', '$l
 
 				$scope.firstToubao = getHttpPromise($http, $rootScope, 'POST', api['firstToubao'], postData, function(res) {
 					$location.path('/toubao_new').search({
-						type:$routeParams.type,
-						choose_plans:$routeParams.choose_plans,
-						user_id:res.data.data.user.id
+						type: $routeParams.type,
+						choose_plans: $routeParams.choose_plans,
+						user_id: res.data.data.user.id
 					});
 				});
 			}
@@ -1233,10 +1236,11 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 		_hmt.push(['_trackPageview', $location.path()]);
 
 		var openId = sessionStorage.getItem("openId");
-		$scope.getTaocanReason = function(reasonEnum){
-				return  util.taocan_reason[reasonEnum] || "";
+		$scope.getTaocanReason = function(reasonEnum) {
+			return util.taocan_reason[reasonEnum] || "";
 		}
-		function genInEffectiveDate(startDate,coverage_period, coverage_period_type) {
+
+		function genInEffectiveDate(startDate, coverage_period, coverage_period_type) {
 			//计算失效日期
 			//var startDate = $scope.user.effective_date;
 			if (startDate && coverage_period && coverage_period_type) {
@@ -1254,13 +1258,13 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 		$scope.genPlansInEffectiveDate = function() {
 			$scope.data.plans.forEach(function(element, index) {
 				var startDate;
-				if(element.auto_effective_days){
+				if (element.auto_effective_days) {
 					startDate = util.addDays(new Date(), parseInt(element.auto_effective_days));
-				}else{
+				} else {
 					startDate = $scope.user.effective_date;
-				}	
+				}
 				element.startDate = startDate;
-				return element.endDate = genInEffectiveDate(startDate,element.coverage_period, element.coverage_period_type);
+				return element.endDate = genInEffectiveDate(startDate, element.coverage_period, element.coverage_period_type);
 			});
 			console.log($scope.data.plans);
 		}
@@ -1278,12 +1282,12 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 
 		$scope.submit = function() {
 
-			console.log('can not buy:'+ $scope.canNotBuyPlans.length);
+			console.log('can not buy:' + $scope.canNotBuyPlans.length);
 
-			if (!$scope.tbform.$invalid && $scope.canNotBuyPlans.length<$scope.data.plans.length) {
+			if (!$scope.tbform.$invalid && $scope.canNotBuyPlans.length < $scope.data.plans.length) {
 				var plans = {};
 				$scope.data.plans.forEach(function(element, index) {
-					if(element.status===1){
+					if (element.status === 1) {
 						plans[element.id] = element.premium;
 					}
 				});
@@ -1313,21 +1317,21 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 
 				});
 			} else {
-				if ($scope.tbform.effectivedate &&　$scope.tbform.effectivedate.$invalid) {
+				if ($scope.tbform.effectivedate && 　$scope.tbform.effectivedate.$invalid) {
 					util.showToast($rootScope, "生效时间填写有误，请修改");
 				}
-				if($scope.canNotBuyPlans.length>0){
+				if ($scope.canNotBuyPlans.length > 0) {
 					util.showToast($rootScope, $scope.getTaocanReason($scope.canNotBuyPlans[0].status));
 				}
 
-				if($scope.data.address && $scope.tbform.address &&　$scope.tbform.address.$invalid ){
-					util.showToast($rootScope,  "地址填写错误，请修改");
+				if ($scope.data.address && $scope.tbform.address && 　$scope.tbform.address.$invalid) {
+					util.showToast($rootScope, "地址填写错误，请修改");
 				}
-				if($scope.data.car_no && $scope.tbform.car_no &&　$scope.tbform.car_no.$invalid ){
-					util.showToast($rootScope,  "车牌号填写错误，请修改");
+				if ($scope.data.car_no && $scope.tbform.car_no && 　$scope.tbform.car_no.$invalid) {
+					util.showToast($rootScope, "车牌号填写错误，请修改");
 				}
-				if($scope.data.destination  && $scope.tbform.destination &&　$scope.tbform.destination.$invalid ){
-					util.showToast($rootScope,  "目的地填写错误，请修改");
+				if ($scope.data.destination && $scope.tbform.destination && 　$scope.tbform.destination.$invalid) {
+					util.showToast($rootScope, "目的地填写错误，请修改");
 				}
 
 			}
@@ -1375,14 +1379,14 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				'charge_period': $routeParams.charge_period
 			}, function(res) {
 				$scope.data = res.data.data;
-				 //存储需要支付的订单
-				var sumMoney = $scope.data.plans.filter(function(item){
-					return item.status===1;
+				//存储需要支付的订单
+				var sumMoney = $scope.data.plans.filter(function(item) {
+					return item.status === 1;
 				}).map(function(item) {
 					return item.premium;
 				}).reduce(function(preValue, currentValue, index, array) {
 					return preValue + currentValue;
-				},0);
+				}, 0);
 				$scope.isFirst = !($scope.data.user && $scope.data.user.username);
 				$scope.money = sumMoney;
 				if (res.data.data && res.data.data.insured) {
@@ -1393,17 +1397,17 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 						$scope.userRelation = relations[0].name;
 					}
 				}
-				$scope.canNotBuyPlans = $scope.data.plans.filter(function(plan){
-					return plan.status!==1;
+				$scope.canNotBuyPlans = $scope.data.plans.filter(function(plan) {
+					return plan.status !== 1;
 				});
-				$scope.canBuyPlans = $scope.data.plans.filter(function(plan){
-					return plan.status===1;
+				$scope.canBuyPlans = $scope.data.plans.filter(function(plan) {
+					return plan.status === 1;
 				});
 
 				sessionStorage.setItem("sell_plan", JSON.stringify($scope.canBuyPlans));
-				if($scope.canNotBuyPlans.length===$scope.data.plans.length){//全都不可购买
+				if ($scope.canNotBuyPlans.length === $scope.data.plans.length) { //全都不可购买
 					$(".footer").find(".right").css({
-							"background-color": "#999"
+						"background-color": "#999"
 					})
 				}
 				if ($scope.data.min_effective_days) {

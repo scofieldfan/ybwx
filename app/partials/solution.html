@@ -41,7 +41,7 @@
 			 <span ng-if="plan.status!=1" class="status {{get_taocan_css(plan.status)}}" > {{getTaoCanStatus(plan.status)}}</span>
 			</div>
 		</div>	
-		<div class="arrow" ng-class="{'noclick': !plan.official_site && plan.status!==1 }"  ng-click="goDetail(plan)" ></div>	
+		<div class="arrow" ng-class="{'noclick': !plan.official_site && plan.status!==1,'noclick':plan.insurance_status === 1 && plan.status==1 }"  ng-click="goDetail(plan)" ></div>	
 	</li>	
 	<!--
 	<li>
