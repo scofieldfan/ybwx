@@ -52,7 +52,7 @@ var api = {
 	'purchase': '/ybwx-web/api/insurance/purchase'
 }
 
-var isNew = false;
+var isNew = true;
 
 var insuranceMap = {
 	'1': '投保中',
@@ -318,7 +318,8 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
 		_hmt.push(['_trackPageview', $location.path()]);
-		isNew = sessionStorage.getItem("isNew");
+		//isNew = sessionStorage.getItem("isNew");
+		isNew = true;
 		$scope.data = {
 			aggregate_score: 0
 		}
@@ -694,6 +695,11 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 
 		}
 		$scope.goDetail = function(plan) {
+			if(plan.status===1){//可购买跳转至产品详情页
+				$location.path('/temaidetail').search({
+					product_id:plan.id
+				});
+			}else
 			if (plan.official_site) {
 				window.location.href = plan.official_site;
 			}
@@ -1157,10 +1163,12 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 		_hmt.push(['_trackPageview', $location.path()]);
 
 		var openId = sessionStorage.getItem("openId");
-
-		function genInEffectiveDate(coverage_period, coverage_period_type) {
+		$scope.getTaocanReason = function(reasonEnum){
+				return  util.taocan_reason[reasonEnum] || "";
+		}
+		function genInEffectiveDate(startDate,coverage_period, coverage_period_type) {
 			//计算失效日期
-			var startDate = $scope.user.effective_date;
+			//var startDate = $scope.user.effective_date;
 			if (startDate && coverage_period && coverage_period_type) {
 				var period = coverage_period;
 				var effDate = new Date();
@@ -1175,7 +1183,14 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 		}
 		$scope.genPlansInEffectiveDate = function() {
 			$scope.data.plans.forEach(function(element, index) {
-				return element.endDate = genInEffectiveDate(element.coverage_period, element.coverage_period_type);
+				var startDate;
+				if(element.auto_effective_days){
+					startDate = util.addDays(new Date(), parseInt(element.auto_effective_days));
+				}else{
+					startDate = $scope.user.effective_date;
+				}	
+				element.startDate = startDate;
+				return element.endDate = genInEffectiveDate(startDate,element.coverage_period, element.coverage_period_type);
 			});
 			console.log($scope.data.plans);
 		}
@@ -1289,6 +1304,8 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 						$scope.userRelation = relations[0].name;
 					}
 				}
+
+
 				if ($scope.data.min_effective_days) {
 					$scope.user.effective_date = util.addDays(new Date(), $scope.data.min_effective_days);
 					$scope.minDate = $scope.user.effective_date;

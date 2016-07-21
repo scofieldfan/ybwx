@@ -15,9 +15,10 @@
   height:auto;
   display: table-cell;
 }
+/*
 .cell_hd {
   display: table-cell;
-}
+}*/
 .head-container .btn {
   height: 34px;
   line-height: 34px;

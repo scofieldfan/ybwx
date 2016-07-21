@@ -367,9 +367,9 @@ wxShareControllers.controller('wxMoneyBdCtrl', ['$scope', '$filter', '$routePara
 			var maxDate = new Date();
 			maxDate.setDate(maxDate.getDate() + res.data.data.max_effective_days);
 			$scope.maxDate = maxDate;
-			$scope.user.username = res.data.data.user.username;
-			$scope.user.mobile = parseInt(res.data.data.user.mobile);
-			$scope.user.social_id = res.data.data.user.social_id;
+			$scope.user.username = res.data.data.insured.username;
+			$scope.user.mobile = parseInt(res.data.data.insured.mobile);
+			$scope.user.social_id = res.data.data.insured.social_id;
 			sessionStorage.setItem("sell_plan", JSON.stringify(res.data.data.plans)); //存储需要支付的订单
 		});
 
@@ -416,6 +416,7 @@ wxShareControllers.controller('wxMoneyBdCtrl', ['$scope', '$filter', '$routePara
 							"order_amount": res.data.data.order_amount,
 							"order_id": res.data.data.pay_order_id,
 							"order_no": res.data.data.pay_order_no
+
 						}
 						var fitlerResult = util.whiteOpenIds.filter(function(item) {
 							return item.openid === openId

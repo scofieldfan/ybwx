@@ -16,24 +16,24 @@
 	</div>
 
 
-	<div class="solution-title">
+	<div class="solution-title" ng-if="data.effective_date">
 
 		<div class="icon-clock"></div>&nbsp;方案生效时间 <span class="fr"><input type="date" name="effectivedate" ng-model="user.effective_date" ng-change="genPlansInEffectiveDate()"   min="{{minDate | date:'yyyy-MM-dd'}}" max="{{maxDate | date:'yyyy-MM-dd'}}"   class="ipt"   placeholder="请输入目的地" required></span>
 	</div>
-
-	<div   style="color:red;background-color:#fff;padding-left:27px"
-	            ng-show="tbform.effectivedate.$dirty && tbform.effectivedate.$invalid ">
-			<small class="error" ng-show="tbform.effectivedate.$error.required">生效日期必填</small>
-			<small class="error" ng-show="tbform.effectivedate.$error.min">生效日期小于产品的最小要求{{minDate | date:'yyyy-MM-dd'}}</small>
-			<small class="error" ng-show="tbform.effectivedate.$error.max">生效日期超过产品的最大要求{{maxDate | date:'yyyy-MM-dd'}}</small>
-		</div>
-
+	
 
 	<ul class="toubao-container">
 		<li ng-repeat="plan in data.plans">
 			<div class="product">	
 				<div class="name">{{plan.name}}</div>	
-				<div class="duration" ng-show="user.effective_date && plan.endDate">{{user.effective_date | date:'yyyy-MM-dd'}}至{{plan.endDate | date:'yyyy-MM-dd'}}</div>
+				<div class="duration" ng-show="plan.startDate && plan.endDate">{{plan.startDate | date:'yyyy-MM-dd'}}至{{plan.endDate | date:'yyyy-MM-dd'}}</div>
+				<div class="reason">{{getTaocanReason(plan.status)}}</div>
+
+				<div class="reson"  ng-show="tbform.effectivedate.$dirty && tbform.effectivedate.$invalid ">
+					<small class="error" ng-show="tbform.effectivedate.$error.required">生效日期必填</small>
+					<small class="error" ng-show="tbform.effectivedate.$error.min">生效日期不得早于{{minDate | date:'yyyy-MM-dd'}}</small>
+					<small class="error" ng-show="tbform.effectivedate.$error.max">生效日期不得大于{{maxDate | date:'yyyy-MM-dd'}}</small>
+				</div>
 				<div class="money">保额:{{processSpecialMoney(plan.sum_insured)}}元  &nbsp;&nbsp;保{{coverage_period ||  plan.coverage_period}}{{getCoverageType(plan.coverage_period_type)}}</div>
 			</div>
 			<div class="money-container">
