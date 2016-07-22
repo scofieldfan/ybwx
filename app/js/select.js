@@ -39,8 +39,7 @@ var CIRCLE = (function() {
 	*/
 	function updateMoney(score) {
 		if (baozhang_money && baozhang_money[score] && baozhang_money[score] != "") {
-			console.log("update...");
-			console.log(baozhang_money[score]);
+	
 			var kedus = $("#customerSlider").find(".kedu").find("p");
 			for (var i = 1; i < kedus.length; i++) {
 				
@@ -57,6 +56,7 @@ var CIRCLE = (function() {
 		baozhang_tiaojian = tiaojian;
 		baozhang_money = money;
 		insuranceType = type;
+		init();
 	}
 	function init() {
 	
