@@ -52,12 +52,14 @@ var CIRCLE = (function() {
 			}
 		}
 	}
-
-	function init(coverageScores, tiaojian, money,type) {
+	function updateData (coverageScores, tiaojian, money,type){
 		baozhang_score = coverageScores;
 		baozhang_tiaojian = tiaojian;
 		baozhang_money = money;
 		insuranceType = type;
+	}
+	function init() {
+	
 
 		//$scope = scope;
 		changeText(0);
@@ -570,7 +572,8 @@ var CIRCLE = (function() {
 
 
 	return {
-		init: init
+		init: init,
+		updateData:updateData
 	}
 
 })();

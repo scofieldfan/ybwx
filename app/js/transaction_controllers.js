@@ -3,7 +3,7 @@
 /* Controllers */
 
 var transControllers = angular.module('transactionControllers', []);
-
+//交易记录列表
 transControllers.controller('wxBaoDanListCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
@@ -74,7 +74,7 @@ transControllers.controller('wxBaoDanListCtrl', ['$scope', '$routeParams', '$loc
 		//$scope.init();
 	}
 ]);
-
+//交易记录详情页
 transControllers.controller('wxBaoDanDetailCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 		console.log($routeParams.order_no);
@@ -124,8 +124,6 @@ transControllers.controller('wxBaoDanDetailCtrl', ['$scope', '$routeParams', '$l
 transControllers.controller('ybwxPaySelectNewCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 
-
-
 		_hmt.push(['_trackPageview', $location.path()]);
 
 		$scope.plans = {};
@@ -146,13 +144,12 @@ transControllers.controller('ybwxPaySelectNewCtrl', ['$scope', '$filter', '$rout
 			return JSON.parse(sessionStorage.getItem(orderId + "_" + channelType));
 		}
 
-
-		//$scope.order_amount = 1;
 		$scope.order_id = $routeParams.order_id;
 		$scope.order_no = $routeParams.order_no;
 
 		$scope.submit = function() {
-			//console.log("submit....");
+
+
 			_hmt.push(['_trackEvent', 'pay', 'pay_subBtn']);
 			var channelType = $(".pay_container").find(".choose").attr("data-channel-type");
 
@@ -175,7 +172,6 @@ transControllers.controller('ybwxPaySelectNewCtrl', ['$scope', '$filter', '$rout
 				open_id: openId,
 				pay_order_id: $routeParams.order_id,
 				pay_channel_type: channelType,
-				// order_amount: $routeParams.order_amount*100
 			}, function(res) {
 				console.log(res);
 				if (res && res.data && res.data.data && res.data.code === 0) {
