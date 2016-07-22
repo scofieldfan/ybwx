@@ -27,11 +27,8 @@ ybwxControllers.controller('ybwxProductInfoCtrl', ['$scope', '$routeParams', '$l
     }
     $scope.goToubao = function() {
       _hmt.push(['_trackEvent', 'information', 'information_subBtn']);
-      if(isNew){
-          $location.path('/toubao_new').search($routeParams);
-      }else{
-          $location.path('/tb_dz').search($routeParams);
-      }
+       $location.path('/toubao_new').search($routeParams);
+      
     }
   }
 ]);
@@ -109,8 +106,7 @@ ybwxControllers.controller('wxTemaiIndexCtrl', ['$scope', '$routeParams', '$loca
     })
   }
 ]);
-// var product_id = [64];
-var newDetailProductId = [64, 94, 18, 100, 22, 9, 128, 67, 68, 86, 38, 39, 49, 37];
+
 /*特卖list*/
 ybwxControllers.controller('wxTemaiListCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
   function($scope, $routeParams, $location, $http, $rootScope) {
@@ -407,11 +403,13 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       if ($scope.charge_period) {
         postData["charge_period"] = $scope.charge_period;
       }
+       $location.path("/toubao_new").search(postData);
+       /*
        if (isNew) {
           $location.path("/toubao_new").search(postData);
         } else {
           $location.path("/tb_dz").search(postData);
-        }
+        }*/
        /* 
       if ($scope.data.health_notice || $scope.data.extra_notice || $scope.data.locale_notice) {
         $location.path("/productinformation").search(postData);
