@@ -114,44 +114,6 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 					}
 				});
 			});
-
-			/*
-			var code = util.getParameterByName("code") || $routeParams.code;
-			$("#loadingToastCommon").show();
-			util.getOpenId(code).then(function() {
-				$("#loadingToastCommon").hide();
-				var openId = sessionStorage.getItem("openId");
-
-				// alert("get openId ok:"+openId);
-				//alert("get openId ok:"+api['ping_coupon']);
-				$http({
-					method: 'POST',
-					headers: {
-						"Content-Type": "application/json;charset:UTF-8"
-					},
-					url: api['ping_coupon'],
-					data: {
-						"open_id": openId,
-						"coupon_id": "4",
-						"time": new Date().getTime()
-					}
-				}).then(function(res) {
-					console.log(res);
-					if (res.data && res.data.description) {
-						util.showToast($rootScope, res.data.description);
-					} else if (res.data.code === 0) {
-						$scope.data = res.data.data;
-						// console.log($scope.data);
-						if (res.data.data.recommend_times > 0) {
-							$("#coupons_container").show();
-						}
-					}
-					// showToast($rootScope,res.data.description);
-				}, function(res) {
-					console.log(res);
-					util.showToast($rootScope, "服务器错误");
-				});
-			})*/
 		}
 		$scope.init();
 		$scope.sportsAddCoupon = function() {
@@ -219,7 +181,9 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
 
 		var currentUrl = "http://web.youbaowuxian.com/wx_share.html#/special";
-
+		var qd = util.getParameterByName("qd") || $routeParams.qd || 'default';
+		_hmt.push(['_trackPageview', '/1year_hangkong_yiwai']);
+		_hmt.push(['_setCustomVar', 1, '1year_hangkong_qudao', qd, 1]);
 		//没有code跳转，如果没有获得openId也跳转
 		$scope.init = function() {
 			$("#loadingToastCommon").show();
@@ -331,29 +295,12 @@ wxShareControllers.controller('wxMoneyBdCtrl', ['$scope', '$filter', '$routePara
 		_hmt.push(['_trackPageview', "/wx_share_toubao"]);
 
 		$scope.money = $routeParams.money;
-		/*
-
-		testDate.setDate(testDate.getDate() + 1);
-		$scope.minDate = testDate;
-		var tmp = new Date(Number($routeParams.expiry_date));
-		tmp.setDate(tmp.getDate() - 1);
-		$scope.maxDate = tmp;
-		*/
+		
 		var tomorrow = new Date();
 		tomorrow.setDate(tomorrow.getDate() + 1);
 		$scope.user = {};
 		$scope.user.insurance_date = tomorrow;
-		/*
-		var userinfo = JSON.parse(localStorage.getItem('userinfo'));
-		if (userinfo) {
-			$scope.user = {
-				username: userinfo.username,
-				social_id: userinfo.social_id,
-				mobile: userinfo.mobile
-			}
-		} else {
-			$scope.user = {};
-		}*/
+		
 		$scope.user.know_contract = true;
 		var openId = sessionStorage.getItem("openId");
 
