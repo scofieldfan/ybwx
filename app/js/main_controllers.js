@@ -45,10 +45,10 @@ var api = {
 	'temai_index': '/ybwx-web/api/insurance/selling_page',
 	'get_recommend_plans': '/ybwx-web/api/recommend/plans',
 	'firstToubao': '/ybwx-web/api/relation/first',
-	'addPeople': '/ybwx-web/api/relation/add',
 	'recognizee_compile': '/ybwx-web/api/relations',
 	'getData': '/ybwx-web/api/relation',
-	'deleteMessage': '/ybwx-web/api/relation/delete',
+	'addContact': '/ybwx-web/api/relation/add',
+	'deleteContact': '/ybwx-web/api/relation/delete',
 	'update': '/ybwx-web/api/relation/update',
 	'purchase': '/ybwx-web/api/insurance/purchase'
 }
@@ -204,7 +204,6 @@ function getHttpPromise($http, $rootScope, method, url, data, callback) {
 }
 
 
-
 mainControllers.controller('ybwxUserinfoCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
@@ -306,6 +305,7 @@ function initPieConfig(sumScore, scores, policyNumber) {
 }
 mainControllers.controller('ybwxPromoteCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
+		_hmt.push(['_trackPageview', $location.path()]);
 		$scope.goSelect = function(type) {
 			window.location = ("#/select?type=" + type);
 		}
@@ -384,31 +384,6 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 						initPieConfig($scope.data.aggregate_score, $scope.data.scores, $scope.data.policy);
 					}
 				})
-
-				/*
-				var openId = sessionStorage.getItem("openId");
-				$http({
-					method: 'GET',
-					headers: {
-						"Content-Type": "application/json;charset:UTF-8"
-					},
-					url: api['get_insurance_index'] + "/" + openId
-
-				}).then(function(res) {
-					console.log(res);
-					if (res.data && res.data.description) {
-						util.showToast($rootScope, res.data.description);
-					}
-					if (res.data.code == 0) {
-						$("#loadingContainer").hide();
-						$scope.data = res.data.data;
-						initPieConfig($scope.data.aggregate_score, $scope.data.scores, $scope.data.policy);
-					}
-				}, function(res) {
-					console.log(res);
-					util.showToast($rootScope, "服务器错误");
-				});*/
-
 
 			});
 		}
@@ -564,42 +539,6 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 			$scope.type = $routeParams.type;
 			$scope.estimateMoney = 0;
 
-			/*
-			$scope.selectPromise = $http({
-				method: 'GET',
-				headers: {
-					"Content-Type": "application/json;charset:UTF-8"
-				},
-				url: api['get_recommend'].replace('{type}', $routeParams.type)
-			}).then(function(res) {
-				console.log(res);
-				if (res.data && res.data.description) {
-					util.showToast($rootScope, res.data.description);
-				}
-				if (res.data.code == 0) {
-					var sumInsuredView = [];
-
-					_.map(res.data.data.sum_insured_views, function(value, key) {
-						//console.log(value);
-						var objKey = _.groupBy(value, function(val, index) {
-							return index % 2;
-						}); //后台只留偶数部分，找巴哥咨询
-						//console.log(objKey);
-						sumInsuredView[key] = objKey[1];
-						// return [key, objKey[1]];
-						// return [key, value * value];
-					});
-					// console.log(obj);
-					//console.log(sumInsuredView);
-					CIRCLE.updateData(res.data.data.coverage_scores, res.data.data.coverage_views, sumInsuredView, $routeParams.type);
-				}
-			}, function(res) {
-				console.log(res);
-				util.showToast($rootScope, "服务器错误");
-			});*/
-
-
-
 			var openId = sessionStorage.getItem("openId");
 			$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_recommend'].replace('{type}', $routeParams.type), {}, function(res) {
 
@@ -619,9 +558,6 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 					CIRCLE.updateData(res.data.data.coverage_scores, res.data.data.coverage_views, sumInsuredView, $routeParams.type);
 				}
 			});
-
-
-
 
 		}
 		$scope.data = {
@@ -1222,7 +1158,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				$location.path('/supply_userinfo').search($routeParams);
 			} else {
 				//去list页	
-				$location.path('/recognizee_compile').search($routeParams);
+				$location.path('/contact_list').search($routeParams);
 			}
 		}
 
@@ -1230,8 +1166,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 
 		$scope.submit = function() {
 
-			console.log('can not buy:' + $scope.canNotBuyPlans.length);
-			console.log('can not buy:' + $scope.canNotBuyPlans.length);
+			
 
 			if (!$scope.tbform.$invalid && $scope.canNotBuyPlans.length < $scope.data.plans.length) {
 				var plans = {};

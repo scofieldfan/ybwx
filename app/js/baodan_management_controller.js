@@ -298,9 +298,12 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 		$scope.init();
 	}
 ])
-bdControllers.controller('ybwxRecognizeeCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+bdControllers.controller('ybwxUpdateAddContactCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
+
 		_hmt.push(['_trackPageview', $location.path()]);
+
+
 		$scope.state = false;
 		$scope.relation = {
 
@@ -337,7 +340,7 @@ bdControllers.controller('ybwxRecognizeeCtrl', ['$scope', '$routeParams', '$loca
 			console.log("social_id:"+$scope.social_id);
 			
 			console.log("mobile:"+$scope.mobile);
-			$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['addPeople'], {
+			$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['addContact'], {
 				open_id: openId,
 				relation: $scope.relation.id,
 				is_default: $scope.state,
@@ -346,7 +349,7 @@ bdControllers.controller('ybwxRecognizeeCtrl', ['$scope', '$routeParams', '$loca
 				mobile: $scope.mobile
 			}, function(res) {
 				console.log(res.data.data);
-				$location.path('/recognizee_compile').search({
+				$location.path('/contact_list').search({
 						choose_plans: $routeParams.choose_plans,
 						coverage_period_type:$routeParams.coverage_period_type,
 						coverage_period:$routeParams.coverage_period,
@@ -360,12 +363,12 @@ bdControllers.controller('ybwxRecognizeeCtrl', ['$scope', '$routeParams', '$loca
 		$scope.deleteMessage = function() {
 			$("#dialog1").show(function() {
 				$scope.sure = function() {
-					$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['deleteMessage'], {
+					$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['deleteContact'], {
 						'open_id': openId,
 						'insured_id': userId
 					}, function(res) {
 						// if(res && res.data && res.data.data.){
-						$location.path("/recognizee_compile").search({
+						$location.path("/contact_list").search({
 						'choose_plans': $routeParams.choose_plans,
 						coverage_period_type:$routeParams.coverage_period_type,
 						coverage_period:$routeParams.coverage_period,
@@ -432,8 +435,8 @@ bdControllers.controller('ybwxRecognizeeCtrl', ['$scope', '$routeParams', '$loca
 			}, function(res) {
 				if (res && res.data && res.data.data.user) {
 					//$scope.data = res.data.data.relations;
-					$location.path("/recognizee_compile").search({
-						'choose_plans': $routeParams.choose_plans,
+					$location.path("/contact_list").search({
+						choose_plans: $routeParams.choose_plans,
 						coverage_period_type:$routeParams.coverage_period_type,
 						coverage_period:$routeParams.coverage_period,
 						charge_period_type:$routeParams.charge_period_type,
@@ -446,9 +449,12 @@ bdControllers.controller('ybwxRecognizeeCtrl', ['$scope', '$routeParams', '$loca
 		}
 	}
 ]);
-bdControllers.controller('ybwxRecognizeeComCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+bdControllers.controller('ybwxContactListCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
-		//var relationShip = util.relationShip;
+
+
+		_hmt.push(['_trackPageview', $location.path()]);
+
 		$scope.getRelation = function(relation) {
 			var relationAry = util.relationShip.filter(function(item) {
 				return item.id === relation;
@@ -538,10 +544,10 @@ bdControllers.controller('ybwxRecognizeeComCtrl', ['$scope', '$routeParams', '$l
 		}
 		// 跳转and获取资料
 		$scope.editUserInfo = function(id) {
-			$location.path('/recognizee').search({
+			$location.path('/update_add_contact').search({
 				user_id: id,
 				method: "edit",
-				'choose_plans': $routeParams.choose_plans,
+				choose_plans: $routeParams.choose_plans,
 				coverage_period_type:$routeParams.coverage_period_type,
 				coverage_period:$routeParams.coverage_period,
 				charge_period_type:$routeParams.charge_period_type,
@@ -550,7 +556,7 @@ bdControllers.controller('ybwxRecognizeeComCtrl', ['$scope', '$routeParams', '$l
 		}
 		// 跳转and新增被保险人
 		$scope.addPeople = function() {
-			$location.path('/recognizee').search({
+			$location.path('/update_add_contact').search({
 				method: "add",
 				'choose_plans': $routeParams.choose_plans,
 				coverage_period_type:$routeParams.coverage_period_type,

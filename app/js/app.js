@@ -201,17 +201,17 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/bdm_verfylist.html',
       controller: 'ybwxbaodanVerifyListCtrl',
       title: "保单验真"
-    }).when('/recognizee_compile', {
-      templateUrl: 'partials/recognizee_compile.html',
-      controller: 'ybwxRecognizeeComCtrl',
+    }).when('/contact_list', {
+      templateUrl: 'partials/contact_list.html',
+      controller: 'ybwxContactListCtrl',
       title: "常用被保人"
+    }).when('/update_add_contact', {
+      templateUrl: 'partials/update_add_contact.html',
+      controller: 'ybwxUpdateAddContactCtrl',
+      title: "被保人信息"
     }).when('/supply_userinfo', {
       templateUrl: 'partials/supply_userinfo.html',
        controller: 'ybwxSupplayInfoCtrl',
-      title: "被保人信息"
-    }).when('/recognizee', {
-      templateUrl: 'partials/recognizee.html',
-      controller: 'ybwxRecognizeeCtrl',
       title: "被保人信息"
     }).otherwise({
       redirectTo: '/index'
