@@ -337,9 +337,9 @@ bdControllers.controller('ybwxUpdateAddContactCtrl', ['$scope', '$routeParams', 
 		$scope.addPeople = function() {
 			// 新增被保险人
 
-			console.log("social_id:"+$scope.social_id);
-			
-			console.log("mobile:"+$scope.mobile);
+			console.log("social_id:" + $scope.social_id);
+
+			console.log("mobile:" + $scope.mobile);
 			$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['addContact'], {
 				open_id: openId,
 				relation: $scope.relation.id,
@@ -350,12 +350,12 @@ bdControllers.controller('ybwxUpdateAddContactCtrl', ['$scope', '$routeParams', 
 			}, function(res) {
 				console.log(res.data.data);
 				$location.path('/contact_list').search({
-						choose_plans: $routeParams.choose_plans,
-						coverage_period_type:$routeParams.coverage_period_type,
-						coverage_period:$routeParams.coverage_period,
-						charge_period_type:$routeParams.charge_period_type,
-						charge_period:$routeParams.charge_period
-					});
+					choose_plans: $routeParams.choose_plans,
+					coverage_period_type: $routeParams.coverage_period_type,
+					coverage_period: $routeParams.coverage_period,
+					charge_period_type: $routeParams.charge_period_type,
+					charge_period: $routeParams.charge_period
+				});
 			})
 		}
 		// 删除被保险人资料
@@ -369,12 +369,12 @@ bdControllers.controller('ybwxUpdateAddContactCtrl', ['$scope', '$routeParams', 
 					}, function(res) {
 						// if(res && res.data && res.data.data.){
 						$location.path("/contact_list").search({
-						'choose_plans': $routeParams.choose_plans,
-						coverage_period_type:$routeParams.coverage_period_type,
-						coverage_period:$routeParams.coverage_period,
-						charge_period_type:$routeParams.charge_period_type,
-						charge_period:$routeParams.charge_period
-					});
+							'choose_plans': $routeParams.choose_plans,
+							coverage_period_type: $routeParams.coverage_period_type,
+							coverage_period: $routeParams.coverage_period,
+							charge_period_type: $routeParams.charge_period_type,
+							charge_period: $routeParams.charge_period
+						});
 						// }
 
 					});
@@ -395,9 +395,9 @@ bdControllers.controller('ybwxUpdateAddContactCtrl', ['$scope', '$routeParams', 
 				"insured_id": userId
 			}, function(res) {
 				if (res && res.data && res.data.data.relations) {
-		
 
-				
+
+
 					if (res.data.data.relations[0]) {
 						$scope.username = res.data.data.relations[0].username;
 						$scope.social_id = res.data.data.relations[0].social_id;
@@ -406,7 +406,7 @@ bdControllers.controller('ybwxUpdateAddContactCtrl', ['$scope', '$routeParams', 
 						var relationAry = util.relationShip.filter(function(item) {
 							return item.id === res.data.data.relations[0].relation;
 						});
-						
+
 						if (Array.isArray(relationAry) && relationAry[0]) {
 							$scope.relation = relationAry[0];
 						}
@@ -437,10 +437,10 @@ bdControllers.controller('ybwxUpdateAddContactCtrl', ['$scope', '$routeParams', 
 					//$scope.data = res.data.data.relations;
 					$location.path("/contact_list").search({
 						choose_plans: $routeParams.choose_plans,
-						coverage_period_type:$routeParams.coverage_period_type,
-						coverage_period:$routeParams.coverage_period,
-						charge_period_type:$routeParams.charge_period_type,
-						charge_period:$routeParams.charge_period
+						coverage_period_type: $routeParams.coverage_period_type,
+						coverage_period: $routeParams.coverage_period,
+						charge_period_type: $routeParams.charge_period_type,
+						charge_period: $routeParams.charge_period
 					});
 
 				}
@@ -471,10 +471,10 @@ bdControllers.controller('ybwxContactListCtrl', ['$scope', '$routeParams', '$loc
 				'type': $routeParams.type,
 				'choose_plans': $routeParams.choose_plans,
 				'user_id': $scope.chooseUser.id,
-				coverage_period_type:$routeParams.coverage_period_type,
-				coverage_period:$routeParams.coverage_period,
-				charge_period_type:$routeParams.charge_period_type,
-				charge_period:$routeParams.charge_period
+				coverage_period_type: $routeParams.coverage_period_type,
+				coverage_period: $routeParams.coverage_period,
+				charge_period_type: $routeParams.charge_period_type,
+				charge_period: $routeParams.charge_period
 			});
 
 
@@ -492,7 +492,7 @@ bdControllers.controller('ybwxContactListCtrl', ['$scope', '$routeParams', '$loc
 			});
 			*/
 
-			sessionStorage.setItem("selectUser",item.social_id);
+			sessionStorage.setItem("selectUser", item.social_id);
 
 			$scope.chooseUser = item;
 			item.is_current = true;
@@ -500,10 +500,10 @@ bdControllers.controller('ybwxContactListCtrl', ['$scope', '$routeParams', '$loc
 				'type': $routeParams.type,
 				'choose_plans': $routeParams.choose_plans,
 				'user_id': item.id,
-				coverage_period_type:$routeParams.coverage_period_type,
-				coverage_period:$routeParams.coverage_period,
-				charge_period_type:$routeParams.charge_period_type,
-				charge_period:$routeParams.charge_period
+				coverage_period_type: $routeParams.coverage_period_type,
+				coverage_period: $routeParams.coverage_period,
+				charge_period_type: $routeParams.charge_period_type,
+				charge_period: $routeParams.charge_period
 			});
 		}
 
@@ -519,13 +519,13 @@ bdControllers.controller('ybwxContactListCtrl', ['$scope', '$routeParams', '$loc
 						return item.social_id === userSocialId;
 					});
 					console.log(defaultRelations);
-					if(defaultRelations && defaultRelations.length > 0){
-							$scope.chooseUser = defaultRelations[0];
-							$scope.chooseUser.is_current = true;
-						}else{
-								res.data.data.relations[0].is_current = true;
-							    $scope.chooseUser = res.data.data.relations[0]
-						}
+					if (defaultRelations && defaultRelations.length > 0) {
+						$scope.chooseUser = defaultRelations[0];
+						$scope.chooseUser.is_current = true;
+					} else {
+						res.data.data.relations[0].is_current = true;
+						$scope.chooseUser = res.data.data.relations[0]
+					}
 					/*
 					var defaultRelations = res.data.data.relations.filter(function(item) {
 						return item.default === true;
@@ -548,10 +548,10 @@ bdControllers.controller('ybwxContactListCtrl', ['$scope', '$routeParams', '$loc
 				user_id: id,
 				method: "edit",
 				choose_plans: $routeParams.choose_plans,
-				coverage_period_type:$routeParams.coverage_period_type,
-				coverage_period:$routeParams.coverage_period,
-				charge_period_type:$routeParams.charge_period_type,
-				charge_period:$routeParams.charge_period
+				coverage_period_type: $routeParams.coverage_period_type,
+				coverage_period: $routeParams.coverage_period,
+				charge_period_type: $routeParams.charge_period_type,
+				charge_period: $routeParams.charge_period
 			});
 		}
 		// 跳转and新增被保险人
@@ -559,10 +559,10 @@ bdControllers.controller('ybwxContactListCtrl', ['$scope', '$routeParams', '$loc
 			$location.path('/update_add_contact').search({
 				method: "add",
 				'choose_plans': $routeParams.choose_plans,
-				coverage_period_type:$routeParams.coverage_period_type,
-				coverage_period:$routeParams.coverage_period,
-				charge_period_type:$routeParams.charge_period_type,
-				charge_period:$routeParams.charge_period
+				coverage_period_type: $routeParams.coverage_period_type,
+				coverage_period: $routeParams.coverage_period,
+				charge_period_type: $routeParams.charge_period_type,
+				charge_period: $routeParams.charge_period
 			});
 		}
 	}
