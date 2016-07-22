@@ -199,7 +199,7 @@ function getHttpPromise($http, $rootScope, method, url, data, callback) {
 	}, function(res) {
 		console.log(res);
 		_hmt.push(['_trackEvent', 'http_error', "api:" + url]);
-		util.showToast($rootScope, "服务器错误");
+		util.showToast($rootScope, "网络异常");
 	});
 }
 
@@ -373,6 +373,20 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 					$location.path('/edindex');
 				}
 				var openId = sessionStorage.getItem("openId");
+				$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_insurance_index'] + "/" + openId, {}, function(res) {
+
+					if (res.data && res.data.description) {
+						util.showToast($rootScope, res.data.description);
+					}
+					if (res.data.code == 0) {
+						$("#loadingContainer").hide();
+						$scope.data = res.data.data;
+						initPieConfig($scope.data.aggregate_score, $scope.data.scores, $scope.data.policy);
+					}
+				})
+
+				/*
+				var openId = sessionStorage.getItem("openId");
 				$http({
 					method: 'GET',
 					headers: {
@@ -393,7 +407,9 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 				}, function(res) {
 					console.log(res);
 					util.showToast($rootScope, "服务器错误");
-				});
+				});*/
+
+
 			});
 		}
 	}
@@ -547,6 +563,8 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 			CIRCLE.init();
 			$scope.type = $routeParams.type;
 			$scope.estimateMoney = 0;
+
+			/*
 			$scope.selectPromise = $http({
 				method: 'GET',
 				headers: {
@@ -578,7 +596,33 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 			}, function(res) {
 				console.log(res);
 				util.showToast($rootScope, "服务器错误");
+			});*/
+
+
+
+			var openId = sessionStorage.getItem("openId");
+			$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_recommend'].replace('{type}', $routeParams.type), {}, function(res) {
+
+				if (res.data && res.data.description) {
+					util.showToast($rootScope, res.data.description);
+				}
+				if (res.data.code == 0) {
+					var sumInsuredView = [];
+
+					_.map(res.data.data.sum_insured_views, function(value, key) {
+						var objKey = _.groupBy(value, function(val, index) {
+							return index % 2;
+						});
+						 //后台只留偶数部分，找巴哥咨询
+						sumInsuredView[key] = objKey[1];
+					});
+					CIRCLE.updateData(res.data.data.coverage_scores, res.data.data.coverage_views, sumInsuredView, $routeParams.type);
+				}
 			});
+
+
+
+
 		}
 		$scope.data = {
 			scoreFix: 0
@@ -762,7 +806,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 				console.log(res);
 				if (res && res.data && res.data.data) {
 					$scope.data = res.data.data;
-				
+
 					$scope.data.mainCoverages = res.data.data.coverages.filter(function(item) {
 						return item.coverage_type === 1;
 					});
