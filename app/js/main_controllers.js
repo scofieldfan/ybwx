@@ -762,7 +762,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 				console.log(res);
 				if (res && res.data && res.data.data) {
 					$scope.data = res.data.data;
-
+				
 					$scope.data.mainCoverages = res.data.data.coverages.filter(function(item) {
 						return item.coverage_type === 1;
 					});
