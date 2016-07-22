@@ -7,6 +7,8 @@ var ybwxControllers = angular.module('ybwxControllers', []);
 
 
 /*保险限制页面*/
+
+/*
 ybwxControllers.controller('ybwxProductInfoCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope', 'sharedRestrictions',
   function($scope, $routeParams, $location, $http, $rootScope, sharedRestrictions) {
     $scope.data = sharedRestrictions.getRestrictions();
@@ -32,6 +34,7 @@ ybwxControllers.controller('ybwxProductInfoCtrl', ['$scope', '$routeParams', '$l
     }
   }
 ]);
+*/
 
 
 ybwxControllers.controller('wxTemaiIndexCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
@@ -206,6 +209,19 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
         }
       })
     }
+    $scope.getRestrictions = function() {
+      var openId = sessionStorage.getItem("openId");
+      $scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_restrictions'], {
+        open_id: openId,
+        plan_id: $scope.plan.id
+
+      }, function(res) {
+
+        $scope.isHaveRestrictions = (res.data.data.job_notice && Object.keys(res.data.data.job_notice).length>0)  || res.data.data.locale_notice || res.data.data.notices.length > 0;
+        // console.log("extranotice:" + $scope.isExtraNotice.length);
+
+      });
+    }
     $scope.init = function() {
       var tmpDate = new Date(1986, 1, 1);
       $scope.user = {
@@ -264,15 +280,20 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
             if (res.data.data.coverage_overview) {
               $scope.coverage_overviews = res.data.data.coverage_overview.split("##");
             }
+
+
+
+            /*
             sharedRestrictions.setRestrictions({
               health_notice: res.data.data.health_notice,
               extra_notice: res.data.data.extra_notice,
               locale_notice: res.data.data.locale_notice
-            })
+            })*/
             $scope.data = res.data.data;
             $scope.money = res.data.data.insurance_plans[0].premium;
             $scope.plan = res.data.data.insurance_plans[0];
             $scope.danwei = genDuration($scope.plan.coverage_period_type);
+            $scope.getRestrictions();
             util.share({
               shareUrl: "http://web.youbaowuxian.com/#/temaidetail?product_id=" + $routeParams.product_id,
               shareImg: $scope.data.small_image,
@@ -307,17 +328,17 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
     $scope.stopPro = function($event) {
       $event.stopPropagation();
     }
-   
 
-    $scope.clickBirthDay = function($event){
-       $event.stopPropagation();
+
+    $scope.clickBirthDay = function($event) {
+      $event.stopPropagation();
       // updateFee();
     }
 
-    $scope.changeBirthday = function($event){
+    $scope.changeBirthday = function($event) {
       // $event.stopPropagation();
-     //  $event.preventDefault();
-       updateFee();
+      //  $event.preventDefault();
+      updateFee();
     }
 
 
@@ -335,6 +356,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       $scope.plan = item;
       $scope.danwei = genDuration($scope.plan.coverage_period_type);
       //$scope.money = $scope.plan.premium;
+      $scope.getRestrictions();
       updateFee();
     }
 
@@ -401,14 +423,20 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       if ($scope.charge_period) {
         postData["charge_period"] = $scope.charge_period;
       }
-       $location.path("/toubao_new").search(postData);
-       /*
+
+
+      if ($scope.isHaveRestrictions) {
+        $location.path("/information").search(postData);
+      } else {
+        $location.path("/toubao_new").search(postData);
+      }
+      /*
        if (isNew) {
           $location.path("/toubao_new").search(postData);
         } else {
           $location.path("/tb_dz").search(postData);
         }*/
-       /* 
+      /* 
       if ($scope.data.health_notice || $scope.data.extra_notice || $scope.data.locale_notice) {
         $location.path("/productinformation").search(postData);
       } else {

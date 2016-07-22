@@ -11,16 +11,30 @@
 	<div class="infor_head"  ng-if="isHaveHealth">
 		<img src="img/claim_information/logo.jpg"><span class="head_info">健康告知</span>
 	</div>
-	<div class="insurance_name"  ng-if="isHaveHealth" ng-repeat="notice in data.notices">{{notice.insurance_name}} 	{{notice.plan_name}}</div>
-	<div class="info_word"  ng-if="isHaveHealth" ng-repeat="item in data.notices[0].healthNotices">{{item}}</div>
+
+
+	<div  ng-if="isHaveHealth"  ng-repeat="notice in data.notices">
+		<div class="insurance_name" >
+				{{notice.insurance_name}} 	{{notice.plan_name}}
+		</div>
+		<div class="info_word"  ng-repeat="item in notice.healthNotices">{{item}}</div>
+	</div>
+
+
+
 	<div class="infor_head" ng-if="data.locale_notice">
 		<img src="img/claim_information/logo.jpg"><span class="head_info">区域限制</span>
 	</div>
 	<div class="info_word"  ng-if="data.locale_notice" ng-repeat="item in data.notices[0].healthNotices">{{data.locale_notice}}</div>
+
+
 	<div class="infor_head" ng-if="data.age_notice">
 		<img src="img/claim_information/logo.jpg"><span class="head_info">年龄限制</span>
 	</div>
 	<div class="info_word"  ng-if="data.age_notice">{{data.age_notice}}</div>
+
+
+	
 	<div class="infor_head" ng-if="isExtraNotice.length>0">
 		<img src="img/claim_information/logo.jpg"><span class="head_info">其他限制</span>
 	</div>
