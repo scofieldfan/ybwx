@@ -65,12 +65,32 @@
 
 </div>
 <script type="text/javascript">
+ $("body").on("touchmove",".toast",function(event){
+ 	// event.preventDefault();
+ 	 event.stopPropagation();
+ });
+ $("body").on("touchmove",".mask",function(event){
+ 	 event.preventDefault();
+ 	 event.stopPropagation();
+ });
+ $("body").on("click",".left-td",function(event){
+ 	
 
- $("body").on("click",".left-td",function(){
  	var des =  $(this).attr("des");
  	if(des){
 		$("#popup").find(".toast").html(des);
 	   	$("#popup").show();
  	}
+ 	// event.stopPropagation();
+    // event.preventDefault();
+
+    /*
+ 	document.body.addEventListener('touchmove', function(event) { 
+		event.preventDefault(); 
+	}, false);
+	*/
+
  });
+
+
 </script>

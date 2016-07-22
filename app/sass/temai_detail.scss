@@ -290,16 +290,20 @@ header {
 }
 
 .head_ctrl {
-	height: 60%;
+	height: 3rem;
 	overflow: auto;
-	padding-bottom: 45px;
+	// margin-bottom: 45px;
+	 // -webkit-overflow-scrolling: touch;
+	   visibility: hidden;
 }
 .head-container {
   position: absolute;
-  top: 22.7%;
+  // top: 22.7%;
   bottom: 0;
   width: 100%;
   background-color: #fff;
+  padding-bottom: 45px;
+ -webkit-overflow-scrolling: touch;
 }
 .small_img_ctrl {
 	box-sizing: border-box;

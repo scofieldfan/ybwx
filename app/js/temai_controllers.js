@@ -376,7 +376,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       if ($scope.haveMask) {
         $("#detail_mask_container").show();
         //解决浮层滑动时body滑动
-        $('body').css("overflow","hidden")
+        // $('body').css("overflow","hidden");
       } else {
         $scope.submit();
       }
