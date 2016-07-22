@@ -26,27 +26,27 @@
 			</ul>
 			<div class="bd_part_input ">
 				<input type="text" style="margin-top: none" placeholder="姓名"    ng-minlength="1"  name="username" ng-model="user.username" required chinese >
-				<div class="cell"  style="color:red" ng-show="registration.username.$dirty && registration.username.$invalid || username_server_reason">
+				<div class="cell"  style="color:#ff5c00" ng-show="registration.username.$dirty && registration.username.$invalid || username_server_reason">
 					<small class="error" ng-show="registration.username.$error.required">姓名必填</small>
             		<small class="error"  ng-show="registration.username.$error.chinese">姓名必须是汉字!</small>
                     <small class="error" ng-show="username_server_reason">{{username_server_reason}}</small>
 		        </div>
 				<input type="text" class="input_top_padd" placeholder="身份证"  ng-minlength="18" ng-maxlength="18"  name="social_id" ng-model="user.social_id" required >
-				<div class="cell" style="color:red" ng-show="registration.social_id.$dirty && registration.social_id.$invalid || card_numer_server_reason">
+				<div class="cell" style="color:#ff5c00" ng-show="registration.social_id.$dirty && registration.social_id.$invalid || card_numer_server_reason">
 					<small class="error" ng-show="registration.social_id.$error.required">身份证必填</small>
 					<small class="error" ng-show="registration.social_id.$error.minlength">身份证必须是18位</small>
 					<small class="error" ng-show="registration.social_id.$error.maxlength">身份证必须是18位</small>
                     <small class="error" ng-show="card_numer_server_reason">{{card_numer_server_reason}}</small>
 				</div>
 				<input type="number" class="input_top_padd" placeholder="手机号"  ng-minlength="11" ng-maxlength="11" name="mobile" ng-model="user.mobile" required>
-				<div class="cell"  style="color:red" ng-show="registration.mobile.$dirty && registration.mobile.$invalid || mobile_server_reason">
+				<div class="cell"  style="color:#ff5c00" ng-show="registration.mobile.$dirty && registration.mobile.$invalid || mobile_server_reason">
 					<small class="error" ng-show="registration.mobile.$error.required">手机号必填</small>
 					<small class="error" ng-show="registration.mobile.$error.minlength">手机号必须是11位数字</small>
 					<small class="error" ng-show="registration.mobile.$error.maxlength">手机号必须是11位数字</small>
                     <small class="error" ng-show="mobile_server_reason">{{mobile_server_reason}}</small>
 		        </div>
 				<input type="text" class="input_top_padd" style="background: #fff;" ng-if="coupon_id==1 || coupon_id == 2 || coupon_id==3 " placeholder="航班号"  name="flight_no" ng-model="user.flight_no" required>
-				<div class="cell"  style="color:red" ng-show="registration.flight_no.$dirty && registration.flight_no.$invalid || card_numer_server_reason">
+				<div class="cell"  style="color:#ff5c00" ng-show="registration.flight_no.$dirty && registration.flight_no.$invalid || card_numer_server_reason">
 					<small class="error" ng-show="registration.flight_no.$error.required">航班号必填</small>
 				    <small class="error" ng-show="card_numer_server_reason">{{card_numer_server_reason}}</small>
 				</div>
@@ -54,7 +54,7 @@
 					<input class="last_input" style="background:url(wx_share/img/jian.jpg) no-repeat 95% center #fff;background-size: .17rem .17rem; -webkit-appearance:none;line-height: .48rem;" type="date" placeholder="保障期间" onfocus="_hmt.push(['_trackEvent', 'toubao', 'toubao_effective_date_focus']);" min="{{minDate | date:'yyyy-MM-dd'}}" max="{{maxDate | date:'yyyy-MM-dd'}}" name="insurance_date" ng-change="genInEffectiveDate()" ng-model="user.insurance_date" placeholder="yyyy/MM/dd" required >
 
 
-				<div class="cell"  style="color:red" ng-show="registration.insurance_date.$dirty && registration.insurance_date.$invalid || insurance_date_server_reason">
+				<div class="cell"  style="color:#ff5c00" ng-show="registration.insurance_date.$dirty && registration.insurance_date.$invalid || insurance_date_server_reason">
 	            	<small class="error" ng-show="registration.insurance_date.$error.min">保障日期最早从明天开始</small>
 	            	<small class="error"  ng-show="registration.insurance_date.$error.max">生效日期超过产品的最大要求</small>
 	                <small class="error" ng-show="insurance_date_server_reason">{{insurance_date_server_reason}}</small>

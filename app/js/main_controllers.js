@@ -199,7 +199,7 @@ function getHttpPromise($http, $rootScope, method, url, data, callback) {
 	}, function(res) {
 		console.log(res);
 		_hmt.push(['_trackEvent', 'http_error', "api:" + url]);
-		util.showToast($rootScope, "服务器错误");
+		util.showToast($rootScope, "网络异常");
 	});
 }
 
@@ -373,6 +373,20 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 					$location.path('/edindex');
 				}
 				var openId = sessionStorage.getItem("openId");
+				$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_insurance_index'] + "/" + openId, {}, function(res) {
+
+					if (res.data && res.data.description) {
+						util.showToast($rootScope, res.data.description);
+					}
+					if (res.data.code == 0) {
+						$("#loadingContainer").hide();
+						$scope.data = res.data.data;
+						initPieConfig($scope.data.aggregate_score, $scope.data.scores, $scope.data.policy);
+					}
+				})
+
+				/*
+				var openId = sessionStorage.getItem("openId");
 				$http({
 					method: 'GET',
 					headers: {
@@ -393,7 +407,9 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 				}, function(res) {
 					console.log(res);
 					util.showToast($rootScope, "服务器错误");
-				});
+				});*/
+
+
 			});
 		}
 	}
@@ -547,6 +563,8 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 			CIRCLE.init();
 			$scope.type = $routeParams.type;
 			$scope.estimateMoney = 0;
+
+			/*
 			$scope.selectPromise = $http({
 				method: 'GET',
 				headers: {
@@ -578,7 +596,33 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 			}, function(res) {
 				console.log(res);
 				util.showToast($rootScope, "服务器错误");
+			});*/
+
+
+
+			var openId = sessionStorage.getItem("openId");
+			$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_recommend'].replace('{type}', $routeParams.type), {}, function(res) {
+
+				if (res.data && res.data.description) {
+					util.showToast($rootScope, res.data.description);
+				}
+				if (res.data.code == 0) {
+					var sumInsuredView = [];
+
+					_.map(res.data.data.sum_insured_views, function(value, key) {
+						var objKey = _.groupBy(value, function(val, index) {
+							return index % 2;
+						});
+						 //后台只留偶数部分，找巴哥咨询
+						sumInsuredView[key] = objKey[1];
+					});
+					CIRCLE.updateData(res.data.data.coverage_scores, res.data.data.coverage_views, sumInsuredView, $routeParams.type);
+				}
 			});
+
+
+
+
 		}
 		$scope.data = {
 			scoreFix: 0
@@ -618,13 +662,13 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 			}
 
 			$location.path('/solution').search({
-					'type': $routeParams.type,
-					'coverage_score': scoreObj.fanweiScore,
-					'sum_insured_score': scoreObj.moneyScore,
-					'estimate_money': $scope.data.premium,
-					'sum_score': $scope.data.scoreFix
-				});
-		
+				'type': $routeParams.type,
+				'coverage_score': scoreObj.fanweiScore,
+				'sum_insured_score': scoreObj.moneyScore,
+				'estimate_money': $scope.data.premium,
+				'sum_score': $scope.data.scoreFix
+			});
+
 		}
 		$scope.showIntrod = function() {
 			_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_showIntrod']);
@@ -728,12 +772,26 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 				return item.id;
 			});
 			$scope.sumMoney = sumMoney;
-			var allMoney =  $scope.data.plans.reduce(function(preVal, curVal, index, array) {
+			var allMoney = $scope.data.plans.reduce(function(preVal, curVal, index, array) {
 				return preVal + curVal.premium;
 			}, 0);
-			
-			$scope.planAllMoney = allMoney;
 
+			$scope.planAllMoney = allMoney;
+			$scope.getRestrictions();
+
+		}
+		$scope.isHaveRestrictions = false;
+
+
+		$scope.getRestrictions = function() {
+			var openId = sessionStorage.getItem("openId");
+			$scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_restrictions'], {
+				open_id: openId,
+				plan_ids: $scope.choosePlansIds
+
+			}, function(res) {
+				$scope.isHaveRestrictions = (res.data.data.job_notice && Object.keys(res.data.data.job_notice).length > 0) || res.data.data.locale_notice || res.data.data.notices.length > 0;
+			})
 		}
 		$scope.init = function() {
 			$scope.showNum = 4;
@@ -767,9 +825,13 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 						})
 					}
 					$scope.choosePlan();
+					$scope.getRestrictions();
 
 				}
-			})
+			});
+
+
+
 		}
 		$scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
 			$("#coverage_table").find("tr:lt(" + $scope.showNum + ")").show();
@@ -784,7 +846,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 				$("#more_button").show();
 			}
 		}
-		$scope.isHaveRestrictions = false;
+
 		$scope.goInfo = function() {
 			_hmt.push(['_trackEvent', 'solution', 'solution_subBtn']);
 			if ($scope.canNotBuyPlans.length === $scope.data.plans.length) {
@@ -798,14 +860,12 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 					'type': $routeParams.type,
 					'coverage_score': $routeParams.coverage_score,
 					'sum_insured_score': $routeParams.sum_insured_score,
-					'estimate_money': $routeParams.estimate_money,
 					'sum_score': $routeParams.sum_score,
 					'choose_plans': JSON.stringify($scope.choosePlansIds)
 				});
 			} else {
 				$location.path('/toubao_new').search({
 					'type': $routeParams.type,
-					'estimate_money': $routeParams.sumMoney,
 					'choose_plans': JSON.stringify($scope.choosePlansIds)
 				});
 			}
@@ -862,29 +922,30 @@ mainControllers.controller('ybwxInfoCtrl', ['$scope', '$routeParams', '$location
 		}
 		$scope.goToubao = function() {
 			_hmt.push(['_trackEvent', 'information', 'information_subBtn']);
-			$location.path('/tb_dz').search({
+			$location.path('/toubao_new').search({
 				'type': $routeParams.type,
-				'coverage_score': $routeParams.coverage_score,
-				'sum_insured_score': $routeParams.sum_insured_score,
-				'estimate_money': $routeParams.estimate_money,
-				'sum_score': $routeParams.sum_score,
-				'from': 'dingzhi'
+				'choose_plans': $routeParams.choose_plans
 			});
-		}
-		$scope.showJobDes = function(sencondJob) {
 
+		};
+
+
+		$scope.showJobDes = function(sencondJob,jobName) {
+
+       
 			var html = [];
+			html.push(' <div class="job_name" >' +jobName + '</div>');
 			sencondJob.forEach(function(item) {
+          
 				html.push(' <div class="toast_head" >' + item.name + '</div>');
 				var des = [];
 				item.jobs.forEach(function(element) {
 					des.push(element.name);
 				});
-
+				
 				html.push(' <div class="toast_main" >' + des.join(" 、") + '</div>');
 
 			});
-			//console.log(html.join(""));
 			$("#popup").find(".toast").html(html.join(""));
 			$("#popup").show();
 		}
@@ -893,34 +954,35 @@ mainControllers.controller('ybwxInfoCtrl', ['$scope', '$routeParams', '$location
 			var openId = sessionStorage.getItem("openId");
 			$scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_restrictions'], {
 				"open_id": openId,
-				// "plan_id": 121,
-				"insurance_type": 4,
-				"coverage_score": 6.9,
-				"sum_insured_score": 3.9
+				plan_ids: JSON.parse($routeParams.choose_plans),
 			}, function(res) {
 				console.log(res);
 				$scope.data = res.data.data;
-				// $scope.job_notice = Object.keys($scope.data.job_notice);
-				//$scope.job_name = $scope.data.job_notice[$scope.job_notice[0]];
-				console.log($scope.job_name);
-				// console.log($scope.job_notice);
 				if ($scope.data.notices) {
-					_.map($scope.data.notices, function(item) {
+					$scope.data.notices = _.map($scope.data.notices, function(item) {
 						if (item.health_notice) {
 							item.healthNotices = item.health_notice.split("\r\n");
 						}
 						return item;
 					});
+					$scope.data.notices = _.map($scope.data.notices, function(item) {
+						if (item.extra_notice) {
+							item.extraNotices = item.extra_notice.split("\r\n");
+						}
+						return item;
+					});
 				}
+				$scope.isHaveJob = Object.keys($scope.data.job_notice).length > 0;
+				/*
 				$scope.isHaveJob = _.filter($scope.data.job_notice, function(job_notice) {
 					return job_notice
-				})
+				})*/
 				$scope.isHaveHealth = _.filter($scope.data.notices, function(notice) {
 					return notice.health_notice
-				})
+				}).length > 0;
 				$scope.isExtraNotice = _.filter($scope.data.notices, function(notice) {
 					return notice.extra_notice
-				})
+				}).length > 0;
 				// console.log("extranotice:" + $scope.isExtraNotice.length);
 
 			})
@@ -1031,7 +1093,6 @@ var periodTypeMap = {
 
 
 
-
 mainControllers.controller('ybwxSupplayInfoCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
@@ -1061,7 +1122,7 @@ mainControllers.controller('ybwxSupplayInfoCtrl', ['$scope', '$routeParams', '$l
 					"relation": "1"
 				};
 
-				
+
 				if ($scope.for === 'other') {
 					postData["relation"] = $scope.data.relation.id;
 					postData["username"] = $scope.username;

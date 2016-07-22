@@ -1,31 +1,49 @@
 <!--投保须知 -->
-<link rel="stylesheet" href="css/information.css?rev=db2867c7792882d13fdd046ed18225ce">
+<link rel="stylesheet" href="css/information.css?rev=77cc1a3e44d54c4980c2dd199c15f406">
 <div  data-ng-init="init()" cg-busy="myPromise" class="information_controller">
 	<div class="infor_head" ng-if="isHaveJob">
 		<img src="img/claim_information/logo.jpg"><span class="head_info">职业告知</span><span class="orange">是否从事以下高危职业？</span>
 	</div>
 	<div class="job" ng-if="isHaveJob">
-		<div class="job_info" ng-click="showJobDes(jobValue)" ng-repeat="(jobName,jobValue) in data.job_notice">{{jobName}}</div>
+		<div class="job_info" ng-click="showJobDes(jobValue,jobName)" ng-repeat="(jobName,jobValue) in data.job_notice">{{jobName}}</div>
 	</div>
 	
 	<div class="infor_head"  ng-if="isHaveHealth">
 		<img src="img/claim_information/logo.jpg"><span class="head_info">健康告知</span>
 	</div>
-	<div class="insurance_name"  ng-if="isHaveHealth" ng-repeat="notice in data.notices">{{notice.insurance_name}} 	{{notice.plan_name}}</div>
-	<div class="info_word"  ng-if="isHaveHealth" ng-repeat="item in data.notices[0].healthNotices">{{item}}</div>
+
+
+	<div  ng-if="isHaveHealth"  ng-repeat="notice in data.notices">
+		<div class="insurance_name" >
+				{{notice.insurance_name}} 	{{notice.plan_name}}
+		</div>
+		<div class="info_word"  ng-repeat="item in notice.healthNotices">{{item}}</div>
+	</div>
+
+
+
 	<div class="infor_head" ng-if="data.locale_notice">
 		<img src="img/claim_information/logo.jpg"><span class="head_info">区域限制</span>
 	</div>
 	<div class="info_word"  ng-if="data.locale_notice" ng-repeat="item in data.notices[0].healthNotices">{{data.locale_notice}}</div>
+
+
 	<div class="infor_head" ng-if="data.age_notice">
 		<img src="img/claim_information/logo.jpg"><span class="head_info">年龄限制</span>
 	</div>
 	<div class="info_word"  ng-if="data.age_notice">{{data.age_notice}}</div>
-	<div class="infor_head" ng-if="isExtraNotice.length>0">
+
+
+	
+	<div class="infor_head" ng-if="isExtraNotice">
 		<img src="img/claim_information/logo.jpg"><span class="head_info">其他限制</span>
 	</div>
-	<div class="info_word"  ng-if="isExtraNotice.length>0" ng-repeat="item in data.notices[0].healthNotices">{{notice.insurance_name}} 	{{notice.plan_name}}<br/>
-				{{notice.extra_notice}} </div>
+	<div class="info_word"  ng-if="isExtraNotice" ng-repeat="notice in data.notices">
+		{{notice.insurance_name}} 	{{notice.plan_name}}
+		<div ng-repeat="extraNotice in notice.extraNotices">
+				{{extraNotice}} 
+		</div>
+	</div>
 
 	<!-- 职业扩展详情 弹窗 -->
 	<div class="mask" id="popup">

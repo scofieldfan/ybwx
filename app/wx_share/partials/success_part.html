@@ -22,7 +22,7 @@
 						<a href="javascript:void(0)" class="btn btn_happy send_bd" style="border:none;border-radius: 0;background: #e52f62;height: .48rem;" ng-click="send_bd()" >发送电子保单</a>
 					</div>
 				</div>
-				<div class="cell"  style="color:red" ng-show="sendForm.email.$dirty && sendForm.email.$invalid ">
+				<div class="cell"  style="color:#ff5c00" ng-show="sendForm.email.$dirty && sendForm.email.$invalid ">
 					<small class="error" ng-show="sendForm.email.$error.required">邮箱必填</small>
 					<small class="error" ng-show="sendForm.email.$error.email">邮件格式不正确</small>
 				</div>
