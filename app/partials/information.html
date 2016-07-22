@@ -35,11 +35,15 @@
 
 
 	
-	<div class="infor_head" ng-if="isExtraNotice.length>0">
+	<div class="infor_head" ng-if="isExtraNotice">
 		<img src="img/claim_information/logo.jpg"><span class="head_info">其他限制</span>
 	</div>
-	<div class="info_word"  ng-if="isExtraNotice.length>0" ng-repeat="item in data.notices[0].healthNotices">{{notice.insurance_name}} 	{{notice.plan_name}}<br/>
-				{{notice.extra_notice}} </div>
+	<div class="info_word"  ng-if="isExtraNotice" ng-repeat="notice in data.notices">
+		{{notice.insurance_name}} 	{{notice.plan_name}}
+		<div ng-repeat="extraNotice in notice.extraNotices">
+				{{extraNotice}} 
+		</div>
+	</div>
 
 	<!-- 职业扩展详情 弹窗 -->
 	<div class="mask" id="popup">

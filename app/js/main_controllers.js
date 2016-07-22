@@ -920,6 +920,12 @@ mainControllers.controller('ybwxInfoCtrl', ['$scope', '$routeParams', '$location
 						}
 						return item;
 					});
+					$scope.data.notices = _.map($scope.data.notices, function(item) {
+						if (item.extra_notice) {
+							item.extraNotices = item.extra_notice.split("\r\n");
+						}
+						return item;
+					});
 				}
 				$scope.isHaveJob = Object.keys($scope.data.job_notice).length>0;
 				/*
