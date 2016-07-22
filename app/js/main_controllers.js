@@ -716,8 +716,8 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 			$scope.getRestrictions();
 
 		}
-		$scope.isHaveRestrictions = false;
 
+		$scope.isHaveRestrictions = false;
 
 		$scope.getRestrictions = function() {
 			var openId = sessionStorage.getItem("openId");
@@ -862,20 +862,20 @@ mainControllers.controller('ybwxInfoCtrl', ['$scope', '$routeParams', '$location
 				'type': $routeParams.type,
 				'choose_plans': $routeParams.choose_plans
 			});
-
 		};
 
-
-		$scope.showJobDes = function(sencondJob) {
-
+		$scope.showJobDes = function(sencondJob,jobName) {
+       
 			var html = [];
+			html.push(' <div class="job_name" >' +jobName + '</div>');
 			sencondJob.forEach(function(item) {
+          
 				html.push(' <div class="toast_head" >' + item.name + '</div>');
 				var des = [];
 				item.jobs.forEach(function(element) {
 					des.push(element.name);
 				});
-
+				
 				html.push(' <div class="toast_main" >' + des.join(" 、") + '</div>');
 
 			});

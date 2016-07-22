@@ -337,9 +337,6 @@ bdControllers.controller('ybwxUpdateAddContactCtrl', ['$scope', '$routeParams', 
 		$scope.addPeople = function() {
 			// 新增被保险人
 
-			console.log("social_id:" + $scope.social_id);
-
-			console.log("mobile:" + $scope.mobile);
 			$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['addContact'], {
 				open_id: openId,
 				relation: $scope.relation.id,
@@ -356,6 +353,7 @@ bdControllers.controller('ybwxUpdateAddContactCtrl', ['$scope', '$routeParams', 
 					charge_period_type: $routeParams.charge_period_type,
 					charge_period: $routeParams.charge_period
 				});
+
 			})
 		}
 		// 删除被保险人资料
@@ -375,6 +373,7 @@ bdControllers.controller('ybwxUpdateAddContactCtrl', ['$scope', '$routeParams', 
 							charge_period_type: $routeParams.charge_period_type,
 							charge_period: $routeParams.charge_period
 						});
+
 						// }
 
 					});
@@ -441,6 +440,7 @@ bdControllers.controller('ybwxUpdateAddContactCtrl', ['$scope', '$routeParams', 
 						coverage_period: $routeParams.coverage_period,
 						charge_period_type: $routeParams.charge_period_type,
 						charge_period: $routeParams.charge_period
+
 					});
 
 				}
@@ -552,6 +552,7 @@ bdControllers.controller('ybwxContactListCtrl', ['$scope', '$routeParams', '$loc
 				coverage_period: $routeParams.coverage_period,
 				charge_period_type: $routeParams.charge_period_type,
 				charge_period: $routeParams.charge_period
+
 			});
 		}
 		// 跳转and新增被保险人

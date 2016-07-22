@@ -73,7 +73,7 @@
 
 <!-- /wrapper -->
   <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-  <script src="js/output/application.min.js?rev=a6addfd44533219cbaf5254d56b9c7f6"></script>
+  <script src="js/output/application.min.js?rev=304795c27a78b9f55eda5d7ab1464120"></script>
   <script src="js/directives.js?rev=5e0047591b8595973f9946f67db591b2"></script>
   <!--
   <script src="wx_bx_gl/js/swiper.min.js"></script>
@@ -130,6 +130,10 @@
 
         $("body").on("click",".mask",function(){
           $(".mask").hide();
+          console.log("........");
+          //  document.body.removeEventListener('touchmove', function(event) { 
+          //   event.preventDefault(); 
+          // }, false);
         });
            $("body").on("click",".close",function(){
           $(".mask").hide();
