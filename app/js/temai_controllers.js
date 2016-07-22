@@ -213,7 +213,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       var openId = sessionStorage.getItem("openId");
       $scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_restrictions'], {
         open_id: openId,
-        plan_id: $scope.plan.id
+        plan_ids: [$scope.plan.id]
 
       }, function(res) {
 
@@ -407,7 +407,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
 
       var postData = {
         "plan_id": selectPlan,
-        "choose_plans": JSON.stringify([selectPlan])
+        "choose_plans": JSON.stringify([selectPlan]),
       };
 
       if ($scope.coverage_period_type) {

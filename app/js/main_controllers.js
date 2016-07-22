@@ -733,12 +733,22 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 			}, 0);
 
 			$scope.planAllMoney = allMoney;
+			$scope.getRestrictions();
 
 		}
 		$scope.isHaveRestrictions = false;
 
 
+		$scope.getRestrictions = function() {
+			var openId = sessionStorage.getItem("openId");
+			$scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_restrictions'], {
+				open_id: openId,
+				plan_ids: $scope.choosePlansIds
 
+			}, function(res) {
+				$scope.isHaveRestrictions = (res.data.data.job_notice && Object.keys(res.data.data.job_notice).length > 0) || res.data.data.locale_notice || res.data.data.notices.length > 0;
+			})
+		}
 		$scope.init = function() {
 			$scope.showNum = 4;
 			$scope.sumMoney = 0;
@@ -771,21 +781,10 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 						})
 					}
 					$scope.choosePlan();
+					$scope.getRestrictions();
 
 				}
 			});
-			var openId = sessionStorage.getItem("openId");
-			$scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_restrictions'], {
-				"open_id": openId,
-				"insurance_type": $routeParams.type,
-				"coverage_score": $routeParams.coverage_score,
-				"sum_insured_score": $routeParams.sum_insured_score
-			}, function(res) {
-
-				$scope.isHaveRestrictions =  (res.data.data.job_notice && Object.keys(res.data.data.job_notice).length>0)  || res.data.data.locale_notice ||  res.data.data.notices.length>0 ;
-				// console.log("extranotice:" + $scope.isExtraNotice.length);
-
-			})
 
 
 
@@ -803,7 +802,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 				$("#more_button").show();
 			}
 		}
-	
+
 		$scope.goInfo = function() {
 			_hmt.push(['_trackEvent', 'solution', 'solution_subBtn']);
 			if ($scope.canNotBuyPlans.length === $scope.data.plans.length) {
@@ -881,10 +880,12 @@ mainControllers.controller('ybwxInfoCtrl', ['$scope', '$routeParams', '$location
 			_hmt.push(['_trackEvent', 'information', 'information_subBtn']);
 			$location.path('/toubao_new').search({
 				'type': $routeParams.type,
-				'choose_plans':$routeParams.choose_plans
+				'choose_plans': $routeParams.choose_plans
 			});
-			
-		}
+
+		};
+
+
 		$scope.showJobDes = function(sencondJob) {
 
 			var html = [];
@@ -906,10 +907,7 @@ mainControllers.controller('ybwxInfoCtrl', ['$scope', '$routeParams', '$location
 			var openId = sessionStorage.getItem("openId");
 			$scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_restrictions'], {
 				"open_id": openId,
-				plan_id:$routeParams.plan_id,
-				"insurance_type": $routeParams.type,
-				"coverage_score": $routeParams.coverage_score,
-				"sum_insured_score": $routeParams.sum_insured_score
+				plan_ids: JSON.parse($routeParams.choose_plans),
 			}, function(res) {
 				console.log(res);
 				$scope.data = res.data.data;
@@ -927,7 +925,7 @@ mainControllers.controller('ybwxInfoCtrl', ['$scope', '$routeParams', '$location
 						return item;
 					});
 				}
-				$scope.isHaveJob = Object.keys($scope.data.job_notice).length>0;
+				$scope.isHaveJob = Object.keys($scope.data.job_notice).length > 0;
 				/*
 				$scope.isHaveJob = _.filter($scope.data.job_notice, function(job_notice) {
 					return job_notice
