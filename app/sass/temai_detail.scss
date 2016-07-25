@@ -252,7 +252,6 @@ header {
 		font-size:14px;
 		margin:0;
 		margin-top: 18px;
-		border-top: 1px solid #c1c1c1;
 	}
 	p{
 		font-size:14px;	
@@ -335,6 +334,12 @@ header {
   margin: 0.14rem 0 0.08rem 0;
   color: #535353;
 }
+.xian {
+	// border: 1px solid #c1c1c1;
+	height: 1px;
+	@include border(1px 0 0 0,#c1c1c1);
+	margin-top: 10px;
+}
 .button {
   font-size: 0.13rem;
   line-height: 0.33rem;
@@ -355,9 +360,10 @@ header {
   background-color: #fff;
 }
 .button_hover {
-  border: 1px solid #247ad1;
-  color: #000;
-  background: #fff url("../img/choose_rb.png") no-repeat right bottom/15px;
+  border: none;
+  color: #fff;
+  background: #5aa8ff;
+  // background: #fff url("../img/choose_rb.png") no-repeat right bottom/15px;
 }
 .button_minus {
   border-right: 1px solid #c1c1c1;
