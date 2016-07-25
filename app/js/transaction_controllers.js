@@ -46,11 +46,6 @@ transControllers.controller('wxBaoDanListCtrl', ['$scope', '$routeParams', '$loc
 
 			}
 
-			/*
-			console.log(order.order_status)
-			console.log($scope.tog)
-			console.log(order.order_status === $scope.tog);*/
-			//return parseInt(order.order_status_enum) === parseInt($scope.tog);
 		};
 
 		$scope.goPay = function(order_id, order_no, order_amount) {

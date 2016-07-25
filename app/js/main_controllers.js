@@ -375,7 +375,6 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 				var openId = sessionStorage.getItem("openId");
 				$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_insurance_index'] + "/" + openId, {}, function(res) {
 
-
 					if (res.data && res.data.description) {
 						util.showToast($rootScope, res.data.description);
 					}
@@ -559,6 +558,7 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 					CIRCLE.updateData(res.data.data.coverage_scores, res.data.data.coverage_views, sumInsuredView, $routeParams.type);
 				}
 			});
+
 		}
 		$scope.data = {
 			scoreFix: 0
@@ -686,15 +686,18 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 				$(element).find("span").html("收起");
 				$(element).attr("data-switch", "off");
 				$(element).find("div").addClass("up");
+				_hmt.push(['_trackEvent', 'solution', 'solution_unfold']);
 			} else {
 				$(element).siblings(".table-wrapper").find("tr:gt(" + num + ")").hide();
 				$(element).find("span").html("查看更多");
 				$(element).attr("data-switch", "on");
 				$(element).find("div").removeClass("up");
+				_hmt.push(['_trackEvent', 'solution', 'solution_fold']);
 			}
 		}
 
 		$scope.choosePlan = function() {
+			_hmt.push(['_trackEvent', 'solution', 'solution_choose']);
 			var filteredPlans = $scope.data.plans.filter(function(item) {
 				return item.status === 1 && !item.unchecked;
 			});
@@ -716,21 +719,8 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 			$scope.getRestrictions();
 
 		}
+
 		$scope.isHaveRestrictions = false;
-
-
-		$scope.getRestrictions = function() {
-			var openId = sessionStorage.getItem("openId");
-			$scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_restrictions'], {
-				open_id: openId,
-				plan_ids: $scope.choosePlansIds
-
-			}, function(res) {
-				$scope.isHaveRestrictions = (res.data.data.job_notice && Object.keys(res.data.data.job_notice).length > 0) || res.data.data.locale_notice || res.data.data.notices.length > 0;
-			})
-		}
-		$scope.isHaveRestrictions = false;
-
 
 		$scope.getRestrictions = function() {
 			var openId = sessionStorage.getItem("openId");
@@ -789,7 +779,6 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 			}
 		});
 		$scope.showCoverages = function() {
-			console.log("show coverages.......");
 			$("#coverage_table").find("tr:lt(" + $scope.showNum + ")").show();
 			if ($("#coverage_table").find("tr").length > $scope.showNum) {
 				$("#more_button").show();
@@ -877,9 +866,7 @@ mainControllers.controller('ybwxInfoCtrl', ['$scope', '$routeParams', '$location
 			});
 		};
 
-
 		$scope.showJobDes = function(sencondJob,jobName) {
-
        
 			var html = [];
 			html.push(' <div class="job_name" >' +jobName + '</div>');
@@ -997,7 +984,7 @@ mainControllers.controller('ybwxContinueCtrl', ['$scope', '$routeParams', '$loca
 	}
 ]);
 
-
+/*
 function getUserInfo() {
 	var userinfo = JSON.parse(localStorage.getItem('userinfo'));
 	if (userinfo) {
@@ -1032,7 +1019,7 @@ function getFamily() {
 
 function saveFamily(familys) {
 	localStorage.setItem('familyInfo', JSON.stringify(familys));
-}
+}*/
 
 var periodTypeMap = {
 	1: "d",
@@ -1059,6 +1046,7 @@ mainControllers.controller('ybwxSupplayInfoCtrl', ['$scope', '$routeParams', '$l
 
 
 		$scope.submit = function() {
+			_hmt.push(['_trackEvent', 'supplyinfo', 'supplyinfo_submit']);
 			var openId = sessionStorage.getItem("openId");
 			if (baseValid()) {
 
@@ -1168,6 +1156,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 			console.log($scope.data.plans);
 		}
 		$scope.goRoute = function() {
+			_hmt.push(['_trackEvent', 'toubaonew', 'toubaonew_toubaoren']);
 			if ($scope.isFirst) {
 				//去补充信息页
 				$location.path('/supply_userinfo').search($routeParams);
@@ -1177,11 +1166,8 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 			}
 		}
 
-
-
 		$scope.submit = function() {
-
-			
+			_hmt.push(['_trackEvent', 'toubaonew', 'toubaonew_submit']);
 
 			if (!$scope.tbform.$invalid && $scope.canNotBuyPlans.length < $scope.data.plans.length) {
 				var plans = {};
@@ -1327,608 +1313,3 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 ]);
 
 
-
-/*
-mainControllers.controller('ybwxBzCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
-	function($scope, $routeParams, $location, $http, $rootScope) {
-
-		_hmt.push(['_trackPageview', $location.path()]);
-		$scope.sum_score = $routeParams.sum_score;
-		$scope.estimate_money = $routeParams.estimate_money;
-		$scope.processMoney = function(money) {
-			var money = util.processSpecialMoney(money);
-			if (money === "0元") {
-				money = "";
-			}
-			return money;
-		}
-		$scope.goInfo = function() {
-
-			_hmt.push(['_trackEvent', 'baozhangzeren', 'baozhangzeren_subBtn']);
-			$location.path('/tb_dz').search({
-				'type': $routeParams.type,
-				'coverage_score': $routeParams.coverage_score,
-				'sum_insured_score': $routeParams.sum_insured_score,
-				'estimate_money': $routeParams.estimate_money,
-				'sum_score': $routeParams.sum_score,
-				'from': 'dingzhi'
-			});
-					}
-		var isHaveRestrictions = false;
-
-		$scope.init = function() {
-			$scope.data = {};
-			var openId = sessionStorage.getItem("openId");
-			$scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_coverages'], {
-				"open_id": openId,
-				"insurance_type": $routeParams.type,
-				"coverage_score": $routeParams.coverage_score,
-				"sum_insured_score": $routeParams.sum_insured_score
-			}, function(res) {
-				if (res && res.data && res.data.data) {
-					//$scope.data = res.data.data;
-					$scope.data.main_coverages = res.data.data.coverages.filter(function(item) {
-						return item.coverage_type == 1;
-					});
-					$scope.data.second_coverages = res.data.data.coverages.filter(function(item) {
-						return item.coverage_type == 2;
-					});
-				}
-			})
-			$scope.restrictionPromise = getHttpPromise($http, $rootScope, 'POST', api['get_restrictions'], {
-				"insurance_type": $routeParams.type,
-				"coverage_score": $routeParams.coverage_score,
-				"sum_insured_score": $routeParams.sum_insured_score
-			}, function(res) {
-				if (res.data.data) {
-					if (res.data.data.age_notice || res.data.data.locale_notice || res.data.data.notices) {
-						isHaveRestrictions = true;
-					}
-				}
-			})
-		}
-	}
-]);
-*/
-
-/*
-mainControllers.controller('ybwxOfficalSiteCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
-	function($scope, $routeParams, $location, $http, $rootScope) {
-
-		_hmt.push(['_trackPageview', $location.path()]);
-		$scope.plans = JSON.parse(sessionStorage.getItem("sell_plan"));
-		console.log($scope.plans);
-
-		$scope.process_insured_money = function(str) {
-			return util.processSpecialMoney(str);
-		}
-
-	}
-]);*/
-
-/*
-mainControllers.controller('ybwxToubaoDingzhiAllCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
-	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
-
-		_hmt.push(['_trackPageview', $location.path() + '_' + $routeParams.from]);
-
-		$scope.genDanwei = function(type) {
-			return coveragePeriodMap[type];
-		}
-		$scope.setTbFor = function(code) {
-			$scope.tbFor = code;
-			if (code === '1') {
-				//为自己
-				$scope.insured["username"] = $scope.user.username;
-				$scope.insured["social_id"] = $scope.user.social_id;
-				$scope.insured["mobile"] = $scope.user.mobile;
-			} else {
-				//为他人
-				$scope.insured["username"] = "";
-				$scope.insured["social_id"] = "";
-				$scope.insured["mobile"] = "";
-			}
-			_hmt.push(['_trackEvent', 'toubao', 'toubao_setFor_' + code]);
-		}
-		$scope.showJobFirst = function() {
-			_hmt.push(['_trackEvent', 'toubao', 'toubao_job_showPop']);
-			$(".main").hide();
-			$("#job_container_1").show();
-		}
-		$scope.showJobSecond = function(id) {
-			_hmt.push(['_trackEvent', 'toubao', 'toubao_job_firstSelect']);
-			$(".job_main").hide();
-			$("#job_container_2").show();
-			$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_industries_2'] + id, {}, function(res) {
-				console.log(res.data.data);
-				$scope.data.occupations = res.data.data.occupations;
-			})
-		}
-
-		
-		$scope.confirmJob = function(job) {
-			_hmt.push(['_trackEvent', 'toubao', 'toubao_job_thirdSelect']);
-			$scope.job = job;
-			$(".main").show();
-			$(".job_main").hide();
-		}
-		$scope.showJobThird = function(id, name) {
-			_hmt.push(['_trackEvent', 'toubao', 'toubao_job_secondSelect']);
-			$(".job_main").hide();
-			$("#job_container_3").show();
-			$scope.job = name;
-			$scope.thirdPromise = getHttpPromise($http, $rootScope, 'GET', api['get_industries_3'] + id, {}, function(res) {
-				console.log(res.data.data);
-				$scope.data.jobs = res.data.data.jobs;
-				
-			})
-		}
-		$scope.checkUserInfo = function() {
-
-			if ($scope.user.username && $scope.user.mobile && $scope.user.social_id) {
-				$scope.isHaveInfo = true;
-			} else {
-				$scope.isHaveInfo = false;
-			}
-
-			console.log($scope.user);
-			console.log("have Info:" + $scope.isHaveInfo);
-		}
-		$scope.choose = function($event) {
-			_hmt.push(['_trackEvent', 'toubao', 'toubao_family_choose']);
-			$($event.target).parents("tr").find("input").prop("checked", true);
-			$("#family_container").find("tr").find("td:eq(4)").removeClass("hover");
-			$($event.target).parents("tr").find("td:eq(4)").addClass("hover");
-		}
-
-		function selectDefaultFamily() {
-			$("#family_container").find("tr:eq(0)").find("input").prop("checked", true);
-			$("#family_container").find("tr:eq(0)").find("td:eq(4)").addClass("hover");
-		}
-		$scope.deleteFamily = function($event) {
-			_hmt.push(['_trackEvent', 'toubao', 'toubao_family_delete']);
-			var element = $($event.target).parents("tr");
-			var name = $(element).find("td:eq(1)").html();
-			element.remove();
-			$scope.familys = $scope.familys.filter(function(item) {
-				return item.name !== name;
-			})
-
-			selectDefaultFamily();
-		}
-		$scope.selectFamily = function() {
-			_hmt.push(['_trackEvent', 'toubao', 'toubao_family_subBtn']);
-
-
-			var username = $("#family_container").find('input[name=family_radio]:checked').parents("tr").find("td:eq(1)").html();
-			var family = $scope.familys.filter(function(item) {
-				return item.username === username;
-			})
-			console.log("select family......");
-			console.log(username);
-			console.log(family);
-
-			$scope.insured["username"] = family[0]["username"];
-			$scope.insured["relation"] = family[0]["relation"];
-			$scope.insured["social_id"] = family[0]["social_id"];
-			$scope.insured["mobile"] = family[0]["mobile"];
-			$("#family_container").hide();
-			$(".main").show();
-			console.log("insured...");
-			console.log($scope.insured);
-			$scope.getPlans();
-		}
-		$scope.showFamily = function() {
-			_hmt.push(['_trackEvent', 'toubao', 'toubao_family_showPopup']);
-			selectDefaultFamily();
-			$("#family_container").show();
-			$(".main").hide();
-
-		}
-		$scope.init = function() {
-			$scope.data = {};
-			$scope.insured = {};
-			$scope.premium = 0;
-			$scope.job = {
-				name: "请选择职业"
-			};
-			$scope.isJobOk = true;
-			$scope.firstPromise = getHttpPromise($http, $rootScope, 'GET', api['get_industries_1'], {}, function(res) {
-				console.log(res.data.data);
-				$scope.data.industries = res.data.data.industries;
-			});
-			if ($routeParams.coverage_period_type) {
-				$scope.coverage_period_type = $routeParams.coverage_period_type;
-			}
-			if ($routeParams.coverage_period) {
-				$scope.coverage_period = $routeParams.coverage_period;
-			}
-			if ($routeParams.charge_period_type) {
-				$scope.charge_period_type = $routeParams.charge_period_type;
-			}
-			if ($routeParams.charge_period) {
-				$scope.charge_period = $routeParams.charge_period;
-			}
-
-
-			$scope.user = getUserInfo();
-			$scope.familys = getFamily();
-			$scope.premium = 0;
-			console.log("family:......");
-			console.log($scope.familys);
-			$scope.checkUserInfo();
-			$scope.setTbFor('1');
-			$scope.getPlans(true); //获得投保方案的信息
-			$scope.params = $routeParams;
-			var effectiveDate = new Date();
-			effectiveDate.setDate(effectiveDate.getDate() + 1);
-			$scope.minDate = effectiveDate;
-			$scope.user.effective_date = effectiveDate;
-			$scope.know_contract = true;
-
-			genInEffectiveDate();
-
-		}
-
-		function addDays(date, days) {
-			var result = new Date(date);
-			result.setDate(result.getDate() + days);
-			return result;
-		}
-
-		function genInEffectiveDate() {
-			//计算失效日期
-			if ($scope.coverage_period && $scope.coverage_period_type) {
-				var period = $scope.coverage_period;
-				var effDate = new Date();
-				if ($scope.coverage_period_type == 5) {
-					//					effDate.setDate($scope.user.effective_date.getDate() + parseInt($scope.coverage_period));
-					effDate = addDays($scope.user.effective_date, parseInt($scope.coverage_period));
-				}
-				if ($scope.coverage_period_type == 2) {
-					//var curr_year = $scope.user.effective_date.getFullYear();
-					//effDate.setFullYear(curr_year + parseInt($scope.coverage_period));
-					//effDate.setDate($scope.user.effective_date.getDate() + 365*parseInt($scope.coverage_period));
-					effDate = addDays($scope.user.effective_date, 365 * parseInt($scope.coverage_period));
-				}
-				if ($scope.order && $scope.order.effective_date && !$scope.order.effective_date.$invalid) {
-					$scope.user.inEffective_date = effDate;
-				}
-				if (!$scope.order) {
-					$scope.user.inEffective_date = effDate;
-				}
-			}
-		}
-
-
-		$scope.changeEffectiveDate = function() {
-			//选择保险期间
-			genInEffectiveDate();
-		}
-
-		$scope.process_insured_money = function(str) {
-			return util.processSpecialMoney(str);
-		}
-
-		$scope.getPlans = function() {
-
-			$scope.sumPremium = 0;
-			var openId = sessionStorage.getItem("openId");
-			var postData = {
-				open_id: openId
-			};
-			if ($scope.insured.social_id) {
-				postData["social_id"] = $scope.insured.social_id;
-			}
-			if ($routeParams.type) {
-				postData["insurance_type"] = $routeParams.type;
-			}
-			if ($routeParams.coverage_score) {
-				postData["coverage_score"] = $routeParams.coverage_score;
-			}
-			if ($routeParams.sum_insured_score) {
-				postData["sum_insured_score"] = $routeParams.sum_insured_score;
-			}
-			if ($routeParams.plan_id) {
-				postData["plan_id"] = $routeParams.plan_id;
-			}
-			if ($routeParams.coverage_period) {
-				postData["coverage_period"] = $routeParams.coverage_period;
-			}
-			if ($routeParams.coverage_period_type) {
-				postData["coverage_period_type"] = $routeParams.coverage_period_type;
-			}
-			if ($routeParams.charge_period) {
-				postData["charge_period"] = $routeParams.charge_period;
-			}
-			if ($routeParams.charge_period_type) {
-				postData["charge_period_type"] = $routeParams.charge_period_type;
-			}
-
-			$scope.planPromise = getHttpPromise($http, $rootScope, 'POST', api['pre_insure'], postData, function(res) {
-
-
-
-				console.log("pre_insure...");
-				console.log(res.data.data);
-				$scope.plans = res.data.data.plans;
-				if (res.data.data.premium) {
-					$scope.premium = res.data.data.premium;
-				}
-
-				$scope.isAllOffical = $scope.plans.every(function(item) {
-					return item.status === 2;
-				});
-
-				console.log("isAllOffical:" + $scope.isAllOffical);
-				if ($scope.isAllOffical) {
-					$("#confirmBtn").html("官网购买");
-					$("#submitBtn").html("未开售");
-				}
-
-				$scope.view = res.data.data.view;
-
-				sessionStorage.setItem("sell_plan", JSON.stringify($scope.plans)); //存储需要支付的订单
-
-				if (!$scope.relations) {
-					//$scope.insured.relation = $scope.relations[0];
-					if (res.data.data.relations) {
-						$scope.relations = res.data.data.relations;
-						var obj = {
-							id: '-1',
-							name: '请选择关系'
-						};
-						$scope.relations.unshift(obj);
-						$scope.insured.relation = obj;
-					}
-
-				}
-				if (res.data.data.min_effective_days) {
-					var minDate = new Date();
-					minDate.setDate(minDate.getDate() + res.data.data.min_effective_days);
-					$scope.minDate = minDate;
-					$scope.user.effective_date = minDate;
-				}
-				if (res.data.data.max_effective_days) {
-					var maxDate = new Date();
-					maxDate.setDate(maxDate.getDate() + res.data.data.max_effective_days);
-					$scope.maxDate = maxDate;
-				}
-
-				if (res.data.data.coverage_period && res.data.data.coverage_period.indexOf("|") < 0) {
-					$scope.coverage_period = res.data.data.coverage_period;
-					$scope.coverage_period_type = res.data.data.coverage_period_type;
-					$scope.charge_period_type = res.data.data.charge_period_type;
-					genInEffectiveDate();
-				}
-				if (!$scope.view.family) {
-
-				}
-
-			});
-
-		}
-
-		function baseValid() {
-			if ($scope.order.username.$invalid) {
-				util.showToast($rootScope, "姓名不正确");
-				return false;
-			}
-			if ($scope.view.family && $scope.tbFor === '2') {
-				if ($scope.insured && $scope.insured.relation && $scope.insured.relation.id === "-1") {
-					util.showToast($rootScope, "请选择被保人与您的关系");
-					return false;
-				}
-			}
-			if ($scope.order.social_id.$invalid) {
-				util.showToast($rootScope, "身份证号不正确");
-				return false;
-			}
-			if ($scope.order.mobile.$invalid) {
-				util.showToast($rootScope, "手机号不正确");
-				return false;
-			}
-
-			if ($scope.order.effective_date.$invalid) {
-				util.showToast($rootScope, "保险生效时间不正确");
-				return false;
-			}
-
-			if ($scope.view.job) {
-				if (!$scope.job || !$scope.job.id) {
-					util.showToast($rootScope, "请选择您工作的行业");
-					return false;
-				}
-			}
-
-			if ($scope.view.email && $scope.order.email.$invalid) {
-				util.showToast($rootScope, "Email填写不正确");
-				return false;
-			}
-			if ($scope.view.address && $scope.order.address.$invalid) {
-				util.showToast($rootScope, " 地址填写不正确");
-				return false;
-			}
-
-			if ($scope.view.car_no && $scope.order.car_no.$invalid) {
-				util.showToast($rootScope, "车牌号不正确");
-				return false;
-			}
-			//console.log("$scope.know_contract:"+$scope.know_contract);
-			if (!$scope.know_contract) {
-				util.showToast($rootScope, "请确认阅读《平台服务协议》和保险条款");
-				return false;
-			}
-			return true;
-		}
-
-
-
-		function familyValid() {
-			if ($scope.userForm.username.$invalid) {
-				util.showToast($rootScope, "姓名不正确");
-				return false;
-			}
-			if ($scope.userForm.social_id.$invalid) {
-				util.showToast($rootScope, "身份证不正确");
-				return false;
-			}
-			if ($scope.userForm.mobile.$invalid) {
-				util.showToast($rootScope, "手机号不正确");
-				return false;
-			}
-
-			return true;
-		}
-
-		function getResponse(res) {
-			return {
-				"insurance_name": res.data.data.insurance_name,
-				"insurance_plan_name": res.data.data.insurance_plan_name,
-				"order_amount": res.data.data.order_amount,
-				//"order_amount": 10,
-				"order_id": res.data.data.order_id,
-				"order_no": res.data.data.order_no
-			}
-		}
-		var taocan_status = {
-			1: "",
-			2: "未开售",
-			3: "已购买",
-			4: "已购买",
-			5: "已购买"
-
-		}
-		var taocan_css = {
-			1: "tb",
-			2: "unsell",
-			3: "unsell",
-			4: "unsell",
-			5: "unsell"
-		}
-
-		$scope.get_taocan_css = function(status) {
-			return taocan_css[status];
-		}
-
-		$scope.taocan_status = function(status) {
-			return taocan_status[status];
-		}
-
-		$scope.submitbt = function(type) {
-
-			if ($scope.isAllOffical) {
-				$location.path("/offical");
-				return;
-			}
-
-			_hmt.push(['_trackEvent', 'toubao', 'toubao_subBtn_' + $routeParams.from]);
-			var openId = sessionStorage.getItem("openId");
-			$scope.checkUserInfo();
-			//var dataFor = $("#select_toubao").find(".btn_n_primary").attr("data-for") == "self" ? 1 : 2;
-			console.log("user:");
-			console.log($scope.user);
-			var effectiveDate = $filter('date')($scope.user.effective_date, "yyyyMMdd");
-			var ineffectiveDate = $filter('date')($scope.user.inEffective_date, "yyyyMMdd");
-			var plans_to_premium = {};
-			if (!$scope.plans) {
-				$scope.getPlans();
-				return;
-			}
-			$scope.plans.forEach(function(element, index) {
-				if (element.status === 1) { //状态为1 保险套餐开售才可以购买
-					plans_to_premium[element.id] = element.premium;
-				}
-			});
-			if (Object.keys(plans_to_premium).length == 0) {
-				util.showToast($rootScope, "很抱歉，超过保险公司的限制，无法投保");
-				return false;
-			}
-			var postData = {
-				open_id: openId,
-				plans_to_premium: plans_to_premium,
-				insure_type: $scope.tbFor,
-				coverage_period: $scope.coverage_period,
-				coverage_period_type: $scope.coverage_period_type,
-				charge_period_type: $scope.charge_period_type
-			};
-
-			if ($scope.view.ineffective_date && ineffectiveDate) {
-				postData["ineffective_date"] = ineffectiveDate;
-			}
-			if ($scope.view.effective_date && effectiveDate) {
-				postData["effective_date"] = effectiveDate;
-			}
-			if ($scope.view.job && $scope.job) {
-				postData["job_id"] = $scope.job.id;
-			}
-			if ($scope.view.email && $scope.insured.email) {
-				postData["email"] = $scope.insured.email;
-			}
-			if ($scope.view.address && $scope.insured.address) {
-				postData["address"] = $scope.insured.address;
-			}
-			if ($scope.charge_period) {
-				postData["charge_period"] = $scope.charge_period;
-			}
-			var isValid = false;
-
-			if (baseValid()) {
-
-
-				if ($scope.tbFor == '1') {
-					//为自己
-					postData["name"] = $scope.insured.username;
-					postData["social_id"] = $scope.insured.social_id;
-					postData["mobile"] = $scope.insured.mobile;
-					isValid = true;
-
-				} else {
-					//为家人
-					if (type == "userForm" && !familyValid()) {
-						return false;
-					}
-					if ($scope.isHaveInfo) { //有投保人信息
-						postData["name"] = $scope.user.username;
-						postData["social_id"] = $scope.user.social_id;
-						postData["mobile"] = $scope.user.mobile;
-						postData["insured_peoples"] = [{
-							"name": $scope.insured.username,
-							"mobile": $scope.insured.mobile,
-							"social_id": $scope.insured.social_id,
-							"relation": $scope.insured.relation.value
-						}];
-						isValid = true;
-					} else { //没有投保人信息
-						$(".main").hide();
-						$("#self_container").show();
-					}
-
-				}
-			}
-
-			if (isValid) {
-
-
-				getHttpPromise($http, $rootScope, 'POST', api['insure'], postData, function(res) {
-					saveUserInfo(postData["name"], postData["social_id"], postData["mobile"]);
-					if (postData["insured_peoples"]) {
-						var familys = $scope.familys.filter(function(item) {
-							return item.username !== postData["insured_peoples"][0]["name"];
-						});
-						familys.push({
-							username: postData["insured_peoples"][0].name,
-							social_id: postData["insured_peoples"][0].social_id,
-							relation: $scope.insured.relation,
-							mobile: postData["insured_peoples"][0].mobile
-						});
-						saveFamily(familys);
-					}
-					var payResponse = getResponse(res);
-					
-					$location.path("/pay_select").search(payResponse);
-				});
-			}
-		}
-	}
-]);*/
