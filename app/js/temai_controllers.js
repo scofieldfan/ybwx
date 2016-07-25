@@ -357,7 +357,9 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       $scope.plan = plan;
       $scope.danwei = genDuration($scope.plan.coverage_period_type);
       $scope.money = plan.premium;
+      updateFee();
       _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_changeheadtaocan']);
+
     }
     /*
     Coverage_Period_Type:
