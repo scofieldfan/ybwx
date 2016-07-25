@@ -799,11 +799,17 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 
 		$scope.goInfo = function() {
 			_hmt.push(['_trackEvent', 'solution', 'solution_subBtn']);
+
+
 			if ($scope.canNotBuyPlans.length === $scope.data.plans.length) {
 				util.showToast($rootScope, "方案中的产品全都不可购买，请至官方购买");
 				return;
 			}
+			if($scope.choosePlansIds.length==0){	
+				util.showToast($rootScope, "请选择开售的产品");
+				return;
 
+			}
 
 			if ($scope.isHaveRestrictions) {
 				$location.path('/information').search({
