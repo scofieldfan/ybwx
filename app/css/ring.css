@@ -35,6 +35,12 @@
   padding: 0px 0px 13px;
   font-size: 0.16rem;
   overflow: hidden; }
+  .bt_container .intell-reck {
+    color: #588dd4;
+    font-size: .13rem;
+    float: right;
+    margin-right: 10px;
+    margin-top: 5px; }
 .hairlines .bt_container {
   border-width: 0.5px; }
 .bt_container a {
@@ -232,16 +238,19 @@
   font-weight: bold; }
 .accident_mask {
   height: 275px;
+  height: 3.55rem;
   box-sizing: border-box;
   padding: 25px 20px; }
 .income_ctrl {
-  font-size: 15px;
+  font-size: .19rem;
   color: #555;
-  text-align: center; }
+  text-align: center;
+  padding-bottom: .13rem; }
 .calculate {
-  font-size: 12px;
+  font-size: .15rem;
   color: #999;
-  text-align: center; }
+  text-align: center;
+  padding-bottom: .32rem; }
 .income_details {
   display: -webkit-box;
   display: -webkit-flex;
@@ -255,11 +264,11 @@
   -webkit-justify-content: space-between;
   justify-content: space-between; }
   .income_details .income {
-    width: 1.42rem;
+    width: 1.41rem;
     height: .52rem;
     border: 1px solid #ccc;
     text-align: center;
-    line-height: 40px;
+    line-height: .52rem;
     border-radius: 3px;
-    margin-bottom: 20px;
-    font-size: .2rem; }
+    margin-bottom: .25rem;
+    font-size: .19rem; }
