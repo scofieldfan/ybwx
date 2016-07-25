@@ -192,11 +192,12 @@ body {
 }
 .toast {
 	max-height: 325px;
-	// height: 325px;
 	overflow: auto;
 	// overflow:scroll;  //显示滚动条
 	// overflow-y: scroll; //显示纵向滚动条 
-	border: 30px solid #fff;
 	padding: 0;
 	-webkit-overflow-scrolling: touch;
+}
+#stopPro {
+	border: 30px solid #fff;
 }

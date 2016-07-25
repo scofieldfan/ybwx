@@ -317,8 +317,10 @@ header {
 .button_primary {
   border: 1px solid #c1c1c1;
   color: #000;
-  background-color: #fff; }
+  background-color: #fff;
+  box-sizing: border-box; }
 .button_hover {
+  box-sizing: border-box;
   border: none;
   color: #fff;
   background: #5aa8ff; }
