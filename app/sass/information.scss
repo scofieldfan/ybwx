@@ -7,26 +7,42 @@ body{
 }
 @media (max-width: 320px) {
 	.job_info_ctrl {
-        flex: 0 0 33.3%;
+		-webkit-box-flex:  0 0 33.3%;      /* OLD - iOS 6-, Safari 3.1-6 */
+	    -moz-box-flex:  0 0 33.3%;         /* OLD - Firefox 19- */
+	    -webkit-flex:  0 0 33.3%;          /* Chrome */
+	    -ms-flex: 0 0 33.3%;              /* IE 10 */
+	    flex:  0 0 33.3%;   
     }
 }
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
 	.job_info_ctrl {
-        flex: 0 0 33.3%;
+       -webkit-box-flex:  0 0 33.3%;      /* OLD - iOS 6-, Safari 3.1-6 */
+	    -moz-box-flex:  0 0 33.3%;         /* OLD - Firefox 19- */
+	    -webkit-flex:  0 0 33.3%;          /* Chrome */
+	    -ms-flex: 0 0 33.3%;              /* IE 10 */
+	    flex:  0 0 33.3%;   
     }
 }
 
 
 @media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
 	.job_info_ctrl {
-        flex: 0 0 33.3%;
+       -webkit-box-flex:  0 0 33.3%;      /* OLD - iOS 6-, Safari 3.1-6 */
+	    -moz-box-flex:  0 0 33.3%;         /* OLD - Firefox 19- */
+	    -webkit-flex:  0 0 33.3%;          /* Chrome */
+	    -ms-flex: 0 0 33.3%;              /* IE 10 */
+	    flex:  0 0 33.3%;   
     }
 }
 
 
 @media only screen and (min-device-width: 414px) and (max-device-width: 736px) {
 	.job_info_ctrl {
-        flex: 0 0 25%;
+        -webkit-box-flex:  0 0 25%;      /* OLD - iOS 6-, Safari 3.1-6 */
+	    -moz-box-flex:  0 0 25%;         /* OLD - Firefox 19- */
+	    -webkit-flex:  0 0 25%;          /* Chrome */
+	    -ms-flex: 0 0 25%;              /* IE 10 */
+	    flex:  0 0 25%;   
     }
 }
 .information_controller {
@@ -61,9 +77,9 @@ body{
 		@include flexbox;
 		padding-top: 15px;
 		//溢出折行
-		// @include flex-wrap(wrap);
+		@include flex-wrap(wrap);
 		// //自动平分
-		flex-flow: row wrap;
+		// flex-flow: row wrap;
         .job_info_ctrl {
         	// @include flex(1);
 			margin-bottom: 10px;
@@ -99,10 +115,13 @@ body{
 
 	// 弹窗
 	.info_toast {
-		overflow: auto;
+		// overflow: scroll;
+	    overflow-y: scroll; //显示纵向滚动条
 		padding: 0;
 		border: .35rem solid #fff;
 		max-height: 3.63rem;
+		background: #fff;
+		-webkit-overflow-scrolling: touch;
 		.toast_head {
 			box-sizing: border-box;
 			color: #006ee9;
