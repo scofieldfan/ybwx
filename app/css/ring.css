@@ -302,3 +302,70 @@
 .blue {
   background: #588dd4;
   color: #fff; }
+.slider .progress_bar {
+  background-color: #eee;
+  height: 15px;
+  position: relative;
+  border-radius: 15px; }
+.slider .progress_inner_bar {
+  width: 16px;
+  height: 100%;
+  background-color: #588dd4;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px; }
+.slider .progress_bar .kedu {
+  position: absolute;
+  top: -8px; }
+.slider .kedu .zz {
+  height: 5px;
+  width: 1px;
+  background-color: #588dd4; }
+.slider .kedu .small-zz {
+  height: 2.5px;
+  width: 1px;
+  background-color: #ccc; }
+.slider .kedu .bottom-word {
+  position: absolute;
+  top: 35px;
+  width: 50px;
+  left: -25px;
+  line-height: 0.13rem;
+  color: #ff5c00;
+  text-align: center;
+  font-size: 13px; }
+.slider .kedu > p {
+  position: absolute;
+  top: -30px;
+  width: 0.5rem;
+  font-size: 0.12rem;
+  left: -0.23rem;
+  color: #999; }
+.slider .kedu .hover {
+  background-color: #247ad1; }
+.slider .kedu .wordhover {
+  color: #247ad1;
+  font-size: 0.14rem;
+  font-weight: bold;
+  top: 0.12rem; }
+.slider .bar_btn {
+  width: 22px;
+  top: 47px;
+  left: 35px;
+  position: absolute;
+  z-index: 3; }
+.slider .zhizhen {
+  position: absolute;
+  width: 100px;
+  height: 120px;
+  top: -50px;
+  left: -22px;
+  z-index: 1000;
+  margin-left: -14px;
+  background: transparent; }
+.slider .zhizhen:before {
+  position: absolute;
+  content: '';
+  top: -10px;
+  right: -10px;
+  left: -10px;
+  bottom: -10px; }
