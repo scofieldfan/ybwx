@@ -5,38 +5,6 @@
 var ybwxControllers = angular.module('ybwxControllers', []);
 
 
-
-/*保险限制页面*/
-
-/*
-ybwxControllers.controller('ybwxProductInfoCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope', 'sharedRestrictions',
-  function($scope, $routeParams, $location, $http, $rootScope, sharedRestrictions) {
-    $scope.data = sharedRestrictions.getRestrictions();
-    console.log(sharedRestrictions.getRestrictions());
-    if ($scope.data.health_notice) {
-      $scope.data.healths = $scope.data.health_notice.split("\r\n");
-    }
-    if ($scope.data.extra_notice) {
-      $scope.data.extras = $scope.data.health_notice.split("\r\n");
-    }
-    if ($scope.data.locale_notice) {
-      $scope.data.locales = $scope.data.locale_notice.split("\r\n");
-    }
-
-    $scope.showTip = function() {
-      _hmt.push(['_trackEvent', 'information', 'information_yesBtn']);
-      util.showToast($rootScope, "很抱歉，被保险人不满足该产品投保规定。详情请联系诺贝：400-992-0205");
-    }
-    $scope.goToubao = function() {
-      _hmt.push(['_trackEvent', 'information', 'information_subBtn']);
-       $location.path('/toubao_new').search($routeParams);
-      
-    }
-  }
-]);
-*/
-
-
 ybwxControllers.controller('wxTemaiIndexCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
   function($scope, $routeParams, $location, $http, $rootScope) {
 
@@ -281,8 +249,6 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
               $scope.coverage_overviews = res.data.data.coverage_overview.split("##");
             }
 
-
-
             /*
             sharedRestrictions.setRestrictions({
               health_notice: res.data.data.health_notice,
@@ -318,11 +284,13 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
         $(element).find("span").html("收起");
         $(element).attr("data-switch", "off");
         $(element).find(".icon-arrow").addClass("up");
+          _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_unfold']);
       } else {
         $(element).siblings(":gt(6)").addClass("ng-hide");
         $(element).find("span").html("查看更多");
         $(element).attr("data-switch", "on");
         $(element).find(".icon-arrow").removeClass("up");
+          _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_fold']);
       }
     }
     $scope.stopPro = function($event) {
@@ -338,6 +306,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
     $scope.changeBirthday = function($event) {
       // $event.stopPropagation();
       //  $event.preventDefault();
+        _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_changebirthday']);
       updateFee();
     }
 
@@ -347,6 +316,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       $event.stopPropagation();
       $scope.gender = gender;
       updateFee();
+      _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_changesex']);
     }
 
     // console.log($scope.dataNum );
@@ -358,6 +328,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       //$scope.money = $scope.plan.premium;
       $scope.getRestrictions();
       updateFee();
+      _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_changetaocan']);
     }
 
     $scope.changeDuration = function($event, item) {
@@ -365,6 +336,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       $event.stopPropagation();
       $scope.coverage_period = item;
       updateFee();
+      _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_changeduration']);
     }
 
     $scope.changeFee = function($event, item) {
@@ -372,6 +344,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       $event.stopPropagation();
       $scope.charge_period = item;
       updateFee();
+      _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_changefee']);
     }
     $scope.headSelect = function($event, plan) {
       var element = $event.currentTarget;
@@ -384,6 +357,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       $scope.plan = plan;
       $scope.danwei = genDuration($scope.plan.coverage_period_type);
       $scope.money = plan.premium;
+      _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_changeheadtaocan']);
     }
     /*
     Coverage_Period_Type:
@@ -406,6 +380,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
     $scope.submit = function() {
       //获得当前的plan
       var selectPlan = $scope.plan.id;
+      _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_submit']);
 
       var postData = {
         "plan_id": selectPlan,
@@ -432,18 +407,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       } else {
         $location.path("/toubao_new").search(postData);
       }
-      /*
-       if (isNew) {
-          $location.path("/toubao_new").search(postData);
-        } else {
-          $location.path("/tb_dz").search(postData);
-        }*/
-      /* 
-      if ($scope.data.health_notice || $scope.data.extra_notice || $scope.data.locale_notice) {
-        $location.path("/productinformation").search(postData);
-      } else {
-       
-      }*/
+     
     }
   }
 ]);

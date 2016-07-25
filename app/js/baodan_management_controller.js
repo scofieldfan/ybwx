@@ -92,8 +92,6 @@ bdControllers.controller('ybwxbaodanVerifyListCtrl', ['$scope', '$routeParams', 
 					$scope.typeGroup = _.groupBy(res.data.data.policies, function(item) {
 						return item.insurance_type;
 					});
-					console.log($scope.typeGroup);
-					console.log(res.data.data);
 				})
 			})
 
@@ -130,10 +128,7 @@ bdControllers.controller('ybwxbaodanManageListCtrl', ['$scope', '$routeParams', 
 		}
 		$scope.type = $routeParams.type || "4";
 		$scope.init = function() {
-			var code = util.getParameterByName("code");
-			if (!code) {
-				code = $routeParams.code;
-			}
+			var code = util.getParameterByName("code") || $routeParams.code;
 			util.getOpenId(code).then(function() {
 				var openId = sessionStorage.getItem("openId");
 				$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_policies_list'] + "?open_id=" + openId, {}, function(res) {
@@ -141,8 +136,6 @@ bdControllers.controller('ybwxbaodanManageListCtrl', ['$scope', '$routeParams', 
 					$scope.typeGroup = _.groupBy(res.data.data.policies, function(item) {
 						return item.insurance_type;
 					});
-					console.log($scope.typeGroup);
-					console.log(res.data.data);
 				})
 			})
 		}
@@ -326,6 +319,7 @@ bdControllers.controller('ybwxUpdateAddContactCtrl', ['$scope', '$routeParams', 
 
 		$scope.relations = util.modifyRelationShip;
 		$scope.save = function() {
+			_hmt.push(['_trackEvent', 'update_add_contact', 'update_add_contact_save']);
 			if (isUpdate) {
 				//更新
 				$scope.editUserInfo(userId);
@@ -359,6 +353,7 @@ bdControllers.controller('ybwxUpdateAddContactCtrl', ['$scope', '$routeParams', 
 		// 删除被保险人资料
 
 		$scope.deleteMessage = function() {
+			_hmt.push(['_trackEvent', 'update_add_contact', 'update_add_contact_delete']);
 			$("#dialog1").show(function() {
 				$scope.sure = function() {
 					$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['deleteContact'], {
@@ -423,6 +418,7 @@ bdControllers.controller('ybwxUpdateAddContactCtrl', ['$scope', '$routeParams', 
 		}
 		// 更新被保险人
 		$scope.editUserInfo = function(insured_id) {
+			_hmt.push(['_trackEvent', 'update_add_contact', 'update_add_contact_edit']);
 			$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['update'], {
 				'open_id': openId,
 				"insured_id": insured_id,
@@ -466,6 +462,7 @@ bdControllers.controller('ybwxContactListCtrl', ['$scope', '$routeParams', '$loc
 		}
 		// var curUserId = "";
 		$scope.return = function() {
+			_hmt.push(['_trackEvent', 'contact_list', 'contact_list_return']);
 
 			$location.path('/toubao_new').search({
 				'type': $routeParams.type,
@@ -481,6 +478,7 @@ bdControllers.controller('ybwxContactListCtrl', ['$scope', '$routeParams', '$loc
 		}
 		$scope.choose = function($event, item) {
 
+			_hmt.push(['_trackEvent', 'contact_list', 'contact_list_choose']);
 			//列表页，选择用户作为默认用户
 
 			/*
@@ -524,7 +522,7 @@ bdControllers.controller('ybwxContactListCtrl', ['$scope', '$routeParams', '$loc
 						$scope.chooseUser.is_current = true;
 					} else {
 						res.data.data.relations[0].is_current = true;
-						$scope.chooseUser = res.data.data.relations[0]
+						$scope.chooseUser = res.data.data.relations[0];
 					}
 					/*
 					var defaultRelations = res.data.data.relations.filter(function(item) {
@@ -544,6 +542,9 @@ bdControllers.controller('ybwxContactListCtrl', ['$scope', '$routeParams', '$loc
 		}
 		// 跳转and获取资料
 		$scope.editUserInfo = function(id) {
+
+			_hmt.push(['_trackEvent', 'contact_list', 'contact_list_edit']);
+
 			$location.path('/update_add_contact').search({
 				user_id: id,
 				method: "edit",
@@ -557,6 +558,7 @@ bdControllers.controller('ybwxContactListCtrl', ['$scope', '$routeParams', '$loc
 		}
 		// 跳转and新增被保险人
 		$scope.addPeople = function() {
+			_hmt.push(['_trackEvent', 'contact_list', 'contact_list_add']);
 			$location.path('/update_add_contact').search({
 				method: "add",
 				'choose_plans': $routeParams.choose_plans,
@@ -587,13 +589,7 @@ bdControllers.controller('ybwxBDPicCtrl', ['$scope', '$routeParams', '$location'
 			});
 		})
 
-		/*
-		var width = $("#pre_view_image_container").width();
-		var li_width = 96;//80+16
-		var number = Math.floor(width/li_width);
-		var margin  =  Math.floor((width - number*li_width)/number);
-		$("#pre_view_image_container").find("li").css("margin-right",8+margin).css("margin-left",8+margin);
-		*/
+		
 
 		function uploadImg2Server(mediaIds, source) {
 			var openId = sessionStorage.getItem("openId");
@@ -605,7 +601,6 @@ bdControllers.controller('ybwxBDPicCtrl', ['$scope', '$routeParams', '$location'
 				console.log(res.data.data);
 				$("#success_popup").show();
 			})
-
 		}
 
 
@@ -625,24 +620,13 @@ bdControllers.controller('ybwxBDPicCtrl', ['$scope', '$routeParams', '$location'
 				success: function(res) {
 
 					$scope.images.localIds = res.localIds;
-					//$scope.localIds = res.localIds;
-					// alert("成功选择" + res.localIds.length + "张图片");
-					//console.log("choose.....");
-					//console.log($scope.localIds);
-					//console.log($scope.images);
-					//alert("test 23112");
+					
 					var html = [];
 					res.localIds.forEach(function(element, index) {
 						html.push('<li><img src="' + element + '"></li>');
 					});
 					$(html.join("")).insertBefore($("#pre_view_image_container").find("li:last"));
-					/*
-					$("#pre_view_image_container").find("img").forEach( function(element, index) {
-						console.log();
-						// statements
-					});*/
-
-					//uploadImg(res.localIds);
+					
 				}
 			});
 		}
