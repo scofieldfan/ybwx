@@ -163,6 +163,7 @@ body {
 .toast {
   max-height: 325px;
   overflow: auto;
-  border: 30px solid #fff;
   padding: 0;
   -webkit-overflow-scrolling: touch; }
+#stopPro {
+  border: 30px solid #fff; }

@@ -103,24 +103,6 @@ body{
 		padding: 0;
 		border: .35rem solid #fff;
 		max-height: 3.63rem;
-		font-size: 14px;
-	    line-height: 20px;
-	    position: fixed;
-	    z-index: 3;
-	    top: .8rem;
-	    width: 90%;
-	    max-width: 400px;
-	    min-height: 4.6em;
-	    overflow: auto;
-	    margin: auto;
-	    right: 0;
-	    left: 0;
-	    word-wrap: break-word;
-	    word-break: break-all;
-	    color: #4e4e4e;
-	    border-radius: 5px;
-	    background: #fff;
-	    box-sizing: border-box;
 		.toast_head {
 			box-sizing: border-box;
 			color: #006ee9;
@@ -142,7 +124,6 @@ body{
 			margin-bottom: 20px;
 		}
 	}
-
 }
 
 
