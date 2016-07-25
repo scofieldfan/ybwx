@@ -5,7 +5,10 @@
 		<img src="img/claim_information/logo.jpg"><span class="head_info">职业告知</span><span class="orange">是否从事以下高危职业？</span>
 	</div>
 	<div class="job" ng-if="isHaveJob">
-		<div class="job_info" ng-click="showJobDes(jobValue,jobName)" ng-repeat="(jobName,jobValue) in data.job_notice">{{jobName}}</div>
+		<div class="job_info_ctrl" ng-click="showJobDes(jobValue,jobName)" ng-repeat="(jobName,jobValue) in data.job_notice">
+			<div class="job_info" >{{jobName}}</div>
+		</div>
+		
 	</div>
 	
 	<div class="infor_head"  ng-if="isHaveHealth">
@@ -44,10 +47,9 @@
 				{{extraNotice}} 
 		</div>
 	</div>
-
 	<!-- 职业扩展详情 弹窗 -->
 	<div class="mask" id="popup">
-		<div class="toast info_toast">
+		<div class="info_toast">
 			<!-- <div class="toast_head" ></div> -->
 			<!-- <div class="toast_main"></div> -->
 		</div>

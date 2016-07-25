@@ -53,7 +53,6 @@
 		font-size: .13rem;
 		float: right;
 		margin-right: 10px;
-		margin-top: 5px;
 	}
 }
 .hairlines .bt_container{
@@ -301,16 +300,26 @@
 	font-weight: bold;
 }
 .accident_mask {
-	height: 275px;
 	height: 3.55rem;
-	box-sizing: border-box;
-	padding: 25px 20px;
+	// box-sizing: border-box;
+	// padding: 25px 20px;
 }
 .income_ctrl {
 	font-size: .19rem;
 	color: #555;
 	text-align: center;
-	padding-bottom: .13rem;
+	padding-bottom: .1rem;
+	position: relative;
+	.off {
+    	position: absolute;
+    	right: -0.3rem;
+    	top:-0.3rem;
+    	padding: 20px;
+    	img {
+	    	width: .16rem;
+	    	height: .16rem;
+    	}
+    }
 }
 .calculate {
 	font-size: .15rem;
@@ -332,5 +341,33 @@
 		margin-bottom: .25rem;
 		font-size: .19rem;
 	}
+}
+.toast_cs {
+	height: 3.8rem;
+	background: #f5f5f5;
+	right: 0;
+	left: 0;
+	font-size: 14px;
+    line-height: 20px;
+    position: fixed;
+    z-index: 3;
+    top: .7rem;
+    width: 90%;
+    max-width: 400px;
+    // overflow: auto;
+    margin: auto;
+    padding: .32rem .26rem;
+    word-wrap: break-word;
+    word-break: break-all;
+    color: #4e4e4e;
+    border-radius: 10px;
+    background: #fff;
+    box-sizing: border-box;
+    max-height: 3.8rem;
+    overflow: hidden;
+}
+.blue {
+	background: #588dd4;
+	color: #fff;
 }
 

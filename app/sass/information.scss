@@ -1,8 +1,33 @@
  @import "base/classes.scss";
    @import "base/variables.scss";
+
 *{margin:0;padding:0;}
 body{
 	background: #f5f5f5;
+}
+@media (max-width: 320px) {
+	.job_info_ctrl {
+        flex: 0 0 33.3%;
+    }
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+	.job_info_ctrl {
+        flex: 0 0 33.3%;
+    }
+}
+
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
+	.job_info_ctrl {
+        flex: 0 0 33.3%;
+    }
+}
+
+
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) {
+	.job_info_ctrl {
+        flex: 0 0 25%;
+    }
 }
 .information_controller {
 	padding: 0 .15rem;
@@ -38,9 +63,15 @@ body{
 		//溢出折行
 		// @include flex-wrap(wrap);
 		// //自动平分
-		@include justify-content(space-around);
-        flex-flow: row wrap;
-		.job_info {
+		flex-flow: row wrap;
+        .job_info_ctrl {
+        	// @include flex(1);
+			margin-bottom: 10px;
+            // flex: 0 0 25%;
+        	// @include justify-content(space-around);
+        	@include align-items(center);
+		    @include justify-content(center);
+        	.job_info {
 			width: 90px;
 			height: 30px;
 			box-sizing: border-box;
@@ -48,13 +79,16 @@ body{
 			border-radius: 3px;
 			text-align: center;
 			line-height: 30px;
-			margin-bottom: 10px;
 			// 文字大于盒子用省略号...
 			white-space: nowrap;
 		    text-overflow: ellipsis;
 		    overflow: hidden;
 		    padding: 0 5px;
-		}
+			margin: 0 auto;
+
+		    }
+        }
+		
 	}
 	.info_word {
 		font-size: 13px;
@@ -66,11 +100,32 @@ body{
 	// 弹窗
 	.info_toast {
 		overflow: auto;
+		padding: 0;
+		border: .35rem solid #fff;
+		max-height: 3.63rem;
+		font-size: 14px;
+	    line-height: 20px;
+	    position: fixed;
+	    z-index: 3;
+	    top: .8rem;
+	    width: 90%;
+	    max-width: 400px;
+	    min-height: 4.6em;
+	    overflow: auto;
+	    margin: auto;
+	    right: 0;
+	    left: 0;
+	    word-wrap: break-word;
+	    word-break: break-all;
+	    color: #4e4e4e;
+	    border-radius: 5px;
+	    background: #fff;
+	    box-sizing: border-box;
 		.toast_head {
 			box-sizing: border-box;
 			color: #006ee9;
 			// height: 13px;
-			padding-left: 5px;
+			// padding-left: 5px;
 			font-size: 13px;
 			margin-bottom: 10px;
 		}

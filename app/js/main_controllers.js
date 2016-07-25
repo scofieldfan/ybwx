@@ -620,7 +620,19 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 				'type': $routeParams.type
 			});
 		}
+		$scope.showIntellReckon = function() {
+			$("#popup").show();
+		}
 
+	   $("#details .income").click( function() {
+			$(this).addClass("blue").siblings().removeClass("blue");
+			$(this).html();
+			console.log('zhizhizhziizhizhihi');
+			console.log($(this).html());
+	    });
+		$("#off").click(function() {
+			$("#popup").hide();
+		});
 	}
 ]);
 
@@ -881,7 +893,7 @@ mainControllers.controller('ybwxInfoCtrl', ['$scope', '$routeParams', '$location
 				html.push(' <div class="toast_main" >' + des.join(" 、") + '</div>');
 
 			});
-			$("#popup").find(".toast").html(html.join(""));
+			$("#popup").find(".info_toast").html(html.join(""));
 			$("#popup").show();
 		}
 		$scope.init = function() {
