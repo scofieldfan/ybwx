@@ -6,23 +6,13 @@ var SLIDER = (function() {
 
 	}
 	var barWidth = 0;
-	/*
-	var radio = $(document).width() / 414;
-	if (radio > 1) {
-		radio = 1;
-	}
-	//console.log($(".wrapper").css("padding-left"));
-	var baxMax = $(document).width() - (34 + 40 + 30) * radio; //减去wraper的padding，减去container的padding
-	*/
+	
 	var baxMax = $("#customerSlider").find(".weui_progress_bar").width() - 16;
-	var partentMax = $("#customerSlider").find(".weui_progress_bar").width();
-	//console.log($("#customerSlider").find(".weui_progress_bar").width());
+	// var partentMax = $("#customerSlider").find(".weui_progress_bar").width();
 	load();
 
 	function reset() {
 		barWidth = 0;
-		//$(".kedu").find(".zz").removeClass("hover");
-		//$(".kedu").children("p").removeClass("wordhover");
 		updateScore(0);
 	}
 
@@ -62,10 +52,6 @@ var SLIDER = (function() {
 		document.getElementById("zhizhen").addEventListener('touchmove', touch, false);
 		document.getElementById("zhizhen").addEventListener('touchend', touch, false);
 
-		//document.getElementById("chartTextContainer").addEventListener('touchstart', touch, false);
-		//document.getElementById("chartTextContainer").addEventListener('touchmove', touch, false);
-		//document.getElementById("chartTextContainer").addEventListener('touchend', touch, false);
-
 
 		var startX;
 
@@ -81,7 +67,6 @@ var SLIDER = (function() {
 					event.stopPropagation();
 					baxMax = $("#customerSlider").find(".weui_progress_bar").width() - 16;
 					startX = event.touches[0].clientX;
-					console.log("Touch started (" + event.touches[0].clientX + "," + event.touches[0].clientX + ")");
 					_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_squreTabStart']);
 					break;
 				case "touchend":
@@ -91,19 +76,13 @@ var SLIDER = (function() {
 					_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_squreTabEnd']);
 					event.preventDefault();
 					event.stopPropagation();
-					console.log("<br/>Touch end (" + event.changedTouches[0].clientX + "," + event.changedTouches[0].clientY + ")");
 					var dis = event.changedTouches[0].clientX - startX;
-					//dis=dis*1.2;
-					//angle = angle + dis * 360 / width;
 					barWidth = barWidth + dis;
-					//console.log("mov:" + dis);
 					var drawDis = barWidth;
 					if (drawDis <= barMin) {
 						drawDis = 0;
 						barWidth = 0;
 					}
-					console.log("drawDis:" + drawDis);
-					console.log("baxMax:" + baxMax);
 					if (drawDis >= baxMax) {
 						drawDis = baxMax;
 					}
@@ -112,14 +91,6 @@ var SLIDER = (function() {
 					updateSumScore();
 
 
-
-					//$("#bar").width(drawDis);
-					//$("#zhizhen").css("left", drawDis);
-					/*
-					$("#btnCircle").css("left",drawDis);
-					$("#bar_score").css("left",drawDis);
-					$("#bar_money").css("left",drawDis-10);
-					*/
 					break;
 				case "touchmove":
 					if (!isOk) {
@@ -130,10 +101,6 @@ var SLIDER = (function() {
 					var dis = event.touches[0].clientX - startX;
 					var drawDis = barWidth + dis;
 
-					console.log("drawDis:" + drawDis);
-					console.log("barMin:" + barMin);
-					console.log("baxMax:" + baxMax);
-
 					if (drawDis <= barMin) {
 						drawDis = 0;
 						barWidth = 0;
@@ -144,62 +111,10 @@ var SLIDER = (function() {
 					}
 
 					updateScore(drawDis);
-					//updateSumScore();
-					//console.log("drawDis:"+drawDis);
-
+					/*
 					var items = $(".kedu");
-
-					/*
-					var isFind = false;
-					var findItem;
-					for (var i = items.length - 1; i >= 0; i--) {
-						var item = items[i];
-						if (drawDis >= $(item).position().left && !isFind) {
-							findItem = $(item);
-							isFind = true;
-						} else {
-							$(item).find(".zz").removeClass("hover");
-							$(item).children("p").removeClass("wordhover");
-						}
-					}*/
 					var index = Math.floor(scoreObj.moneyScore/2-1);
-					// $(".kedu:eq("+index+"")")
-					console.log(index);
-					/*
-					if(index>=0){
-						 $(".kedu").find(".zz").removeClass("hover");
-						 $(".kedu").children("p").removeClass("wordhover");
-						 $(".kedu:eq("+index+")").find(".zz").addClass("hover");
-						 $(".kedu:eq("+index+")").children("p").addClass("wordhover");
-					}else{
-						 $(".kedu").find(".zz").removeClass("hover");
-						 $(".kedu").children("p").removeClass("wordhover");
-					}*/
-					
-					/*
-					$(".kedu").each(function(item,val){
-							console.log("item left:"+$(val).position().left);
-							if(drawDis>=$(val).position().left){
-								$(val).find(".zz").addClass("hover");
-								$(val).children("p").addClass("wordhover");
-							}else{
-								$(val).find(".zz").removeClass("hover");
-								$(val).children("p").removeClass("wordhover");
-							}
-					});*/
-					/*
-					if (drawDis === baxMax) {
-						$(".kedu").find(".zz").removeClass("hover");
-						$(".kedu").children("p").removeClass("wordhover");
-						$(".kedu:last").find(".zz").addClass("hover");
-						$(".kedu:last").children("p").addClass("wordhover");
-					}*/
-
-					//$("#btnCircle").css("left",drawDis);
-					//$("#bar_score").css("left",drawDis);
-					//$("#bar_money").css("left",drawDis-10);
-					//console.log("baxMax:"+baxMax);
-
+					*/
 					break;
 			}
 		}
