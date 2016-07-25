@@ -6,15 +6,31 @@ body {
   background: #f5f5f5; }
 @media (max-width: 320px) {
   .job_info_ctrl {
+    -webkit-box-flex: 0 0 33.3%;
+    -moz-box-flex: 0 0 33.3%;
+    -webkit-flex: 0 0 33.3%;
+    -ms-flex: 0 0 33.3%;
     flex: 0 0 33.3%; } }
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
   .job_info_ctrl {
+    -webkit-box-flex: 0 0 33.3%;
+    -moz-box-flex: 0 0 33.3%;
+    -webkit-flex: 0 0 33.3%;
+    -ms-flex: 0 0 33.3%;
     flex: 0 0 33.3%; } }
 @media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
   .job_info_ctrl {
+    -webkit-box-flex: 0 0 33.3%;
+    -moz-box-flex: 0 0 33.3%;
+    -webkit-flex: 0 0 33.3%;
+    -ms-flex: 0 0 33.3%;
     flex: 0 0 33.3%; } }
 @media only screen and (min-device-width: 414px) and (max-device-width: 736px) {
   .job_info_ctrl {
+    -webkit-box-flex: 0 0 25%;
+    -moz-box-flex: 0 0 25%;
+    -webkit-flex: 0 0 25%;
+    -ms-flex: 0 0 25%;
     flex: 0 0 25%; } }
 .information_controller {
   padding: 0 .15rem;
@@ -45,7 +61,9 @@ body {
     display: -ms-flexbox;
     display: flex;
     padding-top: 15px;
-    flex-flow: row wrap; }
+    -webkit-box-lines: multiple;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap; }
     .information_controller .job .job_info_ctrl {
       margin-bottom: 10px;
       -webkit-box-align: center;
@@ -73,10 +91,12 @@ body {
     line-height: 25px;
     margin-bottom: 11px; }
   .information_controller .info_toast {
-    overflow: auto;
+    overflow-y: scroll;
     padding: 0;
     border: .35rem solid #fff;
-    max-height: 3.63rem; }
+    max-height: 3.63rem;
+    background: #fff;
+    -webkit-overflow-scrolling: touch; }
     .information_controller .info_toast .toast_head {
       box-sizing: border-box;
       color: #006ee9;
