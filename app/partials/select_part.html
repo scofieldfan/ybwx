@@ -48,9 +48,9 @@
 
 	<div  class="bt_container">
 
-		<div style="">
+		<div style="line-height: 25px;">
 			<img src="img/safe.jpg" style="width:15px;vertical-align: -3px;">
-			选择保障金额 <span style="color:#999;"> 最高赔付额 </span>
+			选择保障金额 <span style="color:#999;"> 最高赔付额 </span><span class="intell-reck" ng-click="showIntellReckon()" style="display: none;">智能测算</span>
 		</div>
 		<!--
 		<a href="javascript:void(0)"   class="btn btn_n_primary"  ng-click="showCompute()">保额测算</a>
@@ -126,18 +126,19 @@
 
 
 </div>
-<div class="mask" id="popup" style="">
-		<div class="toast accident_mask">
-			<div class="income_ctrl">选择年收入</div>
+<div class="mask" id="popup">
+		<div class="toast_cs toast accident_mask">
+			<div class="income_ctrl">选择年收入<div class="off" id="off"><img src="img/select/off.png"></div></div>
 			<div class="calculate">我们将根据您的年收入测算保额</div>
-			<div class="income_details">
-				<div class="income">5玩一下</div>
+			<div class="income_details" id="details">
+				<div class="income">5万以下</div>
 				<div class="income">10万</div>
 				<div class="income">20万</div>
 				<div class="income">30万</div>
 				<div class="income">40万</div>
 				<div class="income">50万以上</div>
 			</div>
+
 		</div>
 	</div>
 

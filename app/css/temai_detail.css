@@ -271,6 +271,36 @@ header {
 .select-container h4 {
   margin: 0.14rem 0 0.08rem 0;
   color: #535353; }
+.xian {
+  height: 1px;
+  position: relative;
+  margin-top: 10px; }
+  .xian::after {
+    pointer-events: none;
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    content: "\0020";
+    border-color: #c1c1c1;
+    border-style: solid;
+    border-width: 1px 0 0 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0; }
+    @media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+      .xian::after {
+        width: 200%;
+        height: 200%;
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5); } }
+    @media (min--moz-device-pixel-ratio: 2.5), (-webkit-min-device-pixel-ratio: 2.5), (min-device-pixel-ratio: 2.5), (min-resolution: 240dpi), (min-resolution: 2.5dppx) {
+      .xian::after {
+        width: 200%;
+        height: 200%;
+        -webkit-transform: scale(1/3);
+        transform: scale(1/3); } }
 .button {
   font-size: 0.13rem;
   line-height: 0.33rem;
@@ -289,9 +319,9 @@ header {
   color: #000;
   background-color: #fff; }
 .button_hover {
-  border: 1px solid #247ad1;
-  color: #000;
-  background: #fff url("../img/choose_rb.png") no-repeat right bottom/15px; }
+  border: none;
+  color: #fff;
+  background: #5aa8ff; }
 .button_minus {
   border-right: 1px solid #c1c1c1;
   vertical-align: middle;

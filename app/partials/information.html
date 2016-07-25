@@ -1,11 +1,14 @@
 <!--投保须知 -->
-<link rel="stylesheet" href="css/information.css?rev=ccd6a316f69c29d38ed3d6bb90d4ca7a">
+<link rel="stylesheet" href="css/information.css?rev=bf6071117a7d435b56d77e5d79e8ab2c">
 <div  data-ng-init="init()" cg-busy="myPromise" class="information_controller">
 	<div class="infor_head" ng-if="isHaveJob">
 		<img src="img/claim_information/logo.jpg"><span class="head_info">职业告知</span><span class="orange">是否从事以下高危职业？</span>
 	</div>
 	<div class="job" ng-if="isHaveJob">
-		<div class="job_info" ng-click="showJobDes(jobValue,jobName)" ng-repeat="(jobName,jobValue) in data.job_notice">{{jobName}}</div>
+		<div class="job_info_ctrl" ng-click="showJobDes(jobValue,jobName)" ng-repeat="(jobName,jobValue) in data.job_notice">
+			<div class="job_info" >{{jobName}}</div>
+		</div>
+		
 	</div>
 	
 	<div class="infor_head"  ng-if="isHaveHealth">
@@ -32,8 +35,6 @@
 		<img src="img/claim_information/logo.jpg"><span class="head_info">年龄限制</span>
 	</div>
 	<div class="info_word"  ng-if="data.age_notice">{{data.age_notice}}</div>
-
-
 	
 	<div class="infor_head" ng-if="isExtraNotice">
 		<img src="img/claim_information/logo.jpg"><span class="head_info">其他限制</span>
@@ -44,10 +45,9 @@
 				{{extraNotice}} 
 		</div>
 	</div>
-
 	<!-- 职业扩展详情 弹窗 -->
 	<div class="mask" id="popup">
-		<div class="toast info_toast">
+		<div class="info_toast">
 			<!-- <div class="toast_head" ></div> -->
 			<!-- <div class="toast_main"></div> -->
 		</div>
