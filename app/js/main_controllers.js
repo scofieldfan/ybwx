@@ -50,7 +50,8 @@ var api = {
 	'addContact': '/ybwx-web/api/relation/add',
 	'deleteContact': '/ybwx-web/api/relation/delete',
 	'update': '/ybwx-web/api/relation/update',
-	'purchase': '/ybwx-web/api/insurance/purchase'
+	'purchase': '/ybwx-web/api/insurance/purchase',
+	'get_sum_insured': '/ybwx-web/api/insurance/get_sum_insured'
 }
 
 var isNew = true;
@@ -552,7 +553,7 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 						var objKey = _.groupBy(value, function(val, index) {
 							return index % 2;
 						});
-						 //后台只留偶数部分，找巴哥咨询
+						//后台只留偶数部分，找巴哥咨询
 						sumInsuredView[key] = objKey[1];
 					});
 					CIRCLE.updateData(res.data.data.coverage_scores, res.data.data.coverage_views, sumInsuredView, $routeParams.type);
@@ -588,7 +589,18 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 				})
 			}
 		}
+		$scope.getSumScore = function(incomeType) {
+			$scope.sumScorePromise = getHttpPromise($http, $rootScope, 'POST', api['get_sum_insured'], {
+				open_id: openId,
+				income_type: incomeType,
+				level: Math.round(scoreObj.moneyScore/2)
+			}, function(res) {
+				if (res && res.data && res.data.data) {
+					
 
+				}
+			})
+		}
 
 		$scope.goBz = function() {
 			_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_subBtn']);
@@ -624,12 +636,10 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 			$("#popup").show();
 		}
 
-	   $("#details .income").click( function() {
+		$("#details .income").click(function() {
 			$(this).addClass("blue").siblings().removeClass("blue");
 			$(this).html();
-			console.log('zhizhizhziizhizhihi');
-			console.log($(this).html());
-	    });
+		});
 		$("#off").click(function() {
 			$("#popup").hide();
 		});
@@ -805,7 +815,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 				util.showToast($rootScope, "方案中的产品全都不可购买，请至官方购买");
 				return;
 			}
-			if($scope.choosePlansIds.length==0){	
+			if ($scope.choosePlansIds.length == 0) {
 				util.showToast($rootScope, "请选择开售的产品");
 				return;
 
@@ -884,18 +894,18 @@ mainControllers.controller('ybwxInfoCtrl', ['$scope', '$routeParams', '$location
 			});
 		};
 
-		$scope.showJobDes = function(sencondJob,jobName) {
-       
+		$scope.showJobDes = function(sencondJob, jobName) {
+
 			var html = [];
-			html.push(' <div class="job_name" >' +jobName + '</div>');
+			html.push(' <div class="job_name" >' + jobName + '</div>');
 			sencondJob.forEach(function(item) {
-          
+
 				html.push(' <div class="toast_head" >' + item.name + '</div>');
 				var des = [];
 				item.jobs.forEach(function(element) {
 					des.push(element.name);
 				});
-				
+
 				html.push(' <div class="toast_main" >' + des.join(" 、") + '</div>');
 
 			});
@@ -1329,5 +1339,3 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 		}
 	}
 ]);
-
-

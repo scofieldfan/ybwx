@@ -20,13 +20,13 @@
 		</div>
 	</header>
 
-	<div class="detail-content"  data-ng-init="init()"   >
+	<div class="detail-content"  data-ng-init="init()" >
 		<div class="btn-container" ng-show="data.insurance_plans.length>
 			1"   data-current-select-id="{{data.insurance_plans[0].id}}">
 			<div class="fl-3" ng-repeat="plan in data.insurance_plans" data-id="{{plan.id}}">
 				<a href="javascript:;" class="weui_btn weui_btn_plain_default"   ng-class="{'weui_btn_primary':$index==0}"  data-index="{{$index}}"  ng-click="headSelect($event, plan)"   >{{plan.name}}</a>
 			</div>
-
+			
 		</div>
 		<div id="content_{{$index}}"  ng-show="selectTable==$index" ng-repeat="plan in data.insurance_plans">
 
@@ -147,6 +147,8 @@
 	<script type="text/javascript" src="js/zepto.min.js"></script>
 <script>
 
+
+
 $(function(){
  $("body").on("click",".td-left",function(){
     $("#popup").find(".toast").html($(this).find("img").attr("title"));
@@ -164,21 +166,7 @@ $(function(){
  	 $(".qa-container").find("li").removeClass("hide");
      $(this).hide();
  });
-  /*
-  $("body").on("click",".more_coverages_button",function(){
-  		var switchValue = $(this).attr("data-switch");
-  		if(switchValue === 'on'){
-	 		$(this).siblings().removeClass("ng-hide");
-	 		$(this).find("span").html("收起");
-	 		$(this).attr("data-switch","off");
-	 		$(this).find("img").addClass("up");
-  		}else{
-  			$(this).siblings(":gt(6)").addClass("ng-hide");
-	 		$(this).find("span").html("查看更多");
-  			$(this).attr("data-switch","on");
-  			$(this).find("img").removeClass("up");
-  		}
- });*/
+
 
 
   $(".tail-container").on("click",".hd",function(){
@@ -188,9 +176,7 @@ $(function(){
   	$("#template-container").children().hide();
   	$("#template-container").children(":eq("+index+")").show();
  });
-/* $(".mask").click(function(){
-    $(this).hide(); 
- });*/
+
 
 Zepto(function($){
 $('#showMask').on('click', function(){

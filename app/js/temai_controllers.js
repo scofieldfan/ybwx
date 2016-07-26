@@ -202,7 +202,6 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
         $scope.haveMask = false;
         $scope.selectTable = 0;
         $scope.maskPromise = getHttpPromise($http, $rootScope, 'GET', api['get_insurances_mask'].replace("{productId}", $routeParams.product_id), {}, function(res) {
-
           if (res.data && res.data.data && res.data.data.plans) {
             $scope.maskPlans = res.data.data.plans;
             $scope.maskSelectPlan = $scope.maskPlans[Object.keys($scope.maskPlans)[0]];
@@ -270,11 +269,14 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
 
         });
 
+        $q.all([$scope.maskPromise, $scope.myPromise]).then(function(res) {
+
+        updateFee();
+        }); /**/
+
       })
 
-      $q.all([$scope.maskPromise, $scope.myPromise]).then(function(res) {
-        updateFee();
-      }); /**/
+     
     }
     $scope.more = function($event) {
       var element = $event.currentTarget;
