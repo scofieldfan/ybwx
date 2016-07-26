@@ -635,14 +635,22 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 		$scope.showIntellReckon = function() {
 			$("#popup").show();
 		}
-
+		$scope.selectInsured = function($event,incomeType){
+			var element = $event.currentTarget;	
+			$(element).addClass("blue").siblings().removeClass("blue");
+			$scope.getSumScore(incomeType);
+		}
+		$scope.close = function(){
+			$("#popup").hide();
+		}
+		/*
 		$("#details .income").click(function() {
 			$(this).addClass("blue").siblings().removeClass("blue");
 			$(this).html();
 		});
 		$("#off").click(function() {
 			$("#popup").hide();
-		});
+		});*/
 	}
 ]);
 
