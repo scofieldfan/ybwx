@@ -1,39 +1,21 @@
 @charset "UTF-8";
+.dun {
+  width: 14px;
+  vertical-align: -3px; }
 .tx_lf {
   text-align: left; }
 .tx_ce {
   text-align: center; }
-.head-container {
-  width: 200px;
-  margin: 15px auto 25px; }
-.head-container .select_cell_hd {
-  width: 200px;
-  height: auto;
-  display: table-cell; }
-.head-container .btn {
-  height: 34px;
-  line-height: 34px;
-  font-size: 12px; }
-.head-container .btn_n_primary {
-  background-color: #1e4e8e;
-  border-radius: 20px; }
-.head-container .btn_unchoose {
-  background-color: #e2e2e2;
-  color: #555;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-  position: relative;
-  top: 0;
-  left: -12px;
-  z-index: -1; }
+.select-contrl {
+  margin: .15rem auto 25px; }
 .bt_container {
   position: relative;
   border-width: 1px;
   border-style: none none solid none;
   border-color: #e2e2e2;
   color: #555;
-  padding: 0px 0px 13px;
-  font-size: 0.16rem;
+  padding: 0px 0px .1rem;
+  font-size: 15px;
   overflow: hidden; }
   .bt_container .intell-reck {
     color: #588dd4;
@@ -62,13 +44,22 @@
   width: 90px;
   text-align: center;
   line-height: 0; }
+.score2_container {
+  color: #555555;
+  text-align: center;
+  line-height: 0;
+  display: inline-block;
+  font-size: 15px;
+  margin-left: 22px; }
+.score2_container .score {
+  color: #588dd4;
+  font-size: 18px; }
 .score_container .score {
-  font-size: .28rem;
-  font-weight: bold;
-  color: #555; }
+  font-size: 18px;
+  color: #588dd4; }
 .score_container .danwei {
   font-size: 16px;
-  color: #999; }
+  color: #555; }
 .small {
   font-size: 0.12rem; }
 .canvas_text {
@@ -124,8 +115,8 @@
   top: 0.12rem; }
 .bottom_container {
   border-color: #cacaca;
-  padding: 40px 15px 85px;
-  margin-top: 58px;
+  padding: 25px 15px 60px;
+  margin-top: 25px;
   position: relative;
   text-align: center; }
 .left_button {

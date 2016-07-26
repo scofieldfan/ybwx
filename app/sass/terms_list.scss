@@ -1,0 +1,21 @@
+@import "base/classes.scss";
+@import "base/variables.scss";
+.terms_list_ctrl {
+	.list_tit {padding: 0 15px;background: #006ee9;line-height: 60px;color: #fff;font-size: 15px;border-bottom: 1px solid #e2e2e2;}
+	.main {padding-left: 15px;
+		.word {
+			border-bottom: 1px solid #e2e2e2;
+			color: #555;
+			font-size: 15px;
+			height: 45px;
+			box-sizing: border-box;
+			line-height: 45px;
+			img {
+				width: 5px; 
+				float: right;
+				margin-right: 20px;
+				margin-top: 18px;
+			}
+		}
+	}
+}

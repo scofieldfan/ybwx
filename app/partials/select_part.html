@@ -1,5 +1,5 @@
 
-<div  class=""  data-ng-init="init()" style="overflow: hidden;padding:0 10px;"  cg-busy="selectPromise" >
+<div  class="select-contrl"  data-ng-init="init()" style="overflow: hidden;padding:0 10px;"  cg-busy="selectPromise" >
 	<!--
 	<div  class="head-container" style="overflow: hidden;" >
 		<label class="switch">
@@ -9,24 +9,14 @@
 	</label>
 	</div>
 	-->
-	<div class="head-container"  ng-click="goJingzhun()">
-		<div class="select_cell_hd">
-			<a href="javascript:void(0)"   class="btn btn_n_primary " >个性定制</a>
-		</div>
-		<div class="select_cell_hd">
-			<a href="javascript:void(0)" class="btn btn_unchoose" >直接购买</a>
-		</div>
-	</div>
-
-	
 
 	<div  class="bt_container">
-		<img src="img/safe.jpg" style="width:15px;vertical-align: -3px;">
+		<img src="img/global/dun.png" class="dun">
 		选择保障项目
 	</div>
 	<div style="position: relative;" id="clockContainer">
 		<div class="score_container" style="bottom:40px;" >
-			<span id="fanwei_score"  class="score">{{fanweiScore}}</span><span class="danwei">分</span>
+			<span id="fanwei_score"  class="score">{{fanweiScore}}</span><span class="danwei"> 分</span>
 			</div>
 		<canvas id="bgchartContainer" ></canvas>
 		<canvas id="chartContainer"  style="background:transparent;position:absolute;left:0;top:0;" ></canvas>
@@ -47,24 +37,23 @@
 	</div>
 
 	<div  class="bt_container">
-
 		<div style="line-height: 25px;">
-			<img src="img/safe.jpg" style="width:15px;vertical-align: -3px;">
-			选择保障金额 <span style="color:#999;"> 最高赔付额 </span><span class="intell-reck" ng-click="showIntellReckon()" style="display: none;">智能测算</span>
+			<img src="img/global/dun.png"  class="dun"> 选择保障金额
+			<div class="score2_container">
+				<span id="money_score" class="score">0</span>
+				<span class="danwei">万</span>
+			</div>
+			<div  style="font-size:15px;color:#999;display: inline-block;margin-left: 22px;" ng-if="type==4 || type ==2">
+			保1年
+	        </div>
+			<span class="intell-reck" ng-click="showIntellReckon()" >智能测算</span>
 		</div>
 		<!--
 		<a href="javascript:void(0)"   class="btn btn_n_primary"  ng-click="showCompute()">保额测算</a>
 	-->
-</div>
+    </div>
 
 <div  class="bottom_container" id="customerSlider" >
-	<div class="score_container" style="top:-25px; ">
-			<span id="money_score" class="score">0</span>
-			<span class="danwei">万</span>
-	</div>
-	<div  style="position: absolute;right:0;top:-33px; font-size:16px;color:#999;text-align: right;" ng-if="type==4 || type ==2">
-			保1年
-	</div>
 	
 	<div class="weui_progress_bar" >
 		<div class="weui_progress_inner_bar" id="bar" style="width: 16px;">
