@@ -603,16 +603,6 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 			}
 		}
 		$scope.getSumScore = function(incomeType) {
-			$scope.sumScorePromise = getHttpPromise($http, $rootScope, 'POST', api['get_sum_insured'], {
-				open_id: openId,
-				income_type: incomeType,
-				level: Math.round(scoreObj.moneyScore/2)
-			}, function(res) {
-				if (res && res.data && res.data.data) {
-					
-
-				}
-			})
 
 			if (incomeType == 0) {
 				CIRCLE.updateMoney(2);
@@ -1314,6 +1304,15 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 		}
 	}
 ]);
+mainControllers.controller('ybwxtermsListCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope','sharedPlanIntrod',
+	function($scope, $filter, $routeParams, $location, $http, $rootScope,sharedPlanIntrod) {
+		$scope.init = function() {
+		    var objectPlans = sessionStorage.getItem("data");
+		    $scope.data = JSON.parse(objectPlans);
+		    console.log(JSON.parse(objectPlans));
+		}
+	}
+]);
 
 /*
 mainControllers.controller('ybwxJingzhunCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
@@ -1365,6 +1364,7 @@ function getUserInfo() {
 		return {};
 	}
 }
+
 function saveUserInfo(username, social_id, mobile) {
 	localStorage.setItem('userinfo',
 		JSON.stringify({
@@ -1387,12 +1387,3 @@ function getFamily() {
 function saveFamily(familys) {
 	localStorage.setItem('familyInfo', JSON.stringify(familys));
 }*/
-mainControllers.controller('ybwxtermsListCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope','sharedPlanIntrod',
-	function($scope, $filter, $routeParams, $location, $http, $rootScope,sharedPlanIntrod) {
-		$scope.init = function() {
-		    var objectPlans = sessionStorage.getItem("data");
-		    $scope.data = JSON.parse(objectPlans);
-		    console.log(JSON.parse(objectPlans));
-		}
-	}
-]);

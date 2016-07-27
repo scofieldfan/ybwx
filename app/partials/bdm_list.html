@@ -92,7 +92,7 @@
 		</li>
 	
 	<!-- ng-if="data.policies.length == 0" -->
-		<li ng-click="goDetail('test')"  ng-if="data.policies.length == 0" >
+		<li ng-click="goDetail('test')"   ><!-- ng-if="data.policies.length == 0" -->
 			<div class="wrapper">
 				<div class="bg"></div>
 				<div class="title">保单号:22000000001528 <span class="example">示例保单</span></div>
@@ -100,7 +100,7 @@
 					<img class="logo" src="img/picc_logo.jpg" />
 					<div style="margin-right: 1rem;">
 						<div class="product">中国人保|爱心天使7天综合意外险</div>
-						<div class="time"><img src="img/clock.jpg"/>2016.03.03至2016.03.10</div>
+						<div class="time"><img  src="img/clock.jpg"/> 2016.03.03 至 2016.03.10</div>
 					</div>
 					<div style="clear:both;"></div>
 					<div class="status success"></div>
@@ -121,7 +121,9 @@
 	 <!---->
 	</ul>
 </div>
-
+<!-- <divc class="offer">
+	sdfdsfds
+</div> -->
 <div class="tip"  ng-if="data.policies.length == 0" >
 	点击上传 进行保单管理
 	<div></div>

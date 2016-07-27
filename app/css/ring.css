@@ -50,7 +50,7 @@
   line-height: 0;
   display: inline-block;
   font-size: 15px;
-  margin-left: 22px; }
+  margin-left: 20px; }
 .score2_container .score {
   color: #588dd4;
   font-size: 18px; }
@@ -247,7 +247,7 @@
   font-size: .15rem;
   color: #999;
   text-align: center;
-  padding-bottom: .32rem; }
+  padding-bottom: .4rem; }
 .income_details {
   display: -webkit-box;
   display: -webkit-flex;
@@ -270,7 +270,7 @@
     margin-bottom: .25rem;
     font-size: .19rem; }
 .toast_cs {
-  height: 3.8rem;
+  height: 3.0rem;
   background: #f5f5f5;
   right: 0;
   left: 0;
