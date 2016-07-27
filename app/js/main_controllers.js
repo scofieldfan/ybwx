@@ -404,7 +404,7 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 ]);
 var scoreObj = {
 	fanweiScore: 0,
-	moneyScore: 0
+	moneyScore: 0,
 };
 
 var sum_score = 0;
@@ -589,6 +589,7 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 					"insurance_type": $routeParams.type, // 保险类型
 					"coverage_score": scoreObj.fanweiScore, // 保障分
 					"sum_insured_score": scoreObj.moneyScore // 保额分
+					coverage_period : scoreObj.coveragePeriod
 				}, function(res) {
 					console.log(res);
 					if (res && res.data && res.data.data) {

@@ -63,8 +63,11 @@
 				if (i % 4 == 0) {
 					currentHtml = html['tip'];
 					var index = i / 4;
-
-					currentHtml = currentHtml.replace('{text}', this.get("text")[index]);
+					var text =  this.get("text")[index];
+					if(i==20){
+						text +="(年)";
+					}
+					currentHtml = currentHtml.replace('{text}',text);
 
 				} else {
 					currentHtml = html['blueTip'];
@@ -79,15 +82,16 @@
 		getMax: function() {
 			this.barMax = $(this.get("id")).find(".progress_bar").width() - 10;
 		},
-
 		drawSlider: function(width) {
+			
 			var moneyScore = Math.round(width * 10 / this.barMax);
 			var newWidth = moneyScore / 10 * this.barMax;
 			if (moneyScore % 2 == 0) {
 				$(this.get("id")).find(".progress_inner_bar").width(newWidth);
 				$(this.get("id")).find(".zhizhen").css("left", newWidth - ZHIZHEN_OFFSET);
 				if(typeof this.get("callback") == "function"){
-					this.get("callback")(moneyScore);
+					//this.get("callback")(moneyScore);
+					this.get("callback")(this.get("text")[moneyScore/2]);
 				}
 			}
 			
@@ -95,7 +99,10 @@
 		},
 		bindEvent: function() {
 			var _this = this; //保存this对象，否则事件callback里会将this认为是dom
-			$(this.get("id")).on("touchstart", ".zhizhen", function(event) {
+			console.log("bindEvent....:"+this.get("id"));
+			$(_this.get("id")).on("touchstart", ".zhizhen", function(event) {
+
+				console.log("touch start.....................");
 				var touchEvent = event.originalEvent.targetTouches[0];
 				event.preventDefault();
 				event.stopPropagation();
@@ -103,7 +110,7 @@
 				_this.getMax();
 				//_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_squreTabStart']);
 			});
-			$(this.get("id")).on("touchmove", ".zhizhen", function(event) {
+			$(_this.get("id")).on("touchmove", ".zhizhen", function(event) {
 				var touchEvent = event.originalEvent.targetTouches[0];
 				event.preventDefault();
 				event.stopPropagation();
@@ -122,7 +129,7 @@
 				_this.drawSlider(drawDis);
 				//_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_squreTabMove']);
 			});
-			$(this.get("id")).on("touchend", ".zhizhen", function(event) {
+			$(_this.get("id")).on("touchend", ".zhizhen", function(event) {
 
 				var touchEvent = event.originalEvent.targetTouches[0];
 				event.preventDefault();
