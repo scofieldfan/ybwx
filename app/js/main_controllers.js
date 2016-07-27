@@ -321,9 +321,21 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 		_hmt.push(['_trackPageview', $location.path()]);
 		//isNew = sessionStorage.getItem("isNew");
 		//isNew = true;
+
 		$scope.data = {
 			aggregate_score: 0
 		}
+
+
+		var currentVersion = 2;
+
+		var isShow = localStorage.getItem("isAdShow");
+
+		if(!isShow ||  isShow<currentVersion){
+			$("#share_ctrl").show();
+			localStorage.setItem("isAdShow",currentVersion);
+		}
+		
 		$('#gift').click(function() {
 			$("#share_ctrl").show();
 		});

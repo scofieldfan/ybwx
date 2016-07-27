@@ -73,7 +73,7 @@
 
 <!-- /wrapper -->
   <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-  <script src="js/output/application.min.js?rev=c46c392f5acbb7a273055b1068f12dab"></script>
+  <script src="js/output/application.min.js?rev=4f436272ca9cd6ab3d9301feb730b54d"></script>
   <script src="js/directives.js?rev=5e0047591b8595973f9946f67db591b2"></script>
    <script src="js/main_controllers.js"></script>
   <!--
@@ -131,15 +131,9 @@
 
         $("body").on("click",".mask",function(){
           $(".mask").hide();
-          console.log("........");
-          //  document.body.removeEventListener('touchmove', function(event) { 
-          //   event.preventDefault(); 
-          // }, false);
-        });
-           $("body").on("click",".close",function(){
+        }).on("click",".close",function(){
           $(".mask").hide();
-        });
-         $("body").on("click",".toast",function(){
+        }).on("click",".toast",function(){
             return false;
         }).on("click",".fixed-top",function(){
             $(window).scrollTop(0);
