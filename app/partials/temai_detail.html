@@ -1,4 +1,5 @@
-<link rel="stylesheet" type="text/css" href="css/temai_detail.css?rev=f178127f23baf9aea4fffe5a4fef087d">
+
+<link rel="stylesheet" type="text/css" href="css/temai_detail.css?rev=478d6ecfd285c0df25a809abc6aac5c2">
 
 <div  cg-busy="myPromise" >
 	<header>
@@ -79,7 +80,8 @@
 	</div>
 </div>
 <div  class="mask" id="detail_mask_container"  style="display: none;z-index:100000">
-		<div class="head-container">
+	    <div style="height: 20%"></div>
+		<div class="head-container" sytle="height: 80%;">
 			<span class="close" id="close"></span>
 			<div class="fl ">
 				<div class="small_img_ctrl"><img ng-src="{{data.small_image}}" ></div>
@@ -92,10 +94,9 @@
 				<p><span style="color: #ff5c00">*</span>最终购买价格</p>
 				<p>以被保险人身份信息测算为准</p>
 			</div>
-			<div  style="clear:both;height: 1px;"></div>
+			<div  style="clear:both;height: 10px;border-bottom: 1px solid #ccc;margin: 0 18px;"></div>
 	        <div class="head_ctrl">
 	        <div class="select-container">
-	        	<div class="xian"></div>
 	        	<h4>出生日期</h4>
 	        	<input type="date" class="date_ctrl"  min="{{minDate | date:'yyyy-MM-dd'}}" max="{{maxDate | date:'yyyy-MM-dd'}}" ng-model="user.birthday"  name="birthday"  placeholder="yyyy/MM/dd"  ng-change="changeBirthday($event)" ng-click="clickBirthDay($event)">
 	        </div>

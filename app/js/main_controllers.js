@@ -621,7 +621,6 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 				})
 
 			}
-
 		}
 
 		$scope.goBz = function() {
@@ -1104,8 +1103,8 @@ mainControllers.controller('ybwxSupplayInfoCtrl', ['$scope', '$routeParams', '$l
 	}
 ]);
 
-mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
-	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
+mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope','sharedPlanIntrod',
+	function($scope, $filter, $routeParams, $location, $http, $rootScope,sharedPlanIntrod) {
 		//得兼容定制页投保，特卖投保
 		_hmt.push(['_trackPageview', $location.path()]);
 
@@ -1128,6 +1127,10 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				}
 				return effDate;
 			}
+		}
+		$scope.goTermsList = function() {
+			$location.path("/terms_list").search();
+
 		}
 		$scope.genPlansInEffectiveDate = function() {
 			$scope.data.plans.forEach(function(element, index) {
@@ -1253,6 +1256,9 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				'charge_period': $routeParams.charge_period
 			}, function(res) {
 				$scope.data = res.data.data;
+                 var plans =  res.data.data.plans;
+                 var jsonPlans = JSON.stringify(plans);
+				 sessionStorage.setItem('data', jsonPlans);
 				//存储需要支付的订单
 				var sumMoney = $scope.data.plans.filter(function(item) {
 					return item.status === 1;
@@ -1295,6 +1301,15 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 
 				$scope.genPlansInEffectiveDate();
 			});
+		}
+	}
+]);
+mainControllers.controller('ybwxtermsListCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope','sharedPlanIntrod',
+	function($scope, $filter, $routeParams, $location, $http, $rootScope,sharedPlanIntrod) {
+		$scope.init = function() {
+		    var objectPlans = sessionStorage.getItem("data");
+		    $scope.data = JSON.parse(objectPlans);
+		    console.log(JSON.parse(objectPlans));
 		}
 	}
 ]);

@@ -16,15 +16,14 @@ var ybwxApp = angular.module('ybwxApp', [
   message: '正在加载....',
   templateUrl: 'template/loading.html'
 });
-ybwxApp.service('sharedRestrictions', function () {
-        var restrictions = {};
-
+ybwxApp.service('sharedPlanIntrod', function () {
+        var introds = {};
         return {
-            getRestrictions: function () {
-                return restrictions;
+            getIntrods: function () {
+                return introds;
             },
-            setRestrictions: function(value) {
-                restrictions = value;
+            setIntrods: function(value) {
+                introds = value;
             }
         };
 });
@@ -213,6 +212,13 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/supply_userinfo.html',
        controller: 'ybwxSupplayInfoCtrl',
       title: "被保人信息"
+    }).when('/terms', {
+      templateUrl: 'partials/product_terms.html',
+      title: "产品条款"
+    }).when('/terms_list', {
+      templateUrl: 'partials/terms_list.html',
+      controller: 'ybwxtermsListCtrl',
+      title: "产品条款列表",
     }).otherwise({
       redirectTo: '/index'
     });
