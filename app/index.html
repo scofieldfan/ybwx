@@ -73,8 +73,9 @@
 
 <!-- /wrapper -->
   <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-  <script src="js/output/application.min.js?rev=5c7776ad17fdc2e11b7b5a8510749063"></script>
+  <script src="js/output/application.min.js?rev=32444d1e3de82bae5d8d22a48568bbc3"></script>
   <script src="js/directives.js?rev=5e0047591b8595973f9946f67db591b2"></script>
+
   <!--
   <script src="wx_bx_gl/js/swiper.min.js"></script>
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -92,6 +93,7 @@
   <script src="js/main_controllers.js"></script>
   <script src="js/temai_controllers.js"></script>
   <script src="js/baodan_management_controller.js"></script>
+     <script src="js/main_controllers.js"></script>
    -->
  
 
@@ -130,15 +132,9 @@
 
         $("body").on("click",".mask",function(){
           $(".mask").hide();
-          console.log("........");
-          //  document.body.removeEventListener('touchmove', function(event) { 
-          //   event.preventDefault(); 
-          // }, false);
-        });
-           $("body").on("click",".close",function(){
+        }).on("click",".close",function(){
           $(".mask").hide();
-        });
-         $("body").on("click",".toast",function(){
+        }).on("click",".toast",function(){
             return false;
         }).on("click",".fixed-top",function(){
             $(window).scrollTop(0);
