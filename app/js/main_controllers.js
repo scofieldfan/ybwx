@@ -588,7 +588,7 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 					"open_id": openId,
 					"insurance_type": $routeParams.type, // 保险类型
 					"coverage_score": scoreObj.fanweiScore, // 保障分
-					"sum_insured_score": scoreObj.moneyScore // 保额分
+					"sum_insured_score": scoreObj.moneyScore, // 保额分
 					coverage_period : scoreObj.coveragePeriod
 				}, function(res) {
 					console.log(res);
