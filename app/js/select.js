@@ -37,18 +37,25 @@ var CIRCLE = (function() {
 	}
 
 	*/
-	function updateMoney(score) {
-		if (baozhang_money && baozhang_money[score] && baozhang_money[score] != "") {
-	
+	function updateKedu(data){
+		if(data && data.length>0){
 			var kedus = $("#customerSlider").find(".kedu").find("p");
 			for (var i = 1; i < kedus.length; i++) {
 				
 				if(i== (kedus.length-1)){
-						$(kedus[i]).html(baozhang_money[score][i - 1] + "(万)");
+						$(kedus[i]).html(data[i - 1] + "(万)");
 				}else{
-						$(kedus[i]).html(baozhang_money[score][i - 1] );
+						$(kedus[i]).html(data[i - 1] );
 				}
 			}
+
+		}
+
+	}
+	function updateMoney(score) {
+		if (baozhang_money && baozhang_money[score] && baozhang_money[score] != "") {
+			updateKedu(baozhang_money[score]);
+			
 		}
 	}
 	function updateData (coverageScores, tiaojian, money,type){
@@ -59,7 +66,6 @@ var CIRCLE = (function() {
 		init();
 	}
 	function init() {
-	
 
 		//$scope = scope;
 		changeText(0);
@@ -89,8 +95,7 @@ var CIRCLE = (function() {
 	//	width = 500;
 	//}
 	var height = parseInt(width);
-	console.log(width);
-	console.log(height);
+
 	var radius = width; //一共可绘图的半径
 	bgCanvas.setAttribute('width', width * config.dpr);
 	bgCanvas.setAttribute('height', height * config.dpr);
@@ -170,19 +175,7 @@ var CIRCLE = (function() {
 					var keduY = (bigRadius / config.dpr) * Math.sin(angFrom90);
 					var distance = Math.round(Math.sqrt(Math.pow(currentX - keduX, 2) + Math.pow(currentY - keduY, 2)));
 					var logAry = [];
-					//logAry.push("angFrom90:"+angFrom90 *180/Math.PI);
-					/*
-					console.log("keduX:"+keduX);
-					console.log("keduY:"+keduY);
-					console.log("currentX:"+currentX);
-					console.log("currentY:"+currentY);
-					console.log("distance:"+distance);
-					logAry.push("mPos.x:"+mPos.x);
-					logAry.push("mPos.y:"+mPos.y);
-					logAry.push("currentX:"+currentX);
-					logAry.push("currentY:"+currentY);
-					logAry.push("distance:"+distance);
-					log(logAry);*/
+			
 					if (distance < 50) {
 						mHold = 1;
 						event.preventDefault();
@@ -401,13 +394,7 @@ var CIRCLE = (function() {
       }
 	function drawFace(ctx, radius, angle) {
 
-		/*
-		if (angle < 0) {
-			angle = 0;
-		}
-		if (angle > 360) {
-			angle = 360;
-		}*/
+	
 
 		clearCircle(ctx, 0, 0, radius + 100);
 
@@ -573,7 +560,9 @@ var CIRCLE = (function() {
 
 	return {
 		init: init,
-		updateData:updateData
+		updateData:updateData,
+		updateKedu:updateKedu,
+		updateMoney:updateMoney
 	}
 
 })();

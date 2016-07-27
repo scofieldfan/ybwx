@@ -590,16 +590,25 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 			}
 		}
 		$scope.getSumScore = function(incomeType) {
-			$scope.sumScorePromise = getHttpPromise($http, $rootScope, 'POST', api['get_sum_insured'], {
-				open_id: openId,
-				income_type: incomeType,
-				level: Math.round(scoreObj.moneyScore/2)
-			}, function(res) {
-				if (res && res.data && res.data.data) {
-					
 
-				}
-			})
+			if (incomeType == 0) {
+				CIRCLE.updateMoney(2);
+			} else {
+				$scope.sumScorePromise = getHttpPromise($http, $rootScope, 'POST', api['get_sum_insured'], {
+					open_id: openId,
+					income_type: incomeType,
+				}, function(res) {
+					if (res && res.data && res.data.data) {
+						var data = [];
+						res.data.data.sum_insureds.forEach(function(item) {
+							data.push(item / 10000);
+						});
+						CIRCLE.updateKedu(data);
+					}
+				})
+
+			}
+
 		}
 
 		$scope.goBz = function() {
@@ -635,12 +644,12 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 		$scope.showIntellReckon = function() {
 			$("#popup").show();
 		}
-		$scope.selectInsured = function($event,incomeType){
-			var element = $event.currentTarget;	
+		$scope.selectInsured = function($event, incomeType) {
+			var element = $event.currentTarget;
 			$(element).addClass("blue").siblings().removeClass("blue");
 			$scope.getSumScore(incomeType);
 		}
-		$scope.close = function(){
+		$scope.close = function() {
 			$("#popup").hide();
 		}
 		/*
@@ -850,42 +859,6 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 
 
 
-mainControllers.controller('ybwxJingzhunCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
-	function($scope, $routeParams, $location, $http, $rootScope) {
-		_hmt.push(['_trackPageview', $location.path()]);
-
-		$scope.isHaveResult = true;
-		$scope.init = function() {
-			var openId = sessionStorage.getItem("openId");
-			$scope.listPromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurances_selling'], {
-				"open_id": openId,
-				"insurance_type": $routeParams.type
-			}, function(res) {
-				console.log(res);
-				if (res && res.data && res.data.data) {
-					$scope.list = res.data.data.insurances;
-					if (res.data.data.insurances && 　res.data.data.insurances.length > 0) {
-						$scope.isHaveResult = true;
-					} else {
-						$scope.isHaveResult = false;
-					}
-				}
-			})
-		}
-		$scope.goDetail = function(id) {
-			$location.path("/temaidetail").search({
-				"product_id": id
-			});
-		}
-
-		$scope.goLairen = function() {
-			$location.path('/select').search({
-				'type': $routeParams.type
-			});
-		}
-	}
-]);
-
 mainControllers.controller('ybwxInfoCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
@@ -1020,42 +993,7 @@ mainControllers.controller('ybwxContinueCtrl', ['$scope', '$routeParams', '$loca
 	}
 ]);
 
-/*
-function getUserInfo() {
-	var userinfo = JSON.parse(localStorage.getItem('userinfo'));
-	if (userinfo) {
-		return {
-			username: userinfo.username,
-			social_id: userinfo.social_id,
-			mobile: userinfo.mobile
-		}
-	} else {
-		return {};
-	}
-}
 
-function saveUserInfo(username, social_id, mobile) {
-	localStorage.setItem('userinfo',
-		JSON.stringify({
-			username: username,
-			social_id: social_id,
-			mobile: mobile
-		}));
-}
-
-function getFamily() {
-	var familyInfo = JSON.parse(localStorage.getItem('familyInfo'));
-	if (familyInfo) {
-		return familyInfo;
-	} else {
-		return [];
-	}
-}
-
-
-function saveFamily(familys) {
-	localStorage.setItem('familyInfo', JSON.stringify(familys));
-}*/
 
 var periodTypeMap = {
 	1: "d",
@@ -1347,3 +1285,77 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 		}
 	}
 ]);
+
+/*
+mainControllers.controller('ybwxJingzhunCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $routeParams, $location, $http, $rootScope) {
+		_hmt.push(['_trackPageview', $location.path()]);
+
+		$scope.isHaveResult = true;
+		$scope.init = function() {
+			var openId = sessionStorage.getItem("openId");
+			$scope.listPromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurances_selling'], {
+				"open_id": openId,
+				"insurance_type": $routeParams.type
+			}, function(res) {
+				console.log(res);
+				if (res && res.data && res.data.data) {
+					$scope.list = res.data.data.insurances;
+					if (res.data.data.insurances && 　res.data.data.insurances.length > 0) {
+						$scope.isHaveResult = true;
+					} else {
+						$scope.isHaveResult = false;
+					}
+				}
+			})
+		}
+		$scope.goDetail = function(id) {
+			$location.path("/temaidetail").search({
+				"product_id": id
+			});
+		}
+
+		$scope.goLairen = function() {
+			$location.path('/select').search({
+				'type': $routeParams.type
+			});
+		}
+	}
+]);
+
+/*
+function getUserInfo() {
+	var userinfo = JSON.parse(localStorage.getItem('userinfo'));
+	if (userinfo) {
+		return {
+			username: userinfo.username,
+			social_id: userinfo.social_id,
+			mobile: userinfo.mobile
+		}
+	} else {
+		return {};
+	}
+}
+
+function saveUserInfo(username, social_id, mobile) {
+	localStorage.setItem('userinfo',
+		JSON.stringify({
+			username: username,
+			social_id: social_id,
+			mobile: mobile
+		}));
+}
+
+function getFamily() {
+	var familyInfo = JSON.parse(localStorage.getItem('familyInfo'));
+	if (familyInfo) {
+		return familyInfo;
+	} else {
+		return [];
+	}
+}
+
+
+function saveFamily(familys) {
+	localStorage.setItem('familyInfo', JSON.stringify(familys));
+}*/
