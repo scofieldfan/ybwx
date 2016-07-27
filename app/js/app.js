@@ -16,6 +16,7 @@ var ybwxApp = angular.module('ybwxApp', [
   message: '正在加载....',
   templateUrl: 'template/loading.html'
 });
+/*
 ybwxApp.service('sharedRestrictions', function () {
         var restrictions = {};
 
@@ -27,7 +28,7 @@ ybwxApp.service('sharedRestrictions', function () {
                 restrictions = value;
             }
         };
-});
+});*/
 ybwxApp.filter('range', function() {
   return function(input, total) {
     total = parseInt(total);
@@ -77,7 +78,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/toubao_new.html',
       controller: 'ybwxToubaoNewCtrl',
       title: "投保确认",
-      css:'css/toubao_new.css?rev=d41d8cd98f00b204e9800998ecf8427e'
+      css:'css/toubao_new.css?rev=243bb8de239f91c386c1acf620954055'
     }).when('/promote', {
       templateUrl: 'partials/bz_ts.html',
       controller: 'ybwxPromoteCtrl',
@@ -211,7 +212,7 @@ ybwxApp.config(['$routeProvider',
       title: "被保人信息"
     }).when('/supply_userinfo', {
       templateUrl: 'partials/supply_userinfo.html',
-       controller: 'ybwxSupplayInfoCtrl',
+       controller: 'ybwxSupplyInfoCtrl',
       title: "被保人信息"
     }).otherwise({
       redirectTo: '/index'

@@ -1015,7 +1015,7 @@ var periodTypeMap = {
 
 
 
-mainControllers.controller('ybwxSupplayInfoCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+mainControllers.controller('ybwxSupplyInfoCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
 		_hmt.push(['_trackPageview', $location.path()]);
