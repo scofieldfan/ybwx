@@ -1,12 +1,11 @@
 var SLIDER = (function() {
 
 
-	function init() {
-
-
+	function init(type) {
+		insuranceType = type;
 	}
 	var barWidth = 0;
-	
+	var insuranceType;
 	var baxMax = $("#customerSlider").find(".weui_progress_bar").width() - 16;
 	// var partentMax = $("#customerSlider").find(".weui_progress_bar").width();
 	load();
@@ -88,7 +87,7 @@ var SLIDER = (function() {
 					}
 
 					updateScore(drawDis);
-					updateSumScore();
+					updateSumScore(insuranceType);
 
 
 					break;

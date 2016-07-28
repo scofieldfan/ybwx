@@ -1,5 +1,5 @@
 
-
+<script src="js/slider_component.js?rev=afafafafafafafafsaffafaa"></script>
 <div  class="select-contrl"  data-ng-init="init()" style="overflow: hidden;padding:0 10px;"  cg-busy="selectPromise" >
 	<!--
 	<div  class="head-container" style="overflow: hidden;" >
@@ -120,7 +120,7 @@
 
 
 
-<!-- 
+
 <div ng-show="type==2">
 	<div  class="bt_container">
 		<div style="line-height: 25px;">
@@ -139,7 +139,7 @@
 	</div>
 </div>
 
-
+<!-- 
 --> 
 
 
@@ -185,32 +185,4 @@
 </div>
 <script src="js/slider.js?rev=afafafafafafafafsaffafaa"></script>
 <script src="js/select.js?rev=avaafafafafsdfafafafaags"></script>
-<script src="js/slider_component.js?rev=afafafafafafafafsaffafaa"></script>
-<script>
-/*	*/
-var durations = [0,1,5,10,20,30];
-var slider = new Slider({
-			id:'#duration_container',
-			text:[
-				'0',
-				'1',
-				'5',
-				'10',
-				'20',
-				'30'
-			],
-			callback:function(score){
 
-				scoreObj.coveragePeriod = score;
-				$("#duration_score").html(score);
-				console.log(scoreObj);
-				updateSumScore();
-				/*
-				console.log(durations[score/2])
-				console.log("...:"+score);
-				console.log("...:"+score);
-				*/
-			}
-		});
-		
-</script>

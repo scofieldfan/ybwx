@@ -476,7 +476,7 @@ var CIRCLE = (function() {
 
 			console.log("...........");
 			scoreObj.fanweiScore = score;
-			updateSumScore();
+			updateSumScore(insuranceType);
 			var showScore = baozhang_score[score] || 0;
 			if (showScore > 0 && showScore < 10) {
 				showScore = showScore.toFixed(1);
