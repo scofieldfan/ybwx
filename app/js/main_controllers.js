@@ -565,6 +565,10 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 				util.showToast($rootScope, "请选择保障范围和保障额度");
 				return false;
 			}
+			if (parseInt($routeParams.type) === 2  &&  scoreObj.coveragePeriod == 0) {
+				util.showToast($rootScope, "请选择保障期间");
+				return false;
+			}
 
 			$location.path('/solution').search({
 				'type': $routeParams.type,
@@ -584,13 +588,14 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 		$scope.showCompute = function() {
 			$("#baozhang_compute").show();
 		}
+		/*
 		$scope.goJingzhun = function() {
 			console.log("....go jingzhun....");
 			_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_jingzhunBtn']);
 			$location.path('/jingzhun').search({
 				'type': $routeParams.type
 			});
-		}
+		}*/
 		$scope.showIntellReckon = function() {
 			$("#popup").show();
 		}
@@ -763,6 +768,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 
 		}
 		$scope.goDetail = function(plan) {
+
 			if (plan.status === 1) { //可购买跳转至产品详情页
 				if (plan.insurance_status !== 1) {
 					$location.path('/temaidetail').search({
@@ -770,9 +776,14 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 					});
 				}
 
-			} else
-			if (plan.official_site) {
-				window.location.href = plan.official_site;
+			} else{
+				//window.location.href = plan.official_site;
+				var param = {
+					webPageId:    plan.provision_page_id,
+					insuranceId : plan.insurance_id
+				}
+				var parmStr = util.genParameters(param);
+				window.location.href = "http://web.youbaowuxian.com/ybwx-web/api/webPage?"+parmStr;
 			}
 		}
 
@@ -845,7 +856,6 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 				postData["coverage_period"] = $routeParams.coverage_period;
 			}
 			$scope.solutionPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_plans'],postData , function(res) {
-				console.log(res);
 				if (res && res.data && res.data.data) {
 					$scope.data = res.data.data;
 
