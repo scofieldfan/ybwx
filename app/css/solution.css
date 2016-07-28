@@ -126,7 +126,6 @@ body {
       .solution li .product .status {
         background-color: #999;
         color: #fff;
-        padding: 2px;
         font-size: 12px; }
       .solution li .product .status.un-sell {
         background-color: #999; }

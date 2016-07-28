@@ -1,6 +1,10 @@
 @charset "UTF-8";
 body {
   background-color: #f5f5f5; }
+.left {
+  float: left; }
+.right {
+  float: right; }
 header {
   background-color: #fff;
   padding: 17px  25px;
@@ -220,9 +224,27 @@ header .subtitle {
 .cell_hd {
   height: 44px; }
 .offer {
-  width: 100%;
-  padding: 10px 0;
-  background: #fff; }
+  padding: 10px 55px;
+  background: #fff;
+  color: #555; }
+  .offer img {
+    width: 15px;
+    vertical-align: middle;
+    margin-right: 10px; }
+  .offer .lei {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex; }
+    .offer .lei .word {
+      display: inline-block; }
+.tigong {
+  font-size: 13px;
+  text-align: center; }
 .tip {
   width: 100%;
   text-align: center;
