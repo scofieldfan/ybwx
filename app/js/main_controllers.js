@@ -524,7 +524,7 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 					
 				};
 				if(parseInt($routeParams.type) === 2  &&  scoreObj.coveragePeriod!=0){
-					postData[coverage_period] = scoreObj.coveragePeriod;
+					postData["coverage_period"] = scoreObj.coveragePeriod;
 				}
 				$scope.moneyPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_suggestion'],postData , function(res) {
 					console.log(res);
