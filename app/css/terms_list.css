@@ -1,0 +1,23 @@
+@charset "UTF-8";
+.terms_list_ctrl .list_tit {
+  padding: 0 10px;
+  background: #006ee9;
+  line-height: 60px;
+  color: #fff;
+  font-size: 15px;
+  border-bottom: 1px solid #e2e2e2; }
+.terms_list_ctrl .main {
+  padding-left: 10px; }
+  .terms_list_ctrl .main .word {
+    padding-left: 5px;
+    border-bottom: 1px solid #e2e2e2;
+    color: #555;
+    font-size: 15px;
+    height: 45px;
+    box-sizing: border-box;
+    line-height: 45px; }
+    .terms_list_ctrl .main .word img {
+      width: 5px;
+      float: right;
+      margin-right: 20px;
+      margin-top: 18px; }

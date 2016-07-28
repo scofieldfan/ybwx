@@ -19,13 +19,12 @@ var ybwxApp = angular.module('ybwxApp', [
 /*
 ybwxApp.service('sharedRestrictions', function () {
         var restrictions = {};
-
         return {
-            getRestrictions: function () {
-                return restrictions;
+            getIntrods: function () {
+                return introds;
             },
-            setRestrictions: function(value) {
-                restrictions = value;
+            setIntrods: function(value) {
+                introds = value;
             }
         };
 });*/
@@ -63,12 +62,12 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/bd_education_new.html',
       controller: 'ybwxBdEducationNewCtrl',
       title: "保障评分",
-      css:'css/bd_education_new.css?rev=f75f255464c7054d1927e7b0aad01deb'
+      css:'css/bd_education_new.css?rev=07f6a7fea1dc7d57e653c6faf8385c0d'
     }).when('/select', {
       templateUrl: 'partials/select_part.html?v=123',
       controller: 'ybwxSelectCtrl',
       title: "保障提升",
-      css:'css/ring.css?rev=f772a3515b33e9854152ada504cc3d4e'
+      css:'css/ring.css?rev=9cb9d85e4bb3b41f38fc3241f1eb6119'
     }).when('/solution', {
       templateUrl: 'partials/solution.html',
       controller: 'ybwxSolutionCtrl',
@@ -214,6 +213,13 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/supply_userinfo.html',
        controller: 'ybwxSupplyInfoCtrl',
       title: "被保人信息"
+    }).when('/terms', {
+      templateUrl: 'partials/product_terms.html',
+      title: "产品条款"
+    }).when('/terms_list', {
+      templateUrl: 'partials/terms_list.html',
+      controller: 'ybwxtermsListCtrl',
+      title: "产品条款列表",
     }).otherwise({
       redirectTo: '/index'
     });

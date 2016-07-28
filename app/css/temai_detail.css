@@ -242,7 +242,8 @@ header {
   color: #ff5c00; }
 .head_ctrl {
   height: 3rem;
-  overflow: auto; }
+  overflow: auto;
+  margin-bottom: 20px; }
 .head-container {
   position: absolute;
   bottom: 0;
