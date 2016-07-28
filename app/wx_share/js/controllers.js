@@ -620,51 +620,7 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 				});
 			});
 
-			/*
-			var code = util.getParameterByName("code") || $routeParams.code;
-			if (!code) {
-				redirectWeChatUrl();
-			}
-			$("#loadingToastCommon").show();
-			util.getOpenId(code).then(function() {
-
-				$("#loadingToastCommon").hide();
-				var openId = sessionStorage.getItem("openId");
-				util.share({
-					shareUrl: "http://web.youbaowuxian.com/wx_share.html#/index?rec_id=" + openId,
-					shareImg: "http://web.youbaowuxian.com/wx_share/img/share61.jpg",
-					shareTitle: "送你一份500万航空意外险，买机票立省30元！",
-					shareDesc: "集齐3份航空意外险保险券，即可免费兑换一份航班延误险保险券！"
-
-				});
-				$http({
-					method: 'POST',
-					headers: {
-						"Content-Type": "application/json;charset:UTF-8"
-					},
-					url: api['ping_coupon'],
-					data: {
-						"open_id": openId,
-						"coupon_id": "2"
-					}
-				}).then(function(res) {
-					console.log(res);
-					if (res.data && res.data.description) {
-						//util.showToast($rootScope, res.data.description);
-					} else if (res.data.code === 0) {
-						$scope.data = res.data.data;
-						//console.log($scope.data);
-						if (res.data.data.recommend_times > 0) {
-							$("#coupons_container").show();
-						}
-					}
-					// showToast($rootScope,res.data.description);
-				}, function(res) {
-					console.log(res);
-					util.showToast($rootScope, "服务器错误");
-				});
-			})
-			*/
+			
 		}
 		$scope.init();
 		$scope.addCoupon = function() {
