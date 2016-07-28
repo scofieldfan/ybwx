@@ -15,6 +15,7 @@ var api = {
 	'get_insurances_mask': '/ybwx-web/api/insurance/float/{productId}',
 	'get_insurances_sex': 'ybwx-web/api/insurance/premium',
 	'get_recommend': '/ybwx-web/api/recommend_view/{type}',
+	'get_recommend_view':'/ybwx-web/api/recommend/view',
 	'get_recommend_coverages': '/ybwx-web/api/recommend_coverages',
 	'get_recommend_plans': '/ybwx-web/api/recommend_plans',
 	'get_estimate_money': '/ybwx-web/api/recommend_premium',
@@ -553,7 +554,9 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 			$scope.estimateMoney = 0;
 
 			var openId = sessionStorage.getItem("openId");
-			$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_recommend'].replace('{type}', $routeParams.type), {}, function(res) {
+			$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_view'], {
+				insurance_type: $routeParams.type
+			}, function(res) {
 
 				if (res.data && res.data.description) {
 					util.showToast($rootScope, res.data.description);
