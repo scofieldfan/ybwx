@@ -673,7 +673,7 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 					util.showToast($rootScope, res.data.description);
 				} else
 				if (res.data.data.result == 1) {
-					$location.path('/success_coupon');
+					$location.path('/exchange');
 				}
 			}, function(res) {
 				console.log(res);
