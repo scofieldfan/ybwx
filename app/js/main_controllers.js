@@ -442,8 +442,11 @@ function updateSumScore() {
 			}
 		} else {
 			$("#dzSbButton").removeClass("btn_n_primary").addClass("btn_n_primary_default");
-			element.scope().data.premium = 0;
-			element.scope().$apply();
+			if(element && element.scope() && element.scope().data){
+				element.scope().data.premium = 0;
+				element.scope().$apply();
+			}
+			
 		}
 
 	} else {
@@ -453,7 +456,7 @@ function updateSumScore() {
 			$("#dzSbButton").removeClass("btn_n_primary").addClass("btn_n_primary_default");
 		}
 		
-		if (element && element.scope() && element.scope().goEstimateMoney) {
+		if (element && element.scope() && element.scope().goEstimateMoney  && element.scope().data) {
 			element.scope().goEstimateMoney();
 			element.scope().data.premium = 0;
 			element.scope().$apply();
