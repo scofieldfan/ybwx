@@ -58,28 +58,28 @@
 			var content = html['main'];
 			var tipHtml = [];
 
-			var textArray =  this.get("text");
+			var textArray = this.get("text");
 			console.log(textArray);
-			var number = (textArray.length-1) * 4;
-			var leftPercent = 97/number;
+			var number = (textArray.length - 1) * 4;
+			var leftPercent = 97 / number;
 			for (var i = 0; i <= number; i++) {
 				var currentHtml = '';
 				if (i % 4 == 0) {
 					currentHtml = html['tip'];
 					var index = i / 4;
 
-					var text =  textArray[index];
+					var text = textArray[index];
 
-					if(textArray.length-1 == index){
-						text +="(年)";
+					if (textArray.length - 1 == index) {
+						text += "(年)";
 					}
 					// if(i==20){
 					// 	text +="(年)";
 					// }
-					if(text==null){
-						text = "";	
+					if (text == null) {
+						text = "";
 					}
-					currentHtml = currentHtml.replace('{text}',text);
+					currentHtml = currentHtml.replace('{text}', text);
 
 
 				} else {
@@ -96,36 +96,29 @@
 			this.barMax = $(this.get("id")).find(".progress_bar").width() - 10;
 		},
 
-		drawSlider: function(width,isEnd) {
+		drawSlider: function(width, isEnd) {
 
-			var moneyScore = Math.round((width * 100) / this.barMax);//100以内的比例
-		
-			var textArray =  this.get("text");
-			var number =  Math.round(100/(textArray.length-1)) ;
+			var moneyScore = Math.round((width * 100) / this.barMax); //100以内的比例
 
-		
-			var xishu = Math.ceil(moneyScore/number);
-			
-			var newWidth = xishu*number * this.barMax /100;
+			var textArray = this.get("text");
+			var number = Math.round(100 / (textArray.length - 1));
 
-			// var newWidth = moneyScore / 100 * this.barMax;
-			//if (moneyScore % number == 0) {
+
+			var xishu = Math.ceil(moneyScore / number);
+			if (xishu <= textArray.length - 1) {
+				var newWidth = xishu * number * this.barMax / 100;
 				$(this.get("id")).find(".progress_inner_bar").width(newWidth);
 				$(this.get("id")).find(".zhizhen").css("left", newWidth - ZHIZHEN_OFFSET);
-				if(typeof this.get("callback") == "function" && isEnd){
-
-					//this.get("callback")(moneyScore);
+				if (typeof this.get("callback") == "function" && isEnd) {
 					this.get("callback")(this.get("text")[xishu]);
-
 				}
-			//}
-			
+			}
 
 		},
 		bindEvent: function() {
 			var _this = this; //保存this对象，否则事件callback里会将this认为是dom
 
-			console.log("bindEvent....:"+this.get("id"));
+			console.log("bindEvent....:" + this.get("id"));
 			$(_this.get("id")).on("touchstart", ".zhizhen", function(event) {
 
 				console.log("touch start.....................");
@@ -155,7 +148,7 @@
 				if (drawDis >= _this.barMax) {
 					drawDis = _this.barMax;
 				}
-				_this.drawSlider(drawDis,false);
+				_this.drawSlider(drawDis, false);
 				//_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_squreTabMove']);
 			});
 
@@ -177,7 +170,7 @@
 				if (drawDis >= _this.barMax) {
 					drawDis = _this.barMax;
 				}
-				_this.drawSlider(drawDis,true);
+				_this.drawSlider(drawDis, true);
 				//_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_squreTabMove']);
 
 				//_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_squreTabEnd']);

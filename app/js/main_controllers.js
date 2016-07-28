@@ -516,14 +516,17 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 				//$scope.estimateMoney = 0;
 				$scope.$apply();
 			} else {
-
-				$scope.moneyPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_suggestion'], {
+				var postData = {
 					"open_id": openId,
 					"insurance_type": $routeParams.type, // 保险类型
 					"coverage_score": scoreObj.fanweiScore, // 保障分
-					"sum_insured_score": scoreObj.moneyScore, // 保额分
-					coverage_period: scoreObj.coveragePeriod
-				}, function(res) {
+					"sum_insured_score": scoreObj.moneyScore // 保额分
+					
+				};
+				if(parseInt($routeParams.type) === 2  &&  scoreObj.coveragePeriod!=0){
+					postData[coverage_period] = scoreObj.coveragePeriod;
+				}
+				$scope.moneyPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_suggestion'],postData , function(res) {
 					console.log(res);
 					if (res && res.data && res.data.data) {
 						if (res.data.data.score > 0) {
