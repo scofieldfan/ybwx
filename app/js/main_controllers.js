@@ -571,7 +571,9 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 				'coverage_score': scoreObj.fanweiScore,
 				'sum_insured_score': scoreObj.moneyScore,
 				'estimate_money': $scope.data.premium,
+				"coverage_period": scoreObj.coveragePeriod,
 				'sum_score': $scope.data.scoreFix
+
 			});
 
 		}
@@ -833,12 +835,16 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 			$scope.showNum = 4;
 			$scope.sumMoney = 0;
 			var openId = sessionStorage.getItem("openId");
-			$scope.solutionPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_plans'], {
+			var postData = {
 				"open_id": openId,
 				"insurance_type": $routeParams.type,
 				"coverage_score": $routeParams.coverage_score,
 				"sum_insured_score": $routeParams.sum_insured_score
-			}, function(res) {
+			};
+			if(parseInt($scope.type) === 2){
+				postData["coverage_period"] = $routeParams.coverage_period;
+			}
+			$scope.solutionPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_plans'],postData , function(res) {
 				console.log(res);
 				if (res && res.data && res.data.data) {
 					$scope.data = res.data.data;
