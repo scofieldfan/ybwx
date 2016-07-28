@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="css/bdm_list.css?rev=67278af0ce1e3249e4a5bd6ce3f1c792">
+<link rel="stylesheet" type="text/css" href="css/bdm_list.css?rev=7bc8d29ad62094b8dac29dff76cfe92d">
 <header>
 	<div class="left">
 		<!--
@@ -54,7 +54,7 @@
 			</div>
 		</li>
 
-		<li class="default-li" ng-click="goDetail(policy.id)"   style="display: none;" ng-repeat="policy in filtered = (data.policies |filter:filterFn )">
+		<li class="default-li" ng-click="goDetail(policy.id)" ng-repeat="policy in filtered = (data.policies |filter:filterFn )">
 				<div class="bg"></div>
 			<div class="wrapper">
 				<div class="shadow"></div>
@@ -92,7 +92,7 @@
 		</li>
 	
 	<!-- ng-if="data.policies.length == 0" -->
-		<li ng-click="goDetail('test')">
+		<li ng-click="goDetail('test')" ng-if="data.policies.length == 0">
 			<div class="wrapper">
 				<div class="bg"></div>
 				<div class="title">保单号:22000000001528 <span class="example">示例保单</span></div>
@@ -121,16 +121,15 @@
 	 <!---->
 	</ul>
 </div>
-<div class="offer">
+<!-- <div class="offer">
 	<div class="tigong">上传已有的保单照片，我们为您提供:</div>
 	<div class="lei">
 		<div class="word"><span><img src="img/bdm_list/baozhang.png"> 保障评估</span><span><img src="img/bdm_list/tisheng.png">保障提升</span></div>
-		<!-- <div class="word"><span><img src="img/bdm_list/xubao.png">续保提醒</span><span><img src="img/bdm_list/lipei.png">理赔服务</span></div> -->
 	</div>
 	<div class="lei">
 		<div class="word"><span><img src="img/bdm_list/xubao.png">续保提醒</span><span><img src="img/bdm_list/lipei.png">理赔服务</span></div>
 	</div>
-</div>
+</div> -->
 <div class="tip"  ng-if="data.policies.length == 0" >
 	点击上传 进行保单管理
 	<div></div>

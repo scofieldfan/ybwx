@@ -150,7 +150,7 @@ var coveragePeriodMap = {
 }
 
 ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$routeParams', '$location', '$http', '$rootScope', 
-  function($scope, $q, $filter, $routeParams, $location, $http, $rootScope) {
+  function($scope, $q, $filter, $routeParams, $location, $http, $rootScope ) {
 
     _hmt.push(['_trackPageview', $location.path()]);
 

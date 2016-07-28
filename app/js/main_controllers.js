@@ -15,6 +15,7 @@ var api = {
 	'get_insurances_mask': '/ybwx-web/api/insurance/float/{productId}',
 	'get_insurances_sex': 'ybwx-web/api/insurance/premium',
 	'get_recommend': '/ybwx-web/api/recommend_view/{type}',
+	'get_recommend_view':'/ybwx-web/api/recommend/view',
 	'get_recommend_coverages': '/ybwx-web/api/recommend_coverages',
 	'get_recommend_plans': '/ybwx-web/api/recommend_plans',
 	'get_estimate_money': '/ybwx-web/api/recommend_premium',
@@ -553,7 +554,9 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 			$scope.estimateMoney = 0;
 
 			var openId = sessionStorage.getItem("openId");
-			$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_recommend'].replace('{type}', $routeParams.type), {}, function(res) {
+			$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_view'], {
+				insurance_type: $routeParams.type
+			}, function(res) {
 
 				if (res.data && res.data.description) {
 					util.showToast($rootScope, res.data.description);
@@ -1014,7 +1017,7 @@ var periodTypeMap = {
 
 
 
-mainControllers.controller('ybwxSupplayInfoCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+mainControllers.controller('ybwxSupplyInfoCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
 		_hmt.push(['_trackPageview', $location.path()]);
@@ -1103,8 +1106,8 @@ mainControllers.controller('ybwxSupplayInfoCtrl', ['$scope', '$routeParams', '$l
 	}
 ]);
 
-mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope','sharedPlanIntrod',
-	function($scope, $filter, $routeParams, $location, $http, $rootScope,sharedPlanIntrod) {
+mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 		//得兼容定制页投保，特卖投保
 		_hmt.push(['_trackPageview', $location.path()]);
 
@@ -1304,8 +1307,8 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 		}
 	}
 ]);
-mainControllers.controller('ybwxtermsListCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope','sharedPlanIntrod',
-	function($scope, $filter, $routeParams, $location, $http, $rootScope,sharedPlanIntrod) {
+mainControllers.controller('ybwxtermsListCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 		$scope.init = function() {
 		    var objectPlans = sessionStorage.getItem("data");
 		    $scope.data = JSON.parse(objectPlans);

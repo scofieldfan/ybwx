@@ -33,8 +33,7 @@ function($routeProvider) {
     templateUrl: 'wx_share/partials/coupon_list.html',
     controller: 'myCouponListCtrl'
   }).when('/exchange', {
-    templateUrl: 'wx_share/partials/exchange.html',
-    controller: 'myExchangetCtrl'
+    templateUrl: 'wx_share/partials/exchange.html'
   }).when('/jixian', {
     templateUrl: 'wx_share/partials/jixian.html',
     controller: 'sportsCtrl'
