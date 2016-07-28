@@ -3,6 +3,12 @@
 body {
 	background-color: #f5f5f5;
 }
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
 header {
 	background-color: #fff;
 	padding: 17px  25px;
@@ -292,9 +298,25 @@ header .subtitle {
 	height: 44px;
 }
 .offer {
-	width:100%;
-	padding: 10px 0;
+	padding: 10px 55px;
 	background: #fff;
+    color: #555;
+	img {
+    	width: 15px;
+    	vertical-align: middle;
+    	margin-right: 10px;
+    }
+    .lei {
+    	@include justify-content(center);
+    	@include flexbox;
+    	.word {
+    		display: inline-block;
+    	}
+    }
+}
+.tigong {
+    font-size: 13px;  
+    text-align: center; 
 }
 .tip {
 	width: 100%;

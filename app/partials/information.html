@@ -1,9 +1,10 @@
 <!--投保须知 -->
-<link rel="stylesheet" href="css/information.css?rev=c60995605e7f6d35e0646e1182fffa6c">
+<link rel="stylesheet" href="css/information.css?rev=8f9101dc59d2bddf41d35c119361c42f">
 <div  data-ng-init="init()" cg-busy="myPromise" class="information_controller">
 	<div class="infor_head" ng-if="isHaveJob">
 		<img src="img/claim_information/logo.jpg"><span class="head_info">职业告知</span><span class="orange">是否从事以下高危职业？</span>
 	</div>
+	<div class=""></div>
 	<div class="job" ng-if="isHaveJob">
 		<div class="job_info_ctrl" ng-click="showJobDes(jobValue,jobName)" ng-repeat="(jobName,jobValue) in data.job_notice">
 			<div class="job_info" >{{jobName}}</div>

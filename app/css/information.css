@@ -93,7 +93,9 @@ body {
   .information_controller .info_toast {
     overflow-y: scroll;
     padding: 0;
+    padding-right: 5px;
     border: .35rem solid #fff;
+    border-right: .2rem solid #fff;
     max-height: 3.63rem;
     background: #fff;
     -webkit-overflow-scrolling: touch; }

@@ -118,7 +118,9 @@ body{
 		// overflow: scroll;
 	    overflow-y: scroll; //显示纵向滚动条
 		padding: 0;
+		padding-right: 5px;
 		border: .35rem solid #fff;
+		border-right: .2rem solid #fff;
 		max-height: 3.63rem;
 		background: #fff;
 		-webkit-overflow-scrolling: touch;
