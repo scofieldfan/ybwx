@@ -442,6 +442,8 @@ function updateSumScore() {
 			}
 		} else {
 			$("#dzSbButton").removeClass("btn_n_primary").addClass("btn_n_primary_default");
+			element.scope().data.premium = 0;
+			element.scope().$apply();
 		}
 
 	} else {
@@ -453,10 +455,13 @@ function updateSumScore() {
 		
 		if (element && element.scope() && element.scope().goEstimateMoney) {
 			element.scope().goEstimateMoney();
+			element.scope().data.premium = 0;
+			element.scope().$apply();
 		}
 
 	}
 
+	
 }
 
 
