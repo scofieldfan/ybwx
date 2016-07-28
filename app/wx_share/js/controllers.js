@@ -712,13 +712,12 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 					"open_id": openId
 				}
 			}).then(function(res) {
-				console.log("tailu log .......");
 				console.log(res);
 				if (res.data && res.data.description) {
 					util.showToast($rootScope, res.data.description);
 				} else
 				if (res.data.data.result == 1) {
-					$location.path('/exchange');
+					$location.path('/success_coupon');
 				}
 			}, function(res) {
 				console.log(res);
