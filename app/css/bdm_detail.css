@@ -146,7 +146,7 @@ table td {
 }
 .bd-wrapper {
 	background-color: #fff;
-	border-bottom: 1px solid #e2e2e2;
+	/*border-bottom: 1px solid #e2e2e2;*/
 }
 .bd-effective {
 	position: relative;
@@ -158,21 +158,23 @@ table td {
 	width: 0.8rem;
 }
 .bd-name {
-	height: 0.3rem;
-	line-height: 0.3rem;
-	padding: 0.13rem;
+	height: 0.54rem;
+	line-height: 0.54rem;
+	padding-left: 5px;
 	border-bottom: 1px solid #e2e2e2;
 }
 .bd-pic-container {
 	background-color: #fff;
-	margin: 15px;
-	padding: 3px;
+	margin: 15px 0 15px 5px;
 	width: 120px;
 	height: 150px;
 	overflow: hidden;
-	border: 1px solid #efefef;
+	border: 3px solid #fff;
 	box-shadow: 0 0 1px 2px #efefef;
 	position: relative;
+}
+.bd-pic-container  img {
+	
 }
 .bd-pic-container .number {
 	background-color: rgba(0, 0, 0, 0.5);
@@ -232,6 +234,9 @@ table td {
 	background-color:#f0f0f0;
 	color:#588dd4;
 	border:none;
+	height: .3rem;
+	line-height: .3rem;
+	margin-top: .1rem;
 }
 .yanzhen-btn.fail{
 	background-color:#f0f0f0;

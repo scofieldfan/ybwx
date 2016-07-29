@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="css/bdm_list.css?rev=7bc8d29ad62094b8dac29dff76cfe92d">
+<link rel="stylesheet" type="text/css" href="css/bdm_list.css?rev=rtyrtrye">
 <header>
 	<div class="left">
 		<!--
@@ -90,50 +90,50 @@
 				</div>
 			</div>
 		</li>
-	
-	<!-- ng-if="data.policies.length == 0" -->
-		<li ng-click="goDetail('test')" ng-if="data.policies.length == 0">
-			<div class="wrapper">
-				<div class="bg"></div>
-				<div class="title">保单号:22000000001528 <span class="example">示例保单</span></div>
-				<div class="des ">
-					<img class="logo" src="img/picc_logo.jpg" />
-					<div style="margin-right: 1rem;">
-						<div class="product">中国人保|爱心天使7天综合意外险</div>
-						<div class="time"><img  src="img/clock.jpg"/> 2016.03.03 至 2016.03.10</div>
-					</div>
-					<div style="clear:both;"></div>
-					<div class="status success"></div>
-				</div>
-				<div class="sub-container">
-					<div class="bd-score">
-						<span>0.2</span>
-						分
-					</div>
-					<div class="pei_button" >理赔</div>
-				</div>
-			</div>
-			<div class="bottom">
-				<div class="linebox">
-				</div>
-			</div>
-		</li>
-	 <!---->
 	</ul>
 </div>
-<!-- <div class="offer">
+<!-- ng-if="data.policies.length == 0" -->
+<ul class="container  examples_ctrl" ng-if="data.policies.length == 0">
+	<li ng-click="goDetail('test')">
+		<div class="wrapper">
+			<div class="bg"></div>
+			<div class="title">保单号:22000000001528 </div>
+			<div class="des ">
+				<img class="logo" src="img/picc_logo.jpg" />
+				<div style="margin-right: 1rem;">
+					<div class="product">中国人保|爱心天使7天综合意外险</div>
+					<div class="time"><img  src="img/clock.jpg"/> 2016.03.03 至 2016.03.10</div>
+				</div>
+				<div style="clear:both;"></div>
+				<div class="status success"></div>
+			</div>
+			<div class="sub-container">
+				<div class="bd-score" style="width: 100%">
+					<span>0.2</span>
+					分<span class="example">示例保单</span>
+				</div>
+			</div>
+		</div>
+		<div class="bottom">
+			<div class="linebox">
+			</div>
+		</div>
+	</li>
+</ul>
+
+<div class="offer" ng-if="data.policies.length == 0">
 	<div class="tigong">上传已有的保单照片，我们为您提供:</div>
 	<div class="lei">
-		<div class="word"><span><img src="img/bdm_list/baozhang.png"> 保障评估</span><span><img src="img/bdm_list/tisheng.png">保障提升</span></div>
+		<div class="word"><span  class="marRight_20"><img  src="img/bdm_list/baozhang.png"> 保障评估</span><span ><img  src="img/bdm_list/tisheng.png"> 保障提升</span></div>
 	</div>
 	<div class="lei">
-		<div class="word"><span><img src="img/bdm_list/xubao.png">续保提醒</span><span><img src="img/bdm_list/lipei.png">理赔服务</span></div>
+		<div class="word"><span class="marRight_20"><img src="img/bdm_list/xubao.png"> 续保提醒</span><span ><img src="img/bdm_list/lipei.png"> 理赔服务</span></div>
 	</div>
-</div> -->
-<div class="tip"  ng-if="data.policies.length == 0" >
+</div>
+<!-- <div class="tip"  ng-if="data.policies.length == 0" >
 	点击上传 进行保单管理
 	<div></div>
-</div>
+</div> -->
 <div class="cell pay_container">
   <a href="javascript:void(0)" class="btn btn_dark_2_primary" ng-click="goBdUpload();" style="border-radius: 0px;">
 		<img src="img/upload_icon.png">&nbsp;上传保单</a>

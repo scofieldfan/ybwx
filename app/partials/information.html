@@ -1,10 +1,10 @@
 <!--投保须知 -->
-<link rel="stylesheet" href="css/information.css?rev=8f9101dc59d2bddf41d35c119361c42f">
+<link rel="stylesheet" href="css/information.css?rev=df8c42dcbfa1e0439ce2580f141a9261">
 <div  data-ng-init="init()" cg-busy="myPromise" class="information_controller">
 	<div class="infor_head" ng-if="isHaveJob">
 		<img src="img/claim_information/logo.jpg"><span class="head_info">职业告知</span><span class="orange">是否从事以下高危职业？</span>
 	</div>
-	<div class=""></div>
+	<div class="warn">保险公司规定,以下职业不可投保方案中的产品</div>
 	<div class="job" ng-if="isHaveJob">
 		<div class="job_info_ctrl" ng-click="showJobDes(jobValue,jobName)" ng-repeat="(jobName,jobValue) in data.job_notice">
 			<div class="job_info" >{{jobName}}</div>
@@ -46,7 +46,7 @@
 	</div>
 	<!-- 职业扩展详情 弹窗 -->
 	<div class="mask" id="popup">
-		<div class="toast info_toast">
+		<div class="toast info_toast" id ="info_toast">
 			<!-- <div class="toast_head" ></div> -->
 			<!-- <div class="toast_main"></div> -->
 		</div>
@@ -98,4 +98,4 @@
 				{{notice.extra_notice}} 	
 			</a>
 		</li>
-	</ul>
+	</ul>-->

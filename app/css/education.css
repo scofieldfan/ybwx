@@ -1,3 +1,7 @@
+/*h1,h2,h3,h4,h5,h6 {
+	margin: 0px;
+    padding: 0px;
+}*/
 .ed-head{
 	background-color: #f4ae54;color:#fff;text-align: center;
 	font-size: 17px;
@@ -21,7 +25,26 @@ table td{
   line-height: 30px;
 }
 .ed-container{
-	 font-size:0.15rem;
+	font-size:0.15rem;
+	padding: 0 .17rem;
+}
+.accident {
+	padding: 0;
+}
+/*.accident h4{
+ 	margin: 0px;
+    padding: 0px;
+ }*/
+ .headline {
+ 	line-height: 49px;
+ 	background: #006ee9;
+ 	font-size: 15px;
+ 	color: #fff;
+	padding: 0 10px;
+ }
+.h_10 {
+	height: 10px;
+	background: #f5f5f5;
 }
 .ed-container h4{
 	color: #247ad1;
@@ -29,5 +52,25 @@ table td{
 }
 .ed-container img{
 	width:100%;
-	max-height: 4rem;	
+	/*max-height: 4rem;	*/
+} 
+.headline img {
+ 	width: 14px;
+ 	vertical-align: -3px;
+ 	margin-right: 5px;
+} 
+.die_img_ctrl {
+	padding: 10px 10px 0;
+	border-bottom: 1px solid #c4c4c4;
+}
+.die_img_ctrl img {
+	/*width: auto;*/
+}
+.accident p {
+	font-size: #555;
+	padding: 0 10px; 
+}
+.accident p span {
+	color: #006ee9;
+	font-size: 15px;
 }
