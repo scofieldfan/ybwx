@@ -34,23 +34,37 @@
 					<small class="error" ng-show="tbform.effectivedate.$error.min">生效日期不得早于{{minDate | date:'yyyy-MM-dd'}}</small>
 					<small class="error" ng-show="tbform.effectivedate.$error.max">生效日期不得大于{{maxDate | date:'yyyy-MM-dd'}}</small>
 				</div>
-				<div class="money">保额:{{processSpecialMoney(plan.sum_insured)}}元  &nbsp;&nbsp;保{{coverage_period ||  plan.coverage_period}}{{getCoverageType(plan.coverage_period_type)}}</div>
+				<div class="money">保额:{{processSpecialMoney(plan.sum_insured)}}  &nbsp;&nbsp;保{{coverage_period ||  plan.coverage_period}}{{getCoverageType(plan.coverage_period_type)}}</div>
 			</div>
 			<div class="money-container">
 				<span class="fee">{{plan.premium}}元</span>		<span class="fr" style="display: none">20年交清  <span class="modify">修改</span></span>
 			</div>
 		</li>
 	</ul>
-	<div class="supply-info" ng-if="data.address || data.car_no || data.destination">
+	<div class="supply-info" ng-if="data.address || data.car_no || data.destination || data.flight_no ">
 		<div class="title" >补充信息</div>
+
+
+
 		<div class="supply-item" ng-if="data.address">
 			<div class="introd">地址</div>
 			<div class="content"><input type="text" name="address" ng-model="user.address" class="ipt"   placeholder="请输入地址" required></div>
-			
 		</div>
 		<div class="supply-item"  style="color:red" ng-show="tbform.address.$dirty && tbform.address.$invalid ">
 			<small class="error" ng-show="tbform.address.$error.required">地址必填</small>
 		</div>
+
+
+		<div class="supply-item" ng-if="data.flight_no">
+			<div class="introd">航班号</div>
+			<div class="content"><input type="text" name="flight_no" ng-model="user.flight_no" class="ipt"   placeholder="请输入航班号" required></div>
+		</div>
+		<div class="supply-item"  style="color:red" ng-show="tbform.flight_no.$dirty && tbform.flight_no.$invalid ">
+			<small class="error" ng-show="tbform.flight_no.$error.required">航班号必填</small>
+		</div>
+
+
+
 		<div class="supply-item" ng-if="data.car_no">
 			<div class="introd">车牌号</div>
 			<div class="content"><input type="text" name="car_no"  ng-model="user.car_no"   class="ipt"   placeholder="请输入车牌号" required></div>

@@ -86,7 +86,7 @@
             nSegments = options.pieConfig.length;
 
         var sum_width = $(document).width();
-        if(sum_width>640){
+        if (sum_width > 640) {
             sum_width = 640;
         }
         var width = sum_width - options.padding; //canvas 绘图区域的总宽度
@@ -161,7 +161,7 @@
                 }
 
                 //中心区
-               
+
                 /* 
                 ctx.beginPath();
                 ctx.arc(center, center, options.closeRadius, 0, 2 * Math.PI);
@@ -171,41 +171,30 @@
 
 
                 ctx.beginPath();
-              
+
                 ctx.arc(center, center, options.closeRadius, 0, 2 * Math.PI);
                 ctx.fillStyle = (highlight === 'x' ? options.selectedColor : "#FFF");
                 ctx.fill();
 
-
-
+                var centerFontsize = options.radio * 140;
+                ctx.textAlign = "center";
+                ctx.font = "normal " + centerFontsize + "px Arial,Microsoft YaHei";
+                ctx.fillStyle = "#1e4e8e";
+                ctx.fillText(options.sumScore, center, center + radius * 0.05);
+                ctx.font = "normal 35px Arial,Microsoft YaHei";
+                if (options.policyNumber >= 0) {
+                    ctx.fillText(options.policyNumber + "单", center - radius * 0.1, center - radius * 0.2);
+                    ctx.fillStyle = "#999999";
+                    ctx.fillText("保障中", center + radius * 0.1, center - radius * 0.2);
+                }
                 if (options.sumScore > 0) {
-
-                    var centerFontsize = options.radio * 140;
-                    ctx.textAlign = "center";
-                    ctx.font = "normal " + centerFontsize + "px Arial,Microsoft YaHei";
-                    ctx.fillStyle = "#1e4e8e";
-                    ctx.fillText(options.sumScore, center, center + radius * 0.05);
-
-                    ctx.font = "normal 35px Arial,Microsoft YaHei";
-                    if(options.policyNumber){
-                          ctx.fillText(options.policyNumber+"单", center-radius*0.1, center -radius*0.2);
-                          ctx.fillStyle = "#999999";
-                          ctx.fillText("保障中", center+radius*0.1, center -radius*0.2);
-                    }
-                   
                     ctx.fillStyle = "#999999";
                     ctx.fillText("最高10分", center, center + radius * 0.2);
                 } else {
-                      preLoadImg("img/index_plus.png", function() {
-               
-                        ctx.drawImage(this, center - 25* options.dpr*options.radio, center  - 40* options.dpr*options.radio, 50* options.dpr*options.radio,50* options.dpr*options.radio);
-                        ctx.font = "normal 35px Arial,Microsoft YaHei";
-                        ctx.fillStyle = "#999999";
-                        ctx.fillText("立即上传保单", center, center + radius * 0.2);
-                    })
-                  
-                }
+                    ctx.fillStyle = "#999999";
+                    ctx.fillText("立即提升保障", center, center + radius * 0.2);
 
+                }
 
             },
             destroy = function() {
@@ -213,7 +202,7 @@
             },
             onClick = function(e) {
                 changeHighlight(e);
-                console.log("highlight:"+highlight);
+                console.log("highlight:" + highlight);
                 if (highlight !== null && highlight !== '')
                     if (highlight >= 0 && highlight < nSegments || highlight == 'x') {
                         if (e.data)
@@ -226,14 +215,14 @@
                 var posn = $(canvas).offset();
                 console.log(e);
                 var e = e.originalEvent;
-                var  pageX = e.pageX ||  e.targetTouches[0].pageX;
-                var  pageY = e.pageY ||  e.targetTouches[0].pageY;
+                var pageX = e.pageX || e.targetTouches[0].pageX;
+                var pageY = e.pageY || e.targetTouches[0].pageY;
                 console.log("x:" + pageX);
                 console.log("y:" + pageY);
 
 
                 var x = pageX - posn.left,
-                    y = pageY- posn.top;
+                    y = pageY - posn.top;
                 x = x * options.dpr;
                 y = y * options.dpr;
                 var cX = (canvas.width / 2),
@@ -241,13 +230,13 @@
 
 
                 var centerDistance = Math.sqrt((cX - x) * (cX - x) + (cY - y) * (cY - y));
-                console.log("canvas.width / 2:"+canvas.width / 2);
-                console.log("canvas.height / 2:"+canvas.height / 2);
-                console.log("centerDistance/dpr:"+centerDistance/ options.dpr);
-                console.log("centerDistance:"+centerDistance);
-                console.log("width:"+width);
-                console.log("options.closeRadius:"+options.closeRadius);
-                console.log("radius:"+radius);
+                console.log("canvas.width / 2:" + canvas.width / 2);
+                console.log("canvas.height / 2:" + canvas.height / 2);
+                console.log("centerDistance/dpr:" + centerDistance / options.dpr);
+                console.log("centerDistance:" + centerDistance);
+                console.log("width:" + width);
+                console.log("options.closeRadius:" + options.closeRadius);
+                console.log("radius:" + radius);
                 //console.log("highlight:"+highlight);
                 //console.log("prevHighlight:"+prevHighlight);
                 if (centerDistance < options.closeRadius) {
@@ -396,7 +385,7 @@
                 //绘画灰色分数扇形 
                 var innerRadius = bigRadius + 10 * options.radio;
                 var outterRadius = bigRadius + 60 * options.radio;
-                options.outterRadius = outterRadius+10;
+                options.outterRadius = outterRadius + 10;
                 // ctx.fillStyle = (isSelected ? options.selectedColor : options.backgroundColor);
 
                 drawSector(ctx, "#f5f5f5", centerX, centerY, startA, endA, innerRadius, outterRadius);
@@ -406,7 +395,7 @@
                 var anglePercent = (endA - startA) * options.pieConfig[n].percent + startA;
                 drawSector(ctx, options.pieConfig[n].color, centerX, centerY, startA, anglePercent, innerRadius, outterRadius);
 
-                
+
 
                 var textHandLength = innerRadius + (outterRadius - innerRadius) / 2;
                 var middleAngle = (startA + endA) / 2;
@@ -453,12 +442,12 @@
 
             };
 
-        $(canvas).on('mousemove touchstart',changeHighlight).
-        on('mouseleave touchend',function(e){
-           // highlight = null;
-           // draw();
+        $(canvas).on('mousemove touchstart', changeHighlight).
+        on('mouseleave touchend', function(e) {
+            // highlight = null;
+            // draw();
         }).bind('click', options.onSelection, onClick);
-        
+
         draw();
     };
 }(jQuery));

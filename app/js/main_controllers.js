@@ -292,7 +292,11 @@ function initPieConfig(sumScore, scores, policyNumber) {
 		parentElement: $("#pieChartContainer"),
 		onSelection: function(pieIndex) {
 			if (pieIndex == 'x') {
-				window.location = "#/bdm_list";
+				if(sumScore == 0){
+					window.location = "#/promote";
+				}else{
+					window.location = "#/bdm_list";
+				}
 				_hmt.push(['_trackEvent', 'index', 'index_center']);
 			} else {
 				_hmt.push(['_trackEvent', 'index', 'index_' + pieIndex]);
@@ -377,7 +381,6 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 			//setTest($routeParams.is_test);
 			var currentUrl = "http://web.youbaowuxian.com/#/index";
 			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
-
 				util.share();
 				/*
 					判断是否第一次进入
@@ -388,7 +391,6 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 				}
 				var openId = sessionStorage.getItem("openId");
 				$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_insurance_index'] + "/" + openId, {}, function(res) {
-
 					if (res.data && res.data.description) {
 						util.showToast($rootScope, res.data.description);
 					}
@@ -413,8 +415,6 @@ var scoreObj = {
 var sum_score = 0;
 
 function updateSumScore() {
-
-
 	if (scoreObj.fanweiScore == 0) {
 		if (SLIDER) {
 			SLIDER.reset();
@@ -423,7 +423,6 @@ function updateSumScore() {
 	if (scoreObj.moneyScore == 0) {
 		sum_score = 0;
 	} else {
-
 		sum_score = Math.floor(scoreObj.fanweiScore);
 	}
 	var element = angular.element(document.getElementById('clockContainer'));
@@ -461,18 +460,16 @@ function updateSumScore() {
 			element.scope().data.premium = 0;
 			element.scope().$apply();
 		}
-
 	}
-
-	
 }
-
-
-
 
 mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
+
 		_hmt.push(['_trackPageview', $location.path()]);
+
+
+
 		$scope.init = function() {
 			CIRCLE.init();
 			$scope.type = $routeParams.type;
@@ -486,6 +483,7 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 				if (res.data && res.data.description) {
 					util.showToast($rootScope, res.data.description);
 				}
+
 				if (res.data.code == 0) {
 					var sumInsuredView = [];
 
@@ -509,14 +507,12 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 							// if(isEnd){
 								
 							// }
-
 						}
 					});
-
 				}
 			});
-
 		}
+
 		$scope.data = {
 			scoreFix: 0
 		}
@@ -544,13 +540,11 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 							res.data.data.scoreFix = Math.round(res.data.data.score * 10) / 10;
 						}
 						$scope.data = res.data.data;
-
 					}
 				})
 			}
 		}
 		$scope.getSumScore = function(incomeType) {
-
 			if (incomeType == 0) {
 				CIRCLE.updateMoney(2);
 			} else {
@@ -566,7 +560,6 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 						CIRCLE.updateKedu(data);
 					}
 				})
-
 			}
 		}
 
@@ -580,7 +573,6 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 				util.showToast($rootScope, "请选择保障期间");
 				return false;
 			}
-
 			$location.path('/solution').search({
 				'type': $routeParams.type,
 				'coverage_score': scoreObj.fanweiScore,
@@ -590,7 +582,6 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 				'sum_score': $scope.data.scoreFix
 
 			});
-
 		}
 		$scope.showIntrod = function() {
 			_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_showIntrod']);
@@ -1107,6 +1098,7 @@ mainControllers.controller('ybwxSupplyInfoCtrl', ['$scope', '$routeParams', '$lo
 		$scope.submit = function() {
 			_hmt.push(['_trackEvent', 'supplyinfo', 'supplyinfo_submit']);
 			var openId = sessionStorage.getItem("openId");
+
 			if (baseValid()) {
 
 				var postData = {
@@ -1216,7 +1208,6 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				element.startDate = startDate;
 				return element.endDate = genInEffectiveDate(startDate, element.coverage_period, element.coverage_period_type);
 			});
-			console.log($scope.data.plans);
 		}
 		$scope.goRoute = function() {
 			_hmt.push(['_trackEvent', 'toubaonew', 'toubaonew_toubaoren']);
@@ -1249,9 +1240,10 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 					'coverage_period': $scope.coverage_period,
 					'charge_period': $scope.charge_period,
 					'effective_date': effectiveDate,
-					'address': $scope.address,
-					'destination': $scope.destination,
-					'car_no': $scope.car_no
+					'address': $scope.user.address,
+					'destination': $scope.user.destination,
+					'car_no': $scope.user.car_no,
+					'flight_no': $scope.user.flight_no,
 				}, function(res) {
 
 					var payRequest = {
@@ -1282,6 +1274,9 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				}
 				if ($scope.data.destination && $scope.tbform.destination && 　$scope.tbform.destination.$invalid) {
 					util.showToast($rootScope, "目的地填写错误，请修改");
+				}
+				if ($scope.data.flight_no && $scope.tbform.flight_no && 　$scope.tbform.flight_no.$invalid) {
+					util.showToast($rootScope, "航班号填写错误，请修改");
 				}
 
 			}
