@@ -319,7 +319,8 @@ header {
   border: 1px solid #c1c1c1;
   color: #000;
   background-color: #fff;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  margin-bottom: 5px; }
 .button_hover {
   box-sizing: border-box;
   border: none;
