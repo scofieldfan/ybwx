@@ -31,7 +31,7 @@
 			<div class="product-name">{{plan.name}}</div>	
 			<div class="product-des">最高保额：{{processSpecialMoney(plan.sum_insured)}}元  &nbsp; &nbsp;保{{plan.coverage_period}}{{getCoverageType(plan.coverage_period_type)}}</div>	
 			<div class="product-price"> 
-			<span >{{plan.premium}}元 </span> 
+			<span >{{plan.premium}}元<span ng-if="plan.premium_type==2 && plan.status==2">起</span></span> 
 			<span ng-show="plan.status == 0 " style="color:#999">不符合投保条件</span>
 			<span ng-show="plan.status == 6 "  style="color:#999">投保人年龄超过限制</span>
 			<span ng-show="plan.status == 7 "  style="color:#999">被保人年龄超过限制</span>
