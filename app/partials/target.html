@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="css/ensuring_target.css">
+<div class="target_ctrl">
+	<div>确定保障对象</div>
+	<div>我们将提供智能配置</div>
+	<div class="relation" id="relation">
+		<div class="btn">自己</div>
+		<div class="btn">父母</div>
+		<div class="btn">配偶</div>
+		<div class="btn">子女</div>
+		<div class="btn">整个家庭</div>
+	</div>
+	<div class="point">预算有限 建议优先保障家庭收入支柱</div>
+	<div class="target_btn">下一步</div>
+</div>
+<script>
+	$("#relation .btn").click(function() {
+			$(this).addClass("blue").siblings().removeClass("blue");
+			$(this).html();
+			console.log($(this).html());
+		});
+</script>

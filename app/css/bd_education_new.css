@@ -5,7 +5,7 @@ header {
   color: #fff;
   height: 49px;
   line-height: 49px;
-  padding: 5px 0.2rem 5px 50px;
+  padding: 0 0.2rem 0 50px;
   font-size: 15px; }
 header.icon_4 {
   background: #006ee9 url("../img/bd_education/plane.png") no-repeat 18px center;

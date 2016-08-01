@@ -322,8 +322,7 @@ header {
   box-sizing: border-box;
   margin-bottom: 5px; }
 .button_hover {
-  box-sizing: border-box;
-  border: none;
+  border: 1px solid #5aa8ff;
   color: #fff;
   background: #5aa8ff; }
 .button_minus {

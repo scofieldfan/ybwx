@@ -5,79 +5,98 @@
 	<title>电子保单页</title>
 </head>	
 <body style=" display: block;margin: 8px;line-height: 26px;font-family: "微软雅黑";color: #555;">
-	<div style=" margin: 0 auto;width: 100%;padding-bottom: 20px; padding-top: 20px; background: #f5f5f5;">
-		<div style="width: 640px; margin: 0 auto;padding-top: 40px;line-height: 26px;background: url('http://7xvrkw.com1.z0.glb.clouddn.com/back.png') no-repeat left top;">
+	<style>
+		.nuobei-email-container{
+			margin: 0 auto;width: 100%;padding-bottom: 20px; padding-top: 20px; background: #f5f5f5;" ;
+		}
+		.nuobei-email-container table tr td{
+			font-size: 16px;
+		}
+		.nuobei-email-container table tr td p{
+			font-size: 16px;
+		}
+		.nuobei-email-container table tr td p span{
+			font-size: 16px;
+		}
+		body{
+		    -webkit-text-size-adjust: none;
+		  }
+	</style>
+	<div class="nuobei-email-container">
+		<div style="width: 640px; margin: 0 auto;padding-top: 60px;line-height: 26px;background: url('http://7xvrkw.com1.z0.glb.clouddn.com/back.png') no-repeat left top;">
 			<table>
 				<tr>
-					<td style="padding-left: 40px;"><img src="http://7xvrkw.com1.z0.glb.clouddn.com/nuobei_logo.png" style="width: 195px;" ></td>
+					<td style="padding-left: 40px;"><img src="http://7xvrkw.com1.z0.glb.clouddn.com/nuobei_logo.png" style="width: 200px;" ></td>
 				</tr>
 			</table>
-			<table style="width: 567px;border-bottom: 1px solid #e2e2e2;margin: 0 auto;margin-top: 20px;">
+			<table style="width: 556px;border-bottom: 1px solid #e2e2e2;margin: 0 auto;margin-top: 30px;">
 		    </table>
-		    <table style="padding: 30px 0 0 30px;font-size: 22.5px;">
+		    <table style="padding: 20px 0 0 40px;">
 		    	<tr>
-		    		<td style="padding-left: 10px;">尊敬的***：</td>
+		    		<td>尊敬的${user_name}：</td>
 		    	</tr>
 		    </table>
-		    <table style="font-size: 23px;margin: 20px 0 15px 75px;">
-		    	<tr ><td>您好，感谢您投保[诺贝]的保险产品</td><tr>
+		    <table style="padding: 15px 0 15px 72px;font-size: 16px;">
+		    	<tr><td style="font-size: 16px;">您好，感谢您投保 【诺贝】的保险产品。请打开附件查看电子保单</td></tr>
 		    </table>
-		    <table style="width: 565px;margin: 0 auto;border-collapse:collapse;cellspacing:0; cellpadding: 0;border: 1px solid #ccc;font-size: 22.5px;">
-		    	<tr style="background: #55a5ff;border-bottom: 1px solid #ccc;height: 58px;color: #fff;">
-		    		<td style="color: #fff;padding-left: 20px;background: #55a5ff;">产品名称</td>
-		    		<td style="color: #fff;">天安100万航空意外险</td>
+		    <table style="width: 556px;margin: 0 auto;border-collapse:collapse;cellspacing:0; cellpadding: 0;border: 1px solid #ccc;">
+		    	<tr style="background: #55a5ff;border-bottom: 1px solid #ccc;height: 60px;color: #fff;">
+		    		<td style="color: #fff;padding-left: 30px;background: #55a5ff;">产品名称</td>
+		    		<td style="color: #fff;">${insurance_name}</td>
 		    	</tr>
-		    	<tr style="border-bottom: 1px solid #ccc;height: 58px;">
-		    		<td  style="padding-left: 20px;">保单号</td>
-		    		<td>10550001900218051344</td>
+		    	<tr style="border-bottom: 1px solid #ccc;height: 60px;">
+		    		<td  style="padding-left: 30px;">保单号</td>
+		    		<td>${policy_no}</td>
 		    	</tr>
-		    	<tr style="border-bottom: 1px solid #ccc;height: 58px;">
-		    		<td style="padding-left: 20px;">被保险人</td>
-		    		<td>诺小贝</td>
+		    	<tr style="border-bottom: 1px solid #ccc;height: 60px;">
+		    		<td style="padding-left: 30px;">被保险人</td>
+		    		<td>${insured_name}</td>
 		    	</tr>
-		    	<tr style="border-bottom: 1px solid #ccc;height: 58px;">
-		    		<td style="padding-left: 20px;">生效时间</td>
-		    		<td>2016年01月24日 00时00分00秒</td>
+		    	<tr style="border-bottom: 1px solid #ccc;height: 60px;">
+		    		<td style="padding-left: 30px;">生效时间</td>
+		    		<td>${effective_date}</td>
 		    	</tr>
-		    	<tr style="border-bottom: 1px solid #ccc;height: 58px;">
-		    		<td style="padding-left: 20px;">失效时间</td>
-		    		<td>2017年01月23日 00时00分00秒</td>
+		    	<tr style="border-bottom: 1px solid #ccc;height: 60px;">
+		    		<td style="padding-left: 30px;">失效时间</td>
+		    		<td>${ineffective_date}</td>
 		    	</tr>
 		    </table>
-		    <table style="width: 565px;margin: 0 auto;padding-top: 20px;">
+		   <!--  <table style="padding: 15px 0 0 70px;">
 		    	<tr >
-		    		<td style="color: #ff5c00;font-size: 21px;">查看附件中的电子保单请使用电脑打开PDF文件</td>
+		    		<td style="color: #ff5c00;">查看附件中的电子保单请使用电脑打开PDF文件</td>
 		    	</tr>
 		    	
-		    </table>
-		    <table style=" width: 565px;margin: 55px auto 0;font-size: 22.5px;">
+		    </table> -->
+		    <table style="padding: 60px 0 0 40px;">
 		    	<tr><td>温馨提示：</td></tr>
-		    </table >
-		    <table style=" width: 565px;margin: 10px auto 0;font-size: 22.5px;">
+		    </table>
+		    <table style="padding: 10px 0 0 40px;">
 		    	<tr>
-		    		<td ><img src="http://7xvrkw.com1.z0.glb.clouddn.com/jian.png" style="width: 9px;vertical-align: 25px;margin-right: 10px;"></td>
-		    		<td style="line-height: 30px;"> 保单查询：拨打天安客服 <span style="font-weight: bold;">4000-555-800</span> 或登录 <span style="font-weight: bold;">天安人寿官网</span></td>
+		    		<td><img src="http://7xvrkw.com1.z0.glb.clouddn.com/jian.png" style="width: 9px;margin-right: 18px;vertical-align: -3px;"></td>
+		    		<!-- <td style="line-height: 30px;">保单查询：拨打${company_short_name}客服 <span style="font-weight: bold;">${claim_line}</span> 或登录 <span style="font-weight: bold;"><a href="${website}" target="_blank">${company_short_name}官网</a></span></td> -->
+
+		    		<td>保单查询：拨打天安客服 或登录 天安人寿官网</td>
 		    	</tr>
 		    </table>
-		    <table style=" width: 565px;margin: 10px auto 0;font-size: 22.5px;">
+		    <table style="padding: 10px 0 0 40px;">
 		    	<tr>
-		    		<td><img src="http://7xvrkw.com1.z0.glb.clouddn.com/jian.png" style="width: 9px;vertical-align: 25px;margin-right: 10px;"> </td>
-		    		<td style="line-height: 30px;">电子保单：通过 【诺贝】 公众号 “我的订单”再次获取</td>
+		    		<td><img src="http://7xvrkw.com1.z0.glb.clouddn.com/jian.png" style="width: 9px;margin-right: 18px;vertical-align: 25px;"> </td>
+		    		<td style="line-height: 30px;padding-right: 30px;">电子保单：关注[诺贝]公众号“我的保单”查看，或通过“我的订单”再次获取</td>
 		    	</tr>
 		    </table>
-		    <table style=" width: 565px;margin: 10px auto 55px;font-size: 22.5px;">
+		    <table style="padding: 10px 0 90px 40px;">
 		    	<tr>
-		    		<td ><img src="http://7xvrkw.com1.z0.glb.clouddn.com/jian.png" style="width: 9px;vertical-align: 25px;margin-right: 10px;"></td>
-		    		<td style="line-height: 30px;"> 理赔流程：请关注 【诺贝】 公众号，进入“保单管理” 查看</td>
+		    		<td><img src="http://7xvrkw.com1.z0.glb.clouddn.com/jian.png" style="width: 9px;margin-right: 18px;vertical-align: -3px;"></td>
+		    		<td style="line-height: 30px;">理赔流程：关注[诺贝]公众号，进入“保单管理” 查看</td>
 		    	</tr>
 		    </table>
-		     <table style="width:565px;margin: 10px auto 0;padding-bottom: 24px;font-size: 22.53px;margin-bottom: 24px;border-bottom: 1px solid #ccc;text-align: center;">
+		     <table style="width:556px;margin: 0 auto;padding-bottom: 30px;margin-bottom: 30px;border-bottom: 1px solid #e2e2e2;text-align: center;">
 		    	<tr ><td>扫描二维码，关注【诺贝】</td><tr>
 		    </table>
-		    <table style="width: 565px;margin: 0 auto 30px;font-size: 19.5px;border-collapse:collapse;cellspacing:0; cellpadding: 0;">
+		    <table style="width: 556px;margin: 0 auto 30px;border-collapse:collapse;cellspacing:0; cellpadding: 0;">
 		    	<tr>
-		    		<td ><img src="http://7xvrkw.com1.z0.glb.clouddn.com/two_code.png" style="width: 168px;vertical-align: middle;"></td>
-		    		<td style="line-height: 29px;"><span style="font-weight: bold;">诺贝保险管家</span> 专业团队为您提供：</br>1、免费保险福利</br>2、性价比最高的保险产品</br>3、个性化定制方案</br>4、保单管理( 续保\理赔\保障评估</br>客服电话： 400-992-0205</td>
+		    		<td><img src="http://7xvrkw.com1.z0.glb.clouddn.com/two_code.png" style="width: 220px;vertical-align: middle;"></td>
+		    		<td><p style="margin:0;margin-bottom: 30px;line-height: 0;"><span style="font-weight: bold;">诺贝保险管家</span> 专业团队为您提供：</p> <p style="margin:0;line-height: 34px;">1、免费保险福利<br/>2、性价比最高的保险产品<br/>3、个性化定制方案<br/>4、保单管理 ( 续保\理赔\保障评估 )<br/>客服电话： 400-992-0205</p></td>
 		    	</tr>
 		    </table>
 		    <table style="height: 25px;"></table>
