@@ -97,6 +97,7 @@ gulp.task('jsMin', function() {
 			'app/bower_components/jquery/dist/jquery.min.js',
 			'app/bower_components/underscore/underscore-min.js',
 			'app/bower_components/angular/angular.min.js',
+	
 			'app/bower_components/angular-route/angular-route.min.js',
 			'app/js/angular-busy.min.js',
 			'app/bower_components/angular-route-styles/route-styles.js',

@@ -11,6 +11,9 @@
     <p class="bd_yz" ng-click="goVerfiy()">保单验真 > </p>
   </div>
   -->
+   <!-- <input id="demo1" type="text" readonly="" placeholder="日期选择特效" data-lcalendar="2014-05-11,2016-05-11" /> -->
+
+
   <div calss="mag-container" style="margin-top:0.1rem;">
        <div class="cell_hd cell_primary">
              <div class="cell-circle " ng-click="goBdMange()"><div class="icon icon-mangment"></div><div>保单管理</div></div>
@@ -19,6 +22,8 @@
              <div class="cell-circle " ng-click="goPromote()"><div class="icon icon-up"></div><div>保障提升</div></div>
        </div>
   </div>
+
+    
 </div>
 <div class="fix_container select_btn " >
     <div class="cell_hd cell_primary " >
@@ -31,5 +36,15 @@
       <div class="cell-footer" ng-click="goService($event)"><div class="icon icon-service"></div><div>服务</div></div>
     </div>
 </div>
-
+<script>
+/*
+var calendar = new LCalendar();
+    calendar.init({
+        'trigger': '#demo1', //标签id
+        'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+        'minDate': '1980-5-1', //最小日期
+        'maxDate': new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate() //最大日期
+    });
+    */
+</script>
 <!-- /wrapper -->

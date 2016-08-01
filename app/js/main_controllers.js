@@ -331,7 +331,6 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 			aggregate_score: 0
 		}
 
-
 		var currentVersion = 2;
 
 		var isShow = localStorage.getItem("isAdShow");
@@ -1070,11 +1069,11 @@ mainControllers.controller('ybwxContinueCtrl', ['$scope', '$routeParams', '$loca
 ]);
 
 
-
+/*
 var periodTypeMap = {
 	1: "d",
 	2: "y"
-}
+}*/
 
 
 

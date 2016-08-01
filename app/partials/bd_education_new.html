@@ -100,7 +100,7 @@
     <div class="table-wrapper">
     <table ng-if="data.coverages">
         <tr class="bd-tr" ng-repeat="item in data.coverages" ng-hide="$index>=6">
-            <td style="text-align:left;">{{item.name}}</td>
+            <td style="text-align:left;width:75%;">{{item.name}}</td>
             <td style="text-align:right;"> {{processMoney(item.sum_insured)}}</td>
         </tr>
     </table>

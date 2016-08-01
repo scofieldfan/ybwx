@@ -12,6 +12,7 @@ var ybwxApp = angular.module('ybwxApp', [
   'serviceControllers',
   'transactionControllers',
   'routeStyles'
+
 ]).value('cgBusyDefaults', {
   message: '正在加载....',
   templateUrl: 'template/loading.html'
@@ -185,10 +186,6 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/bd_pic.html',
       controller: 'ybwxBDPicCtrl',
       title: "保单上传"
-    }).when('/offical', {
-      templateUrl: 'partials/offical_site.html',
-      controller: 'ybwxOfficalSiteCtrl',
-      title: "官网信息"
     }).when('/bdm_list', {
       templateUrl: 'partials/bdm_list.html',
       controller: 'ybwxbaodanManageListCtrl',
