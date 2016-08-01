@@ -85,6 +85,19 @@ var util = {
 			$("#toast").fadeOut();
 		}, 2000);
 	},
+	preventDefault: function(e) {
+		e = e || window.event;
+		e.preventDefault && e.preventDefault();
+		e.returnValue = false;
+	},
+	enableScroll :function(){
+			$(document).off('mousewheel', util.preventDefault);
+			$(document).off('touchmove', util.preventDefault);
+	},
+	disableScroll:function(){
+		$(document).on('mousewheel', util.preventDefault);
+		$(document).on('touchmove', util.preventDefault);
+	},
 	getOpenId: function(code) {
 		if (!sessionStorage.getItem("openId")) {
 			return $.when($.ajax({
@@ -316,15 +329,15 @@ var util = {
 		8: "不可投",
 		9: "不可投"
 	},
-	taocan_reason:{
-	    0: "套餐不可购买",
-	    3: "保险产品份数超过限制",
-	    4: "保险套餐份数超过限制",
-	    5: "保额超过限制",
-	    6: "投保人年龄不符合条件",
-	    7: "被保人年龄不符合条件",
-	    8: "被保人性别不符合条件",
-	    9: "被保人关系在此产品不能投保"
+	taocan_reason: {
+		0: "套餐不可购买",
+		3: "保险产品份数超过限制",
+		4: "保险套餐份数超过限制",
+		5: "保额超过限制",
+		6: "投保人年龄不符合条件",
+		7: "被保人年龄不符合条件",
+		8: "被保人性别不符合条件",
+		9: "被保人关系在此产品不能投保"
 	},
 	/*
 			保险产品套餐状态：
@@ -406,7 +419,7 @@ var util = {
 
 	],
 	//不含本人信息
-	modifyRelationShip: [ {
+	modifyRelationShip: [{
 			id: 2,
 			name: '父母'
 		}, {

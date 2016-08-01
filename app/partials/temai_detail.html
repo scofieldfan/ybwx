@@ -1,7 +1,7 @@
 
 <link rel="stylesheet" type="text/css" href="css/temai_detail.css?rev=43f3943448764bfcc0f6dd22edd24ea2">
 
-<div  cg-busy="myPromise" >
+<div  cg-busy="myPromise" class="temaidetail-wrapper" >
 	<header>
 		<div class="top-container" >
 			<img ng-src="{{data.hot_image}}" style="width:100%;">
@@ -96,18 +96,21 @@
 			</div>
 			<div  style="clear:both;height: 10px;border-bottom: 1px solid #ccc;margin: 0 18px;"></div>
 	        <div class="head_ctrl">
-	        <div class="select-container">
+	        <div class="select-container"  ng-if="maskData.show_birthday">
 	        	<h4>出生日期</h4>
 	        	<input type="date" class="date_ctrl"  min="{{minDate | date:'yyyy-MM-dd'}}" max="{{maxDate | date:'yyyy-MM-dd'}}" ng-model="user.birthday"  name="birthday"  placeholder="yyyy/MM/dd"  ng-change="changeBirthday($event)" ng-click="clickBirthDay($event)">
 	        </div>
-	        <div class="select-container"> 
+	        <div class="select-container" ng-if="maskData.show_gender"> 
 	        	<h4>性别</h4>
-	        	<a href="javascript:void(0)" class="button button_primary sex_id" ng-click="changeSex($event,1)" ng-class="gender==1?'button_hover':''" data-sex="1">男</a>
-	        	<a href="javascript:void(0)" class="button button_primary sex_id" ng-click="changeSex($event,2)"  ng-class="gender==2?'button_hover':''" data-sex="2">女</a>
+	        	<a href="javascript:void(0)" class="button button_primary sex_id" ng-click="changeSex($event,item)" ng-class="gender==item?'button_hover':''" ng-repeat="item in maskData.valid_genders">
+	        	<span ng-if="item==1">男</span>
+	        	<span ng-if="item==2">女</span>
+	        	</a>
+	        	<!-- <a href="javascript:void(0)" class="button button_primary sex_id" ng-click="changeSex($event,2)"  ng-class="gender==2?'button_hover':''" data-sex="2">女</a> -->
 	        </div>
 			<div class="select-container">
 				<h4>保障方案</h4>
-				<a href="javascript:void(0)" class="button button_primary" ng-click="changeTaoCan($event,item)" ng-class="item.id==plan.id?'button_hover':''" ng-repeat="item in data.insurance_plans">{{item.name}}</a>
+				<a href="javascript:void(0)" class="button button_primary" ng-click="changeMaskTaoCan($event,item)" ng-class="item.id==plan.id?'button_hover':''" ng-repeat="item in data.insurance_plans">{{item.name}}</a>
 				
 			</div>
 		    <!-- <div class="select-container">
@@ -118,12 +121,10 @@
 				<h4>保障期间</h4>
 				<a href="javascript:void(0)" class="button button_primary"   ng-click="changeDuration($event,item)"  ng-class="item==coverage_period?'button_hover':''"  ng-repeat="item in maskSelectPlan.coverage_periods">{{item}}{{genDanwei(maskSelectPlan.coverage_period_type)}}</a>
 			</div>
-
-			<div class="select-container">
+			
+			<div class="select-container" ng-if="maskSelectPlan.charge_periods.length>0">
 				<h4>缴费期间</h4>
-
 				<a href="javascript:void(0)" class="button button_primary"  ng-click="changeFee($event,nul)"   ng-class="charge_period==null?'button_hover':''">一次交清</a>
-
 				<a href="javascript:void(0)" class="button button_primary"  ng-click="changeFee($event,item)"   ng-class="item==charge_period?'button_hover':''"  ng-repeat="item in maskSelectPlan.charge_periods">{{item}}</a>
 			</div>
 			<!-- <div class="select-container">
@@ -178,14 +179,16 @@ $(function(){
   	$("#template-container").children(":eq("+index+")").show();
  });
 
-
+/**/
 Zepto(function($){
 $('#showMask').on('click', function(){
-function preventDefault(e) {
+
+		/*
+		function preventDefault(e) {
             e = e || window.event;
             e.preventDefault && e.preventDefault();
             e.returnValue = false;
-        }
+        }*/
 
         function stopPropagation(e){
 			// e = e || window.event;
@@ -203,40 +206,41 @@ function preventDefault(e) {
 
 			if($(box).height() + box.scrollTop >= box.scrollHeight){
 				if(delta < 0) {
-					preventDefault(e);
+					util.preventDefault(e);
 					return false;
 				}
 			}
 			if(box.scrollTop === 0){
 				if(delta > 0) {
-					preventDefault(e);
+					util.preventDefault(e);
 					return false;
 				}
 			}
 			//会阻止原生滚动
 			return true;
         }
-         
+         /*
 		var disableScroll = function(){
-			$(document).on('mousewheel', preventDefault);
-			$(document).on('touchmove', preventDefault);
+			$(document).on('mousewheel', util.preventDefault);
+			$(document).on('touchmove', util.preventDefault);
 		};
         
 		var enableScroll = function(){
-			$(document).off('mousewheel', preventDefault);
-			$(document).off('touchmove', preventDefault);
-		};
+			$(document).off('mousewheel', util.preventDefault);
+			$(document).off('touchmove', util.preventDefault);
+		};*/
 		// 内部可滚
-		
-		disableScroll();
+
 		$('.close').on('click', function(e){
 			$('.mask').hide();
 			$('.mask').hide();
+			 util.enableScroll();
 		});
 		$('.mask').on('click', function(e){
 			$(this).hide();
 			$(this).hide();
-			enableScroll();
+			 util.enableScroll();
+			//enableScroll();
 		});
 		$('.mask').on('mousewheel', innerScroll);
 		// 外部禁用

@@ -158,7 +158,10 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       return coveragePeriodMap[type];
     }
     $scope.gender = 1;
-
+    function disableScroll(){
+      $(document).on('mousewheel', util.preventDefault);
+      $(document).on('touchmove', util.preventDefault);
+    };
     function updateFee() {
       var openId = sessionStorage.getItem("openId");
       var birthday = $filter('date')($scope.user.birthday, "yyyyMMdd");
@@ -203,19 +206,23 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
         $scope.selectTable = 0;
         $scope.maskPromise = getHttpPromise($http, $rootScope, 'GET', api['get_insurances_mask'].replace("{productId}", $routeParams.product_id), {}, function(res) {
           if (res.data && res.data.data && res.data.data.plans) {
+
+            $scope.maskData = res.data.data;
+             
             $scope.maskPlans = res.data.data.plans;
             $scope.maskSelectPlan = $scope.maskPlans[Object.keys($scope.maskPlans)[0]];
             $scope.coverage_period = $scope.maskSelectPlan.coverage_periods[0];
             $scope.coverage_period_type = $scope.maskSelectPlan.coverage_period_type;
-
             if ($scope.maskSelectPlan.charge_periods) {
               $scope.charge_period = $scope.maskSelectPlan.charge_periods[0];
             }
             $scope.charge_period_type = $scope.maskSelectPlan.charge_period_type;
-            $scope.haveMask = true;
-          } else {
-            $scope.haveMask = false;
           }
+
+          if( Object.keys(res.data.data.plans).length>1 || res.data.data.premium_type == 2 ){
+             $scope.haveMask = true;
+          }
+         
 
         })
 
@@ -322,10 +329,13 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
     }
 
     // console.log($scope.dataNum );
-    $scope.changeTaoCan = function($event, item) {
+    $scope.changeMaskTaoCan = function($event, item) {
+
       $event.preventDefault();
       $event.stopPropagation();
       $scope.plan = item;
+      $scope.maskSelectPlan = $scope.maskPlans[item.id];
+      // $scope.maskSelectPlan = item;
       $scope.danwei = genDuration($scope.plan.coverage_period_type);
       //$scope.money = $scope.plan.premium;
       $scope.getRestrictions();
@@ -375,14 +385,14 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
     $scope.showMask = function() {
       if ($scope.haveMask) {
         $("#detail_mask_container").show();
-        //解决浮层滑动时body滑动
-        // $('body').css("overflow","hidden");
+        util.disableScroll();
       } else {
         $scope.submit();
       }
     }
     $scope.submit = function() {
       //获得当前的plan
+      util.enableScroll();
       var selectPlan = $scope.plan.id;
       _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_submit']);
 
