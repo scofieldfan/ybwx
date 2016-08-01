@@ -63,7 +63,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/bd_education_new.html',
       controller: 'ybwxBdEducationNewCtrl',
       title: "保障评分",
-      css:'css/bd_education_new.css?rev=07f6a7fea1dc7d57e653c6faf8385c0d'
+      css:'css/bd_education_new.css?rev=574f104fdb96a11a5b11c99936417f29'
     }).when('/select', {
       templateUrl: 'partials/select_part.html?v=123',
       controller: 'ybwxSelectCtrl',
@@ -79,10 +79,16 @@ ybwxApp.config(['$routeProvider',
       controller: 'ybwxToubaoNewCtrl',
       title: "投保确认",
       css:'css/toubao_new.css?rev=243bb8de239f91c386c1acf620954055'
+    }).when('/target', {
+      templateUrl: 'partials/target.html',
+      title: "保障对象"
     }).when('/promote', {
       templateUrl: 'partials/bz_ts.html',
       controller: 'ybwxPromoteCtrl',
       title: "保障提升"
+    }).when('/hobby', {
+      templateUrl: 'partials/hobby.html',
+      title: "偏好设定"
     }).when('/service', {
       templateUrl: 'partials/service.html',
       controller: 'ybwxServiceCtrl',

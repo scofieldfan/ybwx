@@ -4,7 +4,7 @@
 	<div class="infor_head" ng-if="isHaveJob">
 		<img src="img/claim_information/logo.jpg"><span class="head_info">职业告知</span><span class="orange">是否从事以下高危职业？</span>
 	</div>
-	<div class="warn">保险公司规定,以下职业不可投保方案中的产品</div>
+	<div class="warn" ng-if="isHaveJob">保险公司规定,以下职业不可投保方案中的产品</div>
 	<div class="job" ng-if="isHaveJob">
 		<div class="job_info_ctrl" ng-click="showJobDes(jobValue,jobName)" ng-repeat="(jobName,jobValue) in data.job_notice">
 			<div class="job_info" >{{jobName}}</div>
