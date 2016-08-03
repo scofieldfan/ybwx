@@ -89,6 +89,9 @@ ybwxApp.config(['$routeProvider',
     }).when('/hobby', {
       templateUrl: 'partials/hobby.html',
       title: "偏好设定"
+    }).when('/userinfo_new', {
+      templateUrl: 'partials/userinfo_new.html',
+      title: "资料设定"
     }).when('/service', {
       templateUrl: 'partials/service.html',
       controller: 'ybwxServiceCtrl',

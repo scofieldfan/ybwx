@@ -640,8 +640,18 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 				}
 			}).then(function(res) {
 				console.log(res);
+				// if (res.data && res.data.description) {
+				// 	util.showToast($rootScope, res.data.description);
+				// }
 				if (res.data && res.data.description) {
-					util.showToast($rootScope, res.data.description);
+					$("#pop").show();
+					$("#popup").click(function() {
+						$("#pop").hide();
+					});
+					$("#popup-btn").click(function() {
+						$("#pop").hide();
+					});
+					// util.showToast($rootScope, res.data.description);
 				}
 				// showToast($rootScope,res.data.description);
 				if (res.data.code == 0) {
