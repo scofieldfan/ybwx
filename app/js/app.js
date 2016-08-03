@@ -59,7 +59,7 @@ ybwxApp.config(['$routeProvider',
       controller: 'ybwxIndexCtrl',
       title: '诺贝保险管家',
       css:'css/index_part.css?rev=f4325a2dc507bfb0a6e4a1213aeb204d'
-    }).when('/bd_education', {
+    }).when('/bd_education_new', {
       templateUrl: 'partials/bd_education_new.html',
       controller: 'ybwxBdEducationNewCtrl',
       title: "保障评分",
@@ -89,6 +89,9 @@ ybwxApp.config(['$routeProvider',
     }).when('/hobby', {
       templateUrl: 'partials/hobby.html',
       title: "偏好设定"
+    }).when('/userinfo_new', {
+      templateUrl: 'partials/userinfo_new.html',
+      title: "资料设定"
     }).when('/service', {
       templateUrl: 'partials/service.html',
       controller: 'ybwxServiceCtrl',

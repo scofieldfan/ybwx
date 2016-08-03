@@ -1,16 +1,18 @@
 @import "base/classes.scss";
 @import "base/variables.scss";
-body {background: #f5f5f5}
+body {background: #f5f5f5;}
 .target_ctrl {
-	padding: 10px 0;
+	padding: 10px 60px;
 	color: #555;
-	font-size: 15px;
 	text-align: center;
+	.who {font-size: 18px;}
+	.first {color: #999;font-size: 13px;}
 	.relation {margin-top: 40px;
-		.btn {margin: 0 auto;width: 140px;line-height: 44px;background: #fff;border: 1px solid #e2e2e2;border-radius: 5px;box-sizing: border-box;margin-bottom: 5px;}
+		@include flexbox;
+		@include  flex-wrap(wrap);
+		.btn {margin: 0 auto;width: 1.16rem;height: 1.16rem;line-height: 1.16rem; background: #fff;border: 1px solid #e2e2e2;border-radius: 50%;box-sizing: border-box;margin-bottom: 20px;}
 		.blue {color: #fff;background: #55a5ff;}
 	}
-.point {font-size: 13px;color: #999;margin-top: 40px;}
 
 
 

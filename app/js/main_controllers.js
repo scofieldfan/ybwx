@@ -15,7 +15,7 @@ var api = {
 	'get_insurances_mask': '/ybwx-web/api/insurance/float/{productId}',
 	'get_insurances_sex': 'ybwx-web/api/insurance/premium',
 	'get_recommend': '/ybwx-web/api/recommend_view/{type}',
-	'get_recommend_view': '/ybwx-web/api/recommend/view',
+	'get_recommend_view':'/ybwx-web/api/recommend/view',
 	'get_recommend_coverages': '/ybwx-web/api/recommend_coverages',
 	'get_recommend_plans': '/ybwx-web/api/recommend_plans',
 	'get_estimate_money': '/ybwx-web/api/recommend_premium',
@@ -292,16 +292,12 @@ function initPieConfig(sumScore, scores, policyNumber) {
 		parentElement: $("#pieChartContainer"),
 		onSelection: function(pieIndex) {
 			if (pieIndex == 'x') {
-				if(sumScore == 0){
-					window.location = "#/promote";
-				}else{
-					window.location = "#/bdm_list";
-				}
+				window.location = "#/bdm_list";
 				_hmt.push(['_trackEvent', 'index', 'index_center']);
 			} else {
 				_hmt.push(['_trackEvent', 'index', 'index_' + pieIndex]);
 				if (pieIndex == '0' || pieIndex == '1' || pieIndex == '2') {
-					window.location = "#/bd_education?type=" + insureTypeMap[pieIndex];
+					window.location = "#/bd_education_new?type=" + insureTypeMap[pieIndex];
 				} else {
 					window.location = "#/continue";
 				}
@@ -331,15 +327,16 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 			aggregate_score: 0
 		}
 
+
 		var currentVersion = 2;
 
 		var isShow = localStorage.getItem("isAdShow");
 
-		if (!isShow || isShow < currentVersion) {
+		if(!isShow ||  isShow<currentVersion){
 			$("#share_ctrl").show();
-			localStorage.setItem("isAdShow", currentVersion);
+			localStorage.setItem("isAdShow",currentVersion);
 		}
-
+		
 		$('#gift').click(function() {
 			$("#share_ctrl").show();
 		});
@@ -380,6 +377,7 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 			//setTest($routeParams.is_test);
 			var currentUrl = "http://web.youbaowuxian.com/#/index";
 			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
+
 				util.share();
 				/*
 					判断是否第一次进入
@@ -390,6 +388,7 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 				}
 				var openId = sessionStorage.getItem("openId");
 				$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_insurance_index'] + "/" + openId, {}, function(res) {
+
 					if (res.data && res.data.description) {
 						util.showToast($rootScope, res.data.description);
 					}
@@ -405,10 +404,8 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 	}
 ]);
 var scoreObj = {
-	insuranceType:0,
 	fanweiScore: 0,
 	moneyScore: 0,
-	coveragePeriod: 0
 };
 
 var sum_score = 0;
@@ -422,202 +419,21 @@ function updateSumScore() {
 	if (scoreObj.moneyScore == 0) {
 		sum_score = 0;
 	} else {
+		//sum_score = Math.floor((scoreObj.fanweiScore + scoreObj.moneyScore) / 2);
+		//sum_score = Math.floor((scoreObj.fanweiScore * scoreObj.moneyScore) / 10);
 		sum_score = Math.floor(scoreObj.fanweiScore);
 	}
-	var element = angular.element(document.getElementById('clockContainer'));
-
-	console.log("insurance type:"+scoreObj.insuranceType);
-
-	if (parseInt(scoreObj.insuranceType) === 2) {
-		//健康险需要判断保险期间
-
-		console.log("insurance type duration");
-		if (scoreObj.fanweiScore != 0 && scoreObj.moneyScore != 0 && scoreObj.coveragePeriod != 0) {
-			$("#dzSbButton").removeClass("btn_n_primary_default").addClass("btn_n_primary")
-			
-			if (element && element.scope() && element.scope().goEstimateMoney) {
-				element.scope().goEstimateMoney();
-			}
-		} else {
-			$("#dzSbButton").removeClass("btn_n_primary").addClass("btn_n_primary_default");
-			if(element && element.scope() && element.scope().data){
-				element.scope().data.premium = 0;
-				element.scope().$apply();
-			}
-			
-		}
-
+	//$("#sum_score").html(sum_score);
+	if (scoreObj.fanweiScore != 0 && scoreObj.moneyScore != 0) {
+		$("#dzSbButton").removeClass("btn_n_primary_default").addClass("btn_n_primary")
 	} else {
-		if (scoreObj.fanweiScore != 0 && scoreObj.moneyScore != 0) {
-			$("#dzSbButton").removeClass("btn_n_primary_default").addClass("btn_n_primary")
-		} else {
-			$("#dzSbButton").removeClass("btn_n_primary").addClass("btn_n_primary_default");
-		}
-		
-		if (element && element.scope() && element.scope().goEstimateMoney  && element.scope().data) {
-			element.scope().goEstimateMoney();
-			element.scope().data.premium = 0;
-			element.scope().$apply();
-		}
+		$("#dzSbButton").removeClass("btn_n_primary").addClass("btn_n_primary_default");
+	}
+	var element = angular.element(document.getElementById('clockContainer'));
+	if (element && element.scope() && element.scope().goEstimateMoney) {
+		element.scope().goEstimateMoney();
 	}
 }
-
-mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
-	function($scope, $routeParams, $location, $http, $rootScope) {
-
-		_hmt.push(['_trackPageview', $location.path()]);
-
-
-
-		$scope.init = function() {
-			CIRCLE.init();
-			$scope.type = $routeParams.type;
-			$scope.estimateMoney = 0;
-			scoreObj.insuranceType =  $routeParams.type;
-			var openId = sessionStorage.getItem("openId");
-			$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_view'], {
-				insurance_type: $routeParams.type
-			}, function(res) {
-
-				if (res.data && res.data.description) {
-					util.showToast($rootScope, res.data.description);
-				}
-
-				if (res.data.code == 0) {
-					var sumInsuredView = [];
-
-					_.map(res.data.data.sum_insured_views, function(value, key) {
-						var objKey = _.groupBy(value, function(val, index) {
-							return index % 2;
-						});
-						//后台只留偶数部分，找巴哥咨询
-						sumInsuredView[key] = objKey[1];
-					});
-					CIRCLE.updateData(res.data.data.coverage_scores, res.data.data.coverage_views, sumInsuredView, $routeParams.type);
-					res.data.data.coverage_periods.unshift(0);
-					
-					var slider = new Slider({
-						id: '#duration_container',
-						text: res.data.data.coverage_periods,
-						callback: function(score,isEnd) {
-							scoreObj.coveragePeriod = score;
-							$("#duration_score").html(score);
-							updateSumScore($routeParams.type);
-							// if(isEnd){
-								
-							// }
-						}
-					});
-				}
-			});
-		}
-
-		$scope.data = {
-			scoreFix: 0
-		}
-		var openId = sessionStorage.getItem("openId");
-		//get_recommend_suggestion
-		$scope.goEstimateMoney = function() {
-			if (scoreObj.fanweiScore == 0 || scoreObj.moneyScore == 0) {
-				//$scope.estimateMoney = 0;
-				$scope.$apply();
-			} else {
-				var postData = {
-					"open_id": openId,
-					"insurance_type": $routeParams.type, // 保险类型
-					"coverage_score": scoreObj.fanweiScore, // 保障分
-					"sum_insured_score": scoreObj.moneyScore // 保额分
-					
-				};
-				if(parseInt($routeParams.type) === 2  &&  scoreObj.coveragePeriod!=0){
-					postData["coverage_period"] = scoreObj.coveragePeriod;
-				}
-				$scope.moneyPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_suggestion'],postData , function(res) {
-					console.log(res);
-					if (res && res.data && res.data.data) {
-						if (res.data.data.score > 0) {
-							res.data.data.scoreFix = Math.round(res.data.data.score * 10) / 10;
-						}
-						$scope.data = res.data.data;
-					}
-				})
-			}
-		}
-		$scope.getSumScore = function(incomeType) {
-			if (incomeType == 0) {
-				CIRCLE.updateMoney(2);
-			} else {
-				$scope.sumScorePromise = getHttpPromise($http, $rootScope, 'POST', api['get_sum_insured'], {
-					open_id: openId,
-					income_type: incomeType,
-				}, function(res) {
-					if (res && res.data && res.data.data) {
-						var data = [];
-						res.data.data.sum_insureds.forEach(function(item) {
-							data.push(item / 10000);
-						});
-						CIRCLE.updateKedu(data);
-					}
-				})
-			}
-		}
-
-		$scope.goBz = function() {
-			_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_subBtn']);
-			if (scoreObj.fanweiScore == 0 || scoreObj.moneyScore == 0) {
-				util.showToast($rootScope, "请选择保障范围和保障额度");
-				return false;
-			}
-			if (parseInt($routeParams.type) === 2  &&  scoreObj.coveragePeriod == 0) {
-				util.showToast($rootScope, "请选择保障期间");
-				return false;
-			}
-			$location.path('/solution').search({
-				'type': $routeParams.type,
-				'coverage_score': scoreObj.fanweiScore,
-				'sum_insured_score': scoreObj.moneyScore,
-				'estimate_money': $scope.data.premium,
-				"coverage_period": scoreObj.coveragePeriod,
-				'sum_score': $scope.data.scoreFix
-
-			});
-		}
-		$scope.showIntrod = function() {
-			_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_showIntrod']);
-			$("#baozhang_popup").show();
-		}
-		$scope.showCompute = function() {
-			$("#baozhang_compute").show();
-		}
-		/*
-		$scope.goJingzhun = function() {
-			console.log("....go jingzhun....");
-			_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_jingzhunBtn']);
-			$location.path('/jingzhun').search({
-				'type': $routeParams.type
-			});
-		}*/
-		$scope.showIntellReckon = function() {
-			$("#popup").show();
-		}
-		$scope.selectInsured = function($event, incomeType) {
-			var element = $event.currentTarget;
-			$(element).addClass("blue").siblings().removeClass("blue");
-			$scope.getSumScore(incomeType);
-		}
-		$scope.close = function() {
-			$("#popup").hide();
-		}
-		/*
-		$("#details .income").click(function() {
-			$(this).addClass("blue").siblings().removeClass("blue");
-			$(this).html();
-		});
-		$("#off").click(function() {
-			$("#popup").hide();
-		});*/
-	}
-]);
 
 
 mainControllers.controller('ybwxBdEducationNewCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
@@ -729,6 +545,139 @@ mainControllers.controller('ybwxBdEducationNewCtrl', ['$scope', '$routeParams', 
 ]);
 
 
+mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $routeParams, $location, $http, $rootScope) {
+		_hmt.push(['_trackPageview', $location.path()]);
+		$scope.init = function() {
+			CIRCLE.init();
+			$scope.type = $routeParams.type;
+			$scope.estimateMoney = 0;
+
+			var openId = sessionStorage.getItem("openId");
+			$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_view'], {
+				insurance_type: $routeParams.type
+			}, function(res) {
+
+				if (res.data && res.data.description) {
+					util.showToast($rootScope, res.data.description);
+				}
+				if (res.data.code == 0) {
+					var sumInsuredView = [];
+
+					_.map(res.data.data.sum_insured_views, function(value, key) {
+						var objKey = _.groupBy(value, function(val, index) {
+							return index % 2;
+						});
+						//后台只留偶数部分，找巴哥咨询
+						sumInsuredView[key] = objKey[1];
+					});
+					CIRCLE.updateData(res.data.data.coverage_scores, res.data.data.coverage_views, sumInsuredView, $routeParams.type);
+				}
+			});
+
+		}
+		$scope.data = {
+			scoreFix: 0
+		}
+		var openId = sessionStorage.getItem("openId");
+		//get_recommend_suggestion
+		$scope.goEstimateMoney = function() {
+			if (scoreObj.fanweiScore == 0 || scoreObj.moneyScore == 0) {
+				//$scope.estimateMoney = 0;
+				$scope.$apply();
+			} else {
+
+				$scope.moneyPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_suggestion'], {
+					"open_id": openId,
+					"insurance_type": $routeParams.type, // 保险类型
+					"coverage_score": scoreObj.fanweiScore, // 保障分
+					"sum_insured_score": scoreObj.moneyScore, // 保额分
+					coverage_period : scoreObj.coveragePeriod
+				}, function(res) {
+					console.log(res);
+					if (res && res.data && res.data.data) {
+						if (res.data.data.score > 0) {
+							res.data.data.scoreFix = Math.round(res.data.data.score * 10) / 10;
+						}
+						$scope.data = res.data.data;
+
+					}
+				})
+			}
+		}
+		$scope.getSumScore = function(incomeType) {
+
+			if (incomeType == 0) {
+				CIRCLE.updateMoney(2);
+			} else {
+				$scope.sumScorePromise = getHttpPromise($http, $rootScope, 'POST', api['get_sum_insured'], {
+					open_id: openId,
+					income_type: incomeType,
+				}, function(res) {
+					if (res && res.data && res.data.data) {
+						var data = [];
+						res.data.data.sum_insureds.forEach(function(item) {
+							data.push(item / 10000);
+						});
+						CIRCLE.updateKedu(data);
+					}
+				})
+
+			}
+		}
+
+		$scope.goBz = function() {
+			_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_subBtn']);
+			if (scoreObj.fanweiScore == 0 || scoreObj.moneyScore == 0) {
+				util.showToast($rootScope, "请选择保障范围和保障额度");
+				return false;
+			}
+
+			$location.path('/solution').search({
+				'type': $routeParams.type,
+				'coverage_score': scoreObj.fanweiScore,
+				'sum_insured_score': scoreObj.moneyScore,
+				'estimate_money': $scope.data.premium,
+				'sum_score': $scope.data.scoreFix
+			});
+
+		}
+		$scope.showIntrod = function() {
+			_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_showIntrod']);
+			$("#baozhang_popup").show();
+		}
+		$scope.showCompute = function() {
+			$("#baozhang_compute").show();
+		}
+		$scope.goJingzhun = function() {
+			console.log("....go jingzhun....");
+			_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_jingzhunBtn']);
+			$location.path('/jingzhun').search({
+				'type': $routeParams.type
+			});
+		}
+		$scope.showIntellReckon = function() {
+			$("#popup").show();
+		}
+		$scope.selectInsured = function($event, incomeType) {
+			var element = $event.currentTarget;
+			$(element).addClass("blue").siblings().removeClass("blue");
+			$scope.getSumScore(incomeType);
+		}
+		$scope.close = function() {
+			$("#popup").hide();
+		}
+		/*
+		$("#details .income").click(function() {
+			$(this).addClass("blue").siblings().removeClass("blue");
+			$(this).html();
+		});
+		$("#off").click(function() {
+			$("#popup").hide();
+		});*/
+	}
+]);
+
 mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
@@ -769,7 +718,6 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 
 		}
 		$scope.goDetail = function(plan) {
-
 			if (plan.status === 1) { //可购买跳转至产品详情页
 				if (plan.insurance_status !== 1) {
 					$location.path('/temaidetail').search({
@@ -777,14 +725,9 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 					});
 				}
 
-			} else{
-				//window.location.href = plan.official_site;
-				var param = {
-					webPageId:    plan.provision_page_id,
-					insuranceId : plan.insurance_id
-				}
-				var parmStr = util.genParameters(param);
-				window.location.href = "http://web.youbaowuxian.com/ybwx-web/api/webPage?"+parmStr;
+			} else
+			if (plan.official_site) {
+				window.location.href = plan.official_site;
 			}
 		}
 
@@ -847,16 +790,13 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 			$scope.showNum = 4;
 			$scope.sumMoney = 0;
 			var openId = sessionStorage.getItem("openId");
-			var postData = {
+			$scope.solutionPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_plans'], {
 				"open_id": openId,
 				"insurance_type": $routeParams.type,
 				"coverage_score": $routeParams.coverage_score,
 				"sum_insured_score": $routeParams.sum_insured_score
-			};
-			if(parseInt($scope.type) === 2){
-				postData["coverage_period"] = $routeParams.coverage_period;
-			}
-			$scope.solutionPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_plans'],postData , function(res) {
+			}, function(res) {
+				console.log(res);
 				if (res && res.data && res.data.data) {
 					$scope.data = res.data.data;
 
@@ -1069,11 +1009,11 @@ mainControllers.controller('ybwxContinueCtrl', ['$scope', '$routeParams', '$loca
 ]);
 
 
-/*
+
 var periodTypeMap = {
 	1: "d",
 	2: "y"
-}*/
+}
 
 
 
@@ -1097,7 +1037,6 @@ mainControllers.controller('ybwxSupplyInfoCtrl', ['$scope', '$routeParams', '$lo
 		$scope.submit = function() {
 			_hmt.push(['_trackEvent', 'supplyinfo', 'supplyinfo_submit']);
 			var openId = sessionStorage.getItem("openId");
-
 			if (baseValid()) {
 
 				var postData = {
@@ -1207,6 +1146,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				element.startDate = startDate;
 				return element.endDate = genInEffectiveDate(startDate, element.coverage_period, element.coverage_period_type);
 			});
+			console.log($scope.data.plans);
 		}
 		$scope.goRoute = function() {
 			_hmt.push(['_trackEvent', 'toubaonew', 'toubaonew_toubaoren']);
@@ -1239,10 +1179,9 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 					'coverage_period': $scope.coverage_period,
 					'charge_period': $scope.charge_period,
 					'effective_date': effectiveDate,
-					'address': $scope.user.address,
-					'destination': $scope.user.destination,
-					'car_no': $scope.user.car_no,
-					'flight_no': $scope.user.flight_no,
+					'address': $scope.address,
+					'destination': $scope.destination,
+					'car_no': $scope.car_no
 				}, function(res) {
 
 					var payRequest = {
@@ -1273,9 +1212,6 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				}
 				if ($scope.data.destination && $scope.tbform.destination && 　$scope.tbform.destination.$invalid) {
 					util.showToast($rootScope, "目的地填写错误，请修改");
-				}
-				if ($scope.data.flight_no && $scope.tbform.flight_no && 　$scope.tbform.flight_no.$invalid) {
-					util.showToast($rootScope, "航班号填写错误，请修改");
 				}
 
 			}
@@ -1323,9 +1259,9 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				'charge_period': $routeParams.charge_period
 			}, function(res) {
 				$scope.data = res.data.data;
-				var plans = res.data.data.plans;
-				var jsonPlans = JSON.stringify(plans);
-				sessionStorage.setItem('data', jsonPlans);
+                 var plans =  res.data.data.plans;
+                 var jsonPlans = JSON.stringify(plans);
+				 sessionStorage.setItem('data', jsonPlans);
 				//存储需要支付的订单
 				var sumMoney = $scope.data.plans.filter(function(item) {
 					return item.status === 1;
@@ -1374,10 +1310,83 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 mainControllers.controller('ybwxtermsListCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 		$scope.init = function() {
-			var objectPlans = sessionStorage.getItem("data");
-			$scope.data = JSON.parse(objectPlans);
-			console.log(JSON.parse(objectPlans));
+		    var objectPlans = sessionStorage.getItem("data");
+		    $scope.data = JSON.parse(objectPlans);
+		    console.log(JSON.parse(objectPlans));
 		}
 	}
 ]);
 
+/*
+mainControllers.controller('ybwxJingzhunCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $routeParams, $location, $http, $rootScope) {
+		_hmt.push(['_trackPageview', $location.path()]);
+
+		$scope.isHaveResult = true;
+		$scope.init = function() {
+			var openId = sessionStorage.getItem("openId");
+			$scope.listPromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurances_selling'], {
+				"open_id": openId,
+				"insurance_type": $routeParams.type
+			}, function(res) {
+				console.log(res);
+				if (res && res.data && res.data.data) {
+					$scope.list = res.data.data.insurances;
+					if (res.data.data.insurances && 　res.data.data.insurances.length > 0) {
+						$scope.isHaveResult = true;
+					} else {
+						$scope.isHaveResult = false;
+					}
+				}
+			})
+		}
+		$scope.goDetail = function(id) {
+			$location.path("/temaidetail").search({
+				"product_id": id
+			});
+		}
+
+		$scope.goLairen = function() {
+			$location.path('/select').search({
+				'type': $routeParams.type
+			});
+		}
+	}
+]);
+
+/*
+function getUserInfo() {
+	var userinfo = JSON.parse(localStorage.getItem('userinfo'));
+	if (userinfo) {
+		return {
+			username: userinfo.username,
+			social_id: userinfo.social_id,
+			mobile: userinfo.mobile
+		}
+	} else {
+		return {};
+	}
+}
+
+function saveUserInfo(username, social_id, mobile) {
+	localStorage.setItem('userinfo',
+		JSON.stringify({
+			username: username,
+			social_id: social_id,
+			mobile: mobile
+		}));
+}
+
+function getFamily() {
+	var familyInfo = JSON.parse(localStorage.getItem('familyInfo'));
+	if (familyInfo) {
+		return familyInfo;
+	} else {
+		return [];
+	}
+}
+
+
+function saveFamily(familys) {
+	localStorage.setItem('familyInfo', JSON.stringify(familys));
+}*/

@@ -1,23 +1,17 @@
-@import "base/classes.scss";
-@import "base/variables.scss";
-body {background: #f5f5f5;line-height: normal;}
-.hobby {
-	padding: 20px 0;
-	color: #555;
-	font-size: 15px;
-	text-align: center;
-	.piont {color: #999;margin-bottom: 10px;}
-	.trouble {margin: 20px 0 10px 0;}
-	.select {color: #999;font-size: 13px;margin-bottom: 15px;}
-	.relation {
-		position: relative;
-		.btn_ctrl {
-			img {width: 15px;}
-		}
-		.btn {margin: 0 auto;display: inline-block;width: 190px;height: 44px;line-height: 44px;background: #fff;border-radius: 5px;margin-bottom: 5px;box-sizing: border-box;border: 1px solid #e2e2e2;}
-		.blue {background: #55a5ff;color: #fff;border: none;}
-	}
-/*“重点”“全面”*/
+ @import "base/classes.scss";
+ @import "base/variables.scss";
+ body {line-height: normal;}
+ .userinfo_new {
+ 	padding: 20px 0;
+ 	font-size: 15px;
+ 	text-align: center;
+ 	.setting {font-size: 16px;}
+ 	.highest {color: #999;margin: 30px 0 15px 0;}
+
+ 	/*“重点”“全面”*/
+ 	.sex {margin:20px 0 15px 0;color: #999;}
+ 	.age {margin: 25px 0 0;color: #999;}
+ 	.blue {color: #55a5ff;font-size: 17px;font-weight: bold;}
 .switch {
 	position: relative;
 	display: block;
@@ -91,9 +85,31 @@ body {background: #f5f5f5;line-height: normal;}
 	background-color: #55a5ff;	
 	border-radius: 44px;
 }
+.switch-hand {
+	position: absolute;
+	top: 3px;
+	left: 4px;
+	width: 90px;
+	height: 45px;
+	background-color: #55a5ff;	
+	border-radius: 44px;
+}
 // 蓝色的
 .switch-handle:before {
-	content: "重点";
+	content: "是";
+	position: absolute;
+	color: #fff;
+	font-size: 17px;
+	top:0;
+	left: 0;
+	// margin: -16px 0 0 -9px;
+	width: 90px;
+	height: 45px;
+	line-height: 45px;
+	font-family: Arial, Microsoft YaHei, SimHei, Helvetica, sans-serif;
+}
+.switch-hand:before {
+	content: "男";
 	position: absolute;
 	color: #fff;
 	font-size: 17px;
@@ -106,10 +122,19 @@ body {background: #f5f5f5;line-height: normal;}
 	font-family: Arial, Microsoft YaHei, SimHei, Helvetica, sans-serif;
 }
 .switch-input:checked ~ .switch-handle:before {
-	content: "全面";
+	content: "否";
 }
-
+.switch-input:checked ~ .switch-hand:before {
+	content: "女";
+}
 .switch-input:checked ~ .switch-handle {
+	-webkit-transform: translateX(70px);
+	-moz-transform: translateX(70px);
+	-ms-transform: translateX(70px);
+	-o-transform: translateX(70px);
+	transform: translateX(70px);
+}
+.switch-input:checked ~ .switch-hand {
 	-webkit-transform: translateX(70px);
 	-moz-transform: translateX(70px);
 	-ms-transform: translateX(70px);
@@ -122,15 +147,13 @@ body {background: #f5f5f5;line-height: normal;}
 	-moz-transition: All 0.3s ease;
 	-o-transition: All 0.3s ease;
 }
-/*end*/
-
-
-
-
-
-
-
-
-
+.switch-label, .switch-hand {
+	transition: All 0.3s ease;
+	-webkit-transition: All 0.3s ease;
+	-moz-transition: All 0.3s ease;
+	-o-transition: All 0.3s ease;
 }
+/*end*/
+ }
+
 .target_btn {position: fixed;left: 0;bottom: 0;width: 100%;height: 49px;background: #006ee9;color: #fff;text-align: center;line-height: 49px;font-size: 15px;border-top: 1px solid #ccc;}

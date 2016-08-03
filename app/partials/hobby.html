@@ -1,29 +1,37 @@
-<link rel="stylesheet" href="css/preference.css">
+<link rel="stylesheet" href="css/preference.css?rev=a97c344cdcab6ad44caff4de4e173031">
 <div class="hobby">
-	<div>根据您的保障偏好</div>
-	<div>我们将进一步优化方案</div>
+	<div class="piont">保障偏好</div>
+	<label class="switch">
+		<input class="switch-input" type="checkbox" />
+		<span class="switch-label" data-on="重点" data-off="全面"></span> 
+		<span class="switch-handle"></span> 
+	</label>
+	<div class="select">性价比高 重点保障损失较大的风险</div>
+	<div class="trouble">您还担心的问题</div>
+	<div class="select">可多选 或不选</div>
 	<div class="relation" id="relation">
-		<img src="img/promote/gou.png"><div class="btn_ctrl"> <div class="btn">交通意外</div></div>
+		<div class="btn_ctrl"><img src="img/promote/gou.png" style="width: 20px;veritical-align: 20px;position: absolute; left: 84px;top: 4%;"><div class="btn">交通意外</div></div>
 		<div class="btn_ctrl"><div class="btn">患上大病花费高</div></div>
 		<div class="btn_ctrl"><div class="btn">看病报销</div></div>
 		<div class="btn_ctrl"><div class="btn">国外看病</div></div>
 		<div class="btn_ctrl"><div class="btn">家庭失去经济来源</div></div>
 	</div>
-	<div class="point">可多选 或跳过</div>
-	<div class="target_btn">下一步</div>
+	<div class="target_btn">生成方案</div>
 </div>
 <script>
-	// $("#relation .btn").click(function() {
-	// 		$(this).toggle("blue");
-	// 		if ($(this).attr("class")=="btn"){
-	// 			$(this).attr("class","blue");
-	// 		}else{
-	// 			$(this).attr("class","btn");
-	// 		}
+	/*$("#relation .btn").click(function() {
+			$(this).toggle("blue");
+			if ($(this).attr("class")=="btn"){
+				$(this).attr("class","blue");
+			}else{
+				$(this).attr("class","btn");
+			}
 			
-	// 	});
+		});*/
 $("#relation .btn").click(function(event){
     $(this).toggleClass("blue");
-})
-
+    $(this).html();
+	console.log($(this).html());
+});
+// $("#relation .btn").toggle(function(){console.log($(this).html())},function(){ console.log(""); });
 </script>
