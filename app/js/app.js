@@ -73,7 +73,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/solution.html',
       controller: 'ybwxSolutionCtrl',
       title: "保障方案",
-      css:'css/solution.css?rev=d485f5807cb789bb99fd73bb44a3b8e5'
+      css:'css/solution.css?rev=9b8c775e6d1c128991a480109da19b92'
     }).when('/toubao_new', {
       templateUrl: 'partials/toubao_new.html',
       controller: 'ybwxToubaoNewCtrl',
@@ -86,7 +86,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/bz_ts.html',
       controller: 'ybwxPromoteCtrl',
       title: "保障提升",
-      css:'css/bz_ts.css?rev=d07b0ccfd97b7ed412587d12eebae750'
+      css:'css/bz_ts.css?rev=d41d8cd98f00b204e9800998ecf8427e'
     }).when('/hobby', {
       templateUrl: 'partials/hobby.html',
       title: "偏好设定"
@@ -106,7 +106,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/bz_list.html?v=123',
       controller: 'ybwxBzCtrl',
       title: "定制保障说明",
-      css:'css/bz.css?rev=bce3af9d845381e3dc7cfd8fd513b4c9'
+      css:'css/bz.css?rev=d41d8cd98f00b204e9800998ecf8427e'
     }).when('/tb_dz', {
       templateUrl: 'partials/toubao_dingzhi_all.html',
       controller: 'ybwxToubaoDingzhiAllCtrl',

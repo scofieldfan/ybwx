@@ -71,7 +71,10 @@ body {
 		tr:not(:last-child){
 			border-bottom: 1px solid #e2e2e2;
 		}
-		
+		.iconfont{
+			font-size: 16px;
+			color:#78A2DC;
+		}
 		td{
 			padding: 0.1rem 0.05rem;
 			text-align: center;
