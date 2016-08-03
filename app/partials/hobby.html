@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="css/preference.css?rev=5892ce63c8ef576f1342007f12a4711f">
+<link rel="stylesheet" href="css/preference.css?rev=fshdgfghdhgs">
 <div class="hobby">
 	<div class="piont">保障偏好</div>
 	<label class="switch">
@@ -10,15 +10,36 @@
 	<div class="trouble">您还担心的问题</div>
 	<div class="select">可多选 或不选</div>
 	<div class="relation" id="relation">
-		<div class="btn_ctrl"><img src="img/promote/gou.png" style="width: 20px;veritical-align: 20px;position: absolute; left: 84px;top: 4%;"><div class="btn">交通意外</div></div>
-		<div class="btn_ctrl"><div class="btn">患上大病花费高</div></div>
-		<div class="btn_ctrl"><div class="btn">看病报销</div></div>
-		<div class="btn_ctrl"><div class="btn">国外看病</div></div>
-		<div class="btn_ctrl"><div class="btn">家庭失去经济来源</div></div>
+		<div class="btn_ctrl">
+			<div class="hobby_btn" touch-action="none">
+				<img src="img/promote/gou.png" style="width: 20px;veritical-align: 20px;position: absolute; left: -30px;top: 25%;">交通意外
+			</div>
+		</div>
+		<div class="btn_ctrl">
+			<div class="hobby_btn" touch-action="none">
+				<img src="img/promote/gou.png" style="width: 20px;veritical-align: 20px;position: absolute; left: -30px;top: 25%;">患上大病花费高
+			</div>
+		</div>
+		<div class="btn_ctrl">
+			<div class="hobby_btn" touch-action="none">
+				<img src="img/promote/gou.png" style="width: 20px;veritical-align: 20px;position: absolute; left: -30px;top: 25%;">看病报销
+			</div>
+		</div>
+		<div class="btn_ctrl">
+			<div class="hobby_btn" touch-action="none">
+				<img src="img/promote/gou.png" style="width: 20px;veritical-align: 20px;position: absolute; left: -30px;top: 25%;">国外看病
+			</div>
+		</div>
+		<div class="btn_ctrl">
+			<div class="hobby_btn" touch-action="none">
+				<img src="img/promote/gou.png" style="width: 20px;veritical-align: 20px;position: absolute; left: -30px;top: 25%;">家庭失去经济来源
+			</div>
+		</div>
 	</div>
 	<div class="target_btn">生成方案</div>
 </div>
-<script>
+<!-- <script src="js/fastclick.js"></script> -->
+<script type="text/javascript">
 	/*$("#relation .btn").click(function() {
 			$(this).toggle("blue");
 			if ($(this).attr("class")=="btn"){
@@ -28,10 +49,11 @@
 			}
 			
 		});*/
-$("#relation .btn").click(function(event){
-    $(this).toggleClass("blue");
-    $(this).html();
-	console.log($(this).html());
+$(function(){
+	 $("#relation .hobby_btn").click(function(){
+        $(this).toggleClass("blue");
+ 		$(this).find("img").toggle();
+	 })
 });
-// $("#relation .btn").toggle(function(){console.log($(this).html())},function(){ console.log(""); });
+
 </script>
