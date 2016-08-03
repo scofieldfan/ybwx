@@ -1,39 +1,36 @@
 
 <div class="head" ng-click="goVerfiy()">
 	<div>
-		<div class="icon"> </div>
+		<!-- <div class="icon"> </div> -->
+		<div style="text-align: center;line-height: 0;"><i class="iconfont" style="font-size:40px;">&#xe617;</i></div>
 		<div style="margin-top:5px;">保单验真</div>
 	</div>
 </div>
 
 <div class="service-container">
-	<div class="service-item"  ng-click="goBaoDan()">  <div><div class="icon icon-bd"> </div> <div class="text">我的保单</div></div></div>
-	<div class="service-item"  ng-click="goTradeRecord()">  <div><div class="icon icon-record"> </div> <div class="text">投保记录</div></div></div>
-	<div class="service-item"  ng-click="goInsuranceCard()">  <div><div class="icon icon-juan"> </div> <div class="text">我的优惠劵</div></div></div>
+	<div class="service-item"  ng-click="goBaoDan()"> <div><div class="icon"><i class="iconfont"  style="color:#ff6155;">&#xe612;</i></div><div class="text">我的保单</div></div></div>
+	<div class="service-item"  ng-click="goTradeRecord()"><div><div class="icon"><i class="iconfont"  style="color:#37adff;">&#xe613;</i></div><div class="text">投保记录</div></div></div>
+	<div class="service-item"  ng-click="goInsuranceCard()"><div><div class="icon"><i class="iconfont"  style="color:#ff6155;">&#xe614;</i></div><div class="text">我的优惠劵</div></div></div>
 	
 </div>
 
 
 <div class="service-container">
-	<div class="service-item"  ng-click="goContact()">  <div><div class="icon icon-phone"> </div> <div class="text">联系我们</div></div></div>
-	<div class="service-item" ><a href="http://mp.weixin.qq.com/s?__biz=MzI0NDE2Mjk2OA==&mid=407057806&idx=1&sn=d6136f57ac70f0ae4504c657355a6989#wechat_redirect" style="color:#555;">  <div><div class="icon icon-logo"> </div> <div class="text">关于诺贝</div></div></a></div>
+	<div class="service-item"  ng-click="goContact()">  <div><div class="icon"><i class="iconfont"  style="color:#00be7d;">&#xe615;</i></div><div class="text">联系我们</div></div></div>
+	<div class="service-item" ><a href="http://mp.weixin.qq.com/s?__biz=MzI0NDE2Mjk2OA==&mid=407057806&idx=1&sn=d6136f57ac70f0ae4504c657355a6989#wechat_redirect" style="color:#555;">   <div style="text-align: center;"><div class="icon"><i class="iconfont"  style="color:#37adff;">&#xe616;</i></div><div class="text">关于诺贝</div></div></a></div>
 	<div class="service-item">  <div></div></div>
 </div>
 
+	<a href="tel:4009920205"><div class="phone-container"><i class="iconfont">&#xe61e;</i>  客服电话 400-992-0205 </div></a>
 
-
-	<a href="tel:4009920205"><div class="phone-container"><img src="img/temai/kefu.png">  客服电话 400-992-0205 </div></a>
-
-
-
-<div class="fix_container select_btn ">
-    <div class="cell_hd cell_primary " >
-    <div class="cell-footer " ng-click="goIndex($event)"><div class="icon icon-home"></div><div>首页</div></div>
+<div class="fix_container select_btn" >
+    <div class="cell_hd cell_primary" >
+    <div class="cell-footer " ng-click="goIndex($event)"><i class="iconfont">&#xe61c;</i><div>首页</div></div>
     </div>
     <div class="cell_hd cell_primary">
-      <div class="cell-footer" ng-click="goTemai($event)"><div class="icon icon-shopping"></div><div>严选</div></div>
+      <div class="cell-footer " ng-click="goTemai($event)"><i class="iconfont">&#xe623;</i><div>严选</div></div>
     </div>
     <div class="cell_hd cell_primary">
-      <div class="cell-footer hover" ><div class="icon icon-service"></div><div>服务</div></div>
+      <div class="cell-footer hover" ng-click="goService($event)"><i class="iconfont">&#xe609;</i><div>服务</div></div>
     </div>
 </div>

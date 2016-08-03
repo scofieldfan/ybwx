@@ -85,7 +85,8 @@ gulp.task('cssMin', function() {
 			'app/css/app.css',
 			'app/css/angular-busy.min.css',
 			'app/wx_bx_gl/css/swiper.min.css',
-			'app/bower_components/rangeslider.js/dist/rangeslider.css'
+			'app/bower_components/rangeslider.js/dist/rangeslider.css',
+			'app/js/lcalendar/dist/css/LCalendar.min.css'
 		], {
 			base: 'app/'
 		}).pipe(cleanCSS())
@@ -95,9 +96,10 @@ gulp.task('cssMin', function() {
 gulp.task('jsMin', function() {
 	return gulp.src([
 			'app/bower_components/jquery/dist/jquery.min.js',
+			//'app/js/lcalendar/dist/js/LCalendar.js',
+			 'app/js/iscroll.js',
 			'app/bower_components/underscore/underscore-min.js',
 			'app/bower_components/angular/angular.min.js',
-	
 			'app/bower_components/angular-route/angular-route.min.js',
 			'app/js/angular-busy.min.js',
 			'app/bower_components/angular-route-styles/route-styles.js',

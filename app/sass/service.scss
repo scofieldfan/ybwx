@@ -38,30 +38,40 @@ body{
 			margin-top:5px;
 		}
 		.icon{
-			width:100%;
-			min-height:25px;
+			// width:100%;
+			// min-height:25px;
+			// line-height:0;
+			height:25px;
+			line-height: 25px;
 			
 		}
-		.icon-juan{
-			background: url('../img/service/juan.png') no-repeat center;
-			background-size:25px;
+		.icon .iconfont{
+			font-size: 25px;
 		}
-		.icon-record{
-			background: url('../img/service/record.png') no-repeat center;
-			background-size:25px;
-		}
-		.icon-bd{
-			background: url('../img/service/bd.png') no-repeat center;
-			background-size:25px;
-		}
-		.icon-phone{
-			background: url('../img/service/phone.png') no-repeat center;
-			background-size:25px;
-		}
-		.icon-logo{
-			background: url('../img/service/logo.png') no-repeat center;
-			background-size:25px;
-		}
+
+		// .icon-juan{
+		// 	background: url('../img/service/juan.png') no-repeat center;
+		// 	background-size:25px;
+		// }
+		// .icon-record{
+		// 	background: url('../img/service/record.png') no-repeat center;
+		// 	background-size:25px;
+		// }
+		// .icon-bd{
+		// 	background: url('../img/service/bd.png') no-repeat center;
+		// 	background-size:25px;
+		// }
+		// .icon-phone{
+		// 	background: url('../img/service/phone.png') no-repeat center;
+		// 	background-size:25px;
+		// }
+		// .icon-logo{
+		// 	background: url('../img/service/logo.png') no-repeat center;
+		// 	background-size:25px;
+		// }
+	}
+	.service-item>div{
+		text-align: center;
 	}
 }
 .phone-container{
