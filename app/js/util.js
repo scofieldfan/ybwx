@@ -303,6 +303,11 @@ var util = {
 		result.setDate(result.getDate() + days);
 		return result;
 	},
+	minusDays: function addDays(date, days) {
+		var result = new Date(date);
+		result.setDate(result.getDate() - days);
+		return result;
+	},
 	calculate_age: function(birth_month, birth_day, birth_year) {
 		today_date = new Date();
 		today_year = today_date.getFullYear();

@@ -27,6 +27,7 @@ window.LCalendar = (function() {
         init: function(params) {
             this.type = params.type;
             this.trigger = document.querySelector(params.trigger);
+            // this.trigger = document.querySelector(params.trigger);
             if (this.trigger.getAttribute("data-lcalendar") != null) {
                 var arr = this.trigger.getAttribute("data-lcalendar").split(',');
                 var minArr = arr[0].split('-');
@@ -49,6 +50,9 @@ window.LCalendar = (function() {
                 this.maxY = ~~maxArr[0];
                 this.maxM = ~~maxArr[1];
                 this.maxD = ~~maxArr[2];
+            }
+            if(params.confirmCallback){
+               this.confirmCallback = params.confirmCallback;
             }
             this.bindEvent(this.type);
         },
@@ -344,6 +348,7 @@ window.LCalendar = (function() {
             //重置日期节点个数
             function setDateGearTooth() {
                 var passY = _self.maxY - _self.minY + 1;
+               
                 var date_yy = _self.gearDate.querySelector(".date_yy");
                 var itemStr = "";
                 if (date_yy && date_yy.getAttribute("val")) {
@@ -563,6 +568,13 @@ window.LCalendar = (function() {
                     stopGear = true;
                 }
                 var passY = _self.maxY - _self.minY + 1;
+                 //add by Fan start
+                if(_self.gearDate==null){
+                    console.log(target);
+                    return;
+                  
+                }
+                //add by Fan end
                 clearInterval(target["int_" + target.id]);
                 target["int_" + target.id] = setInterval(function() {
                     var pos = target["pos_" + target.id];
@@ -679,6 +691,13 @@ window.LCalendar = (function() {
             function setGear(target, val) {
                 val = Math.round(val);
                 target.setAttribute("val", val);
+                 //add by Fan start
+                if(_self.gearDate==null){
+                    console.log(target);
+                    return;
+                    //clearInterval(target["int_" + target.id]);
+                }
+                //add by Fan end
                 if (/date/.test(target.dataset.datetype)) {
                     setDateGearTooth();
                 } else {
@@ -700,7 +719,7 @@ window.LCalendar = (function() {
                 document.body.removeChild(_self.gearDate);
                 _self.gearDate=null;
             }
-
+           
             //日期确认
             function finishMobileDate(e) {
                 var passY = _self.maxY - _self.minY + 1;
@@ -710,6 +729,9 @@ window.LCalendar = (function() {
                 var date_dd = parseInt(Math.round(_self.gearDate.querySelector(".date_dd").getAttribute("val"))) + 1;
                 date_dd = date_dd > 9 ? date_dd : '0' + date_dd;
                 _self.trigger.value = (date_yy % passY + _self.minY) + "-" + date_mm + "-" + date_dd;
+                if(_self.confirmCallback){
+                    _self.confirmCallback((date_yy % passY + _self.minY)+ ""  + date_mm +""+  date_dd);
+                }
                 closeMobileCalendar(e);
             }
             //年月确认

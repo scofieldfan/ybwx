@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Demo with jQuery</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	    <meta name="description" content="Demo project with jQuery">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">	
+		<style type="text/css">
+		.mask {
+		    position: absolute;
+		    position: fixed;
+		    z-index: 10000;
+		    top: 0;
+		    bottom: 0;
+		    left:0;
+		    right:0;
+		    display: none;
+		    background: rgba(0,0,0,.6);
+		    cursor: pointer
+		}
+
+		.toast {
+		    font-size: 14px;
+		    line-height: 20px;
+		    z-index: 3;
+		    top: .8rem;
+		    width: 90%;
+		    max-width: 400px;
+		  
+		    overflow: auto;
+		    margin: auto;
+		    padding: .3rem;
+		    word-wrap: break-word;
+		    word-break: break-all;
+		    color: #4e4e4e;
+		    border-radius: 5px;
+		    background: #fff;
+		    box-sizing: border-box
+		}
+
+		</style>
+		  <script src="js/iscroll.js"></script>
+	</head>
+	<body>
+
+		<div id ="submit">submit</div>
+				<div class="mask " id="popup">
+			<div class="toast" id="popup-container" style="overflow: hidden;position: relative;height:300px;">
+				<div id="popup-data"  >
+					<h1>sdfasdfas</h1>
+					<p>你好啊啊啊啊啊</p>
+					<p>你好啊啊啊啊啊</p>
+					<p>你好啊啊啊啊啊</p>
+					<p>你好啊啊啊啊啊</p>
+					<p>你好啊啊啊啊啊</p>
+					<p>你好啊啊啊啊啊</p>
+					<p>你好啊啊啊啊啊</p>
+					<p>你好啊啊啊啊啊</p>
+					<p>你好啊啊啊啊啊</p>
+					<p>你好啊啊啊啊啊</p>
+					<p>你好啊啊啊啊啊</p>
+				</div>	
+			</div>
+			</div>
+	</body>
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript">
+		jQuery(function(){
+			 var   myScroll = new IScroll('#popup-container',{ scrollX: true, freeScroll: true });
+
+			$("#submit").click(function(){
+				$("#popup").show();
+				return false;
+			});
+			$(".mask").click(function(){
+				$(this).hide();
+			})		
+
+		});
+	</script>
+</html>

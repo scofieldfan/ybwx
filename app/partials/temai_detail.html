@@ -1,5 +1,5 @@
 
-<link rel="stylesheet" type="text/css" href="css/temai_detail.css?rev=d0c6e51987696a3497a8b6b334dae796">
+<link rel="stylesheet" type="text/css" href="css/temai_detail.css?rev=465638707a28a4e1e21217e74df1ed8a">
 <div  cg-busy="myPromise" class="temaidetail-wrapper" >
 	<header>
 		<div class="top-container" >
@@ -78,7 +78,7 @@
 		</a>
 	</div>
 </div>
-<div  class="mask" id="detail_mask_container"  style="display: none;z-index:100000">
+<div  class="mask" id="detail_mask_container"  style="display: none;z-index:900">
 	    <div style="height: 20%"></div>
 		<div class="head-container" sytle="height: 80%;">
 			<span class="close" id="close"></span>
@@ -94,12 +94,18 @@
 				<p>以被保险人身份信息测算为准</p>
 			</div>
 			<div  style="clear:both;height: 10px;border-bottom: 1px solid #ccc;margin: 0 18px;"></div>
-	        <div class="head_ctrl">
-	        <div class="select-container"  ng-if="maskData.show_birthday">
+	        <div class="head_ctrl" id="birthdayScrollContainer"  style="position: relative;overflow: auto;height:270px">
+	        <div>
+	        <div class="select-container"  ng-show="maskData.show_birthday">
 	        	<h4>出生日期</h4>
-	        	<input type="date" class="date_ctrl"  min="{{minDate | date:'yyyy-MM-dd'}}" max="{{maxDate | date:'yyyy-MM-dd'}}" ng-model="user.birthday"  name="birthday"  placeholder="yyyy/MM/dd"  ng-change="changeBirthday($event)" ng-click="clickBirthDay($event)">
+
+	        	<!-- <input type="date" class="date_ctrl"  min="{{minDate | date:'yyyy-MM-dd'}}" max="{{maxDate | date:'yyyy-MM-dd'}}" ng-model="user.birthday"  name="birthday"  placeholder="yyyy/MM/dd"  ng-change="changeBirthday($event)" ng-click="clickBirthDay($event)"> -->
+
+				<input id="birthdayInputDom" type="text"  value="{{showBirthday}}" class="date_ctrl_birthday"  readonly="" placeholder="请选择生日" data-lcalendar="2000-01-01,2018-01-29" />
+
+
 	        </div>
-	        <div class="select-container" ng-if="maskData.show_gender"> 
+	        <div class="select-container"  ng-show="maskData.show_gender"> 
 	        	<h4>性别</h4>
 	        	<a href="javascript:void(0)" class="button button_primary sex_id" ng-click="changeSex($event,item)" ng-class="gender==item?'button_hover':''" ng-repeat="item in maskData.valid_genders">
 	        	<span ng-if="item==1">男</span>
@@ -134,6 +140,7 @@
 					<li ng-click="stopPro($event)"><img src="img/plus.jpg"></li>
 				</ul>
 			</div> -->
+		</div>
 			
 		</div>
     </div>
@@ -143,24 +150,34 @@
 </div>
 
 <div class="mask " id="popup">
-<div class="toast"></div>
+<div class="toast" id="popup-container" style="overflow: hidden;position: relative;height:500px;">
+	<div id="popup-data"  >
+		
+
+	</div>	
 </div>
-	<script type="text/javascript" src="js/zepto.min.js"></script>
+</div>
+	<!-- <script type="text/javascript" src="js/zepto.min.js"></script> -->
 <script>
 
 
-
 $(function(){
+ var   popupScroll = new IScroll('#popup-container');
+
+
  $("body").on("click",".td-left",function(){
-    $("#popup").find(".toast").html($(this).find("img").attr("title"));
-    $("#popup").show()
+    $("#popup").find("#popup-data").html($(this).find("img").attr("title"));
+    $("#popup").show();
+    popupScroll.refresh();
  });
 
  $("body").on("click",".more-1-container",function(){
  	 $(".know-content").children().removeClass("hide");
      $(this).hide();
  });
-  $("body").on("click",".head-container",function(){
+  $("body").on("click",".head-container",function(event){
+  	event.preventDefault();
+  	event.stopPropagation();
   	return false;
  });
   $("body").on("click",".more_ctrl",function(){
@@ -177,17 +194,24 @@ $(function(){
   	$("#template-container").children().hide();
   	$("#template-container").children(":eq("+index+")").show();
  });
+  // $('.mask').on('click', function(e){
+		// 	$(this).hide();
+	
+		// });
+	$('.close').on('click', function(e){
+			$('.mask').hide();
+	});
 
-/**/
+/*
+
+
+
+
+
 Zepto(function($){
 $('#showMask').on('click', function(){
 
-		/*
-		function preventDefault(e) {
-            e = e || window.event;
-            e.preventDefault && e.preventDefault();
-            e.returnValue = false;
-        }*/
+		
 
         function stopPropagation(e){
 			// e = e || window.event;
@@ -218,17 +242,7 @@ $('#showMask').on('click', function(){
 			//会阻止原生滚动
 			return true;
         }
-         /*
-		var disableScroll = function(){
-			$(document).on('mousewheel', util.preventDefault);
-			$(document).on('touchmove', util.preventDefault);
-		};
         
-		var enableScroll = function(){
-			$(document).off('mousewheel', util.preventDefault);
-			$(document).off('touchmove', util.preventDefault);
-		};*/
-		// 内部可滚
 
 		$('.close').on('click', function(e){
 			$('.mask').hide();
@@ -283,6 +297,6 @@ $('#showMask').on('click', function(){
 		});
         
 
-	});
+	});*/
 })
 </script>

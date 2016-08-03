@@ -149,8 +149,8 @@ var coveragePeriodMap = {
   5: "天"
 }
 
-ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$routeParams', '$location', '$http', '$rootScope', 
-  function($scope, $q, $filter, $routeParams, $location, $http, $rootScope ) {
+ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$routeParams', '$location', '$http', '$rootScope',
+  function($scope, $q, $filter, $routeParams, $location, $http, $rootScope) {
 
     _hmt.push(['_trackPageview', $location.path()]);
 
@@ -158,14 +158,17 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       return coveragePeriodMap[type];
     }
     $scope.gender = 1;
-
+    function disableScroll() {
+      $(document).on('mousewheel', util.preventDefault);
+      $(document).on('touchmove', util.preventDefault);
+    };
     function updateFee() {
       var openId = sessionStorage.getItem("openId");
-      var birthday = $filter('date')($scope.user.birthday, "yyyyMMdd");
+      //var birthday = $filter('date')($scope.user.birthday, "yyyyMMdd");
       $scope.catePromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurances_sex'], {
         "open_id": openId,
         "insurance_plan_id": $scope.plan.id,
-        "birthday": birthday,
+        "birthday": $scope.birthday,
         "gender": $scope.gender,
         "coverage_period_type": $scope.coverage_period_type,
         "charge_period_type": $scope.charge_period_type,
@@ -179,22 +182,41 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
     }
     $scope.getRestrictions = function() {
       var openId = sessionStorage.getItem("openId");
-      $scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_restrictions'], {
+      $scope.restrictionPromise = getHttpPromise($http, $rootScope, 'POST', api['get_restrictions'], {
         open_id: openId,
         plan_ids: [$scope.plan.id]
 
       }, function(res) {
 
-        $scope.isHaveRestrictions = (res.data.data.job_notice && Object.keys(res.data.data.job_notice).length>0)  || res.data.data.locale_notice || res.data.data.notices.length > 0;
+        $scope.isHaveRestrictions = (res.data.data.job_notice && Object.keys(res.data.data.job_notice).length > 0) || res.data.data.locale_notice || res.data.data.notices.length > 0;
         // console.log("extranotice:" + $scope.isExtraNotice.length);
 
       });
     }
+
+    function computeDate(age) {
+      var date = new Date();
+      if (typeof age === "string") {
+        if (age.indexOf("d") > 0) {
+          //天
+          age = age.replace("d", "");
+          date = util.minusDays(date, parseInt(age));
+        } else {
+          //年
+          date.setFullYear(date.getFullYear() - parseInt(age));
+
+        }
+      }
+      return date;
+    }
     $scope.init = function() {
+      $scope.birthday = "19860101";
+      $scope.showBirthday = "1986-01-01";
+      /*
       var tmpDate = new Date(1986, 1, 1);
       $scope.user = {
         birthday: tmpDate
-      };
+      };*/
       var code = util.getParameterByName("code") || $routeParams.code;
 
       util.getOpenId(code).then(function() {
@@ -203,6 +225,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
         $scope.selectTable = 0;
         $scope.maskPromise = getHttpPromise($http, $rootScope, 'GET', api['get_insurances_mask'].replace("{productId}", $routeParams.product_id), {}, function(res) {
           if (res.data && res.data.data && res.data.data.plans) {
+            $scope.maskData = res.data.data;
             $scope.maskPlans = res.data.data.plans;
             $scope.maskSelectPlan = $scope.maskPlans[Object.keys($scope.maskPlans)[0]];
             $scope.coverage_period = $scope.maskSelectPlan.coverage_periods[0];
@@ -212,11 +235,31 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
               $scope.charge_period = $scope.maskSelectPlan.charge_periods[0];
             }
             $scope.charge_period_type = $scope.maskSelectPlan.charge_period_type;
-            $scope.haveMask = true;
-          } else {
-            $scope.haveMask = false;
+            if ($scope.maskData.min_age) {
+              $scope.minDate = computeDate($scope.maskData.max_age); //最大年龄，对应的是最小日期
+            }
+            if ($scope.maskData.max_age) {
+              $scope.maxDate = computeDate($scope.maskData.min_age); //最小年龄，对应的是最大日期
+            }
+
+            var calendar = new LCalendar();
+            calendar.init({
+              'trigger': '#birthdayInputDom', //标签id
+              'type': 'date',
+              'minDate': $filter('date')($scope.minDate, "yyyy-MM-dd"), //最小日期
+              'maxDate': $filter('date')($scope.maxDate, "yyyy-MM-dd"), //最大日期
+              confirmCallback:function(value){
+                $scope.birthday = value;
+                 updateFee();
+              }
+            });
+
+
           }
 
+          if (Object.keys(res.data.data.plans).length > 1 || res.data.data.premium_type == 2) {
+            $scope.haveMask = true;
+          }
         })
 
 
@@ -271,12 +314,12 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
 
         $q.all([$scope.maskPromise, $scope.myPromise]).then(function(res) {
 
-        updateFee();
+          updateFee();
         }); /**/
 
       })
 
-     
+
     }
     $scope.more = function($event) {
       var element = $event.currentTarget;
@@ -286,13 +329,13 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
         $(element).find("span").html("收起");
         $(element).attr("data-switch", "off");
         $(element).find(".icon-arrow").addClass("up");
-          _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_unfold']);
+        _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_unfold']);
       } else {
         $(element).siblings(":gt(6)").addClass("ng-hide");
         $(element).find("span").html("查看更多");
         $(element).attr("data-switch", "on");
         $(element).find(".icon-arrow").removeClass("up");
-          _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_fold']);
+        _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_fold']);
       }
     }
     $scope.stopPro = function($event) {
@@ -308,7 +351,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
     $scope.changeBirthday = function($event) {
       // $event.stopPropagation();
       //  $event.preventDefault();
-        _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_changebirthday']);
+      _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_changebirthday']);
       updateFee();
     }
 
@@ -371,18 +414,18 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       (3, "按年龄限保"),
       (4, "按月保"),
       (5, "按天保");*/
-
+  
     $scope.showMask = function() {
       if ($scope.haveMask) {
         $("#detail_mask_container").show();
-        //解决浮层滑动时body滑动
-        // $('body').css("overflow","hidden");
+      // var   maskScroll = new IScroll('#birthdayScrollContainer',{click:true, tap: true });
       } else {
         $scope.submit();
       }
     }
     $scope.submit = function() {
       //获得当前的plan
+     // util.enableScroll();
       var selectPlan = $scope.plan.id;
       _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_submit']);
 
@@ -411,7 +454,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       } else {
         $location.path("/toubao_new").search(postData);
       }
-     
+
     }
   }
 ]);

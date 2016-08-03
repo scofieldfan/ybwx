@@ -56,23 +56,12 @@ body {
       line-height: 20px;
       margin-top: 5px; }
     .service-container .service-item .icon {
-      width: 100%;
-      min-height: 25px; }
-    .service-container .service-item .icon-juan {
-      background: url("../img/service/juan.png") no-repeat center;
-      background-size: 25px; }
-    .service-container .service-item .icon-record {
-      background: url("../img/service/record.png") no-repeat center;
-      background-size: 25px; }
-    .service-container .service-item .icon-bd {
-      background: url("../img/service/bd.png") no-repeat center;
-      background-size: 25px; }
-    .service-container .service-item .icon-phone {
-      background: url("../img/service/phone.png") no-repeat center;
-      background-size: 25px; }
-    .service-container .service-item .icon-logo {
-      background: url("../img/service/logo.png") no-repeat center;
-      background-size: 25px; }
+      height: 25px;
+      line-height: 25px; }
+    .service-container .service-item .icon .iconfont {
+      font-size: 25px; }
+  .service-container .service-item > div {
+    text-align: center; }
 .phone-container {
   color: #588dd4;
   margin-top: 20px;
