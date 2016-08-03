@@ -301,7 +301,7 @@ function initPieConfig(sumScore, scores, policyNumber) {
 			} else {
 				_hmt.push(['_trackEvent', 'index', 'index_' + pieIndex]);
 				if (pieIndex == '0' || pieIndex == '1' || pieIndex == '2') {
-					window.location = "#/bd_education?type=" + insureTypeMap[pieIndex];
+					window.location = "#/bd_education_new?type=" + insureTypeMap[pieIndex];
 				} else {
 					window.location = "#/continue";
 				}
