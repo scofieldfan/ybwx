@@ -738,7 +738,15 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 		$scope.type = $routeParams.type;
 		//get_recommend_plans
 		$scope.getCoverageType = util.getCoverageType;
-		$scope.processSpecialMoney = util.processSpecialMoney;
+		$scope.processSpecialMoney = function(money){
+			var money = util.processSpecialMoney(money);
+			if(money === "0元"){
+				return "赠送"
+			}else{
+				return money;
+			}
+		}
+		// $scope.processSpecialMoney = util.processSpecialMoney;
 		$scope.getTaoCanStatus = util.getTaoCanStatus;
 		// $('#stopPro').css('-webkit-overflow-scrolling','auto');
 		$scope.getInsuranceCNname = function() {
