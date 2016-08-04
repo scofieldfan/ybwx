@@ -12,7 +12,6 @@ var ybwxApp = angular.module('ybwxApp', [
   'serviceControllers',
   'transactionControllers',
   'routeStyles'
-
 ]).value('cgBusyDefaults', {
   message: '正在加载....',
   templateUrl: 'template/loading.html'
@@ -135,7 +134,8 @@ ybwxApp.config(['$routeProvider',
     }).when('/temaidetail', {
       templateUrl: 'partials/temai_detail.html',
       controller: 'wxDetailNewCtrl',
-      title: "诺贝严选"
+      title: "诺贝严选",
+      css:'css/temai_detail.css?rev=6fa7112d18435a3b2fa6967d1633b8f3'
     }).when('/temaiindex', {
       templateUrl: 'partials/temai_index.html',
       controller: 'wxTemaiIndexCtrl',
@@ -144,7 +144,8 @@ ybwxApp.config(['$routeProvider',
     }).when('/temailist', {
       templateUrl: 'partials/temai_list.html',
       controller: 'wxTemaiListCtrl',
-      title: "诺贝严选"
+      title: "诺贝严选",
+      css:'css/temai_list.css?rev=220ec5d88870ff840f0c2a2502d67afc'
     }).when('/bd_list', {
       templateUrl: 'partials/bd_list.html',
       controller: 'wxBaoDanListCtrl',

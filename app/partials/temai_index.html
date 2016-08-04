@@ -64,7 +64,7 @@
 <div class="recommend-content" ng-repeat="category in categorys">
 	<div class="introd" ng-click="goCategory(category.id)">
 		<div class="box">
-			<img ng-src="{{category.category_image_url}}"/>
+			<img lazy-img="{{category.category_image_url}}"/>
 			<div class="name">{{category.name}}</div>
 			<div class="more">查看更多</div>
 		</div>
@@ -108,7 +108,6 @@
 		<img src="img/temai/qcode_big.png" srcset="img/temai/qcode_min.png 568w, img/temai/qcode_big.png 667w, img/temai/qcode_big.png 736w">	
 	</div>
 </div>
-<script src="wx_bx_gl/js/swiper.min.js"></script>
 <script>
   var swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',

@@ -38,6 +38,15 @@ body {
 		border-bottom:1px solid #e2e2e2;
 		.logo{
 			width: 1.07rem;
+			position: relative;
+			.logo_mask {
+				position:absolute;
+				background-color: #e9f8ff;
+				height:22px;
+				width: 100%;
+				left:0;
+				bottom:0;
+			}
 			@include flexbox;
 			@include align-items(center);
 			@include justify-content(center);	

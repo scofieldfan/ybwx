@@ -48,7 +48,7 @@
 			<div  style="font-size:15px;color:#999;display: inline-block;margin-left: 20px;" ng-if="type==4 || type ==3">
 			保1年
 	        </div>
-			<span class="intell-reck" ng-click="showIntellReckon()" ng-if="type==4" style="display: none;" >智能测算</span>
+			<span class="intell-reck" ng-click="showIntellReckon()" ng-if="type==4" >智能测算</span>
 
 			<!-- <img src="img/safe.jpg" style="width:15px;vertical-align: -3px;">
 			选择保障金额 <span style="color:#999;"> 最高赔付额 </span><span class="intell-reck" ng-click="showIntellReckon()" ng-if="type==4">智能测算</span> -->
@@ -142,10 +142,10 @@
 			<div class="income_ctrl">选择年收入<div class="off" id="off" ng-click="close()"><img src="img/select/off.png"></div></div>
 			<div class="calculate">我们将根据您的年收入测算保额</div>
 			<div class="income_details" id="details">
-				<div class="income blue" ng-click="selectInsured($event,0)">10万以下</div>
-				<div class="income" ng-click="selectInsured($event,1)">20万</div>
-				<div class="income" ng-click="selectInsured($event,2)">30万</div>
-				<div class="income" ng-click="selectInsured($event,5)">40万以上</div>
+				<div class="income blue" ng-click="selectInsured($event,1)">10万以下</div>
+				<div class="income" ng-click="selectInsured($event,2)">20万</div>
+				<div class="income" ng-click="selectInsured($event,3)">30万</div>
+				<div class="income" ng-click="selectInsured($event,4)">40万以上</div>
 			</div>
 
 		</div>

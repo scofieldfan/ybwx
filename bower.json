@@ -13,6 +13,7 @@
     "angular-route": "1.4.x",
     "angular-resource": "1.4.x",
     "angular-animate": "1.4.x",
-    "rangeslider.js": "^2.1.1"
+    "rangeslider.js": "^2.1.1",
+    "angular-lazy-img": "^1.2.2"
   }
 }
