@@ -79,19 +79,31 @@ ybwxApp.config(['$routeProvider',
       controller: 'ybwxToubaoNewCtrl',
       title: "投保确认",
       css:'css/toubao_new.css?rev=243bb8de239f91c386c1acf620954055'
-    }).when('/target', {
-      templateUrl: 'partials/target.html',
-      title: "保障对象"
     }).when('/promote', {
       templateUrl: 'partials/bz_ts.html',
       controller: 'ybwxPromoteCtrl',
       title: "保障提升"
+    }).when('/target', {
+      templateUrl: 'partials/target.html',
+      controller: 'ybwxTargetCtrl',
+      title: "保障对象"
     }).when('/hobby', {
       templateUrl: 'partials/hobby.html',
+      controller: 'ybwxHobbyCtrl',
       title: "偏好设定"
     }).when('/userinfo_new', {
       templateUrl: 'partials/userinfo_new.html',
+      controller: 'ybwxUserInfoNewCtrl',
       title: "资料设定"
+    }).when('/scheme', {
+      templateUrl: 'partials/scheme.html',
+      controller: 'ybwxSchemeCtrl',
+      title: "方案解读"
+    }).when('/key_solution', {
+      templateUrl: 'partials/key_solution.html',
+      // controller: 'ybwxSolutionCtrl',
+      title: "保障方案",
+      css:'css/solution.css?rev=d485f5807cb789bb99fd73bb44a3b8e5'
     }).when('/service', {
       templateUrl: 'partials/service.html',
       controller: 'ybwxServiceCtrl',

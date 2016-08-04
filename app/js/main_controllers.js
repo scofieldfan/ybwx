@@ -301,7 +301,7 @@ function initPieConfig(sumScore, scores, policyNumber) {
 			} else {
 				_hmt.push(['_trackEvent', 'index', 'index_' + pieIndex]);
 				if (pieIndex == '0' || pieIndex == '1' || pieIndex == '2') {
-					window.location = "#/bd_education?type=" + insureTypeMap[pieIndex];
+					window.location = "#/bd_education_new?type=" + insureTypeMap[pieIndex];
 				} else {
 					window.location = "#/continue";
 				}
@@ -1380,4 +1380,39 @@ mainControllers.controller('ybwxtermsListCtrl', ['$scope', '$filter', '$routePar
 		}
 	}
 ]);
+/*一键提升==保障对象*/
+mainControllers.controller('ybwxTargetCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
+		$scope.goUserInfoNew = function() {
+			$location.path("/userinfo_new");
+		}
+	}
+]);
 
+/*一键提升==资料设定*/
+mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
+		$scope.goHobby = function() {
+			$location.path("/hobby");
+		}
+		
+	}
+]);
+
+/*一键提升==偏好设定*/
+mainControllers.controller('ybwxHobbyCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
+		$scope.goScheme = function() {
+			$location.path("/scheme");
+		}
+	}
+]);
+
+/*一键提升==方案解读*/
+mainControllers.controller('ybwxSchemeCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
+		$scope.goKeySolution = function() {
+			$location.path("/key_solution");
+		}
+	}
+]);

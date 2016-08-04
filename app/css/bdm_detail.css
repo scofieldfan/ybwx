@@ -64,11 +64,11 @@ body {
 }
 .logo {
 	position: absolute;
-	left: 0;
+	left: 5px;
 	top: 0;
 }
 .logo >img {
-	width: 0.65rem;
+	width: 0.6rem;
 }
 .example {
 	font-size: 0.2rem;

@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="css/temai_list.css?rev=797693b0335ade59b128adc6035cc885">
+<link rel="stylesheet" type="text/css" href="css/temai_list.css?rev=1a994c833d062d980599188d99199137">
 <div cg-busy="listPromise">
 <div class="nav" data-ng-init="init()" >
 	<div class="item" ng-class='{"select":category_id==nav.id}'ng-repeat="nav in navItems" ng-click='getCateList(nav.id)'>{{nav.name}}</div>
@@ -7,7 +7,10 @@
 <div class="insurance" >
 	<div class="insurance-item"   ng-repeat="item in cateItems" ng-click="goCateDetail(item.id)">
 		<div class="logo">
-			<img ng-src="{{item.insurance_image_url}}">
+			<img class="insurance-image" ng-src="{{item.insurance_image_url}}">
+			<div class="conpany-logo">
+				<img ng-src="{{item.company_image_url}}">
+			</div>
 		</div>	
 		<div class="wrap">
 			<div class="title">{{item.name}}</div>	

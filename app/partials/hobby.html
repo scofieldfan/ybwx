@@ -1,10 +1,10 @@
-<link rel="stylesheet" href="css/preference.css?rev=fshdgfghdhgs">
+<link rel="stylesheet" href="css/preference.css?rev=d3538d3b1c290fa904a503caf9598bf4">
 <div class="hobby">
 	<div class="piont">保障偏好</div>
-	<label class="switch">
-		<input class="switch-input" type="checkbox" />
-		<span class="switch-label" data-on="重点" data-off="全面"></span> 
-		<span class="switch-handle"></span> 
+	<label class="switch needsclick">
+		<input class="switch-input needsclick" type="checkbox" />
+		<span class="switch-label needsclick" data-on="重点" data-off="全面"></span> 
+		<span class="switch-handle needsclick"></span> 
 	</label>
 	<div class="select">性价比高 重点保障损失较大的风险</div>
 	<div class="trouble">您还担心的问题</div>
@@ -12,33 +12,32 @@
 	<div class="relation" id="relation">
 		<div class="btn_ctrl">
 			<div class="hobby_btn" touch-action="none">
-				<img src="img/promote/gou.png" style="width: 20px;veritical-align: 20px;position: absolute; left: -30px;top: 25%;">交通意外
+				<img src="img/promote/gou.png">交通意外
 			</div>
 		</div>
 		<div class="btn_ctrl">
-			<div class="hobby_btn" touch-action="none">
-				<img src="img/promote/gou.png" style="width: 20px;veritical-align: 20px;position: absolute; left: -30px;top: 25%;">患上大病花费高
+			<div class="hobby_btn">
+				<img src="img/promote/gou.png">患上大病花费高
 			</div>
 		</div>
 		<div class="btn_ctrl">
-			<div class="hobby_btn" touch-action="none">
-				<img src="img/promote/gou.png" style="width: 20px;veritical-align: 20px;position: absolute; left: -30px;top: 25%;">看病报销
+			<div class="hobby_btn">
+				<img src="img/promote/gou.png">看病报销
 			</div>
 		</div>
 		<div class="btn_ctrl">
-			<div class="hobby_btn" touch-action="none">
-				<img src="img/promote/gou.png" style="width: 20px;veritical-align: 20px;position: absolute; left: -30px;top: 25%;">国外看病
+			<div class="hobby_btn">
+				<img src="img/promote/gou.png">国外看病
 			</div>
 		</div>
 		<div class="btn_ctrl">
-			<div class="hobby_btn" touch-action="none">
-				<img src="img/promote/gou.png" style="width: 20px;veritical-align: 20px;position: absolute; left: -30px;top: 25%;">家庭失去经济来源
+			<div class="hobby_btn">
+				<img src="img/promote/gou.png">家庭失去经济来源
 			</div>
 		</div>
 	</div>
-	<div class="target_btn">生成方案</div>
+	<div class="target_btn" ng-click="goScheme()">生成方案</div>
 </div>
-<!-- <script src="js/fastclick.js"></script> -->
 <script type="text/javascript">
 	/*$("#relation .btn").click(function() {
 			$(this).toggle("blue");
@@ -50,10 +49,11 @@
 			
 		});*/
 $(function(){
+	 // $("#relation .hobby_btn").bind("touchstart",function(e){
 	 $("#relation .hobby_btn").click(function(){
         $(this).toggleClass("blue");
  		$(this).find("img").toggle();
+ 		// e.preventDefault();
 	 })
 });
-
 </script>
