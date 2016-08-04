@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="css/information.css?rev=df8c42dcbfa1e0439ce2580f141a9261">
 <div  data-ng-init="init()" cg-busy="myPromise" class="information_controller">
 	<div class="infor_head" ng-if="isHaveJob">
-		<img src="img/claim_information/logo.jpg"><span class="head_info">职业告知</span><span class="orange">是否从事以下高危职业？</span>
+		<i class="iconfont"  style="color:#164D86;font-size:19px;" >&#xe603;</i> <span class="head_info">职业告知</span><span class="orange">是否从事以下高危职业？</span>
 	</div>
 	<div class="warn" ng-if="isHaveJob">保险公司规定,以下职业不可投保方案中的产品</div>
 	<div class="job" ng-if="isHaveJob">
@@ -12,7 +12,7 @@
 	</div>
 	
 	<div class="infor_head"  ng-if="isHaveHealth">
-		<img src="img/claim_information/logo.jpg"><span class="head_info">健康告知</span>
+		<i class="iconfont"  style="color:#164D86;font-size:19px;" >&#xe603;</i>  <span class="head_info">健康告知</span>
 	</div>
 
 	<div  ng-if="isHaveHealth"  ng-repeat="notice in data.notices">
@@ -25,18 +25,18 @@
 
 
 	<div class="infor_head" ng-if="data.locale_notice">
-		<img src="img/claim_information/logo.jpg"><span class="head_info">区域限制</span>
+		<i class="iconfont"  style="color:#164D86;font-size:19px;" >&#xe603;</i><span class="head_info">区域限制</span>
 	</div>
 	<div class="info_word"  ng-if="data.locale_notice" ng-repeat="item in data.notices[0].healthNotices">{{data.locale_notice}}</div>
 
 
 	<div class="infor_head" ng-if="data.age_notice">
-		<img src="img/claim_information/logo.jpg"><span class="head_info">年龄限制</span>
+		<i class="iconfont"  style="color:#164D86;font-size:19px;" >&#xe603;</i><span class="head_info">年龄限制</span>
 	</div>
 	<div class="info_word"  ng-if="data.age_notice">{{data.age_notice}}</div>
 	
 	<div class="infor_head" ng-if="isExtraNotice">
-		<img src="img/claim_information/logo.jpg"><span class="head_info">其他限制</span>
+		<i class="iconfont"  style="color:#164D86;font-size:19px;" >&#xe603;</i><span class="head_info">其他限制</span>
 	</div>
 	<div class="info_word"  ng-if="isExtraNotice" ng-repeat="notice in data.notices">
 		{{notice.insurance_name}} 	{{notice.plan_name}}
@@ -60,42 +60,3 @@
 		以上情况全无
 	</a>
 </div>
-
-
-<!-- <ul class="claim_controller">
-		<li ng-if="data.age_notice">
-			<p><img src="img/claim_information/logo.jpg" alt=""><span class="font_size29">年龄限制</span></p>
-			<a class="content"  >{{data.age_notice}}</a>
-		</li>
-	
-		<li ng-if="data.locale_notice">
-			<p >
-				<img src="img/claim_information/logo.jpg" >
-				<span>区域限制</span>
-			</p>
-			<a class="content" >	
-				{{data.locale_notice}}
-			</a>
-		</li>
-
-		<li ng-if="isHaveHealth">
-			<p>
-				<img src="img/claim_information/logo.jpg" >
-				<span>健康限制</span>
-			</p>
-			<a class="content" ng-repeat="notice in data.notices">
-				{{notice.insurance_name}} 	{{notice.plan_name}}<br/>
-				<div ng-repeat="item in notice.healthNotices" style="font-size:12px;">{{item}}</div>
-			</a>
-		</li>
-		<li  ng-if="isExtraNotice.length>0">
-			<p >
-				<img src="img/claim_information/logo.jpg">
-				<span>其他限制</span>
-			</p>
-			<a class="content" ng-repeat="notice in data.notices">
-				{{notice.insurance_name}} 	{{notice.plan_name}}<br/>
-				{{notice.extra_notice}} 	
-			</a>
-		</li>
-	</ul>-->

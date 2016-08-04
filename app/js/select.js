@@ -509,7 +509,7 @@ var CIRCLE = (function() {
 			if (baozhang_tiaojian[score][0] == "") {
 				return;
 			}
-			updateMoney(score);
+			//updateMoney(score);
 			var largeText = baozhang_tiaojian[score][0];
 
 			$("#chartTextContainer").find("div:eq(2)").stop().animate({

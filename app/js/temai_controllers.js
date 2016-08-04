@@ -365,10 +365,11 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
     }
 
     // console.log($scope.dataNum );
-    $scope.changeTaoCan = function($event, item) {
+    $scope.changeMaskTaoCan = function($event, item) {
       $event.preventDefault();
       $event.stopPropagation();
       $scope.plan = item;
+       $scope.maskSelectPlan = $scope.maskPlans[item.id];
       $scope.danwei = genDuration($scope.plan.coverage_period_type);
       //$scope.money = $scope.plan.premium;
       $scope.getRestrictions();

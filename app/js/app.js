@@ -12,7 +12,6 @@ var ybwxApp = angular.module('ybwxApp', [
   'serviceControllers',
   'transactionControllers',
   'routeStyles'
-
 ]).value('cgBusyDefaults', {
   message: '正在加载....',
   templateUrl: 'template/loading.html'
@@ -73,7 +72,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/solution.html',
       controller: 'ybwxSolutionCtrl',
       title: "保障方案",
-      css:'css/solution.css?rev=d485f5807cb789bb99fd73bb44a3b8e5'
+      css:'css/solution.css?rev=9b8c775e6d1c128991a480109da19b92'
     }).when('/toubao_new', {
       templateUrl: 'partials/toubao_new.html',
       controller: 'ybwxToubaoNewCtrl',
@@ -111,7 +110,8 @@ ybwxApp.config(['$routeProvider',
       css:'css/service.css?rev=ccb7b72ecdc803068fa76ac098ed10f2'
     }).when('/contact', {
       templateUrl: 'partials/contact.html',
-      title: "联系我们"
+      title: "联系我们",
+      css:'css/contact.css?rev=8e0e23f4630665fec18595ec646adb41'
     }).when('/bz', {
       templateUrl: 'partials/bz_list.html?v=123',
       controller: 'ybwxBzCtrl',
@@ -145,7 +145,8 @@ ybwxApp.config(['$routeProvider',
     }).when('/temaidetail', {
       templateUrl: 'partials/temai_detail.html',
       controller: 'wxDetailNewCtrl',
-      title: "诺贝严选"
+      title: "诺贝严选",
+      css:'css/temai_detail.css?rev=6fa7112d18435a3b2fa6967d1633b8f3'
     }).when('/temaiindex', {
       templateUrl: 'partials/temai_index.html',
       controller: 'wxTemaiIndexCtrl',
@@ -154,7 +155,8 @@ ybwxApp.config(['$routeProvider',
     }).when('/temailist', {
       templateUrl: 'partials/temai_list.html',
       controller: 'wxTemaiListCtrl',
-      title: "诺贝严选"
+      title: "诺贝严选",
+      css:'css/temai_list.css?rev=220ec5d88870ff840f0c2a2502d67afc'
     }).when('/bd_list', {
       templateUrl: 'partials/bd_list.html',
       controller: 'wxBaoDanListCtrl',

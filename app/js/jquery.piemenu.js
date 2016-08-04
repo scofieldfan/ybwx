@@ -420,17 +420,16 @@
                     preLoadImg(options.pieConfig[n].img, function() {
                         var iconW = options.imgWidth * options.radio;
                         var iconH = options.imgHeight * options.radio;
-
-                        /*
-                         if(screen.height<=480){
-                             iconW = options.imgWidth*0.8;
-                             iconH = options.imgHeight*0.8;
-                        }*/
                         var iconCenterRadius = center * 0.62 - Math.max(iconW, iconH) / 2;
                         var midAngle = startA + (endA - startA) / 2;
                         var iconX = Math.cos(midAngle) * iconCenterRadius;
                         var iconY = Math.sin(midAngle) * iconCenterRadius - 20 * options.radio;
-                        ctx.drawImage(this, center + iconX - iconW / 2, center + iconY - iconH / 2, iconW, iconH);
+
+                        // ctx.font = " 100px  iconfont";
+                        // ctx.fillStyle = "#000";
+                        // ctx.fillText("xe60a", center + iconX, center + iconY + 80 * options.radio);
+
+                       ctx.drawImage(this, center + iconX - iconW / 2, center + iconY - iconH / 2, iconW, iconH);
                         ctx.textAlign = "center";
                         ctx.font = " normal  35px Arial,Microsoft YaHei";
                         ctx.fillStyle = "#6f6f6f";

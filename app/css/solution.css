@@ -84,6 +84,9 @@ body {
     table-layout: fixed; }
     .table-wrapper table tr:not(:last-child) {
       border-bottom: 1px solid #e2e2e2; }
+    .table-wrapper table .iconfont {
+      font-size: 16px;
+      color: #78A2DC; }
     .table-wrapper table td {
       padding: 0.1rem 0.05rem;
       text-align: center;

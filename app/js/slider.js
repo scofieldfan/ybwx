@@ -26,6 +26,7 @@ var SLIDER = (function() {
 				}
 				var kedus = $("#customerSlider").find(".kedu").find("p");
 				var html = $(kedus[moneyScore/2]).html().replace("(万)","");
+				scoreObj.insuredMoney = parseInt(html)*10000;
 				$("#money_score").html(html);
 				var newWidth = moneyScore /10 * baxMax;
 
