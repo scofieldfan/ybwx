@@ -158,51 +158,51 @@
 
 
 .age-container {
-	width: 300px;
-	height: 150px;
-	margin: 0 auto;
-	position: relative;
-	overflow: hidden;
-	text-align: left;	/*-webkit-mask:-webkit-gradient(linear,50% 0%, 100% 0%, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));*/
-	-webkit-mask: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+	// width: 300px;
+	height: 40px;
+	// margin: 0 auto;
+	// position: relative;
+	// overflow: hidden;
+	// text-align: left;	/*-webkit-mask:-webkit-gradient(linear,50% 0%, 100% 0%, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));*/
+	// -webkit-mask: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
 }
 .age-container	a {
-	border-left: 1px solid #346290;
-	display: inline-block;
-	margin-left: -1px;
-	padding: 0px 0px 0px 3px;
-	width: 7px;
-	height: 10px;
-	vertical-align: top;
-	color: #20456c;
+	// border-left: 1px solid #346290;
+	// display: inline-block;
+	// margin-left: -1px;
+	// padding: 0px 0px 0px 3px;
+	// width: 7px;
+	height: 7.5px;
+	// vertical-align: top;
+	// color: #20456c;
 }
-.needle {
-	position: relative;
-	top: 0px;
-}
+// .needle {
+// 	position: relative;
+// 	top: 0px;
+// }
 .needle a {
-	border-left-color: #ff750f;
-	height: 27px;
-	border-width: 3px;
-	margin-left: 130px;
+	// border-left-color: #ff750f;
+	height: 17.5px;
+	// border-width: 3px;
+	// margin-left: 130px;
 }
-#bg {
-	width: 5000px;
-	position: absolute;
-	transition: All 0.05s ease;
-	-webkit-transition: All 0.05s ease;
-	-moz-transition: All 0.01s ease;
-	-o-transition: All 0.01s ease;
-}
+// #bg {
+// 	width: 5000px;
+// 	position: absolute;
+// 	transition: All 0.05s ease;
+// 	-webkit-transition: All 0.05s ease;
+// 	-moz-transition: All 0.01s ease;
+// 	-o-transition: All 0.01s ease;
+// }
 .age-container .high {
-	height: 20px;
-	text-align: center;
-	position:relative;
+	height: 12.5px;
+	// text-align: center;
+	// position:relative;
 }
 .age-container .high span {
-	position: absolute;
-	left: -7px;
-	top: 30px;
+	// position: absolute;
+	// left: -7px;
+	top: 23px;
 }
 }
 

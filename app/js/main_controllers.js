@@ -317,6 +317,9 @@ mainControllers.controller('ybwxPromoteCtrl', ['$scope', '$routeParams', '$locat
 		$scope.goContinue = function() {
 			$location.path('/continue');
 		}
+		$scope.goTarget = function() {
+			$location.path("/target");
+		}
 	}
 ])
 mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',

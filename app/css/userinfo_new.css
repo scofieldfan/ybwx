@@ -141,45 +141,15 @@ body {
     -moz-transition: All 0.3s ease;
     -o-transition: All 0.3s ease; }
   .userinfo_new .age-container {
-    width: 300px;
-    height: 150px;
-    margin: 0 auto;
-    position: relative;
-    overflow: hidden;
-    text-align: left;
-    -webkit-mask: -webkit-linear-gradient(left, transparent, black, transparent); }
+    height: 40px; }
   .userinfo_new .age-container a {
-    border-left: 1px solid #346290;
-    display: inline-block;
-    margin-left: -1px;
-    padding: 0px 0px 0px 3px;
-    width: 7px;
-    height: 10px;
-    vertical-align: top;
-    color: #20456c; }
-  .userinfo_new .needle {
-    position: relative;
-    top: 0px; }
+    height: 7.5px; }
   .userinfo_new .needle a {
-    border-left-color: #ff750f;
-    height: 27px;
-    border-width: 3px;
-    margin-left: 130px; }
-  .userinfo_new #bg {
-    width: 5000px;
-    position: absolute;
-    transition: All 0.05s ease;
-    -webkit-transition: All 0.05s ease;
-    -moz-transition: All 0.01s ease;
-    -o-transition: All 0.01s ease; }
+    height: 17.5px; }
   .userinfo_new .age-container .high {
-    height: 20px;
-    text-align: center;
-    position: relative; }
+    height: 12.5px; }
   .userinfo_new .age-container .high span {
-    position: absolute;
-    left: -7px;
-    top: 30px; }
+    top: 23px; }
 .target_btn {
   position: fixed;
   left: 0;

@@ -1,4 +1,5 @@
 
+<link rel="stylesheet" href="css/userinfo.css">
 <link rel="stylesheet" href="css/userinfo_new.css">
 <div class="userinfo_new"> 
 	<div class="setting">设定被保人资料</div> 
@@ -14,11 +15,17 @@
 		<span class="switch-label needsclick" data-on="男" data-off="女"></span> 
 		<span class="switch-hand"></span> 
 	</label>
-	<div class="age">年 龄<span class="blue">25岁</span></div>
-	<div class="age-container" id="slider-container">
+	<!-- <div class="age">年 龄<span class="blue">25岁</span></div> -->
+	<div id="ageContainer"></div>
+    <div id="yearIncome"></div>
+	<!-- <div class="age-container" id="slider-container">
 		<div id="bg" style="left:0px;"></div>
 		<div id="pointer" class="needle" ><a></a></div>
-	</div>
+	</div> -->
 </div>
 <div class="target_btn" ng-click="goHobby()">下一步</div>
-<script type="text/javascript" src="js/age_new.js?rev=asafafaasdfaswafafaafaasdfasfb"></script>
+<script type="text/javascript" src="js/ageComponent.js?rev=sdfsdsdfsd"></script>
+<script type="text/javascript">
+	var ageComponent = new AgeComponent({containerId:"ageContainer",yearDis: 7});
+	// var yearIncome = new AgeComponent({containerId:"yearIncome",minAge: 25,maxAge: 50,startAge: 25,yearDis: 7.5});
+</script>
