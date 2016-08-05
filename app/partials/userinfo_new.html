@@ -15,8 +15,9 @@
 		<span class="switch-label needsclick" data-on="男" data-off="女"></span> 
 		<span class="switch-hand"></span> 
 	</label>
-	<!-- <div class="age">年 龄<span class="blue">25岁</span></div> -->
+	<div class="age">年 龄<span class="blue">25岁</span></div>
 	<div id="ageContainer"></div>
+	<div class="age">年收入<span class="blue">25万</span></div>
     <div id="yearIncome"></div>
 	<!-- <div class="age-container" id="slider-container">
 		<div id="bg" style="left:0px;"></div>
@@ -27,6 +28,6 @@
 
 <script type="text/javascript" src="js/ageComponent.js?rev=sdfsdsdfsd"></script>
 <script type="text/javascript">
-	var ageComponent = new AgeComponent({containerId:"yearIncome",minAge: 25,maxAge: 50,startAge: 25,yearDis: 7.5});
-	// var yearIncome = new AgeComponent({containerId:"yearIncome",minAge: 25,maxAge: 50,startAge: 25,yearDis: 7.5});
+	var ageComponent = new AgeComponent({containerId:"ageContainer",minAge: 25,maxAge: 50,startAge: 30,yearDis: 7.5});
+	var yearIncome = new AgeComponent({containerId:"yearIncome",minAge: 25,maxAge: 50,startAge: 50,yearDis: 7.5});
 </script>

@@ -5,12 +5,12 @@
  	padding: 20px 0;
  	font-size: 15px;
  	text-align: center;
- 	.setting {font-size: 16px;}
- 	.highest {color: #999;margin: 30px 0 15px 0;}
+ 	.setting {font-size: 16px;line-height: 16px;}
+ 	.highest {color: #999;margin: 30px 0 10px 0;line-height: 15px;}
 
- 	/*“重点”“全面”*/
- 	.sex {margin:20px 0 15px 0;color: #999;}
- 	.age {margin: 25px 0 14px;color: #999;}
+ 	.sex {margin:10px 0 10px 0;color: #999;line-height: 15px;}
+ 	.age {margin: 25px 0 14px;color: #999;line-height: 15px;}
+ 	#yearIncome {margin-top:25px;}
  	.blue {color: #55a5ff;font-size: 18px;font-weight: bold;margin-left: 10px;}
 .switch {
 	position: relative;
@@ -203,6 +203,8 @@
 	// position: absolute;
 	// left: -7px;
 	top: 23px;
+	// font-size: 12px;
+	color: #999;
 }
 }
 

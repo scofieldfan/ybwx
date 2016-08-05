@@ -7,16 +7,22 @@ body {
   text-align: center;
    }
   .userinfo_new .setting {
-    font-size: 16px; }
+    font-size: 16px;
+    line-height: 16px; }
   .userinfo_new .highest {
     color: #999;
-    margin: 30px 0 15px 0; }
+    margin: 30px 0 10px 0;
+    line-height: 15px; }
   .userinfo_new .sex {
-    margin: 20px 0 15px 0;
-    color: #999; }
+    margin: 10px 0 10px 0;
+    color: #999;
+    line-height: 15px; }
   .userinfo_new .age {
     margin: 25px 0 14px;
-    color: #999; }
+    color: #999;
+    line-height: 15px; }
+  .userinfo_new #yearIncome {
+    margin-top: 25px; }
   .userinfo_new .blue {
     color: #55a5ff;
     font-size: 18px;
@@ -149,7 +155,8 @@ body {
   .userinfo_new .age-container .high {
     height: 12.5px; }
   .userinfo_new .age-container .high span {
-    top: 23px; }
+    top: 23px;
+    color: #999; }
 .target_btn {
   position: fixed;
   left: 0;
