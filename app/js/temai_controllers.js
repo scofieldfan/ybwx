@@ -164,7 +164,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
     };
     function updateFee() {
       var openId = sessionStorage.getItem("openId");
-      //var birthday = $filter('date')($scope.user.birthday, "yyyyMMdd");
+  
       $scope.catePromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurances_sex'], {
         "open_id": openId,
         "insurance_plan_id": $scope.plan.id,
@@ -210,13 +210,9 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       return date;
     }
     $scope.init = function() {
-      $scope.birthday = "19860101";
-      $scope.showBirthday = "1986-01-01";
-      /*
-      var tmpDate = new Date(1986, 1, 1);
-      $scope.user = {
-        birthday: tmpDate
-      };*/
+     // $scope.birthday = "19860101";
+      //$scope.showBirthday = "1986-01-01";
+     
       var code = util.getParameterByName("code") || $routeParams.code;
 
       util.getOpenId(code).then(function() {
@@ -241,6 +237,8 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
             if ($scope.maskData.max_age) {
               $scope.maxDate = computeDate($scope.maskData.min_age); //最小年龄，对应的是最大日期
             }
+            $scope.birthday =  $filter('date')($scope.maxDate, "yyyyMMdd");
+            $scope.showBirthday = $filter('date')($scope.maxDate, "yyyy-MM-dd");
 
             var calendar = new LCalendar();
             calendar.init({

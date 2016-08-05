@@ -564,6 +564,7 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 							data.push(item / 10000);
 						});
 						CIRCLE.updateKedu(data);
+						SLIDER.updateInsured();
 					}
 				})
 			}
@@ -609,6 +610,7 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 		}
 		$scope.selectInsured = function($event, incomeType) {
 			var element = $event.currentTarget;
+			$(element).parents("#popup").hide();
 			$(element).addClass("blue").siblings().removeClass("blue");
 			$scope.getSumScore(incomeType);
 		}
@@ -794,12 +796,17 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 
 			} else {
 				//window.location.href = plan.official_site;
-				var param = {
-					webPageId: plan.provision_page_id,
-					insuranceId: plan.insurance_id
+				if (plan.provision_page_id) {
+					var param = {
+						webPageId: plan.provision_page_id,
+						insuranceId: plan.insurance_id
+					}
+					var parmStr = util.genParameters(param);
+					window.location.href = "http://web.youbaowuxian.com/ybwx-web/api/webPage?" + parmStr;
+				}else{
+					window.location.href = plan.official_site;
 				}
-				var parmStr = util.genParameters(param);
-				window.location.href = "http://web.youbaowuxian.com/ybwx-web/api/webPage?" + parmStr;
+
 			}
 		}
 
@@ -1279,7 +1286,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				if ($scope.canNotBuyPlans.length > 0) {
 					util.showToast($rootScope, $scope.getTaocanReason($scope.canNotBuyPlans[0].status));
 				}
-				if( !$scope.isHaveUserInfo){
+				if (!$scope.isHaveUserInfo) {
 					util.showToast($rootScope, "请填写用户信息");
 				}
 				if ($scope.data.address && $scope.tbform.address && 　$scope.tbform.address.$invalid) {
@@ -1370,9 +1377,9 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 
 				sessionStorage.setItem("sell_plan", JSON.stringify($scope.canBuyPlans));
 
-				console.log("user length:"+Object.keys($scope.data.user).length);
+				console.log("user length:" + Object.keys($scope.data.user).length);
 				$scope.isHaveUserInfo = Object.keys($scope.data.user).length > 0;
-				if ($scope.canNotBuyPlans.length === $scope.data.plans.length ||  !$scope.isHaveUserInfo ) { //全都不可购买
+				if ($scope.canNotBuyPlans.length === $scope.data.plans.length || !$scope.isHaveUserInfo) { //全都不可购买
 					$(".footer").find(".right").css({
 						"background-color": "#999"
 					})

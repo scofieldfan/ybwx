@@ -247,7 +247,7 @@
   font-size: .15rem;
   color: #999;
   text-align: center;
-  padding-bottom: .4rem; }
+  padding-bottom: .32rem; }
 .income_details {
   display: -webkit-box;
   display: -webkit-flex;
@@ -279,10 +279,10 @@
   position: fixed;
   z-index: 3;
   top: .7rem;
-  width: 90%;
+  width: 87.5%;
   max-width: 400px;
   margin: auto;
-  padding: .32rem .26rem;
+  padding: .32rem .25rem .137rem;
   word-wrap: break-word;
   word-break: break-all;
   color: #4e4e4e;

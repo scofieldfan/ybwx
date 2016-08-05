@@ -6,6 +6,7 @@ var SLIDER = (function() {
 	}
 	var barWidth = 0;
 	var insuranceType;
+	var sliderIndex = 0;
 	var baxMax = $("#customerSlider").find(".weui_progress_bar").width() - 16;
 	// var partentMax = $("#customerSlider").find(".weui_progress_bar").width();
 	load();
@@ -14,7 +15,12 @@ var SLIDER = (function() {
 		barWidth = 0;
 		updateScore(0);
 	}
-
+	function updateInsured(){
+			var kedus = $("#customerSlider").find(".kedu").find("p");
+				var html = $(kedus[sliderIndex]).html().replace("(万)","");
+				scoreObj.insuredMoney = parseInt(html)*10000;
+				$("#money_score").html(html);	
+	}
 	function updateScore(width) {
 		if (width >= 0) {
 			var moneyScore = Math.round(width * 10 / baxMax);
@@ -24,10 +30,9 @@ var SLIDER = (function() {
 				if(moneyScore>0 && moneyScore<10){
 					showScore = moneyScore+".0";
 				}
-				var kedus = $("#customerSlider").find(".kedu").find("p");
-				var html = $(kedus[moneyScore/2]).html().replace("(万)","");
-				scoreObj.insuredMoney = parseInt(html)*10000;
-				$("#money_score").html(html);
+				sliderIndex  = moneyScore/2;
+
+				updateInsured();
 				var newWidth = moneyScore /10 * baxMax;
 
 				 $("#bar").width(newWidth);
@@ -123,7 +128,8 @@ var SLIDER = (function() {
 
 	return {
 		init: init,
-		reset: reset
+		reset: reset,
+		updateInsured:updateInsured
 	}
 
 })();
