@@ -21,11 +21,9 @@ body {
     margin: 25px 0 14px;
     color: #999;
     line-height: 15px; }
-  .userinfo_new #yearIncome {
-    margin-top: 25px; }
   .userinfo_new .blue {
     color: #55a5ff;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: bold;
     margin-left: 10px; }
   .userinfo_new .switch {

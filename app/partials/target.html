@@ -3,16 +3,22 @@
 	<div class="who">为谁投保？</div>
 	<div class="first">建议优先保障家庭收入最高者</div>
 	<div class="relation" id="relation">
-		<div class="btn blue">自 己</div>
-		<div class="btn">配 偶</div>
-		<div class="btn">父 母</div>
-		<div class="btn">子 女</div>
+		<div class="column">
+			<div class="btn blue">自 己</div>
+		    <div class="btn">配 偶</div>
+		</div>
+		<div class="column">
+			<div class="btn">父 母</div>
+			<div class="btn">子 女</div>
+		</div>
+		
 	</div>
 	<div class="target_btn" ng-click="goUserInfoNew()">下一步</div>
 </div>
 <script>
-	$("#relation .btn").click(function() {
-			$(this).addClass("blue").siblings().removeClass("blue");
+	$("#relation .column .btn").click(function() {
+			$("#relation").find(".btn").removeClass("blue");
+			$(this).addClass("blue");
 			$(this).html();
 			console.log($(this).html());
 		});

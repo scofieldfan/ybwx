@@ -2,7 +2,7 @@
 body {
   background: #f5f5f5; }
 .target_ctrl {
-  padding: 20px 60px;
+  padding: 20px .77rem;
   color: #555;
   text-align: center; }
   .target_ctrl .who {
@@ -17,9 +17,15 @@ body {
     display: -moz-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-lines: multiple;
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap; }
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between; }
+    .target_ctrl .relation .column {
+      -webkit-justify-content: space-between;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+      flex-direction: column; }
     .target_ctrl .relation .btn {
       margin: 0 auto;
       width: 90px;
