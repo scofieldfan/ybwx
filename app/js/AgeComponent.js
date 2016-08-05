@@ -2,7 +2,7 @@
  * @Author: fanzhang
  * @Date:   2016-08-04 13:59:59
  * @Last Modified by:   fanzhang
- * @Last Modified time: 2016-08-05 11:11:00
+ * @Last Modified time: 2016-08-05 11:28:19
  */
 
 'use strict';
@@ -90,7 +90,7 @@ window.AgeComponent = (function() {
 		bindEvent: function() {
 			var _this = this;
 			var startX;
-			$("#" + this.containerId).on("touchstart mousedown", touchHandler).bind("touchmove mousemove", touchHandler).bind("touchend mouseup", touchHandler);
+			$("#" + this.containerId).on("touchstart mousedown", touchStart).bind("touchmove mousemove", touchMove).bind("touchend mouseup", touchEnd);
 			function resetLeft(dis) {
 				var ret = dis;
 				ret = ret < _this.minLeft ? _this.minLeft : ret;
@@ -100,6 +100,7 @@ window.AgeComponent = (function() {
 			var dragging = false;
 
 			function touchStart(event) {
+				var event = event.originalEvent || window.event
 				console.log("touch start....");
 				event.preventDefault();
 				startX = event.type.startsWith("touch") ? event.touches[0].clientX : event.clientX;
@@ -108,6 +109,7 @@ window.AgeComponent = (function() {
 			}
 
 			function touchMove(event) {
+				var event = event.originalEvent || window.event
 				if (dragging) {
 				// console.log("touch move.......");
 					event.preventDefault();
@@ -118,6 +120,7 @@ window.AgeComponent = (function() {
 			}
 
 			function touchEnd(event) {
+				var event = event.originalEvent || window.event
 				// console.log("touch end....");
 				event.preventDefault();
 				var clientX  = event.type.startsWith("touch") ? event.changedTouches[0].clientX : event.clientX;
@@ -125,30 +128,7 @@ window.AgeComponent = (function() {
 				_this.transFormX = resetLeft(_this.transFormX + eventDis * 0.8);
 				dragging = false;
 			}
-
-			function touchHandler(event) {
-				var event = event.originalEvent || window.event
-				switch (event.type) {
-					case "touchstart":
-						touchStart(event);
-						break;
-					case "mousedown":
-						touchStart(event);
-						break;
-					case "touchmove":
-						touchMove(event);
-						break;
-					case "mousemove":
-						touchMove(event);
-						break;
-					case "touchend": 
-						touchEnd(event);
-						break;
-					case "mouseup":
-						touchEnd(event);
-						break;
-				}
-			}
+	
 		}
 	}
 	return AgeComponent;
