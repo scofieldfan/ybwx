@@ -2,7 +2,7 @@
  * @Author: fanzhang
  * @Date:   2016-08-04 13:59:59
  * @Last Modified by:   fanzhang
- * @Last Modified time: 2016-08-05 15:12:12
+ * @Last Modified time: 2016-08-05 15:49:41
  */
 
 'use strict';
@@ -17,7 +17,7 @@ window.AgeComponent = (function() {
 	var CONTAINER_ID = "ageMainContainer";
 	
 	var HTML = [
-		'<p class="sub-title age-title" id="{ageId}">{age}</p>',
+		'',
 		'<div class="age-container" id="{sliderContainerId}">',
 		'		<div id="{bgContainerId}" style="left:0px;" class="bg-container">{htmlContent}</div>',
 		'		<div id="{needleId}" class="needle"  style="left:{offset}px;" ><a></a></div>',
@@ -43,6 +43,7 @@ window.AgeComponent = (function() {
 		this.startAge = config.startAge || START_AGE;
 		this.yearDis = config.yearDis || YEAR_DIS;
 		this.containerId = config.containerId || CONTAINER_ID;
+		this.changeCallback = config.changeCallback;
 
 		this.offset = WIDTH/2;//指针的偏移，默认在左边
 		this.age = this.startAge;//当前的年龄
@@ -66,6 +67,9 @@ window.AgeComponent = (function() {
 		},
 		setPosition: function(transFormDis) { //移动背景的位置
 			var age = this.minAge-Math.round( (transFormDis / this.yearDis)) ;
+			if(this.changeCallback){
+				this.changeCallback(age);
+			}
 			this.age = age;
 			$("#" + this.containerId).find("#" + this.idObj.ageId).html(age);
 			$("#" + this.containerId).find("#"+this.idObj.bgContainerId).css("transform",'translateX(' + (this.offset - (age-this.minAge) * this.yearDis) + 'px)');
