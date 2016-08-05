@@ -64,7 +64,7 @@
 <div class="recommend-content" ng-repeat="category in categorys">
 	<div class="introd" ng-click="goCategory(category.id)">
 		<div class="box">
-			<img src="{{category.category_image_url}}"/>
+			<img ng-src="{{category.category_image_url}}"/>
 			<div class="name">{{category.name}}</div>
 			<div class="more">查看更多</div>
 		</div>
