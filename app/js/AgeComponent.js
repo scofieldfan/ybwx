@@ -2,7 +2,7 @@
  * @Author: fanzhang
  * @Date:   2016-08-04 13:59:59
  * @Last Modified by:   fanzhang
- * @Last Modified time: 2016-08-05 11:28:19
+ * @Last Modified time: 2016-08-05 15:12:12
  */
 
 'use strict';
@@ -65,11 +65,10 @@ window.AgeComponent = (function() {
 			this.bindEvent();
 		},
 		setPosition: function(transFormDis) { //移动背景的位置
-
 			var age = this.minAge-Math.round( (transFormDis / this.yearDis)) ;
 			this.age = age;
-			$("#" + this.idObj.ageId).html(age);
-			$("#"+this.idObj.bgContainerId).css("transform",'translateX(' + (this.offset - (age-this.minAge) * this.yearDis) + 'px)');
+			$("#" + this.containerId).find("#" + this.idObj.ageId).html(age);
+			$("#" + this.containerId).find("#"+this.idObj.bgContainerId).css("transform",'translateX(' + (this.offset - (age-this.minAge) * this.yearDis) + 'px)');
 		},
 		createDom: function() {
 			var html = [];
