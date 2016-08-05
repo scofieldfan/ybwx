@@ -10,7 +10,6 @@
 	</label>
 	</div>
 	-->
-
 	<div  class="bt_container">
 	
 		<i class="iconfont" style="font-size: 18px;color:#588DD4;vertical-align: -2px;">&#xe603;</i>
@@ -138,18 +137,19 @@
 </div>
 
 <div class="mask" id="popup">
-		<div class="toast_cs toast accident_mask">
-			<div class="income_ctrl">选择年收入<div class="off" id="off" ng-click="close()"><img src="img/select/off.png"></div></div>
-			<div class="calculate">我们将根据您的年收入测算保额</div>
-			<div class="income_details" id="details">
-				<div class="income blue" ng-click="selectInsured($event,1)">10万以下</div>
-				<div class="income" ng-click="selectInsured($event,2)">20万</div>
-				<div class="income" ng-click="selectInsured($event,3)">30万</div>
-				<div class="income" ng-click="selectInsured($event,4)">40万以上</div>
-			</div>
-
+	<div class="toast_cs toast accident_mask">
+		<div class="toast-off" id="off" ng-click="close()"><img src="img/select/off.png"></div>
+		<div class="income_ctrl">选择年收入</div>
+		<div class="calculate">我们将根据您的年收入测算保额</div>
+		<div class="income_details" id="details">
+			<div class="income blue" ng-click="selectInsured($event,1)">10万以下</div>
+			<div class="income" ng-click="selectInsured($event,2)">20万</div>
+			<div class="income" ng-click="selectInsured($event,3)">30万</div>
+			<div class="income" ng-click="selectInsured($event,4)">40万以上</div>
 		</div>
+
 	</div>
+</div>
 
 <div class="fix_container select_btn">
 	<div class="left" style="width: 65%;height: 48px;">

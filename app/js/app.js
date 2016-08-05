@@ -67,31 +67,42 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/select_part.html?v=123',
       controller: 'ybwxSelectCtrl',
       title: "保障提升",
-      css:'css/ring.css?rev=54a0d9d8523f9f48be37ed37404af229'
+      css:'css/ring.css?rev=9d56a76ef2453e32e090981924fd6ae2'
     }).when('/solution', {
       templateUrl: 'partials/solution.html',
       controller: 'ybwxSolutionCtrl',
       title: "保障方案",
-      css:'css/solution.css?rev=9b8c775e6d1c128991a480109da19b92'
+      css:'css/solution.css?rev=2882efe1d9c1f2d8a3301e0c07563501'
     }).when('/toubao_new', {
       templateUrl: 'partials/toubao_new.html',
       controller: 'ybwxToubaoNewCtrl',
       title: "投保确认",
       css:'css/toubao_new.css?rev=243bb8de239f91c386c1acf620954055'
-    }).when('/target', {
-      templateUrl: 'partials/target.html',
-      title: "保障对象"
     }).when('/promote', {
       templateUrl: 'partials/bz_ts.html',
       controller: 'ybwxPromoteCtrl',
-      title: "保障提升",
-      css:'css/bz_ts.css?rev=d07b0ccfd97b7ed412587d12eebae750'
+      title: "保障提升"
+    }).when('/target', {
+      templateUrl: 'partials/target.html',
+      controller: 'ybwxTargetCtrl',
+      title: "保障对象"
     }).when('/hobby', {
       templateUrl: 'partials/hobby.html',
+      controller: 'ybwxHobbyCtrl',
       title: "偏好设定"
     }).when('/userinfo_new', {
       templateUrl: 'partials/userinfo_new.html',
+      controller: 'ybwxUserInfoNewCtrl',
       title: "资料设定"
+    }).when('/scheme', {
+      templateUrl: 'partials/scheme.html',
+      controller: 'ybwxSchemeCtrl',
+      title: "方案解读"
+    }).when('/key_solution', {
+      templateUrl: 'partials/key_solution.html',
+      // controller: 'ybwxSolutionCtrl',
+      title: "保障方案",
+      css:'css/solution.css?rev=2882efe1d9c1f2d8a3301e0c07563501'
     }).when('/service', {
       templateUrl: 'partials/service.html',
       controller: 'ybwxServiceCtrl',
@@ -145,7 +156,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/temai_list.html',
       controller: 'wxTemaiListCtrl',
       title: "诺贝严选",
-      css:'css/temai_list.css?rev=220ec5d88870ff840f0c2a2502d67afc'
+      css:'css/temai_list.css?rev=0e539480736a12281b466e8fa72795cb'
     }).when('/bd_list', {
       templateUrl: 'partials/bd_list.html',
       controller: 'wxBaoDanListCtrl',

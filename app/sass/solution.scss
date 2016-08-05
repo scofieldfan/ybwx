@@ -6,6 +6,43 @@
 body {
 	background: #fff;
 }
+/* 一键提升保障方案start*/
+.key_head {
+	padding: 15px 10px;
+	color: #555;
+	font-size: 13px;
+	background: #fff;
+	line-height: normal;
+	.model {font-size: 15px;font-weight: bold;
+		.anew {
+			display: inline-block;
+			float: right;
+			height: 30px;
+			box-sizing: border-box;
+			width: 70px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			font-size: 13px;
+			line-height: 30px;
+			text-align: center;
+			color: #006ee9;
+			font-weight: normal;
+		}
+	}
+	.wz {
+		padding: 10px 0;
+		line-height: 20px
+	}
+	.fa {
+		color: #999;
+	}
+	img {
+		width: 15px;
+		vertical-align: -3px;
+	}
+	text-align: top;
+}
+/* end */
 .header {
 	.logo{
 		float: left;

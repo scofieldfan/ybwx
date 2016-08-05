@@ -317,6 +317,9 @@ mainControllers.controller('ybwxPromoteCtrl', ['$scope', '$routeParams', '$locat
 		$scope.goContinue = function() {
 			$location.path('/continue');
 		}
+		$scope.goTarget = function() {
+			$location.path("/target");
+		}
 	}
 ])
 mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
@@ -1401,6 +1404,42 @@ mainControllers.controller('ybwxtermsListCtrl', ['$scope', '$filter', '$routePar
 			var objectPlans = sessionStorage.getItem("data");
 			$scope.data = JSON.parse(objectPlans);
 			console.log(JSON.parse(objectPlans));
+		}
+	}
+]);
+/*一键提升==保障对象*/
+mainControllers.controller('ybwxTargetCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
+		$scope.goUserInfoNew = function() {
+			$location.path("/userinfo_new");
+		}
+	}
+]);
+
+/*一键提升==资料设定*/
+mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
+		$scope.goHobby = function() {
+			$location.path("/hobby");
+		}
+		
+	}
+]);
+
+/*一键提升==偏好设定*/
+mainControllers.controller('ybwxHobbyCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
+		$scope.goScheme = function() {
+			$location.path("/scheme");
+		}
+	}
+]);
+
+/*一键提升==方案解读*/
+mainControllers.controller('ybwxSchemeCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
+		$scope.goKeySolution = function() {
+			$location.path("/key_solution");
 		}
 	}
 ]);

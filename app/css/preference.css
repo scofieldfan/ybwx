@@ -19,7 +19,11 @@ body {
     margin-bottom: 15px; }
   .hobby .relation .btn_ctrl img {
     width: 15px;
-    display: none; }
+    display: none;
+    vertical-align: 20px;
+    position: absolute;
+    left: -30px;
+    top: 25%; }
   .hobby .relation .hobby_btn {
     position: relative;
     margin: 0 auto;

@@ -97,7 +97,7 @@ gulp.task('jsMin', function() {
 	return gulp.src([
 			'app/bower_components/jquery/dist/jquery.min.js',
 			//'app/js/lcalendar/dist/js/LCalendar.js',
-			// 'app/js/fastclick.js',
+			'app/js/fastclick.js',
 			'app/js/iscroll.js',
 			'app/bower_components/underscore/underscore-min.js',
 			'app/bower_components/angular/angular.min.js',

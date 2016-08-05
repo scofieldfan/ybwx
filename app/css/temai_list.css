@@ -64,7 +64,8 @@ body {
       -webkit-box-pack: center;
       -webkit-justify-content: center;
       justify-content: center;
-      border-right: 1px solid #e2e2e2; }
+      border-right: 1px solid #e2e2e2;
+      position: relative; }
       .insurance .insurance-item .logo .logo_mask {
         position: absolute;
         background-color: #e9f8ff;
@@ -72,8 +73,28 @@ body {
         width: 100%;
         left: 0;
         bottom: 0; }
-      .insurance .insurance-item .logo img {
+      .insurance .insurance-item .logo .insurance-image {
         width: 100px; }
+      .insurance .insurance-item .logo .conpany-logo {
+        width: 100%;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        height: 22px;
+        background: #e9f8ff; }
+        .insurance .insurance-item .logo .conpany-logo img {
+          height: 15px; }
     .insurance .insurance-item .wrap {
       -webkit-box-flex: 1;
       -webkit-flex: 1;

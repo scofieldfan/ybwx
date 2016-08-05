@@ -136,3 +136,111 @@
 		}
 	}
 }
+
+/*.left {
+	float: left;
+}
+// body {
+// 	line-height: normal;
+// }
+.right {
+	float: right;
+}
+.promote_ctrl {
+	.head_ctrl {
+		background: #006ee9;
+	    padding: 30px 15px 30px 20px;
+	    overflow: auto;
+	    .head_left {
+		   float: left;
+		   padding-top: 8px;
+			.head_word {
+				font-size: 18px;
+				color: #fff;
+				line-height: 18px;
+			}
+			span:nth-child(1) {
+				display: inline-block;
+				width: 12px;
+				height: 12px;
+				background: #fff;
+			    border-radius: 50%;
+			    margin-right: 5px;
+			}
+			span:nth-child(2) {
+				font-weight: bold;
+				font-size: 21px;
+			}
+			.head_state {
+				font-size: 12px;
+	            color: #97c8ff;
+	            margin-top: 20px;
+			}
+		}
+		.head_right {
+			float: right;
+			height: 108px;
+			width: 108px;
+			background: url("../img/promote/tisheng_back.png") no-repeat;
+			background-size: 108px 108px;
+			color: #006ee9;
+			font-size: 13px;
+			position: relative;
+			text-align: center;
+			box-sizing: border-box;
+			padding-top: 70px;
+			font-weight: 500;
+			// line-height: 95px;
+			// .word-circle {
+			// 	position: absolute;
+			// 	left: 0;
+			// 	bottom: 0;
+			// }
+		}
+		.head_right:active {
+			background: #f5f5f5;
+		}
+	}
+	.promote_main {
+	padding-left: 20px;
+		.main_word {
+			@include flexbox;
+			overflow: auto;
+			padding: .233rem 20px .232rem 0;
+			border-bottom: 1px solid #e2e2e2;
+			.logo_ctrl {
+				width: 30px;
+				box-sizing: border-box;
+				padding-top: 3px;
+			}
+			.main_head {
+				font-size: 16px;
+				color: #555;
+				line-height: 16px;
+				margin-bottom: 7px;
+			}
+			.change_word {
+				font-size: 12px;
+				color: #999;
+				line-height: 12px;
+			}
+			.main_l {
+				// padding-right: 10px;
+				line-height: normal;
+				margin-left: 15px;
+				@include flex(1);
+				background: url(../img/jiantou.png) no-repeat right center;
+				background-size: 7.5px;
+			}
+		}
+		.main2 {
+			height: 73px;
+		}
+		.main3 {
+			height: 74px;
+		}
+		.main4 {
+			height: 50px;
+		}
+	}
+}*/

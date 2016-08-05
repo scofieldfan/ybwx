@@ -10,8 +10,8 @@
 
  	/*“重点”“全面”*/
  	.sex {margin:20px 0 15px 0;color: #999;}
- 	.age {margin: 25px 0 0;color: #999;}
- 	.blue {color: #55a5ff;font-size: 17px;font-weight: bold;}
+ 	.age {margin: 25px 0 14px;color: #999;}
+ 	.blue {color: #55a5ff;font-size: 18px;font-weight: bold;margin-left: 10px;}
 .switch {
 	position: relative;
 	display: block;
@@ -76,7 +76,7 @@
 .switch-input:checked ~ .switch-label:after {
 	opacity: 1;
 }
-.switch-handle {
+.switch-handl-off{
 	position: absolute;
 	top: 3px;
 	left: 4px;
@@ -95,7 +95,7 @@
 	border-radius: 44px;
 }
 // 蓝色的
-.switch-handle:before {
+.switch-handl-off:before {
 	content: "是";
 	position: absolute;
 	color: #fff;
@@ -121,13 +121,13 @@
 	line-height: 45px;
 	font-family: Arial, Microsoft YaHei, SimHei, Helvetica, sans-serif;
 }
-.switch-input:checked ~ .switch-handle:before {
+.switch-input:checked ~ .switch-handl-off:before {
 	content: "否";
 }
 .switch-input:checked ~ .switch-hand:before {
 	content: "女";
 }
-.switch-input:checked ~ .switch-handle {
+.switch-input:checked ~ .switch-handl-off {
 	-webkit-transform: translateX(70px);
 	-moz-transform: translateX(70px);
 	-ms-transform: translateX(70px);
@@ -141,7 +141,7 @@
 	-o-transform: translateX(70px);
 	transform: translateX(70px);
 }
-.switch-label, .switch-handle {
+.switch-label, .switch-handl-off {
 	transition: All 0.3s ease;
 	-webkit-transition: All 0.3s ease;
 	-moz-transition: All 0.3s ease;
@@ -154,6 +154,56 @@
 	-o-transition: All 0.3s ease;
 }
 /*end*/
- }
+
+
+
+.age-container {
+	// width: 300px;
+	height: 40px;
+	// margin: 0 auto;
+	// position: relative;
+	// overflow: hidden;
+	// text-align: left;	/*-webkit-mask:-webkit-gradient(linear,50% 0%, 100% 0%, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));*/
+	// -webkit-mask: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+}
+.age-container	a {
+	// border-left: 1px solid #346290;
+	// display: inline-block;
+	// margin-left: -1px;
+	// padding: 0px 0px 0px 3px;
+	// width: 7px;
+	height: 7.5px;
+	// vertical-align: top;
+	// color: #20456c;
+}
+// .needle {
+// 	position: relative;
+// 	top: 0px;
+// }
+.needle a {
+	// border-left-color: #ff750f;
+	height: 17.5px;
+	// border-width: 3px;
+	// margin-left: 130px;
+}
+// #bg {
+// 	width: 5000px;
+// 	position: absolute;
+// 	transition: All 0.05s ease;
+// 	-webkit-transition: All 0.05s ease;
+// 	-moz-transition: All 0.01s ease;
+// 	-o-transition: All 0.01s ease;
+// }
+.age-container .high {
+	height: 12.5px;
+	// text-align: center;
+	// position:relative;
+}
+.age-container .high span {
+	// position: absolute;
+	// left: -7px;
+	top: 23px;
+}
+}
 
 .target_btn {position: fixed;left: 0;bottom: 0;width: 100%;height: 49px;background: #006ee9;color: #fff;text-align: center;line-height: 49px;font-size: 15px;border-top: 1px solid #ccc;}

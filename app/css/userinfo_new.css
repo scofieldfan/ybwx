@@ -15,12 +15,13 @@ body {
     margin: 20px 0 15px 0;
     color: #999; }
   .userinfo_new .age {
-    margin: 25px 0 0;
+    margin: 25px 0 14px;
     color: #999; }
   .userinfo_new .blue {
     color: #55a5ff;
-    font-size: 17px;
-    font-weight: bold; }
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 10px; }
   .userinfo_new .switch {
     position: relative;
     display: block;
@@ -75,7 +76,7 @@ body {
     opacity: 0; }
   .userinfo_new .switch-input:checked ~ .switch-label:after {
     opacity: 1; }
-  .userinfo_new .switch-handle {
+  .userinfo_new .switch-handl-off {
     position: absolute;
     top: 3px;
     left: 4px;
@@ -91,7 +92,7 @@ body {
     height: 45px;
     background-color: #55a5ff;
     border-radius: 44px; }
-  .userinfo_new .switch-handle:before {
+  .userinfo_new .switch-handl-off:before {
     content: "是";
     position: absolute;
     color: #fff;
@@ -113,11 +114,11 @@ body {
     height: 45px;
     line-height: 45px;
     font-family: Arial, Microsoft YaHei, SimHei, Helvetica, sans-serif; }
-  .userinfo_new .switch-input:checked ~ .switch-handle:before {
+  .userinfo_new .switch-input:checked ~ .switch-handl-off:before {
     content: "否"; }
   .userinfo_new .switch-input:checked ~ .switch-hand:before {
     content: "女"; }
-  .userinfo_new .switch-input:checked ~ .switch-handle {
+  .userinfo_new .switch-input:checked ~ .switch-handl-off {
     -webkit-transform: translateX(70px);
     -moz-transform: translateX(70px);
     -ms-transform: translateX(70px);
@@ -129,7 +130,7 @@ body {
     -ms-transform: translateX(70px);
     -o-transform: translateX(70px);
     transform: translateX(70px); }
-  .userinfo_new .switch-label, .userinfo_new .switch-handle {
+  .userinfo_new .switch-label, .userinfo_new .switch-handl-off {
     transition: All 0.3s ease;
     -webkit-transition: All 0.3s ease;
     -moz-transition: All 0.3s ease;
@@ -139,6 +140,16 @@ body {
     -webkit-transition: All 0.3s ease;
     -moz-transition: All 0.3s ease;
     -o-transition: All 0.3s ease; }
+  .userinfo_new .age-container {
+    height: 40px; }
+  .userinfo_new .age-container a {
+    height: 7.5px; }
+  .userinfo_new .needle a {
+    height: 17.5px; }
+  .userinfo_new .age-container .high {
+    height: 12.5px; }
+  .userinfo_new .age-container .high span {
+    top: 23px; }
 .target_btn {
   position: fixed;
   left: 0;
