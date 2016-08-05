@@ -311,8 +311,9 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
         });
 
         $q.all([$scope.maskPromise, $scope.myPromise]).then(function(res) {
-
-          updateFee();
+          if($scope.maskData.premium_type == 2){//浮动价格才需要更新保费
+            updateFee();
+          }
         }); /**/
 
       })
@@ -371,7 +372,11 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       $scope.danwei = genDuration($scope.plan.coverage_period_type);
       //$scope.money = $scope.plan.premium;
       $scope.getRestrictions();
-      updateFee();
+      if($scope.maskData.premium_type == 2){//浮动价格更新保费
+        updateFee();
+      }else{
+           $scope.money =  $scope.plan.premium;
+      }
       _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_changetaocan']);
     }
 
