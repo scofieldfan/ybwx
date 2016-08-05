@@ -2,7 +2,7 @@
  * @Author: fanzhang
  * @Date:   2016-08-04 13:59:59
  * @Last Modified by:   fanzhang
- * @Last Modified time: 2016-08-05 16:50:55
+ * @Last Modified time: 2016-08-05 20:14:32
  */
 
 'use strict';
@@ -109,9 +109,8 @@ window.AgeComponent = (function() {
 
 			function touchStart(event) {
 				var event = event.originalEvent || window.event
-				console.log("touch start....");
 				event.preventDefault();
-				startX = event.type.startsWith("touch") ? event.touches[0].clientX : event.clientX;
+				startX =  event.touches ? event.touches[0].clientX : event.clientX;
 				dragging = true;
 				
 			}
@@ -119,9 +118,8 @@ window.AgeComponent = (function() {
 			function touchMove(event) {
 				var event = event.originalEvent || window.event
 				if (dragging) {
-				// console.log("touch move.......");
 					event.preventDefault();
-					var clientX  = event.type.startsWith("touch") ? event.touches[0].clientX : event.clientX;
+					var clientX  =event.touches ? event.touches[0].clientX : event.clientX;
 					var eventDis = clientX - startX;
 					_this.setPosition(resetLeft(_this.transFormX + eventDis * 0.8));
 				}
@@ -129,9 +127,8 @@ window.AgeComponent = (function() {
 
 			function touchEnd(event) {
 				var event = event.originalEvent || window.event
-				// console.log("touch end....");
 				event.preventDefault();
-				var clientX  = event.type.startsWith("touch") ? event.changedTouches[0].clientX : event.clientX;
+				var clientX  = event.touches ? event.changedTouches[0].clientX : event.clientX;
 				var eventDis = clientX - startX;
 				_this.transFormX = resetLeft(_this.transFormX + eventDis * 0.8);
 				dragging = false;

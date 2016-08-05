@@ -4,6 +4,11 @@
 *{
 	box-sizing:border-box;
 }
+/* 去掉 input time 中间清除按钮*/
+input[type="date"]::-webkit-clear-button {
+ -webkit-appearance: none;
+  display: none;
+}
 body{
 	background-color: #f5f5f5;
 }

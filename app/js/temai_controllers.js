@@ -154,14 +154,17 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
 
     _hmt.push(['_trackPageview', $location.path()]);
 
+
+    //大特医保需要跳转到说明页
+      if( $routeParams.product_id ===  "86" && $routeParams.source === "ad"){ 
+              //location.href = "http://r.xiumi.us/stage/v5/2lDxG/18511765";
+              //return ;
+      }
     $scope.genDanwei = function(type) {
       return coveragePeriodMap[type];
     }
     $scope.gender = 1;
-    function disableScroll() {
-      $(document).on('mousewheel', util.preventDefault);
-      $(document).on('touchmove', util.preventDefault);
-    };
+   
     function updateFee() {
       var openId = sessionStorage.getItem("openId");
   
@@ -212,9 +215,10 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
     $scope.init = function() {
      // $scope.birthday = "19860101";
       //$scope.showBirthday = "1986-01-01";
+
+     
      
       var code = util.getParameterByName("code") || $routeParams.code;
-
       util.getOpenId(code).then(function() {
 
         $scope.haveMask = false;
@@ -296,7 +300,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
               locale_notice: res.data.data.locale_notice
             })*/
             $scope.data = res.data.data;
-            $scope.money = res.data.data.insurance_plans[0].premium;
+            $scope.detailMoney = $scope.money =  res.data.data.insurance_plans[0].premium;
             $scope.plan = res.data.data.insurance_plans[0];
             $scope.danwei = genDuration($scope.plan.coverage_period_type);
             $scope.getRestrictions();
@@ -312,7 +316,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
 
         $q.all([$scope.maskPromise, $scope.myPromise]).then(function(res) {
           if($scope.maskData.premium_type == 2){//浮动价格才需要更新保费
-            //updateFee();
+           updateFee();
           }
         }); /**/
 
@@ -405,8 +409,8 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       //console.log($(element));
       $scope.plan = plan;
       $scope.danwei = genDuration($scope.plan.coverage_period_type);
-      $scope.money = plan.premium;
-      updateFee();
+      $scope.detailMoney = plan.premium;
+      //updateFee();
       _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_changeheadtaocan']);
 
     }

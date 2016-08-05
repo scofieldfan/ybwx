@@ -212,7 +212,7 @@ mainControllers.controller('ybwxUserinfoCtrl', ['$scope', '$routeParams', '$loca
 
 		$scope.submit = function() {
 			$scope.gender = $(".switch-input").is(':checked') ? 2 : 1;
-			$scope.age = $("#age").html();
+			$scope.age = $("#ageId").html();
 			var openId = sessionStorage.getItem("openId");
 			$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['set_user_info'], {
 				'open_id': openId,
