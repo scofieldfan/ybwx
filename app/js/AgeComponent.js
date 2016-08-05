@@ -2,7 +2,7 @@
  * @Author: fanzhang
  * @Date:   2016-08-04 13:59:59
  * @Last Modified by:   fanzhang
- * @Last Modified time: 2016-08-04 20:35:12
+ * @Last Modified time: 2016-08-05 11:11:00
  */
 
 'use strict';
@@ -48,7 +48,7 @@ window.AgeComponent = (function() {
 		this.age = this.startAge;//当前的年龄
 		this.maxLeft = 0;//最左边只能到指针的1半
 		this.minLeft = - this.yearDis * (this.maxAge - this.minAge); //指针能移动的最右边，为负值
-		this.transFormX = -this.startAge * this.yearDis;//相对与最左边移动的位置
+		this.transFormX = -(this.startAge-this.minAge) * this.yearDis;//相对与最左边移动的位置
 		this.idObj = {
 			ageId: 'ageId',
 			sliderContainerId: 'sliderContainerId',
@@ -69,7 +69,7 @@ window.AgeComponent = (function() {
 			var age = this.minAge-Math.round( (transFormDis / this.yearDis)) ;
 			this.age = age;
 			$("#" + this.idObj.ageId).html(age);
-			$("#"+this.idObj.bgContainerId).css("transform",'translateX(' + (this.offset - age * this.yearDis) + 'px)');
+			$("#"+this.idObj.bgContainerId).css("transform",'translateX(' + (this.offset - (age-this.minAge) * this.yearDis) + 'px)');
 		},
 		createDom: function() {
 			var html = [];
