@@ -312,7 +312,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
 
         $q.all([$scope.maskPromise, $scope.myPromise]).then(function(res) {
           if($scope.maskData.premium_type == 2){//浮动价格才需要更新保费
-            updateFee();
+            //updateFee();
           }
         }); /**/
 

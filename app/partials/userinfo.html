@@ -20,6 +20,7 @@
 	</div>
 </div>
 -->
+<p class="sub-title age-title" id="ageId">{age}</p>
 <div id="ageContainer"> </div>
 
 <!-- <div id="testContainer"> </div> -->
@@ -32,7 +33,9 @@
 <script type="text/javascript">
 
 //var ageComponent = new AgeComponent({containerId:"ageContainer",yearDis:18,minAge:25,maxAge:50,startAge:30});
- var ageComponent = new AgeComponent({containerId:"ageContainer",yearDis:18});
+ var ageComponent = new AgeComponent({containerId:"ageContainer",yearDis:18,changeCallback:function(age){
+ 		$("#ageId").html(age);
+ }});
 
  // var testComponent = new AgeComponent({containerId:"testContainer",yearDis:18});
 </script>
