@@ -44,7 +44,7 @@
   .promote_ctrl .head_ctrl .head_right:active {
     background: #f5f5f5; }
 .promote_ctrl .promote_main {
-  padding-left: 10px; }
+  padding-left: 20px; }
   .promote_ctrl .promote_main .main_word {
     display: -webkit-box;
     display: -webkit-flex;
@@ -52,7 +52,7 @@
     display: -ms-flexbox;
     display: flex;
     overflow: auto;
-    padding: 18px 10px 18px 0;
+    padding: 18px 20px 18px 0;
     border-bottom: 1px solid #e2e2e2; }
     .promote_ctrl .promote_main .main_word .logo_ctrl {
       width: 30px;
