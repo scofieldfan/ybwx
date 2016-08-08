@@ -430,6 +430,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       } else {
         $scope.submit();
       }
+      _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_showMask']);
     }
     $scope.submit = function() {
       //获得当前的plan

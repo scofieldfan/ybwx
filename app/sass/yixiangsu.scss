@@ -1,0 +1,32 @@
+@import "base/classes.scss";
+@import "base/variables.scss";
+div {
+	height: 100px;
+	// background: red;
+	@include border(0 0 1px 0,red);
+	width: 100%;
+	position: fixed;
+	left:0;
+	top:0;
+	z-index: 99;
+}
+
+td {
+	height: 30px;
+	background: blue;
+	@include border(1px,black);
+
+}
+p {
+	height: 100px;
+	background: yellow;
+	@include border(1px,black);
+
+}
+span {
+	height: 50px;
+	display: block;
+	// background: gray;
+	@include border(1px,#ccc);
+
+}

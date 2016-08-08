@@ -146,7 +146,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/temai_detail.html',
       controller: 'wxDetailNewCtrl',
       title: "诺贝严选",
-      css:'css/temai_detail.css?rev=6fa7112d18435a3b2fa6967d1633b8f3'
+      css:'css/temai_detail.css?rev=sdfsdfsdfsd'
     }).when('/temaiindex', {
       templateUrl: 'partials/temai_index.html',
       controller: 'wxTemaiIndexCtrl',
@@ -239,7 +239,10 @@ ybwxApp.config(['$routeProvider',
     }).when('/terms_list', {
       templateUrl: 'partials/terms_list.html',
       controller: 'ybwxtermsListCtrl',
-      title: "产品条款列表",
+      title: "产品条款列表"
+    }).when('/yixiangsu', {
+      templateUrl: 'partials/yixiangsu.html',
+      title: "一像素"
     }).otherwise({
       redirectTo: '/index'
     });

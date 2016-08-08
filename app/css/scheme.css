@@ -2,7 +2,7 @@
 .scheme-contrller {
   line-height: normal;
   background: #fff;
-  font-size: #555;
+  color: #555;
   margin-bottom: 49px; }
   .scheme-contrller .scheme-head {
     line-height: 49px;
@@ -15,7 +15,8 @@
     line-height: normal; }
   .scheme-contrller .scheme_word {
     padding: 20px 20px 30px 20px;
-    font-size: 13px; }
+    font-size: 13px;
+    line-height: 25px; }
   .scheme-contrller .main-contrller .main-head {
     font-size: 18px;
     height: 59.5px;
@@ -31,7 +32,7 @@
     padding: 20px 30px;
     background: #fff; }
     .scheme-contrller .main-contrller .main_word .main_top {
-      font-size: 16px;
+      font-size: 15px;
       margin-bottom: 5px; }
       .scheme-contrller .main-contrller .main_word .main_top img {
         width: 13.5px;

@@ -4,7 +4,7 @@
 .scheme-contrller {
 	line-height: normal;
 	background: #fff;
-	font-size: #555;
+	color:#555;
 	margin-bottom: 49px;
 	.scheme-head {
 		line-height: 49px;
@@ -24,6 +24,7 @@
 		padding: 20px 20px 30px 20px;
 		font-size: 13px;
 		// border-bottom: 1px solid #ccc;
+		line-height: 25px;
 	}
 
 	.main-contrller {
@@ -46,7 +47,7 @@
 			background: #fff;
 			// border-bottom: 1px solid #ccc;
 			.main_top {
-				font-size: 16px;
+				font-size: 15px;
 				margin-bottom: 5px;
 				img {
 					width: 13.5px;

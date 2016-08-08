@@ -343,9 +343,11 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 		}
 
 		$('#gift').click(function() {
+			_hmt.push(['_trackEvent', 'index', 'showShareMask']);
 			$("#share_ctrl").show();
 		});
 		$("body").on("click", "#share_ctrl", function() {
+			_hmt.push(['_trackEvent', 'index', 'hideShareMask']);
 			$("#share_ctrl").hide();
 		}).on("click", "#opacity_ctrl", function() {
 			$("#share_ctrl").hide();
@@ -360,19 +362,23 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 			$location.path('/bdm_list').search();
 		}
 		$scope.goPromote = function() {
+			_hmt.push(['_trackEvent', 'index', 'goPromote']);
 			$location.path('/promote').search();
 		}
 		var cellClass = ".cell-footer";
 		$scope.goIndex = function($event) {
+			_hmt.push(['_trackEvent', 'index', 'goIndex_']);
 			//$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
 			//$($event.target).parents(cellClass).addClass("hover");
 		}
 		$scope.goTemai = function($event) {
+			_hmt.push(['_trackEvent', 'index', 'goTemai_']);
 			//$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
 			//$($event.target).parents(cellClass).addClass("hover");
 			$location.path('/temaiindex').search();
 		}
 		$scope.goService = function($event) {
+			_hmt.push(['_trackEvent', 'index', 'goService']);
 			//$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
 			//$($event.target).parents(cellClass).addClass("hover");
 			$location.path('/service').search();
@@ -792,6 +798,8 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 					$location.path('/temaidetail').search({
 						product_id: plan.insurance_id
 					});
+				_hmt.push(['_trackEvent', 'solution', 'solution_goDetail']);
+
 				}
 
 			} else {
@@ -806,7 +814,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 				}else{
 					window.location.href = plan.official_site;
 				}
-
+				_hmt.push(['_trackEvent', 'solution', 'solution_goDetail']);
 			}
 		}
 
@@ -1216,7 +1224,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 		}
 		$scope.goTermsList = function() {
 			$location.path("/terms_list").search();
-
+			_hmt.push(['_trackEvent', 'toubaonew', 'toubaonew_gotermsList'])
 		}
 		$scope.genPlansInEffectiveDate = function() {
 			$scope.data.plans.forEach(function(element, index) {

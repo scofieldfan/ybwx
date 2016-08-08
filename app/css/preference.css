@@ -9,21 +9,20 @@ body {
   text-align: center;
    }
   .hobby .piont {
-    color: #999;
     margin-bottom: 10px; }
   .hobby .trouble {
     margin: 20px 0 10px 0; }
   .hobby .select {
     color: #999;
     font-size: 13px;
+    line-height: 13px;
     margin-bottom: 15px; }
   .hobby .relation .btn_ctrl img {
     width: 15px;
     display: none;
-    vertical-align: 20px;
     position: absolute;
-    left: -30px;
-    top: 25%; }
+    left: -25px;
+    top: 30%; }
   .hobby .relation .hobby_btn {
     position: relative;
     margin: 0 auto;
