@@ -8,7 +8,7 @@
 			'<div class="slider"><div class="progress_bar" >',
 			'<div class="progress_inner_bar">',
 			'<div  class="zhizhen">',
-			'<img src="http://web.youbaowuxian.com/img/slider-btn.png?v=2"  class="bar_btn" >',
+			'<img src="/img/slider-btn.png?v=2"  class="bar_btn" >',
 			'</div>',
 			'</div>',
 			'{tipHtml}',

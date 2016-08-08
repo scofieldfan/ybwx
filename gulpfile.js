@@ -189,8 +189,7 @@ gulp.task('wx_jsMin', function() {
 			'app/bower_components/angular-resource/angular-resource.min.js',
 			'app/wx_share/js/app.js',
 			'app/wx_share/js/controllers.js',
-			'app/wx_share/js/directives.js',
-			'app/wx_share/js/wxShare.js'
+			'app/wx_share/js/directives.js'
 
 		], {
 			base: 'app/'

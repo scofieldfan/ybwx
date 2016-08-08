@@ -183,10 +183,8 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 		}
 		$scope.init = function() {
 
-			var code = util.getParameterByName("code");
-			if (!code) {
-				code = $routeParams.code;
-			}
+			var code = util.getParameterByName("code") || $routeParams.code;
+
 			if ($routeParams.policy_id && $routeParams.policy_id == 'test') {
 				$scope.isTest = true;
 				$("#test_baodan").show();
@@ -273,12 +271,12 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 				'share_id': openId
 			}
 			var paramStr = util.genParameters(params);
-			var shareUrl = "http://web.youbaowuxian.com/#bdm_detail?" + paramStr;
+			var shareUrl = util.domain + "#bdm_detail?" + paramStr;
 			util.share({
 				"shareTitle": "我的保单",
 				"shareUrl": shareUrl,
 				"shareDesc": "这是我在诺贝保险管家的保单。诺贝保险管家，保险本该如此!",
-				"shareImg": "http://web.youbaowuxian.com/img/icon.jpg"
+				"shareImg": util.domain + "img/icon.jpg"
 			});
 
 		}

@@ -85,7 +85,7 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 		var qd = util.getParameterByName("qd") || $routeParams.qd || 'default';
 		_hmt.push(['_trackPageview', '/wx_share_jixian']);
 		_hmt.push(['_setCustomVar', 1, 'jixian_qudao', qd, 1]);
-		var currentUrl = "http://web.youbaowuxian.com/wx_share.html#/jixian";
+		var currentUrl = util.domain+"wx_share.html#/jixian";
 		$scope.init = function() {
 
 			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
@@ -93,8 +93,8 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 				var openId = sessionStorage.getItem("openId");
 
 				util.share({
-					shareUrl: "http://web.youbaowuxian.com/wx_share.html#/jixian?rec_id=" + openId,
-					shareImg: "http://web.youbaowuxian.com/wx_share/img/share_sport.png",
+					shareUrl:  util.domain+"wx_share.html#/jixian?rec_id=" + openId,
+					shareImg:  util.domain+"wx_share/img/share_sport.png",
 					shareTitle: "免费领取10万元极限运动险！要酷，更要安全！",
 					shareDesc: "每月均可领取1份，每邀请1位好友，即可再免费领取1份。约上朋友一起突破极限吧！"
 				});
@@ -164,7 +164,7 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 ]);
 wxShareControllers.controller('shenheCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
 	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
-		var currentUrl = "http://web.youbaowuxian.com/wx_share.html#/shenhe";
+		var currentUrl = util.domain+"wx_share.html#/shenhe";
 		util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
 
 		});
@@ -180,7 +180,7 @@ wxShareControllers.controller('shenheCtrl', ['$scope', '$filter', '$routeParams'
 wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
 	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
 
-		var currentUrl = "http://web.youbaowuxian.com/wx_share.html#/special";
+		var currentUrl = util.domain + "wx_share.html#/special";
 		var qd = util.getParameterByName("qd") || $routeParams.qd || 'default';
 		_hmt.push(['_trackPageview', '/1year_hangkong_yiwai']);
 		_hmt.push(['_setCustomVar', 1, '1year_hangkong_qudao', qd, 1]);
@@ -219,10 +219,10 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 				});
 				wx.ready(function() {
 					// config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
-					var shareUrl = "http://web.youbaowuxian.com/wx_share.html#/special";
+					var shareUrl = util.domain + "wx_share.html#/special";
 					var shareTitle = "还在买捆绑的30元一次的航意险？在这里500万保一年无限次仅需40元！";
 					var shareDesc = "仅需1杯咖啡的花费即可享受1年500万航空意外的保障！";
-					var shareImg = "http://web.youbaowuxian.com/wx_share/img/share_s.png";
+					var shareImg =  "/wx_share/img/share_s.png";
 
 					var shareLink = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri=' + encodeURIComponent(shareUrl) + '&response_type=code&scope=snsapi_base&state=123#wechat_redirect';
 					wx.onMenuShareTimeline({
@@ -587,7 +587,7 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 		_hmt.push(['_trackPageview', '/wx_share_index']);
 		_hmt.push(['_setCustomVar', 1, 'hangkong_qudao', qd, 1]);
 		//_hmt.push(['_trackPageview', '/wx_share_index'+"_qd_"+qd]);
-		var currentUrl = "http://web.youbaowuxian.com/wx_share.html#/index"
+		var currentUrl = util.domain + "wx_share.html#/index"
 		$scope.init = function() {
 			$scope.data = {
 				remain_times: 1,
@@ -597,8 +597,8 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
 				$("#loadingToastCommon").hide();
 				util.share({
-					shareUrl: "http://web.youbaowuxian.com/wx_share.html#/index?rec_id=" + openId,
-					shareImg: "http://web.youbaowuxian.com/wx_share/img/share61.jpg",
+					shareUrl:  util.domain + "wx_share.html#/index?rec_id=" + openId,
+					shareImg: "/wx_share/img/share61.jpg",
 					shareTitle: "送你一份500万航空意外险，买机票立省30元！",
 					shareDesc: "集齐3份航空意外险保险券，即可免费兑换一份航班延误险保险券！"
 

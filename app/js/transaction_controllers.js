@@ -16,7 +16,7 @@ transControllers.controller('wxBaoDanListCtrl', ['$scope', '$routeParams', '$loc
 			return insuranceColorMap[status]
 		}
 
-		var currentUrl = "http://web.youbaowuxian.com/#bd_list";
+		var currentUrl = util.domain+ "#bd_list";
 		$scope.init = function() {
 
 			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {

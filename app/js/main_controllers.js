@@ -20,7 +20,6 @@ var api = {
 	'get_recommend_plans': '/ybwx-web/api/recommendation/plans',
 	'get_estimate_money': '/ybwx-web/api/recommend_premium',
 	'get_recommend_suggestion': '/ybwx-web/api/recommendation/suggestion',
-	// 'get_restrictions': '/ybwx-web/api/recommend_restrictions',
 	'get_restrictions': '/ybwx-web/api/insurance/notice',
 	'get_score_analysis_new': '/ybwx-web/api/single_score/{openId}/{type}',
 	'get_score_analysis': '/ybwx-web/api/score_analysis/{openId}/{type}',
@@ -362,7 +361,7 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 			$location.path('/bdm_list').search();
 		}
 		$scope.goPromote = function() {
-			_hmt.push(['_trackEvent', 'index', 'goPromote']);
+			_hmt.push(['_trackEvent', 'index', 'index_baozhangtisheng']);
 			$location.path('/promote').search();
 		}
 		var cellClass = ".cell-footer";
@@ -385,8 +384,7 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 		}
 		$scope.init = function() {
 			//获得openId
-			//setTest($routeParams.is_test);
-			var currentUrl = "http://web.youbaowuxian.com/#/index";
+			var currentUrl = util.domain +"#/index";
 			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
 				util.share();
 				/*
@@ -810,7 +808,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 						insuranceId: plan.insurance_id
 					}
 					var parmStr = util.genParameters(param);
-					window.location.href = "http://web.youbaowuxian.com/ybwx-web/api/webPage?" + parmStr;
+					window.location.href = util.domain + "ybwx-web/api/webPage?" + parmStr;
 				}else{
 					window.location.href = plan.official_site;
 				}
