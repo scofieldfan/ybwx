@@ -1,5 +1,5 @@
 var util = {
-	domain:'http://web.youbaowuxian.com/',
+	domain:'http://wechat.nuobei.cn/',
 	api: {
 		"openid": "/ybwx-web/wechat/open_id",
 		"signature": "/ybwx-web/wechat/js_signature"
