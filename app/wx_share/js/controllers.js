@@ -202,7 +202,8 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 				type: 'GET',
 				url: "/ybwx-web/wechat/js_signature",
 				data: {
-					"url": location.href.split('#')[0]
+					url: location.href.split('#')[0],
+					type:2
 				},
 				dataType: "json"
 			})).done(function(res) {

@@ -105,7 +105,8 @@ var util = {
 				type: 'GET',
 				url: util.api["openid"],
 				data: {
-					code: code
+					code: code,
+					type:2
 				},
 				dataType: "json"
 			})).done(function(res) {
@@ -124,7 +125,8 @@ var util = {
 			type: 'GET',
 			url: util.api["signature"],
 			data: {
-				"url": location.href.split('#')[0]
+				"url": location.href.split('#')[0],
+				type:2
 			},
 			dataType: "json"
 		})).done(function(res) {
@@ -182,7 +184,8 @@ var util = {
 			type: 'GET',
 			url: util.api["signature"],
 			data: {
-				"url": location.href.split('#')[0]
+				url: location.href.split('#')[0],
+				type:2
 			},
 			dataType: "json"
 		})).done(function(res) {
@@ -243,7 +246,8 @@ var util = {
 			type: 'GET',
 			url: util.api["signature"],
 			data: {
-				"url": location.href.split('#')[0]
+				"url": location.href.split('#')[0],
+				 type:2
 			},
 			dataType: "json"
 		})).done(function(res) {
