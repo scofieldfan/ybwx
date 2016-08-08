@@ -1,5 +1,7 @@
 var util = {
 	domain:'http://wechat.nuobei.cn/',
+	appId:'wxe797ac4e18b99078',
+	shareScope:'snsapi_userinfo',
 	api: {
 		"openid": "/ybwx-web/wechat/open_id",
 		"signature": "/ybwx-web/wechat/js_signature"
@@ -145,7 +147,7 @@ var util = {
 				console.log("wexin success....")
 				// config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
 				var shareTitle = "诺贝保险管家！";
-				var shareLink = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri=' + encodeURIComponent(shareUrl) + '&response_type=code&scope=snsapi_base&state=123#wechat_redirect';
+				var shareLink = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='+util.appId+'&redirect_uri=' + encodeURIComponent(shareUrl) + '&response_type=code&scope='+util.shareScope+'&state=123#wechat_redirect';
 				var shareDesc = "诺贝保险管家，为您定制保险！";
 				var shareImg = util.domain+"wx_share/img/share.jpg";
 
@@ -209,7 +211,7 @@ var util = {
 				var shareDesc = shareObj.shareDesc || "诺贝保险管家，为您定制保险！";
 				var shareImg = shareObj.shareImg || util.domain+"img/icon.jpg";
 
-				var shareLink = isNotEncode ? url : 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri=' + encodeURIComponent(url) + '&response_type=code&scope=snsapi_base&state=123#wechat_redirect';
+				var shareLink = isNotEncode ? url : 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='+util.appId+'&redirect_uri=' + encodeURIComponent(url) + '&response_type=code&scope='+util.shareScope+'&state=123#wechat_redirect';
 				wx.onMenuShareTimeline({
 					title: shareTitle,
 					link: shareLink,
@@ -367,7 +369,7 @@ var util = {
 	},
 	redirectWeChatUrl: function(redirectUrl) {
 		if (typeof redirectUrl === "string" && redirectUrl.indexOf("http") == 0) {
-			var WE_CHAT_URL = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri=" + encodeURIComponent(redirectUrl) + "&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
+			var WE_CHAT_URL = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='+util.appId+'&redirect_uri=' + encodeURIComponent(redirectUrl) + '&response_type=code&scope='+util.shareScope+'&state=123#wechat_redirect';
 			window.location.href = WE_CHAT_URL;
 		}
 	},

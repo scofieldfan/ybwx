@@ -225,7 +225,7 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 					var shareDesc = "仅需1杯咖啡的花费即可享受1年500万航空意外的保障！";
 					var shareImg =  "/wx_share/img/share_s.png";
 
-					var shareLink = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri=' + encodeURIComponent(shareUrl) + '&response_type=code&scope=snsapi_base&state=123#wechat_redirect';
+					var shareLink = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='+util.appId+'&redirect_uri=' + encodeURIComponent(shareUrl) + '&response_type=code&scope='+util.shareScope+'&state=123#wechat_redirect';
 					wx.onMenuShareTimeline({
 						title: shareTitle,
 						link: shareLink,
