@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="css/userinfo.css?rev=312c6c47473972c7c82b6818c99b8cc3">
+<link rel="stylesheet" type="text/css" href="css/userinfo.css?rev=c4bd06a38e71d1a052ca411463949e77">
 
 <div class="user-container">
 	<p class="title">资料设定</p>
@@ -12,30 +12,21 @@
 	</label>
 
 	<p class="sub-title" style="margin:0.3rem 0 0.05rem 0" >您的年龄</p>
-	<!-- 	<p class="sub-title age-title" id="age">25</p>
-<div class="age-container" id="slider-container">
-	<div id="bg" style="left:0px;"></div>
-	<div   id="pointer" class="needle" >
-		<a></a>
-	</div>
-</div>
--->
+
 <p class="sub-title age-title" id="ageId">{age}</p>
 <div id="ageContainer"> </div>
 
-<!-- <div id="testContainer"> </div> -->
 <div class="cell cell-fix-bottom" >
 <a href="javascript:void(0)" class="btn btn_n_primary btn_dark_primary btn_no_radius" ng-click="submit()"   id="submitButton">开始</a>
 </div>
-<!-- <script type="text/javascript" src="js/age.js?rev=asafafaasdfaswafafaafaasdfasfb"></script>
--->
-<script type="text/javascript" src="js/ageComponent.js?rev=asafafaasdfafasfwsdasafafa"></script>
+</div>
+
+
+<script type="text/javascript" src="js/AgeComponent.js?rev=asafafaasdfafasfwsdasafafa"></script>
 <script type="text/javascript">
 
-//var ageComponent = new AgeComponent({containerId:"ageContainer",yearDis:18,minAge:25,maxAge:50,startAge:30});
  var ageComponent = new AgeComponent({containerId:"ageContainer",yearDis:18,changeCallback:function(age){
  		$("#ageId").html(age);
  }});
 
- // var testComponent = new AgeComponent({containerId:"testContainer",yearDis:18});
 </script>

@@ -2,7 +2,7 @@
  * @Author: fanzhang
  * @Date:   2016-08-04 13:59:59
  * @Last Modified by:   fanzhang
- * @Last Modified time: 2016-08-05 15:49:41
+ * @Last Modified time: 2016-08-05 20:14:32
  */
 
 'use strict';
@@ -14,6 +14,7 @@ window.AgeComponent = (function() {
 	var START_AGE = 30;//初始的年龄
 	var YEAR_DIS = 18; //1年间隔18个像素。调整css会修改。
 	var WIDTH = 300; //container的宽度
+	var SIDE_AGE = 20;
 	var CONTAINER_ID = "ageMainContainer";
 	
 	var HTML = [
@@ -72,15 +73,19 @@ window.AgeComponent = (function() {
 			}
 			this.age = age;
 			$("#" + this.containerId).find("#" + this.idObj.ageId).html(age);
-			$("#" + this.containerId).find("#"+this.idObj.bgContainerId).css("transform",'translateX(' + (this.offset - (age-this.minAge) * this.yearDis) + 'px)');
+			$("#" + this.containerId).find("#"+this.idObj.bgContainerId).css("transform",'translateX(' + (this.offset - (age-this.minAge+SIDE_AGE) * this.yearDis) + 'px)');
 		},
 		createDom: function() {
 			var html = [];
-			for (var i = this.minAge ; i <= this.maxAge; i++) {
+			for (var i = this.minAge - SIDE_AGE; i <= this.maxAge+SIDE_AGE; i++) {
 				if (i % this.ageDuration !== 0) {
 					html.push('<a style="width:'+this.yearDis+'px"></a>');
 				} else {
-					html.push('<a class="high"  style="width:'+this.yearDis+'px"><span>' + i + '</span></a>'); //比较粗的指针
+					if( i >= this.minAge && i <= this.maxAge){
+						html.push('<a class="high"  style="width:'+this.yearDis+'px"><span>' + i + '</span></a>'); //比较粗的指针
+					}else{
+						html.push('<a class="high"  style="width:'+this.yearDis+'px"><span></span></a>'); //比较粗的指针
+					}
 				}
 			}
 			var renderObj = $.extend(this.idObj, {
@@ -104,9 +109,8 @@ window.AgeComponent = (function() {
 
 			function touchStart(event) {
 				var event = event.originalEvent || window.event
-				console.log("touch start....");
 				event.preventDefault();
-				startX = event.type.startsWith("touch") ? event.touches[0].clientX : event.clientX;
+				startX =  event.touches ? event.touches[0].clientX : event.clientX;
 				dragging = true;
 				
 			}
@@ -114,9 +118,8 @@ window.AgeComponent = (function() {
 			function touchMove(event) {
 				var event = event.originalEvent || window.event
 				if (dragging) {
-				// console.log("touch move.......");
 					event.preventDefault();
-					var clientX  = event.type.startsWith("touch") ? event.touches[0].clientX : event.clientX;
+					var clientX  =event.touches ? event.touches[0].clientX : event.clientX;
 					var eventDis = clientX - startX;
 					_this.setPosition(resetLeft(_this.transFormX + eventDis * 0.8));
 				}
@@ -124,9 +127,8 @@ window.AgeComponent = (function() {
 
 			function touchEnd(event) {
 				var event = event.originalEvent || window.event
-				// console.log("touch end....");
 				event.preventDefault();
-				var clientX  = event.type.startsWith("touch") ? event.changedTouches[0].clientX : event.clientX;
+				var clientX  = event.touches ? event.changedTouches[0].clientX : event.clientX;
 				var eventDis = clientX - startX;
 				_this.transFormX = resetLeft(_this.transFormX + eventDis * 0.8);
 				dragging = false;
