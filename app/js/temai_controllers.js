@@ -156,18 +156,18 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
 
 
     //大特医保需要跳转到说明页
-      if( $routeParams.product_id ===  "86" && $routeParams.source === "ad"){ 
-              //location.href = "http://r.xiumi.us/stage/v5/2lDxG/18511765";
-              //return ;
-      }
+    if ($routeParams.product_id === "86" && $routeParams.source === "ad") {
+      //location.href = "http://r.xiumi.us/stage/v5/2lDxG/18511765";
+      //return ;
+    }
     $scope.genDanwei = function(type) {
       return coveragePeriodMap[type];
     }
     $scope.gender = 1;
-   
+
     function updateFee() {
       var openId = sessionStorage.getItem("openId");
-  
+
       $scope.catePromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurances_sex'], {
         "open_id": openId,
         "insurance_plan_id": $scope.plan.id,
@@ -213,11 +213,11 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       return date;
     }
     $scope.init = function() {
-     // $scope.birthday = "19860101";
+      // $scope.birthday = "19860101";
       //$scope.showBirthday = "1986-01-01";
 
-     
-     
+
+
       var code = util.getParameterByName("code") || $routeParams.code;
       util.getOpenId(code).then(function() {
 
@@ -241,7 +241,10 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
             if ($scope.maskData.max_age) {
               $scope.maxDate = computeDate($scope.maskData.min_age); //最小年龄，对应的是最大日期
             }
-            $scope.birthday =  $filter('date')($scope.maxDate, "yyyyMMdd");
+            if ($scope.maskData.valid_genders && $scope.maskData.valid_genders.length > 0) {
+              $scope.gender = $scope.maskData.valid_genders[0]
+            }
+            $scope.birthday = $filter('date')($scope.maxDate, "yyyyMMdd");
             $scope.showBirthday = $filter('date')($scope.maxDate, "yyyy-MM-dd");
 
             var calendar = new LCalendar();
@@ -250,9 +253,9 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
               'type': 'date',
               'minDate': $filter('date')($scope.minDate, "yyyy-MM-dd"), //最小日期
               'maxDate': $filter('date')($scope.maxDate, "yyyy-MM-dd"), //最大日期
-              confirmCallback:function(value){
+              confirmCallback: function(value) {
                 $scope.birthday = value;
-                 updateFee();
+                updateFee();
               }
             });
 
@@ -300,7 +303,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
               locale_notice: res.data.data.locale_notice
             })*/
             $scope.data = res.data.data;
-            $scope.detailMoney = $scope.money =  res.data.data.insurance_plans[0].premium;
+            $scope.detailMoney = $scope.money = res.data.data.insurance_plans[0].premium;
             $scope.plan = res.data.data.insurance_plans[0];
             $scope.danwei = genDuration($scope.plan.coverage_period_type);
             $scope.getRestrictions();
@@ -315,8 +318,8 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
         });
 
         $q.all([$scope.maskPromise, $scope.myPromise]).then(function(res) {
-          if($scope.maskData.premium_type == 2){//浮动价格才需要更新保费
-           updateFee();
+          if ($scope.maskData.premium_type == 2) { //浮动价格才需要更新保费
+            updateFee();
           }
         }); /**/
 
@@ -372,14 +375,14 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       $event.preventDefault();
       $event.stopPropagation();
       $scope.plan = item;
-       $scope.maskSelectPlan = $scope.maskPlans[item.id];
+      $scope.maskSelectPlan = $scope.maskPlans[item.id];
       $scope.danwei = genDuration($scope.plan.coverage_period_type);
       //$scope.money = $scope.plan.premium;
       $scope.getRestrictions();
-      if($scope.maskData.premium_type == 2){//浮动价格更新保费
+      if ($scope.maskData.premium_type == 2) { //浮动价格更新保费
         updateFee();
-      }else{
-           $scope.money =  $scope.plan.premium;
+      } else {
+        $scope.money = $scope.plan.premium;
       }
       _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_changetaocan']);
     }
@@ -422,18 +425,18 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       (3, "按年龄限保"),
       (4, "按月保"),
       (5, "按天保");*/
-  
+
     $scope.showMask = function() {
       if ($scope.haveMask) {
         $("#detail_mask_container").show();
-      // var   maskScroll = new IScroll('#birthdayScrollContainer',{click:true, tap: true });
+        // var   maskScroll = new IScroll('#birthdayScrollContainer',{click:true, tap: true });
       } else {
         $scope.submit();
       }
     }
     $scope.submit = function() {
       //获得当前的plan
-     // util.enableScroll();
+      // util.enableScroll();
       var selectPlan = $scope.plan.id;
       _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_submit']);
 

@@ -360,6 +360,7 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 			$location.path('/bdm_list').search();
 		}
 		$scope.goPromote = function() {
+			_hmt.push(['_trackEvent', 'index', 'index_baozhangtisheng']);
 			$location.path('/promote').search();
 		}
 		var cellClass = ".cell-footer";
