@@ -156,10 +156,10 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
 
 
     //大特医保需要跳转到说明页
-    if ($routeParams.product_id === "86" && $routeParams.source === "ad") {
-      location.href = "http://r.xiumi.us/stage/v5/2lDxG/18511765";
-      return;
-    }
+    // if ($routeParams.product_id === "86" && $routeParams.source === "ad") {
+    //   location.href = "http://r.xiumi.us/stage/v5/2lDxG/18511765";
+    //   return;
+    // }
     $scope.genDanwei = function(type) {
       return coveragePeriodMap[type];
     }
