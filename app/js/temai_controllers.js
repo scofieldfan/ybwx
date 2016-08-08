@@ -9,8 +9,8 @@ ybwxControllers.controller('wxTemaiIndexCtrl', ['$scope', '$routeParams', '$loca
   function($scope, $routeParams, $location, $http, $rootScope) {
 
     util.share({
-      shareUrl: "http://web.youbaowuxian.com/#/temaiindex",
-      shareImg: "http://web.youbaowuxian.com/img/icon.jpg",
+      shareUrl: util.domain+"#/temaiindex",
+      shareImg: "/img/icon.jpg",
       shareTitle: "诺贝保险管家-特卖商城",
       shareDesc: "严选优质产品，全网低价出售，还有更多福利免费领取！"
     }); //定义本页分享形式
@@ -87,7 +87,7 @@ ybwxControllers.controller('wxTemaiListCtrl', ['$scope', '$routeParams', '$locat
     $scope.isHaveResult = true;
 
     util.share({
-      shareUrl: "http://web.youbaowuxian.com/#/temailist"
+      shareUrl: util.domain+"#/temailist"
     });
 
     $scope.getNav = function() {
@@ -308,7 +308,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
             $scope.danwei = genDuration($scope.plan.coverage_period_type);
             $scope.getRestrictions();
             util.share({
-              shareUrl: "http://web.youbaowuxian.com/#/temaidetail?product_id=" + $routeParams.product_id,
+              shareUrl: util.domain+"#/temaidetail?product_id=" + $routeParams.product_id,
               shareImg: $scope.data.small_image,
               shareTitle: $scope.data.insurance_name,
               shareDesc: $scope.data.insurance_description
