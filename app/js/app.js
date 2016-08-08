@@ -72,7 +72,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/solution.html',
       controller: 'ybwxSolutionCtrl',
       title: "保障方案",
-      css:'css/solution.css?rev=2882efe1d9c1f2d8a3301e0c07563501'
+      css:'css/solution.css?rev=d41d8cd98f00b204e9800998ecf8427e'
     }).when('/toubao_new', {
       templateUrl: 'partials/toubao_new.html',
       controller: 'ybwxToubaoNewCtrl',
@@ -102,7 +102,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/key_solution.html',
       // controller: 'ybwxSolutionCtrl',
       title: "保障方案",
-      css:'css/solution.css?rev=2882efe1d9c1f2d8a3301e0c07563501'
+      css:'css/solution.css?rev=d41d8cd98f00b204e9800998ecf8427e'
     }).when('/service', {
       templateUrl: 'partials/service.html',
       controller: 'ybwxServiceCtrl',
