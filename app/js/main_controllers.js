@@ -385,10 +385,10 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 				/*
 					判断是否第一次进入
 				*/
-				var isFirstTime = localStorage.getItem("isVisited");
-				if (!isFirstTime) {
-					$location.path('/edindex');
-				}
+				// var isFirstTime = localStorage.getItem("isVisited");
+				// if (!isFirstTime) {
+				// 	$location.path('/edindex');
+				// }
 				var openId = sessionStorage.getItem("openId");
 				$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_insurance_index'] + "/" + openId, {}, function(res) {
 					if (res.data && res.data.description) {
