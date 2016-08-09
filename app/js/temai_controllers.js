@@ -9,7 +9,7 @@ ybwxControllers.controller('wxTemaiIndexCtrl', ['$scope', '$routeParams', '$loca
   function($scope, $routeParams, $location, $http, $rootScope) {
 
     util.share({
-      shareUrl: util.domain+"#/temaiindex",
+      shareUrl: util.domain + "#/temaiindex",
       shareImg: "/img/icon.jpg",
       shareTitle: "诺贝保险管家-特卖商城",
       shareDesc: "严选优质产品，全网低价出售，还有更多福利免费领取！"
@@ -87,7 +87,7 @@ ybwxControllers.controller('wxTemaiListCtrl', ['$scope', '$routeParams', '$locat
     $scope.isHaveResult = true;
 
     util.share({
-      shareUrl: util.domain+"#/temailist"
+      shareUrl: util.domain + "#/temailist"
     });
 
     $scope.getNav = function() {
@@ -156,10 +156,10 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
 
 
     //大特医保需要跳转到说明页
-    if ($routeParams.product_id === "86" && $routeParams.source === "ad") {
-      //location.href = "http://r.xiumi.us/stage/v5/2lDxG/18511765";
-      //return ;
-    }
+    // if ($routeParams.product_id === "86" && $routeParams.source === "ad") {
+    //   location.href = "http://r.xiumi.us/stage/v5/2lDxG/18511765";
+    //   return;
+    // }
     $scope.genDanwei = function(type) {
       return coveragePeriodMap[type];
     }
@@ -308,7 +308,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
             $scope.danwei = genDuration($scope.plan.coverage_period_type);
             $scope.getRestrictions();
             util.share({
-              shareUrl: util.domain+"#/temaidetail?product_id=" + $routeParams.product_id,
+              shareUrl: util.domain + "#/temaidetail?product_id=" + $routeParams.product_id,
               shareImg: $scope.data.small_image,
               shareTitle: $scope.data.insurance_name,
               shareDesc: $scope.data.insurance_description
