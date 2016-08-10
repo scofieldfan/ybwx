@@ -151,7 +151,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/temai_index.html',
       controller: 'wxTemaiIndexCtrl',
       title: "诺贝严选",
-      css:'css/temai_index.css?rev=d41d8cd98f00b204e9800998ecf8427e'
+      css:'css/temai_index.css?rev=11b1591a379185d1ba3b2d1f9405a2d7'
     }).when('/temailist', {
       templateUrl: 'partials/temai_list.html',
       controller: 'wxTemaiListCtrl',
