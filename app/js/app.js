@@ -151,7 +151,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/temai_index.html',
       controller: 'wxTemaiIndexCtrl',
       title: "诺贝严选",
-      css:'css/temai_index.css?rev=11b1591a379185d1ba3b2d1f9405a2d7'
+      css:'css/temai_index.css?rev=d41d8cd98f00b204e9800998ecf8427e'
     }).when('/temailist', {
       templateUrl: 'partials/temai_list.html',
       controller: 'wxTemaiListCtrl',
@@ -272,30 +272,24 @@ ybwxApp.run(['$rootScope',
   }
 ]);
 
-/*
-ybwxApp.service('payInfo', function() {
-    var data = {};
 
-    var setPayInfo = function (orderId,channelType,info) {
-        if(!data[orderId]){
-           data[orderId] = {};
-        }
-        data[orderId][channelType] = info;
-    }
-    var getPayInfo = function(orderId,channelType){
-        if(data[orderId]){
-            return data[orderId][channelType];
-        }else{
-          return {};
-        }
-    }
-    return {
-        setPayInfo:setPayInfo,
-        getPayInfo:getPayInfo
-    }
-});*/
-/*
-    .when('/tb', {
-      templateUrl: 'partials/toubao.html?v=123',
-      controller: 'ybwxToubaoCtrl'
-    })*/
+ybwxApp.run(['$rootScope',
+  function($rootScope) {
+    $rootScope.$on('$routeChangeStart', function(event, current, previous) {
+      
+
+      console.log(current);
+      console.log("..............");
+      console.log (next)
+
+
+
+
+
+
+
+
+
+    });
+  }
+]);
