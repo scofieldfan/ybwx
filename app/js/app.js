@@ -273,14 +273,14 @@ ybwxApp.run(['$rootScope',
 ]);
 
 
-ybwxApp.run(['$rootScope',
-  function($rootScope) {
-    $rootScope.$on('$routeChangeStart', function(event, current, previous) {
+// ybwxApp.run(['$rootScope',
+//   function($rootScope) {
+//     $rootScope.$on('$routeChangeStart', function(event, current, previous) {
       
 
-      console.log(current);
-      console.log("..............");
-      console.log (next)
+//       console.log(current);
+//       console.log("..............");
+//       console.log (next)
 
 
 
@@ -290,6 +290,6 @@ ybwxApp.run(['$rootScope',
 
 
 
-    });
-  }
-]);
+//     });
+//   }
+// ]);
