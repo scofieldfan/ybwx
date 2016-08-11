@@ -41,8 +41,63 @@
 			</div>
 		</li>
 	</ul>
-	<div class="supply-info" ng-if="data.address || data.car_no || data.destination || data.flight_no ">
+
+	<!-- <div class="supply-info" ng-if="data.address || data.car_no || data.destination || data.flight_no "> -->
+
+	<div class="supply-info" >
 		<div class="title" >补充信息</div>
+
+ 		<div class="new-supply-item" >
+			<div class="introd">身高</div>
+			<div class="content"><input type="text" name="height" ng-model="user.height" class="new-input"  required></div>
+			<div class="danwei">CM</div>
+		</div>
+		<div class="wrong-item"   ng-show="tbform.height.$dirty && tbform.height.$invalid ">
+			<div class="introd"></div>
+			<div class="content"><small class="error" ng-show="tbform.height.$error.required">身高必填</small></div>
+		</div>
+		<div class="new-supply-item" >
+			<div class="introd">体重</div>
+			<div class="content"><input type="text" name="weight" ng-model="user.weight" class="new-input"  required></div>
+			<div class="danwei">KG</div>
+		</div>
+		<div class="wrong-item"   ng-show="tbform.height.$dirty && tbform.height.$invalid ">
+			<small class="error" ng-show="tbform.height.$error.required">身高必填</small>
+		</div>
+		<div class="description" >请如实填写被保人的身高和体重，如有不实，保险公司有权解除保险合同。</div>
+
+ 		<div class="new-title">
+ 			<div class="s-title">银行卡信息</div>
+ 			<div class="s-des">用于本产品首次支付及后续续费</div>
+ 		</div>
+
+
+
+ 		<div class="new-supply-item" >
+			<div class="introd">银行</div>
+			<div class="content"><input type="text" name="bank" ng-model="bank" class="new-input" placeholder="请选择银行"  required></div>
+		</div>
+
+ 		<div class="new-supply-item" >
+			<div class="introd">持卡人</div>
+			<div class="content"><input type="text" name="user-name" ng-model="username" class="new-input" placeholder="持卡人必须是投保人本人"  required></div>
+		</div>
+
+		<div class="new-supply-item" >
+			<div class="introd">银行账号</div>
+			<div class="content"><input type="text" name="bankcard-no" ng-model="bankcardno" class="new-input" placeholder="请输入银行账号"  required></div>
+		</div>
+
+		<div class="new-supply-item" >
+			<div class="introd">手机号</div>
+			<div class="content"><input type="text" name="mobile-number" ng-model="mobilenumber" class="new-input" placeholder="银行开卡时预留手机号"  required></div>
+		</div>
+
+		<div class="new-supply-item" >
+			<div class="content"><input type="text" name="qcode" ng-model="qcode" class="new-input" placeholder="请填写手机验证码"  required></div>
+			<div class="introd" style="color:#55a5ff">获取验证码</div>
+		</div>
+
 
 
 
