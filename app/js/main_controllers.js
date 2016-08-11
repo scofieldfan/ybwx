@@ -1440,6 +1440,11 @@ mainControllers.controller('ybwxTargetCtrl', ['$scope', '$filter', '$routeParams
 /*一键提升==资料设定*/
 mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
+		/*if($scope.showMask =25){
+			util.showToast($rootScope, "目前仅支持25-45岁投保");
+		}*/
+		console.log("$scope.age");
+		console.log($scope.showMask);
 		$scope.goHobby = function() {
 			$scope.primary_income = $(".primary_income").is(':checked') ? false : true;
 			$scope.sex = parseInt($(".sex").is(':checked') ? 2 : 1);
