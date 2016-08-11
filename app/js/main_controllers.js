@@ -893,7 +893,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 						})
 					}
 					$scope.choosePlan();
-					$scope.getRestrictions();
+					//$scope.getRestrictions();
 
 				}
 			});
