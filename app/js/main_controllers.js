@@ -186,9 +186,9 @@ function getHttpPromise($http, $rootScope, method, url, data, callback) {
 		data["open_id"] = openId;
 	}
 	data["wechat_type"] = 1;//老公众账号
-	if(method === "GET"){
-		url = url + "&wechat_type=1"; 
-	}
+	// if(method === "GET"){
+	// 	url = url + "&wechat_type=1"; 
+	// }
 	return $http({
 		method: method,
 		headers: {
