@@ -1461,36 +1461,35 @@ mainControllers.controller('ybwxHobbyCtrl', ['$scope', '$filter', '$routeParams'
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 		$scope.init = function() {
 			var openId = sessionStorage.getItem("openId");
-			$scope.piont_type = parseInt($(".piont_type").is(':checked') ? 2 : 1);
+			
 			var questions = [];
 			$scope.questions = questions;
 			$scope.hobbyPromise = getHttpPromise($http, $rootScope, 'POST', api['get_scheme_questions'], {
 				"open_id": openId
 			}, function(res) {
 				$scope.data = res.data.data.questions;
-				// console.log(res);
-				$scope.setId = function($event) {
-					$($event.target).toggleClass("blue");
-					$($event.target).find("img").toggle();
-				}
-				$scope.goScheme = function() {
-					$ele = $("#relation").find(".blue");
-					for (i = 0; i < $ele.length; i++) {
-						questions.push(parseInt($($ele[i]).attr("data-main")));
-					}
-					// console.log(questions);
-					console.log("type,type,type,type,");
-					console.log($scope.piont_type);
-					$location.path("/scheme").search({
-						relation: $routeParams.relation,
-						primary_income: $routeParams.primary_income,
-						sex: $routeParams.sex,
-						age: $routeParams.age,
-						income: $routeParams.income,
-						piont_type: $scope.piont_type,
-						questions: JSON.stringify($scope.questions)
-					});
-				}
+
+
+			});
+		}
+		$scope.setId = function($event) {
+			$($event.target).toggleClass("blue");
+			$($event.target).find("img").toggle();
+		}
+		$scope.goScheme = function() {
+			$scope.piont_type = parseInt($(".piont_type").is(':checked') ? 2 : 1);
+			$ele = $("#relation").find(".blue");
+			for (i = 0; i < $ele.length; i++) {
+				questions.push(parseInt($($ele[i]).attr("data-main")));
+			}
+			$location.path("/scheme").search({
+				relation: $routeParams.relation,
+				primary_income: $routeParams.primary_income,
+				sex: $routeParams.sex,
+				age: $routeParams.age,
+				income: $routeParams.income,
+				piont_type: $scope.piont_type,
+				questions: JSON.stringify($scope.questions)
 			});
 		}
 	}
