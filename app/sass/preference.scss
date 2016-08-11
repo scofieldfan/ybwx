@@ -24,7 +24,23 @@ body {background: #f5f5f5;line-height: normal;}
 			border-radius: 5px;
 			margin-bottom: 5px;
 			box-sizing: border-box;
-			border: 1px solid #e2e2e2;
+			// border: 1px solid #e2e2e2;
+		}
+		.hobby_btn:after {
+			content: '';
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    border: 1px solid #e2e2e2;
+		    border-radius: 5px; 
+		    -webkit-box-sizing: border-box;
+		    box-sizing: border-box;
+		    width: 200%;
+		    height: 200%;
+		    -webkit-transform: scale(0.5);
+		    transform: scale(0.5);
+		    -webkit-transform-origin: left top;
+		    transform-origin: left top;
 		}
 		.blue {background: #55a5ff;color: #fff;border: none;}
 	}

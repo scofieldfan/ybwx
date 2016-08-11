@@ -1441,7 +1441,6 @@ mainControllers.controller('ybwxTargetCtrl', ['$scope', '$filter', '$routeParams
 mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 
-
 		var ageComponent = new AgeComponent({
 			containerId: "ageContainer",
 			minAge: 25,
@@ -1468,6 +1467,7 @@ mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeP
 				// }
 			}
 		});
+
 		$scope.goHobby = function() {
 			$scope.primary_income = $(".primary_income").is(':checked') ? false : true;
 			$scope.sex = parseInt($(".sex").is(':checked') ? 2 : 1);
@@ -1489,14 +1489,10 @@ mainControllers.controller('ybwxHobbyCtrl', ['$scope', '$filter', '$routeParams'
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 		$scope.init = function() {
 			var openId = sessionStorage.getItem("openId");
-
-
 			$scope.hobbyPromise = getHttpPromise($http, $rootScope, 'POST', api['get_scheme_questions'], {
 				"open_id": openId
 			}, function(res) {
 				$scope.data = res.data.data.questions;
-
-
 			});
 		}
 		$scope.setId = function($event) {
