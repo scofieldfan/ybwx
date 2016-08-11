@@ -102,7 +102,7 @@ body {
     background-color: #55a5ff;
     border-radius: 44px; }
   .hobby .switch-handle:before {
-    content: "重点";
+    content: "基础";
     position: absolute;
     color: #fff;
     font-size: 17px;
@@ -113,7 +113,7 @@ body {
     line-height: 45px;
     font-family: Arial, Microsoft YaHei, SimHei, Helvetica, sans-serif; }
   .hobby .switch-input:checked ~ .switch-handle:before {
-    content: "全面"; }
+    content: "高端"; }
   .hobby .switch-input:checked ~ .switch-handle {
     -webkit-transform: translateX(70px);
     -moz-transform: translateX(70px);

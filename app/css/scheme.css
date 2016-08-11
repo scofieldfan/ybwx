@@ -30,7 +30,8 @@
     background: red; }
   .scheme-contrller .main-contrller .main_word {
     padding: 20px 30px;
-    background: #fff; }
+    background: #fff;
+    border-bottom: 1px solid #e2e2e2; }
     .scheme-contrller .main-contrller .main_word .main_top {
       font-size: 15px;
       margin-bottom: 5px; }
@@ -42,6 +43,8 @@
       color: #999;
       font-size: 13px;
       line-height: 20px; }
+  .scheme-contrller .main-contrller .main_word::last-child {
+    border-bottom: none; }
   .scheme-contrller .main-contrller:before {
     height: 10px;
     background: red; }

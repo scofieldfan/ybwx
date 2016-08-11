@@ -167,6 +167,7 @@ transControllers.controller('ybwxPaySelectNewCtrl', ['$scope', '$filter', '$rout
 				open_id: openId,
 				pay_order_id: $routeParams.order_id,
 				pay_channel_type: channelType,
+				wechat_type:1
 			}, function(res) {
 				console.log(res);
 				if (res && res.data && res.data.data && res.data.code === 0) {

@@ -50,7 +50,10 @@ var api = {
 	'deleteContact': '/ybwx-web/api/relation/delete',
 	'update': '/ybwx-web/api/relation/update',
 	'purchase': '/ybwx-web/api/insurance/purchase',
-	'get_sum_insured': '/ybwx-web/api/recommend/annualIncome/update'
+	'get_sum_insured': '/ybwx-web/api/recommend/annualIncome/update',
+	'get_scheme_questions': '/ybwx-web/api/scheme/questions',
+	'get_scheme': '/ybwx-web/api/scheme',
+	'get_scheme_plans': '/ybwx-web/api/scheme/plans'
 }
 
 var isNew = true;
@@ -71,13 +74,13 @@ var chargePeriodTypeMap = {
 	'5': '趸交和按年缴'
 }
 var chargePeriodTypeAbbreMap = {
-		'1': '趸交',
-		'2': '月',
-		'3': '年',
-		'4': '趸交和按月缴',
-		'5': '趸交和按年缴'
-	}
-	/*
+	'1': '趸交',
+	'2': '月',
+	'3': '年',
+	'4': '趸交和按月缴',
+	'5': '趸交和按年缴'
+}
+/*
 }
 var insuranceMap = {
 	'1': '投保中',
@@ -165,43 +168,43 @@ WEALTH(5, "财产保险")*/
 
 
 
-function getBdStatus(orderStatus, bdStatus) {
+	function getBdStatus(orderStatus, bdStatus) {
 
-	//未支付成功，都显示待支付。支付订单是4，表示支付成功。此时要看保单状态
-	if (parseInt(orderStatus) === 4 || orderStatus === undefined) {
-		return insuranceMap[bdStatus];
-	} else {
-		return "待支付";
-	}
-}
-
-
-function getHttpPromise($http, $rootScope, method, url, data, callback) {
-
-	var openId = sessionStorage.getItem("openId");
-	if (!data["open_id"]) {
-		data["open_id"] = openId;
-	}
-	return $http({
-		method: method,
-		headers: {
-			"Content-Type": "application/json;charset:UTF-8"
-		},
-		url: url,
-		data: data
-	}).then(function(res) {
-		console.log(res);
-		if ((res && res.data && res.data.data) || (res && res.data && res.data.code === 0)) {
-			callback(res);
+		//未支付成功，都显示待支付。支付订单是4，表示支付成功。此时要看保单状态
+		if (parseInt(orderStatus) === 4 || orderStatus === undefined) {
+			return insuranceMap[bdStatus];
 		} else {
-			util.showToast($rootScope, res.data.description);
+			return "待支付";
 		}
-	}, function(res) {
-		console.log(res);
-		_hmt.push(['_trackEvent', 'http_error', "api:" + url]);
-		util.showToast($rootScope, "网络异常");
-	});
-}
+	}
+
+
+	function getHttpPromise($http, $rootScope, method, url, data, callback) {
+
+		var openId = sessionStorage.getItem("openId");
+		if (!data["open_id"]) {
+			data["open_id"] = openId;
+		}
+		return $http({
+			method: method,
+			headers: {
+				"Content-Type": "application/json;charset:UTF-8"
+			},
+			url: url,
+			data: data
+		}).then(function(res) {
+			console.log(res);
+			if ((res && res.data && res.data.data) || (res && res.data && res.data.code === 0)) {
+				callback(res);
+			} else {
+				util.showToast($rootScope, res.data.description);
+			}
+		}, function(res) {
+			console.log(res);
+			_hmt.push(['_trackEvent', 'http_error', "api:" + url]);
+			util.showToast($rootScope, "网络异常");
+		});
+	}
 
 
 mainControllers.controller('ybwxUserinfoCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
@@ -384,16 +387,16 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 		}
 		$scope.init = function() {
 			//获得openId
-			var currentUrl = util.domain +"#/index";
+			var currentUrl = util.domain + "#/index";
 			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
 				util.share();
 				/*
 					判断是否第一次进入
 				*/
-				var isFirstTime = localStorage.getItem("isVisited");
-				if (!isFirstTime) {
-					$location.path('/edindex');
-				}
+				// var isFirstTime = localStorage.getItem("isVisited");
+				// if (!isFirstTime) {
+				// 	$location.path('/edindex');
+				// }
 				var openId = sessionStorage.getItem("openId");
 				$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_insurance_index'] + "/" + openId, {}, function(res) {
 					if (res.data && res.data.description) {
@@ -796,7 +799,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 					$location.path('/temaidetail').search({
 						product_id: plan.insurance_id
 					});
-				_hmt.push(['_trackEvent', 'solution', 'solution_goDetail']);
+					_hmt.push(['_trackEvent', 'solution', 'solution_goDetail']);
 
 				}
 
@@ -809,7 +812,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 					}
 					var parmStr = util.genParameters(param);
 					window.location.href = util.domain + "ybwx-web/api/webPage?" + parmStr;
-				}else{
+				} else {
 					window.location.href = plan.official_site;
 				}
 				_hmt.push(['_trackEvent', 'solution', 'solution_goDetail']);
@@ -1109,7 +1112,8 @@ mainControllers.controller('ybwxSupplyInfoCtrl', ['$scope', '$routeParams', '$lo
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
 		_hmt.push(['_trackPageview', $location.path()]);
-		$scope.for = 'self';
+		$scope.
+		for = 'self';
 		$scope.relations = util.modifyRelationShip;
 		$scope.data = {
 			relation: {
@@ -1137,7 +1141,8 @@ mainControllers.controller('ybwxSupplyInfoCtrl', ['$scope', '$routeParams', '$lo
 				};
 
 
-				if ($scope.for === 'other') {
+				if ($scope.
+					for === 'other') {
 					postData["relation"] = $scope.data.relation.id;
 					postData["username"] = $scope.username;
 					postData["social_id"] = $scope.social_id;
@@ -1173,7 +1178,8 @@ mainControllers.controller('ybwxSupplyInfoCtrl', ['$scope', '$routeParams', '$lo
 				util.showToast($rootScope, "被保人手机号不正确");
 				return false;
 			}
-			if ($scope.for === 'other') {
+			if ($scope.
+				for === 'other') {
 
 				if ($scope.userform.username && $scope.userform.username.$invalid) {
 					util.showToast($rootScope, "投保人姓名不正确");
@@ -1416,8 +1422,18 @@ mainControllers.controller('ybwxtermsListCtrl', ['$scope', '$filter', '$routePar
 /*一键提升==保障对象*/
 mainControllers.controller('ybwxTargetCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
+
+        $scope.relation = 1;
+		$("#relation .column .column_btn").click(function() {
+			$("#relation").find(".column_btn").removeClass("blue");
+			$(this).addClass("blue");
+			$scope.relation = $(this).attr("data-relation");
+		});
 		$scope.goUserInfoNew = function() {
-			$location.path("/userinfo_new");
+			$location.path("/userinfo_new").search({
+				relation: $scope.relation
+			});
+			console.log($scope.relation);
 		}
 	}
 ]);
@@ -1426,17 +1442,59 @@ mainControllers.controller('ybwxTargetCtrl', ['$scope', '$filter', '$routeParams
 mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 		$scope.goHobby = function() {
-			$location.path("/hobby");
+			$scope.primary_income = $(".primary_income").is(':checked') ? false : true;
+			$scope.sex = parseInt($(".sex").is(':checked') ? 2 : 1);
+			$scope.age = parseInt($("#ageId").html());
+			$scope.income = parseInt($("#yearIncomeId").html());
+			$location.path("/hobby").search({
+				relation: $routeParams.relation,
+				primary_income: $scope.primary_income,
+				sex: $scope.sex,
+				age: $scope.age,
+				income: $scope.income
+			});
+			console.log("被保人,支柱,性别，年龄，收入");
+			console.log($routeParams.relation,$scope.primary_income,$scope.sex,$scope.age,$scope.income);
 		}
-		
 	}
 ]);
 
 /*一键提升==偏好设定*/
 mainControllers.controller('ybwxHobbyCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
-		$scope.goScheme = function() {
-			$location.path("/scheme");
+		$scope.init = function() {
+			var openId = sessionStorage.getItem("openId");
+			$scope.piont_type = parseInt($(".piont_type").is(':checked') ? 2 : 1);
+			var questions = [];
+			$scope.questions = questions;
+			$scope.getscheme = getHttpPromise($http, $rootScope, 'POST', api['get_scheme_questions'], {
+		        "open_id": openId
+		      }, function(res) {
+		      	$scope.data = res.data.data.questions;
+		      	// console.log(res);
+		      	$scope.setId = function($event) {
+			        $($event.target).toggleClass("blue");
+			 		$($event.target).find("img").toggle();
+		      	}
+				$scope.goScheme = function() {
+					$ele = $("#relation").find(".blue");
+					for (i = 0; i < $ele.length; i++) {
+						questions.push(parseInt($($ele[i]).attr("data-main")));
+					}
+					// console.log(questions);
+					console.log("type,type,type,type,");
+					console.log($scope.piont_type);
+					$location.path("/scheme").search({
+						relation:$routeParams.relation,
+						primary_income:$routeParams.primary_income,
+						sex: $routeParams.sex,
+						age: $routeParams.age,
+						income: $routeParams.income,
+						piont_type: $scope.piont_type,
+						questions: $scope.questions
+					});
+				}
+		    });
 		}
 	}
 ]);
@@ -1444,8 +1502,50 @@ mainControllers.controller('ybwxHobbyCtrl', ['$scope', '$filter', '$routeParams'
 /*一键提升==方案解读*/
 mainControllers.controller('ybwxSchemeCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
-		$scope.goKeySolution = function() {
-			$location.path("/key_solution");
+		$scope.init = function() {
+			var openId = sessionStorage.getItem("openId");
+			console.log($routeParams.piont_type);
+		    $scope.getscheme = getHttpPromise($http, $rootScope, 'POST', api['get_scheme'], {
+		        "open_id": openId,
+		        "relation":$routeParams.relation,
+				"primary_income":$routeParams.primary_income,
+				"gender": $routeParams.sex,
+				"age": $routeParams.age,
+				"annual_income": $routeParams.income,
+				"type": $routeParams.piont_type,
+				"questions": $routeParams.questions
+		      }, function(res) {
+		      	$scope.data = res.data.data;
+		      	$scope.scheme_id= res.data.data.scheme_id;
+		      	console.log($scope.scheme_id);
+		      	console.log(res);
+				$scope.goKeySolution= function() {
+					$location.path("/key_solution").search({
+						sex: $routeParams.sex,
+						age: $routeParams.age,
+						questions: $routeParams.questions,
+						scheme_id: $scope.scheme_id
+					});
+				}
+		    });
+		}
+	}
+]);
+/*一键提升==保障方案*/
+mainControllers.controller('ybwxKeySolutionCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
+		$scope.init = function() {
+			var openId = sessionStorage.getItem("openId");
+			$scope.getscheme = getHttpPromise($http, $rootScope, 'POST', api['get_scheme_plans'], {
+				"open_id": openId,
+				"scheme_id":$routeParams.scheme_id, //方案id
+				"gender": $routeParams.sex,
+				"age": $routeParams.age,
+				"questions": $routeParams.questions
+			}, function(res) {
+		      	$scope.coverages = res.data.data.coverages;
+				console.log(res);
+			});
 		}
 	}
 ]);

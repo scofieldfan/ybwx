@@ -104,7 +104,7 @@ body {background: #f5f5f5;line-height: normal;}
 }
 // 蓝色的
 .switch-handle:before {
-	content: "重点";
+	content: "基础";
 	position: absolute;
 	color: #fff;
 	font-size: 17px;
@@ -117,7 +117,7 @@ body {background: #f5f5f5;line-height: normal;}
 	font-family: Arial, Microsoft YaHei, SimHei, Helvetica, sans-serif;
 }
 .switch-input:checked ~ .switch-handle:before {
-	content: "全面";
+	content: "高端";
 }
 
 .switch-input:checked ~ .switch-handle {

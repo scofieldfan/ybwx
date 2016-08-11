@@ -3,21 +3,21 @@
 <link rel="stylesheet" href="css/userinfo_new.css?rev=da412b77aabef9c9eac2d32ffac6e725">
 <div class="userinfo_new"> 
 	<div class="setting">设定被保人资料</div> 
-	<div class=" highest">是否是家庭中收入最高</div>
+	<div class=" highest">是否家庭收入主要贡献者</div>
 	<label class="switch needsclick">
-		<input class="switch-input needsclick" type="checkbox" />
+		<input class="switch-input primary_income needsclick" type="checkbox" />
 		<span class="switch-label needsclick" data-on="是" data-off="否"></span> 
 		<span class="switch-handl-off"></span> 
 	</label>
 	<div class="sex">性别</div>
 	<label class="switch needsclick">
-		<input class="switch-input needsclick" type="checkbox" />
+		<input class="switch-input sex needsclick" type="checkbox" />
 		<span class="switch-label needsclick" data-on="男" data-off="女"></span> 
 		<span class="switch-hand"></span> 
 	</label>
-	<div class="age">年 龄<span class="blue" id="age">25</span><span class="blue">岁</span></div>
+	<div class="age">年 龄<span class="blue" id="ageId">0</span><span class="blue">岁</span></div>
 	<div id="ageContainer"></div>
-	<div class="age" id="age">年收入<span class="blue" id="year">25</span><span class="blue">万</span></div>
+	<div class="age">年收入<span class="blue" id="yearIncomeId">0</span><span class="blue">万</span></div>
     <div id="yearIncome"></div>
 	<!-- <div class="age-container" id="slider-container">
 		<div id="bg" style="left:0px;"></div>
@@ -29,11 +29,11 @@
 <script type="text/javascript" src="js/ageComponent.js?rev=sdfsdsdfsd"></script>
 <script type="text/javascript">
 	var ageComponent = new AgeComponent({containerId:"ageContainer",minAge: 25,maxAge: 50,startAge: 30,yearDis: 7.5,changeCallback:function(age){
- 			$("#age").html(age);
+ 			$("#ageId").html(age);
  		}
  	});
-	var yearIncome = new AgeComponent({containerId:"yearIncome",minAge: 10,maxAge: 50,startAge: 20,yearDis: 7.5,changeCallback:function(age){
- 			$("#year").html(age);
+	var yearIncome = new AgeComponent({containerId:"yearIncome",minAge: 10,maxAge: 40,startAge: 20,yearDis: 7.5,changeCallback:function(yearIncomeId){
+ 			$("#yearIncomeId").html(yearIncomeId);
  		}
  	});
 </script>

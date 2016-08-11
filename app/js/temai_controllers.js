@@ -466,7 +466,6 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       } else {
         $location.path("/toubao_new").search(postData);
       }
-
     }
   }
 ]);

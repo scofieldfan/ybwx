@@ -4,21 +4,13 @@
 	<div class="first">建议优先保障家庭收入最高者</div>
 	<div class="relation" id="relation">
 		<div class="column">
-			<div class="column_btn blue">自 己</div>
-		    <div class="column_btn">配 偶</div>
+			<div class="column_btn blue" data-relation="1">自 己</div>
+		    <div class="column_btn"  data-relation="4">配 偶</div>
 		</div>
 		<div class="column">
-			<div class="column_btn">父 母</div>
-			<div class="column_btn">子 女</div>
+			<div class="column_btn"  data-relation="2">父 母</div>
+			<div class="column_btn"  data-relation="3">子 女</div>
 		</div>
 	</div>
 	<div class="target_btn" ng-click="goUserInfoNew()">下一步</div>
 </div>
-<script>
-	$("#relation .column .column_btn").click(function() {
-			$("#relation").find(".column_btn").removeClass("blue");
-			$(this).addClass("blue");
-			$(this).html();
-			console.log($(this).html());
-		});
-</script>

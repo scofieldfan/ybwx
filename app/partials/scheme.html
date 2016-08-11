@@ -1,22 +1,21 @@
-<link rel="stylesheet" href="css/scheme.css?rev=a37178e04a14eab9c745676eac4e2907">
-<div class="scheme-contrller">
+<link rel="stylesheet" href="css/scheme.css?rev=ac0e31e6a2cdafcbd9e52da900c78dce">
+<div class="scheme-contrller" data-ng-init="init()">
 	
 	<div class="main-contrller">
-		<div class="scheme-head">潇洒哥型</div>
-		<div class="img_ctrl"><img src="img/scheme/back.jpg"></div>
-		<div class="scheme_word">针对高收入壮年男性的基础方案，主要保障对个人生活造成严重影响的风险</div>
+		<div class="scheme-head">{{data.scheme_name}}</div>
+		<div class="img_ctrl"><img ng-src="{{data.model_image_url}}"></div>
+		<div class="scheme_word">{{data.description}}</div>
 		<div class="marBtn"></div>
 	</div>
 	
-	<div class="main-contrller">
-		<div class="main-head">意外保障</div>
-		<div class="main_word">
-			<div class="main_top"><img src="img/scheme/gou_dun.png"><span class="orange">综合意外</span> 覆盖日常风险 </div>
-			<div class="zi">保险包括交通意外、日常意外、自然灾害等风险,是意外险中的基础配置。</div>
+	<div class="main-contrller" ng-repeat="item in data.items">
+		<div class="main-head">{{item.insureType}}</div>
+		<div class="main_word" ng-repeat="explains in item.explains">
+			<div class="main_top" ><img src="img/scheme/gou_dun.png"><span class="orange">{{explains.name}}</span>{{explains.title}}</div>
+			<div class="zi">{{explains.content}}</div>
 		</div>
 		<div class="marBtn"></div>
 	</div>
-
 </div>
 
 <div class="scheme_btn" ng-click="goKeySolution()">查看方案详情</div>
