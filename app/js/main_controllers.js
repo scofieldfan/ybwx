@@ -1440,6 +1440,34 @@ mainControllers.controller('ybwxTargetCtrl', ['$scope', '$filter', '$routeParams
 /*一键提升==资料设定*/
 mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
+
+
+		var ageComponent = new AgeComponent({
+			containerId: "ageContainer",
+			minAge: 25,
+			maxAge: 45,
+			startAge: 30,
+			yearDis: 7.5,
+			changeCallback: function(age) {
+				$("#ageId").html(age);
+				// if(age == 25 || age == 45){
+				// 	util.showToastJQ("目前仅支持25岁-45岁");
+				// }
+			}
+		});
+		var yearIncome = new AgeComponent({
+			containerId: "yearIncome",
+			minAge: 10,
+			maxAge: 40,
+			startAge: 20,
+			yearDis: 7.5,
+			changeCallback: function(yearIncomeId) {
+				$("#yearIncomeId").html(yearIncomeId);
+				// if(yearIncomeId == 10 || yearIncomeId == 40){
+				// 		util.showToastJQ("目前仅支持10万-40万");
+				// }
+			}
+		});
 		$scope.goHobby = function() {
 			$scope.primary_income = $(".primary_income").is(':checked') ? false : true;
 			$scope.sex = parseInt($(".sex").is(':checked') ? 2 : 1);

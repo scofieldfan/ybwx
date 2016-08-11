@@ -275,7 +275,8 @@ var util = {
 			data: {
 				"open_id": openId,
 				"email": email,
-				"order_no": order_no
+				"order_no": order_no,
+				wechat_type:1
 			}
 		}).then(function(res) {
 			console.log(res);
