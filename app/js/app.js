@@ -72,12 +72,12 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/solution.html',
       controller: 'ybwxSolutionCtrl',
       title: "保障方案",
-      css:'css/solution.css?rev=2882efe1d9c1f2d8a3301e0c07563501'
+      css:'css/solution.css?rev=87c2343b763188e8088a45e50aee5e87'
     }).when('/toubao_new', {
       templateUrl: 'partials/toubao_new.html',
       controller: 'ybwxToubaoNewCtrl',
       title: "投保确认",
-      css:'css/toubao_new.css?rev=dd9361674eaeb192eade8db6e2d70f1e'
+      css:'css/toubao_new.css?rev=928f7f3f8639707ba730d02e256e54d7'
     }).when('/promote', {
       templateUrl: 'partials/bz_ts.html',
       controller: 'ybwxPromoteCtrl',
@@ -102,7 +102,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/key_solution.html',
       // controller: 'ybwxSolutionCtrl',
       title: "保障方案",
-      css:'css/solution.css?rev=2882efe1d9c1f2d8a3301e0c07563501'
+      css:'css/solution.css?rev=87c2343b763188e8088a45e50aee5e87'
     }).when('/service', {
       templateUrl: 'partials/service.html',
       controller: 'ybwxServiceCtrl',
@@ -146,7 +146,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/temai_detail.html',
       controller: 'wxDetailNewCtrl',
       title: "诺贝严选",
-      css:'css/temai_detail.css?rev=6fa7112d18435a3b2fa6967d1633b8f3'
+      css:'css/temai_detail.css?rev=465638707a28a4e1e21217e74df1ed8a'
     }).when('/temaiindex', {
       templateUrl: 'partials/temai_index.html',
       controller: 'wxTemaiIndexCtrl',
