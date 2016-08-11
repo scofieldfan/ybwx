@@ -185,7 +185,7 @@ function getHttpPromise($http, $rootScope, method, url, data, callback) {
 	if (!data["open_id"]) {
 		data["open_id"] = openId;
 	}
-	data["wechat_type"] = 1;//老公众账号
+	data["wechat_type"] = 1; //老公众账号
 	// if(method === "GET"){
 	// 	url = url + "&wechat_type=1"; 
 	// }
@@ -1419,6 +1419,10 @@ mainControllers.controller('ybwxTargetCtrl', ['$scope', '$filter', '$routeParams
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 
 		$scope.relation = 1;
+		var code = util.getParameterByName("code") || $routeParams.code;
+		util.getOpenId(code).then(function() {
+
+		});
 		$("#relation .column .column_btn").click(function() {
 			$("#relation").find(".column_btn").removeClass("blue");
 			$(this).addClass("blue");
