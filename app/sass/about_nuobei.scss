@@ -1,0 +1,26 @@
+@import "base/classes.scss";
+@import "base/variables.scss";	
+.nuobei_ctrl {
+	// background: #fff;
+}
+.nuobei {
+	padding: 40px 0;
+	color: #555;
+	text-align: center;
+
+	.nuobei_head {
+		font-size: 18px;
+		line-height: 18px;
+		margin-bottom: 10px;
+	}
+	.nuobei_info {
+		font-size: 13px;
+		line-height: 13px;
+		margin-bottom: 40px;
+	}
+}
+.space {
+	height: 10px;
+	background: #f5f5f5;
+	@include border(1px 0 0 0,#ccc);
+}

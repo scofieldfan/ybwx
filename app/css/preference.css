@@ -9,21 +9,20 @@ body {
   text-align: center;
    }
   .hobby .piont {
-    color: #999;
     margin-bottom: 10px; }
   .hobby .trouble {
     margin: 20px 0 10px 0; }
   .hobby .select {
     color: #999;
     font-size: 13px;
+    line-height: 13px;
     margin-bottom: 15px; }
   .hobby .relation .btn_ctrl img {
     width: 15px;
     display: none;
-    vertical-align: 20px;
     position: absolute;
-    left: -30px;
-    top: 25%; }
+    left: -25px;
+    top: 30%; }
   .hobby .relation .hobby_btn {
     position: relative;
     margin: 0 auto;
@@ -103,7 +102,7 @@ body {
     background-color: #55a5ff;
     border-radius: 44px; }
   .hobby .switch-handle:before {
-    content: "重点";
+    content: "基础";
     position: absolute;
     color: #fff;
     font-size: 17px;
@@ -114,7 +113,7 @@ body {
     line-height: 45px;
     font-family: Arial, Microsoft YaHei, SimHei, Helvetica, sans-serif; }
   .hobby .switch-input:checked ~ .switch-handle:before {
-    content: "全面"; }
+    content: "高端"; }
   .hobby .switch-input:checked ~ .switch-handle {
     -webkit-transform: translateX(70px);
     -moz-transform: translateX(70px);

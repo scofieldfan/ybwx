@@ -1,0 +1,53 @@
+@import "base/classes.scss";
+@import "base/variables.scss";
+
+.box1{
+    height: 100px;
+	width: 100%;
+	border-bottom: 1px solid #ccc;
+}
+.box2 {
+	  height: 10px;
+	width: 100%;
+	@include border(0 0 1px 0,#ccc);
+}
+.box3{
+    position: relative;
+    // margin-bottom: 20px;
+    border:none;
+    height: 10px;
+}
+.box3:after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-bottom: 1px solid #ccc;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 200%;
+    height: 200%;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    -webkit-transform-origin: left top;
+    transform-origin: left top;
+}
+// td {
+// 	height: 30px;
+// 	background: blue;
+// 	@include border(1px,black);
+
+// }
+// p {
+// 	height: 100px;
+// 	background: yellow;
+// 	@include border(1px,black);
+
+// }
+// span {
+// 	height: 50px;
+// 	display: block;
+// 	// background: gray;
+// 	@include border(1px,#ccc);
+
+// }

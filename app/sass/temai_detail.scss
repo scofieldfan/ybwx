@@ -297,8 +297,9 @@ header {
 	   // visibility: hidden;
 }
 .head-container {
-  position: absolute;
-  // top: 22.7%;
+  position: fixed;
+  // top: 20%;
+  height: 77%;
   bottom: 0;
   width: 100%;
   background-color: #fff;

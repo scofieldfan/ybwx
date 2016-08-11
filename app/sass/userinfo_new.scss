@@ -1,17 +1,18 @@
  @import "base/classes.scss";
  @import "base/variables.scss";
- body {line-height: normal;}
+ body {background: #f5f5f5;}
  .userinfo_new {
- 	padding: 20px 0;
+ 	padding: .258rem 0;
  	font-size: 15px;
  	text-align: center;
- 	.setting {font-size: 16px;}
- 	.highest {color: #999;margin: 30px 0 15px 0;}
+ 	line-height: normal;
+ 	.setting {font-size: 16px;line-height: 16px;}
+ 	.highest {color: #999;margin: .32rem 0 .1rem 0;line-height: 15px;}
 
- 	/*“重点”“全面”*/
- 	.sex {margin:20px 0 15px 0;color: #999;}
- 	.age {margin: 25px 0 14px;color: #999;}
- 	.blue {color: #55a5ff;font-size: 18px;font-weight: bold;margin-left: 10px;}
+ 	.sex {margin: .3rem 0 .1rem 0;color: #999;line-height: 15px;}
+ 	.age {margin: .4rem 0 .1rem;color: #999;line-height: 15px;}
+ 	// #yearIncome {margin-top:25px;}
+ 	.blue {color: #55a5ff;font-size: 17px;font-weight: bold;margin-left: 10px;}
 .switch {
 	position: relative;
 	display: block;
@@ -203,6 +204,8 @@
 	// position: absolute;
 	// left: -7px;
 	top: 23px;
+	// font-size: 12px;
+	color: #999;
 }
 }
 

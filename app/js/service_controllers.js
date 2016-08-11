@@ -48,5 +48,8 @@ serviceControllers.controller('ybwxServiceCtrl', ['$scope', '$routeParams', '$lo
 		$scope.goAboutme = function() {
 			window.location.href = "http://mp.weixin.qq.com/s?__biz=MzI0NDE2Mjk2OA==&mid=407057806&idx=1&sn=d6136f57ac70f0ae4504c657355a6989#wechat_redirect";
 		}
+		$scope.goNuobei = function() {
+			$location.path('/about_nuobei').search();
+		}
 	}
 ]);

@@ -2,37 +2,48 @@
 body {
   background: #f5f5f5; }
 .target_ctrl {
-  padding: 10px 60px;
+  padding: .258rem 0;
   color: #555;
   text-align: center; }
   .target_ctrl .who {
-    font-size: 18px; }
+    font-size: 18px;
+    padding: 0 .77rem; }
   .target_ctrl .first {
     color: #999;
-    font-size: 13px; }
+    font-size: 13px;
+    padding: 0 .77rem; }
   .target_ctrl .relation {
-    margin-top: 40px;
+    width: 204px;
+    margin: 40px auto 0;
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-lines: multiple;
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap; }
-    .target_ctrl .relation .btn {
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between; }
+    .target_ctrl .relation .column {
+      -webkit-justify-content: space-between;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+      flex-direction: column; }
+    .target_ctrl .relation .column_btn {
+      font-size: 17px;
       margin: 0 auto;
-      width: 1.16rem;
-      height: 1.16rem;
-      line-height: 1.16rem;
+      width: 90px;
+      height: 90px;
+      line-height: 90px;
       background: #fff;
       border: 1px solid #e2e2e2;
       border-radius: 50%;
       box-sizing: border-box;
-      margin-bottom: 20px; }
+      margin-bottom: 25px; }
     .target_ctrl .relation .blue {
       color: #fff;
-      background: #55a5ff; }
+      background: #55a5ff;
+      border: none; }
   .target_ctrl .target_btn {
     position: fixed;
     left: 0;

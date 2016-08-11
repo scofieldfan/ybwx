@@ -165,6 +165,7 @@ $(function(){
 
 
  $("body").on("click",".td-left",function(){
+    _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_showMask']);
     $("#popup").find("#popup-data").html($(this).find("img").attr("title"));
     $("#popup").show();
     popupScroll.refresh();
@@ -187,6 +188,7 @@ $(function(){
 
 
   $(".tail-container").on("click",".hd",function(){
+	_hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_hdTab']);
   	$(".tail-header").find(".hd").removeClass("select");
   	$(this).addClass("select");
   	var index = $(this).index()
@@ -198,7 +200,8 @@ $(function(){
 	
 		// });
 	$('.close').on('click', function(e){
-			$('.mask').hide();
+		$('.mask').hide();
+		_hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_hideMask']);
 	});
 
 /*

@@ -1,39 +1,20 @@
 
-<link rel="stylesheet" href="css/preference.css?rev=d3538d3b1c290fa904a503caf9598bf4">
+<link rel="stylesheet" href="css/preference.css?rev=d7ff41c359d1a5aebdbe92b81746493e">
 <div class="hobby">
 	<div class="piont">保障偏好</div>
 	<label class="switch needsclick">
-		<input class="switch-input needsclick" type="checkbox" />
-		<span class="switch-label needsclick" data-on="重点" data-off="全面"></span> 
+		<input class="switch-input piont_type needsclick" type="checkbox" />
+		<span class="switch-label needsclick" data-on="基础" data-off="高端"></span> 
 		<span class="switch-handle needsclick"></span> 
 	</label>
 	<div class="select">性价比高 重点保障损失较大的风险</div>
 	<div class="trouble">您还担心的问题</div>
 	<div class="select">可多选 或不选</div>
-	<div class="relation" id="relation">
-		<div class="btn_ctrl">
-			<div class="hobby_btn" touch-action="none">
-				<img src="img/promote/gou.png">交通意外
-			</div>
-		</div>
-		<div class="btn_ctrl">
-			<div class="hobby_btn">
-				<img src="img/promote/gou.png">患上大病花费高
-			</div>
-		</div>
-		<div class="btn_ctrl">
-			<div class="hobby_btn">
-				<img src="img/promote/gou.png">看病报销
-			</div>
-		</div>
-		<div class="btn_ctrl">
-			<div class="hobby_btn">
-				<img src="img/promote/gou.png">国外看病
-			</div>
-		</div>
-		<div class="btn_ctrl">
-			<div class="hobby_btn">
-				<img src="img/promote/gou.png">家庭失去经济来源
+	<div class="relation" id="relation"  data-ng-init="init()" >
+		<!-- data-ng-init="init()" -->
+		<div class="btn_ctrl" ng-repeat="item in data" >
+			<div class="hobby_btn" data-main="{{item.id}}" ng-click="setId($event)">
+				<img src="img/promote/gou.png" >{{item.name}}
 			</div>
 		</div>
 	</div>
@@ -48,13 +29,13 @@
 				$(this).attr("class","btn");
 			}
 			
-		});*/
+		});
 $(function(){
 	 // $("#relation .hobby_btn").bind("touchstart",function(e){
-	 $("#relation .hobby_btn").click(function(){
+	 $("#relation .btn_ctrl .hobby_btn").click(function(){
         $(this).toggleClass("blue");
  		$(this).find("img").toggle();
  		// e.preventDefault();
 	 })
-});
+});*/
 </script>

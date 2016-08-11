@@ -263,6 +263,7 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 
 		};
 		$scope.original = function() {
+			_hmt.push(['_trackEvent', 'special_share', "goMoneybd_50"]);
 			$location.path('/moneybd').search({
 				plan: 72,
 				money: 50
@@ -271,6 +272,7 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 
 		$scope.discount = function() {
 			if ($scope.isShare) {
+				_hmt.push(['_trackEvent', 'special_share', "goMoneybd_40"]);
 				$location.path('/moneybd').search({
 					plan: 72,
 					money: 40

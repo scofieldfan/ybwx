@@ -149,7 +149,7 @@
 					drawDis = _this.barMax;
 				}
 				_this.drawSlider(drawDis, false);
-				//_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_squreTabMove']);
+				_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_squreTabMove']);
 			});
 
 
@@ -173,7 +173,7 @@
 				_this.drawSlider(drawDis, true);
 				//_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_squreTabMove']);
 
-				//_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_squreTabEnd']);
+				_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_squreTabEnd']);
 
 			});
 		}

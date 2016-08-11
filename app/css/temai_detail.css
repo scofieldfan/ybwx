@@ -245,7 +245,8 @@ header {
   overflow: auto;
   margin-bottom: 20px; }
 .head-container {
-  position: absolute;
+  position: fixed;
+  height: 77%;
   bottom: 0;
   width: 100%;
   background-color: #fff;

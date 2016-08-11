@@ -100,14 +100,18 @@ ybwxApp.config(['$routeProvider',
       title: "方案解读"
     }).when('/key_solution', {
       templateUrl: 'partials/key_solution.html',
-      // controller: 'ybwxSolutionCtrl',
+      controller: 'ybwxKeySolutionCtrl',
       title: "保障方案",
       css: 'css/solution.css?rev=2882efe1d9c1f2d8a3301e0c07563501'
     }).when('/service', {
       templateUrl: 'partials/service.html',
       controller: 'ybwxServiceCtrl',
       title: "服务",
-      css: 'css/service.css?rev=ccb7b72ecdc803068fa76ac098ed10f2'
+      css:'css/service.css?rev=ccb7b72ecdc803068fa76ac098ed10f2'
+    }).when('/about_nuobei', {
+      templateUrl: 'partials/about_nuobei.html',
+      // controller: 'ybwxAbout_nuobeiCtrl',
+      title: "关于诺贝"
     }).when('/contact', {
       templateUrl: 'partials/contact.html',
       title: "联系我们",
@@ -239,7 +243,10 @@ ybwxApp.config(['$routeProvider',
     }).when('/terms_list', {
       templateUrl: 'partials/terms_list.html',
       controller: 'ybwxtermsListCtrl',
-      title: "产品条款列表",
+      title: "产品条款列表"
+    }).when('/yixiangsu', {
+      templateUrl: 'partials/yixiangsu.html',
+      title: "一像素"
     }).otherwise({
       redirectTo: '/index'
     });

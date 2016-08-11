@@ -17,6 +17,7 @@ bdControllers.controller('ybwxBDIndexCtrl', ['$scope', '$routeParams', '$locatio
 			} else {
 				goUpload("2");
 			}
+			_hmt.push(['_trackEvent', 'bd_uploadpic_index', 'bdUploadpic_family']);
 		}
 
 		function goUpload(source) {
@@ -324,6 +325,7 @@ bdControllers.controller('ybwxUpdateAddContactCtrl', ['$scope', '$routeParams', 
 			} else {
 				//添加
 				$scope.addPeople();
+				_hmt.push(['_trackEvent', 'update_add_contact', 'addPeople_btn']);
 			}
 		}
 		$scope.addPeople = function() {
