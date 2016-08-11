@@ -445,6 +445,10 @@ window.LCalendar = (function() {
             }
             //重置时间节点个数
             function setTimeGearTooth() {
+
+                if(_self.gearDate ==  null){
+                     return;
+                 }
                 var time_hh = _self.gearDate.querySelector(".time_hh");
                 if (time_hh && time_hh.getAttribute("val")) {
                     var i = "";
@@ -569,11 +573,11 @@ window.LCalendar = (function() {
                 }
                 var passY = _self.maxY - _self.minY + 1;
                  //add by Fan start
-                if(_self.gearDate==null){
-                    console.log(target);
-                    return;
+                // if(_self.gearDate==null){
+                //     console.log(target);
+                //     return;
                   
-                }
+                // }
                 //add by Fan end
                 clearInterval(target["int_" + target.id]);
                 target["int_" + target.id] = setInterval(function() {
@@ -692,11 +696,10 @@ window.LCalendar = (function() {
                 val = Math.round(val);
                 target.setAttribute("val", val);
                  //add by Fan start
-                if(_self.gearDate==null){
-                    console.log(target);
-                    return;
-                    //clearInterval(target["int_" + target.id]);
-                }
+                // if(_self.gearDate==null){
+                //     console.log(target);
+                //     return;
+                // }
                 //add by Fan end
                 if (/date/.test(target.dataset.datetype)) {
                     setDateGearTooth();
