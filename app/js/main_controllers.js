@@ -1452,8 +1452,6 @@ mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeP
 				age: $scope.age,
 				income: $scope.income
 			});
-			console.log("被保人,支柱,性别，年龄，收入");
-			console.log($routeParams.relation, $scope.primary_income, $scope.sex, $scope.age, $scope.income);
 		}
 	}
 ]);
