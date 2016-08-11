@@ -1141,8 +1141,7 @@ mainControllers.controller('ybwxSupplyInfoCtrl', ['$scope', '$routeParams', '$lo
 				};
 
 
-				if ($scope.
-					for === 'other') {
+				if ($scope.for === 'other') {
 					postData["relation"] = $scope.data.relation.id;
 					postData["username"] = $scope.username;
 					postData["social_id"] = $scope.social_id;
@@ -1178,8 +1177,7 @@ mainControllers.controller('ybwxSupplyInfoCtrl', ['$scope', '$routeParams', '$lo
 				util.showToast($rootScope, "被保人手机号不正确");
 				return false;
 			}
-			if ($scope.
-				for === 'other') {
+			if ($scope.for === 'other') {
 
 				if ($scope.userform.username && $scope.userform.username.$invalid) {
 					util.showToast($rootScope, "投保人姓名不正确");
