@@ -5,115 +5,110 @@
   float: right; }
 .promote_ctrl .head_ctrl {
   background: #006ee9;
-  padding: 25px 10px;
+  padding: 30px 15px 30px 20px;
   overflow: auto; }
   .promote_ctrl .head_ctrl .head_left {
-    float: left; }
+    float: left;
+    padding-top: 8px; }
     .promote_ctrl .head_ctrl .head_left .head_word {
-      font-size: .19rem;
-      color: #fff; }
-    .promote_ctrl .head_ctrl .head_left span {
+      font-size: 18px;
+      color: #fff;
+      line-height: 18px; }
+    .promote_ctrl .head_ctrl .head_left span:nth-child(1) {
       display: inline-block;
-      width: .15rem;
-      height: .15rem;
+      width: 12px;
+      height: 12px;
       background: #fff;
       border-radius: 50%;
       margin-right: 5px; }
+    .promote_ctrl .head_ctrl .head_left span:nth-child(2) {
+      font-weight: bold;
+      font-size: 21px; }
     .promote_ctrl .head_ctrl .head_left .head_state {
-      font-size: .15rem;
-      color: #97c8ff; }
-  .promote_ctrl .head_ctrl .head_center {
-    float: left;
-    font-size: .15rem;
-    color: #fff;
-    padding: .35rem 0 0 .3rem; }
-    .promote_ctrl .head_ctrl .head_center img {
-      margin-left: .05rem;
-      width: .45rem;
-      display: block; }
+      font-size: 12px;
+      color: #97c8ff;
+      margin-top: 15px; }
   .promote_ctrl .head_ctrl .head_right {
+    box-sizing: border-box;
     float: right;
-    text-align: center; }
-    .promote_ctrl .head_ctrl .head_right .score {
-      font-size: .51rem;
-      color: #fff;
-      text-align: center;
-      line-height: normal;
-      padding-top: 22px; }
-    .promote_ctrl .head_ctrl .head_right div:nth-child(2) {
-      width: 1.16rem;
-      height: .38rem;
-      box-sizing: border-box;
-      border: 1px solid #97c8ff;
-      border-radius: 2px;
-      line-height: .38rem;
-      text-align: center;
-      color: #fff; }
+    height: 108px;
+    width: 108px;
+    background: url("../img/promote/tisheng_back.png") no-repeat center;
+    border-radius: 100%;
+    background-size: 108px 108px;
+    color: #006ee9;
+    font-size: 13px;
+    position: relative;
+    text-align: center;
+    padding-top: 67px;
+    font-weight: 500; }
+  .promote_ctrl .head_ctrl .head_right:active {
+    background-color: #ccc; }
 .promote_ctrl .promote_main {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  padding: 0 10px; }
-  .promote_ctrl .promote_main .main_left {
-    width: 55px; }
-    .promote_ctrl .promote_main .main_left .shuxian {
-      width: 27px;
-      height: 44px;
-      border-right: 1px solid #ccc; }
-    .promote_ctrl .promote_main .main_left .quan_img {
+  padding-left: 20px; }
+  .promote_ctrl .promote_main .main_word {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    overflow: auto;
+    padding: .20rem 20px .20rem 0;
+    position: relative; }
+    .promote_ctrl .promote_main .main_word::after {
+      pointer-events: none;
+      position: absolute;
+      z-index: 999;
+      top: 0;
+      left: 0;
+      content: "\0020";
+      border-color: #e2e2e2;
+      border-style: solid;
+      border-width: 0 0 1px 0;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      -webkit-transform-origin: 0 0;
+      transform-origin: 0 0; }
+      @media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+        .promote_ctrl .promote_main .main_word::after {
+          width: 200%;
+          height: 200%;
+          -webkit-transform: scale(0.5);
+          transform: scale(0.5); } }
+      @media (min--moz-device-pixel-ratio: 2.5), (-webkit-min-device-pixel-ratio: 2.5), (min-device-pixel-ratio: 2.5), (min-resolution: 240dpi), (min-resolution: 2.5dppx) {
+        .promote_ctrl .promote_main .main_word::after {
+          width: 200%;
+          height: 200%;
+          -webkit-transform: scale(1/3);
+          transform: scale(1/3); } }
+    .promote_ctrl .promote_main .main_word .logo_ctrl {
       width: 30px;
-      height: 30px;
-      background: #ff6652;
-      border-radius: 50%;
-      margin-left: 12px;
-      text-align: center; }
-      .promote_ctrl .promote_main .main_left .quan_img img {
-        margin-top: 7px;
-        width: 15px; }
-  .promote_ctrl .promote_main .pro_main_ctrl {
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-    -moz-box-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-    padding-top: 35px; }
-    .promote_ctrl .promote_main .pro_main_ctrl .main_word {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -moz-box;
-      display: -ms-flexbox;
-      display: flex;
-      overflow: auto;
-      height: 76px;
-      padding: 0 10px 0 0; }
-      .promote_ctrl .promote_main .pro_main_ctrl .main_word .main_head {
-        font-size: 16px;
-        color: #555; }
-      .promote_ctrl .promote_main .pro_main_ctrl .main_word .change_word {
-        font-size: 12px;
-        color: #999; }
-      .promote_ctrl .promote_main .pro_main_ctrl .main_word .ts_btn {
-        background: #5aa8ff;
-        width: 70px;
-        height: 30px;
-        border-radius: 3px;
-        line-height: 30px;
-        text-align: center;
-        font-size: 12px;
-        color: #fff;
-        margin-top: 8px; }
-      .promote_ctrl .promote_main .pro_main_ctrl .main_word .main_l {
-        -webkit-box-flex: 1;
-        -webkit-flex: 1;
-        -moz-box-flex: 1;
-        -ms-flex: 1;
-        flex: 1;
-        padding-right: 10px; }
-    .promote_ctrl .promote_main .pro_main_ctrl .main2 {
-      height: 73px; }
-    .promote_ctrl .promote_main .pro_main_ctrl .main3 {
-      height: 74px; }
-    .promote_ctrl .promote_main .pro_main_ctrl .main4 {
-      height: 50px; }
+      box-sizing: border-box;
+      padding-top: 3px; }
+    .promote_ctrl .promote_main .main_word .main_head {
+      font-size: 16px;
+      color: #555;
+      line-height: 16px;
+      margin-bottom: 7px; }
+    .promote_ctrl .promote_main .main_word .change_word {
+      font-size: 12px;
+      color: #999;
+      line-height: 12px; }
+    .promote_ctrl .promote_main .main_word .main_l {
+      line-height: normal;
+      margin-left: 15px;
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+      -moz-box-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+      background: url(../img/jiantou.png) no-repeat right center;
+      background-size: 7.5px; }
+  .promote_ctrl .promote_main .main_word:active {
+    background: #ccc; }
+  .promote_ctrl .promote_main .main2 {
+    height: 73px; }
+  .promote_ctrl .promote_main .main3 {
+    height: 74px; }
+  .promote_ctrl .promote_main .main4 {
+    height: 50px; }
