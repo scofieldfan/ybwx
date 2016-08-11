@@ -185,7 +185,7 @@ function getHttpPromise($http, $rootScope, method, url, data, callback) {
 	if (!data["open_id"]) {
 		data["open_id"] = openId;
 	}
-	data["wechat_type"] = 1;//老公众账号
+	data["wechat_type"] = 1; //老公众账号
 	// if(method === "GET"){
 	// 	url = url + "&wechat_type=1"; 
 	// }
@@ -1419,6 +1419,10 @@ mainControllers.controller('ybwxTargetCtrl', ['$scope', '$filter', '$routeParams
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 
 		$scope.relation = 1;
+		var code = util.getParameterByName("code") || $routeParams.code;
+		util.getOpenId(code).then(function() {
+
+		});
 		$("#relation .column .column_btn").click(function() {
 			$("#relation").find(".column_btn").removeClass("blue");
 			$(this).addClass("blue");
@@ -1448,8 +1452,6 @@ mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeP
 				age: $scope.age,
 				income: $scope.income
 			});
-			console.log("被保人,支柱,性别，年龄，收入");
-			console.log($routeParams.relation, $scope.primary_income, $scope.sex, $scope.age, $scope.income);
 		}
 	}
 ]);
@@ -1486,7 +1488,7 @@ mainControllers.controller('ybwxHobbyCtrl', ['$scope', '$filter', '$routeParams'
 						age: $routeParams.age,
 						income: $routeParams.income,
 						piont_type: $scope.piont_type,
-						questions: $scope.questions
+						questions: JSON.stringify($scope.questions)
 					});
 				}
 			});
@@ -1508,7 +1510,7 @@ mainControllers.controller('ybwxSchemeCtrl', ['$scope', '$filter', '$routeParams
 				"age": $routeParams.age,
 				"annual_income": $routeParams.income,
 				"type": $routeParams.piont_type,
-				"questions": $routeParams.questions
+				"questions": JSON.parse($routeParams.questions)
 			}, function(res) {
 				$scope.data = res.data.data;
 				$scope.scheme_id = res.data.data.scheme_id;
@@ -1556,7 +1558,7 @@ mainControllers.controller('ybwxKeySolutionCtrl', ['$scope', '$filter', '$routeP
 				"scheme_id": $routeParams.scheme_id, //方案id
 				"gender": $routeParams.sex,
 				"age": $routeParams.age,
-				"questions": $routeParams.questions
+				"questions": JSON.parse($routeParams.questions)
 			}, function(res) {
 				$scope.data = res.data.data;
 
