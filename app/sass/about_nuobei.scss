@@ -1,7 +1,7 @@
 @import "base/classes.scss";
 @import "base/variables.scss";	
 .nuobei_ctrl {
-	// background: #fff;
+	background: #fff;
 }
 .nuobei {
 	padding: 40px 0;
@@ -10,14 +10,29 @@
 
 	.nuobei_head {
 		font-size: 18px;
-		line-height: 18px;
+		line-height: 20px;
 		margin-bottom: 10px;
+		font-weight: bold;
+		// color: #555;
 	}
 	.nuobei_info {
 		font-size: 13px;
 		line-height: 13px;
 		margin-bottom: 40px;
 	}
+	.nuobei_img {
+		img {
+			width: 100%;
+			display:block;
+		}
+	}
+	.margin_15px {
+		margin-bottom: 15px;
+	}
+	.nuobei_word {
+		line-height: 13px;
+		margin-bottom: 6px;
+	} 
 }
 .space {
 	height: 10px;
