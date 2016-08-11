@@ -74,13 +74,13 @@ var chargePeriodTypeMap = {
 	'5': '趸交和按年缴'
 }
 var chargePeriodTypeAbbreMap = {
-	'1': '趸交',
-	'2': '月',
-	'3': '年',
-	'4': '趸交和按月缴',
-	'5': '趸交和按年缴'
-}
-/*
+		'1': '趸交',
+		'2': '月',
+		'3': '年',
+		'4': '趸交和按月缴',
+		'5': '趸交和按年缴'
+	}
+	/*
 }
 var insuranceMap = {
 	'1': '投保中',
@@ -168,43 +168,43 @@ WEALTH(5, "财产保险")*/
 
 
 
-	function getBdStatus(orderStatus, bdStatus) {
+function getBdStatus(orderStatus, bdStatus) {
 
-		//未支付成功，都显示待支付。支付订单是4，表示支付成功。此时要看保单状态
-		if (parseInt(orderStatus) === 4 || orderStatus === undefined) {
-			return insuranceMap[bdStatus];
+	//未支付成功，都显示待支付。支付订单是4，表示支付成功。此时要看保单状态
+	if (parseInt(orderStatus) === 4 || orderStatus === undefined) {
+		return insuranceMap[bdStatus];
+	} else {
+		return "待支付";
+	}
+}
+
+
+function getHttpPromise($http, $rootScope, method, url, data, callback) {
+
+	var openId = sessionStorage.getItem("openId");
+	if (!data["open_id"]) {
+		data["open_id"] = openId;
+	}
+	return $http({
+		method: method,
+		headers: {
+			"Content-Type": "application/json;charset:UTF-8"
+		},
+		url: url,
+		data: data
+	}).then(function(res) {
+		console.log(res);
+		if ((res && res.data && res.data.data) || (res && res.data && res.data.code === 0)) {
+			callback(res);
 		} else {
-			return "待支付";
+			util.showToast($rootScope, res.data.description);
 		}
-	}
-
-
-	function getHttpPromise($http, $rootScope, method, url, data, callback) {
-
-		var openId = sessionStorage.getItem("openId");
-		if (!data["open_id"]) {
-			data["open_id"] = openId;
-		}
-		return $http({
-			method: method,
-			headers: {
-				"Content-Type": "application/json;charset:UTF-8"
-			},
-			url: url,
-			data: data
-		}).then(function(res) {
-			console.log(res);
-			if ((res && res.data && res.data.data) || (res && res.data && res.data.code === 0)) {
-				callback(res);
-			} else {
-				util.showToast($rootScope, res.data.description);
-			}
-		}, function(res) {
-			console.log(res);
-			_hmt.push(['_trackEvent', 'http_error', "api:" + url]);
-			util.showToast($rootScope, "网络异常");
-		});
-	}
+	}, function(res) {
+		console.log(res);
+		_hmt.push(['_trackEvent', 'http_error', "api:" + url]);
+		util.showToast($rootScope, "网络异常");
+	});
+}
 
 
 mainControllers.controller('ybwxUserinfoCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
@@ -902,7 +902,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 						})
 					}
 					$scope.choosePlan();
-					$scope.getRestrictions();
+					//$scope.getRestrictions();
 
 				}
 			});
@@ -1414,7 +1414,7 @@ mainControllers.controller('ybwxtermsListCtrl', ['$scope', '$filter', '$routePar
 mainControllers.controller('ybwxTargetCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 
-        $scope.relation = 1;
+		$scope.relation = 1;
 		$("#relation .column .column_btn").click(function() {
 			$("#relation").find(".column_btn").removeClass("blue");
 			$(this).addClass("blue");
@@ -1445,7 +1445,7 @@ mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeP
 				income: $scope.income
 			});
 			console.log("被保人,支柱,性别，年龄，收入");
-			console.log($routeParams.relation,$scope.primary_income,$scope.sex,$scope.age,$scope.income);
+			console.log($routeParams.relation, $scope.primary_income, $scope.sex, $scope.age, $scope.income);
 		}
 	}
 ]);
@@ -1458,15 +1458,15 @@ mainControllers.controller('ybwxHobbyCtrl', ['$scope', '$filter', '$routeParams'
 			$scope.piont_type = parseInt($(".piont_type").is(':checked') ? 2 : 1);
 			var questions = [];
 			$scope.questions = questions;
-			$scope.getscheme = getHttpPromise($http, $rootScope, 'POST', api['get_scheme_questions'], {
-		        "open_id": openId
-		      }, function(res) {
-		      	$scope.data = res.data.data.questions;
-		      	// console.log(res);
-		      	$scope.setId = function($event) {
-			        $($event.target).toggleClass("blue");
-			 		$($event.target).find("img").toggle();
-		      	}
+			$scope.hobbyPromise = getHttpPromise($http, $rootScope, 'POST', api['get_scheme_questions'], {
+				"open_id": openId
+			}, function(res) {
+				$scope.data = res.data.data.questions;
+				// console.log(res);
+				$scope.setId = function($event) {
+					$($event.target).toggleClass("blue");
+					$($event.target).find("img").toggle();
+				}
 				$scope.goScheme = function() {
 					$ele = $("#relation").find(".blue");
 					for (i = 0; i < $ele.length; i++) {
@@ -1476,8 +1476,8 @@ mainControllers.controller('ybwxHobbyCtrl', ['$scope', '$filter', '$routeParams'
 					console.log("type,type,type,type,");
 					console.log($scope.piont_type);
 					$location.path("/scheme").search({
-						relation:$routeParams.relation,
-						primary_income:$routeParams.primary_income,
+						relation: $routeParams.relation,
+						primary_income: $routeParams.primary_income,
 						sex: $routeParams.sex,
 						age: $routeParams.age,
 						income: $routeParams.income,
@@ -1485,7 +1485,7 @@ mainControllers.controller('ybwxHobbyCtrl', ['$scope', '$filter', '$routeParams'
 						questions: $scope.questions
 					});
 				}
-		    });
+			});
 		}
 	}
 ]);
@@ -1496,29 +1496,32 @@ mainControllers.controller('ybwxSchemeCtrl', ['$scope', '$filter', '$routeParams
 		$scope.init = function() {
 			var openId = sessionStorage.getItem("openId");
 			console.log($routeParams.piont_type);
-		    $scope.getscheme = getHttpPromise($http, $rootScope, 'POST', api['get_scheme'], {
-		        "open_id": openId,
-		        "relation":$routeParams.relation,
-				"primary_income":$routeParams.primary_income,
+			$scope.schemaPromise = getHttpPromise($http, $rootScope, 'POST', api['get_scheme'], {
+				"open_id": openId,
+				"relation": $routeParams.relation,
+				"primary_income": $routeParams.primary_income,
 				"gender": $routeParams.sex,
 				"age": $routeParams.age,
 				"annual_income": $routeParams.income,
 				"type": $routeParams.piont_type,
 				"questions": $routeParams.questions
-		      }, function(res) {
-		      	$scope.data = res.data.data;
-		      	$scope.scheme_id= res.data.data.scheme_id;
-		      	console.log($scope.scheme_id);
-		      	console.log(res);
-				$scope.goKeySolution= function() {
-					$location.path("/key_solution").search({
-						sex: $routeParams.sex,
-						age: $routeParams.age,
-						questions: $routeParams.questions,
-						scheme_id: $scope.scheme_id
-					});
-				}
-		    });
+			}, function(res) {
+				$scope.data = res.data.data;
+				$scope.scheme_id = res.data.data.scheme_id;
+
+			});
+		}
+		$scope.goKeySolution = function() {
+			$location.path("/key_solution").search({
+				name: $scope.data.scheme_name,
+				sex: $routeParams.sex,
+				age: $routeParams.age,
+				questions: $routeParams.questions,
+				primary_income: $routeParams.primary_income,
+				annual_income: $routeParams.income,
+				relation: $routeParams.relation,
+				scheme_id: $scope.scheme_id
+			});
 		}
 	}
 ]);
@@ -1526,17 +1529,201 @@ mainControllers.controller('ybwxSchemeCtrl', ['$scope', '$filter', '$routeParams
 mainControllers.controller('ybwxKeySolutionCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 		$scope.init = function() {
+
+			$scope.showNum = 6;
+
+			$scope.name = $routeParams.name;
+
+			$scope.age = $routeParams.age;
+
+			$scope.sex = $routeParams.sex;
+
+			$scope.annualIncome = $routeParams.annual_income;
+
+			$scope.primaryIncome = $routeParams.primary_income;
+
+			$scope.getCoverageType = util.getCoverageType;
+
+			$scope.relation = $routeParams.relation;
+
 			var openId = sessionStorage.getItem("openId");
-			$scope.getscheme = getHttpPromise($http, $rootScope, 'POST', api['get_scheme_plans'], {
+			$scope.solutionPromise = getHttpPromise($http, $rootScope, 'POST', api['get_scheme_plans'], {
 				"open_id": openId,
-				"scheme_id":$routeParams.scheme_id, //方案id
+				"scheme_id": $routeParams.scheme_id, //方案id
 				"gender": $routeParams.sex,
 				"age": $routeParams.age,
 				"questions": $routeParams.questions
 			}, function(res) {
-		      	$scope.coverages = res.data.data.coverages;
-				console.log(res);
+				$scope.data = res.data.data;
+
+				$scope.data.mainCoverages = res.data.data.coverages.filter(function(item) {
+					return item.coverage_type === 1;
+				});
+				$scope.data.secondCoverages = res.data.data.coverages.filter(function(item) {
+					return item.coverage_type === 2;
+				});
+
+				//如果方案中所有的套餐都已购买或者为开售按钮变成灰色
+				$scope.canNotBuyPlans = res.data.data.plans.filter(function(item) {
+					return item.status !== 1; //过滤得到不能购买的产品
+				});
+
+				if (　$scope.canNotBuyPlans.length === res.data.data.plans.length) {
+					$(".footer").find(".right").css({
+						"background-color": "#999"
+					})
+				}
+				$scope.choosePlan();
+			});
+
+		}
+		$scope.processSpecialMoney = function(money) {
+			var money = util.processSpecialMoney(money);
+			if (money === "0元") {
+				return "赠送"
+			} else {
+				return money;
+			}
+		}
+
+
+		$scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+			$("#coverage_table").find("tr:lt(" + $scope.showNum + ")").show();
+			if ($("#coverage_table").find("tr").length > $scope.showNum) {
+				$("#more_button").show();
+			}
+		});
+		$scope.showCoverages = function() {
+			$("#coverage_table").find("tr:lt(" + $scope.showNum + ")").show();
+			if ($("#coverage_table").find("tr").length > $scope.showNum) {
+				$("#more_button").show();
+			}
+		}
+		$scope.more = function($event) {
+			var element = $event.currentTarget;
+			var switchValue = $(element).attr("data-switch");
+			var num = $scope.showNum - 1;
+			if (switchValue === 'on') {
+				$(element).siblings(".table-wrapper").find("tr").show();
+				$(element).find("span").html("收起");
+				$(element).attr("data-switch", "off");
+				$(element).find("div").addClass("up");
+				_hmt.push(['_trackEvent', 'solution', 'solution_unfold']);
+			} else {
+				$(element).siblings(".table-wrapper").find("tr:gt(" + num + ")").hide();
+				$(element).find("span").html("查看更多");
+				$(element).attr("data-switch", "on");
+				$(element).find("div").removeClass("up");
+				_hmt.push(['_trackEvent', 'solution', 'solution_fold']);
+			}
+		}
+
+		$scope.go = function(plan) {
+
+			if (plan.status === 1) {
+				plan.unchecked = !plan.unchecked;
+				$scope.choosePlan();
+			}
+
+		}
+		$scope.choosePlan = function() {
+			_hmt.push(['_trackEvent', 'solution', 'solution_choose']);
+			var filteredPlans = $scope.data.plans.filter(function(item) {
+				return item.status === 1 && !item.unchecked;
+			});
+			var sumMoney = filteredPlans.map(function(item) {
+				return item.premium;
+			}).reduce(function(preVal, curVal, index, array) {
+				return preVal + curVal;
+
+			}, 0);
+			$scope.choosePlansIds = filteredPlans.map(function(item) {
+				return item.id;
+			});
+			$scope.sumMoney = sumMoney;
+			var allMoney = $scope.data.plans.reduce(function(preVal, curVal, index, array) {
+				return preVal + curVal.premium;
+			}, 0);
+
+			$scope.planAllMoney = allMoney;
+
+		}
+
+		$scope.goDetail = function(plan) {
+
+			if (plan.status === 1) { //可购买跳转至产品详情页
+				if (plan.insurance_status !== 1) {
+					$location.path('/temaidetail').search({
+						product_id: plan.insurance_id
+					});
+					_hmt.push(['_trackEvent', 'solution', 'solution_goDetail']);
+
+				}
+			} else {
+				//window.location.href = plan.official_site;
+				if (plan.provision_page_id) {
+					var param = {
+						webPageId: plan.provision_page_id,
+						insuranceId: plan.insurance_id
+					}
+					var parmStr = util.genParameters(param);
+					window.location.href = util.domain + "ybwx-web/api/webPage?" + parmStr;
+				} else {
+					window.location.href = plan.official_site;
+				}
+				_hmt.push(['_trackEvent', 'solution', 'solution_goDetail']);
+			}
+		}
+
+
+		$scope.isHaveRestrictions = false;
+
+		$scope.getRestrictions = function() {
+			var openId = sessionStorage.getItem("openId");
+			$scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_restrictions'], {
+				open_id: openId,
+				plan_ids: $scope.choosePlansIds
+
+			}, function(res) {
+				$scope.isHaveRestrictions = (res.data.data.job_notice && Object.keys(res.data.data.job_notice).length > 0) || res.data.data.locale_notice || res.data.data.notices.length > 0;
+			})
+		}
+		$scope.return = function() {
+			//userinfo_new?relation=1
+			$location.path('/userinfo_new').search({
+				'type': $routeParams.type
 			});
 		}
+		$scope.goInfo = function() {
+			_hmt.push(['_trackEvent', 'solution', 'solution_subBtn']);
+
+
+			if ($scope.canNotBuyPlans.length === $scope.data.plans.length) {
+				util.showToast($rootScope, "方案中的产品全都不可购买，请至官方购买");
+				return;
+			}
+			if ($scope.choosePlansIds.length == 0) {
+				util.showToast($rootScope, "请选择开售的产品");
+				return;
+
+			}
+			if ($scope.isHaveRestrictions) {
+				$location.path('/information').search({
+					'type': $routeParams.type,
+					'coverage_score': $routeParams.coverage_score,
+					'sum_insured_score': $routeParams.sum_insured_score,
+					'sum_score': $routeParams.sum_score,
+					'choose_plans': JSON.stringify($scope.choosePlansIds)
+				});
+			} else {
+				$location.path('/toubao_new').search({
+					'type': $routeParams.type,
+					'choose_plans': JSON.stringify($scope.choosePlansIds)
+				});
+			}
+		}
+
+
 	}
+
 ]);

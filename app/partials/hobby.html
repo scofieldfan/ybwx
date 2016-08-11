@@ -1,5 +1,6 @@
 
-<!-- <link rel="stylesheet" href="css/preference.css?rev=d7ff41c359d1a5aebdbe92b81746493e"> -->
+<!-- <link rel="stylesheet" href="css/preference.css?rev=d41d8cd98f00b204e9800998ecf8427e"> -->
+=======
 <div class="hobby">
 	<div class="piont">保障偏好</div>
 	<label class="switch needsclick">
@@ -10,7 +11,7 @@
 	<div class="select">性价比高 重点保障损失较大的风险</div>
 	<div class="trouble">您还担心的问题</div>
 	<div class="select">可多选 或不选</div>
-	<div class="relation" id="relation"  data-ng-init="init()" >
+	<div class="relation" id="relation"  data-ng-init="init()"   cg-busy="hobbyPromise" >
 		<!-- data-ng-init="init()" -->
 		<div class="btn_ctrl" ng-repeat="item in data" >
 			<div class="hobby_btn" data-main="{{item.id}}" ng-click="setId($event)">
