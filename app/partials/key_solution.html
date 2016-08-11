@@ -6,7 +6,7 @@
 <div class="key_head">
 	<div class="model"><img src="img/scheme/dun.png"> {{name}}<div class="anew" ng-click="return();">重新设定</div></div>
 	<div class="wz">{{age}}岁<span ng-if="sex=='1'">男</span><span ng-if="sex=='2'">女</span>性<br/>年收入{{annualIncome}}万  <span ng-if="primaryIncome=='false'">非</span><span ng-if="primaryIncome=='true'">是</span>家庭支柱<br/></div>
-	<div class="fa">方案总保费:<span class="blue"> 80000 元</span></div>
+	<div class="fa">方案总保费:<span class="blue"> {{planAllMoney}} 元</span></div>
 </div>
 <div class="contents">方案说明</div>
 <div class="table-wrapper" id="coverage_table"  >
