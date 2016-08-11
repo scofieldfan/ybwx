@@ -1490,7 +1490,7 @@ mainControllers.controller('ybwxHobbyCtrl', ['$scope', '$filter', '$routeParams'
 						age: $routeParams.age,
 						income: $routeParams.income,
 						piont_type: $scope.piont_type,
-						questions: $scope.questions
+						questions: JSON.stringify($scope.questions)
 					});
 				}
 			});
@@ -1512,7 +1512,7 @@ mainControllers.controller('ybwxSchemeCtrl', ['$scope', '$filter', '$routeParams
 				"age": $routeParams.age,
 				"annual_income": $routeParams.income,
 				"type": $routeParams.piont_type,
-				"questions": $routeParams.questions
+				"questions": JSON.parse($routeParams.questions)
 			}, function(res) {
 				$scope.data = res.data.data;
 				$scope.scheme_id = res.data.data.scheme_id;
@@ -1560,7 +1560,7 @@ mainControllers.controller('ybwxKeySolutionCtrl', ['$scope', '$filter', '$routeP
 				"scheme_id": $routeParams.scheme_id, //方案id
 				"gender": $routeParams.sex,
 				"age": $routeParams.age,
-				"questions": $routeParams.questions
+				"questions": JSON.parse($routeParams.questions)
 			}, function(res) {
 				$scope.data = res.data.data;
 
