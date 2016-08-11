@@ -126,6 +126,23 @@ body{
 		border-bottom:1px solid #e2e2e2;
 		margin-bottom: 8px;
 	}
+	.description {
+		padding : 15px 10px;
+		color:#999;	
+	}
+
+	.new-title{
+		padding:10px;
+
+		.s-title{
+			color:#555;
+		}	
+		.s-des {
+			color:#999;	
+		}
+
+	}
+
 	.supply-item{
 		@include flexbox;
 		padding-left:10px;
@@ -133,7 +150,7 @@ body{
 		line-height: 45px;
 		margin-bottom:10px;
 		.introd{
-			width:60px;
+			width:70px;
 		}
 		.content{
 			padding-right:10px;
@@ -142,9 +159,78 @@ body{
 		.ipt{
 			border:1px solid #e2e2e2;
 			height:45px;
-
+		}
+		.new-input {
+			width:100%;
+			line-height: 2.33;
+			outline: 0;
+			background-color:transparent;
+			-webkit-appearance:none;
+			height:45px;
+			border:none;
+		}
+		.new-input::-webkit-input-placeholder { 
+			color:#ccc;
+		}
+		.danwei{
+			color:#ccc;	
+			text-align: left;
+			width:35px;
 		}
 	}
+	.new-supply-item{
+		@include flexbox;
+		padding: 0 10px;
+
+		height:45px;
+		line-height: 45px;
+		margin-bottom:10px;
+		.introd{
+			width:70px;
+			@include border(0 0 1px 0,#e2e2e2)
+			// border:1px solid #e2e2e2;
+		}
+		.content{
+			padding-right:10px;
+			@include flex(1);
+			@include border(0 0 1px 0,#e2e2e2)
+		}
+		.new-input {
+			width:100%;
+			line-height: 2.33;
+			outline: 0;
+			background-color:transparent;
+			-webkit-appearance:none;
+			height:45px;
+			border:none;
+		}
+		.new-input::-webkit-input-placeholder { 
+			color:#ccc;
+		}
+		.danwei{
+			color:#ccc;	
+			text-align: left;
+			width:35px;
+			@include border(0 0 1px 0,#e2e2e2)
+		}
+	}
+	.wrong-item{
+		@include flexbox;
+		padding: 0 10px;
+		height:25px;
+		line-height: 25px;
+		margin-bottom:10px;
+		color:red;
+		.introd{
+			width:60px;
+			// border:1px solid #e2e2e2;
+		}
+		.content{
+			padding-right:10px;
+			@include flex(1);
+		}
+	}
+
 }
 
 .tip{

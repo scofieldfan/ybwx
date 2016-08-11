@@ -59,7 +59,7 @@
 	<i class="iconfont" style="color:#ff5c00">&#xe61d;</i> 
 	热门推荐		
 </div>
-<div  cg-busy="listPromise">
+<div  cg-busy="listPromise" data-ng-init="init()">
 <div style="margin-bottom: 10px">
 <div class="recommend-content" ng-repeat="category in categorys">
 	<div class="introd" ng-click="goCategory(category.id)">

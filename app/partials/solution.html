@@ -63,32 +63,25 @@
 	<a href="javascript:void(0)" class="btn btn_n_primary right" ng-click="goInfo()">立即投保</a>
 	</div>
 </div>
-<script type="text/javascript" src="js/zepto.min.js"></script>
+<!-- <script type="text/javascript" src="js/zepto.min.js"></script> -->
 </div>
 <script type="text/javascript">
- $("body").on("touchmove",".toast",function(event){
- 	// event.preventDefault();
- 	 event.stopPropagation();
- });
- $("body").on("touchmove",".mask",function(event){
- 	 event.preventDefault();
- 	 event.stopPropagation();
- });
  $("body").on("click",".left-td",function(event){
  	var des =  $(this).attr("des");
  	if(des){
 		$("#popup").find(".toast").html(des);
 	   	$("#popup").show();
  	}
- 	// event.stopPropagation();
-    // event.preventDefault();
-
-    /*
- 	document.body.addEventListener('touchmove', function(event) { 
-		event.preventDefault(); 
-	}, false);
-	*/
-
+ 
+ });
+ /*
+  $("body").on("touchmove",".toast",function(event){
+ 	// event.preventDefault();
+ 	 event.stopPropagation();
+ });
+ $("body").on("touchmove",".mask",function(event){
+ 	 event.preventDefault();
+ 	 event.stopPropagation();
  });
 	Zepto(function($){
 $('.table').on('click', function(){
@@ -184,6 +177,6 @@ function preventDefault(e) {
 			// return false;
 		});
 	});
-});
+});*/
 
 </script>
