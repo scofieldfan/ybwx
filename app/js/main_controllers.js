@@ -1697,9 +1697,29 @@ mainControllers.controller('ybwxKeySolutionCtrl', ['$scope', '$filter', '$routeP
 		$scope.return = function() {
 			//userinfo_new?relation=1
 			$location.path('/userinfo_new').search({
-				'type': $routeParams.type
+				relation: $routeParams.relation
 			});
 		}
+		$scope.getTaoCanStatus = util.getTaoCanStatus;
+		$scope.getInsuranceCNname = function() {
+			return insureanceCNMap[$routeParams.type];
+		}
+		var taocan_css = {
+			1: "",
+			2: "unsell",
+			3: "selled",
+			4: "selled",
+			5: "selled",
+			6: "unsell",
+			7: "unsell",
+			8: "unsell",
+			9: "unsell"
+		}
+
+		$scope.get_taocan_css = function(status) {
+			return taocan_css[status];
+		}
+
 		$scope.goInfo = function() {
 			_hmt.push(['_trackEvent', 'solution', 'solution_subBtn']);
 
