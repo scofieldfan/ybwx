@@ -1,16 +1,27 @@
 @charset "UTF-8";
+.nuobei_ctrl {
+  background: #fff; }
 .nuobei {
   padding: 40px 0;
   color: #555;
   text-align: center; }
   .nuobei .nuobei_head {
     font-size: 18px;
-    line-height: 18px;
-    margin-bottom: 10px; }
+    line-height: 20px;
+    margin-bottom: 10px;
+    font-weight: bold; }
   .nuobei .nuobei_info {
     font-size: 13px;
     line-height: 13px;
     margin-bottom: 40px; }
+  .nuobei .nuobei_img img {
+    width: 100%;
+    display: block; }
+  .nuobei .margin_15px {
+    margin-bottom: 15px; }
+  .nuobei .nuobei_word {
+    line-height: 13px;
+    margin-bottom: 6px; }
 .space {
   height: 10px;
   background: #f5f5f5;

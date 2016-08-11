@@ -38,6 +38,8 @@ body {
       background: #fff;
       border: 1px solid #e2e2e2;
       border-radius: 50%;
+      -webkit-background-clip: padding-box !important;
+      background-clip: padding-box !important;
       box-sizing: border-box;
       margin-bottom: 25px; }
     .target_ctrl .relation .blue {

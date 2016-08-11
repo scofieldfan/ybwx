@@ -85,19 +85,23 @@ ybwxApp.config(['$routeProvider',
     }).when('/target', {
       templateUrl: 'partials/target.html',
       controller: 'ybwxTargetCtrl',
-      title: "保障对象"
+      title: "保障对象",
+      css: 'css/ensuring_target.css'
     }).when('/hobby', {
       templateUrl: 'partials/hobby.html',
       controller: 'ybwxHobbyCtrl',
-      title: "偏好设定"
+      title: "偏好设定",
+      css: 'css/preference.css'
     }).when('/userinfo_new', {
       templateUrl: 'partials/userinfo_new.html',
       controller: 'ybwxUserInfoNewCtrl',
-      title: "资料设定"
+      title: "资料设定",
+      css: 'css/userinfo_new.css'
     }).when('/scheme', {
       templateUrl: 'partials/scheme.html',
       controller: 'ybwxSchemeCtrl',
       title: "方案解读"
+      // css: 'css/scheme.css'
     }).when('/key_solution', {
       templateUrl: 'partials/key_solution.html',
       controller: 'ybwxKeySolutionCtrl',
@@ -110,8 +114,8 @@ ybwxApp.config(['$routeProvider',
       css:'css/service.css?rev=ccb7b72ecdc803068fa76ac098ed10f2'
     }).when('/about_nuobei', {
       templateUrl: 'partials/about_nuobei.html',
-      // controller: 'ybwxAbout_nuobeiCtrl',
-      title: "关于诺贝"
+      title: "关于诺贝",
+      css: 'css/about_nuobei.css'
     }).when('/contact', {
       templateUrl: 'partials/contact.html',
       title: "联系我们",
