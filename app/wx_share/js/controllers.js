@@ -27,6 +27,7 @@ function getHttpPromise($http, $rootScope, method, url, data, callback) {
 	if (!data["open_id"]) {
 		data["open_id"] = openId;
 	}
+	data['wechat_type'] = 2;
 	return $http({
 		method: method,
 		headers: {
@@ -68,6 +69,7 @@ function submitBd($scope, $http, $location, $filter) {
 	// if ($scope.coupon_id == 2) {
 	postData["flight_no"] = $scope.user.flight_no;
 	// }
+	postData['wechat_type'] = 2;
 	return $http({
 		method: 'POST',
 		headers: {
@@ -85,7 +87,7 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 		var qd = util.getParameterByName("qd") || $routeParams.qd || 'default';
 		_hmt.push(['_trackPageview', '/wx_share_jixian']);
 		_hmt.push(['_setCustomVar', 1, 'jixian_qudao', qd, 1]);
-		var currentUrl = util.domain+"wx_share.html#/jixian";
+		var currentUrl = util.domain + "wx_share.html#/jixian";
 		$scope.init = function() {
 
 			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
@@ -93,8 +95,8 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 				var openId = sessionStorage.getItem("openId");
 
 				util.share({
-					shareUrl:  util.domain+"wx_share.html#/jixian?rec_id=" + openId,
-					shareImg:  util.domain+"wx_share/img/share_sport.png",
+					shareUrl: util.domain + "wx_share.html#/jixian?rec_id=" + openId,
+					shareImg: util.domain + "wx_share/img/share_sport.png",
 					shareTitle: "免费领取10万元极限运动险！要酷，更要安全！",
 					shareDesc: "每月均可领取1份，每邀请1位好友，即可再免费领取1份。约上朋友一起突破极限吧！"
 				});
@@ -164,7 +166,7 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 ]);
 wxShareControllers.controller('shenheCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
 	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
-		var currentUrl = util.domain+"wx_share.html#/shenhe";
+		var currentUrl = util.domain + "wx_share.html#/shenhe";
 		util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
 
 		});
@@ -202,8 +204,7 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 				type: 'GET',
 				url: "/ybwx-web/wechat/js_signature",
 				data: {
-					url: location.href.split('#')[0],
-					type:2
+					"url": location.href.split('#')[0]
 				},
 				dataType: "json"
 			})).done(function(res) {
@@ -223,9 +224,9 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 					var shareUrl = util.domain + "wx_share.html#/special";
 					var shareTitle = "还在买捆绑的30元一次的航意险？在这里500万保一年无限次仅需40元！";
 					var shareDesc = "仅需1杯咖啡的花费即可享受1年500万航空意外的保障！";
-					var shareImg =  "/wx_share/img/share_s.png";
+					var shareImg = "/wx_share/img/share_s.png";
 
-					var shareLink = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='+util.appId+'&redirect_uri=' + encodeURIComponent(shareUrl) + '&response_type=code&scope='+util.shareScope+'&state=123#wechat_redirect';
+					var shareLink = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri=' + encodeURIComponent(shareUrl) + '&response_type=code&scope='+util.shareScope+'&state=123#wechat_redirect';
 					wx.onMenuShareTimeline({
 						title: shareTitle,
 						link: shareLink,
@@ -264,6 +265,7 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 
 		};
 		$scope.original = function() {
+			_hmt.push(['_trackEvent', 'special_share', "goMoneybd_50"]);
 			$location.path('/moneybd').search({
 				plan: 72,
 				money: 50
@@ -272,6 +274,7 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 
 		$scope.discount = function() {
 			if ($scope.isShare) {
+				_hmt.push(['_trackEvent', 'special_share', "goMoneybd_40"]);
 				$location.path('/moneybd').search({
 					plan: 72,
 					money: 40
@@ -296,12 +299,12 @@ wxShareControllers.controller('wxMoneyBdCtrl', ['$scope', '$filter', '$routePara
 		_hmt.push(['_trackPageview', "/wx_share_toubao"]);
 
 		$scope.money = $routeParams.money;
-		
+
 		var tomorrow = new Date();
 		tomorrow.setDate(tomorrow.getDate() + 1);
 		$scope.user = {};
 		$scope.user.insurance_date = tomorrow;
-		
+
 		$scope.user.know_contract = true;
 		var openId = sessionStorage.getItem("openId");
 
@@ -324,17 +327,17 @@ wxShareControllers.controller('wxMoneyBdCtrl', ['$scope', '$filter', '$routePara
 
 		$scope.submit = function() {
 			_hmt.push(['_trackEvent', 'wx_share_toubao', 'wx_share_toubao_subtn']);
-			var socialId =  $scope.user.social_id ;
+			var socialId = $scope.user.social_id;
 			var age = 0;
-			if(socialId && socialId.length === 18){
-				var birthday = socialId.substring(6,14);
-				var birthMonth = birthday.substring(4,6);
-				var birthDay = birthday.substring(6,8);
-				var birthYear = birthday.substring(0,4);
-				age = util.calculate_age(birthMonth,birthDay,birthYear);
+			if (socialId && socialId.length === 18) {
+				var birthday = socialId.substring(6, 14);
+				var birthMonth = birthday.substring(4, 6);
+				var birthDay = birthday.substring(6, 8);
+				var birthYear = birthday.substring(0, 4);
+				age = util.calculate_age(birthMonth, birthDay, birthYear);
 			}
 
-			if (!$scope.registration.$invalid && age>=18) {
+			if (!$scope.registration.$invalid && age >= 18) {
 
 				//$("#loadingToast").show();
 
@@ -391,7 +394,7 @@ wxShareControllers.controller('wxMoneyBdCtrl', ['$scope', '$filter', '$routePara
 				if ($scope.registration.social_id.$invalid) {
 					util.showToast($rootScope, "身份证填写有误，请修改");
 				}
-				if(age<18){
+				if (age < 18) {
 					util.showToast($rootScope, "投保人年龄必须大于18岁");
 				}
 				if ($scope.registration.mobile.$invalid) {
@@ -598,7 +601,7 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
 				$("#loadingToastCommon").hide();
 				util.share({
-					shareUrl:  util.domain + "wx_share.html#/index?rec_id=" + openId,
+					shareUrl: util.domain + "wx_share.html#/index?rec_id=" + openId,
 					shareImg: "/wx_share/img/share61.jpg",
 					shareTitle: "送你一份500万航空意外险，买机票立省30元！",
 					shareDesc: "集齐3份航空意外险保险券，即可免费兑换一份航班延误险保险券！"
@@ -621,13 +624,37 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 				});
 			});
 
-			
+
 		}
 		$scope.init();
 		$scope.addCoupon = function() {
 			_hmt.push(['_trackEvent', 'wx_share_index', 'wx_share_index_left_button']);
 			var recId = util.getParameterByName('rec_id') || $routeParams.rec_id;
 			var openId = sessionStorage.getItem("openId");
+
+			$scope.addPromise = getHttpPromise($http, $rootScope, 'POST', api['addCoupon'], {
+				"open_id": openId,
+				"r_open_id": recId,
+				"coupon_id": "2"
+			}, function(res) {
+				if (res.data && res.data.description) {
+					$("#pop").show();
+					$("#popup").click(function() {
+						$("#pop").hide();
+					});
+					$("#popup-btn").click(function() {
+						$("#pop").hide();
+					});
+				}
+				if (res.data.code == 0) {
+					$location.path('/success_coupon').search({
+						count: (res.data.data["coupon_counts"] + 1)
+					});
+				}
+			});
+
+
+			/*
 			$http({
 				method: 'POST',
 				headers: {
@@ -663,12 +690,13 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 			}, function(res) {
 				console.log(res);
 				util.showToast($rootScope, "服务器错误");
-			});
+			});*/
 		}
 		$scope.exchange = function() {
 			_hmt.push(['_trackEvent', 'wx_share_index', 'wx_share_index_exchange_button']);
 
 			var openId = sessionStorage.getItem("openId");
+			/*
 			$http({
 				method: 'POST',
 				headers: {
@@ -676,7 +704,8 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 				},
 				url: api['exchange'],
 				data: {
-					"open_id": openId
+					"open_id": openId,
+
 				}
 			}).then(function(res) {
 				console.log(res);
@@ -689,6 +718,18 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 			}, function(res) {
 				console.log(res);
 				util.showToast($rootScope, "服务器错误");
+			});
+			*/
+
+			$scope.exchangePromise = getHttpPromise($http, $rootScope, 'POST', api['exchange'], {
+				"open_id": openId
+			}, function(res) {
+				if (res.data && res.data.description) {
+					util.showToast($rootScope, res.data.description);
+				} else
+				if (res.data.data.result == 1) {
+					$location.path('/exchange');
+				}
 			});
 		}
 		$scope.freeBd = function() {
@@ -726,8 +767,30 @@ wxShareControllers.controller('myCouponListCtrl', ['$scope', '$routeParams', '$h
 			}
 			util.getOpenId(code).then(function() {
 				var openId = sessionStorage.getItem("openId");
-				//  $scope.reason="您没有领取任何优惠券。";
-				// $("#reason_container").show();
+				$scope.exchangePromise = getHttpPromise($http, $rootScope, 'POST', api['getCoupons'], {
+					"open_id": openId
+				}, function(res) {
+					if (res.data && res.data.description) {
+						util.showToast($rootScope, res.data.description);
+						$("#reason_container").show();
+					} else if (res.data.code == 0) {
+						if (res.data.data.coupons) {
+							res.data.data.coupons.forEach(function(coupon) {
+								coupon.imgClass = imgMap[coupon["coupon_status"]];
+							})
+							$scope.reason = "";
+							if (res.data.data.coupons.length === 0) {
+								$("#reason_container").show();
+							}
+							$scope.coupons = res.data.data.coupons;
+							$(".ul_container").show();
+						} else {
+							$("#reason_container").show();
+						}
+					}
+
+				});
+				/*
 				$http({
 					method: 'POST',
 					headers: {
@@ -747,15 +810,6 @@ wxShareControllers.controller('myCouponListCtrl', ['$scope', '$routeParams', '$h
 							res.data.data.coupons.forEach(function(coupon) {
 								//  item.showDate = item["expiry_date"].substring(0,4)+"-"+item["expiry_date"].substring(4,6)+"-"+item["expiry_date"].substring(6);
 								coupon.imgClass = imgMap[coupon["coupon_status"]];
-								/*if(coupon.coupon_id == 2 || coupon.coupon_id == 3){
-									if(coupon.coupon_status == 5 || coupon.coupon_status ==  6) {
-                                      $(".logo_img").addClass("img_gray");
-									}else {
-                                      $(".logo_img").removeClass("img_gray");
-									}
-								}else{
-                                      $(".logo_img").removeClass("img_gray");
-								}*/
 							})
 							$scope.reason = "";
 							if (res.data.data.coupons.length === 0) {
@@ -769,9 +823,8 @@ wxShareControllers.controller('myCouponListCtrl', ['$scope', '$routeParams', '$h
 					}
 				}, function(res) {
 					console.log(res);
-
 					util.showToast($rootScope, "服务器错误");
-				});
+				});*/
 			})
 		}
 		$scope.goShare = function() {
@@ -783,7 +836,6 @@ wxShareControllers.controller('myCouponListCtrl', ['$scope', '$routeParams', '$h
 
 			if (coupon_status === 4) {
 				// util.showToast($rootScope,"优惠券已经投保成功，邀请更多的好友领取，可以再次免费获得优惠券");
-				//alert("fuck you ");
 				window.location.href = "/#bd_detail?order_no=" + order_no;
 				//$location.path('bd_detail').search({
 				//	order_no: order_no
