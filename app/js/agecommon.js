@@ -2,7 +2,7 @@
  * @Author: fanzhang
  * @Date:   2016-08-04 13:59:59
  * @Last Modified by:   fanzhang
- * @Last Modified time: 2016-08-05 20:14:32
+ * @Last Modified time: 2016-08-11 21:30:06
  */
 
 'use strict';
@@ -131,6 +131,7 @@ window.AgeComponent = (function() {
 				var clientX  = event.touches ? event.changedTouches[0].clientX : event.clientX;
 				var eventDis = clientX - startX;
 				_this.transFormX = resetLeft(_this.transFormX + eventDis * 0.8);
+				_this.setPosition(_this.transFormX);
 				dragging = false;
 			}
 	

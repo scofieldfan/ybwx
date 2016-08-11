@@ -1440,11 +1440,32 @@ mainControllers.controller('ybwxTargetCtrl', ['$scope', '$filter', '$routeParams
 /*一键提升==资料设定*/
 mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
-		/*if($scope.showMask =25){
-			util.showToast($rootScope, "目前仅支持25-45岁投保");
-		}*/
-		console.log("$scope.age");
-		console.log($scope.showMask);
+		var ageComponent = new AgeComponent({
+			containerId: "ageContainer",
+			minAge: 25,
+			maxAge: 45,
+			startAge: 30,
+			yearDis: 7.5,
+			changeCallback: function(age) {
+				$("#ageId").html(age);
+				// if(age == 25 || age == 45){
+				// 	util.showToastJQ("目前仅支持25岁-45岁");
+				// }
+			}
+		});
+		var yearIncome = new AgeComponent({
+			containerId: "yearIncome",
+			minAge: 10,
+			maxAge: 40,
+			startAge: 20,
+			yearDis: 7.5,
+			changeCallback: function(yearIncomeId) {
+				$("#yearIncomeId").html(yearIncomeId);
+				// if(yearIncomeId == 10 || yearIncomeId == 40){
+				// 		util.showToastJQ("目前仅支持10万-40万");
+				// }
+			}
+		});
 		$scope.goHobby = function() {
 			$scope.primary_income = $(".primary_income").is(':checked') ? false : true;
 			$scope.sex = parseInt($(".sex").is(':checked') ? 2 : 1);
@@ -1472,30 +1493,29 @@ mainControllers.controller('ybwxHobbyCtrl', ['$scope', '$filter', '$routeParams'
 				"open_id": openId
 			}, function(res) {
 				$scope.data = res.data.data.questions;
-				// console.log(res);
-				$scope.setId = function($event) {
-					$($event.target).toggleClass("blue");
-					$($event.target).find("img").toggle();
-				}
-				$scope.goScheme = function() {
-					$scope.piont_type = parseInt($(".piont_type").is(':checked') ? 2 : 1);
-					$ele = $("#relation").find(".blue");
-					for (i = 0; i < $ele.length; i++) {
-						questions.push(parseInt($($ele[i]).attr("data-main")));
-					}
-					// console.log(questions);
-					console.log("type,type,type,type,");
-					console.log($scope.piont_type);
-					$location.path("/scheme").search({
-						relation: $routeParams.relation,
-						primary_income: $routeParams.primary_income,
-						sex: $routeParams.sex,
-						age: $routeParams.age,
-						income: $routeParams.income,
-						piont_type: $scope.piont_type,
-						questions: JSON.stringify($scope.questions)
-					});
-				}
+
+
+			});
+		}
+		$scope.setId = function($event) {
+			$($event.target).toggleClass("blue");
+			$($event.target).find("img").toggle();
+		}
+		$scope.goScheme = function() {
+			$scope.piont_type = parseInt($(".piont_type").is(':checked') ? 2 : 1);
+			$ele = $("#relation").find(".blue");
+			var questions = [];
+			for (i = 0; i < $ele.length; i++) {
+				questions.push(parseInt($($ele[i]).attr("data-main")));
+			}
+			$location.path("/scheme").search({
+				relation: $routeParams.relation,
+				primary_income: $routeParams.primary_income,
+				sex: $routeParams.sex,
+				age: $routeParams.age,
+				income: $routeParams.income,
+				piont_type: $scope.piont_type,
+				questions: JSON.stringify(questions)
 			});
 		}
 	}
@@ -1702,9 +1722,29 @@ mainControllers.controller('ybwxKeySolutionCtrl', ['$scope', '$filter', '$routeP
 		$scope.return = function() {
 			//userinfo_new?relation=1
 			$location.path('/userinfo_new').search({
-				'type': $routeParams.type
+				relation: $routeParams.relation
 			});
 		}
+		$scope.getTaoCanStatus = util.getTaoCanStatus;
+		$scope.getInsuranceCNname = function() {
+			return insureanceCNMap[$routeParams.type];
+		}
+		var taocan_css = {
+			1: "",
+			2: "unsell",
+			3: "selled",
+			4: "selled",
+			5: "selled",
+			6: "unsell",
+			7: "unsell",
+			8: "unsell",
+			9: "unsell"
+		}
+
+		$scope.get_taocan_css = function(status) {
+			return taocan_css[status];
+		}
+
 		$scope.goInfo = function() {
 			_hmt.push(['_trackEvent', 'solution', 'solution_subBtn']);
 
