@@ -8,7 +8,7 @@
 	margin-bottom: 49px;
 	.scheme-head {
 		line-height: 49px;
-		border-bottom: 1px solid #e2e2e2;
+		@include border(0 0 1px 0,#e2e2e2);
 		font-size: 18px;
 		text-align: center;
 	}
@@ -32,7 +32,7 @@
 		.main-head {
 			font-size: 18px;
 			height: 59.5px;
-		    border-bottom: 1px solid #e2e2e2;
+			@include border(0 0 1px 0,#e2e2e2);
 			text-align: center;
 			line-height: 59.5px;
 			color: #555;
@@ -45,7 +45,7 @@
 		.main_word {
 			padding: 20px 30px;
 			background: #fff;
-			border-bottom: 1px solid #e2e2e2;
+			@include border(0 0 1px 0,#e2e2e2);
 			.main_top {
 				font-size: 15px;
 				margin-bottom: 5px;
@@ -71,7 +71,7 @@
 	.marBtn {
 		height: 10px;
 		background: #f5f5f5;
-		border-top: 1px solid #e2e2e2;
+		@include border(1px 0 0 0,#e2e2e2);
 	}
 }
 .scheme_btn {
@@ -79,11 +79,11 @@
 	height: 49px;
 	background: #006ee9;
 	font-size: 15px;
-	color: #fff;
+	color: #fff;@include border(1px 0 0 0,#e2e2e2);
 	line-height: 49px;
 	text-align: center;
 	position: fixed;
 	left: 0;
 	bottom: 0;
-	border-top: 1px solid #ccc;
+	z-index: 99999;
 }

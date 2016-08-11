@@ -1,4 +1,5 @@
-<link rel="stylesheet" href="css/scheme.css?rev=ac0e31e6a2cdafcbd9e52da900c78dce">
+
+<link rel="stylesheet" href="css/scheme.css?rev=5f535b50cd36b974a390e5d06c1cfc1f">
 <div class="scheme-contrller" data-ng-init="init()"  cg-busy="schemaPromise">
 	
 	<div class="main-contrller">
@@ -11,7 +12,7 @@
 	<div class="main-contrller" ng-repeat="item in data.items">
 		<div class="main-head">{{item.insureType}}</div>
 		<div class="main_word" ng-repeat="explains in item.explains">
-			<div class="main_top" ><img src="img/scheme/gou_dun.png"><span class="orange">{{explains.name}}</span>{{explains.title}}</div>
+			<div class="main_top" ><img src="img/scheme/gou_dun.png"><span class="orange" style="margin-right: 10px;">{{explains.name}}</span>{{explains.title}}</div>
 			<div class="zi">{{explains.content}}</div>
 		</div>
 		<div class="marBtn"></div>
