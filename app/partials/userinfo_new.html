@@ -1,6 +1,6 @@
 
 <link rel="stylesheet" href="css/userinfo.css">
-<link rel="stylesheet" href="css/userinfo_new.css?rev=da412b77aabef9c9eac2d32ffac6e725">
+<link rel="stylesheet" href="css/userinfo_new.css?rev=338e40672c1ed0db458ad140929b85fc">
 <div class="userinfo_new"> 
 	<div class="setting">设定被保人资料</div> 
 	<div class=" highest">是否家庭收入主要贡献者</div>
@@ -12,7 +12,7 @@
 	<div class="sex">性别</div>
 	<label class="switch needsclick">
 		<input class="switch-input sex needsclick" type="checkbox" />
-		<span class="switch-label needsclick" data-on="男" data-off="女"></span> 
+		<span class="switch-label one needsclick" data-on="男" data-off="女"></span> 
 		<span class="switch-hand"></span> 
 	</label>
 	<div class="age">年 龄<span class="blue" id="ageId">0</span><span class="blue">岁</span></div>
@@ -24,6 +24,12 @@
 		<div id="pointer" class="needle" ><a></a></div>
 	</div> -->
 </div>
+<div class="mask " id="popup">
+			<div class="toast" id="popup-container" style="overflow: hidden;position: relative;height:300px;">
+				<div id="popup-data" >
+				</div>	
+			</div>
+			</div>
 <div class="target_btn" ng-click="goHobby()">下一步</div>
 
 <script type="text/javascript" src="js/ageComponent.js?rev=sdfsdsdfsd"></script>

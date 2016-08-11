@@ -1459,7 +1459,6 @@ mainControllers.controller('ybwxHobbyCtrl', ['$scope', '$filter', '$routeParams'
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 		$scope.init = function() {
 			var openId = sessionStorage.getItem("openId");
-			$scope.piont_type = parseInt($(".piont_type").is(':checked') ? 2 : 1);
 			var questions = [];
 			$scope.questions = questions;
 			$scope.hobbyPromise = getHttpPromise($http, $rootScope, 'POST', api['get_scheme_questions'], {
@@ -1472,6 +1471,7 @@ mainControllers.controller('ybwxHobbyCtrl', ['$scope', '$filter', '$routeParams'
 					$($event.target).find("img").toggle();
 				}
 				$scope.goScheme = function() {
+					$scope.piont_type = parseInt($(".piont_type").is(':checked') ? 2 : 1);
 					$ele = $("#relation").find(".blue");
 					for (i = 0; i < $ele.length; i++) {
 						questions.push(parseInt($($ele[i]).attr("data-main")));

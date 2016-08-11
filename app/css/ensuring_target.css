@@ -30,18 +30,31 @@ body {
       -webkit-flex-direction: column;
       flex-direction: column; }
     .target_ctrl .relation .column_btn {
+      position: relative;
       font-size: 17px;
       margin: 0 auto;
       width: 90px;
       height: 90px;
       line-height: 90px;
       background: #fff;
-      border: 1px solid #e2e2e2;
       border-radius: 50%;
-      -webkit-background-clip: padding-box !important;
-      background-clip: padding-box !important;
       box-sizing: border-box;
       margin-bottom: 25px; }
+    .target_ctrl .relation .column_btn:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      border: 1px solid #e2e2e2;
+      border-radius: 50%;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      width: 200%;
+      height: 200%;
+      -webkit-transform: scale(0.5);
+      transform: scale(0.5);
+      -webkit-transform-origin: left top;
+      transform-origin: left top; }
     .target_ctrl .relation .blue {
       color: #fff;
       background: #55a5ff;
