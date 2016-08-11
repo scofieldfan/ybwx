@@ -8,11 +8,12 @@ body {
 }
 /* 一键提升保障方案start*/
 .key_head {
-	padding: 15px 10px;
+	padding: 15px .2rem;
 	color: #555;
 	font-size: 13px;
 	background: #fff;
 	line-height: normal;
+	@include border(0 0 1px 0,#ccc);
 	.model {font-size: 15px;font-weight: bold;
 		.anew {
 			display: inline-block;
