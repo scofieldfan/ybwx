@@ -1461,9 +1461,8 @@ mainControllers.controller('ybwxHobbyCtrl', ['$scope', '$filter', '$routeParams'
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 		$scope.init = function() {
 			var openId = sessionStorage.getItem("openId");
-			
-			var questions = [];
-			$scope.questions = questions;
+
+
 			$scope.hobbyPromise = getHttpPromise($http, $rootScope, 'POST', api['get_scheme_questions'], {
 				"open_id": openId
 			}, function(res) {
@@ -1479,6 +1478,7 @@ mainControllers.controller('ybwxHobbyCtrl', ['$scope', '$filter', '$routeParams'
 		$scope.goScheme = function() {
 			$scope.piont_type = parseInt($(".piont_type").is(':checked') ? 2 : 1);
 			$ele = $("#relation").find(".blue");
+			var questions = [];
 			for (i = 0; i < $ele.length; i++) {
 				questions.push(parseInt($($ele[i]).attr("data-main")));
 			}
@@ -1489,7 +1489,7 @@ mainControllers.controller('ybwxHobbyCtrl', ['$scope', '$filter', '$routeParams'
 				age: $routeParams.age,
 				income: $routeParams.income,
 				piont_type: $scope.piont_type,
-				questions: JSON.stringify($scope.questions)
+				questions: JSON.stringify(questions)
 			});
 		}
 	}
