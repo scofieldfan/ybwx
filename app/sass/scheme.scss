@@ -13,6 +13,10 @@
 		text-align: center;
 	}
 	.img_ctrl {
+		min-height: 3.15rem;
+		@include flexbox;
+		@include justify-content(center);
+		@include align-items(center);
 		img {
 			width: 100%;
 			border: none;
@@ -50,8 +54,9 @@
 			.main_top {
 				font-size: 15px;
 				margin-bottom: 5px;
-				img {
-					width: 13.5px;
+				i {
+					// display: inline-block;
+					font-size: 18px;
 					margin-right: 5px;vertical-align: -1px;
 				}
 			}

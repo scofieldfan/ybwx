@@ -316,12 +316,15 @@ mainControllers.controller('ybwxPromoteCtrl', ['$scope', '$routeParams', '$locat
 		_hmt.push(['_trackPageview', $location.path()]);
 		$scope.goSelect = function(type) {
 			window.location = ("#/select?type=" + type);
+			_hmt.push(['_trackEvent', 'Promote', 'goSelect_' + type]);
 		}
-		$scope.goContinue = function() {
+		$scope.goContinue = function(kong) {
 			$location.path('/continue');
+			_hmt.push(['_trackEvent', 'Promote', 'goContinue_' + kong]);
 		}
 		$scope.goTarget = function() {
 			$location.path("/target");
+			_hmt.push(['_trackEvent', 'Promote', 'goTarget']);
 		}
 	}
 ])
@@ -1425,10 +1428,14 @@ mainControllers.controller('ybwxTargetCtrl', ['$scope', '$filter', '$routeParams
 			$(this).addClass("blue");
 			$scope.relation = $(this).attr("data-relation");
 		});
+		$scope.clickBtn = function(type) {
+			_hmt.push(['_trackEvent', 'Target', 'clickBtn_'+type]);
+		}
 		$scope.goUserInfoNew = function() {
 			$location.path("/userinfo_new").search({
 				relation: $scope.relation
 			});
+			_hmt.push(['_trackEvent', 'Target', 'goUserInfoNew']);
 			console.log($scope.relation);
 		}
 	}
@@ -1453,7 +1460,7 @@ mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeP
 		var yearIncome = new AgeComponent({
 			containerId: "yearIncome",
 			minAge: 10,
-			maxAge: 40,
+			maxAge: 50,
 			startAge: 20,
 			yearDis: 7.5,
 			changeCallback: function(yearIncomeId) {
@@ -1463,6 +1470,12 @@ mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeP
 				// }
 			}
 		});
+		$scope.yes_no = function() {
+			_hmt.push(['_trackEvent', 'UserInfoNew', 'sex']);
+		}
+		$scope.sex = function() {
+			_hmt.push(['_trackEvent', 'UserInfoNew', 'yes_no']);
+		}
 		$scope.goHobby = function() {
 			$scope.primary_income = $(".primary_income").is(':checked') ? false : true;
 			$scope.sex = parseInt($(".sex").is(':checked') ? 2 : 1);
@@ -1475,6 +1488,7 @@ mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeP
 				age: $scope.age,
 				income: $scope.income
 			});
+			_hmt.push(['_trackEvent', 'UserInfoNew', 'goHobby']);
 		}
 	}
 ]);
@@ -1493,6 +1507,7 @@ mainControllers.controller('ybwxHobbyCtrl', ['$scope', '$filter', '$routeParams'
 		$scope.setId = function($event) {
 			$($event.target).toggleClass("blue");
 			$($event.target).find("img").toggle();
+			_hmt.push(['_trackEvent', 'hobby', 'setId']);
 		}
 		$scope.goScheme = function() {
 			$scope.piont_type = parseInt($(".piont_type").is(':checked') ? 2 : 1);
@@ -1510,6 +1525,7 @@ mainControllers.controller('ybwxHobbyCtrl', ['$scope', '$filter', '$routeParams'
 				piont_type: $scope.piont_type,
 				questions: JSON.stringify(questions)
 			});
+			_hmt.push(['_trackEvent', 'hobby', 'goScheme']);
 		}
 	}
 ]);
@@ -1546,6 +1562,7 @@ mainControllers.controller('ybwxSchemeCtrl', ['$scope', '$filter', '$routeParams
 				relation: $routeParams.relation,
 				scheme_id: $scope.scheme_id
 			});
+			_hmt.push(['_trackEvent', 'scheme', 'goKeySolution']);
 		}
 	}
 ]);
@@ -1632,13 +1649,13 @@ mainControllers.controller('ybwxKeySolutionCtrl', ['$scope', '$filter', '$routeP
 				$(element).find("span").html("收起");
 				$(element).attr("data-switch", "off");
 				$(element).find("div").addClass("up");
-				_hmt.push(['_trackEvent', 'solution', 'solution_unfold']);
+				_hmt.push(['_trackEvent', 'keySolution', 'keySolution_unfold']);
 			} else {
 				$(element).siblings(".table-wrapper").find("tr:gt(" + num + ")").hide();
 				$(element).find("span").html("查看更多");
 				$(element).attr("data-switch", "on");
 				$(element).find("div").removeClass("up");
-				_hmt.push(['_trackEvent', 'solution', 'solution_fold']);
+				_hmt.push(['_trackEvent', 'keySolution', 'keySolution_fold']);
 			}
 		}
 
@@ -1648,10 +1665,10 @@ mainControllers.controller('ybwxKeySolutionCtrl', ['$scope', '$filter', '$routeP
 				plan.unchecked = !plan.unchecked;
 				$scope.choosePlan();
 			}
-
+			_hmt.push(['_trackEvent', 'keySolution', 'keySolution_gou']);
 		}
 		$scope.choosePlan = function() {
-			_hmt.push(['_trackEvent', 'solution', 'solution_choose']);
+			_hmt.push(['_trackEvent', 'keySolution', 'keySolution_choose']);
 			var filteredPlans = $scope.data.plans.filter(function(item) {
 				return item.status === 1 && !item.unchecked;
 			});
@@ -1680,7 +1697,7 @@ mainControllers.controller('ybwxKeySolutionCtrl', ['$scope', '$filter', '$routeP
 					$location.path('/temaidetail').search({
 						product_id: plan.insurance_id
 					});
-					_hmt.push(['_trackEvent', 'solution', 'solution_goDetail']);
+					_hmt.push(['_trackEvent', 'keySolution', 'keySolution_goDetail']);
 
 				}
 			} else {
@@ -1695,7 +1712,7 @@ mainControllers.controller('ybwxKeySolutionCtrl', ['$scope', '$filter', '$routeP
 				} else {
 					window.location.href = plan.official_site;
 				}
-				_hmt.push(['_trackEvent', 'solution', 'solution_goDetail']);
+				_hmt.push(['_trackEvent', 'keySolution', 'keySolution_goDetail']);
 			}
 		}
 
@@ -1717,6 +1734,7 @@ mainControllers.controller('ybwxKeySolutionCtrl', ['$scope', '$filter', '$routeP
 			$location.path('/userinfo_new').search({
 				relation: $routeParams.relation
 			});
+			_hmt.push(['_trackEvent', 'keySolution', 'reuturn']);
 		}
 		$scope.getTaoCanStatus = util.getTaoCanStatus;
 		$scope.getInsuranceCNname = function() {
@@ -1739,7 +1757,7 @@ mainControllers.controller('ybwxKeySolutionCtrl', ['$scope', '$filter', '$routeP
 		}
 
 		$scope.goInfo = function() {
-			_hmt.push(['_trackEvent', 'solution', 'solution_subBtn']);
+			_hmt.push(['_trackEvent', 'keySolution', 'keySolution_subBtn']);
 
 
 			if ($scope.canNotBuyPlans.length === $scope.data.plans.length) {
