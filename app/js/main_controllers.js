@@ -1505,10 +1505,15 @@ mainControllers.controller('ybwxHobbyCtrl', ['$scope', '$filter', '$routeParams'
 			});
 		}
 		$scope.setId = function($event) {
-			$($event.target).toggleClass("blue");
-			$($event.target).find("img").toggle();
+			if($($event.target).hasClass("hobby_btn")){
+				$($event.target).toggleClass("blue");
+				$($event.target).find("img").toggle();
+			}
 			_hmt.push(['_trackEvent', 'hobby', 'setId']);
-		}
+		}	
+		// $(".promoteImg").click(function(event){
+	 //        event.stopPropagation();
+	 //    });
 		$scope.goScheme = function() {
 			$scope.piont_type = parseInt($(".piont_type").is(':checked') ? 2 : 1);
 			$ele = $("#relation").find(".blue");
