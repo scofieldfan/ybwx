@@ -1,9 +1,18 @@
-<!-- <link rel="stylesheet" href="wx_share/css/index.css?rev=10ee93e35caeab6c5d3d7b887c5c5efb"> -->
+<link rel="stylesheet" href="wx_share/css/index.css?rev=10ee93e35caeab6c5d3d7b887c5c5efb">
 <div class="my_bd_controller">
-	<ul class="layout ul_contrl">
+	<ul class="layout ul_contrl" ng-show="qd!='mocup'">
 		<li >
 			<p>诺贝保险管家</p>
 			<p>助您出行无忧</p>
+		</li>
+		<li></li>
+		<li></li>
+	</ul >
+
+	<ul class="layout ul_contrl"  ng-show="qd=='mocup'">
+		<li >
+			<p>MO CUP & 诺贝</p>
+			<p>送给<strong>War3</strong>爱好者的福利</p>
 		</li>
 		<li></li>
 		<li></li>
@@ -40,7 +49,7 @@
 				<p>3.有效期：2016.06.24 ~ 12.24</p>
 			</div>
 			<div class="two_code right">
-				<img src="wx_share/img/my_bd/erweima.jpg">
+				<img src="wx_share/img/my_bd/newqrcode.png">
 			</div>
         </div>
 	</div>
@@ -55,7 +64,7 @@
 	<div class="ku" id="popup"></div>
 	<div class="popup_box">
 		<div style="position:relative;">
-			<img id="popup-img"  src="wx_share/img/my_bd/mask.png">
+			<img id="popup-img"  src="wx_share/img/my_bd/newmask.png">
 		    <div class="popup_btn" id="popup-btn"><img src="wx_share/img/my_bd/mask_btn.png" ></div>
 		</div>
 	</div>

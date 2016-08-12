@@ -27,7 +27,7 @@ function getHttpPromise($http, $rootScope, method, url, data, callback) {
 	if (!data["open_id"]) {
 		data["open_id"] = openId;
 	}
-	data['wechat_type'] = 1;
+	data['wechat_type'] = 2;
 	return $http({
 		method: method,
 		headers: {
@@ -226,7 +226,7 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 					var shareDesc = "仅需1杯咖啡的花费即可享受1年500万航空意外的保障！";
 					var shareImg = "/wx_share/img/share_s.png";
 
-					var shareLink = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri=' + encodeURIComponent(shareUrl) + '&response_type=code&scope=snsapi_base&state=123#wechat_redirect';
+					var shareLink = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri=' + encodeURIComponent(shareUrl) + '&response_type=code&scope='+util.shareScope+'&state=123#wechat_redirect';
 					wx.onMenuShareTimeline({
 						title: shareTitle,
 						link: shareLink,
@@ -588,6 +588,9 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 	function($scope, $routeParams, $http, $location, $rootScope) {
 
 		var qd = util.getParameterByName("qd") || $routeParams.qd || 'default';
+
+		$scope.qd = qd;
+
 		_hmt.push(['_trackPageview', '/wx_share_index']);
 		_hmt.push(['_setCustomVar', 1, 'hangkong_qudao', qd, 1]);
 		//_hmt.push(['_trackPageview', '/wx_share_index'+"_qd_"+qd]);
