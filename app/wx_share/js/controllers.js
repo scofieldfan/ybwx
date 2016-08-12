@@ -588,6 +588,9 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 	function($scope, $routeParams, $http, $location, $rootScope) {
 
 		var qd = util.getParameterByName("qd") || $routeParams.qd || 'default';
+
+		$scope.qd = qd;
+
 		_hmt.push(['_trackPageview', '/wx_share_index']);
 		_hmt.push(['_setCustomVar', 1, 'hangkong_qudao', qd, 1]);
 		//_hmt.push(['_trackPageview', '/wx_share_index'+"_qd_"+qd]);
