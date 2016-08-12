@@ -73,9 +73,10 @@ body {
     line-height: 20px; }
   .key_head .fa {
     color: #999; }
-  .key_head img {
-    width: 15px;
-    vertical-align: -3px; }
+  .key_head i {
+    font-size: 18px;
+    vertical-align: -2px;
+    color: #55a5ff; }
 .header {
   background-color: #006ee9;
   color: #fff;

@@ -91,7 +91,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/hobby.html',
       controller: 'ybwxHobbyCtrl',
       title: "偏好设定",
-      css: 'css/preference.css?rev=dgfdgdfgdfgdfg65fdgfd'
+      // css: 'css/preference.css?rev=dgfdgdfgdfgdfg65fdgfd'
     }).when('/userinfo_new', {
       templateUrl: 'partials/userinfo_new.html',
       controller: 'ybwxUserInfoNewCtrl',

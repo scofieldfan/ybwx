@@ -1,9 +1,9 @@
-<link rel="stylesheet" href="css/scheme.css?rev=38e0f04c64f045b1a851e5179e6d60f0">
+<link rel="stylesheet" href="css/scheme.css?rev=rereyr">
 <div class="scheme-contrller" data-ng-init="init()"  cg-busy="schemaPromise">
 	
 	<div class="main-contrller">
 		<div class="scheme-head">{{data.scheme_name}}</div>
-		<div class="img_ctrl"><img error-src="img/scheme/loading.png" ng-src="{{data.model_image_url}}"></div>
+		<div class="img_ctrl"><img  ng-src="{{data.model_image_url}}" onerror="this.src='img/scheme/loading.png'" src=""></div>
 		<div class="scheme_word">{{data.description}}</div>
 		<div class="marBtn"></div>
 	</div>
@@ -11,7 +11,7 @@
 	<div class="main-contrller" ng-repeat="item in data.items">
 		<div class="main-head">{{item.insureType}}</div>
 		<div class="main_word" ng-repeat="explains in item.explains">
-			<div class="main_top" ><img src="img/scheme/gou_dun.png"><span class="orange" style="margin-right: 10px;">{{explains.name}}</span>{{explains.title}}</div>
+			<div class="main_top" ><i class="iconfont" style="color: #ff5c00;">&#xe601;</i><span class="orange" style="margin-right: 10px;">{{explains.name}}</span>{{explains.title}}</div>
 			<div class="zi">{{explains.content}}</div>
 		</div>
 		<div class="marBtn"></div>

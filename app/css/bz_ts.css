@@ -85,6 +85,9 @@
       width: 30px;
       box-sizing: border-box;
       padding-top: 3px; }
+      .promote_ctrl .promote_main .main_word .logo_ctrl i {
+        font-size: 30px;
+        line-height: 30px; }
     .promote_ctrl .promote_main .main_word .main_head {
       font-size: 16px;
       color: #555;

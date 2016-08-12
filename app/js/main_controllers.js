@@ -1564,17 +1564,6 @@ mainControllers.controller('ybwxSchemeCtrl', ['$scope', '$filter', '$routeParams
 			});
 			_hmt.push(['_trackEvent', 'scheme', 'goKeySolution']);
 		}
-		//默认图片
-		// $scope.directive('errorSrc', function () {
-	 //        var errorSrc = {
-	 //        	link: function postLink(scope, element, attrs) {
-		// 			element.bind('error', function() {
-		//                 angular.element(this).attr("src", attrs.errorSrc);
-		//             });
-		// 		}
-		// 	}
-		// 	return errorSrc;
-		// });
 	}
 ]);
 /*一键提升==保障方案*/
