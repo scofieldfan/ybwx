@@ -1440,7 +1440,6 @@ mainControllers.controller('ybwxTargetCtrl', ['$scope', '$filter', '$routeParams
 /*一键提升==资料设定*/
 mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
-
 		var ageComponent = new AgeComponent({
 			containerId: "ageContainer",
 			minAge: 25,
@@ -1467,7 +1466,6 @@ mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeP
 				// }
 			}
 		});
-
 		$scope.goHobby = function() {
 			$scope.primary_income = $(".primary_income").is(':checked') ? false : true;
 			$scope.sex = parseInt($(".sex").is(':checked') ? 2 : 1);

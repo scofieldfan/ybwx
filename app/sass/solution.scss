@@ -21,13 +21,30 @@ body {
 			height: 30px;
 			box-sizing: border-box;
 			width: 70px;
-			border: 1px solid #ccc;
+			// border: 1px solid #ccc;
 			border-radius: 5px;
 			font-size: 13px;
 			line-height: 30px;
 			text-align: center;
 			color: #006ee9;
 			font-weight: normal;
+			position: relative;
+		}
+		.anew:after {
+			content: '';
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    border: 1px solid #ccc;
+		    border-radius: 5px;
+		    -webkit-box-sizing: border-box;
+		    box-sizing: border-box;
+		    width: 200%;
+		    height: 200%;
+		    -webkit-transform: scale(0.5);
+		    transform: scale(0.5);
+		    -webkit-transform-origin: left top;
+		    transform-origin: left top;
 		}
 	}
 	.wz {
@@ -150,7 +167,8 @@ body {
 	background-color: #fff;
 	height:45px;
 	line-height:45px;
-	border-bottom:1px solid #e2e2e2;
+	// border-bottom:1px solid #e2e2e2;
+	@include border(0 0 1px 0,#e2e2e2);
 	font-size: 15px;
 }
 
