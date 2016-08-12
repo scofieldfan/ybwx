@@ -86,17 +86,17 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/target.html',
       controller: 'ybwxTargetCtrl',
       title: "保障对象",
-      css: 'css/ensuring_target.css'
+      css: 'css/ensuring_target.css?rev=sdgfdgfdgdfgfgfdgfd'
     }).when('/hobby', {
       templateUrl: 'partials/hobby.html',
       controller: 'ybwxHobbyCtrl',
       title: "偏好设定",
-      css: 'css/preference.css'
+      css: 'css/preference.css?rev=dgfdgdfgdfgdfg65fdgfd'
     }).when('/userinfo_new', {
       templateUrl: 'partials/userinfo_new.html',
       controller: 'ybwxUserInfoNewCtrl',
       title: "资料设定",
-      css: 'css/userinfo_new.css'
+      css: 'css/userinfo_new.css?rev=sdfsdfdsfdsdjfigfuyh'
     }).when('/scheme', {
       templateUrl: 'partials/scheme.html',
       controller: 'ybwxSchemeCtrl',
@@ -106,7 +106,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/key_solution.html',
       controller: 'ybwxKeySolutionCtrl',
       title: "保障方案",
-      css: 'css/solution.css?rev=2882efe1d9c1f2d8a3301e0c07563501'
+      css: 'css/solution.css?rev=sdfsdfdsfsdfds'
     }).when('/service', {
       templateUrl: 'partials/service.html',
       controller: 'ybwxServiceCtrl',
