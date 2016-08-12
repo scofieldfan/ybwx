@@ -182,7 +182,7 @@ function getHttpPromise($http, $rootScope, method, url, data, callback) {
 	if (!data["open_id"]) {
 		data["open_id"] = openId;
 	}
-	data["wechat_type"] = 1;
+	data["wechat_type"] = 2;
 	return $http({
 		method: method,
 		headers: {
