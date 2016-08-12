@@ -66,10 +66,8 @@ function submitBd($scope, $http, $location, $filter) {
 		mobile: $scope.user.mobile,
 		insure_date: insuranceDate
 	};
-	// if ($scope.coupon_id == 2) {
 	postData["flight_no"] = $scope.user.flight_no;
-	// }
-	postData['wechat_type'] = 1;
+	postData['wechat_type'] = 2;
 	return $http({
 		method: 'POST',
 		headers: {
@@ -147,43 +145,6 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 				}
 				console.log(res);
 			});
-			/*
-			$http({
-				method: 'POST',
-				headers: {
-					"Content-Type": "application/json;charset:UTF-8"
-				},
-				url: api['addCoupon'],
-				data: {
-					"open_id": openId,
-					"r_open_id": recId,
-					"coupon_id": "4"
-				}
-			}).then(function(res) {
-				console.log(res);
-				if (res.data && res.data.description) {
-					$("#pop").show();
-					$("#popup").click(function() {
-						$("#pop").hide();
-					});
-					$("#popup-btn").click(function() {
-						$("#pop").hide();
-					});
-					// util.showToast($rootScope, res.data.description);
-				}
-				// util.showToast($rootScope,res.data.description);
-				if (res.data.code == 0) {
-					$location.path('/success_coupon/').search({
-						count: (res.data.data["coupon_counts"] + 1)
-					});
-				}
-				console.log(res);
-			}, function(res) {
-				console.log(res);
-				util.showToast($rootScope, "服务器错误");
-			});*/
-
-
 
 		}
 		$scope.showShareTip = function() {
@@ -228,12 +189,30 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 					$scope.isShare = res.data.data.status;
 				});
 			});
-
+			util.share({
+				shareUrl: util.domain + "wx_share.html#/special",
+				shareImg: "/wx_share/img/share_s.png",
+				shareTitle: "还在买捆绑的30元一次的航意险？在这里500万保一年无限次仅需40元！",
+				shareDesc: "仅需1杯咖啡的花费即可享受1年500万航空意外的保障！",
+				successCallback: function() {
+					var openId = sessionStorage.getItem("openId");
+					$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['share_callback'], {
+						"open_id": openId,
+						"insurance_plan_id": 72
+					}, function(res) {
+						//$("#special_share").html("点击即可优惠购买");
+						$scope.isShare = true;
+						util.showToast($rootScope, "分享成功，恭喜您获得优惠购买的机会！");
+					});
+				}
+			});
+			/*
 			$.when($.ajax({
 				type: 'GET',
 				url: "/ybwx-web/wechat/js_signature",
 				data: {
-					"url": location.href.split('#')[0]
+					"url": location.href.split('#')[0],
+					type: 2
 				},
 				dataType: "json"
 			})).done(function(res) {
@@ -290,7 +269,7 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 				wx.error(function(res) {
 					_hmt.push(['_trackEvent', 'wechat_error', res]);
 				});
-			})
+			})*/
 
 		};
 		$scope.original = function() {
@@ -386,8 +365,6 @@ wxShareControllers.controller('wxMoneyBdCtrl', ['$scope', '$filter', '$routePara
 
 					$("#loadingToast").hide();
 					//存储用户信息
-
-
 					if (res.data.code === 0) {
 						var orderId = res.data.data.order_no; //支付
 						var payRequest = {
@@ -488,17 +465,10 @@ wxShareControllers.controller('wxShareBdCtrl', ['$scope', '$filter', '$routePara
 		}
 		$scope.genInEffectiveDate = function() {
 			//计算失效日期
-			//console.log("test ineffective Date.........");
-			//console.log($scope.user.insurance_date);
+
 			var testDate = new Date();
 			$scope.user.inEnd_date = addDays($scope.user.insurance_date, 3);
-			/*if ($scope.minDate>$scope.user.insurance_date>$scope.maxDate) {
-				testDate.setDate(testDate.getDate() + 4);
-				$scope.user.inEnd_date = testDate;
-			}
-            console.log($scope.minDate);
-		    console.log($scope.user.insurance_date);
-		    console.log($scope.minDate>$scope.user.insurance_date>$scope.maxDate);*/
+
 		};
 
 		$scope.submit = function() {
@@ -559,10 +529,6 @@ wxShareControllers.controller('wxShareBdCtrl', ['$scope', '$filter', '$routePara
 				}
 			}
 		}
-		// $('#birthday').focus(function() {
-		// 	this.type = 'date';
-		// 	// this.focus();
-		// })
 
 	}
 ]);
@@ -684,8 +650,6 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 					});
 				}
 			});
-
-
 
 		}
 		$scope.exchange = function() {
