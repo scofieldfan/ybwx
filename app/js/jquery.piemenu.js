@@ -429,7 +429,7 @@
                         // ctx.fillStyle = "#000";
                         // ctx.fillText("xe60a", center + iconX, center + iconY + 80 * options.radio);
 
-                       ctx.drawImage(this, center + iconX - iconW / 2, center + iconY - iconH / 2, iconW, iconH);
+                        ctx.drawImage(this, center + iconX - iconW / 2, center + iconY - iconH / 2, iconW, iconH);
                         ctx.textAlign = "center";
                         ctx.font = " normal  35px Arial,Microsoft YaHei";
                         ctx.fillStyle = "#6f6f6f";

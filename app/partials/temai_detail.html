@@ -82,12 +82,11 @@
 		<div class="head-container" sytle="height: 80%;">
 			<span class="close" id="close"></span>
 			<div class="fl ">
-				<div class="small_img_ctrl"><img ng-src="{{data.small_image}}" ></div>
+				<div class="small_img_ctrl"><img ng-src="{{data.small_image}}"  onerror="this.src='http://7xvrkw.com1.z0.glb.clouddn.com/default.png';this.onerror=null;" src=""></div>
 			</div>
 			<div class="fl">
 				<p >
 					<span  style="font-size:18px;color:#ff5c00;">{{money | number}}元</span>
-					
 				</p>
 				<p><span style="color: #ff5c00">*</span>最终购买价格</p>
 				<p>以被保险人身份信息测算为准</p>
