@@ -2,7 +2,7 @@
  * @Author: fanzhang
  * @Date:   2016-08-04 13:59:59
  * @Last Modified by:   fanzhang
- * @Last Modified time: 2016-08-11 21:30:06
+ * @Last Modified time: 2016-08-12 19:50:21
  */
 
 'use strict';
@@ -45,7 +45,8 @@ window.AgeComponent = (function() {
 		this.yearDis = config.yearDis || YEAR_DIS;
 		this.containerId = config.containerId || CONTAINER_ID;
 		this.changeCallback = config.changeCallback;
-
+		this.beyondLeftCallback = config.beyondLeftCallback;
+		this.beyondRightCallback = config.beyondRightCallback;
 		this.offset = WIDTH/2;//指针的偏移，默认在左边
 		this.age = this.startAge;//当前的年龄
 		this.maxLeft = 0;//最左边只能到指针的1半
@@ -101,6 +102,12 @@ window.AgeComponent = (function() {
 			$("#" + this.containerId).on("touchstart mousedown", touchStart).bind("touchmove mousemove", touchMove).bind("touchend mouseup", touchEnd);
 			function resetLeft(dis) {
 				var ret = dis;
+				if(ret<_this.minLeft && typeof  _this.beyondLeftCallback === "function"){
+					_this.beyondLeftCallback();
+				}
+				if(ret>_this.maxLeft && typeof _this.beyondRightCallback === "function" ){
+					_this.beyondRightCallback();
+				}
 				ret = ret < _this.minLeft ? _this.minLeft : ret;
 				ret = ret > _this.maxLeft ? _this.maxLeft : ret;
 				return ret;
