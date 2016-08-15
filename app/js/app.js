@@ -120,6 +120,9 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/contact.html',
       title: "联系我们",
       css: 'css/contact.css?rev=8e0e23f4630665fec18595ec646adb41'
+    }).when('/collection', {
+      templateUrl: 'partials/collection.html',
+      title: "我的收藏"
     }).when('/bz', {
       templateUrl: 'partials/bz_list.html?v=123',
       controller: 'ybwxBzCtrl',
