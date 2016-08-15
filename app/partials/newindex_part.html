@@ -1,27 +1,23 @@
 <div id="wrapper" class="wrapper"  data-ng-init="init()">
-<!-- <div class="gift" id="gift" ><i class="iconfont" style="color:#1e4e8e">&#xe618;</i></div> -->
-  <div id="pieChartContainer">
-    <div id="loadingContainer" >
-    </div>
+
+
+
+  <div class="dash">
+  <canvas id="dash_container" >
+   
+  </canvas>
   </div>
  
 
 
 
 
+<script type="text/javascript" src="js/dashboard.js"></script>
 
-
-<!--
-   <div calss="mag-container" style="position: fixed;left:0;bottom: 80px;">
-       <div class="cell_hd cell_primary">
-             <div class="cell-circle " ng-click="goBdMange()"><i class="iconfont" style="color:#99b8de">&#xe600;</i><div>保单管理</div></div>
-       </div>
-       <div class="cell_hd cell_primary">
-             <div class="cell-circle " ng-click="goPromote()"><i class="iconfont"  style="color:#99b8de">&#xe602;</i><div>保障提升</div></div>
-       </div>
- 	</div> 
-
--->
+  <script>
+    
+    var dashboard = new Dashboard();
+  </script>
 
 
 </div>

@@ -58,11 +58,16 @@ ybwxApp.config(['$routeProvider',
       controller: 'ybwxIndexCtrl',
       title: '诺贝保险管家',
       css:'css/index_part.css?rev=a47bd3748f61c7838f55363b681c5c84'
+    }).when('/newindex', {
+      templateUrl: 'partials/newindex_part.html?v=123',
+      controller: 'ybwxNewIndexCtrl',
+      title: '诺贝保险管家',
+      css:'css/newindex_part.css?rev=b78bcf095fa745b0e98f65b72b2ab42e'
     }).when('/bd_education_new', {
       templateUrl: 'partials/bd_education_new.html',
       controller: 'ybwxBdEducationNewCtrl',
       title: "保障评分",
-      css:'css/bd_education_new.css?rev=574f104fdb96a11a5b11c99936417f29'
+      css:'css/bd_education_new.css?rev=d41d8cd98f00b204e9800998ecf8427e'
     }).when('/select', {
       templateUrl: 'partials/select_part.html?v=123',
       controller: 'ybwxSelectCtrl',
@@ -86,7 +91,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/target.html',
       controller: 'ybwxTargetCtrl',
       title: "保障对象",
-      css:'css/ensuring_target.css?rev=3d6c009b82beaf6bf352dd8981713783'
+      css:'css/ensuring_target.css?rev=d41d8cd98f00b204e9800998ecf8427e'
     }).when('/hobby', {
       templateUrl: 'partials/hobby.html',
       controller: 'ybwxHobbyCtrl',

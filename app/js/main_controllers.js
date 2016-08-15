@@ -328,6 +328,14 @@ mainControllers.controller('ybwxPromoteCtrl', ['$scope', '$routeParams', '$locat
 		}
 	}
 ])
+
+mainControllers.controller('ybwxNewIndexCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $routeParams, $location, $http, $rootScope) {
+
+	}
+]);
+
+
 mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
