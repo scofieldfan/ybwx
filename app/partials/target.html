@@ -4,12 +4,13 @@
 	<div class="first">建议优先保障家庭收入的主要贡献者</div>
 	<div class="relation" id="relation">
 		<div class="column">
-			<div class="column_btn blue" data-relation="1" ng-click="clickBtn(1)">自 己</div>
-		    <div class="column_btn"  data-relation="4" ng-click="clickBtn(2)">配 偶</div>
+			<div class="column_btn blue linshi" data-relation="1" ng-click="clickBtn(1)">自 己</div>
+			<div class="column_btn no_up" style="background:#ccc" data-relation="2" ng-click="clickBtn(3)">父 母</div>
 		</div>
+
 		<div class="column">
-			<div class="column_btn"  data-relation="2" ng-click="clickBtn(3)">父 母</div>
-			<div class="column_btn"  data-relation="3" ng-click="clickBtn(4)">子 女</div>
+			 <div class="column_btn linshi"  data-relation="4" ng-click="clickBtn(2)">配 偶</div>
+			<div class="column_btn no_up" style="background:#ccc"  data-relation="3" ng-click="clickBtn(4)">子 女</div>
 		</div>
 	</div>
 	<div class="target_btn" ng-click="goUserInfoNew()">下一步</div>
