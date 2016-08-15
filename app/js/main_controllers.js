@@ -1528,7 +1528,7 @@ mainControllers.controller('ybwxHobbyCtrl', ['$scope', '$filter', '$routeParams'
 		$scope.init = function() {
 			var openId = sessionStorage.getItem("openId");
 			$scope.hobbyPromise = getHttpPromise($http, $rootScope, 'POST', api['get_scheme_questions'], {
-				"open_id": openId,
+				"open_id": openId
 				// "age": $routeParams.age
 			}, function(res) {
 				$scope.data = res.data.data.questions;
