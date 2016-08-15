@@ -1423,11 +1423,17 @@ mainControllers.controller('ybwxTargetCtrl', ['$scope', '$filter', '$routeParams
 		util.getOpenId(code).then(function() {
 
 		});
-		$("#relation .column .column_btn").click(function() {
-			$("#relation").find(".column_btn").removeClass("blue");
+		// 临时的后期还会变动 start
+		// $("#relation .column .column_btn").click(function() {
+		$("#relation .column .linshi").click(function() {
+			$("#relation").find(".linshi").removeClass("blue");
 			$(this).addClass("blue");
 			$scope.relation = $(this).attr("data-relation");
 		});
+		$("#relation .column .no_up").click(function() {
+			util.showToast($rootScope,"即将上线 敬请期待");
+		});
+		// end
 		$scope.clickBtn = function(type) {
 			_hmt.push(['_trackEvent', 'Target', 'clickBtn_'+type]);
 		}
@@ -1463,9 +1469,10 @@ mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeP
 				util.showToastJQ("目前仅支持25岁-45岁");
 			}
 		});
+
 		var yearIncome = new AgeComponent({
 			containerId: "yearIncome",
-			minAge: 10,
+			minAge: 5,
 			maxAge: 50,
 			startAge: 20,
 			yearDis: 7.5,
@@ -1474,14 +1481,24 @@ mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeP
 				// if(yearIncomeId == 10 || yearIncomeId == 40){
 				// 		util.showToastJQ("目前仅支持10万-40万");
 				// }
-			},
-			beyondLeftCallback:function(){
+				if( yearIncomeId == 5){
+					$("#sui").text("万及以下");
+				}
+				if( yearIncomeId == 50 ){
+					$("#sui").text("万及以上");
+				}
+				if(yearIncomeId !== 5 && yearIncomeId !== 50){
+					$("#sui").text("万");
+				}
+			}
+			/*beyondLeftCallback:function(){
 				util.showToastJQ("目前仅支持10万到50万");
 			},
 			beyondRightCallback:function(){
 				util.showToastJQ("目前仅支持10万-50万");
-			}
+			}*/
 		});
+		// console.log();
 		$scope.yes_no = function() {
 			_hmt.push(['_trackEvent', 'UserInfoNew', 'sex']);
 		}
@@ -1512,15 +1529,21 @@ mainControllers.controller('ybwxHobbyCtrl', ['$scope', '$filter', '$routeParams'
 			var openId = sessionStorage.getItem("openId");
 			$scope.hobbyPromise = getHttpPromise($http, $rootScope, 'POST', api['get_scheme_questions'], {
 				"open_id": openId
+				// "age": $routeParams.age
 			}, function(res) {
 				$scope.data = res.data.data.questions;
 			});
 		}
 		$scope.setId = function($event) {
-			$($event.target).toggleClass("blue");
-			$($event.target).find("img").toggle();
+			if($($event.target).hasClass("hobby_btn")){
+				$($event.target).toggleClass("blue");
+				$($event.target).find("img").toggle();
+			}
 			_hmt.push(['_trackEvent', 'hobby', 'setId']);
-		}
+		}	
+		// $(".promoteImg").click(function(event){
+	 //        event.stopPropagation();
+	 //    });
 		$scope.goScheme = function() {
 			$scope.piont_type = parseInt($(".piont_type").is(':checked') ? 2 : 1);
 			$ele = $("#relation").find(".blue");
