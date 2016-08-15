@@ -51,5 +51,8 @@ serviceControllers.controller('ybwxServiceCtrl', ['$scope', '$routeParams', '$lo
 		$scope.goNuobei = function() {
 			$location.path('/about_nuobei').search();
 		}
+		$scope.goCollection = function() {
+			$location.path('/collection').search();
+		}
 	}
 ]);
