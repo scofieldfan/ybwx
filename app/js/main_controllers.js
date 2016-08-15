@@ -1452,7 +1452,7 @@ mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeP
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 		var ageComponent = new AgeComponent({
 			containerId: "ageContainer",
-			minAge: 25,
+			minAge: 0,
 			maxAge: 45,
 			startAge: 30,
 			yearDis: 7.5,
@@ -1463,10 +1463,10 @@ mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeP
 				// }
 			},
 			beyondLeftCallback:function(){
-				util.showToastJQ("目前仅支持25岁-45岁");
+				util.showToastJQ("目前仅支持0岁-45岁");
 			},
 			beyondRightCallback:function(){
-				util.showToastJQ("目前仅支持25岁-45岁");
+				util.showToastJQ("目前仅支持0岁-45岁");
 			}
 		});
 
@@ -1528,8 +1528,8 @@ mainControllers.controller('ybwxHobbyCtrl', ['$scope', '$filter', '$routeParams'
 		$scope.init = function() {
 			var openId = sessionStorage.getItem("openId");
 			$scope.hobbyPromise = getHttpPromise($http, $rootScope, 'POST', api['get_scheme_questions'], {
-				"open_id": openId
-				// "age": $routeParams.age
+				"open_id": openId,
+				"age": $routeParams.age
 			}, function(res) {
 				$scope.data = res.data.data.questions;
 			});
