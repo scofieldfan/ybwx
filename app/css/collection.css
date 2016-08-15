@@ -12,7 +12,10 @@
     padding: 15px; }
     .collection-ctrl .plan .icon {
       width: 30px;
-      height: 58px; }
+      height: 58px;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      align-items: center; }
       .collection-ctrl .plan .icon i {
         font-size: 30px;
         color: #ff6652;

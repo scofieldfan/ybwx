@@ -12,6 +12,7 @@
 		.icon {
 			width: 30px;
 			height: 58px;
+			@include align-items(center);
 			i {
 				font-size: 30px;
 				color: #ff6652;
