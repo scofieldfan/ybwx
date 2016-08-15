@@ -1455,6 +1455,12 @@ mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeP
 				// if(age == 25 || age == 45){
 				// 	util.showToastJQ("目前仅支持25岁-45岁");
 				// }
+			},
+			beyondLeftCallback:function(){
+				util.showToastJQ("目前仅支持25岁-45岁");
+			},
+			beyondRightCallback:function(){
+				util.showToastJQ("目前仅支持25岁-45岁");
 			}
 		});
 		var yearIncome = new AgeComponent({
@@ -1468,6 +1474,12 @@ mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeP
 				// if(yearIncomeId == 10 || yearIncomeId == 40){
 				// 		util.showToastJQ("目前仅支持10万-40万");
 				// }
+			},
+			beyondLeftCallback:function(){
+				util.showToastJQ("目前仅支持10万到50万");
+			},
+			beyondRightCallback:function(){
+				util.showToastJQ("目前仅支持10万-50万");
 			}
 		});
 		$scope.yes_no = function() {
