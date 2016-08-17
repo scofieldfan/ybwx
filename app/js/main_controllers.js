@@ -333,10 +333,10 @@ mainControllers.controller('ybwxNewIndexCtrl', ['$scope', '$routeParams', '$loca
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
 		$scope.pannelId = 1;
-
-		$scope.goIndex = function($event) {
-			_hmt.push(['_trackEvent', 'index', 'goIndex_']);
+		$scope.goAutoPromote = function(){
+			$location.path('/target').search();
 		}
+		
 		$scope.goTemai = function($event) {
 			_hmt.push(['_trackEvent', 'index', 'goTemai_']);
 			$location.path('/temaiindex').search();
