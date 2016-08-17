@@ -23,21 +23,77 @@
   <div class="pannel-container">
     <div class="pannel"> 
       <div class="pannel__nav">
-          <div class="pannel__nav__item pannel__nav__item_left">已有保障</div> 
-          <div class="pannel__nav__item">提升保障</div> 
+        <div class="pannel__nav__item  pannel__nav__item_hover " ng-click="nav($event,1)">
+        已有保障
+        <div class="pannel__nav__item_rightline" ></div>
+        </div> 
+          <div class="pannel__nav__item"  ng-click="nav($event,2)">提升保障</div> 
       </div>
-      <div class="pannel__body">
-        <div class="pannel__body__item"></div> 
-      </div> 
+      <div class="pannel__body" ng-show="pannelId==1">
+         <div class="pannel__body__item" ng-click="goBaodan(4)">
+          <i class="iconfont icon_size" >&#xe629;</i>
+          <div class="pannel__body__item_bar" > 意外保障<div class="progress"><div class="progress_innerbar" style="width:{{data.scores[4]*10}}%;"></div></div></div>
+          <i class="iconfont arrow_size"  >&#xe60f;</i>
+          </div> 
+        <div class="pannel__body__item" ng-click="goBaodan(2)">
+          <i class="iconfont icon_size" >&#xe62a;</i>
+          <div class="pannel__body__item_bar" > 健康保障<div class="progress"><div class="progress_innerbar"  style="width:{{data.scores[2]*10}}%;"></div></div></div>
+          <i class="iconfont arrow_size"  >&#xe60f;</i>
+          </div> 
+         <div class="pannel__body__item"  ng-click="goBaodan(3)">
+          <i class="iconfont icon_size" styl>&#xe62b;</i>
+          <div class="pannel__body__item_bar"> 人寿保障<div class="progress"><div class="progress_innerbar"  style="width:{{data.scores[3]*10}}%;"></div></div></div>
+          <i class="iconfont arrow_size" >&#xe60f;</i>
+          </div> 
+         <div class="pannel__body__item"  ng-click="goBaodan(5)">
+          <i class="iconfont icon_size" >&#xe618;</i>
+          <div class="pannel__body__item_bar"> 财产保障<div class="progress"><div class="progress_innerbar"  style="width:{{data.scores[5]*10}}%;"></div></div></div>
+          <i class="iconfont arrow_size"  >&#xe60f;</i>
+          </div> 
+        </div> 
+
+        <div class="pannel__body"  ng-show="pannelId==2">
+
+          <div class="pannel__body__item pannel__body__item_title">
+            建议提升至8.0分 
+            <div class="pannel__body__item_btn"><i class="iconfont arrow_size" style="color:#4285f4;font-size:19px;" >&#xe62c;</i>一键提升</div>
+          </div>
+         <div class="pannel__body__item"   ng-click="goPromote(4)">
+          <i class="iconfont icon_size" >&#xe629;</i>
+          <div class="pannel__body__item_bar"> 意外保障
+            <div class="pannel__body__item_des">造成的损失大，建议优先提升</div>
+          </div>
+          <i class="iconfont arrow_size"  >&#xe60f;</i>
+          </div> 
+        <div class="pannel__body__item"   ng-click="goPromote(2)">
+          <i class="iconfont icon_size" >&#xe62a;</i>
+          <div class="pannel__body__item_bar"> 健康保障 <div class="pannel__body__item_des">先保重疾，再补充医疗报销</div></div>
+          <i class="iconfont arrow_size"  >&#xe60f;</i>
+          </div> 
+         <div class="pannel__body__item"  ng-click="goPromote(3)">
+          <i class="iconfont icon_size" styl>&#xe62b;</i>
+          <div class="pannel__body__item_bar"> 人寿保障 <div class="pannel__body__item_des">保障身故损失，建议提升</div></div>
+          <i class="iconfont arrow_size" >&#xe60f;</i>
+          </div> 
+         <div class="pannel__body__item"  ng-click="goPromote(5)">
+          <i class="iconfont icon_size" >&#xe618;</i>
+          <div class="pannel__body__item_bar"> 财产保障 <div class="pannel__body__item_des">优先保障价值大的财物</div></div>
+          <i class="iconfont arrow_size"  >&#xe60f;</i>
+          </div> 
+        </div> 
+
+
+
+
     </div>
   </div>
 
 
-<script type="text/javascript" src="js/dashboard.js"></script>
+  <!-- <script type="text/javascript" src="js/dashboard.js"></script> -->
 
   <script>
     
-    var dashboard = new Dashboard();
+    
   </script>
 
 

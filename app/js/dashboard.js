@@ -2,7 +2,7 @@
  * @Author: fanzhang
  * @Date:   2016-08-15 19:09:31
  * @Last Modified by:   fanzhang
- * @Last Modified time: 2016-08-16 20:05:21
+ * @Last Modified time: 2016-08-17 19:51:03
  */
 
 'use strict';
@@ -29,7 +29,7 @@ window.Dashboard = (function() {
 	function Dashboard(config) {
 
 		var config = config || {};
-		this.maxScore = config.score || 8.0;
+		this.maxScore = config.score || 0;
 		this.maxAngle =  (MAX_ANGLE-MIN_ANGLE) * this.maxScore / 10 + MIN_ANGLE;
 		this.init();
 
@@ -158,19 +158,18 @@ window.Dashboard = (function() {
 		scoreAnimation:function(){
 			var score = this.score;
 			var ctx = this.bgCanvas.getContext("2d");
-			var scoreRadius = (this.mainArcRaidus - 120)*DPR;
+			var scoreRadius = (this.mainArcRaidus -  this.radio*120)*DPR;
 			ctx.fillStyle="#4285f4";//白色为例子；
-			ctx.fillRect(-120, -scoreRadius-105,360,120);
-			//ctx.clearRect(0,scoreRadius,150,150);
-			//clearCircle(ctx, 0, -scoreRadius-60, 100);
+			ctx.fillRect(-120*this.radio, -scoreRadius-105*this.radio,360*this.radio,120*this.radio);
+				
+			drawWord(ctx, -Math.PI/2,"normal "+135*this.radio+"px Arial,Microsoft YaHei", "#fff", scoreRadius, score, 0);
 			score = (parseFloat(score)+0.1).toFixed(1);
 			this.score = score;
 
 			//console.log(score);
-			drawWord(ctx, -Math.PI/2,"normal 135px Arial,Microsoft YaHei", "#fff", scoreRadius, score, 0);
-			if(score == this.maxScore){
+			if(score > this.maxScore){
 				return ;
-			}
+			}	
 			window.requestAnimationFrame(this.scoreAnimation.bind(this));
 		},
 		draw: function() {
@@ -180,7 +179,13 @@ window.Dashboard = (function() {
 
 			var keduX = (this.radius - 5) * DPR * Math.cos(angle);
 			var keduY = (this.radius - 5) * DPR * Math.sin(angle);
-			clearCircle(ctx, keduX, keduY, 150);
+			// ctx.beginPath();
+			// ctx.save();
+			// ctx.globalCompositeOperation = 'destination-out';
+			// ctx.fillStyle="#4285f4";//白色为例子；
+			// ctx.fillRect(keduX-100, keduY-100,300,300);
+			// ctx.restore();
+			clearCircle(ctx, keduX, keduY, 300);
 			preLoadImg('/img/index/fire.png', function() {
 				ctx.beginPath();
 				ctx.save();
@@ -298,14 +303,14 @@ window.Dashboard = (function() {
 			drawWord(ctx, MIN_ANGLE + 8 * dur,"normal 39px Arial,Microsoft YaHei", "#bdd6ff", (mainArcRaidus - 22) * DPR, "推荐", 60 * Math.PI / 180);
 			drawWord(ctx, MIN_ANGLE + 10 * dur,"normal 39px Arial,Microsoft YaHei", "#bdd6ff", (mainArcRaidus - 22) * DPR, "无忧", 100 * Math.PI / 180);
 
-			var baozhangRadius = (mainArcRaidus - 70)*DPR;
+			var baozhangRadius = (mainArcRaidus - this.radio*70)*DPR;
 
-			var scoreRadius = (mainArcRaidus - 120)*DPR;
+			var scoreRadius = (mainArcRaidus - this.radio*120)*DPR;
 
-			var textRadius = (mainArcRaidus - 150)*DPR;
-			drawWord(ctx, -Math.PI/2,"normal 45px Arial,Microsoft YaHei", "#90baff", baozhangRadius, "您的保障评分", 0);
+			var textRadius = (mainArcRaidus - this.radio*150)*DPR;
+			drawWord(ctx, -Math.PI/2,"normal "+this.radio*45+"px Arial,Microsoft YaHei", "#90baff", baozhangRadius, "您的保障评分", 0);
 			//drawWord(ctx, -Math.PI/2,"normal 135px Arial,Microsoft YaHei", "#fff", scoreRadius, "7.5", 0);
-			drawWord(ctx, -Math.PI/2,"normal 52px Arial,Microsoft YaHei", "#fff", textRadius, "保障较好", 0);
+			drawWord(ctx, -Math.PI/2,"normal "+this.radio*52+"px Arial,Microsoft YaHei", "#fff", textRadius, "保障较好", 0);
 		}
 	};
 	return Dashboard;

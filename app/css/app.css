@@ -294,7 +294,7 @@ footer {
   padding: 7px 0 5px;
   text-align: center;
   color: #4c87d6;
-  background-color: #1e4e8e;
+  background-color: #ffffff;
 }
 
 .cell-footer  .icon,
@@ -302,6 +302,7 @@ footer {
   height: 22px;
 }
 
+/*
 .cell-footer   .icon.icon-home {
   background: url('../../img/index/index.png') no-repeat center;
   background-size: 22px;
@@ -335,6 +336,7 @@ footer {
   background: url('../../img/index/service_hover.png') no-repeat center;
   background-size: 22px;
 }
+*/
 
 .swiper-ctrl {
   position: fixed;
