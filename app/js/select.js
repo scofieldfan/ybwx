@@ -249,8 +249,6 @@ var CIRCLE = (function() {
 							}
 						}
 
-
-
 						angle = deg;
 						lastX = currentX;
 						lastY = currentY;

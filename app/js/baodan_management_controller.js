@@ -88,7 +88,7 @@ bdControllers.controller('ybwxbaodanVerifyListCtrl', ['$scope', '$routeParams', 
 
 			util.getOpenId(code).then(function() {
 				var openId = sessionStorage.getItem("openId");
-				$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_verfiy_policy'] + "?open_id=" + openId, {}, function(res) {
+				$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_verfiy_policy'] + "?open_id=" + openId+"&wechat_type=2", {}, function(res) {
 					$scope.data = res.data.data;
 					$scope.typeGroup = _.groupBy(res.data.data.policies, function(item) {
 						return item.insurance_type;
