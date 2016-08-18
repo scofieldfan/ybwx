@@ -2,7 +2,7 @@
 * @Author: fanzhang
 * @Date:   2016-08-18 13:57:26
 * @Last Modified by:   fanzhang
-* @Last Modified time: 2016-08-18 20:19:23
+* @Last Modified time: 2016-08-18 21:00:33
 */
 
 'use strict';
@@ -463,18 +463,19 @@ autoPromoteControllers.controller('ybwxKeySolutionCtrl', ['$scope', '$filter', '
 				return;
 
 			}
+			var newChoosePlansId  = getNewChoosePlan($scope.choosePlansIds);
 			if ($scope.isHaveRestrictions) {
 				$location.path('/information').search({
 					'type': $routeParams.type,
 					'coverage_score': $routeParams.coverage_score,
 					'sum_insured_score': $routeParams.sum_insured_score,
 					'sum_score': $routeParams.sum_score,
-					'choose_plans': JSON.stringify($scope.choosePlansIds)
+					'new_choose_plans': JSON.stringify(newChoosePlansId)
 				});
 			} else {
 				$location.path('/toubao_new').search({
 					'type': $routeParams.type,
-					'choose_plans': JSON.stringify($scope.choosePlansIds)
+					'new_choose_plans': JSON.stringify(newChoosePlansId)
 				});
 			}
 		}
