@@ -257,16 +257,24 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 		$scope.hideCtrl = function() {
 			$("#popup").hide();
 		}
-		$("#popup").click(function(event) {
-			// $("#popup").hide();
-			event.stopPropagation();
-			event.preventDefault();
-		});
+		$scope.hidePop = function() {
+			console.log($(".cell").hasClass("popup"));
+			if(!$(".cell").hasClass("popup")){
+				$("#popup").hide();
+			}
+		}
+		
+		// $("#popup").click(function(event) {
+			
+		// 	event.stopPropagation();
+		// 	event.preventDefault();
+		// });
 		$scope.goInsurance_policy = function() {
 			$location.path("/insurance_policy").search({
 				order_no: $scope.order_no,
 				policy_id: $routeParams.policy_id
 			});
+			$("#share").hide();
 		}
 		$scope.goVerifyInfoPage = function(verify_info_id) {
 			_hmt.push(['_trackEvent', 'bdm_detail', 'bdmDetail_gobdmVerifyInfo']);

@@ -1505,11 +1505,11 @@ mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeP
 				$(".lable_mask").addClass("aa");
 				$(".year_mask").addClass("yy");
 				$(".aa").click(function(event) {
-					util.showToastJQ("被保人未满18岁，不可为家庭收入主要贡献者");
+					util.showToastJQ("被保人未满18岁<br/>不可为家庭收入主要贡献者");
 					event.stopPropagation();
 				});
 				$(".yy").click(function() {
-					util.showToastJQ("被保人未满18岁，暂不支持选择年收入");
+					util.showToastJQ("被保人未满18岁<br/>暂不支持选择年收入");
 				});
 				$("#yearIncome").addClass("no");
 			}else{
@@ -1725,6 +1725,8 @@ mainControllers.controller('ybwxKeySolutionCtrl', ['$scope', '$filter', '$routeP
 
 			$scope.relation = $routeParams.relation;
 
+			console.log($routeParams.annual_income);
+            
 			var openId = sessionStorage.getItem("openId");
 			$scope.solutionPromise = getHttpPromise($http, $rootScope, 'POST', api['get_scheme_plans'], {
 				"open_id": openId,
@@ -1754,6 +1756,14 @@ mainControllers.controller('ybwxKeySolutionCtrl', ['$scope', '$filter', '$routeP
 				}
 				$scope.choosePlan();
 			});
+			if($scope.annualIncome == 0){
+				$scope.annualIncome = "无";
+
+            }else{
+            	console.log($scope.annualIncome);
+            	$scope.annualIncome = $routeParams.annual_income + "万"; 
+            	console.log($scope.annualIncome);
+            }
 
 		}
 		$scope.processSpecialMoney = function(money) {

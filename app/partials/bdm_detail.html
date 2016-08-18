@@ -194,18 +194,18 @@
 				</div>
 				<div>发送保单</div>
 			</div>
-  			<div class="popup" id="popup">
+  			<div class="popup" id="popup" ng-click="hidePop()">
 				<div class=" toast--full mouse">
 					<div class="toast-main">
 						<div class="toast-main_left" >
-							<div>
-								<div class="toast-main_left--weixin" ng-click = "showTip()"><i class="iconfont" style="color: #75cf34;font-size: 40px;">&#xe62d;</i></div>
+							<div ng-click = "showTip()">
+								<div class="toast-main_left--weixin" ><i class="iconfont" style="color: #75cf34;font-size: 40px;">&#xe62d;</i></div>
 								<div class="toast-main_left--word">微信发给好友</div>
 							</div>
 						</div>
 						<div class="toast_main_right">
-							<div>
-								<div class="toast-main_left--weixin" ng-click = "goInsurance_policy()"><i class="iconfont" style="color: #55a5ff;font-size: 40px;">&#xe62e;</i></div>
+							<div ng-click = "goInsurance_policy()">
+								<div class="toast-main_left--weixin" ><i class="iconfont" style="color: #55a5ff;font-size: 40px;">&#xe62e;</i></div>
 								<div class="toast-main_left--word">电子邮件发送</div>
 							</div>
 						</div>
