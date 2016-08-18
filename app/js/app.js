@@ -102,7 +102,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/userinfo_new.html',
       controller: 'ybwxUserInfoNewCtrl',
       title: "资料设定",
-      css:'css/userinfo_new.css?rev=69ec554b12f267e12e73c5a089496ff1'
+      css:'css/userinfo_new.css?rev=b6a1ca0e1ef370668da0854505ede4df'
     }).when('/scheme', {
       templateUrl: 'partials/scheme.html',
       controller: 'ybwxSchemeCtrl',
@@ -163,7 +163,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/temai_detail.html',
       controller: 'wxDetailNewCtrl',
       title: "诺贝严选",
-      css:'css/temai_detail.css?rev=d41d8cd98f00b204e9800998ecf8427e'
+      css:'css/temai_detail.css?rev=012d87e353b8d3c9e7ecb65a89977dd0'
     }).when('/temaiindex', {
       templateUrl: 'partials/temai_index.html',
       controller: 'wxTemaiIndexCtrl',

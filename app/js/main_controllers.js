@@ -1028,7 +1028,7 @@ function getNewChoosePlan( planIds ){
 	var newChoosePlansId = [];
 			for(var i = 0 ; i< planIds.length; i++){
 				newChoosePlansId.push({
-					id:$scope.choosePlansIds[i]
+					id:planIds[i]
 				});
 	}
 	return newChoosePlansId;
