@@ -62,7 +62,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/newindex_part.html?v=123',
       controller: 'ybwxNewIndexCtrl',
       title: '诺贝保险管家',
-      css:'css/newindex_part.css?rev=9bb2db7535890b11fb369886019ee37c'
+      css:'css/newindex_part.css?rev=sdsdf'
     }).when('/bd_education_new', {
       templateUrl: 'partials/bd_education_new.html',
       controller: 'ybwxBdEducationNewCtrl',
@@ -233,6 +233,10 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/bdm_detail.html',
       controller: 'ybwxbaodanMDetailSiteCtrl',
       title: "保单详情"
+    }).when('/insurance_policy', {
+      templateUrl: 'partials/insurance_policy.html',
+      controller: 'ybwxbaodaninsurancePolicyCtrl',
+      title: "发送保单"
     }).when('/bd_verify_list', {
       templateUrl: 'partials/bdm_verfylist.html',
       controller: 'ybwxbaodanVerifyListCtrl',

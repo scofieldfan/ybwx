@@ -1496,55 +1496,111 @@ mainControllers.controller('ybwxTargetCtrl', ['$scope', '$filter', '$routeParams
 /*一键提升==资料设定*/
 mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
-		var ageComponent = new AgeComponent({
+        function call(){
+        	var age = $("#ageId").html();
+			if( age < 18 ){
+				$("#yearIncomeId").text("0");
+				// $(".primary_income").attr("checked","checked");
+				$(".primary_income").prop("checked", true);
+				$(".lable_mask").addClass("aa");
+				$(".year_mask").addClass("yy");
+				$(".aa").click(function(event) {
+					util.showToastJQ("被保人未满18岁<br/>不可为家庭收入主要贡献者");
+					event.stopPropagation();
+				});
+				$(".yy").click(function() {
+					util.showToastJQ("被保人未满18岁<br/>暂不支持选择年收入");
+				});
+				$("#yearIncome").addClass("no");
+			}else{
+				// $(".primary_income").prop("checked",false);
+				$("#yearIncome").removeClass("no");
+				$(".lable_mask").removeClass("aa");
+				$(".year_mask").removeClass("yy");
+			} 
+        }
+		
+		// 如果保障对象是“子女”则年龄显示8岁
+		if($routeParams.relation == 3){
+			var ageComponent = new AgeComponent({
+				containerId: "ageContainer",
+				minAge: 0,
+				maxAge: 45,
+				startAge: 8,
+				yearDis: 7.5,
+				changeCallback: function(age) {
+					$("#ageId").html(age);
+					call();
+				},
+				beyondLeftCallback:function(){
+					util.showToastJQ("目前仅支持0-45岁");
+				},
+				beyondRightCallback:function(){
+					util.showToastJQ("目前仅支持0-45岁");
+				}
+			});
+		}else {
+			var ageComponent = new AgeComponent({
 			containerId: "ageContainer",
-			minAge: 25,
+			minAge: 0,
 			maxAge: 45,
 			startAge: 30,
 			yearDis: 7.5,
 			changeCallback: function(age) {
 				$("#ageId").html(age);
-				// if(age == 25 || age == 45){
-				// 	util.showToastJQ("目前仅支持25岁-45岁");
-				// }
+				call();
 			},
 			beyondLeftCallback:function(){
-				util.showToastJQ("目前仅支持25岁-45岁");
+				util.showToastJQ("目前仅支持0-45岁");
 			},
 			beyondRightCallback:function(){
-				util.showToastJQ("目前仅支持25岁-45岁");
+				util.showToastJQ("目前仅支持0-45岁");
 			}
 		});
-
-		var yearIncome = new AgeComponent({
-			containerId: "yearIncome",
-			minAge: 5,
-			maxAge: 50,
-			startAge: 20,
-			yearDis: 7.5,
-			changeCallback: function(yearIncomeId) {
-				$("#yearIncomeId").html(yearIncomeId);
-				// if(yearIncomeId == 10 || yearIncomeId == 40){
-				// 		util.showToastJQ("目前仅支持10万-40万");
-				// }
-				if( yearIncomeId == 5){
-					$("#sui").text("万及以下");
+		}
+		//end
+		if($routeParams.relation == 3){	
+			var yearIncome = new AgeComponent({
+				containerId: "yearIncome",
+				minAge: 0,
+				maxAge: 50,
+				startAge: "0",
+				yearDis: 7.5,
+				changeCallback: function(yearIncomeId) {
+					$("#yearIncomeId").html(yearIncomeId);
+					if( yearIncomeId == 0){
+						$("#sui").text("");
+					}
+					if( yearIncomeId == 50 ){
+						$("#sui").text("万及以上");
+					}
+					if(yearIncomeId !== 0 && yearIncomeId !== 50){
+						$("#sui").text("万");
+					}
 				}
-				if( yearIncomeId == 50 ){
-					$("#sui").text("万及以上");
+			});
+		}else {
+			var yearIncome = new AgeComponent({
+				containerId: "yearIncome",
+				minAge: 0,
+				maxAge: 50,
+				startAge: 20,
+				yearDis: 7.5,
+				changeCallback: function(yearIncomeId) {
+					$("#yearIncomeId").html(yearIncomeId);
+					if( yearIncomeId == 0){
+						$("#sui").text("");
+					}
+					if( yearIncomeId == 50 ){
+						$("#sui").text("万及以上");
+					}
+					if(yearIncomeId !== 0 && yearIncomeId !== 50){
+						$("#sui").text("万");
+					}
 				}
-				if(yearIncomeId !== 5 && yearIncomeId !== 50){
-					$("#sui").text("万");
-				}
-			}
-			/*beyondLeftCallback:function(){
-				util.showToastJQ("目前仅支持10万到50万");
-			},
-			beyondRightCallback:function(){
-				util.showToastJQ("目前仅支持10万-50万");
-			}*/
-		});
-		// console.log();
+			});
+		}
+		
 		$scope.yes_no = function() {
 			_hmt.push(['_trackEvent', 'UserInfoNew', 'sex']);
 		}
@@ -1553,6 +1609,7 @@ mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeP
 		}
 		$scope.goHobby = function() {
 			$scope.primary_income = $(".primary_income").is(':checked') ? false : true;
+			console.log($scope.primary_income);
 			$scope.sex = parseInt($(".sex").is(':checked') ? 2 : 1);
 			$scope.age = parseInt($("#ageId").html());
 			$scope.income = parseInt($("#yearIncomeId").html());
@@ -1574,8 +1631,8 @@ mainControllers.controller('ybwxHobbyCtrl', ['$scope', '$filter', '$routeParams'
 		$scope.init = function() {
 			var openId = sessionStorage.getItem("openId");
 			$scope.hobbyPromise = getHttpPromise($http, $rootScope, 'POST', api['get_scheme_questions'], {
-				"open_id": openId
-				// "age": $routeParams.age
+				"open_id": openId,
+				"age": $routeParams.age
 			}, function(res) {
 				$scope.data = res.data.data.questions;
 			});
@@ -1668,6 +1725,8 @@ mainControllers.controller('ybwxKeySolutionCtrl', ['$scope', '$filter', '$routeP
 
 			$scope.relation = $routeParams.relation;
 
+			console.log($routeParams.annual_income);
+            
 			var openId = sessionStorage.getItem("openId");
 			$scope.solutionPromise = getHttpPromise($http, $rootScope, 'POST', api['get_scheme_plans'], {
 				"open_id": openId,
@@ -1697,6 +1756,14 @@ mainControllers.controller('ybwxKeySolutionCtrl', ['$scope', '$filter', '$routeP
 				}
 				$scope.choosePlan();
 			});
+			if($scope.annualIncome == 0){
+				$scope.annualIncome = "无";
+
+            }else{
+            	console.log($scope.annualIncome);
+            	$scope.annualIncome = $routeParams.annual_income + "万"; 
+            	console.log($scope.annualIncome);
+            }
 
 		}
 		$scope.processSpecialMoney = function(money) {

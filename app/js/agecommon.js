@@ -59,13 +59,17 @@ window.AgeComponent = (function() {
 			needleId: 'needleId'
 		};
 		this.init();
-
 	}
 	AgeComponent.prototype = {
 		init: function() {
 			this.createDom();
 			this.setPosition(this.transFormX);
 			this.bindEvent();
+			this.setAge();
+		},
+		setAge: function(age){
+			this.transFormX = -(this.age-this.minAge) * this.yearDis;
+			this.setPosition(this.transFormX);
 		},
 		setPosition: function(transFormDis) { //移动背景的位置
 			var age = this.minAge-Math.round( (transFormDis / this.yearDis)) ;
