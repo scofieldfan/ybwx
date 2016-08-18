@@ -113,6 +113,7 @@ gulp.task('jsMin', function() {
 			'app/js/baodan_management_controller.js',
 			'app/js/service_controllers.js',
 			'app/js/transaction_controllers.js',
+			'app/js/auto_promote_controllers.js',
 			'app/js/jquery.piemenu.js'
 			
 			/**/

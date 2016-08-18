@@ -42,10 +42,13 @@
 		</li>
 	</ul>
 
-	<div class="supply-info" ng-if="data.address || data.car_no || data.destination || data.flight_no ">
+	<div class="supply-info" ng-if="data.address || data.car_no || data.destination || data.flight_no || data.bank">
 
 	<!-- <div class="supply-info" > -->
 		<div class="title" >补充信息</div>
+
+
+
 <!-- 
  		<div class="new-supply-item" >
 			<div class="introd">身高</div>
@@ -66,27 +69,7 @@
 		</div>
 		<div class="description" >请如实填写被保人的身高和体重，如有不实，保险公司有权解除保险合同。</div>
 
- 		<div class="new-title">
- 			<div class="s-title">银行卡信息</div>
- 			<div class="s-des">用于本产品首次支付及后续续费</div>
- 		</div>
-
-
-
- 		<div class="new-supply-item" >
-			<div class="introd">银行</div>
-			<div class="content"><input type="text" name="bank" ng-model="bank" class="new-input" placeholder="请选择银行"  required></div>
-		</div>
-
- 		<div class="new-supply-item" >
-			<div class="introd">持卡人</div>
-			<div class="content"><input type="text" name="user-name" ng-model="username" class="new-input" placeholder="持卡人必须是投保人本人"  required></div>
-		</div>
-
-		<div class="new-supply-item" >
-			<div class="introd">银行账号</div>
-			<div class="content"><input type="text" name="bankcard-no" ng-model="bankcardno" class="new-input" placeholder="请输入银行账号"  required></div>
-		</div>
+ 	
 
 		<div class="new-supply-item" >
 			<div class="introd">手机号</div>
@@ -135,6 +118,26 @@
 
 		<div class="supply-item"  style="color:red" ng-show="tbform.destination.$dirty && tbform.destination.$invalid ">
 			<small class="error" ng-show="tbform.destination.$error.required">地址必填</small>
+		</div>
+
+		<div class="new-title" ng-if="data.bank">
+ 			<div class="s-title">银行卡信息</div>
+ 			<div class="s-des">用于本产品首次支付及后续续费</div>
+ 		</div>
+ 		<div class="new-supply-item" ng-if="data.bank">
+			<div class="introd">银行</div>
+			<div class="content"> <select  type="text" 
+			 	ng-model="user.bank" name="bank"    ng-options="option.name for option in banks track by option.id"
+
+			 	class="new-input" placeholder="请选择银行"  required></select> </div>
+		</div>
+ 		<div class="new-supply-item" ng-if="data.bank">
+			<div class="introd">持卡人</div>
+			<div class="content"><input type="text" name="bankusername" ng-model="user.bankusername" class="new-input" placeholder="持卡人必须是投保人本人"  required></div>
+		</div>
+		<div class="new-supply-item" ng-if="data.bank">
+			<div class="introd">银行账号</div>
+			<div class="content"><input type="text" name="bankcardno" ng-model="user.bankcardno" class="new-input" placeholder="请输入银行账号"  required></div>
 		</div>
 
 	</div>

@@ -444,6 +444,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       var postData = {
         "plan_id": selectPlan,
         "choose_plans": JSON.stringify([selectPlan]),
+        'new_choose_plans':JSON.stringify( [{ id:selectPlan,coverage_period:$scope.coverage_period,charge_period:$scope.charge_period }] )
       };
 
       if ($scope.coverage_period_type) {
