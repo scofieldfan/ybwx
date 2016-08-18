@@ -1,0 +1,146 @@
+/*
+* @Author: fanzhang
+* @Date:   2016-08-15 18:53:28
+* @Last Modified by:   fanzhang
+* @Last Modified time: 2016-08-17 15:15:05
+*/
+@import "base/classes.scss";
+@import "base/variables.scss";
+
+
+.wrapper {
+	padding: 0;
+	position: relative;
+	background-color: #4285f4;
+	height:100%;
+}
+.dash {
+	// padding: 10px 35px;
+	padding-top: 35px;
+	background-color: #4285f4;
+	position: relative;
+}
+.navigation {
+	width: 250px;
+	color: #90baff;
+	margin: 0 auto;
+	text-align: center;
+	@include flexbox;
+}
+.navigation__leftbtn {
+	@include flex(1);
+}
+.navigation__name {
+	@include flex(1);
+}
+.navigation__rightbtn {
+	@include flex(1);
+}
+.pannel-container {
+	padding: 10px;
+	margin-bottom:80px;
+}
+.pannel {
+	padding: 7px 15px;
+	border-radius: 2px;
+	background-color: #FFF;
+}
+.pannel__nav {
+	@include border(0 0 1px 0, #b5b5b5);
+	@include flexbox;
+}
+.pannel__nav__item {
+	@include flex(1);
+	height: 45px;
+	line-height: 45px;
+	text-align: center;
+	position: relative;
+	font-size:15px;
+	color:#444;
+	// @include border(0 1px 0 0, #b5b5b5);
+}
+.pannel__nav__item_rightline {
+	content: "";
+	position: absolute;
+	height: 80%;
+	width: 1px;
+	right: 0;
+	top: 10%;
+	background-color: #b5b5b5;
+}
+.pannel__nav__item_hover:after {
+	content: "";
+	position: absolute;
+	height: 3px;
+	width: 60%;
+	bottom: 0;
+	left: 20%;
+	background-color: #4285f4;
+}
+.pannel__body {
+	@include flexbox;
+	@include flex-direction(column);
+}
+.pannel__body__item {
+	@include flex(1);
+	padding: 15px;
+	@include border(0 0 1px 0, #e2e2e2);
+	@include flexbox;
+	@include align-items(center);
+}
+.progress {
+	background-color: #f0f0f0;
+	height: 8px;
+	position: relative;
+	border-radius: 8px;
+	width:100%;
+	margin-top:5px;
+}
+.progress_innerbar {
+	width: 0;
+	height: 100%;
+	background-color: #9cc6ff;
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
+}
+.icon_size{
+	color:#999;
+	font-size:25px;
+}
+
+.arrow_size{
+	color:#999;
+	font-size:15px;
+}
+
+.pannel__body__item_icon{
+	width:50px;
+	text-align:center;
+}
+.pannel__body__item_bar{
+	@include flex(1);
+	color:#444;
+	font-size:16px;
+	margin:0 0.35rem 0 15px;
+}
+.pannel__body__item_tip{
+	width:50px;
+	text-align:center;
+}
+.pannel__body__item_des{
+	color:#999;
+	font-size:12px;
+}
+.pannel__body__item_title{
+	color:#444;
+	font-size:16px;
+	@include justify-content(space-between);
+}
+.pannel__body__item_btn{
+
+	border-radius:8px;
+	color:#4285f4;
+	border:1px solid #e2e2e2;
+	padding:.08rem .17rem;
+	font-size:15px;
+}

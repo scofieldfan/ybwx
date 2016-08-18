@@ -21,7 +21,7 @@ var api = {
 
 
 
-function getHttpPromise($http, $rootScope, method, url, data, callback) {
+function getHttpPromise($http, $rootScope, method, url, data, callback, isCoverDefault) {
 
 	var openId = sessionStorage.getItem("openId");
 	if (!data["open_id"]) {
@@ -36,12 +36,17 @@ function getHttpPromise($http, $rootScope, method, url, data, callback) {
 		url: url,
 		data: data
 	}).then(function(res) {
-		console.log(res);
-		if ((res && res.data && res.data.data) || (res && res.data && res.data.code === 0)) {
+
+		if (isCoverDefault) {
 			callback(res);
 		} else {
-			util.showToast($rootScope, res.data.description);
+			if ((res && res.data && res.data.data) || (res && res.data && res.data.code === 0)) {
+				callback(res);
+			} else {
+				util.showToast($rootScope, res.data.description);
+			}
 		}
+
 	}, function(res) {
 		console.log(res);
 		_hmt.push(['_trackEvent', 'http_error', "api:" + url]);
@@ -206,70 +211,7 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 					});
 				}
 			});
-			/*
-			$.when($.ajax({
-				type: 'GET',
-				url: "/ybwx-web/wechat/js_signature",
-				data: {
-					"url": location.href.split('#')[0],
-					type: 2
-				},
-				dataType: "json"
-			})).done(function(res) {
-				//依赖于微信的JS
-				console.log(res);
-				wx.config({
-					debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-					appId: res.data["app_id"], // 必填，公众号的唯一标识
-					timestamp: res.data["timestamp"], // 必填，生成签名的时间戳
-					nonceStr: res.data["noncestr"], // 必填，生成签名的随机串
-					signature: res.data["signature"], // 必填，签名，见附录1
-					jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone']
-					// 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-				});
-				wx.ready(function() {
-					// config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
-					var shareUrl = util.domain + "wx_share.html#/special";
-					var shareTitle = "还在买捆绑的30元一次的航意险？在这里500万保一年无限次仅需40元！";
-					var shareDesc = "仅需1杯咖啡的花费即可享受1年500万航空意外的保障！";
-					var shareImg = "/wx_share/img/share_s.png";
 
-					var shareLink = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri=' + encodeURIComponent(shareUrl) + '&response_type=code&scope=' + util.shareScope + '&state=123#wechat_redirect';
-					wx.onMenuShareTimeline({
-						title: shareTitle,
-						link: shareLink,
-						imgUrl: shareImg,
-						success: function() {
-							//分享成功
-							var openId = sessionStorage.getItem("openId");
-							$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['share_callback'], {
-								"open_id": openId,
-								"insurance_plan_id": 72
-							}, function(res) {
-								//$("#special_share").html("点击即可优惠购买");
-								$scope.isShare = true;
-								util.showToast($rootScope, "分享成功，恭喜您获得优惠购买的机会！");
-							});
-						},
-						cancel: function() {}
-					});
-					wx.onMenuShareAppMessage({
-						title: shareTitle,
-						desc: shareDesc,
-						link: shareLink,
-						imgUrl: shareImg,
-						dataUrl: '',
-						success: function() {
-							//alert(shareLink);
-							//window.location.href = shareLink;
-						},
-						cancel: function() {}
-					});
-				});
-				wx.error(function(res) {
-					_hmt.push(['_trackEvent', 'wechat_error', res]);
-				});
-			})*/
 
 		};
 		$scope.original = function() {
@@ -635,6 +577,7 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 				"r_open_id": recId,
 				"coupon_id": "2"
 			}, function(res) {
+				console.log("data...");
 				if (res.data && res.data.description) {
 					$("#pop").show();
 					$("#popup").click(function() {
@@ -649,7 +592,7 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 						count: (res.data.data["coupon_counts"] + 1)
 					});
 				}
-			});
+			},true);
 
 		}
 		$scope.exchange = function() {

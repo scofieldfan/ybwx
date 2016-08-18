@@ -328,6 +328,59 @@ mainControllers.controller('ybwxPromoteCtrl', ['$scope', '$routeParams', '$locat
 		}
 	}
 ])
+
+mainControllers.controller('ybwxNewIndexCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $routeParams, $location, $http, $rootScope) {
+
+		$scope.pannelId = 1;
+		$scope.goAutoPromote = function(){
+			$location.path('/target').search();
+		}
+		
+		$scope.goTemai = function($event) {
+			_hmt.push(['_trackEvent', 'index', 'goTemai_']);
+			$location.path('/temaiindex').search();
+		}
+		$scope.goService = function($event) {
+			_hmt.push(['_trackEvent', 'index', 'goService']);
+			$location.path('/service').search();
+		}
+		$scope.nav = function($event,pannelId){
+				var ele = $event.currentTarget;
+				$(ele).parents(".pannel__nav").find(".pannel__nav__item").removeClass("pannel__nav__item_hover");
+				$(ele).addClass("pannel__nav__item_hover");
+				$scope.pannelId = pannelId;
+		}
+		$scope.goBaodan = function(type){
+			$location.path('/bdm_list').search({
+				type:type
+			});
+		}
+		$scope.goPromote = function(type){
+			$location.path('/select').search({
+				type:type
+			});
+		}
+		$scope.init = function() {
+			//获得openId
+			var currentUrl = util.domain + "#/index";
+			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
+				util.share();
+				var openId = sessionStorage.getItem("openId");
+				$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_insurance_index'] + "/" + openId, {}, function(res) {
+					if (res && res.data && res.data.data) {
+						$scope.data = res.data.data;
+						var dashboard = new Dashboard({score:res.data.data.aggregate_score});
+					}
+				})
+			});
+		}	
+
+
+	}
+]);
+
+
 mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
@@ -374,19 +427,13 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 		var cellClass = ".cell-footer";
 		$scope.goIndex = function($event) {
 			_hmt.push(['_trackEvent', 'index', 'goIndex_']);
-			//$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
-			//$($event.target).parents(cellClass).addClass("hover");
 		}
 		$scope.goTemai = function($event) {
 			_hmt.push(['_trackEvent', 'index', 'goTemai_']);
-			//$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
-			//$($event.target).parents(cellClass).addClass("hover");
 			$location.path('/temaiindex').search();
 		}
 		$scope.goService = function($event) {
 			_hmt.push(['_trackEvent', 'index', 'goService']);
-			//$($event.target).parents(".fix_container ").find(cellClass).removeClass("hover");
-			//$($event.target).parents(cellClass).addClass("hover");
 			$location.path('/service').search();
 		}
 		$scope.init = function() {
@@ -405,7 +452,6 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 						initPieConfig($scope.data.aggregate_score, $scope.data.scores, $scope.data.policy);
 					}
 				})
-
 			});
 		}
 	}

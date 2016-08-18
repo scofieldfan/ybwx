@@ -162,7 +162,7 @@ var CIRCLE = (function() {
 						y: event.changedTouches[0].pageY - elPos.y
 					}; //动作点相遇于canvas的坐标
 					var currentX = mPos.x - radiusX / config.dpr;
-					var currentY = mPos.y - radiusY / config.dpr; //以圆心作为远点，当前事件的坐标点.
+					var currentY = mPos.y - radiusY / config.dpr; //以圆心作为远点，当前事件的坐标点.事件的坐标都是默认px的没有3倍
 
 					var lineWidth = config.lineWidth;
 
@@ -248,8 +248,6 @@ var CIRCLE = (function() {
 								deg = MIN_ANGLE_DEGREE;
 							}
 						}
-
-
 
 						angle = deg;
 						lastX = currentX;
