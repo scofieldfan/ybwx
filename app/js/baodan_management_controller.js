@@ -132,7 +132,7 @@ bdControllers.controller('ybwxbaodanManageListCtrl', ['$scope', '$routeParams', 
 			var code = util.getParameterByName("code") || $routeParams.code;
 			util.getOpenId(code).then(function() {
 				var openId = sessionStorage.getItem("openId");
-				$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_policies_list'] + "?open_id=" + openId, {}, function(res) {
+				$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_policies_list'] + "?open_id=" + openId+"&wechat_type=2", {}, function(res) {
 					$scope.data = res.data.data;
 					$scope.typeGroup = _.groupBy(res.data.data.policies, function(item) {
 						return item.insurance_type;
@@ -169,7 +169,31 @@ bdControllers.controller('ybwxbaodanManageListCtrl', ['$scope', '$routeParams', 
 		}
 	}
 ]);
-
+bdControllers.controller('ybwxbaodaninsurancePolicyCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $routeParams, $location, $http, $rootScope) {
+		order_no = $routeParams.order_no;
+		/*console.log(order_no);
+		console.log($routeParams.order_no);*/
+		$scope.send_bd = function() {
+			// console.log($scope.sendForm);
+			if (!$scope.sendForm.email.$invalid) {
+				var openId = sessionStorage.getItem("openId");
+				util.sendMail($http, $rootScope, api['send_bd'], openId, $scope.user.email, $location.search().order_no,function(res){
+					console.log("res");
+					
+				});
+				$location.path("/bdm_detail").search({
+					policy_id: $routeParams.policy_id
+				});
+			} else {
+				util.showToast($rootScope, "电子邮件不能为空！");
+			}
+			/*$scope.submitPromise = getHttpPromise($http, $rootScope, 'GET', api['send_bd'], function(res){
+				console.log(res);
+			});*/
+		}
+	}
+]);
 
 bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
@@ -177,7 +201,12 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 		_hmt.push(['_trackPageview', $location.path()]);
 
 		$scope.isTest = false; //示例保单
-
+		//发送保单浮层
+		$(".pocily").click(function() {
+			$(".mouse").animate({
+				bottom: "0"
+			}, 500);
+		});
 		$scope.processMoney = function(money) {
 			return util.processSpecialMoney(money);
 		}
@@ -210,6 +239,9 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 						console.log($scope.data.coverageDateTail);
 						console.log(res.data.data);
 						$(".bd-wrapper").show();
+						console.log("order_no");
+						$scope.order_no = res.data.data.order_no;
+						console.log($scope.order_no);
 					})
 				}
 				$scope.shareConfig();
@@ -217,6 +249,32 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 			//util.uploadImgConfig(function() {
 			//alert("choose...");
 			//});
+		}
+
+		$scope.showToast = function() {
+			$("#popup").show();
+		}
+		$scope.hideCtrl = function() {
+			$("#popup").hide();
+		}
+		$scope.hidePop = function() {
+			console.log($(".cell").hasClass("popup"));
+			if(!$(".cell").hasClass("popup")){
+				$("#popup").hide();
+			}
+		}
+		
+		// $("#popup").click(function(event) {
+			
+		// 	event.stopPropagation();
+		// 	event.preventDefault();
+		// });
+		$scope.goInsurance_policy = function() {
+			$location.path("/insurance_policy").search({
+				order_no: $scope.order_no,
+				policy_id: $routeParams.policy_id
+			});
+			$("#share").hide();
 		}
 		$scope.goVerifyInfoPage = function(verify_info_id) {
 			_hmt.push(['_trackEvent', 'bdm_detail', 'bdmDetail_gobdmVerifyInfo']);
@@ -261,7 +319,7 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 		$scope.showTip = function() {
 			_hmt.push(['_trackEvent', 'bdm_detail', 'bdmDetail_shareTip']);
 			$("#share").show();
-
+			$("#popup").hide();
 		}
 		$scope.shareConfig = function() {
 
@@ -461,7 +519,8 @@ bdControllers.controller('ybwxContactListCtrl', ['$scope', '$routeParams', '$loc
 
 		}
 		// var curUserId = "";
-		$scope.return = function() {
+		$scope.
+		return = function() {
 			_hmt.push(['_trackEvent', 'contact_list', 'contact_list_return']);
 
 			$location.path('/toubao_new').search({
@@ -589,7 +648,7 @@ bdControllers.controller('ybwxBDPicCtrl', ['$scope', '$routeParams', '$location'
 			});
 		})
 
-		
+
 
 		function uploadImg2Server(mediaIds, source) {
 			var openId = sessionStorage.getItem("openId");
@@ -620,13 +679,13 @@ bdControllers.controller('ybwxBDPicCtrl', ['$scope', '$routeParams', '$location'
 				success: function(res) {
 
 					$scope.images.localIds = res.localIds;
-					
+
 					var html = [];
 					res.localIds.forEach(function(element, index) {
 						html.push('<li><img src="' + element + '"></li>');
 					});
 					$(html.join("")).insertBefore($("#pre_view_image_container").find("li:last"));
-					
+
 				}
 			});
 		}

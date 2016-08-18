@@ -1,12 +1,14 @@
 <link rel="stylesheet" href="css/userinfo.css?rev=c4bd06a38e71d1a052ca411463949e77">
-<link rel="stylesheet" href="css/userinfo_new.css?rev=a890365ea40c2b9dd0917f5006a229e1">
+<link rel="stylesheet" href="css/userinfo_new.css?rev=b6a1ca0e1ef370668da0854505ede4df">
 <div class="userinfo_new"> 
 	<div class="setting">设定被保人资料</div> 
 	<div class=" highest">是否家庭收入主要贡献者</div>
-	<label class="switch needsclick">
-		<input class="switch-input primary_income needsclick" type="checkbox" />
+	<label class="switch needsclick label_1">
+		<input class="switch-input primary_income needsclick" type="checkbox"/>
 		<span class="switch-label needsclick" data-on="是" data-off="否" ng-click="yes_no"></span> 
 		<span class="switch-handl-off"></span> 
+		<!--当年龄小于18岁时出现透明朦层 功能：点击(是/否)出现Toast -->
+		<div class="lable_mask"></div>
 	</label>
 	<div class="sex">性别</div>
 	<label class="switch needsclick">
@@ -16,7 +18,7 @@
 	</label>
 	<div class="age">年 龄<span class="blue" id="ageId" style="font-size: 18px;">0</span><span class="blue" style="margin:0;padding:0;">岁</span></div>
 	<div id="ageContainer"></div>
-	<div class="age">年收入<span class="blue" id="yearIncomeId" style="font-size: 18px;">0</span><span class="blue" id="sui" style="margin:0;padding:0;">万</span></div>
+	<div class="age" style="position: relative;">年收入<span class="blue" id="yearIncomeId" style="font-size: 18px;">0</span><span class="blue" id="sui" style="margin:0;padding:0;">万</span><div class="year_mask"></div></div>
     <div id="yearIncome"></div>
 </div>
 <div class="target_btn" ng-click="goHobby()">下一步</div>
