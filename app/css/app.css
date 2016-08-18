@@ -294,9 +294,11 @@ footer {
   padding: 7px 0 5px;
   text-align: center;
   color: #4c87d6;
-  background-color: #ffffff;
+  background-color: #1e4e8e;
 }
-
+.cell-footer.hover {
+  color: #fff;
+}
 .cell-footer  .icon,
 .icon_hover {
   height: 22px;
