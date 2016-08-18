@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="css/bdm_detail.css?rev=ceaf00a2cea7d3ba044a6d0e575fed37">
+<link rel="stylesheet" type="text/css" href="css/bdm_detail.css?rev=4c3499c91ad42d0526feddd719657727">
 <div ng-if="isTest == false"  cg-busy="loadingPromise" style="margin-bottom: 50px;">
 	<div class="wrapper " id="my_baodan">
 		<img src="img/yiyanzhen.png"  ng-show="data.status==3" style="position: absolute;top:9px;right:11px;width:70px;z-index: 5;">
@@ -188,11 +188,30 @@
 					<div>理赔热线</div>
 				</a>
 			</div>
-			<div class="cell_hd cell_primary" ng-click="showTip()">
+			<div class="cell_hd cell_primary pocily" ng-click="showToast()"><!-- ng-click="showTip()" -->
 				<div  class="img-box">
 				<i class="iconfont" style="font-size:15px;vertical-align: -3px;">&#xe608;</i>
 				</div>
 				<div>发送保单</div>
+			</div>
+  			<div class="popup" id="popup">
+				<div class=" toast--full mouse">
+					<div class="toast-main">
+						<div class="toast-main_left" >
+							<div>
+								<div class="toast-main_left--weixin" ng-click = "showTip()"><i class="iconfont" style="color: #75cf34;font-size: 40px;">&#xe62d;</i></div>
+								<div class="toast-main_left--word">微信发给好友</div>
+							</div>
+						</div>
+						<div class="toast_main_right">
+							<div>
+								<div class="toast-main_left--weixin" ng-click = "goInsurance_policy()"><i class="iconfont" style="color: #55a5ff;font-size: 40px;">&#xe62e;</i></div>
+								<div class="toast-main_left--word">电子邮件发送</div>
+							</div>
+						</div>
+					</div>
+					<div class="toast_main--bottom " ng-click="hideCtrl()">取 消</div>
+				</div>
 			</div>
 		</div>
 	</div>

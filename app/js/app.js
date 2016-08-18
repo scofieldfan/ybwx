@@ -228,6 +228,10 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/bdm_detail.html',
       controller: 'ybwxbaodanMDetailSiteCtrl',
       title: "保单详情"
+    }).when('/insurance_policy', {
+      templateUrl: 'partials/insurance_policy.html',
+      controller: 'ybwxbaodaninsurancePolicyCtrl',
+      title: "发送保单"
     }).when('/bd_verify_list', {
       templateUrl: 'partials/bdm_verfylist.html',
       controller: 'ybwxbaodanVerifyListCtrl',

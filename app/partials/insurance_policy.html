@@ -1,0 +1,15 @@
+<link rel="stylesheet" href="css/insurance_policy.css?rev=a2133093886ab4a6451b6d172fa098f9">
+<div class="insurance-policy">
+	<div class="insurance-policy_head">电子邮箱</div>
+	<form class="" role="form" name="sendForm" novalidate>
+		<input class="insurance-policy_input" type="email"  
+					style="border:1px solid #D7D7D7" class="ipt" ng-minlength="1"  name="email" ng-model="user.email"  placeholder="例：example@163.com" required/>
+		<div  class="insurance-policy_hint orange"
+                          ng-show="sendForm.email.$dirty && sendForm.email.$invalid ">
+          <small class="error" ng-show="sendForm.email.$error.required">邮箱必填</small>
+          <small class="error" ng-show="sendForm.email.$error.email">请输入正确的电子邮件地址</small>
+        </div>
+	</form>
+	<!-- <div class="insurance-policy_hint orange">请输入正确的电子邮件地址</div> -->
+	<div class="insurance-policy_btn" ng-click="send_bd()">发送电子保单</div>
+</div>
