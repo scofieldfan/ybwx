@@ -1812,7 +1812,15 @@ mainControllers.controller('ybwxKeySolutionCtrl', ['$scope', '$filter', '$routeP
 			$scope.getCoverageType = util.getCoverageType;
 
 			$scope.relation = $routeParams.relation;
-
+			console.log(".........................................");
+	        console.log($scope.sex);
+	    	console.log($scope.age);
+	        if($scope.sex == 1 && $scope.age <= 18){
+	        	console.log($scope.sex);
+	        	console.log($scope.age);
+	        	$("#sex_ctrl").text("男孩");
+	        }
+        
 			console.log($routeParams.annual_income);
             
 			var openId = sessionStorage.getItem("openId");
@@ -1852,7 +1860,6 @@ mainControllers.controller('ybwxKeySolutionCtrl', ['$scope', '$filter', '$routeP
             	$scope.annualIncome = $routeParams.annual_income + "万"; 
             	console.log($scope.annualIncome);
             }
-
 		}
 		$scope.processSpecialMoney = function(money) {
 			var money = util.processSpecialMoney(money);
