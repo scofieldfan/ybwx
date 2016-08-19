@@ -264,6 +264,9 @@ ybwxApp.config(['$routeProvider',
     }).when('/yixiangsu', {
       templateUrl: 'partials/yixiangsu.html',
       title: "一像素"
+    }).when('/test', {
+      templateUrl: 'partials/test.html',
+      title: "一像素"
     }).otherwise({
       redirectTo: '/index'
     });

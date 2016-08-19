@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+
+    	<iframe id="healthnotifyid" src="/healthnotifytest.html" style="opacity: 1;width:100%;"></iframe>
+		<script type="text/javascript">
+
+		setTimeout(function(){
+			var iframeWindow = document.getElementById("healthnotifyid").contentWindow;
+			iframeWindow.document.getElementById("not_1").checked = true;
+			iframeWindow.document.getElementById("height").value  = "180";
+			iframeWindow.document.getElementById("weight").value  = "80";
+
+		    //$('input:radio[name=benefit_person_incomm]').filter('[value=50]').prop('checked', true);
+		    //$('input:radio[name=innsure_person_incomm]').filter('[value=50]').prop('checked', true);
+
+			//iframeWindow.duck.getHealthOld();
+		},2000);	
+
+		</script>
+		
+    	
+    </body>
+</html>

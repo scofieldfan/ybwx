@@ -381,7 +381,7 @@ mainControllers.controller('ybwxNewIndexCtrl', ['$scope', '$routeParams', '$loca
 			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
 				util.share();
 				var openId = sessionStorage.getItem("openId");
-				$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_insurance_index'] + "/" + openId, {}, function(res) {
+				$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_insurance_index'] + "/" + openId, {}, function(res) {
 					if (res && res.data && res.data.data) {
 						$scope.data = res.data.data;
 						var dashboard = new Dashboard({score:res.data.data.aggregate_score});
