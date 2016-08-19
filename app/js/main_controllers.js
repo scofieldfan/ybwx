@@ -796,6 +796,9 @@ mainControllers.controller('ybwxBdEducationNewCtrl', ['$scope', '$routeParams', 
 			}
 
 		}
+		$scope.goScoreReading = function() {
+			$location.path("/score_reading");
+		}
 	}
 ]);
 
@@ -1547,9 +1550,9 @@ mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeP
 				beyondLeftCallback:function(){
 					util.showToastJQ("目前仅支持0-45岁");
 				},
-				beyondRightCallback:function(){
-					util.showToastJQ("目前仅支持0-45岁");
-				}
+				// beyondRightCallback:function(){
+				// 	util.showToastJQ("目前仅支持0-45岁");
+				// }
 			});
 		}else {
 			var ageComponent = new AgeComponent({
@@ -1565,9 +1568,9 @@ mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeP
 			beyondLeftCallback:function(){
 				util.showToastJQ("目前仅支持0-45岁");
 			},
-			beyondRightCallback:function(){
-				util.showToastJQ("目前仅支持0-45岁");
-			}
+			// beyondRightCallback:function(){
+			// 	util.showToastJQ("目前仅支持0-45岁");
+			// }
 		});
 		}
 		//end
@@ -1948,4 +1951,9 @@ mainControllers.controller('ybwxKeySolutionCtrl', ['$scope', '$filter', '$routeP
 
 	}
 
+]);
+mainControllers.controller('ybwxscoreReadingCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope', 
+	function($scope, $filter, $routeParams, $location, $http, $rootScope){
+		
+	}
 ]);

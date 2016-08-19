@@ -1,0 +1,66 @@
+@import "base/classes.scss";
+@import "base/variables.scss";
+.score-reading {
+	// padding: 0 45px;
+	font-size: 13px;
+	color: #555;
+	text-align: center;
+	.score-reading_ctrl {
+		padding: 40px 45px 0;
+		@include border(0 0 1px 0,#ccc);
+		position: relative;
+	}
+	.kong {
+		height: 10px;
+		background: #f5f5f5;
+	}
+	.score-reading-head {
+		font-size: 18px;
+		line-height: 18px;
+		font-weight: bold;
+		margin-bottom: 10px;
+	}
+	.score-reading-word {
+		line-height: 13px;
+		margin-bottom: 5px;
+	}
+	.score-reading--fen {
+		line-height: 13px;
+		margin-bottom: 30px;
+	}
+	.score-reading-yiwai {
+		margin-bottom: 20px;
+		line-height: 13px;
+	}
+	img {
+		width: 100%;
+		margin-bottom: 40px;
+	}
+	.score-reading--padd {
+		padding: 40px 25px 0;
+	}
+	.score-reading-yiwai--marBot40 {
+		margin-bottom: 40px;
+	}
+	// .score-reading_ctrl {
+	// 	padding: 40px 0 44px;
+	// }
+	.score-reading_ctrl--paddBot44 {
+		padding: 40px 0 85px 0;
+	}
+	.score-reading-word-xx {
+		@include border(1px 0 0 0,#e2e2e2);
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		line-height: 45px;
+		box-sizing: border-box;
+		background: #fff;
+		width: 100%;
+		img {
+			width: 20px;
+			margin: 0;
+			vertical-align: -4px;
+		}
+	}
+}

@@ -263,6 +263,10 @@ ybwxApp.config(['$routeProvider',
     }).when('/yixiangsu', {
       templateUrl: 'partials/yixiangsu.html',
       title: "一像素"
+    }).when('/score_reading', {
+      templateUrl: 'partials/score_reading.html',
+      title: "评分解读",
+      controller: 'ybwxscoreReadingCtrl'
     }).otherwise({
       redirectTo: '/index'
     });

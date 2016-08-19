@@ -11,7 +11,7 @@
 		<div class="title">{{data.nickname}}</div>
 		<div class="subtitle">
 			总保费 {{data.total_premium}}元 &emsp;综合评分
-			<span class="money">{{data.total_score | number:2}}</span>
+			<span class="money" ng-click="goScoreReading()">{{data.total_score | number:2}}</span>
 		</div>
 	</div>
 </header>
@@ -77,7 +77,7 @@
 					-->
 				</div>
 				<div class="sub-container">
-					<div class="bd-score">
+					<div class="bd-score" ng-click="goScoreReading()">
 						<span>{{policy.score | number:2}}</span>
 						分
 					</div>
