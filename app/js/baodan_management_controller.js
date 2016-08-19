@@ -132,7 +132,7 @@ bdControllers.controller('ybwxbaodanManageListCtrl', ['$scope', '$routeParams', 
 			var code = util.getParameterByName("code") || $routeParams.code;
 			util.getOpenId(code).then(function() {
 				var openId = sessionStorage.getItem("openId");
-				$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_policies_list'] + "?open_id=" + openId, {}, function(res) {
+				$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_policies_list'] + "?open_id=" + openId+"&wechat_type=2", {}, function(res) {
 					$scope.data = res.data.data;
 					$scope.typeGroup = _.groupBy(res.data.data.policies, function(item) {
 						return item.insurance_type;
@@ -410,11 +410,11 @@ bdControllers.controller('ybwxUpdateAddContactCtrl', ['$scope', '$routeParams', 
 			}, function(res) {
 				console.log(res.data.data);
 				$location.path('/contact_list').search({
-					choose_plans: $routeParams.choose_plans,
-					coverage_period_type: $routeParams.coverage_period_type,
-					coverage_period: $routeParams.coverage_period,
-					charge_period_type: $routeParams.charge_period_type,
-					charge_period: $routeParams.charge_period
+					new_choose_plans: $routeParams.new_choose_plans
+					// coverage_period_type: $routeParams.coverage_period_type,
+					// coverage_period: $routeParams.coverage_period,
+					// charge_period_type: $routeParams.charge_period_type,
+					// charge_period: $routeParams.charge_period
 				});
 
 			})
@@ -431,11 +431,12 @@ bdControllers.controller('ybwxUpdateAddContactCtrl', ['$scope', '$routeParams', 
 					}, function(res) {
 						// if(res && res.data && res.data.data.){
 						$location.path("/contact_list").search({
-							'choose_plans': $routeParams.choose_plans,
-							coverage_period_type: $routeParams.coverage_period_type,
-							coverage_period: $routeParams.coverage_period,
-							charge_period_type: $routeParams.charge_period_type,
-							charge_period: $routeParams.charge_period
+							new_choose_plans: $routeParams.new_choose_plans
+							// choose_plans: $routeParams.choose_plans,
+							// coverage_period_type: $routeParams.coverage_period_type,
+							// coverage_period: $routeParams.coverage_period,
+							// charge_period_type: $routeParams.charge_period_type,
+							// charge_period: $routeParams.charge_period
 						});
 
 						// }
@@ -500,11 +501,12 @@ bdControllers.controller('ybwxUpdateAddContactCtrl', ['$scope', '$routeParams', 
 				if (res && res.data && res.data.data.user) {
 					//$scope.data = res.data.data.relations;
 					$location.path("/contact_list").search({
-						choose_plans: $routeParams.choose_plans,
-						coverage_period_type: $routeParams.coverage_period_type,
-						coverage_period: $routeParams.coverage_period,
-						charge_period_type: $routeParams.charge_period_type,
-						charge_period: $routeParams.charge_period
+						new_choose_plans: $routeParams.new_choose_plans
+						// choose_plans: $routeParams.choose_plans,
+						// coverage_period_type: $routeParams.coverage_period_type,
+						// coverage_period: $routeParams.coverage_period,
+						// charge_period_type: $routeParams.charge_period_type,
+						// charge_period: $routeParams.charge_period
 
 					});
 
@@ -536,12 +538,13 @@ bdControllers.controller('ybwxContactListCtrl', ['$scope', '$routeParams', '$loc
 
 			$location.path('/toubao_new').search({
 				'type': $routeParams.type,
-				'choose_plans': $routeParams.choose_plans,
-				'user_id': $scope.chooseUser.id,
-				coverage_period_type: $routeParams.coverage_period_type,
-				coverage_period: $routeParams.coverage_period,
-				charge_period_type: $routeParams.charge_period_type,
-				charge_period: $routeParams.charge_period
+				new_choose_plans: $routeParams.new_choose_plans,
+				// 'choose_plans': $routeParams.choose_plans,
+				user_id: $scope.chooseUser.id
+				// coverage_period_type: $routeParams.coverage_period_type,
+				// coverage_period: $routeParams.coverage_period,
+				// charge_period_type: $routeParams.charge_period_type,
+				// charge_period: $routeParams.charge_period
 			});
 
 
@@ -566,12 +569,13 @@ bdControllers.controller('ybwxContactListCtrl', ['$scope', '$routeParams', '$loc
 			item.is_current = true;
 			$location.path('/toubao_new').search({
 				'type': $routeParams.type,
-				'choose_plans': $routeParams.choose_plans,
-				'user_id': item.id,
-				coverage_period_type: $routeParams.coverage_period_type,
-				coverage_period: $routeParams.coverage_period,
-				charge_period_type: $routeParams.charge_period_type,
-				charge_period: $routeParams.charge_period
+				new_choose_plans: $routeParams.new_choose_plans,
+				// 'choose_plans': $routeParams.choose_plans,
+				'user_id': item.id
+				// coverage_period_type: $routeParams.coverage_period_type,
+				// coverage_period: $routeParams.coverage_period,
+				// charge_period_type: $routeParams.charge_period_type,
+				// charge_period: $routeParams.charge_period
 			});
 		}
 
@@ -618,11 +622,12 @@ bdControllers.controller('ybwxContactListCtrl', ['$scope', '$routeParams', '$loc
 			$location.path('/update_add_contact').search({
 				user_id: id,
 				method: "edit",
-				choose_plans: $routeParams.choose_plans,
-				coverage_period_type: $routeParams.coverage_period_type,
-				coverage_period: $routeParams.coverage_period,
-				charge_period_type: $routeParams.charge_period_type,
-				charge_period: $routeParams.charge_period
+				new_choose_plans: $routeParams.new_choose_plans
+				// choose_plans: $routeParams.choose_plans,
+				// coverage_period_type: $routeParams.coverage_period_type,
+				// coverage_period: $routeParams.coverage_period,
+				// charge_period_type: $routeParams.charge_period_type,
+				// charge_period: $routeParams.charge_period
 
 			});
 		}
@@ -631,11 +636,12 @@ bdControllers.controller('ybwxContactListCtrl', ['$scope', '$routeParams', '$loc
 			_hmt.push(['_trackEvent', 'contact_list', 'contact_list_add']);
 			$location.path('/update_add_contact').search({
 				method: "add",
-				'choose_plans': $routeParams.choose_plans,
-				coverage_period_type: $routeParams.coverage_period_type,
-				coverage_period: $routeParams.coverage_period,
-				charge_period_type: $routeParams.charge_period_type,
-				charge_period: $routeParams.charge_period
+				// 'choose_plans': $routeParams.choose_plans,
+				new_choose_plans: $routeParams.new_choose_plans
+				// coverage_period_type: $routeParams.coverage_period_type,
+				// coverage_period: $routeParams.coverage_period,
+				// charge_period_type: $routeParams.charge_period_type,
+				// charge_period: $routeParams.charge_period
 			});
 		}
 	}

@@ -122,7 +122,10 @@
 			</div> -->
 			<div class="select-container">
 				<h4>保障期间</h4>
-				<a href="javascript:void(0)" class="button button_primary"   ng-click="changeDuration($event,item)"  ng-class="item==coverage_period?'button_hover':''"  ng-repeat="item in maskSelectPlan.coverage_periods">{{item}}{{genDanwei(maskSelectPlan.coverage_period_type)}}</a>
+
+				<a href="javascript:void(0)" class="button button_primary"   ng-click="changeDuration($event,item)"  ng-class="item==coverage_period?'button_hover':''"  ng-repeat="item in maskSelectPlan.coverage_periods" ng-if="maskSelectPlan.coverage_period_type!=1" >{{item}}{{genDanwei(maskSelectPlan.coverage_period_type)}}</a>
+
+				<a href="javascript:void(0)" class="button button_primary button_hover"   ng-click="changeDuration($event,item)"  ng-if="maskSelectPlan.coverage_period_type == 1 " >保终身</a>
 			</div>
 			
 			<div class="select-container" ng-if="maskSelectPlan.charge_periods.length>0">

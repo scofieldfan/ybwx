@@ -53,7 +53,9 @@ var api = {
 	'get_sum_insured': '/ybwx-web/api/recommend/annualIncome/update',
 	'get_scheme_questions': '/ybwx-web/api/scheme/questions',
 	'get_scheme': '/ybwx-web/api/scheme',
-	'get_scheme_plans': '/ybwx-web/api/scheme/plans'
+	'get_scheme_plans': '/ybwx-web/api/scheme/plans',
+	'toubao_prepare' : '/ybwx-web/api/insurance/extended/prepare',
+	'toubao_purchase' : '/ybwx-web/api/insurance/extended/purchase'
 }
 
 var isNew = true;
@@ -379,7 +381,7 @@ mainControllers.controller('ybwxNewIndexCtrl', ['$scope', '$routeParams', '$loca
 			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
 				util.share();
 				var openId = sessionStorage.getItem("openId");
-				$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_insurance_index'] + "/" + openId, {}, function(res) {
+				$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_insurance_index'] + "/" + openId, {}, function(res) {
 					if (res && res.data && res.data.data) {
 						$scope.data = res.data.data;
 						var dashboard = new Dashboard({score:res.data.data.aggregate_score});
@@ -1002,26 +1004,50 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 
 			}
 
+			/*
+			var newChoosePlansId = [];
+			for(var i = 0 ; i<$scope.choosePlansIds.length; i++){
+				newChoosePlansId.push({
+					id:$scope.choosePlansIds[i]
+				});
+			}*/
+
+			var newChoosePlansId  = getNewChoosePlan($scope.choosePlansIds);
+
 			if ($scope.isHaveRestrictions) {
 				$location.path('/information').search({
 					'type': $routeParams.type,
 					'coverage_score': $routeParams.coverage_score,
 					'sum_insured_score': $routeParams.sum_insured_score,
 					'sum_score': $routeParams.sum_score,
-					'choose_plans': JSON.stringify($scope.choosePlansIds)
+					//'choose_plans': JSON.stringify($scope.choosePlansIds),
+					'new_choose_plans': JSON.stringify(newChoosePlansId)
 				});
 			} else {
 				$location.path('/toubao_new').search({
 					'type': $routeParams.type,
-					'choose_plans': JSON.stringify($scope.choosePlansIds)
+					//'choose_plans': JSON.stringify($scope.choosePlansIds),
+					'new_choose_plans': JSON.stringify(newChoosePlansId)
 				});
 			}
 		}
 
 	}
 ]);
-
-
+function getChoosePlan(planObjs){
+	return planObjs.map(function(item){
+		return item.id;
+	})
+}
+function getNewChoosePlan( planIds ){
+	var newChoosePlansId = [];
+			for(var i = 0 ; i< planIds.length; i++){
+				newChoosePlansId.push({
+					id:planIds[i]
+				});
+	}
+	return newChoosePlansId;
+}
 
 mainControllers.controller('ybwxInfoCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
@@ -1035,7 +1061,8 @@ mainControllers.controller('ybwxInfoCtrl', ['$scope', '$routeParams', '$location
 			_hmt.push(['_trackEvent', 'information', 'information_subBtn']);
 			$location.path('/toubao_new').search({
 				'type': $routeParams.type,
-				'choose_plans': $routeParams.choose_plans
+				//'choose_plans': $routeParams.choose_plans,
+				new_choose_plans: $routeParams.new_choose_plans
 			});
 		};
 
@@ -1059,10 +1086,13 @@ mainControllers.controller('ybwxInfoCtrl', ['$scope', '$routeParams', '$location
 		}
 		$scope.init = function() {
 
+			$scope.choose_plans  = getChoosePlan(JSON.parse($routeParams.new_choose_plans));
+
+
 			var openId = sessionStorage.getItem("openId");
 			$scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_restrictions'], {
 				"open_id": openId,
-				plan_ids: JSON.parse($routeParams.choose_plans),
+				plan_ids: $scope.choose_plans,
 			}, function(res) {
 				console.log(res);
 				$scope.data = res.data.data;
@@ -1209,7 +1239,7 @@ mainControllers.controller('ybwxSupplyInfoCtrl', ['$scope', '$routeParams', '$lo
 				$scope.firstToubao = getHttpPromise($http, $rootScope, 'POST', api['firstToubao'], postData, function(res) {
 					$location.path('/toubao_new').search({
 						type: $routeParams.type,
-						choose_plans: $routeParams.choose_plans,
+						new_choose_plans: $routeParams.new_choose_plans,
 						user_id: res.data.data.user.id
 					});
 				});
@@ -1311,28 +1341,47 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 
 		$scope.submit = function() {
 			_hmt.push(['_trackEvent', 'toubaonew', 'toubaonew_submit']);
-
-			if (!$scope.tbform.$invalid && $scope.canNotBuyPlans.length < $scope.data.plans.length && $scope.isHaveUserInfo) {
-				var plans = {};
+			var isBankInvalid = $scope.data.bank && $scope.user.bank.id === 0;
+			if (!$scope.tbform.$invalid && $scope.canNotBuyPlans.length < $scope.data.plans.length && $scope.isHaveUserInfo && !isBankInvalid) {
+				var plans = [];
 				$scope.data.plans.forEach(function(element, index) {
 					if (element.status === 1) {
-						plans[element.id] = element.premium;
+
+						var planObj = {
+							id:element.id,
+							premium:element.premium
+						};
+						var filterPlans = $scope.paramPlans.filter(function(item){
+							return item.id == element.id;
+						});
+
+						if(filterPlans && filterPlans.length==1){
+							if(filterPlans[0].coverage_period){
+								planObj["coverage_period"] = filterPlans[0].coverage_period;
+							}
+							if(filterPlans[0].charge_period){
+								planObj["charge_period"] = filterPlans[0].charge_period;
+							}
+						}
+						plans.push(planObj);
 					}
 				});
 
 				var effectiveDate = $filter('date')($scope.user.effective_date, "yyyyMMdd");
 
-				$scope.submitPromise = getHttpPromise($http, $rootScope, 'POST', api['purchase'], {
-					'open_id': openId,
-					"insured_id": $scope.data.insured.id,
-					'plans': plans,
-					'coverage_period': $scope.coverage_period,
-					'charge_period': $scope.charge_period,
-					'effective_date': effectiveDate,
-					'address': $scope.user.address,
-					'destination': $scope.user.destination,
-					'car_no': $scope.user.car_no,
-					'flight_no': $scope.user.flight_no,
+				$scope.submitPromise = getHttpPromise($http, $rootScope, 'POST', api['toubao_purchase'], {
+					open_id: openId,
+					insured_id: $scope.data.insured.id,
+					plans: plans,
+					//'coverage_period': $scope.coverage_period,
+					//'charge_period': $scope.charge_period,
+					effective_date: effectiveDate,
+					address: $scope.user.address,
+					destination: $scope.user.destination,
+					car_no: $scope.user.car_no,
+					flight_no: $scope.user.flight_no,
+					bank_account:$scope.user.bank.name,
+					bank_card_no:$scope.user.bankcardno
 				}, function(res) {
 
 					var payRequest = {
@@ -1370,21 +1419,44 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 					util.showToast($rootScope, "航班号填写错误，请修改");
 				}
 
+				if(isBankInvalid){
+					util.showToast($rootScope, "请选择银行");
+				}
+
+				if ($scope.data.bank && $scope.tbform.bankusername && 　$scope.tbform.bankusername.$invalid) {
+					util.showToast($rootScope, "请填写持卡人姓名");
+				}
+
+				if ($scope.data.bank && $scope.tbform.bankcardno && 　$scope.tbform.bankcardno.$invalid) {
+					util.showToast($rootScope, "请填银行卡账号");
+				}
+
+
+
 			}
 
 		}
 		$scope.getCoverageType = function(coverage_type) {
-			var type = $routeParams.coverage_period ? $routeParams.coverage_period : coverage_type;
+			var type = $routeParams.coverage_period_type ? $routeParams.coverage_period_type : coverage_type;
 			console.log('type:' + type);
 			return util.getCoverageType(type);
 		}
 		$scope.init = function() {
 
 			$scope.isFirst = true;
-			var effectiveDate = util.addDays(new Date(), 1)
+			var effectiveDate = util.addDays(new Date(), 1);
+
+			$scope.banks = util.banks;
 			$scope.minDate = effectiveDate;
 			$scope.user = {};
+
 			$scope.user.effective_date = effectiveDate;
+			$scope.paramPlans = JSON.parse($routeParams.new_choose_plans);
+
+			console.log("new_choose_plans:");
+			console.log($scope.paramPlans);
+			
+			$scope.user.bank = {id:0 ,  name: "请选择银行"};
 			$scope.know_contract = true;
 
 			var effectiveDate = util.addDays(new Date(), 1);
@@ -1406,13 +1478,14 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 			if ($routeParams.charge_period) {
 				$scope.charge_period = $routeParams.charge_period;
 			}
-
-			$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['prepare_insure'], {
+			//$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['prepare_insure'], {
+			$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['toubao_prepare'], {
 				'open_id': openId,
 				"insured_id": $routeParams.user_id,
-				'plans': JSON.parse($routeParams.choose_plans),
-				'coverage_period': $routeParams.coverage_period,
-				'charge_period': $routeParams.charge_period
+				'plans': JSON.parse($routeParams.new_choose_plans)
+				//'plans': JSON.parse($routeParams.choose_plans),
+				//'coverage_period': $routeParams.coverage_period,
+				//'charge_period': $routeParams.charge_period
 			}, function(res) {
 				$scope.data = res.data.data;
 				var plans = res.data.data.plans;

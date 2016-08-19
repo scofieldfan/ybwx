@@ -394,5 +394,20 @@ var util = {
 			name: '其他'
 		}
 
+	],
+	banks:[
+		{id:0 ,  name: "请选择银行"},
+		{id:1	,name:'工商银行'},
+		{id:2	,name:'建设银行'},
+		{id:3	,name:'储蓄银行'},
+		{id:4	,name:'农业银行'},
+		{id:5	,name:'民生银行'},
+		{id:6	,name:'招商银行'},
+		{id:7	,name:'兴业银行'},
+		{id:8	,name:'中国银行'},
+		{id:9	,name:'中信银行'},
+		{id:10	,name:'交通银行'},
+		{id:11	,name:'平安银行'},
+		{id:12	,name:'光大银行'}
 	]
 }

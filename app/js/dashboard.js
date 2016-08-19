@@ -2,7 +2,7 @@
  * @Author: fanzhang
  * @Date:   2016-08-15 19:09:31
  * @Last Modified by:   fanzhang
- * @Last Modified time: 2016-08-17 19:51:03
+ * @Last Modified time: 2016-08-19 14:32:24
  */
 
 'use strict';
@@ -310,7 +310,15 @@ window.Dashboard = (function() {
 			var textRadius = (mainArcRaidus - this.radio*150)*DPR;
 			drawWord(ctx, -Math.PI/2,"normal "+this.radio*45+"px Arial,Microsoft YaHei", "#90baff", baozhangRadius, "您的保障评分", 0);
 			//drawWord(ctx, -Math.PI/2,"normal 135px Arial,Microsoft YaHei", "#fff", scoreRadius, "7.5", 0);
-			drawWord(ctx, -Math.PI/2,"normal "+this.radio*52+"px Arial,Microsoft YaHei", "#fff", textRadius, "保障较好", 0);
+			var word = "";
+			if(this.maxScore>0 && this.maxScore<6){
+				word = "保障偏低";
+			}else if(this.maxScore>=6 && this.maxScore<8){
+				word = "保障较好";
+			}else if(this.maxScore>=8 && this.maxScore<5.9){
+				word = "保障全面";
+			}
+			drawWord(ctx, -Math.PI/2,"normal "+this.radio*52+"px Arial,Microsoft YaHei", "#fff", textRadius, word, 0);
 		}
 	};
 	return Dashboard;

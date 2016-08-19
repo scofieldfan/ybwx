@@ -11,6 +11,7 @@ var ybwxApp = angular.module('ybwxApp', [
   'baodanControllers',
   'serviceControllers',
   'transactionControllers',
+  'autoPromoteControllers',
   'routeStyles'
 ]).value('cgBusyDefaults', {
   message: '正在加载....',
@@ -62,7 +63,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/newindex_part.html?v=123',
       controller: 'ybwxNewIndexCtrl',
       title: '诺贝保险管家',
-      css:'css/newindex_part.css?rev=sdsdf'
+      css:'css/newindex_part.css?rev=8d63b5535cbc5ed6d521750f85e99719'
     }).when('/bd_education_new', {
       templateUrl: 'partials/bd_education_new.html',
       controller: 'ybwxBdEducationNewCtrl',
@@ -82,7 +83,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/toubao_new.html',
       controller: 'ybwxToubaoNewCtrl',
       title: "投保确认",
-      css:'css/toubao_new.css?rev=4ab10e426118393823dd1a0af86df6d8'
+      css:'css/toubao_new.css?rev=624c41cdbf7192503c48ae58a923ab93'
     }).when('/promote', {
       templateUrl: 'partials/bz_ts.html',
       controller: 'ybwxPromoteCtrl',
@@ -91,7 +92,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/target.html',
       controller: 'ybwxTargetCtrl',
       title: "保障对象",
-      css:'css/ensuring_target.css?rev=3d6c009b82beaf6bf352dd8981713783'
+      css:'css/ensuring_target.css?rev=e868b4d6702a29ca7854f673ebd7d43a'
     }).when('/hobby', {
       templateUrl: 'partials/hobby.html',
       controller: 'ybwxHobbyCtrl',
@@ -101,7 +102,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/userinfo_new.html',
       controller: 'ybwxUserInfoNewCtrl',
       title: "资料设定",
-      css:'css/userinfo_new.css?rev=d41d8cd98f00b204e9800998ecf8427e'
+      css:'css/userinfo_new.css?rev=b6a1ca0e1ef370668da0854505ede4df'
     }).when('/scheme', {
       templateUrl: 'partials/scheme.html',
       controller: 'ybwxSchemeCtrl',
@@ -262,6 +263,9 @@ ybwxApp.config(['$routeProvider',
       title: "产品条款列表"
     }).when('/yixiangsu', {
       templateUrl: 'partials/yixiangsu.html',
+      title: "一像素"
+    }).when('/test', {
+      templateUrl: 'partials/test.html',
       title: "一像素"
     }).when('/score_reading', {
       templateUrl: 'partials/score_reading.html',

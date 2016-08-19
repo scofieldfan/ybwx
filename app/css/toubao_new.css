@@ -135,7 +135,8 @@ body {
       background-color: transparent;
       -webkit-appearance: none;
       height: 45px;
-      border: none; }
+      border: none;
+      font-size: 15px; }
     .supply-info .supply-item .new-input::-webkit-input-placeholder {
       color: #ccc; }
     .supply-info .supply-item .danwei {
@@ -222,7 +223,8 @@ body {
       background-color: transparent;
       -webkit-appearance: none;
       height: 45px;
-      border: none; }
+      border: none;
+      font-size: 15px; }
     .supply-info .new-supply-item .new-input::-webkit-input-placeholder {
       color: #ccc; }
     .supply-info .new-supply-item .danwei {
