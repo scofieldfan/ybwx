@@ -62,7 +62,16 @@
             <div class="pannel__body__item_yiyou">人寿保障</div>
             <div class="progress"><div class="progress_innerbar"  style="width:{{data.scores[3]*10}}%;"></div></div></div>
           <i class="iconfont arrow_size" >&#xe60f;</i>
+          </div>
+
+            <div class="pannel__body__item"  ng-click="goBaodan(1)">
+          <i class="iconfont icon_size" >&#xe61c;</i>
+          <div class="pannel__body__item_bar"> 
+            <div class="pannel__body__item_yiyou">家庭保障</div>
+            <div class="progress"><div class="progress_innerbar"  style="width:{{data.scores[1]*10}}%;"></div></div></div>
+          <i class="iconfont arrow_size"  >&#xe60f;</i>
           </div> 
+    
          <div class="pannel__body__item"  ng-click="goBaodan(5)">
           <i class="iconfont icon_size" >&#xe618;</i>
           <div class="pannel__body__item_bar"> 
@@ -70,6 +79,9 @@
             <div class="progress"><div class="progress_innerbar"  style="width:{{data.scores[5]*10}}%;"></div></div></div>
           <i class="iconfont arrow_size"  >&#xe60f;</i>
           </div> 
+
+
+
         </div> 
 
         <div class="pannel__body"  ng-show="pannelId==2">
@@ -93,6 +105,7 @@
             <div class="pannel__body__item_des">先保重疾，再补充医疗报销</div></div>
           <i class="iconfont arrow_size"  >&#xe60f;</i>
           </div> 
+
          <div class="pannel__body__item"  ng-click="goPromote(3)">
           <i class="iconfont icon_size" styl>&#xe62b;</i>
           <div class="pannel__body__item_bar">  
@@ -100,6 +113,16 @@
             <div class="pannel__body__item_des">保障身故损失，建议提升</div></div>
           <i class="iconfont arrow_size" >&#xe60f;</i>
           </div> 
+      
+          <div class="pannel__body__item"  ng-click="goPromote(1)">
+          <i class="iconfont icon_size" styl>&#xe61c;</i>
+          <div class="pannel__body__item_bar">  
+            <div class="pannel__body__item_head">家庭保障</div>
+            <div class="pannel__body__item_des">先保收入支柱，再保老人小孩</div></div>
+          <i class="iconfont arrow_size" >&#xe60f;</i>
+          </div> 
+
+
          <div class="pannel__body__item"  ng-click="goPromote(5)">
           <i class="iconfont icon_size" >&#xe618;</i>
           <div class="pannel__body__item_bar"> 

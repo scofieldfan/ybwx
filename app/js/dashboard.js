@@ -2,7 +2,7 @@
  * @Author: fanzhang
  * @Date:   2016-08-15 19:09:31
  * @Last Modified by:   fanzhang
- * @Last Modified time: 2016-08-19 14:32:24
+ * @Last Modified time: 2016-08-19 15:55:57
  */
 
 'use strict';
@@ -29,7 +29,7 @@ window.Dashboard = (function() {
 	function Dashboard(config) {
 
 		var config = config || {};
-		this.maxScore = config.score || 0;
+		this.maxScore = parseFloat(config.score) || 0;
 		this.maxAngle =  (MAX_ANGLE-MIN_ANGLE) * this.maxScore / 10 + MIN_ANGLE;
 		this.init();
 
