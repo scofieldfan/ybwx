@@ -2,7 +2,7 @@
  * @Author: fanzhang
  * @Date:   2016-08-15 19:09:31
  * @Last Modified by:   fanzhang
- * @Last Modified time: 2016-08-19 20:08:56
+ * @Last Modified time: 2016-08-19 20:10:21
  */
 
 'use strict';
@@ -161,7 +161,7 @@ window.Dashboard = (function() {
 			var ctx = this.bgCanvas.getContext("2d");
 			var scoreRadius = (this.mainArcRaidus - this.radio * 150) * DPR;
 			ctx.fillStyle = "#4285f4"; //白色为例子；
-			ctx.fillRect(-140 * this.radio, -scoreRadius - 180 * this.radio, 370 * this.radio, 200 * this.radio);
+			ctx.fillRect(-150 * this.radio, -scoreRadius - 180 * this.radio, 370 * this.radio, 200 * this.radio);
 
 			//drawWord(ctx, -Math.PI / 2, "normal " + 135 * this.radio + "px Arial,Microsoft YaHei", "#fff", scoreRadius, score, 0);
 			drawWord(ctx, -Math.PI / 2, "normal 204px Arial,Microsoft YaHei", "#fff", scoreRadius, score, 0);
