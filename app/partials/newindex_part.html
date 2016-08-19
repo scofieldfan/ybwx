@@ -29,6 +29,18 @@
         </div> 
           <div class="pannel__nav__item"  ng-click="nav($event,2)">提升保障</div> 
       </div>
+
+
+
+        <div class="pannel__body pannel__body-init" ng-show="pannelId==0">
+          <div class="pannel__body_tip">还没有任何保障</div>
+          <div class="pannel__body_des" >
+            <div>建议立即提升保障</div> 
+            <div>诺贝提供一站式解决方案</div> 
+          </div>
+          <img src="/img/index/solution_introd.png" style="width:100%;">
+        </div> 
+
       <div class="pannel__body" ng-show="pannelId==1">
          <div class="pannel__body__item" ng-click="goBaodan(4)">
           <i class="iconfont icon_size" >&#xe629;</i>

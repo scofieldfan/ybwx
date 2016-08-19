@@ -334,7 +334,7 @@ mainControllers.controller('ybwxPromoteCtrl', ['$scope', '$routeParams', '$locat
 mainControllers.controller('ybwxNewIndexCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
-		$scope.pannelId = 1;
+		$scope.pannelId = 0;
 		$scope.goAutoPromote = function(){
 			$location.path('/target').search();
 		}
@@ -384,6 +384,11 @@ mainControllers.controller('ybwxNewIndexCtrl', ['$scope', '$routeParams', '$loca
 				$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_insurance_index'] + "/" + openId, {}, function(res) {
 					if (res && res.data && res.data.data) {
 						$scope.data = res.data.data;
+						if(res.data.data.aggregate_score == 0){
+							$scope.pannelId = 0;
+						}else{
+							$scope.pannelId = 1;
+						}
 						var dashboard = new Dashboard({score:res.data.data.aggregate_score});
 					}
 				})
