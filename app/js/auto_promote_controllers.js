@@ -11,7 +11,7 @@
 var autoPromoteControllers = angular.module('autoPromoteControllers', []);
 
 /*一键提升==保障对象*/
-autoPromoteControllers.controller('ybwxTargetCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
+mainControllers.controller('ybwxTargetCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 
 		$scope.relation = 1;
@@ -44,7 +44,7 @@ autoPromoteControllers.controller('ybwxTargetCtrl', ['$scope', '$filter', '$rout
 ]);
 
 /*一键提升==资料设定*/
-autoPromoteControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
+mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
         function call(){
         	var age = $("#ageId").html();
@@ -85,9 +85,9 @@ autoPromoteControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '
 				beyondLeftCallback:function(){
 					util.showToastJQ("目前仅支持0-45岁");
 				},
-				beyondRightCallback:function(){
-					util.showToastJQ("目前仅支持0-45岁");
-				}
+				// beyondRightCallback:function(){
+				// 	util.showToastJQ("目前仅支持0-45岁");
+				// }
 			});
 		}else {
 			var ageComponent = new AgeComponent({
@@ -103,9 +103,9 @@ autoPromoteControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '
 			beyondLeftCallback:function(){
 				util.showToastJQ("目前仅支持0-45岁");
 			},
-			beyondRightCallback:function(){
-				util.showToastJQ("目前仅支持0-45岁");
-			}
+			// beyondRightCallback:function(){
+			// 	util.showToastJQ("目前仅支持0-45岁");
+			// }
 		});
 		}
 		//end
@@ -176,7 +176,7 @@ autoPromoteControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '
 ]);
 
 /*一键提升==偏好设定*/
-autoPromoteControllers.controller('ybwxHobbyCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
+mainControllers.controller('ybwxHobbyCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 		$scope.init = function() {
 			var openId = sessionStorage.getItem("openId");
@@ -217,9 +217,8 @@ autoPromoteControllers.controller('ybwxHobbyCtrl', ['$scope', '$filter', '$route
 		}
 	}
 ]);
-
 /*一键提升==方案解读*/
-autoPromoteControllers.controller('ybwxSchemeCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
+mainControllers.controller('ybwxSchemeCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 		$scope.init = function() {
 			var openId = sessionStorage.getItem("openId");
@@ -255,7 +254,7 @@ autoPromoteControllers.controller('ybwxSchemeCtrl', ['$scope', '$filter', '$rout
 	}
 ]);
 /*一键提升==保障方案*/
-autoPromoteControllers.controller('ybwxKeySolutionCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
+mainControllers.controller('ybwxKeySolutionCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 		$scope.init = function() {
 
@@ -274,7 +273,7 @@ autoPromoteControllers.controller('ybwxKeySolutionCtrl', ['$scope', '$filter', '
 			$scope.getCoverageType = util.getCoverageType;
 
 			$scope.relation = $routeParams.relation;
-
+        
 			console.log($routeParams.annual_income);
             
 			var openId = sessionStorage.getItem("openId");
@@ -307,10 +306,28 @@ autoPromoteControllers.controller('ybwxKeySolutionCtrl', ['$scope', '$filter', '
 				$scope.choosePlan();
 			});
 			if($scope.annualIncome == 0){
-				$scope.annualIncome = "无";
+				$scope.annualIncome = "：无";
+
             }else{
             	$scope.annualIncome = $routeParams.annual_income + "万"; 
+            	// console.log($scope.annualIncome);
             }
+	        if($routeParams.age <= 18 ){
+	        	console.log($routeParams.age);
+	        	console.log($routeParams.sex);
+	        	$scope.men = "男孩";
+	        	$scope.female = "女孩";
+	        }else{
+	        	$scope.men = "男性";
+	        	$scope.female = "女性";	        	 
+	        }
+	        console.log("..@@@..");
+	        console.log($routeParams.primary_income);
+	        if($routeParams.primary_income == true){
+	        	$scope.wrong ="是";
+	        }else if($routeParams.primary_income == false){
+	        	$scope.wrong ="非";
+	        }
 		}
 		$scope.processSpecialMoney = function(money) {
 			var money = util.processSpecialMoney(money);
@@ -463,24 +480,20 @@ autoPromoteControllers.controller('ybwxKeySolutionCtrl', ['$scope', '$filter', '
 				return;
 
 			}
-			var newChoosePlansId  = getNewChoosePlan($scope.choosePlansIds);
 			if ($scope.isHaveRestrictions) {
 				$location.path('/information').search({
 					'type': $routeParams.type,
 					'coverage_score': $routeParams.coverage_score,
 					'sum_insured_score': $routeParams.sum_insured_score,
 					'sum_score': $routeParams.sum_score,
-					'new_choose_plans': JSON.stringify(newChoosePlansId)
+					'choose_plans': JSON.stringify($scope.choosePlansIds)
 				});
 			} else {
 				$location.path('/toubao_new').search({
 					'type': $routeParams.type,
-					'new_choose_plans': JSON.stringify(newChoosePlansId)
+					'choose_plans': JSON.stringify($scope.choosePlansIds)
 				});
 			}
 		}
-
-
 	}
-
 ]);
