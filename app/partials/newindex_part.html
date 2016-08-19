@@ -13,7 +13,7 @@
   <div class="navigation" style="padding: 20px 0;">
     <div class="navigation__leftbtn"></div>
     <div class="navigation__name">
-      <div style="line-height: 12px;">本人</div> 
+      <div style="line-height: 13px;font-size: 13px;">本人</div> 
       <!-- <div></div>  -->
     </div>
     <div class="navigation__rightbtn"></div>
@@ -29,8 +29,7 @@
         </div> 
           <div class="pannel__nav__item"  ng-click="nav($event,2)">提升保障</div> 
       </div>
-
-
+      <div class="empty">
 
         <div class="pannel__body pannel__body-init" ng-show="pannelId==0">
           <div class="pannel__body_tip">还没有任何保障</div>
@@ -87,7 +86,7 @@
         <div class="pannel__body"  ng-show="pannelId==2">
 
           <div class="pannel__body__item pannel__body__item_title">
-            建议提升至8.0分 
+            <div class="pannel__body__item_fen">建议提升至8.0分 </div>
             <div class="pannel__body__item_btn" ng-click="goAutoPromote()"><i class="iconfont arrow_size" style="color:#4285f4;font-size:19px;" >&#xe62c;</i>一键提升</div>
           </div>
          <div class="pannel__body__item"   ng-click="goPromote(4)">
@@ -130,12 +129,9 @@
             <div class="pannel__body__item_des">优先保障价值大的财物</div></div>
           <i class="iconfont arrow_size"  >&#xe60f;</i>
           </div> 
-        </div> 
-
-
-
-
-    </div>
+        </div>
+      </div> 
+      </div>
   </div>
 
 
