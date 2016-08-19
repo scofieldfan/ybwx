@@ -167,6 +167,9 @@ bdControllers.controller('ybwxbaodanManageListCtrl', ['$scope', '$routeParams', 
 			});
 
 		}
+		$scope.goScoreReading = function() {
+			$location.path("/score_reading");
+		}
 	}
 ]);
 bdControllers.controller('ybwxbaodaninsurancePolicyCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
@@ -252,9 +255,9 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 		}
 
 		$scope.showToast = function() {
-			// console.log($scope.order_no);
-			if($scope.order_no = " "){
+			if($scope.order_no.length == 0){
 				$("#share").show();
+				// console.log($scope.order_no.length);
 			}else{
 				$("#popup").show();
 			}
@@ -351,6 +354,9 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 			});
 		}
 		$scope.init();
+		$scope.goScoreReading = function() {
+			$location.path("/score_reading");
+		}
 	}
 ])
 bdControllers.controller('ybwxUpdateAddContactCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',

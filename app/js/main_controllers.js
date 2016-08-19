@@ -798,6 +798,9 @@ mainControllers.controller('ybwxBdEducationNewCtrl', ['$scope', '$routeParams', 
 			}
 
 		}
+		$scope.goScoreReading = function() {
+			$location.path("/score_reading");
+		}
 	}
 ]);
 
@@ -1543,5 +1546,10 @@ mainControllers.controller('ybwxtermsListCtrl', ['$scope', '$filter', '$routePar
 			$scope.data = JSON.parse(objectPlans);
 			console.log(JSON.parse(objectPlans));
 		}
+	}
+]);
+mainControllers.controller('ybwxscoreReadingCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope', 
+	function($scope, $filter, $routeParams, $location, $http, $rootScope){
+		
 	}
 ]);

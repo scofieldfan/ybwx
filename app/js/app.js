@@ -58,7 +58,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/index_part.html?v=123',
       controller: 'ybwxIndexCtrl',
       title: '诺贝保险管家',
-      css:'css/index_part.css?rev=d41d8cd98f00b204e9800998ecf8427e'
+      css:'css/index_part.css?rev=a47bd3748f61c7838f55363b681c5c84'
     }).when('/newindex', {
       templateUrl: 'partials/newindex_part.html?v=123',
       controller: 'ybwxNewIndexCtrl',
@@ -68,7 +68,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/bd_education_new.html',
       controller: 'ybwxBdEducationNewCtrl',
       title: "保障评分",
-      css:'css/bd_education_new.css?rev=d41d8cd98f00b204e9800998ecf8427e'
+      css:'css/bd_education_new.css?rev=574f104fdb96a11a5b11c99936417f29'
     }).when('/select', {
       templateUrl: 'partials/select_part.html?v=123',
       controller: 'ybwxSelectCtrl',
@@ -267,6 +267,10 @@ ybwxApp.config(['$routeProvider',
     }).when('/test', {
       templateUrl: 'partials/test.html',
       title: "一像素"
+    }).when('/score_reading', {
+      templateUrl: 'partials/score_reading.html',
+      title: "评分解读",
+      controller: 'ybwxscoreReadingCtrl'
     }).otherwise({
       redirectTo: '/index'
     });
