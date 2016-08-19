@@ -2,7 +2,7 @@
  * @Author: fanzhang
  * @Date:   2016-08-15 19:09:31
  * @Last Modified by:   fanzhang
- * @Last Modified time: 2016-08-19 16:03:01
+ * @Last Modified time: 2016-08-19 16:24:33
  */
 
 'use strict';
@@ -30,6 +30,7 @@ window.Dashboard = (function() {
 
 		var config = config || {};
 		this.maxScore = parseFloat(config.score) || 0;
+		console.log("maxScore:"+this.maxScore);
 		this.maxAngle =  (MAX_ANGLE-MIN_ANGLE) * this.maxScore / 10 + MIN_ANGLE;
 		this.init();
 
@@ -166,7 +167,7 @@ window.Dashboard = (function() {
 			score = (parseFloat(score)+0.1).toFixed(1);
 			this.score = score;
 
-			//console.log(score);
+			console.log(score);
 			if(score > this.maxScore){
 				return ;
 			}	
