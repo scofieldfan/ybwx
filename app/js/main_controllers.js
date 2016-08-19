@@ -336,7 +336,19 @@ mainControllers.controller('ybwxNewIndexCtrl', ['$scope', '$routeParams', '$loca
 		$scope.goAutoPromote = function(){
 			$location.path('/target').search();
 		}
-		
+		$scope.showToast = function() {
+			$("#share_ctrl").show();
+		}
+		$('#gift').click(function() {
+			_hmt.push(['_trackEvent', 'index', 'showShareMask']);
+			$("#share_ctrl").show();
+		});
+		$("body").on("click", "#share_ctrl", function() {
+			_hmt.push(['_trackEvent', 'index', 'hideShareMask']);
+			$("#share_ctrl").hide();
+		}).on("click", "#opacity_ctrl", function() {
+			$("#share_ctrl").hide();
+		})
 		$scope.goTemai = function($event) {
 			_hmt.push(['_trackEvent', 'index', 'goTemai_']);
 			$location.path('/temaiindex').search();

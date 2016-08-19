@@ -193,6 +193,7 @@ body {
 }
 .alt_font {
   padding: .26rem .2rem .3rem .2rem;
+  background: #fff;
 }
 
 .alt_font .padd_top10 img ,.padd_bot69 img{
