@@ -359,11 +359,17 @@ mainControllers.controller('ybwxNewIndexCtrl', ['$scope', '$routeParams', '$loca
 			_hmt.push(['_trackEvent', 'index', 'goService']);
 			$location.path('/service').search();
 		}
+
 		$scope.nav = function($event, pannelId) {
 			var ele = $event.currentTarget;
 			$(ele).parents(".pannel__nav").find(".pannel__nav__item").removeClass("pannel__nav__item_hover");
 			$(ele).addClass("pannel__nav__item_hover");
-			$scope.pannelId = pannelId;
+			if(pannelId == -1){
+				$scope.pannelId = $scope.defaultPannelId;
+				//设置显示默认的pannel
+			}else{
+				$scope.pannelId = pannelId;
+			}
 		}
 		$scope.goBaodan = function(type) {
 			$location.path('/bdm_list').search({
@@ -395,6 +401,7 @@ mainControllers.controller('ybwxNewIndexCtrl', ['$scope', '$routeParams', '$loca
 						} else {
 							$scope.pannelId = 1;
 						}
+						$scope.defaultPannelId = $scope.pannelId;
 						var dashboard = new Dashboard({
 							score: res.data.data.aggregate_score
 						});
