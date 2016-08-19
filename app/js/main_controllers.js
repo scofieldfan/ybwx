@@ -1772,7 +1772,7 @@ mainControllers.controller('ybwxKeySolutionCtrl', ['$scope', '$filter', '$routeP
 				$scope.choosePlan();
 			});
 			if($scope.annualIncome == 0){
-				$scope.annualIncome = "无";
+				$scope.annualIncome = "“无”";
 
             }else{
             	console.log($scope.annualIncome);
