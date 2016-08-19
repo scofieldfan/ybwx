@@ -252,13 +252,18 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 		}
 
 		$scope.showToast = function() {
-			$("#popup").show();
+			// console.log($scope.order_no);
+			if($scope.order_no = " "){
+				$("#share").show();
+			}else{
+				$("#popup").show();
+			}
 		}
 		$scope.hideCtrl = function() {
 			$("#popup").hide();
 		}
 		$scope.hidePop = function() {
-			console.log($(".cell").hasClass("popup"));
+			// console.log($(".cell").hasClass("popup"));
 			if(!$(".cell").hasClass("popup")){
 				$("#popup").hide();
 			}

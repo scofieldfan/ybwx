@@ -4,6 +4,16 @@
   position: relative;
   background-color: #4285f4;
   height: 100%; }
+.gift {
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  position: absolute;
+  top: -4px;
+  right: 0;
+  z-index: 10;
+  cursor: pointer; }
 .dash {
   padding-top: 35px;
   background-color: #4285f4;
@@ -40,10 +50,10 @@
   flex: 1;
    }
 .pannel-container {
-  padding: 10px;
-  margin-bottom: 80px; }
+  padding: 0 10px;
+  margin-bottom: 60px; }
 .pannel {
-  padding: 0 15px 7.5px;
+  padding: 0 15px;
   border-radius: 5px;
   background-color: #FFF; }
 .pannel__nav {
@@ -133,7 +143,8 @@
   display: flex;
   -webkit-box-align: center;
   -webkit-align-items: center;
-  align-items: center; }
+  align-items: center;
+  font-size: 15px; }
   .pannel__body__item::after {
     pointer-events: none;
     position: absolute;
@@ -165,8 +176,7 @@
   height: 8px;
   position: relative;
   border-radius: 8px;
-  width: 100%;
-  margin-top: 5px; }
+  width: 100%; }
 .progress_innerbar {
   width: 0;
   height: 100%;
@@ -175,7 +185,8 @@
   border-bottom-left-radius: 15px; }
 .icon_size {
   color: #999;
-  font-size: 25px; }
+  font-size: 25px;
+  line-height: 25px; }
 .arrow_size {
   color: #999;
   font-size: 15px; }
@@ -195,7 +206,11 @@
   width: 50px;
   text-align: center; }
 .pannel__body__item_head {
-  line-height: 15px; }
+  line-height: 15px;
+  margin-bottom: 5px; }
+.pannel__body__item_yiyou {
+  line-height: 15px;
+  margin-bottom: 9px; }
 .pannel__body__item_des {
   color: #999;
   font-size: 12px;
@@ -209,7 +224,7 @@
   justify-content: space-between; }
 .pannel__body__item_btn {
   width: 120px;
-  border-radius: 8px;
+  border-radius: 6px;
   color: #4285f4;
   border: 1px solid #e2e2e2;
   box-sizing: border-box;

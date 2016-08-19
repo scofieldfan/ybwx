@@ -1,6 +1,6 @@
 <div id="wrapper" class="wrapper"  data-ng-init="init()">
 
-
+<div class="gift" ng-click="showToast()"><i class="iconfont" style="color:#97bfff">&#xe627;</i></div>
 
   <div class="dash">
   <canvas id="dash_bg_container" >
@@ -10,10 +10,10 @@
   </div>
  
 
-  <div class="navigation">
+  <div class="navigation" style="padding: 20px 0;">
     <div class="navigation__leftbtn"></div>
     <div class="navigation__name">
-      <div>本人 杨先生</div> 
+      <div style="line-height: 12px;">本人 杨先生</div> 
       <!-- <div></div>  -->
     </div>
     <div class="navigation__rightbtn"></div>
@@ -32,22 +32,30 @@
       <div class="pannel__body" ng-show="pannelId==1">
          <div class="pannel__body__item" ng-click="goBaodan(4)">
           <i class="iconfont icon_size" >&#xe629;</i>
-          <div class="pannel__body__item_bar" > 意外保障<div class="progress"><div class="progress_innerbar" style="width:{{data.scores[4]*10}}%;"></div></div></div>
+          <div class="pannel__body__item_bar" >
+            <div class="pannel__body__item_yiyou">意外保障</div>
+            <div class="progress"><div class="progress_innerbar" style="width:{{data.scores[4]*10}}%;"></div></div></div>
           <i class="iconfont arrow_size"  >&#xe60f;</i>
           </div> 
         <div class="pannel__body__item" ng-click="goBaodan(2)">
           <i class="iconfont icon_size" >&#xe62a;</i>
-          <div class="pannel__body__item_bar" > 健康保障<div class="progress"><div class="progress_innerbar"  style="width:{{data.scores[2]*10}}%;"></div></div></div>
+          <div class="pannel__body__item_bar" > 
+            <div class="pannel__body__item_yiyou">健康保障</div>
+            <div class="progress"><div class="progress_innerbar"  style="width:{{data.scores[2]*10}}%;"></div></div></div>
           <i class="iconfont arrow_size"  >&#xe60f;</i>
           </div> 
          <div class="pannel__body__item"  ng-click="goBaodan(3)">
           <i class="iconfont icon_size" styl>&#xe62b;</i>
-          <div class="pannel__body__item_bar"> 人寿保障<div class="progress"><div class="progress_innerbar"  style="width:{{data.scores[3]*10}}%;"></div></div></div>
+          <div class="pannel__body__item_bar"> 
+            <div class="pannel__body__item_yiyou">人寿保障</div>
+            <div class="progress"><div class="progress_innerbar"  style="width:{{data.scores[3]*10}}%;"></div></div></div>
           <i class="iconfont arrow_size" >&#xe60f;</i>
           </div> 
          <div class="pannel__body__item"  ng-click="goBaodan(5)">
           <i class="iconfont icon_size" >&#xe618;</i>
-          <div class="pannel__body__item_bar"> 财产保障<div class="progress"><div class="progress_innerbar"  style="width:{{data.scores[5]*10}}%;"></div></div></div>
+          <div class="pannel__body__item_bar"> 
+            <div class="pannel__body__item_yiyou">财产保障</div>
+            <div class="progress"><div class="progress_innerbar"  style="width:{{data.scores[5]*10}}%;"></div></div></div>
           <i class="iconfont arrow_size"  >&#xe60f;</i>
           </div> 
         </div> 
@@ -68,17 +76,23 @@
           </div> 
         <div class="pannel__body__item"   ng-click="goPromote(2)">
           <i class="iconfont icon_size" >&#xe62a;</i>
-          <div class="pannel__body__item_bar"> 健康保障 <div class="pannel__body__item_des">先保重疾，再补充医疗报销</div></div>
+          <div class="pannel__body__item_bar">  
+            <div class="pannel__body__item_head">健康保障</div>
+            <div class="pannel__body__item_des">先保重疾，再补充医疗报销</div></div>
           <i class="iconfont arrow_size"  >&#xe60f;</i>
           </div> 
          <div class="pannel__body__item"  ng-click="goPromote(3)">
           <i class="iconfont icon_size" styl>&#xe62b;</i>
-          <div class="pannel__body__item_bar"> 人寿保障 <div class="pannel__body__item_des">保障身故损失，建议提升</div></div>
+          <div class="pannel__body__item_bar">  
+            <div class="pannel__body__item_head">人寿保障</div>
+            <div class="pannel__body__item_des">保障身故损失，建议提升</div></div>
           <i class="iconfont arrow_size" >&#xe60f;</i>
           </div> 
          <div class="pannel__body__item"  ng-click="goPromote(5)">
           <i class="iconfont icon_size" >&#xe618;</i>
-          <div class="pannel__body__item_bar"> 财产保障 <div class="pannel__body__item_des">优先保障价值大的财物</div></div>
+          <div class="pannel__body__item_bar"> 
+            <div class="pannel__body__item_head">财产保障</div> 
+            <div class="pannel__body__item_des">优先保障价值大的财物</div></div>
           <i class="iconfont arrow_size"  >&#xe60f;</i>
           </div> 
         </div> 

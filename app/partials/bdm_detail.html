@@ -75,8 +75,8 @@
 					保单照片
 					<div  class="yanzhen-btn fr " ng-class="{'fail':data.status==2}" ng-show="data.status==1" ng-click="policy_verfiy()">{{yanzhentext}}</div>
 					<div  class="yanzhen-btn fr success" ng-show="data.status==3">验真成功</div>
-					<div  class="yanzhen-btn fr fail" ng-show="data.status==4">验真失败</div>
-					<div  class="yanzhen-btn fr fail" ng-show="data.status==2">验真中</div>
+					<div  class="yanzhen-btn fr fail success" ng-show="data.status==4">验真失败</div>
+					<div  class="yanzhen-btn fr fail success" ng-show="data.status==2">验真中</div>
 					</div>
 					<div class="fail-tip " ng-show="data.status==4" >
 					   	未查到您的保单信息<br/>
