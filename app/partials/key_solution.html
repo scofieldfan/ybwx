@@ -5,7 +5,7 @@
 <div class="solution-container"  cg-busy="solutionPromise" data-ng-init="init()">
 <div class="key_head">
 	<div class="model"><i class="iconfont">&#xe601;</i> {{name}}<div class="anew" ng-click="return();">重新设定</div></div>
-	<div class="wz">{{age}}岁<span ng-if="sex=='1'">男</span><span ng-if="sex=='2'">女</span>性<br/>年收入<span class="zero" >{{annualIncome}}</span>  <span ng-if="primaryIncome=='false'">非</span><span ng-if="primaryIncome=='true'">是</span>家庭支柱<br/></div>
+	<div class="wz">{{age}}岁<span id="sex_ctrl" ng-if="sex=='1'">{{men}}</span><span ng-if="sex=='2'">{{female}}</span><br/>年收入<span class="zero" >{{annualIncome}}</span>&nbsp;&nbsp;<span>{{wrong}}</span>家庭支柱<br/></div>
 	<div class="fa">方案总保费:<span class="blue"> {{planAllMoney}} 元</span></div>
 </div>
 <div class="contents">方案说明</div>

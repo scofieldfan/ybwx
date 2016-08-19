@@ -54,16 +54,17 @@ ybwxApp.filter('setDecimal', function($filter) {
 ybwxApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
+    // when('/index', {
+    //   templateUrl: 'partials/index_part.html?v=123',
+    //   controller: 'ybwxIndexCtrl',
+    //   title: '诺贝保险管家',
+    //   css:'css/index_part.css?rev=a47bd3748f61c7838f55363b681c5c84'
+    // }).
     when('/index', {
-      templateUrl: 'partials/index_part.html?v=123',
-      controller: 'ybwxIndexCtrl',
-      title: '诺贝保险管家',
-      css:'css/index_part.css?rev=a47bd3748f61c7838f55363b681c5c84'
-    }).when('/newindex', {
       templateUrl: 'partials/newindex_part.html?v=123',
       controller: 'ybwxNewIndexCtrl',
       title: '诺贝保险管家',
-      css:'css/newindex_part.css?rev=625c5b81db104d7235bffeb6df76c8e7'
+      css:'css/newindex_part.css?rev=f3c28f61d035739407b6e7c1d6607bbb'
     }).when('/bd_education_new', {
       templateUrl: 'partials/bd_education_new.html',
       controller: 'ybwxBdEducationNewCtrl',
