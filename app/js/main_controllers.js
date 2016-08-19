@@ -390,7 +390,7 @@ mainControllers.controller('ybwxNewIndexCtrl', ['$scope', '$routeParams', '$loca
 				$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_insurance_index'] + "/" + openId, {}, function(res) {
 					if (res && res.data && res.data.data) {
 						$scope.data = res.data.data;
-						if (res.data.data.aggregate_score == 0) {
+						if (parseFloat(res.data.data.aggregate_score) == 0) {
 							$scope.pannelId = 0;
 						} else {
 							$scope.pannelId = 1;
