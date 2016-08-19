@@ -63,7 +63,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/newindex_part.html?v=123',
       controller: 'ybwxNewIndexCtrl',
       title: '诺贝保险管家',
-      css:'css/newindex_part.css?rev=8d63b5535cbc5ed6d521750f85e99719'
+      css:'css/newindex_part.css?rev=625c5b81db104d7235bffeb6df76c8e7'
     }).when('/bd_education_new', {
       templateUrl: 'partials/bd_education_new.html',
       controller: 'ybwxBdEducationNewCtrl',

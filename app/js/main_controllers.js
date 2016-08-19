@@ -54,8 +54,8 @@ var api = {
 	'get_scheme_questions': '/ybwx-web/api/scheme/questions',
 	'get_scheme': '/ybwx-web/api/scheme',
 	'get_scheme_plans': '/ybwx-web/api/scheme/plans',
-	'toubao_prepare' : '/ybwx-web/api/insurance/extended/prepare',
-	'toubao_purchase' : '/ybwx-web/api/insurance/extended/purchase'
+	'toubao_prepare': '/ybwx-web/api/insurance/extended/prepare',
+	'toubao_purchase': '/ybwx-web/api/insurance/extended/purchase'
 }
 
 var isNew = true;
@@ -334,8 +334,8 @@ mainControllers.controller('ybwxPromoteCtrl', ['$scope', '$routeParams', '$locat
 mainControllers.controller('ybwxNewIndexCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
-		$scope.pannelId = 1;
-		$scope.goAutoPromote = function(){
+		$scope.pannelId = 0;
+		$scope.goAutoPromote = function() {
 			$location.path('/target').search();
 		}
 		$scope.showToast = function() {
@@ -359,21 +359,33 @@ mainControllers.controller('ybwxNewIndexCtrl', ['$scope', '$routeParams', '$loca
 			_hmt.push(['_trackEvent', 'index', 'goService']);
 			$location.path('/service').search();
 		}
-		$scope.nav = function($event,pannelId){
-				var ele = $event.currentTarget;
-				$(ele).parents(".pannel__nav").find(".pannel__nav__item").removeClass("pannel__nav__item_hover");
-				$(ele).addClass("pannel__nav__item_hover");
+
+		$scope.nav = function($event, pannelId) {
+			var ele = $event.currentTarget;
+			$(ele).parents(".pannel__nav").find(".pannel__nav__item").removeClass("pannel__nav__item_hover");
+			$(ele).addClass("pannel__nav__item_hover");
+			if(pannelId == -1){
+				$scope.pannelId = $scope.defaultPannelId;
+				//设置显示默认的pannel
+			}else{
 				$scope.pannelId = pannelId;
+			}
 		}
-		$scope.goBaodan = function(type){
+		$scope.goBaodan = function(type) {
 			$location.path('/bdm_list').search({
-				type:type
+				type: type
 			});
 		}
-		$scope.goPromote = function(type){
-			$location.path('/select').search({
-				type:type
-			});
+		$scope.goPromote = function(type) {
+			if (type !== 1 && type !== 5) {
+				$location.path('/select').search({
+					type: type
+				});
+			} else {
+				$location.path('/continue');
+			}
+
+
 		}
 		$scope.init = function() {
 			//获得openId
@@ -384,11 +396,19 @@ mainControllers.controller('ybwxNewIndexCtrl', ['$scope', '$routeParams', '$loca
 				$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_insurance_index'] + "/" + openId, {}, function(res) {
 					if (res && res.data && res.data.data) {
 						$scope.data = res.data.data;
-						var dashboard = new Dashboard({score:res.data.data.aggregate_score});
+						if (parseFloat(res.data.data.aggregate_score) == 0) {
+							$scope.pannelId = 0;
+						} else {
+							$scope.pannelId = 1;
+						}
+						$scope.defaultPannelId = $scope.pannelId;
+						var dashboard = new Dashboard({
+							score: res.data.data.aggregate_score
+						});
 					}
 				})
 			});
-		}	
+		}
 
 
 	}
@@ -1012,7 +1032,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 				});
 			}*/
 
-			var newChoosePlansId  = getNewChoosePlan($scope.choosePlansIds);
+			var newChoosePlansId = getNewChoosePlan($scope.choosePlansIds);
 
 			if ($scope.isHaveRestrictions) {
 				$location.path('/information').search({
@@ -1034,17 +1054,19 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 
 	}
 ]);
-function getChoosePlan(planObjs){
-	return planObjs.map(function(item){
+
+function getChoosePlan(planObjs) {
+	return planObjs.map(function(item) {
 		return item.id;
 	})
 }
-function getNewChoosePlan( planIds ){
+
+function getNewChoosePlan(planIds) {
 	var newChoosePlansId = [];
-			for(var i = 0 ; i< planIds.length; i++){
-				newChoosePlansId.push({
-					id:planIds[i]
-				});
+	for (var i = 0; i < planIds.length; i++) {
+		newChoosePlansId.push({
+			id: planIds[i]
+		});
 	}
 	return newChoosePlansId;
 }
@@ -1086,7 +1108,7 @@ mainControllers.controller('ybwxInfoCtrl', ['$scope', '$routeParams', '$location
 		}
 		$scope.init = function() {
 
-			$scope.choose_plans  = getChoosePlan(JSON.parse($routeParams.new_choose_plans));
+			$scope.choose_plans = getChoosePlan(JSON.parse($routeParams.new_choose_plans));
 
 
 			var openId = sessionStorage.getItem("openId");
@@ -1348,18 +1370,18 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 					if (element.status === 1) {
 
 						var planObj = {
-							id:element.id,
-							premium:element.premium
+							id: element.id,
+							premium: element.premium
 						};
-						var filterPlans = $scope.paramPlans.filter(function(item){
+						var filterPlans = $scope.paramPlans.filter(function(item) {
 							return item.id == element.id;
 						});
 
-						if(filterPlans && filterPlans.length==1){
-							if(filterPlans[0].coverage_period){
+						if (filterPlans && filterPlans.length == 1) {
+							if (filterPlans[0].coverage_period) {
 								planObj["coverage_period"] = filterPlans[0].coverage_period;
 							}
-							if(filterPlans[0].charge_period){
+							if (filterPlans[0].charge_period) {
 								planObj["charge_period"] = filterPlans[0].charge_period;
 							}
 						}
@@ -1380,8 +1402,8 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 					destination: $scope.user.destination,
 					car_no: $scope.user.car_no,
 					flight_no: $scope.user.flight_no,
-					bank_account:$scope.user.bank.name,
-					bank_card_no:$scope.user.bankcardno
+					bank_account: $scope.user.bank.name,
+					bank_card_no: $scope.user.bankcardno
 				}, function(res) {
 
 					var payRequest = {
@@ -1419,7 +1441,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 					util.showToast($rootScope, "航班号填写错误，请修改");
 				}
 
-				if(isBankInvalid){
+				if (isBankInvalid) {
 					util.showToast($rootScope, "请选择银行");
 				}
 
@@ -1455,8 +1477,11 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 
 			console.log("new_choose_plans:");
 			console.log($scope.paramPlans);
-			
-			$scope.user.bank = {id:0 ,  name: "请选择银行"};
+
+			$scope.user.bank = {
+				id: 0,
+				name: "请选择银行"
+			};
 			$scope.know_contract = true;
 
 			var effectiveDate = util.addDays(new Date(), 1);
@@ -1548,8 +1573,8 @@ mainControllers.controller('ybwxtermsListCtrl', ['$scope', '$filter', '$routePar
 		}
 	}
 ]);
-mainControllers.controller('ybwxscoreReadingCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope', 
-	function($scope, $filter, $routeParams, $location, $http, $rootScope){
-		
+mainControllers.controller('ybwxscoreReadingCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
+
 	}
 ]);
