@@ -69,7 +69,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/bd_education_new.html',
       controller: 'ybwxBdEducationNewCtrl',
       title: "保障评分",
-      css:'css/bd_education_new.css?rev=d41d8cd98f00b204e9800998ecf8427e'
+      css:'css/bd_education_new.css?rev=574f104fdb96a11a5b11c99936417f29'
     }).when('/select', {
       templateUrl: 'partials/select_part.html?v=123',
       controller: 'ybwxSelectCtrl',
@@ -146,7 +146,7 @@ ybwxApp.config(['$routeProvider',
       title: "验真说明"
     }).when('/pay_select', {
       templateUrl: 'partials/pay_select_new.html?v=123',
-      controller: 'ybwxWechatPayCtrl',
+      controller: 'ybwxPaySelectNewCtrl',
       title: "支付"
     }).when('/claim_information', {
       templateUrl: 'partials/claim_information.html',
