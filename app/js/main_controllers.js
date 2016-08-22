@@ -1457,13 +1457,9 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 					util.showToast($rootScope, "请填写持卡人姓名");
 				}
 
-			  
-
 				if ($scope.data.bank && $scope.tbform.bankcardno && 　$scope.tbform.bankcardno.$invalid) {
 					util.showToast($rootScope, "请填银行卡账号");
 				}
-
-
 
 			}
 
