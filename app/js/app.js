@@ -80,6 +80,11 @@ ybwxApp.config(['$routeProvider',
       controller: 'ybwxSolutionCtrl',
       title: "保障方案",
       css:'css/solution.css?rev=51c8bd3f32be358917967d55dc053768'
+    }).when('/jk_bzts', {
+      templateUrl: 'partials/jk_bzts.html?v=12dsdsfdf543',
+      // controller: 'ybwxSelectCtrl',
+      title: "寿险保障提升",
+      css:'css/ring.css?rev=9d56a76ef2453e32e090981924fd6ae2'
     }).when('/toubao_new', {
       templateUrl: 'partials/toubao_new.html',
       controller: 'ybwxToubaoNewCtrl',
