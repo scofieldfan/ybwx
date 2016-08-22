@@ -2,7 +2,7 @@
  * @Author: fanzhang
  * @Date:   2016-08-15 19:09:31
  * @Last Modified by:   fanzhang
- * @Last Modified time: 2016-08-19 16:24:33
+ * @Last Modified time: 2016-08-19 20:10:21
  */
 
 'use strict';
@@ -10,9 +10,9 @@ window.Dashboard = (function() {
 
 	var DPR = 3;
 
-	var MIN_ANGLE = -Math.PI - Math.PI / 18;
+	var MIN_ANGLE = -Math.PI - Math.PI / 9;
 
-	var MAX_ANGLE = Math.PI / 18;
+	var MAX_ANGLE = Math.PI / 9;
 
 	var CONTAINER_ID = "dash_container";
 
@@ -30,8 +30,8 @@ window.Dashboard = (function() {
 
 		var config = config || {};
 		this.maxScore = parseFloat(config.score) || 0;
-		console.log("maxScore:"+this.maxScore);
-		this.maxAngle =  (MAX_ANGLE-MIN_ANGLE) * this.maxScore / 10 + MIN_ANGLE;
+		console.log("maxScore:" + this.maxScore);
+		this.maxAngle = (MAX_ANGLE - MIN_ANGLE) * this.maxScore / 10 + MIN_ANGLE;
 		this.init();
 
 	}
@@ -68,10 +68,10 @@ window.Dashboard = (function() {
 		ctx.stroke();
 	}
 
-	function drawWord(ctx, angle,font ,color, radius, word, rotate) {
+	function drawWord(ctx, angle, font, color, radius, word, rotate) {
 		ctx.textAlign = "center";
 		// ctx.font = "normal 39px Arial,Microsoft YaHei";
-		ctx.font  = font;
+		ctx.font = font;
 		//ctx.font = "normal 39px Arial,Microsoft YaHei";
 		ctx.fillStyle = color;
 		var textX = (radius) * Math.cos(angle);
@@ -115,7 +115,7 @@ window.Dashboard = (function() {
 			var sum_width = $(document).width() > 640 ? 640 : $(document).width();
 			this.radio = sum_width / 414;
 			var radius = width / 2 - PADDING_SIDE * this.radio;
-			var height = radius * 1.25;
+			var height = radius * 1.5;
 
 			this.radius = radius;
 			this.score = 0;
@@ -139,10 +139,10 @@ window.Dashboard = (function() {
 			this.drawbgCanvas();
 			this._angle = MIN_ANGLE;
 			var _this = this;
-			setTimeout(function(){
+			setTimeout(function() {
 				_this.draw();
 				_this.scoreAnimation();
-			},200)
+			}, 200)
 			// var backgroundImg = new Image();
 			// backgroundImg.src = '/img/index/bgc.png';
 			// ctx.translate(this.radiusX, this.radiusY);
@@ -156,21 +156,22 @@ window.Dashboard = (function() {
 			// this.drawCanvas(-Math.PI);
 
 		},
-		scoreAnimation:function(){
+		scoreAnimation: function() {
 			var score = this.score;
 			var ctx = this.bgCanvas.getContext("2d");
-			var scoreRadius = (this.mainArcRaidus -  this.radio*120)*DPR;
-			ctx.fillStyle="#4285f4";//白色为例子；
-			ctx.fillRect(-120*this.radio, -scoreRadius-105*this.radio,360*this.radio,120*this.radio);
-				
-			drawWord(ctx, -Math.PI/2,"normal "+135*this.radio+"px Arial,Microsoft YaHei", "#fff", scoreRadius, score, 0);
-			score = (parseFloat(score)+0.1).toFixed(1);
+			var scoreRadius = (this.mainArcRaidus - this.radio * 150) * DPR;
+			ctx.fillStyle = "#4285f4"; //白色为例子；
+			ctx.fillRect(-150 * this.radio, -scoreRadius - 180 * this.radio, 370 * this.radio, 200 * this.radio);
+
+			//drawWord(ctx, -Math.PI / 2, "normal " + 135 * this.radio + "px Arial,Microsoft YaHei", "#fff", scoreRadius, score, 0);
+			drawWord(ctx, -Math.PI / 2, "normal 204px Arial,Microsoft YaHei", "#fff", scoreRadius, score, 0);
+			score = (parseFloat(score) + 0.1).toFixed(1);
 			this.score = score;
 
 			console.log(score);
-			if(score > this.maxScore){
-				return ;
-			}	
+			if (score > this.maxScore) {
+				return;
+			}
 			window.requestAnimationFrame(this.scoreAnimation.bind(this));
 		},
 		draw: function() {
@@ -197,15 +198,27 @@ window.Dashboard = (function() {
 				// ctx.rotate(Math.PI * (215 + ang) / 180);
 
 				var ang = (angle - MIN_ANGLE);
-				 ctx.rotate(3.7524578 + ang);
+				ctx.rotate(3.7524578 + ang);
 
 				ctx.drawImage(this, -26, -33, 52, 66);
 				ctx.restore();
 			})
-			var vx = (this.maxAngle - this._angle)* this.easing;
-			this._angle += vx;
-			//this._angle += 0.03;
-			if(this._angle >= this.maxAngle){
+			var vx = (this.maxAngle - this._angle) * this.easing;
+
+			 //this._angle += vx;
+			 this._angle += 0.01;
+			 console.log("drawing....");
+			if (this._angle >= this.maxAngle || vx<0.0001) {
+				clearCircle(ctx, keduX, keduY, 300);
+				preLoadImg('/img/index/fixFire.png', function() {
+					ctx.beginPath();
+					ctx.save();
+					ctx.translate(keduX, keduY);
+					var ang = (angle - MIN_ANGLE);
+					ctx.rotate(3.7524578 + ang);
+					ctx.drawImage(this, -26, -33, 52, 66);
+					ctx.restore();
+				})
 				return;
 			}
 			window.requestAnimationFrame(this.draw.bind(this));
@@ -300,26 +313,27 @@ window.Dashboard = (function() {
 				drawZhiZhen(ctx, angle, zhizhenWidth, (mainArcRaidus - MAIN_LINE_WIDTH / 2) * DPR, (mainArcRaidus + MAIN_LINE_WIDTH / 2) * DPR, "#72a7fd");
 			}
 
-			drawWord(ctx, MIN_ANGLE + 6 * dur,"normal 39px Arial,Microsoft YaHei", "#bdd6ff", (mainArcRaidus - 22) * DPR, "基础", 25 * Math.PI / 180);
-			drawWord(ctx, MIN_ANGLE + 8 * dur,"normal 39px Arial,Microsoft YaHei", "#bdd6ff", (mainArcRaidus - 22) * DPR, "推荐", 60 * Math.PI / 180);
-			drawWord(ctx, MIN_ANGLE + 10 * dur,"normal 39px Arial,Microsoft YaHei", "#bdd6ff", (mainArcRaidus - 22) * DPR, "无忧", 100 * Math.PI / 180);
+			drawWord(ctx, MIN_ANGLE + 6 * dur, "normal 33px Arial,Microsoft YaHei", "#bdd6ff", (mainArcRaidus - 22) * DPR, "基础", 25 * Math.PI / 180);
+			drawWord(ctx, MIN_ANGLE + 8 * dur, "normal 33px Arial,Microsoft YaHei", "#bdd6ff", (mainArcRaidus - 22) * DPR, "推荐", 60 * Math.PI / 180);
+			drawWord(ctx, MIN_ANGLE + 10 * dur, "normal 33px Arial,Microsoft YaHei", "#bdd6ff", (mainArcRaidus - 22) * DPR, "无忧", 100 * Math.PI / 180);
 
-			var baozhangRadius = (mainArcRaidus - this.radio*70)*DPR;
+			var baozhangRadius = (mainArcRaidus - this.radio * 70) * DPR;
 
-			var scoreRadius = (mainArcRaidus - this.radio*120)*DPR;
+			var scoreRadius = (mainArcRaidus - this.radio * 160) * DPR;
 
-			var textRadius = (mainArcRaidus - this.radio*150)*DPR;
-			drawWord(ctx, -Math.PI/2,"normal "+this.radio*45+"px Arial,Microsoft YaHei", "#90baff", baozhangRadius, "您的保障评分", 0);
+			var textRadius = (mainArcRaidus - this.radio * 190) * DPR;
+			drawWord(ctx, -Math.PI / 2, "normal " + this.radio * 45 + "px Arial,Microsoft YaHei", "#90baff", baozhangRadius, "您的保障评分", 0);
 			//drawWord(ctx, -Math.PI/2,"normal 135px Arial,Microsoft YaHei", "#fff", scoreRadius, "7.5", 0);
 			var word = "";
-			if(this.maxScore>=0 && this.maxScore<6){
+			if (this.maxScore >= 0 && this.maxScore < 6) {
 				word = "保障偏低";
-			}else if(this.maxScore>=6 && this.maxScore<8){
+			} else if (this.maxScore >= 6 && this.maxScore < 8) {
 				word = "保障较好";
-			}else if(this.maxScore>=8 ){
+			} else if (this.maxScore >= 8) {
 				word = "保障全面";
 			}
-			drawWord(ctx, -Math.PI/2,"normal "+this.radio*52+"px Arial,Microsoft YaHei", "#fff", textRadius, word, 0);
+//			drawWord(ctx, -Math.PI / 2, "normal " + this.radio * 52 + "px Arial,Microsoft YaHei", "#fff", textRadius, word, 0);
+			drawWord(ctx, -Math.PI / 2, "normal 66px Arial,Microsoft YaHei", "#fff", textRadius, word, 0);
 		}
 	};
 	return Dashboard;
