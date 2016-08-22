@@ -146,7 +146,7 @@ ybwxApp.config(['$routeProvider',
       title: "验真说明"
     }).when('/pay_select', {
       templateUrl: 'partials/pay_select_new.html?v=123',
-      controller: 'ybwxPaySelectNewCtrl',
+      controller: 'ybwxIPayNowCtrl',
       title: "支付"
     }).when('/claim_information', {
       templateUrl: 'partials/claim_information.html',

@@ -1415,8 +1415,9 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 						"order_id": res.data.data.pay_order_id,
 						"order_no": res.data.data.pay_order_no
 					}
+					var param = util.genParameters(payRequest);
+					//window.location.href = "/testwechatpay/pay.html#?"+param
 					$location.path("/pay_select").search(payRequest);
-
 				});
 			} else {
 				console.log("error.......");

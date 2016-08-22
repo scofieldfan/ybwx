@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en"  ng-app="wxAnxiangDetailApp">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="微信支付">
+  <meta name="keywords" content="微信支付">
+  <meta name="viewport"content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>微信支付</title>
+  <link rel="stylesheet" type="text/css" href="/bower_components/normalize-css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="/css/globe.css">
+  <link rel="stylesheet" type="text/css" href="/css/app.css">
+  <link rel="stylesheet" type="text/css" href="pay.css">
+
+  </head>
+<body  ng-controller="wechatPayCtrl" data-ng-init="init()">
+<style>
+
+</style>
+
+<header>
+	订单编号:{{order_no}}
+</header>
+
+<div class="product-container">
+	<!-- <div class="name">产品名称：{{insurance_plan_name}}</div> -->
+	<div class="name">产品方案</div>
+
+	<div class="item" ng-repeat="plan in plans">{{plan.name}}<span ng-if="plan.premium" style="float:right">{{plan.premium}}元</span></div>
+	<!--<div class="tip" ng-show="isHaveOffical">注：方案中有部分产品，诺贝暂不支持投保请到我的方案中查看详情</div>-->
+	<div>支付金额：<span class="pay-money">{{order_amount | number}}</span>元</div>
+</div>
+
+
+<div class="introd">
+		选择支付方式：
+	</div>
+<div class="pay_container">
+	<div  class="pay_item choose" style="" data-channel-type="4" ng-click="pay($event)">
+		<img src="/img/weixin_2.jpg" class="weixin_logo"/>
+		微信支付
+	</div>
+	<div  class="pay_item "  data-channel-type="1" ng-click="pay($event)">
+		<img src="/img/back_crad.jpg" class="union_logo"/>
+		银行卡快捷
+	</div>
+	<form action="https://pay.ipaynow.cn" method="POST"  role="form" id="wechatPayForm" style="display:none" >
+		功能码：
+		<input  type=text name="funcode" value="{{ipaynow_pay_request.funcode}}" readonly/>
+		应用ID:
+		<input    type=text name="appId" value="{{ipaynow_pay_request.appId}}" readonly/>
+		商户订单号：
+		<input    type=text name="mhtOrderNo" value="{{ipaynow_pay_request.mhtOrderNo}}" readonly/>
+		商户订单名称：
+		<input     type=text name="mhtOrderName" value="{{ipaynow_pay_request.mhtOrderName}}" readonly/>
+		币种：
+		<input    type=text name="mhtCurrencyType" value="{{ipaynow_pay_request.mhtCurrencyType}}" readonly/>
+		金额：
+		<input    type=text name="mhtOrderAmt" value="{{ipaynow_pay_request.mhtOrderAmt}}" readonly/>
+		订单类型：
+		<input     type=text name="mhtOrderType" value="{{ipaynow_pay_request.mhtOrderType}}" readonly/>
+		订单时间：
+		<input   type=text name="mhtOrderStartTime" value="{{ipaynow_pay_request.mhtOrderStartTime}}" readonly/>
+		订单详情：
+		<input type=text name="mhtOrderDetail"  value="{{ipaynow_pay_request.mhtOrderDetail}}"  readonly/>
+		<br>
+		后台通知URL：
+		<input    type=text name="notifyUrl" value="{{ipaynow_pay_request.notifyUrl}}" readonly/>
+		前台通知URL：
+		<input    type=text name="frontNotifyUrl" value="{{ipaynow_pay_request.frontNotifyUrl}}" readonly/>
+		字符集：
+		<input    type=text name="mhtCharset" value="{{ipaynow_pay_request.mhtCharset}}" readonly/>
+		设备类型：
+		<input    type=text name="deviceType" value="{{ipaynow_pay_request.deviceType}}" readonly/>
+		<input   type=text name="payChannelType" value="{{ipaynow_pay_request.payChannelType}}" readonly/>
+
+		签名类型：
+		<input   style="display:none"  type=text name="mhtSignType" value="{{ipaynow_pay_request.mhtSignType}}" readonly/>
+		数字签名：
+		<input  style="display:none"  type=text name="mhtSignature" value="{{ipaynow_pay_request.mhtSignature}}" readonly/>
+
+		
+
+	</form>
+</div>
+
+<div style="padding:30px 0;">
+	<div class="cell"  style="overflow: hidden;position: fixed;bottom:0;width:100%;border-radius:0;">
+		<a href="javascript:void(0)" class="btn btn_n_primary "  ng-click="submit()">立即支付</a>
+	</div>
+</div>
+
+  <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="/bower_components/angular/angular.min.js"></script>
+   <script src="/bower_components/angular-resource/angular-resource.min.js"></script>
+  <script src="/bower_components/angular-route/angular-route.min.js"></script>
+   <script>
+
+function getHttpPromise($http,  method, url, data, callback) {
+
+	var openId = sessionStorage.getItem("openId");
+	if (!data["open_id"]) {
+		data["open_id"] = openId;
+	}
+	data["wechat_type"] = 2;
+	return $http({
+		method: method,
+		headers: {
+			"Content-Type": "application/json;charset:UTF-8"
+		},
+		url: url,
+		data: data
+	}).then(function(res) {
+		console.log(res);
+		if ((res && res.data && res.data.data) || (res && res.data && res.data.code === 0)) {
+			callback(res);
+		} else {
+			// util.showToast($rootScope, res.data.description);
+		}
+	}, function(res) {
+		console.log(res);
+		_hmt.push(['_trackEvent', 'http_error', "api:" + url]);
+		// util.showToast($rootScope, "网络异常");
+	});
+}
+var app = angular.module("wxAnxiangDetailApp", ['ngRoute']);
+
+
+app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', 
+  function($scope, $filter, $routeParams, $location, $http) {
+
+  		_hmt.push(['_trackPageview', $location.path()]);
+
+  		$scope.init = function(){
+
+  			$scope.plans = {};
+  			var paramObj = $location.search();
+			$scope.insurance_name = paramObj.insurance_name;
+			console.log(paramObj);
+			console.log(paramObj.insurance_name);
+			$scope.insurance_plan_name = paramObj.insurance_plan_name;
+			$scope.order_amount = paramObj.order_amount;
+			$scope.plans = JSON.parse(sessionStorage.getItem("sell_plan"));
+			$scope.order_id = paramObj.order_id;
+			$scope.order_no = paramObj.order_no;
+			//util.pay();
+			$scope.ajaxPayInfo("4");
+			$scope.ajaxPayInfo("1");
+	  	}	
+		
+
+		function setPayInfo(orderId, channelType, info) {
+			sessionStorage.setItem(orderId + "_" + channelType, JSON.stringify(info));
+		}
+
+		function getPayInfo(orderId, channelType) {
+			return JSON.parse(sessionStorage.getItem(orderId + "_" + channelType));
+		}
+
+		
+
+		$scope.submit = function() {
+
+
+			_hmt.push(['_trackEvent', 'pay', 'pay_subBtn']);
+			var channelType = $(".pay_container").find(".choose").attr("data-channel-type");
+			if (channelType == "1") { //银行卡支付
+				if ($scope.redirectUrl) {
+					window.location.href = $scope.redirectUrl;
+				} else {
+					//util.showToast($rootScope, "银行卡支付出错，暂时无法使用");
+				}
+			} else if (channelType == "4") { //现在支付微信s
+				alert("调用支付之前");	
+				util.pay(function(){
+					alert("调用支付。。。。。");					
+					wx.chooseWXPay({
+					timestamp: $scope.wechat_response.timestamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+					nonceStr: $scope.wechat_response.nonceStr, // 支付签名随机串，不长于 32 位
+					package: $scope.wechat_response.packageStr, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+					signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+					paySign: $scope.wechat_response.paySign, // 支付签名
+					success: function(res) {
+						// 支付成功后的回调函数
+						alert("支付成功");
+					}
+				});
+				})
+				
+			}
+		}
+
+		$scope.ajaxPayInfo = function(channelType) {
+			var openId = sessionStorage.getItem("openId");
+			$scope.payPromise = getHttpPromise($http,  'POST', '/ybwx-web/api/insurance/pay', {
+				open_id: openId,
+				pay_order_id: $scope.order_id,
+				pay_channel_type: channelType,
+				wechat_type: 2
+			}, function(res) {
+				console.log(res);
+				if (res && res.data && res.data.data && res.data.code === 0) {
+					if (channelType == "1") { //银行卡
+						$scope.redirectUrl = res.data.data.pp_response.pp_url;
+						setPayInfo($scope.order_id, "1", $scope.redirectUrl)
+					} else if (channelType == "4") { //现在支付微信
+						$scope.wechat_response = res.data.data.wechat_response;
+						setPayInfo($scope.order_id, "4", $scope.wechat_response);
+					
+					}
+				} else {
+					//util.showToast($rootScope, res.data.reason);
+				}
+			})
+		}
+		$scope.pay = function($event) {
+			//获取支付信息
+			if ($event) {
+				var element = $event.currentTarget;
+				$(".pay_item").removeClass("choose");
+				$(element).addClass("choose");
+			}
+			var channelType = $(".pay_container").find(".choose").attr("data-channel-type");
+			_hmt.push(['_trackEvent', 'pay', 'pay_select' + channelType]);
+			var url = getPayInfo($scope.order_id, "1");
+			var wechat_response = getPayInfo($scope.order_id, "4")
+			if (url) {
+				$scope.redirectUrl = url;
+			} else {
+				$scope.ajaxPayInfo("1");
+			}
+			if (wechat_response) {
+				$scope.wechat_response = wechat_response;
+			} else {
+				$scope.ajaxPayInfo("4");
+			}
+
+
+		}
+		
+
+	}
+
+
+]);
+ </script>
+
+
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+  <script src="/js/util.js?v=aafafafasdaf"></script>
+  <script>
+
+
+//百度统计
+   var _hmt = _hmt || [];
+    _hmt.push(['_setAutoPageview', false]);
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?7735ab379e0c352fd0fcfeb3f9248b59";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+
+
+
+
+  </script>
+</body>
+</html>
