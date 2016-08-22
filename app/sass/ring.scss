@@ -11,7 +11,9 @@
 	text-align: center;
 }
 .select-contrl {
-	 margin:.15rem auto 25px;
+	// 新提升保障时使用
+	 // margin:.15rem auto 60px;
+	 margin:.15rem auto 20px;
 }
 .bt_container {
 	position: relative;
@@ -22,6 +24,8 @@
 	padding: 0px 0px .1rem; 
 	font-size: 15px;
 	overflow: hidden;
+	margin: 0 10px;
+  	box-sizing: border-box;
 	.intell-reck {
 		color: #588dd4;
 		font-size: .13rem;
@@ -446,4 +450,85 @@
 		    left:-10px;
 		    bottom:-10px;
 		}
-		
+// 健康险保障提升
+.bxMoney_container {
+	padding: 15px 0;
+
+}
+
+
+
+
+
+// bottm底部(健康and寿险)
+.sx-bzts_modify {
+	@include border(1px 0 0 0,#ccc);
+	padding: 15px 10px;
+	line-height: 24px;
+	font-size: 15px;
+	position: relative;
+	.sx-bzts_modify_Left {
+		.colorBlue {
+			color: #4285f4;
+		}
+		.sx-bzts_modify_Left--colorGray {
+			color: #999;
+
+		}
+	}
+	.sx-bzts_modify_Right {
+		width: 60px;
+		box-sizing: border-box;
+		height: 24px;
+		text-align: center;
+		line-height: 24px;
+		font-size: 12px;
+		border-radius: 5px;
+		border: 1px solid #ccc;
+		position: absolute;
+		right: 10px;
+		top: 15px;
+	}
+	.sx-bzts_modify_Right:active {
+		background: #f5f5f5;
+	}
+}
+ .sx-bzts_bottom {
+ 	@include border(1px 0 0 0,#ccc);
+ 	position: fixed;
+ 	bottom: 0;
+ 	height: 49px;
+ 	width: 100%;
+ 	box-sizing: border-box;
+ 	@include flexbox;
+ 	padding: 4.5px 10px;
+    font-size: 15px; 
+    color: #444;
+    background: #fff;
+    z-index: 9999;
+
+ }
+ .sx-bzts_bottom-word {
+ 	@include flex(1);
+ }
+ .sx-bzts_bottom-btn {
+ 	height: 40px;
+ 	width: 120px;
+ 	background: #4285f4;
+ 	color: #fff;
+ 	font-size: 15px;
+ 	text-align: center;
+ 	line-height: 40px;
+ 	border-radius: 5px;
+ }
+ .sx-bzts_bottom-word--Left {
+ 	color: #444;
+ 	line-height: 40px;
+ 	display: inline-block;
+ }
+ .sx-bzts_bottom-word--Right {
+ 	margin-left: 5px;
+ 	color: #ff9000;
+ 	line-height: 40px;
+ 	display: inline-block;
+ }

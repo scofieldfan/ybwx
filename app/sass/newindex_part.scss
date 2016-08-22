@@ -55,6 +55,7 @@
 .pannel-container {
 	padding: 0 10px;
 	margin-bottom: 60px;
+	margin-top: 20px;
 }
 .pannel {
 	// padding: 0 15px;
@@ -178,6 +179,7 @@
 	padding: 25px 5px 25px 0;
 	@include flexbox();
 	@include justify-content(space-between);
+	@include border(0 0 1px 0,#ccc);
 }
 .empty {
 	padding: 0 15px;

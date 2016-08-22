@@ -1,40 +1,80 @@
 <link rel="stylesheet" href="css/jk_bzts.css">
-
-<div class="sx-bzts">
-	<div class="sx-bzts_tit"><i class="iconfont" style="font-size: 17px;color: #4285f4;margin-right：5px;">&#xe603;</i>  选择保障时间</div>
-	<div class="sx-bzts_tit_choose">
-		<div class="sx-bzts_tit_choose_tit">按年限选</div>
-		<div class="sx-bzts_tit_choose_year">
-			<div class="miss">1 年期</div>
-			<div class="miss">10 年期</div>
-			<div class="miss">20 年期</div>
-			<div class="miss">30 年期</div>
-		</div>
-	</div>
-	<div class="sx-bzts_tit_choose">
-		<div class="sx-bzts_tit_choose_tit">按年龄选</div>
-		<div class="sx-bzts_tit_choose_year">
-			<div class="miss">保至 50 岁</div>
-			<div class="miss">保至 60 岁</div>
-			<div class="miss">保至 70 岁</div>
-		</div>
-	</div>
-	<div class="sx-bzts_modify">
-		<div class="sx-bzts_modify_Left"><i class="iconfont" style="font-size: 17px;color: #4285f4;margin-right：5px;">&#xe603;</i> 保险金额: &nbsp;最高<span class="sx-bzts_modify_Left--colorBlue"> 30万</span> <span class="sx-bzts_modify_Left--colorGray"> ( 推荐值 )</span></div>
-		<div class="sx-bzts_modify_Right">修改</div>
-	</div>
-</div>
-<div class="sx-bzts_bottom">
-	<div class="sx-bzts_bottom-word">
-		<div class="sx-bzts_bottom-word--Left">总 <span>6.5</span> 分</div>
-		<div class="sx-bzts_bottom-word--Right"><span>34903</span>元</div>
-	</div>
-	<div class="sx-bzts_bottom-btn">生成方案</div>
-</div>
-<script>
-	$(".sx-bzts_tit_choose_year .miss").click(function(){
-		$(".sx-bzts_tit_choose_year").find(".miss").removeClass("blue");
-			$(this).addClass("blue");
-	});
+<link rel="stylesheet" href="css/ring.css">
+<div class="jk_bzts">
+	<div class="jk_bzts_tit">选择保障金额 <span class="jk_bzts--blue">30万</span></div>
+	<div class="jk_bzts_prompt">我们将优先配置符合该保额的保险</div>
+	<div  class="bottom_container" id="customerSlider" ng-hide="type==2">
 	
-</script>
+	<div class="weui_progress_bar" >
+		<div class="weui_progress_inner_bar" id="bar" style="width: 16px;">
+			<div style="background:transparent;" id="zhizhen">
+				<img src="img/slider-btn.png?v=2" id="btnCircle" class="bar_btn" style=""></div>
+		</div>
+		<div  class="kedu" style="left:2%;">
+			<div class="zz"></div>
+			<p>0</p>
+		</div>
+		<div  class="kedu" style="left:6.8%;">
+			<div class="small-zz"></div>
+		</div>
+		<div  class="kedu" style="left:11.6%;">
+			<div class="small-zz"></div>
+		</div>
+		<div  class="kedu" style="left:16.4%;">
+			<div class="small-zz"></div>
+		</div>
+	
+		<div  class="kedu" style="left:21.2%;">
+			<div class="zz"></div>
+			<p>10</p>
+		</div>
+		<div  class="kedu" style="left:26%"> <div class="small-zz"></div> </div> 
+		<div  class="kedu" style="left:30.8%"> <div class="small-zz"></div> </div> 
+		<div  class="kedu" style="left:35.6%"> <div class="small-zz"></div> </div> 
+		<div  class="kedu" style="left:40.4%;">
+			<div class="zz"></div>
+			<p>20</p>
+		</div>
+		<div  class="kedu" style="left:45.1%"> <div class="small-zz"></div> </div> 
+		<div  class="kedu" style="left:49.9%"> <div class="small-zz"></div> </div> 
+		<div  class="kedu" style="left:54.7%"> <div class="small-zz"></div> </div> 
+		<div  class="kedu" style="left:59.59%;">
+			<div class="zz"></div>
+			<p>30</p>
+			<div class="bottom-word">基本</div>
+		</div>
+		<div  class="kedu" style="left:64.39%"> <div class="small-zz"></div> </div> 
+		<div  class="kedu" style="left:69.1%"> <div class="small-zz"></div> </div> 
+		<div  class="kedu" style="left:73.99%"> <div class="small-zz"></div> </div> 
+		<div  class="kedu" style="left:78.79%;">
+			<div class="zz"></div>
+			<p>40</p>
+			<div class="bottom-word">推荐</div>
+		</div>
+		<div  class="kedu" style="left:83.59%"> <div class="small-zz"></div> </div> 
+		<div  class="kedu" style="left:88.39%"> <div class="small-zz"></div> </div> 
+		<div  class="kedu" style="left:93.1%"> <div class="small-zz"></div> </div> 
+
+		<div  class="kedu" style="left:97.99%;">
+			<div class="zz"></div>	
+			<p >50(万)</p>
+			<div class="bottom-word">无忧</div>
+		</div>
+	</div>
+</div>
+</div>
+<div class="jk_bzts">
+	<div class="jk_bzts_tit">选择保障期间 </div>
+	<div class="jk_bzts_tit">重疾<span class="jk_bzts--blue">20</span>年期 医疗报销及其他<span class="jk_bzts--blue">1年期</span> </div>
+	<div class="jk_bzts_prompt">我们将优先配置符合该期间的保险</div>
+	<div  class="bottom_container">
+		<div id="duration_container">
+			
+		</div>
+	</div>
+</div>
+<div class="bottom_ctrl">
+	<a href="javascript:history.go(-1);"><div class="finish">完 成</div></a>
+</div>
+<!-- <script src="js/slider.js?rev=afafafafafafafafsaffafaa"></script> -->
+<!-- <script src="js/select.js?rev=avaafafafafsdfafafafaags"></script> -->

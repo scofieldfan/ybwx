@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="css/bdm_list.css?rev=29ea553b6eac3b13f0d9059ed2bcbf08">
+<link rel="stylesheet" type="text/css" href="css/bdm_list.css?rev=1a758ccd04550e9103b821164fec34a9">
 <header>
 	<div class="left">
 		<!--
@@ -11,7 +11,8 @@
 		<div class="title">{{data.nickname}}</div>
 		<div class="subtitle">
 			总保费 {{data.total_premium}}元 &emsp;综合评分
-			<span class="money" ng-click="goScoreReading()">{{data.total_score | number:2}}</span>
+			<span class="money" ng-click="goScoreReading()">{{data.total_score | number:2}} 
+				<i class="iconfont">&#xe620;</i></span>
 		</div>
 	</div>
 </header>
@@ -80,7 +81,9 @@
 					<div class="bd-score" ng-click="goScoreReading()">
 						<span>{{policy.score | number:2}}</span>
 						分
+						<span class="question"><i class="iconfont">&#xe620;</i></span>
 					</div>
+
 					<div class="pei_button" ng-click="goClaimInfo(policy.claim_info_id )">理&nbsp;赔</div>
 				</div>
 			</div>

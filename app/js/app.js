@@ -64,7 +64,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/newindex_part.html?v=123',
       controller: 'ybwxNewIndexCtrl',
       title: '诺贝保险管家',
-      css:'css/newindex_part.css?rev=5ff516ae22c63367478eed76c84bcd94'
+      css:'css/newindex_part.css?rev=1545ds4fsdgfgd5g4'
     }).when('/bd_education_new', {
       templateUrl: 'partials/bd_education_new.html',
       controller: 'ybwxBdEducationNewCtrl',
@@ -74,16 +74,21 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/select_part.html?v=123',
       controller: 'ybwxSelectCtrl',
       title: "保障提升",
-      css:'css/ring.css?rev=9d56a76ef2453e32e090981924fd6ae2'
+      css:'css/ring.css?rev=fjgkhkjf'
     }).when('/solution', {
       templateUrl: 'partials/solution.html',
       controller: 'ybwxSolutionCtrl',
       title: "保障方案",
       css:'css/solution.css?rev=51c8bd3f32be358917967d55dc053768'
+    }).when('/sx_bzts', {
+      templateUrl: 'partials/sx_bzts.html?v=12dsdsfdf543',
+      // controller: 'ybwxSelectCtrl',
+      title: "寿险保障提升",
+      css:'css/ring.css?rev=9d56a76ef2453e32e090981924fd6ae2'
     }).when('/jk_bzts', {
       templateUrl: 'partials/jk_bzts.html?v=12dsdsfdf543',
       // controller: 'ybwxSelectCtrl',
-      title: "寿险保障提升",
+      title: "健康保障提升",
       css:'css/ring.css?rev=9d56a76ef2453e32e090981924fd6ae2'
     }).when('/toubao_new', {
       templateUrl: 'partials/toubao_new.html',
