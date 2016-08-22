@@ -1,7 +1,7 @@
 var util = {
-	domain:'http://wechat.nuobei.cn/',
-	appId:'wxe797ac4e18b99078',
-	shareScope:'snsapi_userinfo',
+	domain: 'http://wechat.nuobei.cn/',
+	appId: 'wxe797ac4e18b99078',
+	shareScope: 'snsapi_userinfo',
 	api: {
 		"signature": "/ybwx-web/wechat/js_signature"
 	},
@@ -92,11 +92,11 @@ var util = {
 		e.preventDefault && e.preventDefault();
 		e.returnValue = false;
 	},
-	enableScroll :function(){
-			$(document).off('mousewheel', util.preventDefault);
-			$(document).off('touchmove', util.preventDefault);
+	enableScroll: function() {
+		$(document).off('mousewheel', util.preventDefault);
+		$(document).off('touchmove', util.preventDefault);
 	},
-	disableScroll:function(){
+	disableScroll: function() {
 		$(document).on('mousewheel', util.preventDefault);
 		$(document).on('touchmove', util.preventDefault);
 	},
@@ -111,7 +111,7 @@ var util = {
 			url: util.api["signature"],
 			data: {
 				url: location.href.split('#')[0],
-				type:2
+				type: 2
 			},
 			dataType: "json"
 		})).done(function(res) {
@@ -129,13 +129,13 @@ var util = {
 			wx.ready(function() {
 				console.log("wexin success....")
 				// config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
-				var shareUrl = util.domain+"index.html#index";
+				var shareUrl = util.domain + "index.html#index";
 				var shareTitle = shareObj.shareTitle || "诺贝保险管家！";
 				var url = shareObj.shareUrl || shareUrl;
 				var shareDesc = shareObj.shareDesc || "诺贝保险管家，为您定制保险！";
-				var shareImg = shareObj.shareImg || util.domain+"img/icon.jpg";
+				var shareImg = shareObj.shareImg || util.domain + "img/icon.jpg";
 
-				var shareLink = isNotEncode ? url : 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='+util.appId+'&redirect_uri=' + encodeURIComponent(url) + '&response_type=code&scope='+util.shareScope+'&state=123#wechat_redirect';
+				var shareLink = isNotEncode ? url : 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + util.appId + '&redirect_uri=' + encodeURIComponent(url) + '&response_type=code&scope=' + util.shareScope + '&state=123#wechat_redirect';
 				wx.onMenuShareTimeline({
 					title: shareTitle,
 					link: shareLink,
@@ -143,7 +143,7 @@ var util = {
 					success: function() {
 						// alert(shareLink);
 						//console.log(shareLink);
-						if(shareObj.successCallback){
+						if (shareObj.successCallback) {
 							shareObj.successCallback();
 						}
 					},
@@ -168,6 +168,37 @@ var util = {
 			});
 		})
 	},
+	pay: function(successCallback) {
+
+		return $.when($.ajax({
+			type: 'GET',
+			url: util.api["signature"],
+			data: {
+				"url": location.href.split('#')[0],
+				type: 2
+			},
+			dataType: "json"
+		})).done(function(res) {
+			//依赖于微信的JS
+			wx.config({
+				debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+				appId: res.data["app_id"], // 必填，公众号的唯一标识
+				timestamp: res.data["timestamp"], // 必填，生成签名的时间戳
+				nonceStr: res.data["noncestr"], // 必填，生成签名的随机串
+				signature: res.data["signature"], // 必填，签名，见附录1
+				jsApiList: ['chooseWXPay'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+			});
+			wx.ready(function() {
+				alert("config ok!!!");
+				if(successCallback){
+
+					successCallback();
+				}
+			});
+
+		})
+
+	},
 	uploadImgConfig: function(successCallback) {
 
 
@@ -176,7 +207,7 @@ var util = {
 			url: util.api["signature"],
 			data: {
 				"url": location.href.split('#')[0],
-				 type:2
+				type: 2
 			},
 			dataType: "json"
 		})).done(function(res) {
@@ -209,7 +240,7 @@ var util = {
 				"open_id": '--',
 				"email": email,
 				"order_no": order_no,
-				wechat_type:1
+				wechat_type: 1
 			}
 		}).then(function(res) {
 			console.log(res);
@@ -295,6 +326,7 @@ var util = {
 	getTaoCanStatus: function(status) {
 		return util.taocan_status[status];
 	},
+
 	checkCodeAndOpenId: function(angularCode, currentUrl, callback) {
 		util.getOpenId(code).then(function() {
 			if (typeof callback === "function") {
@@ -359,19 +391,44 @@ var util = {
 		}
 
 	],
-	banks:[
-		{id:0 ,  name: "请选择银行"},
-		{id:1	,name:'工商银行'},
-		{id:2	,name:'建设银行'},
-		{id:3	,name:'储蓄银行'},
-		{id:4	,name:'农业银行'},
-		{id:5	,name:'民生银行'},
-		{id:6	,name:'招商银行'},
-		{id:7	,name:'兴业银行'},
-		{id:8	,name:'中国银行'},
-		{id:9	,name:'中信银行'},
-		{id:10	,name:'交通银行'},
-		{id:11	,name:'平安银行'},
-		{id:12	,name:'光大银行'}
-	]
+	banks: [{
+		id: 0,
+		name: "请选择银行"
+	}, {
+		id: 1,
+		name: '工商银行'
+	}, {
+		id: 2,
+		name: '建设银行'
+	}, {
+		id: 3,
+		name: '储蓄银行'
+	}, {
+		id: 4,
+		name: '农业银行'
+	}, {
+		id: 5,
+		name: '民生银行'
+	}, {
+		id: 6,
+		name: '招商银行'
+	}, {
+		id: 7,
+		name: '兴业银行'
+	}, {
+		id: 8,
+		name: '中国银行'
+	}, {
+		id: 9,
+		name: '中信银行'
+	}, {
+		id: 10,
+		name: '交通银行'
+	}, {
+		id: 11,
+		name: '平安银行'
+	}, {
+		id: 12,
+		name: '光大银行'
+	}]
 }
