@@ -49,8 +49,8 @@
 
 
 
-<!-- 
- 		<div class="new-supply-item" >
+
+ 		<div class="new-supply-item" ng-if="data.height">
 			<div class="introd">身高</div>
 			<div class="content"><input type="text" name="height" ng-model="user.height" class="new-input"  required></div>
 			<div class="danwei">CM</div>
@@ -59,16 +59,16 @@
 			<div class="introd"></div>
 			<div class="content"><small class="error" ng-show="tbform.height.$error.required">身高必填</small></div>
 		</div>
-		<div class="new-supply-item" >
+		<div class="new-supply-item" ng-if="data.weight">
 			<div class="introd">体重</div>
 			<div class="content"><input type="text" name="weight" ng-model="user.weight" class="new-input"  required></div>
 			<div class="danwei">KG</div>
 		</div>
-		<div class="wrong-item"   ng-show="tbform.height.$dirty && tbform.height.$invalid ">
-			<small class="error" ng-show="tbform.height.$error.required">身高必填</small>
+		<div class="wrong-item"   ng-show="tbform.weight.$dirty && tbform.weight.$invalid ">
+			<small class="error" ng-show="tbform.weight.$error.required">身高必填</small>
 		</div>
 		<div class="description" >请如实填写被保人的身高和体重，如有不实，保险公司有权解除保险合同。</div>
-
+<!-- 
  	
 
 		<div class="new-supply-item" >

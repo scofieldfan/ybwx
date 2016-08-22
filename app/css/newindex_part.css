@@ -256,8 +256,8 @@
   line-height: 31px;
   text-align: center;
   background: #fff; }
-.pannel__body__item_btn:hover {
-  background: #266ada; }
+.pannel__body__item_btn:active {
+  background-color: #f5f5f5; }
 .pannel__body_tip {
   font-size: 16px;
   color: #999;
