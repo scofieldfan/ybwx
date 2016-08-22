@@ -4,7 +4,7 @@
 
 
 var wxShareControllers = angular.module('wxShareControllers', []);
-var shareUrl = 'http://web.youbaowuxian.com/wx_share.html';
+var shareUrl = 'http://wechat.nuobei.cn/wx_share.html';
 var api = {
 	"saveBd": "/ybwx-web/api/use_coupon",
 	'addCoupon': '/ybwx-web/api/add_coupon',
@@ -23,15 +23,12 @@ var api = {
 
 function getHttpPromise($http, $rootScope, method, url, data, callback, isCoverDefault) {
 
-	var openId = sessionStorage.getItem("openId");
-	if (!data["open_id"]) {
-		data["open_id"] = openId;
-	}
+	data["open_id"] = '--';
 	data['wechat_type'] = 2;
 	return $http({
 		method: method,
 		headers: {
-			"Content-Type": "application/json;charset:UTF-8"
+			"Content-Type": "application/json;charset=UTF-8"
 		},
 		url: url,
 		data: data
@@ -61,11 +58,9 @@ function shareTip() {
 }
 
 function submitBd($scope, $http, $location, $filter) {
-	var openId = sessionStorage.getItem("openId");
 	var insuranceDate = $filter('date')($scope.user.insurance_date, "yyyyMMdd");
 	var postData = {
 		coupon_no: $scope.coupon_no,
-		open_id: openId,
 		username: $scope.user.username,
 		social_id: $scope.user.social_id,
 		mobile: $scope.user.mobile,
@@ -76,7 +71,7 @@ function submitBd($scope, $http, $location, $filter) {
 	return $http({
 		method: 'POST',
 		headers: {
-			"Content-Type": "application/json;charset:UTF-8"
+			"Content-Type": "application/json;charset=UTF-8"
 		},
 		url: api['saveBd'],
 		data: postData
@@ -95,6 +90,7 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 
 			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
 				$("#loadingToastCommon").hide();
+				// TODO: 分享的id?
 				var openId = sessionStorage.getItem("openId");
 
 				util.share({
@@ -105,7 +101,6 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 				});
 
 				$scope.jixianPromise = getHttpPromise($http, $rootScope, 'POST', api['ping_coupon'], {
-					"open_id": openId,
 					"coupon_id": "4",
 					"time": new Date().getTime()
 				}, function(res) {
@@ -124,10 +119,9 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 		$scope.sportsAddCoupon = function() {
 			_hmt.push(['_trackEvent', 'wx_share_jixian', 'wx_share_jixian_left_button']);
 			var recId = util.getParameterByName('rec_id') || $routeParams.rec_id;
-			var openId = sessionStorage.getItem("openId");
 
+			// TODO: 分享追踪, recId是分享人的openid
 			$scope.addCoupon = getHttpPromise($http, $rootScope, 'POST', api['addCoupon'], {
-				"open_id": openId,
 				"r_open_id": recId,
 				"coupon_id": "4"
 			}, function(res) {
@@ -186,9 +180,7 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 			$("#loadingToastCommon").show();
 			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
 				$("#loadingToastCommon").hide();
-				var openId = sessionStorage.getItem("openId");
 				$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['is_share'], {
-					"open_id": openId,
 					"insurance_plan_id": 72
 				}, function(res) {
 					$scope.isShare = res.data.data.status;
@@ -200,9 +192,7 @@ wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams
 				shareTitle: "还在买捆绑的30元一次的航意险？在这里500万保一年无限次仅需40元！",
 				shareDesc: "仅需1杯咖啡的花费即可享受1年500万航空意外的保障！",
 				successCallback: function() {
-					var openId = sessionStorage.getItem("openId");
 					$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['share_callback'], {
-						"open_id": openId,
 						"insurance_plan_id": 72
 					}, function(res) {
 						//$("#special_share").html("点击即可优惠购买");
@@ -256,10 +246,8 @@ wxShareControllers.controller('wxMoneyBdCtrl', ['$scope', '$filter', '$routePara
 		$scope.user.insurance_date = tomorrow;
 
 		$scope.user.know_contract = true;
-		var openId = sessionStorage.getItem("openId");
 
 		$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['prepare_insure'], {
-			"open_id": openId,
 			"plans": [$routeParams.plan]
 		}, function(res) {
 			var minDate = new Date();
@@ -296,7 +284,6 @@ wxShareControllers.controller('wxMoneyBdCtrl', ['$scope', '$filter', '$routePara
 				plans[$routeParams.plan] = $routeParams.money;
 
 				$scope.insurePromise = getHttpPromise($http, $rootScope, 'POST', api['purchase'], {
-					open_id: openId,
 					plans: plans,
 					username: $scope.user.username,
 					social_id: $scope.user.social_id,
@@ -317,12 +304,17 @@ wxShareControllers.controller('wxMoneyBdCtrl', ['$scope', '$filter', '$routePara
 							"order_no": res.data.data.pay_order_no
 
 						}
-						var fitlerResult = util.whiteOpenIds.filter(function(item) {
+
+						// TODO: openid和白名单匹配的时候,支付0.1元
+
+						var filterResult = util.whiteOpenIds.filter(function(item) {
 							return item.openid === openId
 						});
-						if (fitlerResult && fitlerResult.length > 0) {
+						if (filterResult && filterResult.length > 0) {
 							payRequest["order_amount"] = 0.1;
 						}
+
+
 						var paramters = util.genParameters(payRequest);
 						//console.log(paramters);
 						window.location.href = "/index.html#pay_select?" + paramters;
@@ -391,7 +383,6 @@ wxShareControllers.controller('wxShareBdCtrl', ['$scope', '$filter', '$routePara
 		$scope.user.know_contract = true;
 		//saveBd($http,"张三","411202198509190511","18910873024");
 		$scope.server_reason = "";
-		var openId = sessionStorage.getItem("openId");
 		// toggle
 
 		function addDays(date, days) {
@@ -485,8 +476,7 @@ wxShareControllers.controller('wxShareSuccessCtrl', ['$scope', '$routeParams', '
 			_hmt.push(['_trackEvent', 'wx_share_success_toubao', 'wx_share_success_toubao_send_bd']);
 			console.log("$scope.sendForm.email.$invalid:" + $scope.sendForm.email.$invalid);
 			if (!$scope.sendForm.email.$invalid) {
-				var openId = sessionStorage.getItem("openId");
-				util.sendMail($http, $rootScope, api['send_bd'], openId, $scope.user.email, $location.search().order_no);
+				util.sendMail($http, $rootScope, api['send_bd'], $scope.user.email, $location.search().order_no);
 
 			} else {
 				util.showToast($rootScope, "请填写正确的邮箱!");
@@ -540,6 +530,7 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 
 			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
 				$("#loadingToastCommon").hide();
+				var openId = sessionStorage.getItem("openId");
 				util.share({
 					shareUrl: util.domain + "wx_share.html#/index?rec_id=" + openId,
 					shareImg: "/wx_share/img/share61.jpg",
@@ -547,9 +538,7 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 					shareDesc: "集齐3份航空意外险保险券，即可免费兑换一份航班延误险保险券！"
 
 				});
-				var openId = sessionStorage.getItem("openId");
 				$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['ping_coupon'], {
-					"open_id": openId,
 					"coupon_id": "2"
 				}, function(res) {
 					if (res.data && res.data.description) {
@@ -570,10 +559,9 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 		$scope.addCoupon = function() {
 			_hmt.push(['_trackEvent', 'wx_share_index', 'wx_share_index_left_button']);
 			var recId = util.getParameterByName('rec_id') || $routeParams.rec_id;
-			var openId = sessionStorage.getItem("openId");
 
+			// TODO: 分享追踪, recId是分享人的openid
 			$scope.addPromise = getHttpPromise($http, $rootScope, 'POST', api['addCoupon'], {
-				"open_id": openId,
 				"r_open_id": recId,
 				"coupon_id": "2"
 			}, function(res) {
@@ -598,11 +586,8 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 		$scope.exchange = function() {
 			_hmt.push(['_trackEvent', 'wx_share_index', 'wx_share_index_exchange_button']);
 
-			var openId = sessionStorage.getItem("openId");
-
 
 			$scope.exchangePromise = getHttpPromise($http, $rootScope, 'POST', api['exchange'], {
-				"open_id": openId
 			}, function(res) {
 				if (res.data && res.data.description) {
 					util.showToast($rootScope, res.data.description);
@@ -646,9 +631,7 @@ wxShareControllers.controller('myCouponListCtrl', ['$scope', '$routeParams', '$h
 				code = $routeParams.code;
 			}
 			util.getOpenId(code).then(function() {
-				var openId = sessionStorage.getItem("openId");
 				$scope.exchangePromise = getHttpPromise($http, $rootScope, 'POST', api['getCoupons'], {
-					"open_id": openId
 				}, function(res) {
 					if (res.data && res.data.description) {
 						util.showToast($rootScope, res.data.description);

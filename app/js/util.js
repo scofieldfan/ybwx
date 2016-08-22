@@ -3,7 +3,6 @@ var util = {
 	appId:'wxe797ac4e18b99078',
 	shareScope:'snsapi_userinfo',
 	api: {
-		"openid": "/ybwx-web/wechat/open_id",
 		"signature": "/ybwx-web/wechat/js_signature"
 	},
 	getParameterByName: function(name) {
@@ -102,24 +101,7 @@ var util = {
 		$(document).on('touchmove', util.preventDefault);
 	},
 	getOpenId: function(code) {
-		if (!sessionStorage.getItem("openId")) {
-			return $.when($.ajax({
-				type: 'GET',
-				url: util.api["openid"],
-				data: {
-					code: code,
-					type:2
-				},
-				dataType: "json"
-			})).done(function(res) {
-				if (res && res.data && res.data["openid"]) {
-					sessionStorage.setItem("openId", res.data["openid"]);
-				} else {
-					console.error("invalid code......");
-				}
-			});
-		}
-		return $.when();
+		return '--';
 	},
 
 	share: function(shareObj, isNotEncode) {
@@ -216,15 +198,15 @@ var util = {
 
 		})
 	},
-	sendMail: function($http, $rootScope, url, openId, email, order_no) {
+	sendMail: function($http, $rootScope, url, email, order_no) {
 		$http({
 			method: 'POST',
 			headers: {
-				"Content-Type": "application/json;charset:UTF-8"
+				"Content-Type": "application/json;charset=UTF-8"
 			},
 			url: url,
 			data: {
-				"open_id": openId,
+				"open_id": '--',
 				"email": email,
 				"order_no": order_no,
 				wechat_type:1
@@ -313,30 +295,12 @@ var util = {
 	getTaoCanStatus: function(status) {
 		return util.taocan_status[status];
 	},
-	redirectWeChatUrl: function(redirectUrl) {
-		if (typeof redirectUrl === "string" && redirectUrl.indexOf("http") == 0) {
-			var WE_CHAT_URL = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='+util.appId+'&redirect_uri=' + encodeURIComponent(redirectUrl) + '&response_type=code&scope='+util.shareScope+'&state=123#wechat_redirect';
-			window.location.href = WE_CHAT_URL;
-		}
-	},
 	checkCodeAndOpenId: function(angularCode, currentUrl, callback) {
-		var code = util.getParameterByName("code") || angularCode;
-		if (!sessionStorage.getItem("openId") && !code) {
-			//如果没有openId,也没有code，那么就跳转一次
-			util.redirectWeChatUrl(currentUrl);
-		} else {
-			util.getOpenId(code).then(function() {
-				var openId = sessionStorage.getItem("openId");
-				if (!openId) {
-					//如果用当前的code如法获得openId，那么就重新跳转获得一次openId
-					util.redirectWeChatUrl(currentUrl);
-				} else {
-					if (typeof callback === "function") {
-						callback();
-					}
-				}
-			});
-		}
+		util.getOpenId(code).then(function() {
+			if (typeof callback === "function") {
+				callback();
+			}
+		});
 
 	},
 	whiteOpenIds: [{

@@ -21,8 +21,8 @@ var api = {
 	'get_estimate_money': '/ybwx-web/api/recommend_premium',
 	'get_recommend_suggestion': '/ybwx-web/api/recommendation/suggestion',
 	'get_restrictions': '/ybwx-web/api/insurance/notice',
-	'get_score_analysis_new': '/ybwx-web/api/single_score/{openId}/{type}',
-	'get_score_analysis': '/ybwx-web/api/score_analysis/{openId}/{type}',
+	'get_score_analysis_new': '/ybwx-web/api/single_score/{type}',
+	'get_score_analysis': '/ybwx-web/api/score_analysis/{type}',
 	'get_industries_1': '/ybwx-web/api/industries',
 	'get_industries_2': '/ybwx-web/api/occupations/',
 	'get_industries_3': '/ybwx-web/api/jobs/',
@@ -32,7 +32,7 @@ var api = {
 	'send_bd': '/ybwx-web/api/send_policy',
 	'pay': '/ybwx-web/api/pay',
 	'pay_new': '/ybwx-web/api/insurance/pay',
-	'get_user_info': '/ybwx-web/user/info/wechat/{openId}',
+	'get_user_info': '/ybwx-web/user/info/',
 	'set_user_info': '/ybwx-web/user/info/update',
 	'upload_policy_image': '/ybwx-web/api/upload_policy_image',
 	'get_policies_list': '/ybwx-web/api/policies',
@@ -183,15 +183,12 @@ function getBdStatus(orderStatus, bdStatus) {
 
 function getHttpPromise($http, $rootScope, method, url, data, callback) {
 
-	var openId = sessionStorage.getItem("openId");
-	if (!data["open_id"]) {
-		data["open_id"] = openId;
-	}
+	data["open_id"] = '--';
 	data["wechat_type"] = 2;
 	return $http({
 		method: method,
 		headers: {
-			"Content-Type": "application/json;charset:UTF-8"
+			"Content-Type": "application/json;charset=UTF-8"
 		},
 		url: url,
 		data: data
@@ -218,9 +215,7 @@ mainControllers.controller('ybwxUserinfoCtrl', ['$scope', '$routeParams', '$loca
 		$scope.submit = function() {
 			$scope.gender = $(".switch-input").is(':checked') ? 2 : 1;
 			$scope.age = $("#ageId").html();
-			var openId = sessionStorage.getItem("openId");
 			$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['set_user_info'], {
-				'open_id': openId,
 				'gender': $scope.gender,
 				'age': $scope.age
 			}, function(res) {
@@ -392,8 +387,8 @@ mainControllers.controller('ybwxNewIndexCtrl', ['$scope', '$routeParams', '$loca
 			var currentUrl = util.domain + "#/index";
 			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
 				util.share();
-				var openId = sessionStorage.getItem("openId");
-				$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_insurance_index'] + "/" + openId, {}, function(res) {
+
+				$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_insurance_index'], {}, function(res) {
 					if (res && res.data && res.data.data) {
 						$scope.data = res.data.data;
 						if (parseFloat(res.data.data.aggregate_score) == 0) {
@@ -475,8 +470,8 @@ mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$locatio
 			var currentUrl = util.domain + "#/index";
 			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
 				util.share();
-				var openId = sessionStorage.getItem("openId");
-				$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_insurance_index'] + "/" + openId, {}, function(res) {
+
+				$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_insurance_index'], {}, function(res) {
 					if (res.data && res.data.description) {
 						util.showToast($rootScope, res.data.description);
 					}
@@ -565,7 +560,7 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 			$scope.type = $routeParams.type;
 			$scope.estimateMoney = 0;
 			scoreObj.insuranceType = $routeParams.type;
-			var openId = sessionStorage.getItem("openId");
+
 			$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_view'], {
 				insurance_type: $routeParams.type
 			}, function(res) {
@@ -606,14 +601,12 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 		$scope.data = {
 			scoreFix: 0
 		}
-		var openId = sessionStorage.getItem("openId");
 		$scope.goEstimateMoney = function() {
 			if (scoreObj.fanweiScore == 0 || scoreObj.moneyScore == 0) {
 				//$scope.estimateMoney = 0;
 				$scope.$apply();
 			} else {
 				var postData = {
-					"open_id": openId,
 					"insurance_type": $routeParams.type, // 保险类型
 					"coverage_score": scoreObj.fanweiScore, // 保障分
 					"sum_insured": scoreObj.insuredMoney // 保额分
@@ -639,7 +632,7 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 				CIRCLE.updateMoney(2);
 			} else {
 				$scope.sumScorePromise = getHttpPromise($http, $rootScope, 'POST', api['get_sum_insured'], {
-					open_id: openId,
+
 					annual_income_type: incomeType,
 				}, function(res) {
 					if (res && res.data && res.data.data) {
@@ -780,8 +773,7 @@ mainControllers.controller('ybwxBdEducationNewCtrl', ['$scope', '$routeParams', 
 		$scope.isHaveUserInfo = false;
 
 		$scope.getUserInfo = function() {
-			var openId = sessionStorage.getItem("openId");
-			$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_user_info'].replace('{openId}', openId), {}, function(res) {
+			$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_user_info'], {}, function(res) {
 				console.log(res.data.data);
 				if (res.data.data.age && res.data.data.gender) {
 					$scope.isHaveUserInfo = true;
@@ -796,8 +788,7 @@ mainControllers.controller('ybwxBdEducationNewCtrl', ['$scope', '$routeParams', 
 				var type = $routeParams.type;
 				$scope.type = $routeParams.type;
 				$scope.getUserInfo();
-				var openId = sessionStorage.getItem("openId");
-				$scope.educationPromise = getHttpPromise($http, $rootScope, 'GET', api['get_score_analysis_new'].replace('{openId}', openId).replace('{type}', type), {}, function(res) {
+				$scope.educationPromise = getHttpPromise($http, $rootScope, 'GET', api['get_score_analysis_new'].replace('{type}', type), {}, function(res) {
 					if (res && res.data && res.data.data) {
 						res.data.data.score = Math.round(res.data.data.score * 10) / 10;
 						$scope.data = res.data.data;
@@ -891,7 +882,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 						insuranceId: plan.insurance_id
 					}
 					var parmStr = util.genParameters(param);
-					window.location.href = util.domain + "ybwx-web/api/webPage?" + parmStr;
+					window.location.href = "/api/webPage?" + parmStr;
 				} else {
 					window.location.href = plan.official_site;
 				}
@@ -945,9 +936,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 		$scope.isHaveRestrictions = false;
 
 		$scope.getRestrictions = function() {
-			var openId = sessionStorage.getItem("openId");
 			$scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_restrictions'], {
-				open_id: openId,
 				plan_ids: $scope.choosePlansIds
 
 			}, function(res) {
@@ -957,9 +946,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 		$scope.init = function() {
 			$scope.showNum = 4;
 			$scope.sumMoney = 0;
-			var openId = sessionStorage.getItem("openId");
 			var postData = {
-				"open_id": openId,
 				"insurance_type": $routeParams.type,
 				"coverage_score": $routeParams.coverage_score,
 				"sum_insured": $routeParams.sum_insured
@@ -1110,10 +1097,7 @@ mainControllers.controller('ybwxInfoCtrl', ['$scope', '$routeParams', '$location
 
 			$scope.choose_plans = getChoosePlan(JSON.parse($routeParams.new_choose_plans));
 
-
-			var openId = sessionStorage.getItem("openId");
 			$scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_restrictions'], {
-				"open_id": openId,
 				plan_ids: $scope.choose_plans,
 			}, function(res) {
 				console.log(res);
@@ -1165,8 +1149,8 @@ mainControllers.controller('ybwxEducationCtrl', ['$scope', '$routeParams', '$loc
 		}
 		$scope.isHaveUserInfo = false;
 		$scope.getUserInfo = function() {
-			var openId = sessionStorage.getItem("openId");
-			$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_user_info'].replace('{openId}', openId), {}, function(res) {
+
+			$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_user_info'], {}, function(res) {
 				console.log(res.data.data);
 				if (res.data.data.age && res.data.data.gender) {
 					$scope.isHaveUserInfo = true;
@@ -1177,8 +1161,6 @@ mainControllers.controller('ybwxEducationCtrl', ['$scope', '$routeParams', '$loc
 			var type = $routeParams.type;
 			$scope.type = type;
 			$scope.getUserInfo();
-			var openId = sessionStorage.getItem("openId");
-
 		}
 		$scope.goDingzhi = function() {
 			_hmt.push(['_trackEvent', 'eduction', 'eduction_subBtn']);
@@ -1238,12 +1220,9 @@ mainControllers.controller('ybwxSupplyInfoCtrl', ['$scope', '$routeParams', '$lo
 
 		$scope.submit = function() {
 			_hmt.push(['_trackEvent', 'supplyinfo', 'supplyinfo_submit']);
-			var openId = sessionStorage.getItem("openId");
-
 			if (baseValid()) {
 
 				var postData = {
-					'open_id': openId,
 					"insured_username": $scope.insured_username,
 					"insured_social_id": $scope.insured_social_id,
 					"insured_mobile": $scope.insured_mobile,
@@ -1314,7 +1293,6 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 		//得兼容定制页投保，特卖投保
 		_hmt.push(['_trackPageview', $location.path()]);
 
-		var openId = sessionStorage.getItem("openId");
 		$scope.getTaocanReason = function(reasonEnum) {
 			return util.taocan_reason[reasonEnum] || "";
 		}
@@ -1392,7 +1370,6 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				var effectiveDate = $filter('date')($scope.user.effective_date, "yyyyMMdd");
 
 				$scope.submitPromise = getHttpPromise($http, $rootScope, 'POST', api['toubao_purchase'], {
-					open_id: openId,
 					insured_id: $scope.data.insured.id,
 					plans: plans,
 					//'coverage_period': $scope.coverage_period,
@@ -1511,7 +1488,6 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 			}
 			//$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['prepare_insure'], {
 			$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['toubao_prepare'], {
-				'open_id': openId,
 				"insured_id": $routeParams.user_id,
 				'plans': JSON.parse($routeParams.new_choose_plans)
 				//'plans': JSON.parse($routeParams.choose_plans),

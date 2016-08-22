@@ -16,16 +16,6 @@
       return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
 
-     
-    function redirectWeChatUrl(){
-     // var qd = getParameterByName("qd") || "default";
-       var WE_CHAT_URL="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri=http%3a%2f%2fweb.youbaowuxian.com%2fwx_share.html&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
-       var openId = sessionStorage.getItem("openId");//从首页跳转过来，不需要code
-       if(!openId && location.href.indexOf("code")==-1){
-            window.location.href=WE_CHAT_URL;
-       }
-    } 
-  
 
     var _hmt = _hmt || [];
     _hmt.push(['_setAutoPageview', false]);
@@ -40,11 +30,11 @@
   <link rel="stylesheet" type="text/css" href="wx_share/css/wx_share.min.css?rev=9560a9bd635e26affe715992a9a17dd7">
   <!--
    <link rel="stylesheet" type="text/css" href="bower_components/normalize-css/normalize.css">
-  <link rel="stylesheet" href="wx_share/css/style.css?rev=1caee29dcfa15780cfdbc4df524a6ca7">--></head>
+  <link rel="stylesheet" href="wx_share/css/style.css?rev=7527ccafe7f0051e90bddb4c57291a29">--></head>
 <body  ontouchstart="">
   <main class="content" ng-view></main>
   <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-  <script src="wx_share/js/output/wx_application.min.js?rev=dedc70579b410bc5e91889aecd7c5f60"></script>
+  <script src="wx_share/js/output/wx_application.min.js?rev=cc5e929aabbe921b79a0c5d1f0d515bb"></script>
 <div class="mask" id="share">
   <div class="wx-tip"></div>
 </div>
@@ -134,6 +124,6 @@
       }
    })
   </script>
-  <link rel="stylesheet" href="wx_share/css/sports.css?rev=4cc30b233caa40f55ba385c22516e455"><!--提前加载css，防止页面卡-->
+  <link rel="stylesheet" href="wx_share/css/sports.css?rev=2223031a4ea71799776b555d0961e465"><!--提前加载css，防止页面卡-->
 </body>
 </html>

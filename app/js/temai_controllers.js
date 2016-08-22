@@ -17,9 +17,8 @@ ybwxControllers.controller('wxTemaiIndexCtrl', ['$scope', '$routeParams', '$loca
     $scope.loadReady = false;
     var code = util.getParameterByName("code") || $routeParams.code;
     util.getOpenId(code).then(function() {
-      var openId = sessionStorage.getItem("openId");
+
       $scope.listPromise = getHttpPromise($http, $rootScope, 'POST', api['temai_index'], {
-        "open_id": openId
       }, function(res) {
         if (res && res.data && res.data.data) {
           $scope.categorys = res.data.data.categorys;
@@ -92,9 +91,7 @@ ybwxControllers.controller('wxTemaiListCtrl', ['$scope', '$routeParams', '$locat
 
     $scope.getNav = function() {
       $scope.isHaveResult = true;
-      var openId = sessionStorage.getItem("openId");
       $scope.listPromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurance_category'], {
-        "open_id": openId
       }, function(res) {
         if (res && res.data && res.data.data) {
           $scope.navItems = res.data.data.categories;
@@ -104,11 +101,9 @@ ybwxControllers.controller('wxTemaiListCtrl', ['$scope', '$routeParams', '$locat
       })
     }
     $scope.getCateList = function(category_id) {
-      var openId = sessionStorage.getItem("openId");
       $scope.category_id = category_id;
       $scope.catePromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurance_category_insurance'], {
-        "category_id": category_id,
-        "open_id": openId
+        "category_id": category_id
       }, function(res) {
         if (res && res.data && res.data.data) {
           $scope.cateItems = res.data.data.insurances;
@@ -166,10 +161,8 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
     $scope.gender = 1;
 
     function updateFee() {
-      var openId = sessionStorage.getItem("openId");
 
       $scope.catePromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurances_sex'], {
-        "open_id": openId,
         "insurance_plan_id": $scope.plan.id,
         "birthday": $scope.birthday,
         "gender": $scope.gender,
@@ -184,9 +177,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       })
     }
     $scope.getRestrictions = function() {
-      var openId = sessionStorage.getItem("openId");
       $scope.restrictionPromise = getHttpPromise($http, $rootScope, 'POST', api['get_restrictions'], {
-        open_id: openId,
         plan_ids: [$scope.plan.id]
 
       }, function(res) {
@@ -479,8 +470,7 @@ ybwxControllers.controller('ybwxSuccessCtrl', ['$scope', '$filter', '$routeParam
     //$scope.orderId = $location.search().order_no;
     $scope.send_bd = function() {
       if (!sendForm.email.$invalid) {
-        var openId = sessionStorage.getItem("openId");
-        util.sendMail($http, $rootScope, api['send_bd'], openId, $scope.user.email, $location.search().order_no);
+        util.sendMail($http, $rootScope, api['send_bd'], $scope.user.email, $location.search().order_no);
 
       }
     }

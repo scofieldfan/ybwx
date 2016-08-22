@@ -3,25 +3,11 @@ var SHARE = (function() {
   var init = function(shareUrl) {
     
    var api = {
-     "openid": "/ybwx-web/wechat/open_id",
      "signature": "/ybwx-web/wechat/js_signature"
    }
 
    function getOpenId() {
-    var code = getParameterByName("code");
-     var openId = sessionStorage.getItem("openId");
-     
-     if (openId) {
-       return openId;
-     }
-     return $.ajax({
-       type: 'GET',
-       url: api["openid"],
-       data: {
-         code: code
-       },
-       dataType: "json"
-     })
+     return '--';
    }
 
    function getSign() {
@@ -41,18 +27,8 @@ var SHARE = (function() {
       return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
 
-    function wxShareCallBack(a1, a2) {
+    function wxShareCallBack(a2) {
 
-      console.log(a1);
-      console.log(a2);
-      var openId;
-      if (a1[0] && a1[0].data && a1[0].data["openid"]) {
-        openId = a1[0].data["openid"];
-        sessionStorage.setItem("openId", openId);
-      }
-      if (sessionStorage.getItem("openId")) {
-        openId = sessionStorage.getItem("openId");
-      }
       wx.config({
         debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
         appId: a2[0].data["app_id"], // 必填，公众号的唯一标识
@@ -66,7 +42,7 @@ var SHARE = (function() {
         var shareTitle = "天寿助富您安享";
         var shareLink = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri=' + encodeURIComponent(shareUrl) + '&response_type=code&scope=snsapi_base&state=123#wechat_redirect';
         var shareDesc = "即交快领高返还，满5年折合年化单利约4.5%";
-        var shareImg = "http://web.youbaowuxian.com/anxiang/img/money.jpg";
+        var shareImg = "http://wechat.nuobei.cn/anxiang/img/money.jpg";
 
         wx.onMenuShareTimeline({
           title: shareTitle,
@@ -124,7 +100,7 @@ var SHARE = (function() {
 
       });
     }
-    $.when(getOpenId(), getSign()).done(wxShareCallBack);
+    $.when(getSign()).done(wxShareCallBack);
   }
   return {
     init: init
