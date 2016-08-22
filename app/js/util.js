@@ -328,12 +328,9 @@ var util = {
 	},
 
 	checkCodeAndOpenId: function(angularCode, currentUrl, callback) {
-		util.getOpenId(code).then(function() {
-			if (typeof callback === "function") {
-				callback();
-			}
-		});
-
+        if (typeof callback === "function") {
+            callback();
+        }
 	},
 	whiteOpenIds: [{
 		openid: "omP9dwb6u-lamgwOhFqFIcU3QLPk",

@@ -84,16 +84,12 @@ bdControllers.controller('ybwxbaodanVerifyListCtrl', ['$scope', '$routeParams', 
 		$scope.type = "4";
 		$scope.init = function() {
 
-			var code = util.getParameterByName("code") || code;
-
-			util.getOpenId(code).then(function() {
-				$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_verfiy_policy'], {}, function(res) {
-					$scope.data = res.data.data;
-					$scope.typeGroup = _.groupBy(res.data.data.policies, function(item) {
-						return item.insurance_type;
-					});
-				})
-			})
+			$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_verfiy_policy'], {}, function(res) {
+				$scope.data = res.data.data;
+				$scope.typeGroup = _.groupBy(res.data.data.policies, function(item) {
+					return item.insurance_type;
+				});
+			});
 
 		}
 		$scope.setType = function(type) {
@@ -128,15 +124,12 @@ bdControllers.controller('ybwxbaodanManageListCtrl', ['$scope', '$routeParams', 
 		}
 		$scope.type = $routeParams.type || "4";
 		$scope.init = function() {
-			var code = util.getParameterByName("code") || $routeParams.code;
-			util.getOpenId(code).then(function() {
-				$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_policies_list'], {}, function(res) {
-					$scope.data = res.data.data;
-					$scope.typeGroup = _.groupBy(res.data.data.policies, function(item) {
-						return item.insurance_type;
-					});
-				})
-			})
+			$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_policies_list'], {}, function(res) {
+				$scope.data = res.data.data;
+				$scope.typeGroup = _.groupBy(res.data.data.policies, function(item) {
+					return item.insurance_type;
+				});
+			});
 		}
 		$scope.setType = function(type) {
 			_hmt.push(['_trackEvent', 'bdm_list', 'bdmList_nav']);
@@ -212,35 +205,32 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 		}
 		$scope.init = function() {
 
-			var code = util.getParameterByName("code") || $routeParams.code;
-
 			if ($routeParams.policy_id && $routeParams.policy_id == 'test') {
 				$scope.isTest = true;
 				$("#test_baodan").show();
 			} else {
 				$("#my_baodan").show();
 			}
-			util.getOpenId(code).then(function() {
 
-				if (!$scope.isTest) {
-					var parameters = {
-						'policy_id': $routeParams.policy_id
-					}
-					$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_policy_detail'] + "?" + util.genParameters(parameters), {}, function(res) {
-						$scope.data = res.data.data;
-						$scope.data.coverageDateHead = res.data.data.coverageDate.substring(0, 19).trim();
-						$scope.data.coverageDateTail = res.data.data.coverageDate.substring(19).trim();
-						console.log($scope.data.coverageDateHead);
-						console.log($scope.data.coverageDateTail);
-						console.log(res.data.data);
-						$(".bd-wrapper").show();
-						console.log("order_no");
-						$scope.order_no = res.data.data.order_no;
-						console.log($scope.order_no);
-					})
+			if (!$scope.isTest) {
+				var parameters = {
+					'policy_id': $routeParams.policy_id
 				}
-				$scope.shareConfig();
-			});
+				$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_policy_detail'] + "?" + util.genParameters(parameters), {}, function(res) {
+					$scope.data = res.data.data;
+					$scope.data.coverageDateHead = res.data.data.coverageDate.substring(0, 19).trim();
+					$scope.data.coverageDateTail = res.data.data.coverageDate.substring(19).trim();
+					console.log($scope.data.coverageDateHead);
+					console.log($scope.data.coverageDateTail);
+					console.log(res.data.data);
+					$(".bd-wrapper").show();
+					console.log("order_no");
+					$scope.order_no = res.data.data.order_no;
+					console.log($scope.order_no);
+				})
+			}
+			$scope.shareConfig();
+
 			//util.uploadImgConfig(function() {
 			//alert("choose...");
 			//});
@@ -637,16 +627,11 @@ bdControllers.controller('ybwxBDPicCtrl', ['$scope', '$routeParams', '$location'
 			serverIds: []
 		};
 		$("#loading").show();
-		var code = util.getParameterByName("code");
-		if (!code) {
-			code = $routeParams.code;
-		}
-		util.getOpenId(code).then(function() {
-			util.uploadImgConfig(function() {
-				//alert("choose...");
-				$("#loading").hide();
-			});
-		})
+
+		util.uploadImgConfig(function() {
+			//alert("choose...");
+			$("#loading").hide();
+		});
 
 
 

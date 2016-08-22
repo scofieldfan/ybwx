@@ -6,56 +6,56 @@ var mainControllers = angular.module('mainControllers', []);
 
 var api = {
 	'get_insurances': '/ybwx-web/api/insurance_orders',
-	'get_insurance_detail': '/ybwx-web/api/insurance_order',
-	'get_insurance_index': '/ybwx-web/api/aggregate_score',
-	'get_insurances_selling': '/ybwx-web/api/insurance/selling',
-	'get_insurance_category': '/ybwx-web/api/insurance/insurance_category',
-	'get_insurance_category_insurance': '/ybwx-web/api/insurance/insurance_category_insurance',
-	'get_insurances_detail': '/ybwx-web/api/insurance/plans',
-	'get_insurances_mask': '/ybwx-web/api/insurance/float/{productId}',
-	'get_insurances_sex': 'ybwx-web/api/insurance/premium',
-	'get_recommend': '/ybwx-web/api/recommend_view/{type}',
-	'get_recommend_view': '/ybwx-web/api/recommend/view',
-	'get_recommend_coverages': '/ybwx-web/api/recommend_coverages',
-	'get_recommend_plans': '/ybwx-web/api/recommendation/plans',
-	'get_estimate_money': '/ybwx-web/api/recommend_premium',
-	'get_recommend_suggestion': '/ybwx-web/api/recommendation/suggestion',
-	'get_restrictions': '/ybwx-web/api/insurance/notice',
-	'get_score_analysis_new': '/ybwx-web/api/single_score/{type}',
-	'get_score_analysis': '/ybwx-web/api/score_analysis/{type}',
-	'get_industries_1': '/ybwx-web/api/industries',
-	'get_industries_2': '/ybwx-web/api/occupations/',
-	'get_industries_3': '/ybwx-web/api/jobs/',
-	'pre_insure': '/ybwx-web/api/insurance/pre_insure',
-	'prepare_insure': '/ybwx-web/api/insurance/prepare',
-	'insure': '/ybwx-web/api/insurance/insure',
-	'send_bd': '/ybwx-web/api/send_policy',
-	'pay': '/ybwx-web/api/pay',
-	'pay_new': '/ybwx-web/api/insurance/pay',
-	'get_user_info': '/ybwx-web/user/info/',
-	'set_user_info': '/ybwx-web/user/info/update',
-	'upload_policy_image': '/ybwx-web/api/upload_policy_image',
-	'get_policies_list': '/ybwx-web/api/policies',
-	'get_policy_detail': '/ybwx-web/api/policy',
-	'signature': '/ybwx-diplomat/wechat/js_signature',
-	'get_claim_info': '/ybwx-web/api/claim_info/{id}',
-	'get_verfiy_policy': '/ybwx-web/api/policies/verify',
-	'policy_verfiy': '/ybwx-web/api/verify',
-	'get_policy_verfiyinfo': '/ybwx-web/api/verify_info/{id}',
-	'temai_index': '/ybwx-web/api/insurance/selling_page',
-	'firstToubao': '/ybwx-web/api/relation/first',
-	'recognizee_compile': '/ybwx-web/api/relations',
-	'getData': '/ybwx-web/api/relation',
-	'addContact': '/ybwx-web/api/relation/add',
-	'deleteContact': '/ybwx-web/api/relation/delete',
-	'update': '/ybwx-web/api/relation/update',
-	'purchase': '/ybwx-web/api/insurance/purchase',
-	'get_sum_insured': '/ybwx-web/api/recommend/annualIncome/update',
-	'get_scheme_questions': '/ybwx-web/api/scheme/questions',
-	'get_scheme': '/ybwx-web/api/scheme',
-	'get_scheme_plans': '/ybwx-web/api/scheme/plans',
-	'toubao_prepare': '/ybwx-web/api/insurance/extended/prepare',
-	'toubao_purchase': '/ybwx-web/api/insurance/extended/purchase'
+    'get_insurance_detail': '/ybwx-web/api/insurance_order',
+    'get_insurance_index': '/ybwx-web/api/aggregate_score',
+    'get_insurances_selling': '/ybwx-web/api/insurance/selling',
+    'get_insurance_category': '/ybwx-web/api/insurance/insurance_category',
+    'get_insurance_category_insurance': '/ybwx-web/api/insurance/insurance_category_insurance',
+    'get_insurances_detail': '/ybwx-web/api/insurance/plans',
+    'get_insurances_mask': '/ybwx-web/api/insurance/float/{productId}',
+    'get_insurances_sex': 'ybwx-web/api/insurance/premium',
+    'get_recommend': '/ybwx-web/api/recommend_view/{type}',
+    'get_recommend_view': '/ybwx-web/api/recommend/view',
+    'get_recommend_coverages': '/ybwx-web/api/recommend_coverages',
+    'get_recommend_plans': '/ybwx-web/api/recommendation/plans',
+    'get_estimate_money': '/ybwx-web/api/recommend_premium',
+    'get_recommend_suggestion': '/ybwx-web/api/recommendation/suggestion',
+    'get_restrictions': '/ybwx-web/api/insurance/notice',
+    'get_score_analysis_new': '/ybwx-web/api/single_score/{type}',
+    'get_score_analysis': '/ybwx-web/api/score_analysis/{type}',
+    'get_industries_1': '/ybwx-web/api/industries',
+    'get_industries_2': '/ybwx-web/api/occupations/',
+    'get_industries_3': '/ybwx-web/api/jobs/',
+    'pre_insure': '/ybwx-web/api/insurance/pre_insure',
+    'prepare_insure': '/ybwx-web/api/insurance/prepare',
+    'insure': '/ybwx-web/api/insurance/insure',
+    'send_bd': '/ybwx-web/api/send_policy',
+    'pay': '/ybwx-web/api/pay',
+    'pay_new': '/ybwx-web/api/insurance/pay',
+    'get_user_info': '/ybwx-web/user/info/',
+    'set_user_info': '/ybwx-web/user/info/update',
+    'upload_policy_image': '/ybwx-web/api/upload_policy_image',
+    'get_policies_list': '/ybwx-web/api/policies',
+    'get_policy_detail': '/ybwx-web/api/policy',
+    'signature': '/ybwx-diplomat/wechat/js_signature',
+    'get_claim_info': '/ybwx-web/api/claim_info/{id}',
+    'get_verfiy_policy': '/ybwx-web/api/policies/verify',
+    'policy_verfiy': '/ybwx-web/api/verify',
+    'get_policy_verfiyinfo': '/ybwx-web/api/verify_info/{id}',
+    'temai_index': '/ybwx-web/api/insurance/selling_page',
+    'firstToubao': '/ybwx-web/api/relation/first',
+    'recognizee_compile': '/ybwx-web/api/relations',
+    'getData': '/ybwx-web/api/relation',
+    'addContact': '/ybwx-web/api/relation/add',
+    'deleteContact': '/ybwx-web/api/relation/delete',
+    'update': '/ybwx-web/api/relation/update',
+    'purchase': '/ybwx-web/api/insurance/purchase',
+    'get_sum_insured': '/ybwx-web/api/recommend/annualIncome/update',
+    'get_scheme_questions': '/ybwx-web/api/scheme/questions',
+    'get_scheme': '/ybwx-web/api/scheme',
+    'get_scheme_plans': '/ybwx-web/api/scheme/plans',
+    'toubao_prepare': '/ybwx-web/api/insurance/extended/prepare',
+    'toubao_purchase': '/ybwx-web/api/insurance/extended/purchase'
 }
 
 var isNew = true;
@@ -784,16 +784,14 @@ mainControllers.controller('ybwxBdEducationNewCtrl', ['$scope', '$routeParams', 
 
 			var code = util.getParameterByName("code") || $routeParams.code;
 
-			util.getOpenId(code).then(function() {
-				var type = $routeParams.type;
-				$scope.type = $routeParams.type;
-				$scope.getUserInfo();
-				$scope.educationPromise = getHttpPromise($http, $rootScope, 'GET', api['get_score_analysis_new'].replace('{type}', type), {}, function(res) {
-					if (res && res.data && res.data.data) {
-						res.data.data.score = Math.round(res.data.data.score * 10) / 10;
-						$scope.data = res.data.data;
-					}
-				})
+			var type = $routeParams.type;
+			$scope.type = $routeParams.type;
+			$scope.getUserInfo();
+			$scope.educationPromise = getHttpPromise($http, $rootScope, 'GET', api['get_score_analysis_new'].replace('{type}', type), {}, function(res) {
+				if (res && res.data && res.data.data) {
+					res.data.data.score = Math.round(res.data.data.score * 10) / 10;
+					$scope.data = res.data.data;
+				}
 			});
 		}
 		$scope.goDingzhi = function() {

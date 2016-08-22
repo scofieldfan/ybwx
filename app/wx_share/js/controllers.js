@@ -626,35 +626,30 @@ wxShareControllers.controller('myCouponListCtrl', ['$scope', '$routeParams', '$h
 			util.share();
 			_hmt.push(['_trackPageview', '/wx_share_couponlist']);
 			//_hmt.push(['_trackEvent', 'wx_share_couponlist', 'index_center']);
-			var code = util.getParameterByName("code");
-			if (!code) {
-				code = $routeParams.code;
-			}
-			util.getOpenId(code).then(function() {
-				$scope.exchangePromise = getHttpPromise($http, $rootScope, 'POST', api['getCoupons'], {
-				}, function(res) {
-					if (res.data && res.data.description) {
-						util.showToast($rootScope, res.data.description);
-						$("#reason_container").show();
-					} else if (res.data.code == 0) {
-						if (res.data.data.coupons) {
-							res.data.data.coupons.forEach(function(coupon) {
-								coupon.imgClass = imgMap[coupon["coupon_status"]];
-							})
-							$scope.reason = "";
-							if (res.data.data.coupons.length === 0) {
-								$("#reason_container").show();
-							}
-							$scope.coupons = res.data.data.coupons;
-							$(".ul_container").show();
-						} else {
+
+
+			$scope.exchangePromise = getHttpPromise($http, $rootScope, 'POST', api['getCoupons'], {
+			}, function(res) {
+				if (res.data && res.data.description) {
+					util.showToast($rootScope, res.data.description);
+					$("#reason_container").show();
+				} else if (res.data.code == 0) {
+					if (res.data.data.coupons) {
+						res.data.data.coupons.forEach(function(coupon) {
+							coupon.imgClass = imgMap[coupon["coupon_status"]];
+						})
+						$scope.reason = "";
+						if (res.data.data.coupons.length === 0) {
 							$("#reason_container").show();
 						}
+						$scope.coupons = res.data.data.coupons;
+						$(".ul_container").show();
+					} else {
+						$("#reason_container").show();
 					}
+				}
 
-				});
-
-			})
+			});
 		}
 		$scope.goShare = function() {
 			$location.path("/jixian");
