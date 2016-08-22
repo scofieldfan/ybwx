@@ -1403,7 +1403,9 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 					car_no: $scope.user.car_no,
 					flight_no: $scope.user.flight_no,
 					bank_account: $scope.user.bank.name,
-					bank_card_no: $scope.user.bankcardno
+					bank_card_no: $scope.user.bankcardno,
+					height:$scope.user.height,
+					weight:$scope.user.weight
 				}, function(res) {
 
 					var payRequest = {
@@ -1428,6 +1430,13 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				if (!$scope.isHaveUserInfo) {
 					util.showToast($rootScope, "请填写用户信息");
 				}
+				 if ($scope.data.height && $scope.tbform.height && 　$scope.tbform.height.$invalid) {
+					util.showToast($rootScope, "请填写身高");
+				}
+
+				if ($scope.data.weight && $scope.tbform.weight && 　$scope.tbform.weight.$invalid) {
+					util.showToast($rootScope, "请填写体重");
+				}
 				if ($scope.data.address && $scope.tbform.address && 　$scope.tbform.address.$invalid) {
 					util.showToast($rootScope, "地址填写错误，请修改");
 				}
@@ -1444,10 +1453,11 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				if (isBankInvalid) {
 					util.showToast($rootScope, "请选择银行");
 				}
-
 				if ($scope.data.bank && $scope.tbform.bankusername && 　$scope.tbform.bankusername.$invalid) {
 					util.showToast($rootScope, "请填写持卡人姓名");
 				}
+
+			  
 
 				if ($scope.data.bank && $scope.tbform.bankcardno && 　$scope.tbform.bankcardno.$invalid) {
 					util.showToast($rootScope, "请填银行卡账号");

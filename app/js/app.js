@@ -64,12 +64,12 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/newindex_part.html?v=123',
       controller: 'ybwxNewIndexCtrl',
       title: '诺贝保险管家',
-      css:'css/newindex_part.css?rev=f3c28f61d035739407b6e7c1d6607bbb'
+      css:'css/newindex_part.css?rev=5ff516ae22c63367478eed76c84bcd94'
     }).when('/bd_education_new', {
       templateUrl: 'partials/bd_education_new.html',
       controller: 'ybwxBdEducationNewCtrl',
       title: "保障评分",
-      css:'css/bd_education_new.css?rev=d41d8cd98f00b204e9800998ecf8427e'
+      css:'css/bd_education_new.css?rev=574f104fdb96a11a5b11c99936417f29'
     }).when('/select', {
       templateUrl: 'partials/select_part.html?v=123',
       controller: 'ybwxSelectCtrl',
