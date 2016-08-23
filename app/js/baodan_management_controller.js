@@ -313,7 +313,7 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 			// TODO: share_id = openid?
 			var params = {
 				'policy_id': $routeParams.policy_id,
-				'share_id': '--'
+				'share_id': window.NBCONF.USER['unionid'] || ''
 			}
 			var paramStr = util.genParameters(params);
 			var shareUrl = util.domain + "#bdm_detail?" + paramStr;
