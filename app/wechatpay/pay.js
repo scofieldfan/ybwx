@@ -2,7 +2,7 @@
  * @Author: fanzhang
  * @Date:   2016-08-23 13:18:46
  * @Last Modified by:   fanzhang
- * @Last Modified time: 2016-08-23 13:32:42
+ * @Last Modified time: 2016-08-23 13:34:17
  */
 
 'use strict';
@@ -159,7 +159,7 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 
 
 					wx.chooseWXPay({
-						timestamp: $scope.wechat_response.timeStamp,
+						timestamp: $scope.wechat_response.timestamp,
 						nonceStr: $scope.wechat_response.nonceStr, // 支付签名随机串，不长于 32 位
 						package: $scope.wechat_response.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
 						signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
