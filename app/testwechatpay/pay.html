@@ -225,22 +225,22 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 					// 	signType:"MD5",
 					// 	timeStamp:$scope.wechat_response.timestamp
 					// }
-					var signObj = {
-						appId:$scope.wechat_response.appId,
-						nonceStr:nonceStr,
-						package: $scope.wechat_response.packageStr,
-						signType:"MD5",
-						timeStamp:timestamp
-					}
-
 					// var signObj = {
 					// 	appId:$scope.wechat_response.appId,
 					// 	nonceStr:nonceStr,
 					// 	package: $scope.wechat_response.packageStr,
 					// 	signType:"MD5",
-					// 	timeStamp:timestamp,
-					// 	key:"rfok7L6GheVhk6JcfjsCNnO0hQBKWHpF"
+					// 	timeStamp:timestamp
 					// }
+
+					var signObj = {
+						appId:$scope.wechat_response.appId,
+						nonceStr:nonceStr,
+						package: $scope.wechat_response.packageStr,
+						signType:"MD5",
+						timeStamp:timestamp,
+						key:"rfok7L6GheVhk6JcfjsCNnO0hQBKWHpF"
+					}
 					// var signObj = {
 					// 	appId:$scope.wechat_response.appId,
 					// 	nonceStr:$scope.wechat_response.nonceStr,
