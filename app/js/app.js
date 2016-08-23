@@ -54,17 +54,12 @@ ybwxApp.filter('setDecimal', function($filter) {
 ybwxApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-    // when('/index', {
-    //   templateUrl: 'partials/index_part.html?v=123',
-    //   controller: 'ybwxIndexCtrl',
-    //   title: '诺贝保险管家',
-    //   css:'css/index_part.css?rev=a47bd3748f61c7838f55363b681c5c84'
-    // }).
+   
     when('/index', {
       templateUrl: 'partials/newindex_part.html?v=123',
       controller: 'ybwxNewIndexCtrl',
       title: '诺贝保险管家',
-      css:'css/newindex_part.css?rev=5ff516ae22c63367478eed76c84bcd94'
+      css:'css/newindex_part.css?rev=db9ade35cbbcf5aebbbdb2ee62c40e77'
     }).when('/bd_education_new', {
       templateUrl: 'partials/bd_education_new.html',
       controller: 'ybwxBdEducationNewCtrl',
@@ -74,12 +69,22 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/select_part.html?v=123',
       controller: 'ybwxSelectCtrl',
       title: "保障提升",
-      css:'css/ring.css?rev=9d56a76ef2453e32e090981924fd6ae2'
+      css:'css/ring.css?rev=179f15d8ae7a0af028b0e7ec7f839246'
     }).when('/solution', {
       templateUrl: 'partials/solution.html',
       controller: 'ybwxSolutionCtrl',
       title: "保障方案",
       css:'css/solution.css?rev=51c8bd3f32be358917967d55dc053768'
+    }).when('/sx_bzts', {
+      templateUrl: 'partials/sx_bzts.html?v=12dsdsfdf543',
+      // controller: 'ybwxSelectCtrl',
+      title: "寿险保障提升",
+      css:'css/ring.css?rev=179f15d8ae7a0af028b0e7ec7f839246'
+    }).when('/jk_bzts', {
+      templateUrl: 'partials/jk_bzts.html?v=12dsdsfdf543',
+      // controller: 'ybwxSelectCtrl',
+      title: "健康保障提升",
+      css:'css/ring.css?rev=179f15d8ae7a0af028b0e7ec7f839246'
     }).when('/toubao_new', {
       templateUrl: 'partials/toubao_new.html',
       controller: 'ybwxToubaoNewCtrl',
@@ -93,7 +98,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/target.html',
       controller: 'ybwxTargetCtrl',
       title: "保障对象",
-      css:'css/ensuring_target.css?rev=e868b4d6702a29ca7854f673ebd7d43a'
+      css:'css/ensuring_target.css?rev=e641ad60eb6525866e0eaf270c3d8e9c'
     }).when('/hobby', {
       templateUrl: 'partials/hobby.html',
       controller: 'ybwxHobbyCtrl',
@@ -103,7 +108,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/userinfo_new.html',
       controller: 'ybwxUserInfoNewCtrl',
       title: "资料设定",
-      css:'css/userinfo_new.css?rev=b6a1ca0e1ef370668da0854505ede4df'
+      css:'css/userinfo_new.css?rev=432ce1d5947e69931411b158c31e432c'
     }).when('/scheme', {
       templateUrl: 'partials/scheme.html',
       controller: 'ybwxSchemeCtrl',
@@ -190,10 +195,6 @@ ybwxApp.config(['$routeProvider',
     }).when('/pay_success', {
       templateUrl: 'partials/pay_success.html',
       title: "交易完成提示"
-    }).when('/jingzhun', {
-      templateUrl: 'partials/jingzhun.html',
-      controller: 'ybwxJingzhunCtrl',
-      title: "特卖商城"
     }).when('/information', {
       templateUrl: 'partials/information.html',
       controller: 'ybwxInfoCtrl',
@@ -206,7 +207,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/education.html',
       controller: 'ybwxEducationCtrl',
       title: "如何投保",
-      css: "css/education.css"
+      css:"css/education.css?rev=893734c647381c2bdc4b6b133c497b7b"
     }).when('/edindex', {
       templateUrl: 'partials/ed_index.html',
       controller: 'ybwxEdIndexCtrl',

@@ -1,0 +1,43 @@
+@import "base/classes.scss";
+@import "base/variables.scss";
+body {
+	background: #f5f5f5;
+}
+.jk_bzts {
+	background: #fff;
+	padding: 15px 10px;
+	margin-bottom: 10px;
+	@include border(001px 0,#ccc);
+	.jk_bzts_tit {
+		font-size: 15px;
+		color: #444;
+	}
+	.jk_bzts--blue {
+		color: #6fa5ff;
+	}
+	.jk_bzts_prompt {
+		color: #999;
+		font-size: 13px;
+	}
+}
+.bottom_ctrl {
+	@include border(0 0 1px 0,#ccc);
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	height: 49px;
+	background: #fff;
+	box-sizing: border-box;
+	padding: 4.5px 0;
+	.finish {
+		height: 40px;
+		width: 250px;
+		background: #4285f4;
+		font-size: 15px;
+		color: #fff;
+		text-align: center;
+		line-height: 40px;
+			margin: 0 auto;
+			border-radius: 5px;
+	}
+}

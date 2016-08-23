@@ -199,6 +199,18 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
             return date;
         };
 
+        function setDefaultPeriod(plan) {
+            console.log("setPeriod");
+            console.log(plan);
+            $scope.coverage_period = plan.coverage_periods[0];
+            $scope.coverage_period_type = plan.coverage_period_type;
+
+            if (plan.charge_periods) {
+                $scope.charge_period = plan.charge_periods[0];
+            }
+            $scope.charge_period_type = plan.charge_period_type;
+        }
+
         $scope.init = function () {
             // $scope.birthday = "19860101";
             //$scope.showBirthday = "1986-01-01";
@@ -213,13 +225,9 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
                     $scope.maskData = res.data.data;
                     $scope.maskPlans = res.data.data.plans;
                     $scope.maskSelectPlan = $scope.maskPlans[Object.keys($scope.maskPlans)[0]];
-                    $scope.coverage_period = $scope.maskSelectPlan.coverage_periods[0];
-                    $scope.coverage_period_type = $scope.maskSelectPlan.coverage_period_type;
 
-                    if ($scope.maskSelectPlan.charge_periods) {
-                        $scope.charge_period = $scope.maskSelectPlan.charge_periods[0];
-                    }
-                    $scope.charge_period_type = $scope.maskSelectPlan.charge_period_type;
+                    setDefaultPeriod($scope.maskSelectPlan);
+
                     if ($scope.maskData.min_age) {
                         $scope.minDate = computeDate($scope.maskData.max_age); //最大年龄，对应的是最小日期
                     }
@@ -307,8 +315,6 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
             }
         });
 
-        /**/
-
 
         $scope.more = function ($event) {
             var element = $event.currentTarget;
@@ -354,13 +360,14 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
             _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_changesex']);
         };
 
-// console.log($scope.dataNum );
+        // console.log($scope.dataNum );
         $scope.changeMaskTaoCan = function ($event, item) {
             $event.preventDefault();
             $event.stopPropagation();
             $scope.plan = item;
             $scope.maskSelectPlan = $scope.maskPlans[item.id];
             $scope.danwei = genDuration($scope.plan.coverage_period_type);
+            setDefaultPeriod($scope.maskSelectPlan);
             //$scope.money = $scope.plan.premium;
             $scope.getRestrictions();
             if ($scope.maskData.premium_type == 2) { //浮动价格更新保费
@@ -369,24 +376,25 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
                 $scope.money = $scope.plan.premium;
             }
             _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_changetaocan']);
-        };
+        }
 
         $scope.changeDuration = function ($event, item) {
             $event.preventDefault();
             $event.stopPropagation();
             $scope.coverage_period = item;
+            $scope.coverage_period_type = item.coverage_period_type;
             updateFee();
             _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_changeduration']);
-        };
+        }
 
         $scope.changeFee = function ($event, item) {
             $event.preventDefault();
             $event.stopPropagation();
             $scope.charge_period = item;
+            $scope.charge_period_type = item.charge_period_type;
             updateFee();
             _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_changefee']);
-        };
-
+        }
         $scope.headSelect = function ($event, plan) {
             var element = $event.currentTarget;
             $(".btn-container").find("a").removeClass("weui_btn_primary")
@@ -399,6 +407,8 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
             $scope.danwei = genDuration($scope.plan.coverage_period_type);
             $scope.detailMoney = plan.premium;
             //updateFee();
+            $scope.maskSelectPlan = $scope.maskPlans[plan.id];
+            setDefaultPeriod($scope.maskSelectPlan);
             _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_changeheadtaocan']);
 
         };

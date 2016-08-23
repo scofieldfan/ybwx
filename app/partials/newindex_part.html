@@ -10,7 +10,7 @@
   </div>
  
 
-  <div class="navigation" style="padding: 20px 0 30px;">
+  <div class="navigation" style="padding: 20px 0 30px;display: none;">
     <div class="navigation__leftbtn"></div>
     <div class="navigation__name">
       <div style="line-height: 13px;font-size: 13px;">本人</div> 
@@ -64,7 +64,7 @@
           </div>
 
             <div class="pannel__body__item"  ng-click="goBaodan(1)">
-          <i class="iconfont icon_size" >&#xe61c;</i>
+          <i class="iconfont icon_size" >&#xe62f;</i>
           <div class="pannel__body__item_bar"> 
             <div class="pannel__body__item_yiyou">家庭保障</div>
             <div class="progress"><div class="progress_innerbar"  style="width:{{data.scores[1]*10}}%;"></div></div></div>
@@ -85,7 +85,7 @@
 
         <div class="pannel__body"  ng-show="pannelId==2">
 
-          <div class="pannel__body__item pannel__body__item_title">
+          <div class="pannel__body__item_title">
             <div class="pannel__body__item_fen">建议提升至8.0分 </div>
             <div class="pannel__body__item_btn" ng-click="goAutoPromote()"><i class="iconfont arrow_size" style="color:#4285f4;font-size:19px;" >&#xe62c;</i>一键提升</div>
           </div>
@@ -114,7 +114,7 @@
           </div> 
       
           <div class="pannel__body__item"  ng-click="goPromote(1)">
-          <i class="iconfont icon_size" styl>&#xe61c;</i>
+          <i class="iconfont icon_size" styl>&#xe62f;</i>
           <div class="pannel__body__item_bar">  
             <div class="pannel__body__item_head">家庭保障</div>
             <div class="pannel__body__item_des">先保收入支柱，再保老人小孩</div></div>
@@ -141,13 +141,13 @@
 </div>
 <div class="fix_container select_btn " >
     <div class="cell_hd cell_primary " >
-    <div class="cell-footer hover" ng-click="goIndex($event)"><i class="iconfont">&#xe61b;</i><div>首页</div></div>
+    <div class="cell-footer hover" ng-click="goIndex($event)"><i class="iconfont">&#xe61b;</i><div class="lh">首页</div></div>
     </div>
     <div class="cell_hd cell_primary">
-      <div class="cell-footer" ng-click="goTemai($event)"><i class="iconfont">&#xe623;</i><div>严选</div></div>
+      <div class="cell-footer" ng-click="goTemai($event)"><i class="iconfont">&#xe623;</i><div class="lh">严选</div></div>
     </div>
     <div class="cell_hd cell_primary">
-      <div class="cell-footer" ng-click="goService($event)"><i class="iconfont">&#xe60a;</i><div>服务</div></div>
+      <div class="cell-footer" ng-click="goService($event)"><i class="iconfont">&#xe60a;</i><div class="lh">服务</div></div>
     </div>
 </div>
 <script>

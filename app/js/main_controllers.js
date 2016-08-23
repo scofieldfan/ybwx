@@ -787,7 +787,7 @@ mainControllers.controller('ybwxBdEducationNewCtrl', ['$scope', '$routeParams', 
 			var type = $routeParams.type;
 			$scope.type = $routeParams.type;
 			$scope.getUserInfo();
-			$scope.educationPromise = getHttpPromise($http, $rootScope, 'GET', api['get_score_analysis_new'].replace('{type}', type), {}, function(res) {
+			$scope.educationPromise = getHttpPromise($http, $rootScope, 'GET', api['get_score_analysis_new'], {}, function(res) {
 				if (res && res.data && res.data.data) {
 					res.data.data.score = Math.round(res.data.data.score * 10) / 10;
 					$scope.data = res.data.data;
@@ -1332,7 +1332,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				//去补充信息页
 				$location.path('/supply_userinfo').search($routeParams);
 			} else {
-				//去list页	
+				//去list页
 				$location.path('/contact_list').search($routeParams);
 			}
 		}
