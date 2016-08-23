@@ -177,3 +177,5 @@ body {
         height: 200%;
         -webkit-transform: scale(1/3);
         transform: scale(1/3); } }
+.target_btn:active {
+  background: #266ada; }

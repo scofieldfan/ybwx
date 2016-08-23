@@ -527,6 +527,9 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 
 			});
 		}
+		$scope.goModify = function() {
+			$location.path("/jk_bzts");
+		}
 		$scope.showIntrod = function() {
 			_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_showIntrod']);
 			$("#baozhang_popup").show();

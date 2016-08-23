@@ -26,6 +26,9 @@
   // background-size: 22px;
   z-index:10;
   cursor: pointer;
+  i:active {
+  	color: #266ada;
+  }
 }
 .dash {
 	// padding: 10px 35px;
@@ -52,6 +55,7 @@
 .pannel-container {
 	padding: 0 10px;
 	margin-bottom: 60px;
+	margin-top: 20px;
 }
 .pannel {
 	// padding: 0 15px;
@@ -175,6 +179,7 @@
 	padding: 25px 5px 25px 0;
 	@include flexbox();
 	@include justify-content(space-between);
+	@include border(0 0 1px 0,#ccc);
 }
 .empty {
 	padding: 0 15px;
@@ -214,4 +219,7 @@
 	font-size:16px;
 	color:#444;
 	text-align:center;
+}
+.lh {
+	line-height: 12px;
 }

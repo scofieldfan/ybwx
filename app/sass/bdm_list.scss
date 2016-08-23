@@ -13,6 +13,7 @@ header {
 }
 header .left {
 	float: left;
+
 	text-align: center;
 }
 header .left img {
@@ -39,6 +40,10 @@ header .subtitle {
 .subtitle .money{
 	color:#588dd4;
 	font-weight: bold;
+	i{
+		font-size: 15px;
+		font-weight: normal;
+	}
 }
 .container {
 	padding: 0.12rem;
@@ -196,9 +201,15 @@ header .subtitle {
 	float:left;
 	// padding-left: 12px;
 }
+.question {
+	.iconfont {
+		font-size: 15px;
+		// font-weight: normal;
+	}
+}
 .sub-container .bd-score span{
 	font-size: 20px;
-	font-weight: bold;
+	font-weight: normal;
 }
 .pei_button {
 	display: inline-block;
