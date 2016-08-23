@@ -537,14 +537,7 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 		$scope.showCompute = function() {
 			$("#baozhang_compute").show();
 		}
-		/*
-		$scope.goJingzhun = function() {
-			console.log("....go jingzhun....");
-			_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_jingzhunBtn']);
-			$location.path('/jingzhun').search({
-				'type': $routeParams.type
-			});
-		}*/
+		
 		$scope.showIntellReckon = function() {
 			$("#popup").show();
 		}
