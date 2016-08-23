@@ -40,7 +40,7 @@ var SHARE = (function() {
       wx.ready(function() {
 
         var shareTitle = "天寿助富您安享";
-        var shareLink = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri=' + encodeURIComponent(shareUrl) + '&response_type=code&scope=snsapi_base&state=123#wechat_redirect';
+        var shareLink = shareUrl;
         var shareDesc = "即交快领高返还，满5年折合年化单利约4.5%";
         var shareImg = "http://wechat.nuobei.cn/anxiang/img/money.jpg";
 

@@ -1,7 +1,6 @@
 var util = {
 	domain: 'http://wechat.nuobei.cn/',
 	appId: 'wxe797ac4e18b99078',
-	shareScope: 'snsapi_userinfo',
 	api: {
 		"signature": "/ybwx-web/wechat/js_signature"
 	},
@@ -104,7 +103,11 @@ var util = {
 		return '--';
 	},
 
-	share: function(shareObj, isNotEncode) {
+	share: function(shareObj) {
+	    if (window.navigator.userAgent.indexOf('MicroMessenger') == -1) {
+	        return;
+        }
+
 		var shareObj = shareObj || {};
 		return $.when($.ajax({
 			type: 'GET',
@@ -135,7 +138,7 @@ var util = {
 				var shareDesc = shareObj.shareDesc || "诺贝保险管家，为您定制保险！";
 				var shareImg = shareObj.shareImg || util.domain + "img/icon.jpg";
 
-				var shareLink = isNotEncode ? url : 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + util.appId + '&redirect_uri=' + encodeURIComponent(url) + '&response_type=code&scope=' + util.shareScope + '&state=123#wechat_redirect';
+				var shareLink = url;
 				wx.onMenuShareTimeline({
 					title: shareTitle,
 					link: shareLink,

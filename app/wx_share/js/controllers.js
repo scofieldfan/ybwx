@@ -100,19 +100,21 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 					shareDesc: "每月均可领取1份，每邀请1位好友，即可再免费领取1份。约上朋友一起突破极限吧！"
 				});
 
-				$scope.jixianPromise = getHttpPromise($http, $rootScope, 'POST', api['ping_coupon'], {
-					"coupon_id": "4",
-					"time": new Date().getTime()
-				}, function(res) {
-					if (res.data && res.data.description) {
-						util.showToast($rootScope, res.data.description);
-					} else if (res.data.code === 0) {
-						$scope.data = res.data.data;
-						if (res.data.data.recommend_times > 0) {
-							$("#coupons_container").show();
+				if (window.NBCONF.USER['unionid'] != '') {
+					$scope.jixianPromise = getHttpPromise($http, $rootScope, 'POST', api['ping_coupon'], {
+						"coupon_id": "4",
+						"time": new Date().getTime()
+					}, function(res) {
+						if (res.data && res.data.description) {
+							util.showToast($rootScope, res.data.description);
+						} else if (res.data.code === 0) {
+							$scope.data = res.data.data;
+							if (res.data.data.recommend_times > 0) {
+								$("#coupons_container").show();
+							}
 						}
-					}
-				});
+					});
+				}
 			});
 		}
 		$scope.init();
@@ -539,19 +541,22 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 					shareDesc: "集齐3份航空意外险保险券，即可免费兑换一份航班延误险保险券！"
 
 				});
-				$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['ping_coupon'], {
-					"coupon_id": "2"
-				}, function(res) {
-					if (res.data && res.data.description) {
-						//util.showToast($rootScope, res.data.description);
-					} else if (res.data.code === 0) {
-						$scope.data = res.data.data;
-						//console.log($scope.data);
-						if (res.data.data.recommend_times > 0) {
-							$("#coupons_container").show();
+
+				if (window.NBCONF.USER['unionid'] != '') {
+					$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['ping_coupon'], {
+						"coupon_id": "2"
+					}, function (res) {
+						if (res.data && res.data.description) {
+							//util.showToast($rootScope, res.data.description);
+						} else if (res.data.code === 0) {
+							$scope.data = res.data.data;
+							//console.log($scope.data);
+							if (res.data.data.recommend_times > 0) {
+								$("#coupons_container").show();
+							}
 						}
-					}
-				});
+					});
+				}
 			});
 
 
