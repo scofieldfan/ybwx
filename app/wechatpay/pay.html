@@ -228,31 +228,31 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 					// 	timeStamp:timestamp,
 					// 	key:"rfok7L6GheVhk6JcfjsCNnO0hQBKWHpF"
 					// }
-					var signObj = {
-						appId:$scope.wechat_response.appId,
-						nonceStr:$scope.wechat_response.nonceStr,
-						package: $scope.wechat_response.packageStr,
-						signType:"MD5",
-						timeStamp:$scope.wechat_response.timestamp,
-						key:"rfok7L6GheVhk6JcfjsCNnO0hQBKWHpF"
-					}
+					// var signObj = {
+					// 	appId:$scope.wechat_response.appId,
+					// 	nonceStr:$scope.wechat_response.nonceStr,
+					// 	package: $scope.wechat_response.packageStr,
+					// 	signType:"MD5",
+					// 	timeStamp:$scope.wechat_response.timestamp,
+					// 	key:"rfok7L6GheVhk6JcfjsCNnO0hQBKWHpF"
+					// }
 
-					var signStr = util.genParameters(signObj);
-					alert(signStr);
-					var hash =  md5(signStr).toUpperCase();
-					alert("timestamp:"+ signObj.timeStamp);	
-					alert("nonceStr:"+ signObj.nonceStr);	
-					alert("package:"+ signObj.package);	
-					alert("paySign:"+hash);	
-					alert("paySign:"+$scope.wechat_response.paySign);	
+					// var signStr = util.genParameters(signObj);
+					// alert(signStr);
+					// var hash =  md5(signStr).toUpperCase();
+					// alert("timestamp:"+ signObj.timeStamp);	
+					// alert("nonceStr:"+ signObj.nonceStr);	
+					// alert("package:"+ signObj.package);	
+					// alert("paySign:"+hash);	
+					// alert("paySign:"+$scope.wechat_response.paySign);	
 
 
 					wx.chooseWXPay({
-					timestamp:signObj.timeStamp,
-					nonceStr: signObj.nonceStr, // 支付签名随机串，不长于 32 位
-					package: signObj.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+					timestamp:$scope.wechat_response.timeStamp,
+					nonceStr: $scope.wechat_response.nonceStr, // 支付签名随机串，不长于 32 位
+					package: $scope.wechat_response.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
 					signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
-					paySign:hash, // 支付签名
+					paySign:$scope.wechat_response.paySign, // 支付签名
 					success: function(res) {
 						// 支付成功后的回调函数
 						alert("支付成功");
