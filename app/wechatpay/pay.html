@@ -233,7 +233,7 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 						nonceStr:$scope.wechat_response.nonceStr,
 						package: $scope.wechat_response.packageStr,
 						signType:"MD5",
-						timeStamp:Math.floor($scope.wechat_response.timestamp/1000),
+						timeStamp:$scope.wechat_response.timestamp,
 						key:"rfok7L6GheVhk6JcfjsCNnO0hQBKWHpF"
 					}
 
