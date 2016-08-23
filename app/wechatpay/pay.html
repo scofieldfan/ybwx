@@ -11,7 +11,8 @@
   <link rel="stylesheet" type="text/css" href="/css/globe.css">
   <link rel="stylesheet" type="text/css" href="/css/app.css">
   <link rel="stylesheet" type="text/css" href="pay.css">
-
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+  <script src="md5.min.js"></script>
   </head>
 <body  ng-controller="wechatPayCtrl" data-ng-init="init()">
 <style>
@@ -113,6 +114,7 @@ function getHttpPromise($http,  method, url, data, callback) {
 			callback(res);
 		} else {
 			// util.showToast($rootScope, res.data.description);
+			alert(res.data.description);
 		}
 	}, function(res) {
 		console.log(res);
@@ -129,7 +131,6 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
   		_hmt.push(['_trackPageview', $location.path()]);
 
   		$scope.init = function(){
-
   			$scope.plans = {};
   			var paramObj = $location.search();
 			$scope.insurance_name = paramObj.insurance_name;
@@ -142,7 +143,7 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 			$scope.order_no = paramObj.order_no;
 			//util.pay();
 			$scope.ajaxPayInfo("4");
-			$scope.ajaxPayInfo("1");
+			//$scope.ajaxPayInfo("1");
 	  	}	
 		
 
@@ -154,7 +155,42 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 			return JSON.parse(sessionStorage.getItem(orderId + "_" + channelType));
 		}
 
-		
+		function wechatPay(successCallback) {
+
+		return $.when($.ajax({
+			type: 'GET',
+			url: util.api["signature"],
+			data: {
+				"url": location.href.split('#')[0],
+				type: 2
+			},
+			dataType: "json"
+		})).done(function(res) {
+			//依赖于微信的JS
+
+			var timestamp = res.data["timestamp"];
+			var nonceStr = res.data["noncestr"];
+			wx.config({
+				debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+				appId: res.data["app_id"], // 必填，公众号的唯一标识
+				timestamp: res.data["timestamp"], // 必填，生成签名的时间戳
+				nonceStr: res.data["noncestr"], // 必填，生成签名的随机串
+				signature: res.data["signature"], // 必填，签名，见附录1
+				jsApiList: ['chooseWXPay'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+			});
+
+
+			wx.ready(function() {
+				alert("config ok!!!");
+				if(successCallback){
+
+					successCallback(timestamp,nonceStr);
+				}
+			});
+
+		})
+
+	}	
 
 		$scope.submit = function() {
 
@@ -168,19 +204,75 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 					//util.showToast($rootScope, "银行卡支付出错，暂时无法使用");
 				}
 			} else if (channelType == "4") { //现在支付微信s
-				alert("调用支付之前");	
-				util.pay(function(){
-					alert("调用支付。。。。。");					
+				wechatPay(function(timestamp,nonceStr){
+					alert("调用支付。。。。。");
+					/*
+					alert(timestamp);
+					alert(nonceStr);
+					alert("nonceStr:"+ $scope.wechat_response.nonceStr);	
+					alert("package:"+ $scope.wechat_response.packageStr);	
+					alert("paySign:"+ $scope.wechat_response.paySign);	*/
+
+					// var signObj = {
+					// 	appId:$scope.wechat_response.appId,
+					// 	nonceStr:$scope.wechat_response.nonceStr,
+					// 	package: $scope.wechat_response.packageStr,
+					// 	signType:"MD5",
+					// 	timeStamp:$scope.wechat_response.timestamp
+					// }
+					var signObj = {
+						appId:$scope.wechat_response.appId,
+						nonceStr:nonceStr,
+						package: $scope.wechat_response.packageStr,
+						signType:"MD5",
+						timeStamp:timestamp
+					}
+
+					// var signObj = {
+					// 	appId:$scope.wechat_response.appId,
+					// 	nonceStr:nonceStr,
+					// 	package: $scope.wechat_response.packageStr,
+					// 	signType:"MD5",
+					// 	timeStamp:timestamp,
+					// 	key:"rfok7L6GheVhk6JcfjsCNnO0hQBKWHpF"
+					// }
+					
+					// var signObj = {
+					// 	appId:$scope.wechat_response.appId,
+					// 	nonceStr:$scope.wechat_response.nonceStr,
+					// 	package: $scope.wechat_response.packageStr,
+					// 	signType:"MD5",
+					// 	timeStamp:$scope.wechat_response.timestamp,
+					// 	key:"rfok7L6GheVhk6JcfjsCNnO0hQBKWHpF"
+					// }
+
+					var signStr = util.genParameters(signObj);
+					alert(signStr);
+					var hash =  md5(signStr).toUpperCase();
+					alert("timestamp:"+ signObj.timeStamp);	
+					alert("nonceStr:"+ signObj.nonceStr);	
+					alert("package:"+ signObj.package);	
+					alert("paySign:"+hash);	
+					alert("paySign:"+$scope.wechat_response.paySign);	
+
+
 					wx.chooseWXPay({
-					timestamp: $scope.wechat_response.timestamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
-					nonceStr: $scope.wechat_response.nonceStr, // 支付签名随机串，不长于 32 位
-					package: $scope.wechat_response.packageStr, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+					timestamp:signObj.timestamp,
+					nonceStr: signObj.nonceStr, // 支付签名随机串，不长于 32 位
+					package: signObj.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
 					signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
-					paySign: $scope.wechat_response.paySign, // 支付签名
+					paySign:hash, // 支付签名
 					success: function(res) {
 						// 支付成功后的回调函数
 						alert("支付成功");
-					}
+					},
+			        cencel:function(res){　　　　　　　　　　　　　　// 支付取消回调函数
+			            alert('cencel pay');
+			        },
+			        fail: function(res){　　　　　　　　　　　　　　// 支付失败回调函数
+			            alert('pay fail');
+			            alert(JSON.stringify(res));
+			        }
 				});
 				})
 				
@@ -241,8 +333,8 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
  </script>
 
 
-  <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-  <script src="/js/util.js?v=aafafafasdaf"></script>
+
+  <script src="/js/util.js?v=aafafafvavafasdfasdasdaf"></script>
   <script>
 
 
