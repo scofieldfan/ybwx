@@ -15,7 +15,10 @@ var stripCssComments = require('gulp-strip-css-comments');
 var removeEmptyLines = require('gulp-remove-empty-lines');
 
 gulp.task('rev', ['sass','cssMin', 'jsMin', 'deltmp'], function() {
-	gulp.src('app/*.html')
+
+
+
+	return gulp.src('app/*.html')
 		.pipe(debug())
 		.pipe(rev())
 		.pipe(gulp.dest('app'));
@@ -24,6 +27,13 @@ gulp.task('rev', ['sass','cssMin', 'jsMin', 'deltmp'], function() {
 gulp.task('copycss', function() {
 	 gulp.src('app/css/*.css')
 		.pipe(gulp.dest('app/js/css/'));
+
+	 gulp.src(['app/css/globe.css','app/css/app.css'])
+		.pipe(gulp.dest('app/wechatpay/css/'));//
+
+	 gulp.src('app/js/util.js')
+		.pipe(gulp.dest('app/wechatpay/js/'));
+
 	return gulp.src('app/css/*.css')
 		.pipe(gulp.dest('app/partials/css/'));
 });
@@ -34,12 +44,20 @@ gulp.task('addVersion', ['copycss'], function() {
 
 	  gulp.src('app/js/*.js')
 		.pipe(rev())
-		.pipe(gulp.dest('app/js'));
+		.pipe(gulp.dest('app/js'));//app.js里引用了版本号，所以需要加上版本号
 
+
+	gulp.src('app/wechatpay/*.html')
+		.pipe(debug())
+		.pipe(rev())
+		.pipe(gulp.dest('app/wechatpay'));
 		
 	return gulp.src('app/partials/*.html')
 		.pipe(rev())
-		.pipe(gulp.dest('app/partials'));/**/
+		.pipe(gulp.dest('app/partials'));
+
+		/**/
+
 	//del(['app/partials/css/']);
 	//gulp.src('app/partials/css', {read: false})
 	//  .pipe(clean());
@@ -62,6 +80,18 @@ gulp.task('deltmp', ['addVersion'], function() {
 	//del(['app/partials/css/']);
 
 	gulp.src('app/js/css', {
+		read: false
+	}).pipe(clean({
+		force: true
+	}));
+
+	gulp.src('app/wechatpay/css', {
+		read: false
+	}).pipe(clean({
+		force: true
+	}));
+
+	gulp.src('app/wechatpay/js', {
 		read: false
 	}).pipe(clean({
 		force: true

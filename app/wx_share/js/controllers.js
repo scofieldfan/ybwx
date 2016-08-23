@@ -324,8 +324,9 @@ wxShareControllers.controller('wxMoneyBdCtrl', ['$scope', '$filter', '$routePara
 							payRequest["order_amount"] = 0.1;
 						}
 						var paramters = util.genParameters(payRequest);
-						//console.log(paramters);
-						window.location.href = "/index.html#pay_select?" + paramters;
+						window.location.href = "/wechatpay/pay.html#?"+paramters;
+
+						//window.location.href = "/index.html#pay_select?" + paramters;
 						//$location.path("/pay_select").search(payRequest);
 					}
 					if (res && res.data && res.data.description) {
