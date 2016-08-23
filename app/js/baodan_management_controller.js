@@ -214,8 +214,10 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 
 			if (!$scope.isTest) {
 				var parameters = {
+				    'open_id': window.NBCONF.USER['unionid'] || '',
 					'policy_id': $routeParams.policy_id
 				}
+
 				$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_policy_detail'] + "?" + util.genParameters(parameters), {}, function(res) {
 					$scope.data = res.data.data;
 					$scope.data.coverageDateHead = res.data.data.coverageDate.substring(0, 19).trim();
@@ -310,7 +312,6 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 		}
 		$scope.shareConfig = function() {
 
-			// TODO: share_id = openid?
 			var params = {
 				'policy_id': $routeParams.policy_id,
 				'share_id': window.NBCONF.USER['unionid'] || ''

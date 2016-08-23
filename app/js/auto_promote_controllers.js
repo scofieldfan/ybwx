@@ -412,7 +412,7 @@ mainControllers.controller('ybwxKeySolutionCtrl', ['$scope', '$filter', '$routeP
 						insuranceId: plan.insurance_id
 					}
 					var parmStr = util.genParameters(param);
-					window.location.href = "/api/webPage?" + parmStr;
+					window.location.href = "/ybwx-web/api/webPage?" + parmStr;
 				} else {
 					window.location.href = plan.official_site;
 				}

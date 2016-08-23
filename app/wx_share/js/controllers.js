@@ -60,6 +60,7 @@ function shareTip() {
 function submitBd($scope, $http, $location, $filter) {
 	var insuranceDate = $filter('date')($scope.user.insurance_date, "yyyyMMdd");
 	var postData = {
+		open_id: '--',
 		coupon_no: $scope.coupon_no,
 		username: $scope.user.username,
 		social_id: $scope.user.social_id,

@@ -20,7 +20,7 @@ var util = {
 	genParameters: function(obj) {
 		var str = [];
 		for (var key in obj) {
-			str.push(key + "=" + obj[key]);
+			str.push(key + "=" + encodeURIComponent(obj[key]));
 		}
 		return str.join("&");
 	},
@@ -243,7 +243,7 @@ var util = {
 				"open_id": '--',
 				"email": email,
 				"order_no": order_no,
-				wechat_type: 1
+				wechat_type: 2
 			}
 		}).then(function(res) {
 			console.log(res);
