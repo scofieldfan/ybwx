@@ -2,7 +2,7 @@
  * @Author: fanzhang
  * @Date:   2016-08-23 13:18:46
  * @Last Modified by:   fanzhang
- * @Last Modified time: 2016-08-23 13:58:56
+ * @Last Modified time: 2016-08-23 17:00:35
  */
 
 'use strict';
@@ -211,11 +211,11 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 			var channelType = $(".pay_container").find(".choose").attr("data-channel-type");
 			_hmt.push(['_trackEvent', 'pay', 'pay_select' + channelType]);
 
-			$scope.redirectUrl = getPayInfo($scope.order_id, $scope.CHANNEL_BANK_CARD) || $scope.ajaxPayInfo($scope.CHANNEL_BANK_CARD);
+			var url = getPayInfo($scope.order_id, $scope.CHANNEL_BANK_CARD);
 
-			$scope.wechat_response = getPayInfo($scope.order_id, $scope.CHANNEL_WECHAT) || $scope.ajaxPayInfo($scope.CHANNEL_WECHAT);
+			var wechat_response = getPayInfo($scope.order_id, $scope.CHANNEL_WECHAT);
 
-			/*
+
 			if (url) {
 				$scope.redirectUrl = url;
 			} else {
@@ -225,7 +225,7 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 				$scope.wechat_response = wechat_response;
 			} else {
 				$scope.ajaxPayInfo($scope.CHANNEL_WECHAT);
-			}*/
+			}
 
 		}
 	}

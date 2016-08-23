@@ -2,7 +2,7 @@
  * @Author: fanzhang
  * @Date:   2016-08-15 19:09:31
  * @Last Modified by:   fanzhang
- * @Last Modified time: 2016-08-19 20:10:21
+ * @Last Modified time: 2016-08-23 16:23:02
  */
 
 'use strict';
@@ -158,10 +158,10 @@ window.Dashboard = (function() {
 		},
 		scoreAnimation: function() {
 			var score = this.score;
-			var ctx = this.bgCanvas.getContext("2d");
+			var ctx = this.canvas.getContext("2d");
 			var scoreRadius = (this.mainArcRaidus - this.radio * 150) * DPR;
 			ctx.fillStyle = "#4285f4"; //白色为例子；
-			ctx.fillRect(-150 * this.radio, -scoreRadius - 180 * this.radio, 370 * this.radio, 200 * this.radio);
+			ctx.fillRect(-150 * this.radio, -scoreRadius - 200 * this.radio, 370 * this.radio, 210 * this.radio);
 
 			//drawWord(ctx, -Math.PI / 2, "normal " + 135 * this.radio + "px Arial,Microsoft YaHei", "#fff", scoreRadius, score, 0);
 			drawWord(ctx, -Math.PI / 2, "normal 204px Arial,Microsoft YaHei", "#fff", scoreRadius, score, 0);
@@ -187,7 +187,7 @@ window.Dashboard = (function() {
 			// ctx.fillStyle="#4285f4";//白色为例子；
 			// ctx.fillRect(keduX-100, keduY-100,300,300);
 			// ctx.restore();
-			clearCircle(ctx, keduX, keduY, 300);
+			clearCircle(ctx, keduX, keduY, 100 * this.radio);
 			preLoadImg('/img/index/fire.png', function() {
 				ctx.beginPath();
 				ctx.save();
@@ -209,7 +209,7 @@ window.Dashboard = (function() {
 			 this._angle += 0.01;
 			 console.log("drawing....");
 			if (this._angle >= this.maxAngle || vx<0.0001) {
-				clearCircle(ctx, keduX, keduY, 300);
+				clearCircle(ctx, keduX, keduY, 100 * this.radio);
 				preLoadImg('/img/index/fixFire.png', function() {
 					ctx.beginPath();
 					ctx.save();
@@ -231,28 +231,6 @@ window.Dashboard = (function() {
 			var _this = this;
 
 			var ctx = this.bgCanvas.getContext("2d");
-
-			// console.log("radiusX:" + this.radiusX);
-			// console.log("radiusY:" + this.radiusY);
-
-			// var bgcWidth = 952 * this.radio;
-			// var bgcHeight = 643 * this.radio;
-
-			// var cosX = Math.cos(angle);
-			// var sinX = Math.sin(angle);
-			// var keduX = bgcHeight * cosX / 2;
-			// var keduY = bgcHeight * sinX / 2;
-
-			// preLoadImg('/img/index/fire.png', function() {
-			// 	ctx.beginPath();
-			// 	ctx.save();
-			// 	console.log("keduX:"+keduX);
-			// 	console.log("keduY:"+keduY);
-			// 	ctx.translate(keduX, keduY);
-			// 	ctx.rotate(Math.PI * 215/ 180 + angle);
-			// 	ctx.drawImage(this, -26, -33, 52, 66);
-			// 	ctx.restore();
-			// })
 
 
 			ctx.beginPath();
