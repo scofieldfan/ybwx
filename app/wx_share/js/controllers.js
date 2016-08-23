@@ -90,11 +90,11 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 
 			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
 				$("#loadingToastCommon").hide();
-				// TODO: 分享的id?
-				var openId = sessionStorage.getItem("openId");
+				// 分享的id
+				var rec_id = window.USER_CONFIG['unionid'] || '';
 
 				util.share({
-					shareUrl: util.domain + "wx_share.html#/jixian?rec_id=" + openId,
+					shareUrl: util.domain + "wx_share.html#/jixian?rec_id=" + rec_id,
 					shareImg: util.domain + "wx_share/img/share_sport.png",
 					shareTitle: "免费领取10万元极限运动险！要酷，更要安全！",
 					shareDesc: "每月均可领取1份，每邀请1位好友，即可再免费领取1份。约上朋友一起突破极限吧！"
@@ -120,7 +120,6 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 			_hmt.push(['_trackEvent', 'wx_share_jixian', 'wx_share_jixian_left_button']);
 			var recId = util.getParameterByName('rec_id') || $routeParams.rec_id;
 
-			// TODO: 分享追踪, recId是分享人的openid
 			$scope.addCoupon = getHttpPromise($http, $rootScope, 'POST', api['addCoupon'], {
 				"r_open_id": recId,
 				"coupon_id": "4"
@@ -530,9 +529,11 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 
 			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
 				$("#loadingToastCommon").hide();
-				var openId = sessionStorage.getItem("openId");
+
+				var rec_id = window.USER_CONFIG['unionid'] || '';
+
 				util.share({
-					shareUrl: util.domain + "wx_share.html#/index?rec_id=" + openId,
+					shareUrl: util.domain + "wx_share.html#/index?rec_id=" + rec_id,
 					shareImg: "/wx_share/img/share61.jpg",
 					shareTitle: "送你一份500万航空意外险，买机票立省30元！",
 					shareDesc: "集齐3份航空意外险保险券，即可免费兑换一份航班延误险保险券！"
@@ -560,7 +561,6 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 			_hmt.push(['_trackEvent', 'wx_share_index', 'wx_share_index_left_button']);
 			var recId = util.getParameterByName('rec_id') || $routeParams.rec_id;
 
-			// TODO: 分享追踪, recId是分享人的openid
 			$scope.addPromise = getHttpPromise($http, $rootScope, 'POST', api['addCoupon'], {
 				"r_open_id": recId,
 				"coupon_id": "2"
