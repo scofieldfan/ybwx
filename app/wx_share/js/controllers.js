@@ -91,7 +91,7 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
 				$("#loadingToastCommon").hide();
 				// 分享的id
-				var rec_id = window.USER_CONFIG['unionid'] || '';
+				var rec_id = window.NBCONF.USER['unionid'] || '';
 
 				util.share({
 					shareUrl: util.domain + "wx_share.html#/jixian?rec_id=" + rec_id,
@@ -530,7 +530,7 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
 				$("#loadingToastCommon").hide();
 
-				var rec_id = window.USER_CONFIG['unionid'] || '';
+				var rec_id = window.NBCONF.USER['unionid'] || '';
 
 				util.share({
 					shareUrl: util.domain + "wx_share.html#/index?rec_id=" + rec_id,
