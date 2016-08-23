@@ -226,7 +226,7 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 						nonceStr:nonceStr,
 						package: $scope.wechat_response.packageStr,
 						signType:"MD5",
-						timeStamp:Math.floor(timestamp/1000),
+						timeStamp:timestamp,
 						key:"rfok7L6GheVhk6JcfjsCNnO0hQBKWHpF"
 					}
 					// var signObj = {
