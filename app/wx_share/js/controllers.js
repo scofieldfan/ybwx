@@ -83,6 +83,7 @@ function submitBd($scope, $http, $location, $filter) {
 	})
 
 }
+//极限运动险
 wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
 	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
 
@@ -148,8 +149,7 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 						count: (res.data.data["coupon_counts"] + 1)
 					});
 				}
-				console.log(res);
-			});
+			},true);
 
 		}
 		$scope.showShareTip = function() {
@@ -174,6 +174,7 @@ wxShareControllers.controller('shenheCtrl', ['$scope', '$filter', '$routeParams'
 	}
 ]);
 
+//
 wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
 	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
 
