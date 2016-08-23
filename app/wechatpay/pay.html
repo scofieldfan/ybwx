@@ -15,7 +15,12 @@
 </head>
 
 <body  ng-controller="wechatPayCtrl" data-ng-init="init()">
-
+  <div id="toast" style="display: none;">
+    <!-- <div class="weui_mask_transparent"></div> -->
+    <div class="toast" style="background:rgba(40,40,40,.75);color:#fff;max-width:400px;width:65%;margin:auto;z-index:100000;padding:0.2rem;text-align: center;">
+      <p class="weui_toast_content" style="display:inline;">{{server_reason}}</p>
+    </div>
+  </div>
 <header>
 	订单编号:{{order_no}}
 </header>
@@ -93,9 +98,7 @@
 
 
 
-  <script>
-
-
+ <script>
 //百度统计
    var _hmt = _hmt || [];
     _hmt.push(['_setAutoPageview', false]);

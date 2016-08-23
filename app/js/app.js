@@ -190,10 +190,6 @@ ybwxApp.config(['$routeProvider',
     }).when('/pay_success', {
       templateUrl: 'partials/pay_success.html',
       title: "交易完成提示"
-    }).when('/jingzhun', {
-      templateUrl: 'partials/jingzhun.html',
-      controller: 'ybwxJingzhunCtrl',
-      title: "特卖商城"
     }).when('/information', {
       templateUrl: 'partials/information.html',
       controller: 'ybwxInfoCtrl',
@@ -206,7 +202,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/education.html',
       controller: 'ybwxEducationCtrl',
       title: "如何投保",
-      css: "css/education.css"
+      css:"css/education.css?rev=893734c647381c2bdc4b6b133c497b7b"
     }).when('/edindex', {
       templateUrl: 'partials/ed_index.html',
       controller: 'ybwxEdIndexCtrl',

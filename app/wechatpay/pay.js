@@ -2,7 +2,7 @@
  * @Author: fanzhang
  * @Date:   2016-08-23 13:18:46
  * @Last Modified by:   fanzhang
- * @Last Modified time: 2016-08-23 13:37:10
+ * @Last Modified time: 2016-08-23 13:52:36
  */
 
 'use strict';
@@ -26,22 +26,17 @@ function getHttpPromise($http, method, url, data, callback) {
 		if ((res && res.data && res.data.data) || (res && res.data && res.data.code === 0)) {
 			callback(res);
 		} else {
-			// util.showToast($rootScope, res.data.description);
-			alert(res.data.description);
+			 util.showToastJQ( res.data.description);
 		}
 	}, function(res) {
 		console.log(res);
 		_hmt.push(['_trackEvent', 'http_error', "api:" + url]);
-		// util.showToast($rootScope, "网络异常");
+		 util.showToastJQ("网络异常");
 	});
 }
 
 var app = angular.module("wxPayPageApp", ['ngRoute']);
 
-/*
-	var CHANNEL_BANK_CARD = "1";
-	var CHANNEL_WECHAT = "4";
-*/
 
 app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http',
 	function($scope, $filter, $routeParams, $location, $http) {
@@ -53,8 +48,8 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 			$scope.CHANNEL_BANK_CARD  = "1";
 			$scope.CHANNEL_WECHAT  = "4";
 
-			//测试
-			sessionStorage.setItem("openId","osYjpwM4u60lvXq87l--_MWZXQRA");
+			//测试 sessionStorage.setItem("openId","osYjpwM4u60lvXq87l--_MWZXQRA");
+
 			$scope.plans = {};
 			var paramObj = $location.search();
 			$scope.insurance_name = paramObj.insurance_name;
@@ -63,8 +58,8 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 			$scope.plans = JSON.parse(sessionStorage.getItem("sell_plan"));
 			$scope.order_id = paramObj.order_id;
 			$scope.order_no = paramObj.order_no;
-			$scope.ajaxPayInfo("4");
-			$scope.ajaxPayInfo("1");
+			$scope.ajaxPayInfo($scope.CHANNEL_WECHAT);
+			$scope.ajaxPayInfo($scope.CHANNEL_BANK_CARD);
 		}
 
 
@@ -99,9 +94,7 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 					jsApiList: ['chooseWXPay'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 				});
 
-
 				wx.ready(function() {
-					alert("config ok!!!");
 					if (successCallback) {
 						successCallback(timestamp, nonceStr);
 					}
@@ -119,11 +112,11 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 				if ($scope.redirectUrl) {
 					window.location.href = $scope.redirectUrl;
 				} else {
-					//util.showToast($rootScope, "银行卡支付出错，暂时无法使用");
+					 util.showToastJQ("银行卡支付出错，暂时无法使用");
 				}
-			} else if (channelType === $scope.CHANNEL_WECHAT) { //现在支付微信s
+			} else if (channelType === $scope.CHANNEL_WECHAT) { //微信支付
 				wechatPay(function(timestamp, nonceStr) {
-					alert("调用支付。。。。。");
+
 					/*
 					alert(timestamp);
 					alert(nonceStr);
@@ -166,16 +159,18 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 						paySign: $scope.wechat_response.paySign, // 支付签名
 						success: function(res) {
 							// 支付成功后的回调函数
-							alert("支付成功");
-							alert(JSON.stringify(res));
+							//alert("支付成功");
+							//alert(JSON.stringify(res));
+							window.location.href="/#/pay_success";
 						},
 						cencel: function(res) {　　　　　　　　　　　　　　 // 支付取消回调函数
-							alert('cencel pay');
-							alert(JSON.stringify(res));
+							//alert('cencel pay');
+							//alert(JSON.stringify(res));
 						},
 						fail: function(res) {　　　　　　　　　　　　　　 // 支付失败回调函数
-							alert('pay fail');
-							alert(JSON.stringify(res));
+							// alert('pay fail');
+							// alert(JSON.stringify(res));
+							util.showToastJQ("支付失败");
 						}
 					});
 				})
@@ -202,7 +197,7 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 
 					}
 				} else {
-					//util.showToast($rootScope, res.data.reason);
+					util.showToastJQ(res.data.reason);
 				}
 			})
 		}
@@ -216,9 +211,11 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 			var channelType = $(".pay_container").find(".choose").attr("data-channel-type");
 			_hmt.push(['_trackEvent', 'pay', 'pay_select' + channelType]);
 
-			var url = getPayInfo($scope.order_id, $scope.CHANNEL_BANK_CARD);
+			$scope.redirectUrl = getPayInfo($scope.order_id, $scope.CHANNEL_BANK_CARD) || $scope.ajaxPayInfo($scope.CHANNEL_BANK_CARD);
 
-			var wechat_response = getPayInfo($scope.order_id, $scope.CHANNEL_WECHAT);
+			$scope.wechat_response = getPayInfo($scope.order_id, $scope.CHANNEL_WECHAT) || $scope.ajaxPayInfo($scope.CHANNEL_WECHAT);
+
+			/*
 			if (url) {
 				$scope.redirectUrl = url;
 			} else {
@@ -228,7 +225,8 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 				$scope.wechat_response = wechat_response;
 			} else {
 				$scope.ajaxPayInfo($scope.CHANNEL_WECHAT);
-			}
+			}*/
+
 		}
 	}
 ]);
