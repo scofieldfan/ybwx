@@ -188,7 +188,6 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 			wx.ready(function() {
 				alert("config ok!!!");
 				if(successCallback){
-
 					successCallback(timestamp,nonceStr);
 				}
 			});
