@@ -54,12 +54,7 @@ ybwxApp.filter('setDecimal', function($filter) {
 ybwxApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-    // when('/index', {
-    //   templateUrl: 'partials/index_part.html?v=123',
-    //   controller: 'ybwxIndexCtrl',
-    //   title: '诺贝保险管家',
-    //   css:'css/index_part.css?rev=d41d8cd98f00b204e9800998ecf8427e'
-    // }).
+   
     when('/index', {
       templateUrl: 'partials/newindex_part.html?v=123',
       controller: 'ybwxNewIndexCtrl',

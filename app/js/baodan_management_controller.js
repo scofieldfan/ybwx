@@ -314,7 +314,6 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 					$scope.data.status = 2;
 					$scope.yanzhentext = "验真中...."
 				}
-				//$scope
 			});
 
 		}
