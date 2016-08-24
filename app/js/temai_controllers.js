@@ -212,6 +212,18 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       }
       return date;
     }
+
+    function setDefaultPeriod(plan) {
+      console.log("setPeriod");
+      console.log(plan);
+      $scope.coverage_period = plan.coverage_periods[0];
+      $scope.coverage_period_type = plan.coverage_period_type;
+
+      if (plan.charge_periods) {
+        $scope.charge_period = plan.charge_periods[0];
+      }
+      $scope.charge_period_type =plan.charge_period_type;
+    }
     $scope.init = function() {
       // $scope.birthday = "19860101";
       //$scope.showBirthday = "1986-01-01";
@@ -228,13 +240,9 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
             $scope.maskData = res.data.data;
             $scope.maskPlans = res.data.data.plans;
             $scope.maskSelectPlan = $scope.maskPlans[Object.keys($scope.maskPlans)[0]];
-            $scope.coverage_period = $scope.maskSelectPlan.coverage_periods[0];
-            $scope.coverage_period_type = $scope.maskSelectPlan.coverage_period_type;
 
-            if ($scope.maskSelectPlan.charge_periods) {
-              $scope.charge_period = $scope.maskSelectPlan.charge_periods[0];
-            }
-            $scope.charge_period_type = $scope.maskSelectPlan.charge_period_type;
+            setDefaultPeriod($scope.maskSelectPlan);
+
             if ($scope.maskData.min_age) {
               $scope.minDate = computeDate($scope.maskData.max_age); //最大年龄，对应的是最小日期
             }
@@ -377,6 +385,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       $scope.plan = item;
       $scope.maskSelectPlan = $scope.maskPlans[item.id];
       $scope.danwei = genDuration($scope.plan.coverage_period_type);
+      setDefaultPeriod($scope.maskSelectPlan);
       //$scope.money = $scope.plan.premium;
       $scope.getRestrictions();
       if ($scope.maskData.premium_type == 2) { //浮动价格更新保费
@@ -391,6 +400,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       $event.preventDefault();
       $event.stopPropagation();
       $scope.coverage_period = item;
+      $scope.coverage_period_type = item.coverage_period_type;
       updateFee();
       _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_changeduration']);
     }
@@ -399,6 +409,7 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       $event.preventDefault();
       $event.stopPropagation();
       $scope.charge_period = item;
+      $scope.charge_period_type = item.charge_period_type;
       updateFee();
       _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_changefee']);
     }
@@ -414,6 +425,8 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       $scope.danwei = genDuration($scope.plan.coverage_period_type);
       $scope.detailMoney = plan.premium;
       //updateFee();
+      $scope.maskSelectPlan = $scope.maskPlans[plan.id];
+      setDefaultPeriod($scope.maskSelectPlan);
       _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_changeheadtaocan']);
 
     }
@@ -444,7 +457,11 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       var postData = {
         "plan_id": selectPlan,
         // "choose_plans": JSON.stringify([selectPlan]),
-        'new_choose_plans':JSON.stringify( [{ id:selectPlan,coverage_period:$scope.coverage_period,charge_period:$scope.charge_period }] )
+        'new_choose_plans': JSON.stringify([{
+          id: selectPlan,
+          coverage_period: $scope.coverage_period,
+          charge_period: $scope.charge_period
+        }])
       };
 
       if ($scope.coverage_period_type) {

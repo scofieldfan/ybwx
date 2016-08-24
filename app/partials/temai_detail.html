@@ -134,8 +134,10 @@
 			</div>
 			
 			<div class="select-container" ng-if="maskSelectPlan.charge_periods.length>0">
+
 				<h4>缴费期间</h4>
-				<a href="javascript:void(0)" class="button button_primary"  ng-click="changeFee($event,nul)"   ng-class="charge_period==null?'button_hover':''">一次交清</a>
+				<a href="javascript:void(0)" class="button button_primary" ng-if="charge_period_type==1 || charge_period_type==4 || charge_period_type==5"  ng-click="changeFee($event,null)"   ng-class="charge_period==null?'button_hover':''">一次交清</a>
+
 				<a href="javascript:void(0)" class="button button_primary"  ng-click="changeFee($event,item)"   ng-class="item==charge_period?'button_hover':''"  ng-repeat="item in maskSelectPlan.charge_periods">{{item}}</a>
 			</div>
 			<!-- <div class="select-container">

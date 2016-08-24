@@ -1,7 +1,6 @@
-<div id="wrapper" class="wrapper"  data-ng-init="init()"  cg-busy="loadingPromise">
+<div id="wrapper" class="wrapper"  data-ng-init="init()"  cg-busy="loadingPromise"  ng-show="isLoadOk">
 
 <div class="gift" ng-click="showToast()"><i class="iconfont" style="color:#97bfff">&#xe627;</i></div>
-
   <div class="dash">
   <canvas id="dash_bg_container" >
    
@@ -10,7 +9,7 @@
   </div>
  
 
-  <div class="navigation" style="padding: 20px 0 30px;display: none;">
+  <div class="navigation" style="padding: 20px 0 30px;display: none;"  >
     <div class="navigation__leftbtn"></div>
     <div class="navigation__name">
       <div style="line-height: 13px;font-size: 13px;">本人</div> 
@@ -20,7 +19,7 @@
   </div>
 
 
-  <div class="pannel-container">
+  <div class="pannel-container"  >
     <div class="pannel"> 
       <div class="pannel__nav">
         <div class="pannel__nav__item  pannel__nav__item_hover " ng-click="nav($event,-1)">
@@ -31,7 +30,7 @@
       </div>
       <div class="empty">
 
-        <div class="pannel__body pannel__body-init" ng-show="pannelId==0">
+        <div class="pannel__body pannel__body-init" ng-show="pannelId==0 " >
           <div class="pannel__body_tip">还没有任何保障</div>
           <div class="pannel__body_des" >
             <div>建议立即提升保障</div> 
@@ -85,7 +84,7 @@
 
         </div> 
 
-        <div class="pannel__body"  ng-show="pannelId==2">
+        <div class="pannel__body"  ng-show="pannelId==2 " >
 
           <div class="pannel__body__item_title">
             <div class="pannel__body__item_fen">建议提升至8.0分 </div>

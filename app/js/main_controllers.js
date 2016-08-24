@@ -234,85 +234,10 @@ mainControllers.controller('ybwxUserinfoCtrl', ['$scope', '$routeParams', '$loca
 ]);
 
 
+/*
 
-function initPieConfig(sumScore, scores, policyNumber) {
-	var pieConfig = [
+*/
 
-		{
-			"text": "意外",
-			"percent": scores[4] / 10,
-			"icon": "\uf21e",
-			"img": "img/index/plane.png",
-			"isDisable": true,
-			"color": "#ffd9df",
-			"textColor": "#ff788e",
-			"hoverColor": "#fffafa"
-		}, {
-			"text": "人寿",
-			"percent": scores[3] / 10,
-			"icon": "\uf155",
-			"img": "img/index/heart.png",
-			"isDisable": true,
-			"color": "#c6f9e7",
-			"textColor": "#54dbaa",
-			"hoverColor": "#fffefa"
-		}, {
-			"text": "健康",
-			"percent": scores[2] / 10,
-			"isDisable": true,
-			"icon": "\uf1b9",
-			"img": "img/index/health.png",
-			"color": "#cbe9ff",
-			"textColor": "#4aa7e9",
-			"hoverColor": "#fafffc"
-		}, {
-			"text": "家庭",
-			"percent": scores[1] / 10,
-			"isDisable": false,
-			"icon": "\uf072",
-			"img": "img/index/family.png",
-			"color": "#f3e1ff",
-			"textColor": "#ca94ee",
-			"hoverColor": "#fbfdff"
-		}, {
-			"text": "财产",
-			"percent": scores[5] / 10,
-			"icon": "\uf278",
-			"img": "img/index/money.png",
-			"isDisable": true,
-			"color": "#f0ead9",
-			"textColor": "#cdc48b",
-			"hoverColor": "#fdfcff"
-		}
-	];
-
-	$('#piemenu').pieMenu({}, {
-		elementStyle: {
-			position: 'absolute'
-		},
-		pieConfig: pieConfig,
-		sumScore: sumScore,
-		policyNumber: policyNumber,
-		parentElement: $("#pieChartContainer"),
-		onSelection: function(pieIndex) {
-			if (pieIndex == 'x') {
-				if (sumScore == 0) {
-					window.location = "#/promote";
-				} else {
-					window.location = "#/bdm_list";
-				}
-				_hmt.push(['_trackEvent', 'index', 'index_center']);
-			} else {
-				_hmt.push(['_trackEvent', 'index', 'index_' + pieIndex]);
-				if (pieIndex == '0' || pieIndex == '1' || pieIndex == '2') {
-					window.location = "#/bd_education_new?type=" + insureTypeMap[pieIndex];
-				} else {
-					window.location = "#/continue";
-				}
-			}
-		}
-	});
-}
 mainControllers.controller('ybwxPromoteCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 		_hmt.push(['_trackPageview', $location.path()]);
@@ -334,7 +259,7 @@ mainControllers.controller('ybwxPromoteCtrl', ['$scope', '$routeParams', '$locat
 mainControllers.controller('ybwxNewIndexCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
-		$scope.pannelId = 0;
+	
 		$scope.goAutoPromote = function() {
 			$location.path('/target').search();
 		}
@@ -399,9 +324,12 @@ mainControllers.controller('ybwxNewIndexCtrl', ['$scope', '$routeParams', '$loca
 		} 
 		$scope.init = function() {
 			//获得openId
+			$scope.pannelId = 0;
+			$scope.isLoadOk = false;
 			var currentUrl = util.domain + "#/index";
+			
 			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
-				util.share();
+				
 				var openId = sessionStorage.getItem("openId");
 				$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_insurance_index'] + "/" + openId, {}, function(res) {
 					if (res && res.data && res.data.data) {
@@ -415,91 +343,19 @@ mainControllers.controller('ybwxNewIndexCtrl', ['$scope', '$routeParams', '$loca
 						var dashboard = new Dashboard({
 							score: res.data.data.aggregate_score
 						});
+						$scope.isLoadOk = true;
 					}
-				})
-			});
-		}
-
-
-	}
-]);
-
-
-mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
-	function($scope, $routeParams, $location, $http, $rootScope) {
-
-		_hmt.push(['_trackPageview', $location.path()]);
-		//isNew = sessionStorage.getItem("isNew");
-		//isNew = true;
-
-		$scope.data = {
-			aggregate_score: 0
-		}
-
-		var currentVersion = 2;
-
-		var isShow = localStorage.getItem("isAdShow");
-
-		if (!isShow || isShow < currentVersion) {
-			$("#share_ctrl").show();
-			localStorage.setItem("isAdShow", currentVersion);
-		}
-
-		$('#gift').click(function() {
-			_hmt.push(['_trackEvent', 'index', 'showShareMask']);
-			$("#share_ctrl").show();
-		});
-		$("body").on("click", "#share_ctrl", function() {
-			_hmt.push(['_trackEvent', 'index', 'hideShareMask']);
-			$("#share_ctrl").hide();
-		}).on("click", "#opacity_ctrl", function() {
-			$("#share_ctrl").hide();
-		})
-		$scope.showTip = function() {
-			_hmt.push(['_trackEvent', 'index', 'index_showTip']);
-			// $("#share").show();
-			$location.path("/promote").search();
-		}
-		$scope.goBdMange = function() {
-			_hmt.push(['_trackEvent', 'index', 'index_baodan_guanli']);
-			$location.path('/bdm_list').search();
-		}
-		$scope.goPromote = function() {
-			_hmt.push(['_trackEvent', 'index', 'index_baozhangtisheng']);
-			$location.path('/promote').search();
-		}
-		var cellClass = ".cell-footer";
-		$scope.goIndex = function($event) {
-			_hmt.push(['_trackEvent', 'index', 'goIndex_']);
-		}
-		$scope.goTemai = function($event) {
-			_hmt.push(['_trackEvent', 'index', 'goTemai_']);
-			$location.path('/temaiindex').search();
-		}
-		$scope.goService = function($event) {
-			_hmt.push(['_trackEvent', 'index', 'goService']);
-			$location.path('/service').search();
-		}
-		$scope.init = function() {
-			//获得openId
-			var currentUrl = util.domain + "#/index";
-			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
+				});
 				util.share();
-				var openId = sessionStorage.getItem("openId");
-				$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_insurance_index'] + "/" + openId, {}, function(res) {
-					if (res.data && res.data.description) {
-						util.showToast($rootScope, res.data.description);
-					}
-					if (res.data.code == 0) {
-						$("#loadingContainer").hide();
-						$scope.data = res.data.data;
-						initPieConfig($scope.data.aggregate_score, $scope.data.scores, $scope.data.policy);
-					}
-				})
 			});
 		}
 	}
 ]);
+
+
+
+
+
 var scoreObj = {
 	insuranceType: 0,
 	fanweiScore: 0,
@@ -694,14 +550,7 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 		$scope.showCompute = function() {
 			$("#baozhang_compute").show();
 		}
-		/*
-		$scope.goJingzhun = function() {
-			console.log("....go jingzhun....");
-			_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_jingzhunBtn']);
-			$location.path('/jingzhun').search({
-				'type': $routeParams.type
-			});
-		}*/
+		
 		$scope.showIntellReckon = function() {
 			$("#popup").show();
 		}
@@ -1431,8 +1280,9 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 						"order_id": res.data.data.pay_order_id,
 						"order_no": res.data.data.pay_order_no
 					}
-					$location.path("/pay_select").search(payRequest);
-
+					var param = util.genParameters(payRequest);
+					window.location.href = "/wechatpay/pay.html#?"+param
+					//$location.path("/pay_select").search(payRequest);
 				});
 			} else {
 				console.log("error.......");
@@ -1473,13 +1323,9 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 					util.showToast($rootScope, "请填写持卡人姓名");
 				}
 
-			  
-
 				if ($scope.data.bank && $scope.tbform.bankcardno && 　$scope.tbform.bankcardno.$invalid) {
 					util.showToast($rootScope, "请填银行卡账号");
 				}
-
-
 
 			}
 
@@ -1604,3 +1450,162 @@ mainControllers.controller('ybwxscoreReadingCtrl', ['$scope', '$filter', '$route
 
 	}
 ]);
+
+
+
+/*
+function initPieConfig(sumScore, scores, policyNumber) {
+	var pieConfig = [
+
+		{
+			"text": "意外",
+			"percent": scores[4] / 10,
+			"icon": "\uf21e",
+			"img": "img/index/plane.png",
+			"isDisable": true,
+			"color": "#ffd9df",
+			"textColor": "#ff788e",
+			"hoverColor": "#fffafa"
+		}, {
+			"text": "人寿",
+			"percent": scores[3] / 10,
+			"icon": "\uf155",
+			"img": "img/index/heart.png",
+			"isDisable": true,
+			"color": "#c6f9e7",
+			"textColor": "#54dbaa",
+			"hoverColor": "#fffefa"
+		}, {
+			"text": "健康",
+			"percent": scores[2] / 10,
+			"isDisable": true,
+			"icon": "\uf1b9",
+			"img": "img/index/health.png",
+			"color": "#cbe9ff",
+			"textColor": "#4aa7e9",
+			"hoverColor": "#fafffc"
+		}, {
+			"text": "家庭",
+			"percent": scores[1] / 10,
+			"isDisable": false,
+			"icon": "\uf072",
+			"img": "img/index/family.png",
+			"color": "#f3e1ff",
+			"textColor": "#ca94ee",
+			"hoverColor": "#fbfdff"
+		}, {
+			"text": "财产",
+			"percent": scores[5] / 10,
+			"icon": "\uf278",
+			"img": "img/index/money.png",
+			"isDisable": true,
+			"color": "#f0ead9",
+			"textColor": "#cdc48b",
+			"hoverColor": "#fdfcff"
+		}
+	];
+
+	$('#piemenu').pieMenu({}, {
+		elementStyle: {
+			position: 'absolute'
+		},
+		pieConfig: pieConfig,
+		sumScore: sumScore,
+		policyNumber: policyNumber,
+		parentElement: $("#pieChartContainer"),
+		onSelection: function(pieIndex) {
+			if (pieIndex == 'x') {
+				if (sumScore == 0) {
+					window.location = "#/promote";
+				} else {
+					window.location = "#/bdm_list";
+				}
+				_hmt.push(['_trackEvent', 'index', 'index_center']);
+			} else {
+				_hmt.push(['_trackEvent', 'index', 'index_' + pieIndex]);
+				if (pieIndex == '0' || pieIndex == '1' || pieIndex == '2') {
+					window.location = "#/bd_education_new?type=" + insureTypeMap[pieIndex];
+				} else {
+					window.location = "#/continue";
+				}
+			}
+		}
+	});
+}
+mainControllers.controller('ybwxIndexCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $routeParams, $location, $http, $rootScope) {
+
+		_hmt.push(['_trackPageview', $location.path()]);
+		//isNew = sessionStorage.getItem("isNew");
+		//isNew = true;
+
+		$scope.data = {
+			aggregate_score: 0
+		}
+
+		var currentVersion = 2;
+
+		var isShow = localStorage.getItem("isAdShow");
+
+		if (!isShow || isShow < currentVersion) {
+			$("#share_ctrl").show();
+			localStorage.setItem("isAdShow", currentVersion);
+		}
+
+		$('#gift').click(function() {
+			_hmt.push(['_trackEvent', 'index', 'showShareMask']);
+			$("#share_ctrl").show();
+		});
+		$("body").on("click", "#share_ctrl", function() {
+			_hmt.push(['_trackEvent', 'index', 'hideShareMask']);
+			$("#share_ctrl").hide();
+		}).on("click", "#opacity_ctrl", function() {
+			$("#share_ctrl").hide();
+		})
+		$scope.showTip = function() {
+			_hmt.push(['_trackEvent', 'index', 'index_showTip']);
+			// $("#share").show();
+			$location.path("/promote").search();
+		}
+		$scope.goBdMange = function() {
+			_hmt.push(['_trackEvent', 'index', 'index_baodan_guanli']);
+			$location.path('/bdm_list').search();
+		}
+		$scope.goPromote = function() {
+			_hmt.push(['_trackEvent', 'index', 'index_baozhangtisheng']);
+			$location.path('/promote').search();
+		}
+		var cellClass = ".cell-footer";
+		$scope.goIndex = function($event) {
+			_hmt.push(['_trackEvent', 'index', 'goIndex_']);
+		}
+		$scope.goTemai = function($event) {
+			_hmt.push(['_trackEvent', 'index', 'goTemai_']);
+			$location.path('/temaiindex').search();
+		}
+		$scope.goService = function($event) {
+			_hmt.push(['_trackEvent', 'index', 'goService']);
+			$location.path('/service').search();
+		}
+		$scope.init = function() {
+			//获得openId
+			var currentUrl = util.domain + "#/index";
+			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
+				util.share();
+				var openId = sessionStorage.getItem("openId");
+				$scope.secondPromise = getHttpPromise($http, $rootScope, 'GET', api['get_insurance_index'] + "/" + openId, {}, function(res) {
+					if (res.data && res.data.description) {
+						util.showToast($rootScope, res.data.description);
+					}
+					if (res.data.code == 0) {
+						$("#loadingContainer").hide();
+						$scope.data = res.data.data;
+						initPieConfig($scope.data.aggregate_score, $scope.data.scores, $scope.data.policy);
+					}
+				})
+			});
+		}
+	}
+]);
+
+*/

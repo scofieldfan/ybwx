@@ -16,7 +16,7 @@ transControllers.controller('wxBaoDanListCtrl', ['$scope', '$routeParams', '$loc
 			return insuranceColorMap[status]
 		}
 
-		var currentUrl = util.domain+ "#bd_list";
+		var currentUrl = util.domain + "#bd_list";
 		$scope.init = function() {
 
 			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
@@ -116,7 +116,9 @@ transControllers.controller('wxBaoDanDetailCtrl', ['$scope', '$routeParams', '$l
 	}
 ]);
 
-transControllers.controller('ybwxPaySelectNewCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
+/**/
+
+transControllers.controller('ybwxIPayNowCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 
 		_hmt.push(['_trackPageview', $location.path()]);
@@ -127,7 +129,6 @@ transControllers.controller('ybwxPaySelectNewCtrl', ['$scope', '$filter', '$rout
 		$scope.order_amount = $routeParams.order_amount;
 
 		$scope.plans = JSON.parse(sessionStorage.getItem("sell_plan"));
-
 
 
 
@@ -167,7 +168,7 @@ transControllers.controller('ybwxPaySelectNewCtrl', ['$scope', '$filter', '$rout
 				open_id: openId,
 				pay_order_id: $routeParams.order_id,
 				pay_channel_type: channelType,
-				wechat_type:2
+				wechat_type: 2
 			}, function(res) {
 				console.log(res);
 				if (res && res.data && res.data.data && res.data.code === 0) {
@@ -208,4 +209,6 @@ transControllers.controller('ybwxPaySelectNewCtrl', ['$scope', '$filter', '$rout
 
 
 	}
+
+
 ]);

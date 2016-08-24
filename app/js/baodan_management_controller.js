@@ -154,11 +154,13 @@ bdControllers.controller('ybwxbaodanManageListCtrl', ['$scope', '$routeParams', 
 				return true;
 			}
 		};
-		$scope.goClaimInfo = function(claim_id) {
+		$scope.goClaimInfo = function($event,claim_id) {
 			_hmt.push(['_trackEvent', 'bdm_list', 'bdmList_goClaimInfo']);
 			$location.path('/claim_information').search({
 				'claim_id': claim_id
 			});
+			$event.preventDefault();
+			$event.stopPropagation();
 		}
 		$scope.goDetail = function(id) {
 			_hmt.push(['_trackEvent', 'bdm_list', 'bdmList_gobdmdetail']);
@@ -167,9 +169,12 @@ bdControllers.controller('ybwxbaodanManageListCtrl', ['$scope', '$routeParams', 
 			});
 
 		}
-		$scope.goScoreReading = function() {
+		$scope.goScoreReading = function($event) {
 			$location.path("/score_reading");
+			$event.preventDefault();
+			$event.stopPropagation();
 		}
+
 	}
 ]);
 bdControllers.controller('ybwxbaodaninsurancePolicyCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
@@ -314,7 +319,6 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 					$scope.data.status = 2;
 					$scope.yanzhentext = "验真中...."
 				}
-				//$scope
 			});
 
 		}

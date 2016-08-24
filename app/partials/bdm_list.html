@@ -17,7 +17,7 @@
 		<div class="title">{{data.nickname}}</div>
 		<div class="subtitle">
 			总保费 {{data.total_premium}}元 &emsp;综合评分
-			<span class="money" ng-click="goScoreReading()">{{data.total_score | number:2}} 
+			<span class="money" ng-click="goScoreReading($event)">{{data.total_score | number:2}} 
 				<i class="iconfont">&#xe620;</i></span>
 		</div>
 	</div>
@@ -84,13 +84,13 @@
 					-->
 				</div>
 				<div class="sub-container">
-					<div class="bd-score" ng-click="goScoreReading()">
+					<div class="bd-score" ng-click="goScoreReading($event)">
 						<span>{{policy.score | number:2}}</span>
 						分
 						<span class="question"><i class="iconfont">&#xe620;</i></span>
 					</div>
 
-					<div class="pei_button" ng-click="goClaimInfo(policy.claim_info_id )">理&nbsp;赔</div>
+					<div class="pei_button" ng-click="goClaimInfo($event,policy.claim_info_id )">理&nbsp;赔</div>
 				</div>
 			</div>
 			<div class="bottom">

@@ -83,6 +83,7 @@ function submitBd($scope, $http, $location, $filter) {
 	})
 
 }
+//极限运动险
 wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
 	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
 
@@ -145,7 +146,6 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 						count: (res.data.data["coupon_counts"] + 1)
 					});
 				}
-				console.log(res);
 			},true);
 
 		}
@@ -171,6 +171,7 @@ wxShareControllers.controller('shenheCtrl', ['$scope', '$filter', '$routeParams'
 	}
 ]);
 
+//
 wxShareControllers.controller('specialCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
 	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
 
@@ -321,8 +322,9 @@ wxShareControllers.controller('wxMoneyBdCtrl', ['$scope', '$filter', '$routePara
 							payRequest["order_amount"] = 0.1;
 						}
 						var paramters = util.genParameters(payRequest);
-						//console.log(paramters);
-						window.location.href = "/index.html#pay_select?" + paramters;
+						window.location.href = "/wechatpay/pay.html#?"+paramters;
+
+						//window.location.href = "/index.html#pay_select?" + paramters;
 						//$location.path("/pay_select").search(payRequest);
 					}
 					if (res && res.data && res.data.description) {

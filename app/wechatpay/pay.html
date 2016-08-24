@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en"  ng-app="wxPayPageApp">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="微信支付">
+  <meta name="keywords" content="微信支付">
+  <meta name="viewport"content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>微信支付</title>
+  <link rel="stylesheet" type="text/css" href="/bower_components/normalize-css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="/css/globe.css?rev=84f383accdefd3aa0153c14ff65b8c48">
+  <link rel="stylesheet" type="text/css" href="/css/app.css?rev=b290d9420b78a2f2670c6412a3efdb5a">
+  <link rel="stylesheet" type="text/css" href="pay.css?rev=a913092f839117740e98a30e411ff544">
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+</head>
+
+<body  ng-controller="wechatPayCtrl" data-ng-init="init()">
+  <div id="toast" style="display: none;">
+    <!-- <div class="weui_mask_transparent"></div> -->
+    <div class="toast" style="background:rgba(40,40,40,.75);color:#fff;max-width:400px;width:65%;margin:auto;z-index:100000;padding:0.2rem;text-align: center;">
+      <p class="weui_toast_content" style="display:inline;">{{server_reason}}</p>
+    </div>
+  </div>
+<header  ng-cloak>
+	订单编号:{{order_no}}
+</header>
+
+<div class="product-container"  ng-cloak>
+	<!-- <div class="name">产品名称：{{insurance_plan_name}}</div> -->
+	<div class="name">产品方案</div>
+
+	<div class="item" ng-repeat="plan in plans">{{plan.name}}<span ng-if="plan.premium" style="float:right">{{plan.premium}}元</span></div>
+	<div>支付金额：<span class="pay-money">{{order_amount | number}}</span>元</div>
+</div>
+
+<div class="introd">
+		选择支付方式：
+</div>
+<div class="pay_container">
+	<div  class="pay_item choose" style="" data-channel-type="{{CHANNEL_WECHAT}}" ng-click="pay($event)">
+		<img src="/img/weixin_2.jpg" class="weixin_logo"/>
+		微信支付
+	</div>
+	<div  class="pay_item "  data-channel-type="{{CHANNEL_BANK_CARD}}" ng-click="pay($event)">
+		<img src="/img/back_crad.jpg" class="union_logo"/>
+		银行卡快捷
+	</div>
+	<form action="https://pay.ipaynow.cn" method="POST"  role="form" id="wechatPayForm" style="display:none" >
+		功能码：
+		<input  type=text name="funcode" value="{{ipaynow_pay_request.funcode}}" readonly/>
+		应用ID:
+		<input    type=text name="appId" value="{{ipaynow_pay_request.appId}}" readonly/>
+		商户订单号：
+		<input    type=text name="mhtOrderNo" value="{{ipaynow_pay_request.mhtOrderNo}}" readonly/>
+		商户订单名称：
+		<input     type=text name="mhtOrderName" value="{{ipaynow_pay_request.mhtOrderName}}" readonly/>
+		币种：
+		<input    type=text name="mhtCurrencyType" value="{{ipaynow_pay_request.mhtCurrencyType}}" readonly/>
+		金额：
+		<input    type=text name="mhtOrderAmt" value="{{ipaynow_pay_request.mhtOrderAmt}}" readonly/>
+		订单类型：
+		<input     type=text name="mhtOrderType" value="{{ipaynow_pay_request.mhtOrderType}}" readonly/>
+		订单时间：
+		<input   type=text name="mhtOrderStartTime" value="{{ipaynow_pay_request.mhtOrderStartTime}}" readonly/>
+		订单详情：
+		<input type=text name="mhtOrderDetail"  value="{{ipaynow_pay_request.mhtOrderDetail}}"  readonly/>
+		<br>
+		后台通知URL：
+		<input    type=text name="notifyUrl" value="{{ipaynow_pay_request.notifyUrl}}" readonly/>
+		前台通知URL：
+		<input    type=text name="frontNotifyUrl" value="{{ipaynow_pay_request.frontNotifyUrl}}" readonly/>
+		字符集：
+		<input    type=text name="mhtCharset" value="{{ipaynow_pay_request.mhtCharset}}" readonly/>
+		设备类型：
+		<input    type=text name="deviceType" value="{{ipaynow_pay_request.deviceType}}" readonly/>
+		<input   type=text name="payChannelType" value="{{ipaynow_pay_request.payChannelType}}" readonly/>
+
+		签名类型：
+		<input   style="display:none"  type=text name="mhtSignType" value="{{ipaynow_pay_request.mhtSignType}}" readonly/>
+		数字签名：
+		<input  style="display:none"  type=text name="mhtSignature" value="{{ipaynow_pay_request.mhtSignature}}" readonly/>
+
+	</form>
+</div>
+
+<div style="padding:30px 0;">
+	<div class="cell"  style="overflow: hidden;position: fixed;bottom:0;width:100%;border-radius:0;">
+		<a href="javascript:void(0)" class="btn btn_n_primary "  ng-click="submit()">立即支付</a>
+	</div>
+</div>
+
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/bower_components/angular/angular.min.js"></script>
+<script src="/bower_components/angular-resource/angular-resource.min.js"></script>
+<script src="/bower_components/angular-route/angular-route.min.js"></script>
+<script src="/js/util.js?rev=1f7cbdc8c7d81ba4f4f14216e9ddcb45"></script>
+<script src="pay.js?rev=def53086e625499b4bac884598611b02"></script>
+
+
+
+ <script>
+//百度统计
+   var _hmt = _hmt || [];
+    _hmt.push(['_setAutoPageview', false]);
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?7735ab379e0c352fd0fcfeb3f9248b59";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</body>
+</html>
