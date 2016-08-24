@@ -106,7 +106,7 @@ input::-webkit-input-speech-button {
   color: #f13838;
 }
 .orange {
-  color: #ff7550;
+  color: #ff5c00;
 }
 .line {
   position: static;
@@ -695,4 +695,8 @@ font-size:22px;font-style:normal;}
   color: #ff9000;
   line-height: 40px;
   display: inline-block;
+ }
+ // 立即投保 button_color
+ .liji {
+  background: #ff9000;
  }

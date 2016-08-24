@@ -61,7 +61,7 @@ input::-webkit-input-speech-button {
 .red {
   color: #f13838; }
 .orange {
-  color: #ff7550; }
+  color: #ff5c00; }
 .line {
   position: static;
   bottom: 0;
@@ -616,3 +616,5 @@ h5 {
   color: #ff9000;
   line-height: 40px;
   display: inline-block; }
+.liji {
+  background: #ff9000; }
