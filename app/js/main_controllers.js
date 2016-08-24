@@ -372,7 +372,12 @@ mainControllers.controller('ybwxNewIndexCtrl', ['$scope', '$routeParams', '$loca
 			}
 		}
 		$scope.goBaodan = function(type) {
-			$location.path('/bdm_list').search({
+			//一期修改
+			/*$location.path('/bdm_list').search({
+				type: type
+			});*/
+            // 二期修改 *tailu*
+			$location.path('/bd_education_new').search({
 				type: type
 			});
 		}
@@ -384,9 +389,14 @@ mainControllers.controller('ybwxNewIndexCtrl', ['$scope', '$routeParams', '$loca
 			} else {
 				$location.path('/continue');
 			}
-
-
 		}
+		// 二期添加 *tailu*
+		$scope.goTarget  = function() {
+			$location.path("/target");
+		}
+		$scope.goContinue = function() {
+			$location.path("/continue");
+		} 
 		$scope.init = function() {
 			//获得openId
 			var currentUrl = util.domain + "#/index";
@@ -820,6 +830,9 @@ mainControllers.controller('ybwxBdEducationNewCtrl', ['$scope', '$routeParams', 
 				});
 			}
 
+		}
+		$scope.goDaodan = function() {
+			$location.path("/bd_index");
 		}
 		$scope.goScoreReading = function() {
 			$location.path("/score_reading");

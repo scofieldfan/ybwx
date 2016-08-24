@@ -30,15 +30,23 @@
 	}
 	.table-title {
 		@include flexbox;
-		padding: 15px;
+		padding: 7px 15px;
 		// font-weight: bold;
 		.bd_mx {
 			@include flex(1);
 			
 		}
 		.bd_word {
-			@include flex(1);
-			text-align: right;
+			// @include flex(1);
+			width: 76px;
+			height: 31px;
+			box-sizing: border-box;
+			border: 1px solid #ccc;
+			text-align: center;
+			line-height: 31px;
+			color: #4285f4;
+			border-radius: 5px;
+			font-size: 13px;
 		}
 	}
 	.titl {
@@ -139,8 +147,32 @@
 		}
 		
 	}
-	.btn_n_primary_new {
-		color:#fff;
-		background-color: #006ee9;
+	.bd_education_bottom {
+		width: 100%;
+		@include border(1px 0 0 0,#ccc);
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		padding: 4.5px 35px;
+		box-sizing: border-box;
+		background: #fff;
+		@include flexbox;
 	}
+	.bottom_left,.bottom_right {
+		@include flex(1);
+		height: 41px;
+		color:#fff;
+		background-color: #4285f4;
+		border-radius: 5px;
+		line-height: 41px;
+		box-sizing: border-box;
+		text-align: center;
+	}
+	.bottom_left {
+		background: #fff;
+		color: #444;
+		border: 1px solid #ccc;
+		margin-right: 10px;
+	}
+
 	

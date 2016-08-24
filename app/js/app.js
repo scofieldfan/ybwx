@@ -83,12 +83,12 @@ ybwxApp.config(['$routeProvider',
     }).when('/sx_bzts', {
       templateUrl: 'partials/sx_bzts.html?v=12dsdsfdf543',
       // controller: 'ybwxSelectCtrl',
-      title: "寿险保障提升",
+      title: "寿险定制修改",
       css:'css/ring.css?rev=9d56a76ef2453e32e090981924fd6ae2'
     }).when('/jk_bzts', {
       templateUrl: 'partials/jk_bzts.html?v=12dsdsfdf543',
       // controller: 'ybwxSelectCtrl',
-      title: "健康保障提升",
+      title: "健康定制修改",
       css:'css/ring.css?rev=9d56a76ef2453e32e090981924fd6ae2'
     }).when('/toubao_new', {
       templateUrl: 'partials/toubao_new.html',

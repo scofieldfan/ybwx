@@ -125,7 +125,6 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 			_hmt.push(['_trackEvent', 'wx_share_jixian', 'wx_share_jixian_left_button']);
 			var recId = util.getParameterByName('rec_id') || $routeParams.rec_id;
 			var openId = sessionStorage.getItem("openId");
-
 			$scope.addCoupon = getHttpPromise($http, $rootScope, 'POST', api['addCoupon'], {
 				"open_id": openId,
 				"r_open_id": recId,
@@ -140,16 +139,14 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 					$("#popup-btn").click(function() {
 						$("#pop").hide();
 					});
-					// util.showToast($rootScope, res.data.description);
 				}
-				// util.showToast($rootScope,res.data.description);
 				if (res.data.code == 0) {
 					$location.path('/success_coupon/').search({
 						count: (res.data.data["coupon_counts"] + 1)
 					});
 				}
 				console.log(res);
-			});
+			},true);
 
 		}
 		$scope.showShareTip = function() {
