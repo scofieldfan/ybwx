@@ -8,24 +8,13 @@
   <meta name="keywords" content="">
   <meta name="viewport"content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title ng-bind="title">诺贝保险管家</title>
-  <script>
-    /*
-    function redirectWeChatUrl(){
-       var WE_CHAT_URL="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx526ab87a436ee1c3&redirect_uri=http%3a%2f%2fweb.youbaowuxian.com&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
-       var  openId = sessionStorage.getItem("openId");
-       if(!openId && location.href.indexOf("code") == -1){  //如果跳转的话，那么没法回退
-            window.location.href=WE_CHAT_URL;
-       }
-    }*/
-    //redirectWeChatUrl();
-    </script>
      
   <style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}.ng-animate-start{clip:rect(0,auto,auto,0);-ms-zoom:1.0001;}.ng-animate-active{clip:rect(-1px,auto,auto,0);-ms-zoom:1; }
    .cg-busy-backdrop{
       opacity: 1 !important;    /* */
     }
   </style>
-  <link rel="stylesheet" href="css/output/application.min.css?rev=b48f45b46e41c59539b0c72e1a32f89a">
+  <link rel="stylesheet" href="css/output/application.min.css?rev=eebe5500623c7dbcec957169fdddadea">
   <!-- <link rel="stylesheet" href="js/lcalendar/dist/css/LCalendar.min.css"  > -->
   <script src="js/lcalendar/dist/js/LCalendar.js"></script>
   </head>
@@ -53,11 +42,17 @@
     <div class="swiper-slide slide" style="width: 260px;" ><img class="img2" onclick="goSpecial()" src="img/index_img/special.png" ></div>
   </div>
 </div>
-
+<!--诺贝 header *tailu* -->
+<div class="qrcode-wrapper">
+  <div class="qrcode-container" >
+     <img src="img/temai/new_qrcode.png" >   
+  </div>
+</div>
+<!--诺贝 header end -->
 <!-- /wrapper -->
 
   <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-  <script src="js/output/application.min.js?rev=b5420139781ee4604c432d5864ee9348"></script>
+  <script src="js/output/application.min.js?rev=517008f9805b6f90b50a47db2efa0d54"></script>
   <script src="js/directives.js?rev=5e0047591b8595973f9946f67db591b2"></script>
   <script  src="/js/agecommon.js?rev=decd93797a37e97b67a65ccc0bd02441"></script>
   <script  src="/js/dashboard.js?rev=8f442602d28b84c06cee7ec15349ac9b"></script>
@@ -77,7 +72,6 @@
  
 
   <script type="text/javascript" >
-
   //百度统计
    var _hmt = _hmt || [];
     _hmt.push(['_setAutoPageview', false]);
@@ -87,46 +81,55 @@
       var s = document.getElementsByTagName("script")[0]; 
       s.parentNode.insertBefore(hm, s);
     })();
-
-
    $("body").on("focus","input",function(){
          //$(this).parents(".cell_hd").siblings(".line").addClass("line_focus");
          $(this).parents(".cell_hd").addClass("cell_hd_foucs");
    }) .on("blur","input",function(){
          //$(this).parents(".cell_hd").siblings(".line").removeClass("line_focus");
          $(this).parents(".cell_hd").removeClass("cell_hd_foucs");
-   }) 
-  $(function(){
-
-        //解决高清屏1px 边框的问题
-        if (window.devicePixelRatio && devicePixelRatio > 1) {
-            var testEle = document.createElement('div');
-            testEle.style.border = '.5px solid transparent';
-            document.body.appendChild(testEle);
-            if (testEle.offsetHeight == 1) {
-                document.querySelector('html').classList.add('hairlines');
-            }
-            document.body.removeChild(testEle);
-        }
-
-        $("body").on("click",".mask",function(){
-          $(".mask").hide();
-        }).on("click",".close",function(){
-          $(".mask").hide();
-        }).on("click",".toast",function(){
-            return false;
-        }).on("click",".fixed-top",function(){
-            $(window).scrollTop(0);
-        })
-       $(window).scroll(function(){
-        var y=$(document).scrollTop();
-        if(y>600){
-          $('.fixed-top').fadeIn();
-        }else{
-          $('.fixed-top').fadeOut();
-        }
-      })
    });
+
+  $(function(){
+    if (window.devicePixelRatio && devicePixelRatio > 1) {
+      var testEle = document.createElement('div');
+      testEle.style.border = '.5px solid transparent';
+      document.body.appendChild(testEle);
+      if (testEle.offsetHeight == 1) {
+          document.querySelector('html').classList.add('hairlines');
+      }
+      document.body.removeChild(testEle);
+    }
+
+    $("body").on("click",".mask",function(){
+      $(".mask").hide();
+    }).on("click",".close",function(){
+      $(".mask").hide();
+    }).on("click",".toast",function(){
+        return false;
+    }).on("click",".fixed-top",function(){
+        $(window).scrollTop(0);
+    })
+    $(window).scroll(function(){
+      var y=$(document).scrollTop();
+      if(y>600){
+        $('.fixed-top').fadeIn();
+      }else{
+        $('.fixed-top').fadeOut();
+      }
+    })
+    /*诺贝 header *tailu**/
+    $("body").on("click","#foucs_button",function(event){
+      $(".qrcode-wrapper").show();
+      event.preventDefault();
+      event.stopPropagation();
+    }).on("click",".qrcode-container",function(){
+      event.preventDefault();
+      event.stopPropagation();
+    }).on("click",".qrcode-wrapper",function(){
+       $(".qrcode-wrapper").hide();
+    });
+    /*诺贝 header end*/
+  });
 
   window.onerror = function(message,file,line){
     _hmt.push(['_trackEvent', 'window_onerror','file:'+file+'_line:'+line+'_message:'+message]);
