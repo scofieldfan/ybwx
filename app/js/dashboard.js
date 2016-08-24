@@ -2,7 +2,7 @@
  * @Author: fanzhang
  * @Date:   2016-08-15 19:09:31
  * @Last Modified by:   fanzhang
- * @Last Modified time: 2016-08-23 16:23:02
+ * @Last Modified time: 2016-08-24 10:25:33
  */
 
 'use strict';
@@ -20,7 +20,7 @@ window.Dashboard = (function() {
 
 	var BACKGROUND = "#4285f4";
 
-	var PADDING_SIDE = 48.5; //默认是70的宽度
+	var PADDING_SIDE = 48.5; //默认宽度
 
 	var FOREIGN_LINE_WIDTH = 1; //最外边的指示线的宽度
 

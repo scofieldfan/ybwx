@@ -259,7 +259,7 @@ mainControllers.controller('ybwxPromoteCtrl', ['$scope', '$routeParams', '$locat
 mainControllers.controller('ybwxNewIndexCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
-		$scope.pannelId = 0;
+	
 		$scope.goAutoPromote = function() {
 			$location.path('/target').search();
 		}
@@ -309,14 +309,15 @@ mainControllers.controller('ybwxNewIndexCtrl', ['$scope', '$routeParams', '$loca
 			} else {
 				$location.path('/continue');
 			}
-
-
 		}
 		$scope.init = function() {
 			//获得openId
+			$scope.pannelId = 0;
+			$scope.isLoadOk = false;
 			var currentUrl = util.domain + "#/index";
+			
 			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
-				util.share();
+				
 				var openId = sessionStorage.getItem("openId");
 				$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_insurance_index'] + "/" + openId, {}, function(res) {
 					if (res && res.data && res.data.data) {
@@ -330,12 +331,12 @@ mainControllers.controller('ybwxNewIndexCtrl', ['$scope', '$routeParams', '$loca
 						var dashboard = new Dashboard({
 							score: res.data.data.aggregate_score
 						});
+						$scope.isLoadOk = true;
 					}
-				})
+				});
+				util.share();
 			});
 		}
-
-
 	}
 ]);
 
