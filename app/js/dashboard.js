@@ -2,7 +2,7 @@
  * @Author: fanzhang
  * @Date:   2016-08-15 19:09:31
  * @Last Modified by:   fanzhang
- * @Last Modified time: 2016-08-24 10:25:33
+ * @Last Modified time: 2016-08-24 14:50:31
  */
 
 'use strict';
@@ -143,28 +143,29 @@ window.Dashboard = (function() {
 				_this.draw();
 				_this.scoreAnimation();
 			}, 200)
-			// var backgroundImg = new Image();
-			// backgroundImg.src = '/img/index/bgc.png';
-			// ctx.translate(this.radiusX, this.radiusY);
-			// ctx.beginPath();
-			// var bgcWidth = 952 * this.radio;
-			// var bgcHeight = 643 * this.radio;
-			// preLoadImg('/img/index/bgc.png', function() {
-			// 	ctx.globalCompositeOperation = "destination-over";
-			// 	ctx.drawImage(this, -bgcWidth / 2, -bgcHeight / 2, bgcWidth, bgcHeight);
-			// });
-			// this.drawCanvas(-Math.PI);
+			$("#"+CONTAINER_ID).bind('click',function(e){
+					window.location.href="#/score_reading"				
+			});
 
 		},
 		scoreAnimation: function() {
 			var score = this.score;
 			var ctx = this.canvas.getContext("2d");
 			var scoreRadius = (this.mainArcRaidus - this.radio * 150) * DPR;
+			
 			ctx.fillStyle = "#4285f4"; //白色为例子；
-			ctx.fillRect(-150 * this.radio, -scoreRadius - 200 * this.radio, 370 * this.radio, 210 * this.radio);
+			//ctx.fillStyle = "#fff"; //白色为例子；
+			var rectWidth = 370;
+			var rectHeight = 220;
+			ctx.fillRect( - (rectWidth/2) * this.radio,  - scoreRadius - (rectHeight/2) * this.radio-60*this.radio, rectWidth * this.radio, rectHeight * this.radio);
+			
+			console.log("scoreRadius:"+scoreRadius);
+			console.log("mainArcRaidus:"+this.mainArcRaidus);
+			var questionRadius = (this.mainArcRaidus - this.radio * 80) * DPR;
 
-			//drawWord(ctx, -Math.PI / 2, "normal " + 135 * this.radio + "px Arial,Microsoft YaHei", "#fff", scoreRadius, score, 0);
-			drawWord(ctx, -Math.PI / 2, "normal 204px Arial,Microsoft YaHei", "#fff", scoreRadius, score, 0);
+			drawWord(ctx, -Math.PI / 10, "normal "+80*this.radio+"px iconfont", "#fff", questionRadius, "\ue620", 0);
+			drawWord(ctx, -Math.PI / 2, "normal "+200*this.radio+"px Arial,Microsoft YaHei", "#fff", scoreRadius, score, 0);
+			
 			score = (parseFloat(score) + 0.1).toFixed(1);
 			this.score = score;
 
@@ -295,13 +296,11 @@ window.Dashboard = (function() {
 			drawWord(ctx, MIN_ANGLE + 8 * dur, "normal 33px Arial,Microsoft YaHei", "#bdd6ff", (mainArcRaidus - 22) * DPR, "推荐", 60 * Math.PI / 180);
 			drawWord(ctx, MIN_ANGLE + 10 * dur, "normal 33px Arial,Microsoft YaHei", "#bdd6ff", (mainArcRaidus - 22) * DPR, "无忧", 100 * Math.PI / 180);
 
-			var baozhangRadius = (mainArcRaidus - this.radio * 70) * DPR;
-
-			var scoreRadius = (mainArcRaidus - this.radio * 160) * DPR;
+			var baozhangRadius = (mainArcRaidus - this.radio * 90) * DPR;
 
 			var textRadius = (mainArcRaidus - this.radio * 190) * DPR;
+			
 			drawWord(ctx, -Math.PI / 2, "normal " + this.radio * 45 + "px Arial,Microsoft YaHei", "#90baff", baozhangRadius, "您的保障评分", 0);
-			//drawWord(ctx, -Math.PI/2,"normal 135px Arial,Microsoft YaHei", "#fff", scoreRadius, "7.5", 0);
 			var word = "";
 			if (this.maxScore >= 0 && this.maxScore < 6) {
 				word = "保障偏低";
@@ -310,7 +309,6 @@ window.Dashboard = (function() {
 			} else if (this.maxScore >= 8) {
 				word = "保障全面";
 			}
-//			drawWord(ctx, -Math.PI / 2, "normal " + this.radio * 52 + "px Arial,Microsoft YaHei", "#fff", textRadius, word, 0);
 			drawWord(ctx, -Math.PI / 2, "normal 66px Arial,Microsoft YaHei", "#fff", textRadius, word, 0);
 		}
 	};

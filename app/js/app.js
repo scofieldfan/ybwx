@@ -98,7 +98,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/target.html',
       controller: 'ybwxTargetCtrl',
       title: "保障对象",
-      css:'css/ensuring_target.css?rev=e641ad60eb6525866e0eaf270c3d8e9c'
+      css:'css/ensuring_target.css?rev=d41d8cd98f00b204e9800998ecf8427e'
     }).when('/hobby', {
       templateUrl: 'partials/hobby.html',
       controller: 'ybwxHobbyCtrl',
