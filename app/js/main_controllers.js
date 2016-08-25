@@ -802,9 +802,15 @@ mainControllers.controller('ybwxBdEducationNewCtrl', ['$scope', '$routeParams', 
 				})
 			});
 		}
-		$scope.goDingzhi = function() {
+		$scope.goDingzhi = function(type) {
 			_hmt.push(['_trackEvent', 'bd_education', 'bdEducation_goDingZhi']);
-			if ($scope.isHaveUserInfo) {
+			console.log("typetype");
+			console.log($routeParams.type);
+			if(parseInt($routeParams.type) === 3){
+				$location.path('/sx_bzts').search({
+					'type': $routeParams.type
+				});
+			}else if ($scope.isHaveUserInfo) {
 				$location.path('/select').search({
 					'type': $routeParams.type
 				});
