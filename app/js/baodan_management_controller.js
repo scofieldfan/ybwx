@@ -219,7 +219,7 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 
 			if (!$scope.isTest) {
 				var parameters = {
-				    'open_id': window.NBCONF.USER['unionid'] || '',
+					'open_id': window.NBCONF.USER['unionid'] || '',
 					'policy_id': $routeParams.policy_id
 				}
 
@@ -236,8 +236,8 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 					console.log($scope.order_no);
 				})
 			}
+			// TODO: 加载顺序导致现在分享的链接不对
 			$scope.shareConfig();
-
 			//util.uploadImgConfig(function() {
 			//alert("choose...");
 			//});

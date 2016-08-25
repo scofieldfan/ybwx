@@ -100,7 +100,8 @@ var util = {
 		$(document).on('touchmove', util.preventDefault);
 	},
 	getOpenId: function(code) {
-		return '--';
+	    return '--';
+		//return $.when();
 	},
 
 	share: function(shareObj) {
