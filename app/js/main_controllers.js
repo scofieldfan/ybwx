@@ -1360,7 +1360,15 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 		}
 		$scope.submit = function() {
 			_hmt.push(['_trackEvent', 'toubaonew', 'toubaonew_submit']);
-			var isBankInvalid = $scope.data.bank_account  === 0;
+			var isBankInvalid = $scope.data.bank_account  && $scope.user.bank_account.id==0 ;
+
+			console.log($scope.data.bank_account);
+			console.log($scope.user.bank_account);
+			     // 省 市 县/区
+	        $scope.district = $("#district1 option:selected").attr("data-code");
+		   	$scope.job = $("#job option:selected").attr("data-value");
+		   	console.log($scope.district);
+		   	console.log($scope.job);
 			if (!$scope.tbform.$invalid && $scope.canNotBuyPlans.length < $scope.data.plans.length && $scope.isHaveUserInfo && !isBankInvalid) {
 				var plans = [];
 				$scope.data.plans.forEach(function(element, index) {
@@ -1386,9 +1394,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 					}
 				});
                  
-                // 省 市 县/区
-	            $scope.district = $("#district1 option:selected").attr("data-code");
-		   		$scope.job = $("#job option:selected").attr("data-value");
+           
 
 	            console.log($scope.province,$scope.city, $scope.district);
 
@@ -1406,24 +1412,13 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 					job_info : $scope.job, //职业
 					height:$scope.user.height,//身高
 					weight:$scope.user.weight,//体重
-					bank_account: $scope.user.bank.name, // 开户行
+					bank_account: $scope.user.bank_account.name, // 开户行
 					bank_card_no: $scope.user.bankcardno,//卡号
 					destination: $scope.user.destination,// 目的地
 					car_no: $scope.user.car_no,// 车牌号
 					flight_no: $scope.user.flight_no,
 					plans: plans,
-					effective_date: effectiveDate,//生效日期
-					//'coverage_period': $scope.coverage_period,
-					//'charge_period': $scope.charge_period,
-					effective_date: effectiveDate,
-					address: $scope.user.address,
-					destination: $scope.user.destination,
-					car_no: $scope.user.car_no,
-					flight_no: $scope.user.flight_no,
-					bank_account: $scope.user.bank.name,
-					bank_card_no: $scope.user.bankcardno,
-					height: $scope.user.height,
-					weight: $scope.user.weight
+					effective_date: effectiveDate//生效日期
 				}, function(res) {
                     
 					// "insured_id": $routeParams.user_id, 
@@ -1456,12 +1451,14 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				if ($scope.data.height && $scope.tbform.height && 　$scope.tbform.height.$invalid) {
 					util.showToast($rootScope, "请填写身高");
 				}
+				if ($scope.data.weight && $scope.tbform.weight && 　$scope.tbform.weight.$invalid) {
+					util.showToast($rootScope, "请填写体重");
+				}
 				 if ($scope.data.prov_city_id && $scope.tbform.prov_city_id) {
 					util.showToast($rootScope, "请填写省市");
 				}
-
-				if ($scope.data.weight && $scope.tbform.weight && 　$scope.tbform.weight.$invalid) {
-					util.showToast($rootScope, "请填写体重");
+				if ($scope.data.email && $scope.tbform.email && 　$scope.tbform.email.$invalid) {
+					util.showToast($rootScope, "请填写正确的邮箱");
 				}
 				if ($scope.data.address && $scope.tbform.address && 　$scope.tbform.address.$invalid) {
 					util.showToast($rootScope, "地址填写错误，请修改");
@@ -1479,11 +1476,9 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				if (isBankInvalid) {
 					util.showToast($rootScope, "请选择银行");
 				}
-				if ($scope.data.bank && $scope.tbform.bankusername && 　$scope.tbform.bankusername.$invalid) {
-					util.showToast($rootScope, "请填写持卡人姓名");
-				}
+				
 
-				if ($scope.data.bank && $scope.tbform.bankcardno && 　$scope.tbform.bankcardno.$invalid) {
+				if ($scope.data.bank_card_no && $scope.tbform.bankcardno && 　$scope.tbform.bankcardno.$invalid) {
 					util.showToast($rootScope, "请填银行卡账号");
 				}
 
@@ -1510,7 +1505,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 			console.log("new_choose_plans:");
 			console.log($scope.paramPlans);
 
-			$scope.user.bank = {
+			$scope.user.bank_account = {
 				id: 0,
 				name: "请选择银行"
 			};

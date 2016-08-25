@@ -48,7 +48,7 @@
 			</div>
 			<div class="new-supply-item" ng-if="data.email">
 				<div class="introd">电子邮箱</div>
-				<div class="content"><input type="text" placeholder="例：example@nuobei.cn" name="height" ng-model="user.email" class="new-input"  required></div>
+				<div class="content"><input type="email" placeholder="例：example@nuobei.cn" name="email" ng-model="user.email" class="new-input"  required></div>
 			</div>
 			<div data-toggle="distpicker" ng-show="data.prov_city_id">
 				<div class="new-supply-item">
@@ -66,11 +66,11 @@
 			</div>
 			<div class="new-supply-item" ng-if="data.address">
 				<div class="introd">详细地址</div>
-				<div class="content"><input type="text" placeholder="请输入详细地址,具体到门牌号" name="height" ng-model="user.address" class="new-input"  required></div>
+				<div class="content"><input type="text" placeholder="请输入详细地址,具体到门牌号" name="address" ng-model="user.address" class="new-input"  required></div>
 			</div>
 	 		<div class="new-supply-item" ng-if="data.height">
 				<div class="introd">身高</div>
-				<div class="content"><input type="text" name="height" placeholder="请如实填写身高,方便后续理赔" ng-model="user.height" class="new-input"  required></div>
+				<div class="content"><input type="number" name="height" placeholder="请如实填写身高,方便后续理赔" ng-model="user.height" class="new-input"  required></div>
 				<div class="danwei" style="color: #999;">CM</div>
 			</div>
 			<div class="wrong-item"   ng-show="tbform.height.$dirty && tbform.height.$invalid ">
@@ -79,7 +79,7 @@
 			</div>
 			<div class="new-supply-item new-supply-item--last" ng-if="data.weight">
 				<div class="introd">体重</div>
-				<div class="content"><input type="text" name="weight"  placeholder="请如实填写体重,方便后续理赔" ng-model="user.weight" class="new-input"  required></div>
+				<div class="content"><input type="number" name="weight"  placeholder="请如实填写体重,方便后续理赔" ng-model="user.weight" class="new-input"  required></div>
 				<div class="danwei" style="color: #999;">KG</div>
 			</div>
 			<div class="wrong-item"   ng-show="tbform.weight.$dirty && tbform.weight.$invalid ">
@@ -127,13 +127,12 @@
 			<div class="new-title" ng-if="data.bank"></div>
 	 		<div class="new-supply-item" ng-if="data.bank_account">
 				<div class="introd">银行</div>
-				<div class="content"> <select  type="text" ng-model="user.bank" name="bank"    ng-options="option.name for option in banks track by option.id" class="new-input" placeholder="请选择银行"  required></select> </div>
+				<div class="content"> <select  type="text" ng-model="user.bank_account" name="bank_account"    ng-options="option.name for option in banks track by option.id" class="new-input" placeholder="请选择银行"  required></select> </div>
 				<div class="danwei"><i class="iconfont" style="color: #ccc;font-size: 17px;margin-left: 10px;">&#xe60f;</i></div>
 			</div>
-	 		<div class="new-supply-item" ng-if="data.bank_card_no
-">
+	 		<div class="new-supply-item" ng-if="data.bank_card_no">
 				<div class="introd">持卡人</div>
-				<div class="content"><input type="text" name="bankusername" ng-model="user.bankusername" class="new-input" placeholder="持卡人必须是投保人本人"  required></div>
+				<div class="content"><input type="text" name="bankusername" ng-model="data.insured.username" disabled="" class="new-input" placeholder="持卡人必须是投保人本人"  required></div>
 			</div>
 			<div class="new-supply-item new-supply-item--last" ng-if="data.bank_card_no">
 				<div class="introd">银行账号 </div>
