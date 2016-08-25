@@ -88,7 +88,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/toubao_new.html',
       controller: 'ybwxToubaoNewCtrl',
       title: "投保确认",
-      css:'css/toubao_new.css?rev=fgh65h6fg5g6hf5h'
+      css:'css/toubao_new.css?rev=9c38cbf065d413909ddd050d17f7bdf1'
     }).when('/promote', {
       templateUrl: 'partials/bz_ts.html',
       controller: 'ybwxPromoteCtrl',
@@ -168,7 +168,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/temai_detail.html',
       controller: 'wxDetailNewCtrl',
       title: "诺贝严选",
-      css:'css/temai_detail.css?rev=012d87e353b8d3c9e7ecb65a89977dd0'
+      css:'css/temai_detail.css?rev=a707a05ad4b889277f94e33590642d5a'
     }).when('/temaiindex', {
       templateUrl: 'partials/temai_index.html',
       controller: 'wxTemaiIndexCtrl',
