@@ -71,6 +71,16 @@
 				<div class="introd">详细地址</div>
 				<div class="content"><input type="text" placeholder="请输入详细地址,具体到门牌号" name="address" ng-model="user.address" class="new-input"  required></div>
 			</div>
+			<div class="new-supply-item" ng-if="data.post">
+				<div class="introd">邮政编码</div>
+				<div class="content"><input type="text" ng-minlength="6" ng-maxlength="6" placeholder="请输入邮政编码" name="post" ng-model="user.post" class="new-input"  required></div>
+				
+			</div>
+			<div class="wrong-item"  ng-show="tbform.post.$dirty && tbform.post.$invalid ">
+				<small class="error" ng-show="tbform.post.$error.required">邮政编码必填</small>
+				<small class="error" ng-show="tbform.post.$error.minlength">邮政编码必须是6位</small>
+				<small class="error" ng-show="tbform.post.$error.maxlength">邮政编码必须是6位</small>
+			</div>
 	 		<div class="new-supply-item" ng-if="data.height">
 				<div class="introd">身高</div>
 				<div class="content"><input type="number" name="height" placeholder="请如实填写身高,方便后续理赔" ng-model="user.height" class="new-input"  required></div>

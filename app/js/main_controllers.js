@@ -1393,11 +1393,11 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 						plans.push(planObj);
 					}
 				});
-                 
+                  
            
 
 	            console.log($scope.province,$scope.city, $scope.district);
-
+                
 				var effectiveDate = $filter('date')($scope.user.effective_date, "yyyyMMdd");
        
 				$scope.submitPromise = getHttpPromise($http, $rootScope, 'POST', api['toubao_purchase'], {
@@ -1408,7 +1408,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 					mobile : $scope.data.insured.mobile,//手机号
 					prov_city_id : $scope.district, //居住省市
 					address: $scope.user.address, //联系地址
-					post : $scope.post, //邮编
+					post : $scope.user.post, //邮编
 					job_info : $scope.job, //职业
 					height:$scope.user.height,//身高
 					weight:$scope.user.weight,//体重
@@ -1449,7 +1449,12 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 					util.showToast($rootScope, "请填写职业");
 				}
 				if ($scope.data.height && $scope.tbform.height && 　$scope.tbform.height.$invalid) {
+					console.log("??????????????????");
 					util.showToast($rootScope, "请填写身高");
+					console.log("??????????????????");
+				}
+				if ($scope.data.post && $scope.tbform.post && 　$scope.tbform.post.$invalid) {
+					util.showToast($rootScope, "请填写邮政编码");
 				}
 				if ($scope.data.weight && $scope.tbform.weight && 　$scope.tbform.weight.$invalid) {
 					util.showToast($rootScope, "请填写体重");
@@ -1516,7 +1521,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 			//$scope.money = $routeParams.estimate_money;
 			$scope.getCoverageType = util.getCoverageType;
 			$scope.processSpecialMoney = util.processSpecialMoney;
-
+            
 
 			if ($routeParams.coverage_period_type) {
 				$scope.coverage_period_type = $routeParams.coverage_period_type;
@@ -1530,7 +1535,8 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 			if ($routeParams.charge_period) {
 				$scope.charge_period = $routeParams.charge_period;
 			}
-			
+			console.log("邮编");
+			console.log($scope.user.post);
 			
 			//$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['prepare_insure'], {
 			$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['toubao_prepare'], {
