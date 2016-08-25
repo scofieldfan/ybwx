@@ -537,7 +537,7 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 			var defaultPeriod = 20;
 			if(parseInt($scope.type) === 2){
 				defaultMoney = 300000;
-				defaultPeriod = 20;
+				defaultPeriod = 1;
 			}else if( parseInt($scope.type) === 4 ){
 				defaultMoney = 0;//意外险默认保额是0
 			}
@@ -1362,14 +1362,14 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 			_hmt.push(['_trackEvent', 'toubaonew', 'toubaonew_submit']);
 			var isBankInvalid = $scope.data.bank_account  && $scope.user.bank_account.id==0 ;
 
-			console.log($scope.data.bank_account);
-			console.log($scope.user.bank_account);
-			     // 省 市 县/区
+			// 省 市 县/区
 	        $scope.district = $("#district1 option:selected").attr("data-code");
 		   	$scope.job = $("#job option:selected").attr("data-value");
 		   	console.log($scope.district);
 		   	console.log($scope.job);
-			if (!$scope.tbform.$invalid && $scope.canNotBuyPlans.length < $scope.data.plans.length && $scope.isHaveUserInfo && !isBankInvalid) {
+		   	var isJobInvalid = $scope.data.jobs && !$scope.job;
+		 
+			if (!$scope.tbform.$invalid && $scope.canNotBuyPlans.length < $scope.data.plans.length && $scope.isHaveUserInfo && !isBankInvalid && !isJobInvalid) {
 				var plans = [];
 				$scope.data.plans.forEach(function(element, index) {
 					if (element.status === 1) {
@@ -1445,13 +1445,11 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				if (!$scope.isHaveUserInfo) {
 					util.showToast($rootScope, "请填写用户信息");
 				}
-				 if ($scope.data.jobs.job_info ) {
+				 if (isJobInvalid) {
 					util.showToast($rootScope, "请填写职业");
 				}
 				if ($scope.data.height && $scope.tbform.height && 　$scope.tbform.height.$invalid) {
-					console.log("??????????????????");
 					util.showToast($rootScope, "请填写身高");
-					console.log("??????????????????");
 				}
 				if ($scope.data.post && $scope.tbform.post && 　$scope.tbform.post.$invalid) {
 					util.showToast($rootScope, "请填写邮政编码");
@@ -1477,7 +1475,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				if ($scope.data.flight_no && $scope.tbform.flight_no && 　$scope.tbform.flight_no.$invalid) {
 					util.showToast($rootScope, "航班号填写错误，请修改");
 				}
-
+				
 				if (isBankInvalid) {
 					util.showToast($rootScope, "请选择银行");
 				}
