@@ -342,8 +342,8 @@ h5 {
   color: #fff; }
 @font-face {
   font-family: 'iconfont';
-  src: url("//at.alicdn.com/t/font_1471837378_7425.eot");
-  src: url("//at.alicdn.com/t/font_1471837378_7425.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_1471837378_7425.woff") format("woff"), url("//at.alicdn.com/t/font_1471837378_7425.ttf") format("truetype"), url("//at.alicdn.com/t/font_1471837378_7425.svg#iconfont") format("svg");
+  src: url("//at.alicdn.com/t/font_1472091381_5453997.eot");
+  src: url("//at.alicdn.com/t/font_1472091381_5453997.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_1472091381_5453997.woff") format("woff"), url("//at.alicdn.com/t/font_1472091381_5453997.ttf") format("truetype"), url("//at.alicdn.com/t/font_1472091381_5453997.svg#iconfont") format("svg");
    }
 .iconfont {
   font-family: "iconfont";
@@ -399,6 +399,7 @@ h5 {
   font-size: 13px;
   margin-left: 10px;
   line-height: 34px;
+  color: #c2d4fb;
   -webkit-box-flex: 1;
   -webkit-flex: 1;
   -moz-box-flex: 1;
@@ -605,6 +606,8 @@ h5 {
   text-align: center;
   line-height: 40px;
   border-radius: 5px; }
+.sx-bzts_bottom-btn:active {
+  background: #266ada; }
 .back_color {
   background: #4285f4; }
 .sx-bzts_bottom-word--Left {
@@ -618,3 +621,5 @@ h5 {
   display: inline-block; }
 .liji {
   background: #ff9000; }
+.liji:active {
+  background: #f57300; }
