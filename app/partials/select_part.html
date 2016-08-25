@@ -109,16 +109,16 @@
 		<div class="sx-bzts_modify_Left" style="padding-left: 22px;">重疾<span class="colorBlue">20年期</span> 医疗报销及其他<span class="colorBlue">1年期</span></div>
 		<div class="sx-bzts_modify_Right" ng-click="goModify()">修改</div>
 	</div>
-<div class="sx-bzts_bottom"  ng-show="type==2">
+<div class="sx-bzts_bottom" >
 	<div class="sx-bzts_bottom-word">
 		<div class="sx-bzts_bottom-word--Left" id="sum_score">总 <span>{{data.scoreFix }}</span> 分</div>
-		<div class="sx-bzts_bottom-word--Right" id="estimateMoneyContainer"><span>{{data.premium}}</span> 元</div>
+		<div class="sx-bzts_bottom-word--Right" id="estimateMoneyContainer dzSbButton"><span>{{data.premium}}</span> 元</div>
 	</div>
-	<div class="sx-bzts_bottom-btn" ng-click="goBz()">生成方案</div>
+	<div class="sx-bzts_bottom-btn btn_n_primary_default"  id="dzSbButton" ng-click="goBz()">生成方案</div>
 </div>
 <!-- end -->
 
-<div class="fix_container select_btn" ng-hide="type==2">
+<!-- <div class="fix_container select_btn" ng-hide="type==2">
 	<div class="left" style="width: 65%;height: 48px;">
         <a class="left_btn left">
 			总 
@@ -132,7 +132,7 @@
 		</a>
 	</div>
 	<a href="javascript:void(0)"style="width: 35%;" class="btn btn_n_primary_default right" style="width: 70%;" id="dzSbButton" ng-click="goBz()">生成方案</a>
-</div>
+</div> -->
 
 </div>
 

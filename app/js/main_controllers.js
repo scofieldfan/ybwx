@@ -1317,7 +1317,6 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 		$scope.getTaocanReason = function(reasonEnum) {
 			return util.taocan_reason[reasonEnum] || "";
 		}
-
 		function genInEffectiveDate(startDate, coverage_period, coverage_period_type) {
 			//计算失效日期
 			//var startDate = $scope.user.effective_date;
@@ -1359,10 +1358,9 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				$location.path('/contact_list').search($routeParams);
 			}
 		}
-
 		$scope.submit = function() {
 			_hmt.push(['_trackEvent', 'toubaonew', 'toubaonew_submit']);
-			var isBankInvalid = $scope.data.bank && $scope.user.bank.id === 0;
+			var isBankInvalid = $scope.data.bank_account  === 0;
 			if (!$scope.tbform.$invalid && $scope.canNotBuyPlans.length < $scope.data.plans.length && $scope.isHaveUserInfo && !isBankInvalid) {
 				var plans = [];
 				$scope.data.plans.forEach(function(element, index) {
@@ -1387,13 +1385,34 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 						plans.push(planObj);
 					}
 				});
+                 
+                // 省 市 县/区
+	            $scope.district = $("#district1 option:selected").attr("data-code");
+		   		$scope.job = $("#job option:selected").attr("data-value");
+
+	            console.log($scope.province,$scope.city, $scope.district);
 
 				var effectiveDate = $filter('date')($scope.user.effective_date, "yyyyMMdd");
-
+       
 				$scope.submitPromise = getHttpPromise($http, $rootScope, 'POST', api['toubao_purchase'], {
 					open_id: openId,
+					social_id : $scope.social_id, //职业
 					insured_id: $scope.data.insured.id,
+					email: $scope.user.email, //邮箱
+					mobile : $scope.data.insured.mobile,//手机号
+					prov_city_id : $scope.district, //居住省市
+					address: $scope.user.address, //联系地址
+					post : $scope.post, //邮编
+					job_info : $scope.job, //职业
+					height:$scope.user.height,//身高
+					weight:$scope.user.weight,//体重
+					bank_account: $scope.user.bank.name, // 开户行
+					bank_card_no: $scope.user.bankcardno,//卡号
+					destination: $scope.user.destination,// 目的地
+					car_no: $scope.user.car_no,// 车牌号
+					flight_no: $scope.user.flight_no,
 					plans: plans,
+					effective_date: effectiveDate,//生效日期
 					//'coverage_period': $scope.coverage_period,
 					//'charge_period': $scope.charge_period,
 					effective_date: effectiveDate,
@@ -1406,7 +1425,8 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 					height: $scope.user.height,
 					weight: $scope.user.weight
 				}, function(res) {
-
+                    
+					// "insured_id": $routeParams.user_id, 
 					var payRequest = {
 						"insurance_name": res.data.data.insurance_name,
 						"insurance_plan_name": res.data.data.insurance_plan_name,
@@ -1430,8 +1450,14 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				if (!$scope.isHaveUserInfo) {
 					util.showToast($rootScope, "请填写用户信息");
 				}
+				 if ($scope.data.jobs.job_info ) {
+					util.showToast($rootScope, "请填写职业");
+				}
 				if ($scope.data.height && $scope.tbform.height && 　$scope.tbform.height.$invalid) {
 					util.showToast($rootScope, "请填写身高");
+				}
+				 if ($scope.data.prov_city_id && $scope.tbform.prov_city_id) {
+					util.showToast($rootScope, "请填写省市");
 				}
 
 				if ($scope.data.weight && $scope.tbform.weight && 　$scope.tbform.weight.$invalid) {
@@ -1509,6 +1535,8 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 			if ($routeParams.charge_period) {
 				$scope.charge_period = $routeParams.charge_period;
 			}
+			
+			
 			//$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['prepare_insure'], {
 			$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['toubao_prepare'], {
 				'open_id': openId,
@@ -1520,6 +1548,9 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 			}, function(res) {
 				$scope.data = res.data.data;
 				var plans = res.data.data.plans;
+				$scope.jobs = $scope.data.jobs;
+				console.log($scope.jobs);
+				// console.log($scope.data.insured.mobile);
 				var jsonPlans = JSON.stringify(plans);
 				sessionStorage.setItem('data', jsonPlans);
 				//存储需要支付的订单
@@ -1563,7 +1594,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				if ($scope.data.max_effective_days) {
 					$scope.maxDate = util.addDays(new Date(), $scope.data.max_effective_days);
 				}
-
+				$("#testpicker").distpicker();
 
 				$scope.genPlansInEffectiveDate();
 			});
