@@ -37,15 +37,11 @@
 				</li>
 			</ul>
 
-			<div class="supply-info" ng-show="data.address || data.car_no || data.destination || data.flight_no || data.bank">
+			<div class="supply-info" ng-show="data.address || data.car_no  || data.email   || data.address || data.destination || data.flight_no  || data.height  || data.weight || data.bank_account || data.bank_card_no || data.jobs.length>0">
 
 			<!-- <div class="supply-info" > -->
-			<div class="title" ><i class="iconfont" style="color: #999;font-size: 17px;margin-right: 5px;vertical-align: -1px;">&#xe611;</i>补充信息</div>
-			<div class="new-supply-item" ng-show="data.jobs">
-				<div class="introd">职业</div>
-				<div class="content" id="job"><select class="content" ><option id="first_option_color">请选择职业</option><option data-value="{{jobs.job_id}}" ng-repeat="jobs in data.jobs">{{jobs.job_name}}</option></select></div>
-				<div class="danwei"><i class="iconfont" style="color: #ccc;font-size: 17px;margin-left: 10px;">&#xe60f;</i></div>
-			</div>
+
+			<div class="title" ><i class="iconfont" style="color: #999;font-size: 17px;margin-right: 5px;vertical-align: -1px;">&#xe611;</i>联系信息</div>
 			<div class="new-supply-item" ng-if="data.email">
 				<div class="introd">电子邮箱</div>
 				<div class="content"><input type="email" placeholder="例：example@nuobei.cn" name="email" ng-model="user.email" class="new-input"  required></div>
@@ -70,6 +66,22 @@
 			<div class="new-supply-item" ng-if="data.address">
 				<div class="introd">详细地址</div>
 				<div class="content"><input type="text" placeholder="请输入详细地址,具体到门牌号" name="address" ng-model="user.address" class="new-input"  required></div>
+			</div>
+			<div class="new-supply-item new-supply-item--last" ng-if="data.post">
+				<div class="introd">邮政编码</div>
+				<div class="content"><input type="text" ng-minlength="6" ng-maxlength="6" placeholder="请输入邮政编码" name="post" ng-model="user.post" class="new-input"  required></div>
+			</div>
+			<div class="kong"></div>
+			<div class="title" ><i class="iconfont" style="color: #999;font-size: 17px;margin-right: 5px;vertical-align: -1px;">&#xe611;</i>补充信息</div>
+			<div class="new-supply-item"  ng-show="data.jobs.length>0">
+				<div class="introd">职业</div>
+				<div class="content" id="job"><select class="content" ><option id="first_option_color">请选择职业</option><option data-value="{{jobs.job_id}}" ng-repeat="jobs in data.jobs">{{jobs.job_name}}</option></select></div>
+				<div class="danwei"><i class="iconfont" style="color: #ccc;font-size: 17px;margin-left: 10px;">&#xe60f;</i></div>
+			</div>
+			<div class="wrong-item"  ng-show="tbform.post.$dirty && tbform.post.$invalid ">
+				<small class="error" ng-show="tbform.post.$error.required">邮政编码必填</small>
+				<small class="error" ng-show="tbform.post.$error.minlength">邮政编码必须是6位</small>
+				<small class="error" ng-show="tbform.post.$error.maxlength">邮政编码必须是6位</small>
 			</div>
 	 		<div class="new-supply-item" ng-if="data.height">
 				<div class="introd">身高</div>
@@ -126,7 +138,7 @@
 			<div class="supply-item"  style="color:red" ng-show="tbform.destination.$dirty && tbform.destination.$invalid ">
 				<small class="error" ng-show="tbform.destination.$error.required">地址必填</small>
 			</div>
-	        <div class="title" ng-if="data.bank_account"><i class="iconfont" style="color: #999;font-size: 17px;margin-right: 8px;vertical-align: -1px;">&#xe631;</i>银行卡信息<span class="state">用于期交产品后期续费</span></div>
+	        <div class="title" ng-if="data.bank_account"><i class="iconfont" style="color: #999;font-size: 17px;margin-right: 8px;vertical-align: -1px;">&#xe631;</i>续期缴费信息<span class="state">仅支持借记卡</span></div>
 			<div class="new-title" ng-if="data.bank"></div>
 	 		<div class="new-supply-item" ng-if="data.bank_account">
 				<div class="introd">银行</div>
@@ -137,9 +149,12 @@
 				<div class="introd">持卡人</div>
 				<div class="content"><input type="text" name="bankusername" ng-model="data.insured.username" disabled="" class="new-input" placeholder="持卡人必须是投保人本人"  required></div>
 			</div>
-			<div class="new-supply-item new-supply-item--last" ng-if="data.bank_card_no">
+			<div class="new-supply-item" ng-if="data.bank_card_no">
 				<div class="introd">银行账号 </div>
 				<div class="content"><input type="text" name="bankcardno" ng-model="user.bankcardno" class="new-input" placeholder="请输入银行账号"  required></div>
+			</div>
+			<div class="card_word new-supply-item--last" ng-if="data.bank_card_no" style="overflow: none">
+				请详细阅读条款中的转账授权书，保险公司会在续期交费前，从投保人账号中扣除续期保险费
 			</div>
 		</div></div>
 

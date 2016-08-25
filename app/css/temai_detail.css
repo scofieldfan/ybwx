@@ -13,8 +13,8 @@ header {
     overflow: hidden;
     line-height: 0; }
     header .top-container .company {
-      background-color: #588dd4;
-      color: #fff;
+      background-color: #fff;
+      color: #588dd4;
       padding: .02rem .1rem;
       text-align: center;
       position: absolute;

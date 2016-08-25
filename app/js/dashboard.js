@@ -2,7 +2,7 @@
  * @Author: fanzhang
  * @Date:   2016-08-15 19:09:31
  * @Last Modified by:   fanzhang
- * @Last Modified time: 2016-08-24 14:50:31
+ * @Last Modified time: 2016-08-25 17:33:41
  */
 
 'use strict';
@@ -163,7 +163,7 @@ window.Dashboard = (function() {
 			console.log("mainArcRaidus:"+this.mainArcRaidus);
 			var questionRadius = (this.mainArcRaidus - this.radio * 80) * DPR;
 
-			drawWord(ctx, -Math.PI / 10, "normal "+80*this.radio+"px iconfont", "#fff", questionRadius, "\ue620", 0);
+			drawWord(ctx, -Math.PI / 10, "normal "+70*this.radio+"px iconfont", "#fff", questionRadius, "\ue620", 0);
 			drawWord(ctx, -Math.PI / 2, "normal "+200*this.radio+"px Arial,Microsoft YaHei", "#fff", scoreRadius, score, 0);
 			
 			score = (parseFloat(score) + 0.1).toFixed(1);
