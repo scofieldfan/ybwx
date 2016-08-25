@@ -1367,7 +1367,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 		   	$scope.job = $("#job option:selected").attr("data-value");
 		   	console.log($scope.district);
 		   	console.log($scope.job);
-		   	var isJobInvalid = $scope.data.jobs && !$scope.job;
+		   	var isJobInvalid = $scope.data.jobs &&  $scope.data.jobs.length>=0 && !$scope.job;
 		 
 			if (!$scope.tbform.$invalid && $scope.canNotBuyPlans.length < $scope.data.plans.length && $scope.isHaveUserInfo && !isBankInvalid && !isJobInvalid) {
 				var plans = [];
