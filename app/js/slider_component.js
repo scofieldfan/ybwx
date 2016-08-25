@@ -71,7 +71,8 @@
 					var text = textArray[index];
 
 					if (textArray.length - 1 == index) {
-						text += "(年)";
+//						text += "(年)";
+						text += "("+this.get("danwei")+")";
 					}
 					// if(i==20){
 					// 	text +="(年)";
@@ -95,7 +96,12 @@
 		getMax: function() {
 			this.barMax = $(this.get("id")).find(".progress_bar").width() - 10;
 		},
-
+		updateText:function(text){
+			this.set("text",text);
+			this.startX = 0;
+			this.barWidth = 0;
+			this.creatDom();
+		},
 		drawSlider: function(width, isEnd) {
 
 			var moneyScore = Math.round((width * 100) / this.barMax); //100以内的比例

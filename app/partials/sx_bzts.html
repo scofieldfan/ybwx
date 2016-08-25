@@ -1,40 +1,40 @@
 <link rel="stylesheet" href="css/sx_bzts.css">
 
-<div class="sx-bzts">
+<div class="sx-bzts"  data-ng-init="init()" >
 	<div class="sx-bzts_tit"><i class="iconfont" style="font-size: 17px;color: #4285f4;margin-right：5px;">&#xe603;</i>  选择保障时间</div>
 	<div class="sx-bzts_tit_choose">
 		<div class="sx-bzts_tit_choose_tit">按年限选</div>
 		<div class="sx-bzts_tit_choose_year">
-			<div class="miss">1 年期</div>
-			<div class="miss">10 年期</div>
-			<div class="miss">20 年期</div>
-			<div class="miss">30 年期</div>
+			<div class="miss" ng-click="choose($event,1)">1 年期</div>
+			<div class="miss" ng-click="choose($event,5)">10 年期</div>
+			<div class="miss blue" ng-click="choose($event,9)" >20 年期</div>
+			<div class="miss" ng-click="choose($event,10)">30 年期</div>
 		</div>
 	</div>
 	<div class="sx-bzts_tit_choose">
 		<div class="sx-bzts_tit_choose_tit">按年龄选</div>
 		<div class="sx-bzts_tit_choose_year">
-			<div class="miss">保至 50 岁</div>
-			<div class="miss">保至 60 岁</div>
-			<div class="miss">保至 70 岁</div>
+			<div class="miss"  ng-click="choose($event,10)">保至 50 岁</div>
+			<div class="miss"  ng-click="choose($event,10)">保至 60 岁</div>
+			<div class="miss"  ng-click="choose($event,10)">保至 70 岁</div>
 		</div>
 	</div>
 	<div class="sx-bzts_modify">
-		<div class="sx-bzts_modify_Left"><i class="iconfont" style="font-size: 17px;color: #4285f4;margin-right：5px;">&#xe603;</i> 保险金额: &nbsp;最高<span class="sx-bzts_modify_Left--colorBlue"> 30万</span> <span class="sx-bzts_modify_Left--colorGray"> ( 推荐值 )</span></div>
-		<div class="sx-bzts_modify_Right">修改</div>
+		<div class="sx-bzts_modify_Left"><i class="iconfont" style="font-size: 17px;color: #4285f4;margin-right：5px;">&#xe603;</i> 保险金额: &nbsp;最高<span class="sx-bzts_modify_Left--colorBlue"> {{insuredMoney/10000}}万</span> <span class="sx-bzts_modify_Left--colorGray"> ( 推荐值 )</span></div>
+		<div class="sx-bzts_modify_Right" ng-click="goModify()">修改</div>
 	</div>
 </div>
 <div class="sx-bzts_bottom">
 	<div class="sx-bzts_bottom-word">
-		<div class="sx-bzts_bottom-word--Left">总 <span>6.5</span> 分</div>
-		<div class="sx-bzts_bottom-word--Right"><span>34903</span>元</div>
+		<div class="sx-bzts_bottom-word--Left">总 <span>{{coverageScore}}</span> 分</div>
+		<div class="sx-bzts_bottom-word--Right"><span>{{premium}}</span>元</div>
 	</div>
-	<div class="sx-bzts_bottom-btn back_color">生成方案</div>
+	<div class="sx-bzts_bottom-btn back_color" ng-click="submit()">生成方案</div>
 </div>
 <script>
-	$(".sx-bzts_tit_choose_year .miss").click(function(){
-		$(".sx-bzts_tit_choose_year").find(".miss").removeClass("blue");
-			$(this).addClass("blue");
-	});
+	// $(".sx-bzts_tit_choose_year .miss").click(function(){
+	// 	$(".sx-bzts_tit_choose_year").find(".miss").removeClass("blue");
+	// 		$(this).addClass("blue");
+	// });
 	
 </script>

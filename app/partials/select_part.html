@@ -61,67 +61,11 @@
 		<a href="javascript:void(0)"   class="btn btn_n_primary"  ng-click="showCompute()">保额测算</a>
 	-->
     </div>
-
-<div  class="bottom_container" id="customerSlider" ng-hide="type==2">
-	
-	<div class="weui_progress_bar" >
-		<div class="weui_progress_inner_bar" id="bar" style="width: 16px;">
-			<div style="background:transparent;" id="zhizhen">
-				<img src="img/slider-btn.png?v=2" id="btnCircle" class="bar_btn" style=""></div>
+	<div  class="bottom_container" ng-show="type==4">
+		<div id="money_container">
+			
 		</div>
-		<div  class="kedu" style="left:2%;">
-			<div class="zz"></div>
-			<p>0</p>
-		</div>
-		<div  class="kedu" style="left:6.8%;">
-			<div class="small-zz"></div>
-		</div>
-		<div  class="kedu" style="left:11.6%;">
-			<div class="small-zz"></div>
-		</div>
-		<div  class="kedu" style="left:16.4%;">
-			<div class="small-zz"></div>
-		</div>
-	
-		<div  class="kedu" style="left:21.2%;">
-			<div class="zz"></div>
-			<p>10</p>
-		</div>
-		<div  class="kedu" style="left:26%"> <div class="small-zz"></div> </div> 
-		<div  class="kedu" style="left:30.8%"> <div class="small-zz"></div> </div> 
-		<div  class="kedu" style="left:35.6%"> <div class="small-zz"></div> </div> 
-		<div  class="kedu" style="left:40.4%;">
-			<div class="zz"></div>
-			<p>20</p>
-		</div>
-		<div  class="kedu" style="left:45.1%"> <div class="small-zz"></div> </div> 
-		<div  class="kedu" style="left:49.9%"> <div class="small-zz"></div> </div> 
-		<div  class="kedu" style="left:54.7%"> <div class="small-zz"></div> </div> 
-		<div  class="kedu" style="left:59.59%;">
-			<div class="zz"></div>
-			<p>30</p>
-			<div class="bottom-word">基本</div>
-		</div>
-		<div  class="kedu" style="left:64.39%"> <div class="small-zz"></div> </div> 
-		<div  class="kedu" style="left:69.1%"> <div class="small-zz"></div> </div> 
-		<div  class="kedu" style="left:73.99%"> <div class="small-zz"></div> </div> 
-		<div  class="kedu" style="left:78.79%;">
-			<div class="zz"></div>
-			<p>40</p>
-			<div class="bottom-word">推荐</div>
-		</div>
-		<div  class="kedu" style="left:83.59%"> <div class="small-zz"></div> </div> 
-		<div  class="kedu" style="left:88.39%"> <div class="small-zz"></div> </div> 
-		<div  class="kedu" style="left:93.1%"> <div class="small-zz"></div> </div> 
-
-		<div  class="kedu" style="left:97.99%;">
-			<div class="zz"></div>	
-			<p >50(万)</p>
-			<div class="bottom-word">无忧</div>
-		</div>
-
 	</div>
-</div>
 
 <!-- <div ng-show="type==2">
 	<div  class="bt_container">
@@ -159,9 +103,9 @@
 
 <!-- 健康and寿险 -->
 <div class="sx-bzts_modify" ng-show="type==2">
-		<div class="sx-bzts_modify_Left"><i class="iconfont" style="font-size: 17px;color: #4285f4;margin-right：5px;">&#xe603;</i> 保险金额：<span class="colorBlue"> 30万</span> <span class="sx-bzts_modify_Left--colorGray"> ( 推荐值 )</span>
+		<div class="sx-bzts_modify_Left"><i class="iconfont" style="font-size: 17px;color: #4285f4;margin-right：5px;">&#xe603;</i> 保险金额：<span class="colorBlue"> {{insuredMoney/10000}}万</span> <span class="sx-bzts_modify_Left--colorGray"> ( 推荐值 )</span>
 		</div>
-		<div class="sx-bzts_modify_Left" style="padding-left: 22px;">保障期间：<span class="colorBlue">30年期</span></div>
+		<div class="sx-bzts_modify_Left" style="padding-left: 22px;">保障期间：<span class="colorBlue">{{coveragePeriod}}年期</span></div>
 		<div class="sx-bzts_modify_Left" style="padding-left: 22px;">重疾<span class="colorBlue">20年期</span> 医疗报销及其他<span class="colorBlue">1年期</span></div>
 		<div class="sx-bzts_modify_Right" ng-click="goModify()">修改</div>
 	</div>
@@ -199,5 +143,5 @@
 	<h4 >保障范围评分标准</h4>
 	<img  ng-src="img/introd_0{{type}}.png" style="width:100%"></div>
 </div>
-<script src="js/slider.js?rev=afafafafafafafafsaffafaa"></script>
+<!-- <script src="js/slider.js?rev=afafafafafafafafsaffafaa"></script> -->
 <script src="js/select.js?rev=avaafafafafsdfafafafaags"></script>
