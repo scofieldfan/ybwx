@@ -126,7 +126,10 @@ body {
       font-size: 13px;
       margin-left: 10px; }
   .supply-info select {
-    border: none; }
+    border: none;
+    background: #fff; }
+    .supply-info select option {
+      background: #fff; }
   .supply-info .supply-item {
     display: -webkit-box;
     display: -webkit-flex;
@@ -212,7 +215,9 @@ body {
       -moz-box-flex: 1;
       -ms-flex: 1;
       flex: 1;
-       }
+      font-size: 13px; }
+      .supply-info .new-supply-item .content input {
+        padding-left: 5px; }
     .supply-info .new-supply-item .content input::input-placeholder {
       color: #ccc;
       font-size: 13px; }
@@ -235,8 +240,7 @@ body {
       background-color: transparent;
       -webkit-appearance: none;
       height: 45px;
-      border: none;
-      font-size: 15px; }
+      border: none; }
     .supply-info .new-supply-item .new-input::-webkit-input-placeholder {
       color: #ccc; }
     .supply-info .new-supply-item .danwei {
@@ -362,3 +366,11 @@ body {
     flex: 35;
     background-color: #ff5c00;
     cursor: pointer; }
+#first_option_color {
+  color: #ccc; }
+.prePromise {
+  position: fixed;
+  top: 0;
+  bottom: .48rem;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch; }
