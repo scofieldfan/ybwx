@@ -10,9 +10,9 @@
       <?php include('include/global_config.html'); ?>
 
   <link rel="stylesheet" type="text/css" href="/bower_components/normalize-css/normalize.css">
-  <link rel="stylesheet" type="text/css" href="/css/globe.css?rev=e0adee72a4e4e86e1a268686af862344">
-  <link rel="stylesheet" type="text/css" href="/css/app.css?rev=364a6dd862585e5cf7601674a9e5d054">
-  <link rel="stylesheet" type="text/css" href="pay.css?rev=d676adc596ca2e8762ac9162e72592b0">
+  <link rel="stylesheet" type="text/css" href="/css/globe.css?rev=1af26559ec99aa1d38f2e7795942e610">
+  <link rel="stylesheet" type="text/css" href="/css/app.css?rev=b290d9420b78a2f2670c6412a3efdb5a">
+  <link rel="stylesheet" type="text/css" href="pay.css?rev=a913092f839117740e98a30e411ff544">
   <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 </head>
 
@@ -85,12 +85,14 @@
 	</form>
 </div>
 
-<div style="padding:30px 0;">
+<!-- <div style="padding:30px 0;">
 	<div class="cell"  style="overflow: hidden;position: fixed;bottom:0;width:100%;border-radius:0;">
 		<a href="javascript:void(0)" class="btn btn_n_primary "  ng-click="submit()">立即支付</a>
 	</div>
+</div> -->
+<div class="bottom_ctrl">
+	<div class="finish" ng-click="submit()">立即支付</div>
 </div>
-
 <script src="/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="/bower_components/angular/angular.min.js"></script>
 <script src="/bower_components/angular-resource/angular-resource.min.js"></script>

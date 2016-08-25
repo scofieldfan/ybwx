@@ -64,12 +64,12 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/bd_education_new.html',
       controller: 'ybwxBdEducationNewCtrl',
       title: "保障评分",
-      css:'css/bd_education_new.css?rev=d41d8cd98f00b204e9800998ecf8427e'
+      css:'css/bd_education_new.css?rev=c090302fe12effaffef898248bb51b54'
     }).when('/select', {
       templateUrl: 'partials/select_part.html?v=123',
       controller: 'ybwxSelectCtrl',
       title: "保障提升",
-      css:'css/ring.css?rev=179f15d8ae7a0af028b0e7ec7f839246'
+      css:'css/ring.css?rev=c63a06ceedb5b686280a30dbca14c419'
     }).when('/solution', {
       templateUrl: 'partials/solution.html',
       controller: 'ybwxSolutionCtrl',
@@ -79,7 +79,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/sx_bzts.html?v=12dsdsfdf543',
       controller: 'ybwxAgeInsuranceCtrl',
       title: "寿险定制修改",
-      css:'css/ring.css?rev=179f15d8ae7a0af028b0e7ec7f839246'
+      css:'css/ring.css?rev=c63a06ceedb5b686280a30dbca14c419'
     }).when('/jk_bzts', {
       templateUrl: 'partials/jk_bzts.html?v=12dsdsfdf543',
       controller: 'ybwxMoneyDurationCtrl',
@@ -88,7 +88,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/toubao_new.html',
       controller: 'ybwxToubaoNewCtrl',
       title: "投保确认",
-      css:'css/toubao_new.css?rev=624c41cdbf7192503c48ae58a923ab93'
+      css:'css/toubao_new.css?rev=4258767ce5a05fd8c89aeff1c612bd17'
     }).when('/promote', {
       templateUrl: 'partials/bz_ts.html',
       controller: 'ybwxPromoteCtrl',
@@ -143,7 +143,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/toubao_dingzhi_all.html',
       controller: 'ybwxToubaoDingzhiAllCtrl',
       title: "确认投保",
-      css:'css/toubao.css?rev=f3ffc1c7c6127270ee93c5a79a4b591c'
+      css:'css/toubao.css?rev=jsdhfjhsd'
     }).when('/verify_information', {
       templateUrl: 'partials/verify_information.html',
       controller: 'ybwxverify_informationCtrl',

@@ -106,7 +106,7 @@ input::-webkit-input-speech-button {
   color: #f13838;
 }
 .orange {
-  color: #ff7550;
+  color: #ff5c00;
 }
 .line {
   position: static;
@@ -202,7 +202,7 @@ input::-webkit-input-speech-button {
 .btn_n_primary {
   color: #fff;
   /*background-color: #247ad1;*/
-  background-color: #1e4e8e;
+  background-color: #4285f4;
 }
 .btn_dark_primary {
   color: #fff;
@@ -232,7 +232,7 @@ input::-webkit-input-speech-button {
 
   /*border:1px solid #9c9c9c;*/
   color: #535353;
-  background-color: #e3e3e3;
+  background-color: #ccc;
 }
 .btn_blue {
   font-size: 0.18rem;
@@ -513,12 +513,13 @@ overflow: hidden;
 /* svg 图标库*/
 @font-face {
   font-family: 'iconfont';
-  src: url('//at.alicdn.com/t/font_1471837378_7425.eot'); /* IE9*/
-  src: url('//at.alicdn.com/t/font_1471837378_7425.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('//at.alicdn.com/t/font_1471837378_7425.woff') format('woff'), /* chrome、firefox */
-  url('//at.alicdn.com/t/font_1471837378_7425.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-  url('//at.alicdn.com/t/font_1471837378_7425.svg#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('//at.alicdn.com/t/font_1472091381_5453997.eot'); /* IE9*/
+  src: url('//at.alicdn.com/t/font_1472091381_5453997.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/font_1472091381_5453997.woff') format('woff'), /* chrome、firefox */
+  url('//at.alicdn.com/t/font_1472091381_5453997.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/font_1472091381_5453997.svg#iconfont') format('svg'); /* iOS 4.1- */
 }
+                    
                     
 
 
@@ -553,6 +554,7 @@ font-size:22px;font-style:normal;}
 	font-size: 13px;
 	margin-left: 10px;
 	line-height: 34px;
+  color: #c2d4fb;
 	@include flex(1);
 	a {
 		color: #c2d4fb;
@@ -591,6 +593,7 @@ font-size:22px;font-style:normal;}
 		}
 	}
 }
+// 底部按钮 一个按钮
 .bottom_ctrl {
   @include border(1px 0 0 0,#ccc);
   width: 100%;
@@ -617,3 +620,91 @@ font-size:22px;font-style:normal;}
 .finish:active {
   background: #266ada;
 }
+// 底部按钮 左右两个button
+.bd_education_bottom {
+    width: 100%;
+    @include border(1px 0 0 0,#ccc);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 4.5px 35px;
+    box-sizing: border-box;
+    background: #fff;
+    @include flexbox;
+  }
+  .bottom_left,.bottom_right {
+    @include flex(1);
+    height: 41px;
+    color:#fff;
+    background-color: #4285f4;
+    border-radius: 5px;
+    line-height: 41px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  .bottom_left {
+    background: #fff;
+    color: #444;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+  }
+  // 底部按钮 生成方案
+  .sx-bzts_bottom {
+  @include border(1px 0 0 0,#ccc);
+  position: fixed;
+  bottom: 0;
+  height: 49px;
+  width: 100%;
+  box-sizing: border-box;
+  @include flexbox;
+  padding: 4.5px 10px;
+  font-size: 15px; 
+  color: #444;
+  background: #fff;
+  z-index: 9999;
+ }
+ .buttom_money {
+    color: #ff5c00;
+    font-weight: bold;
+    font-size: 18px;
+    margin-left: 6px;
+ }
+    
+ .sx-bzts_bottom-word {
+  @include flex(1);
+  text-align:center;line-height: 40px;
+ }
+ .sx-bzts_bottom-btn {
+  height: 40px;
+  width: 120px;
+  // background: #4285f4;
+  color: #fff;
+  font-size: 15px;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 5px;
+ }
+  .sx-bzts_bottom-btn:active {
+    background: #266ada;
+  }
+ .back_color {
+  background: #4285f4;
+ }
+ .sx-bzts_bottom-word--Left {
+  color: #444;
+  line-height: 40px;
+  display: inline-block;
+ }
+ .sx-bzts_bottom-word--Right {
+  margin-left: 5px;
+  color: #ff9000;
+  line-height: 40px;
+  display: inline-block;
+ }
+ // 立即投保 button_color
+ .liji {
+  background: #ff9000;
+ }
+  .liji:active{
+  background: #f57300;
+ }
