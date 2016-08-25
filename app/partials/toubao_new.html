@@ -41,9 +41,9 @@
 
 			<!-- <div class="supply-info" > -->
 			<div class="title" ><i class="iconfont" style="color: #999;font-size: 17px;margin-right: 5px;vertical-align: -1px;">&#xe611;</i>补充信息</div>
-			<div class="new-supply-item" >
+			<div class="new-supply-item" ng-show="data.jobs">
 				<div class="introd">职业</div>
-				<div class="content"><select class="content" ><option id="first_option_color">请选择职业</option><option data-value="{{jobs.job_id}}" ng-repeat="jobs in data.jobs">{{jobs.job_name}}</option></select></div>
+				<div class="content" id="job"><select class="content" ><option id="first_option_color">请选择职业</option><option data-value="{{jobs.job_id}}" ng-repeat="jobs in data.jobs">{{jobs.job_name}}</option></select></div>
 				<div class="danwei"><i class="iconfont" style="color: #ccc;font-size: 17px;margin-left: 10px;">&#xe60f;</i></div>
 			</div>
 			<div class="new-supply-item" ng-if="data.email">

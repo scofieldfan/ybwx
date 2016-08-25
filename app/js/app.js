@@ -88,7 +88,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/toubao_new.html',
       controller: 'ybwxToubaoNewCtrl',
       title: "投保确认",
-      css:'css/toubao_new.css?rev=f4b7dc45f6cea8912cb349df2da39bc6'
+      css:'css/toubao_new.css?rev=4258767ce5a05fd8c89aeff1c612bd17'
     }).when('/promote', {
       templateUrl: 'partials/bz_ts.html',
       controller: 'ybwxPromoteCtrl',

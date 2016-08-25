@@ -1362,14 +1362,14 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 			_hmt.push(['_trackEvent', 'toubaonew', 'toubaonew_submit']);
 			var isBankInvalid = $scope.data.bank_account  && $scope.user.bank_account.id==0 ;
 
-			console.log($scope.data.bank_account);
-			console.log($scope.user.bank_account);
 			     // 省 市 县/区
 	        $scope.district = $("#district1 option:selected").attr("data-code");
 		   	$scope.job = $("#job option:selected").attr("data-value");
 		   	console.log($scope.district);
 		   	console.log($scope.job);
-			if (!$scope.tbform.$invalid && $scope.canNotBuyPlans.length < $scope.data.plans.length && $scope.isHaveUserInfo && !isBankInvalid) {
+		   	var isJobInvalid = $scope.data.jobs && !$scope.job;
+		 
+			if (!$scope.tbform.$invalid && $scope.canNotBuyPlans.length < $scope.data.plans.length && $scope.isHaveUserInfo && !isBankInvalid && !isJobInvalid) {
 				var plans = [];
 				$scope.data.plans.forEach(function(element, index) {
 					if (element.status === 1) {
@@ -1445,7 +1445,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				if (!$scope.isHaveUserInfo) {
 					util.showToast($rootScope, "请填写用户信息");
 				}
-				 if ($scope.data.jobs.job_info ) {
+				 if (isJobInvalid) {
 					util.showToast($rootScope, "请填写职业");
 				}
 				if ($scope.data.height && $scope.tbform.height && 　$scope.tbform.height.$invalid) {
@@ -1472,7 +1472,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				if ($scope.data.flight_no && $scope.tbform.flight_no && 　$scope.tbform.flight_no.$invalid) {
 					util.showToast($rootScope, "航班号填写错误，请修改");
 				}
-
+				
 				if (isBankInvalid) {
 					util.showToast($rootScope, "请选择银行");
 				}
