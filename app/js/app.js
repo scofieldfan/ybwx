@@ -64,7 +64,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/bd_education_new.html',
       controller: 'ybwxBdEducationNewCtrl',
       title: "保障评分",
-      css:'css/bd_education_new.css?rev=31852b1829963bb3c08fd3b807fa2f46'
+      css:'css/bd_education_new.css?rev=d41d8cd98f00b204e9800998ecf8427e'
     }).when('/select', {
       templateUrl: 'partials/select_part.html?v=123',
       controller: 'ybwxSelectCtrl',

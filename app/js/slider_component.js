@@ -98,6 +98,7 @@
 		},
 		updateText:function(text){
 			this.set("text",text);
+			this.startX = 0;
 			this.creatDom();
 		},
 		drawSlider: function(width, isEnd) {
