@@ -7,6 +7,8 @@
   <meta name="keywords" content="微信支付">
   <meta name="viewport"content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>微信支付</title>
+      <?php include('include/global_config.html'); ?>
+
   <link rel="stylesheet" type="text/css" href="/bower_components/normalize-css/normalize.css">
   <link rel="stylesheet" type="text/css" href="/css/globe.css?rev=cea5a22dac05c684540942a7f0719a8a">
   <link rel="stylesheet" type="text/css" href="/css/app.css?rev=364a6dd862585e5cf7601674a9e5d054">
@@ -21,11 +23,11 @@
       <p class="weui_toast_content" style="display:inline;">{{server_reason}}</p>
     </div>
   </div>
-<header>
+<header  ng-cloak>
 	订单编号:{{order_no}}
 </header>
 
-<div class="product-container">
+<div class="product-container"  ng-cloak>
 	<!-- <div class="name">产品名称：{{insurance_plan_name}}</div> -->
 	<div class="name">产品方案</div>
 
@@ -93,8 +95,8 @@
 <script src="/bower_components/angular/angular.min.js"></script>
 <script src="/bower_components/angular-resource/angular-resource.min.js"></script>
 <script src="/bower_components/angular-route/angular-route.min.js"></script>
-<script src="/js/util.js?rev=9184d7f3249a801010220e2c45dc96b3"></script>
-<script src="pay.js?rev=3bdac632f03f856a0228b07b720d2ffd"></script>
+<script src="/js/util.js?rev=1f7cbdc8c7d81ba4f4f14216e9ddcb45"></script>
+<script src="pay.js?rev=def53086e625499b4bac884598611b02"></script>
 
 
 

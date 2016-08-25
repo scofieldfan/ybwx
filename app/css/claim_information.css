@@ -24,9 +24,8 @@ span {
 	vertical-align: middle;
 	
 }
-img{
+.claim_controller img{
 	width: .2rem;
-	height: .2rem;
 	vertical-align: middle;
 }
 a{

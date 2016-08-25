@@ -2,7 +2,7 @@
  * @Author: fanzhang
  * @Date:   2016-08-23 13:18:46
  * @Last Modified by:   fanzhang
- * @Last Modified time: 2016-08-23 13:58:56
+ * @Last Modified time: 2016-08-23 18:18:16
  */
 
 'use strict';
@@ -55,8 +55,9 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 			$scope.plans = JSON.parse(sessionStorage.getItem("sell_plan"));
 			$scope.order_id = paramObj.order_id;
 			$scope.order_no = paramObj.order_no;
-			$scope.ajaxPayInfo($scope.CHANNEL_WECHAT);
-			$scope.ajaxPayInfo($scope.CHANNEL_BANK_CARD);
+			// $scope.ajaxPayInfo($scope.CHANNEL_WECHAT);
+			// $scope.ajaxPayInfo($scope.CHANNEL_BANK_CARD);
+			$scope.getPayInfo($scope.order_id);
 		}
 
 
@@ -113,41 +114,6 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 				}
 			} else if (channelType === $scope.CHANNEL_WECHAT) { //微信支付
 				wechatPay(function(timestamp, nonceStr) {
-
-					/*
-					alert(timestamp);
-					alert(nonceStr);
-					alert("nonceStr:"+ $scope.wechat_response.nonceStr);	
-					alert("package:"+ $scope.wechat_response.packageStr);	
-					alert("paySign:"+ $scope.wechat_response.paySign);	*/
-
-					// var signObj = {
-					// 	appId:$scope.wechat_response.appId,
-					// 	nonceStr:nonceStr,
-					// 	package: $scope.wechat_response.packageStr,
-					// 	signType:"MD5",
-					// 	timeStamp:timestamp,
-					// 	key:"rfok7L6GheVhk6JcfjsCNnO0hQBKWHpF"
-					// }
-					// var signObj = {
-					// 	appId:$scope.wechat_response.appId,
-					// 	nonceStr:$scope.wechat_response.nonceStr,
-					// 	package: $scope.wechat_response.packageStr,
-					// 	signType:"MD5",
-					// 	timeStamp:$scope.wechat_response.timestamp,
-					// 	key:"rfok7L6GheVhk6JcfjsCNnO0hQBKWHpF"
-					// }
-
-					// var signStr = util.genParameters(signObj);
-					// alert(signStr);
-					// var hash =  md5(signStr).toUpperCase();
-					// alert("timestamp:"+ signObj.timeStamp);	
-					// alert("nonceStr:"+ signObj.nonceStr);	
-					// alert("package:"+ signObj.package);	
-					// alert("paySign:"+hash);	
-					// alert("paySign:"+$scope.wechat_response.paySign);	
-
-
 					wx.chooseWXPay({
 						timestamp: $scope.wechat_response.timestamp,
 						nonceStr: $scope.wechat_response.nonceStr, // 支付签名随机串，不长于 32 位
@@ -174,7 +140,22 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 
 			}
 		}
+		$scope.getPayInfo = function(order_id){
 
+			var url = getPayInfo(order_id, $scope.CHANNEL_BANK_CARD);
+			var wechat_response = getPayInfo(order_id, $scope.CHANNEL_WECHAT);
+
+			if (url) {
+				$scope.redirectUrl = url;
+			} else {
+				$scope.ajaxPayInfo($scope.CHANNEL_BANK_CARD);
+			}
+			if (wechat_response) {
+				$scope.wechat_response = wechat_response;
+			} else {
+				$scope.ajaxPayInfo($scope.CHANNEL_WECHAT);
+			}
+		}
 		$scope.ajaxPayInfo = function(channelType) {
 			$scope.payPromise = getHttpPromise($http, 'POST', '/ybwx-web/api/insurance/pay', {
 				pay_order_id: $scope.order_id,
@@ -205,23 +186,7 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 			}
 			var channelType = $(".pay_container").find(".choose").attr("data-channel-type");
 			_hmt.push(['_trackEvent', 'pay', 'pay_select' + channelType]);
-
-			$scope.redirectUrl = getPayInfo($scope.order_id, $scope.CHANNEL_BANK_CARD) || $scope.ajaxPayInfo($scope.CHANNEL_BANK_CARD);
-
-			$scope.wechat_response = getPayInfo($scope.order_id, $scope.CHANNEL_WECHAT) || $scope.ajaxPayInfo($scope.CHANNEL_WECHAT);
-
-			/*
-			if (url) {
-				$scope.redirectUrl = url;
-			} else {
-				$scope.ajaxPayInfo($scope.CHANNEL_BANK_CARD);
-			}
-			if (wechat_response) {
-				$scope.wechat_response = wechat_response;
-			} else {
-				$scope.ajaxPayInfo($scope.CHANNEL_WECHAT);
-			}*/
-
+			$scope.getPayInfo($scope.order_id);
 		}
 	}
 ]);

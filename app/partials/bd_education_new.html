@@ -94,7 +94,7 @@
 <div class="table-container" style="margin-bottom:70px;">
     <div class="table-title">
         <div class="bd_mx"> <i class="iconfont" style="font-size: 17px;color:#006ee9;">&#xe601;</i>保障明细</div>
-        <div class="bd_word" ng-click="goBdmList()"><span>查看</span> <div class="icon-arrow right-rotate" ></div></div>
+        <div class="bd_word" ng-click="goBdmList()">查看保单</div>
     </div>
 
     <div class="table-wrapper">
@@ -113,8 +113,11 @@
     </div>
 </div>
 
-<div class=" fix_container select_btn" >
-	<div class="cell_hd cell_primary">
-		<a href="javascript:void(0)" class="btn btn_n_primary_new "    ng-click="goDingzhi()" id="submitButton" ><i class="iconfont" style="font-size: 17px;color:#95b9e8">&#xe602;</i> 提升保障</a>
-	</div>	
+<div class="bd_education_bottom" >
+	<div class="bottom_left " ng-click="goDaodan()" id="submitButton" >
+        <i class="iconfont" style="font-size: 15px;color:#999">&#xe621;</i> 上传保单
+    </div>
+    <div class="bottom_right " ng-click="goDingzhi()" id="submitButton" >
+        <i class="iconfont" style="font-size: 15px;color:#fff;">&#xe602;</i> 提升保障
+    </div>
 </div>

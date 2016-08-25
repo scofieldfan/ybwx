@@ -58,17 +58,3 @@ body {
       color: #fff;
       background: #55a5ff;
       border: none; }
-  .target_ctrl .target_btn {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 49px;
-    background: #006ee9;
-    color: #fff;
-    text-align: center;
-    line-height: 49px;
-    font-size: 15px;
-    border-top: 1px solid #ccc; }
-  .target_ctrl .target_btn:active {
-    background: #266ada; }
