@@ -531,9 +531,7 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 
 			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
 				$("#loadingToastCommon").hide();
-
 				var rec_id = window.NBCONF.USER['unionid'] || '';
-
 				util.share({
 					shareUrl: util.domain + "wx_share.html#/index?rec_id=" + rec_id,
 					shareImg: "/wx_share/img/share61.jpg",
@@ -632,29 +630,31 @@ wxShareControllers.controller('myCouponListCtrl', ['$scope', '$routeParams', '$h
 			_hmt.push(['_trackPageview', '/wx_share_couponlist']);
 			//_hmt.push(['_trackEvent', 'wx_share_couponlist', 'index_center']);
 
-
-			$scope.exchangePromise = getHttpPromise($http, $rootScope, 'POST', api['getCoupons'], {
-			}, function(res) {
-				if (res.data && res.data.description) {
-					util.showToast($rootScope, res.data.description);
-					$("#reason_container").show();
-				} else if (res.data.code == 0) {
-					if (res.data.data.coupons) {
-						res.data.data.coupons.forEach(function(coupon) {
-							coupon.imgClass = imgMap[coupon["coupon_status"]];
-						})
-						$scope.reason = "";
-						if (res.data.data.coupons.length === 0) {
+			util.getOpenId().then(function() {
+				$scope.exchangePromise = getHttpPromise($http, $rootScope, 'POST', api['getCoupons'], {
+				}, function(res) {
+					if (res.data && res.data.description) {
+						util.showToast($rootScope, res.data.description);
+						$("#reason_container").show();
+					} else if (res.data.code == 0) {
+						if (res.data.data.coupons) {
+							res.data.data.coupons.forEach(function(coupon) {
+								coupon.imgClass = imgMap[coupon["coupon_status"]];
+							})
+							$scope.reason = "";
+							if (res.data.data.coupons.length === 0) {
+								$("#reason_container").show();
+							}
+							$scope.coupons = res.data.data.coupons;
+							$(".ul_container").show();
+						} else {
 							$("#reason_container").show();
 						}
-						$scope.coupons = res.data.data.coupons;
-						$(".ul_container").show();
-					} else {
-						$("#reason_container").show();
 					}
-				}
 
-			});
+				});
+
+			})
 		}
 		$scope.goShare = function() {
 			$location.path("/jixian");

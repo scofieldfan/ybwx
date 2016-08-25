@@ -435,9 +435,7 @@ mainControllers.controller('ybwxAgeInsuranceCtrl', ['$scope', '$routeParams', '$
 			console.log($scope.coverageScore);
 		}
 		$scope.getMoney = function(){
-				var openId = sessionStorage.getItem("openId");
 				var postData = {
-					"open_id": openId,
 					"insurance_type": $routeParams.type, // 保险类型
 					"coverage_score": $scope.coverageScore, // 保障分
 					"sum_insured": $scope.insuredMoney // 保额分
@@ -774,14 +772,18 @@ mainControllers.controller('ybwxBdEducationNewCtrl', ['$scope', '$routeParams', 
 			})
 		}
 		$scope.init = function() {
-			var type = $routeParams.type;
-			$scope.type = $routeParams.type;
-			$scope.getUserInfo();
-			$scope.educationPromise = getHttpPromise($http, $rootScope, 'GET', api['get_score_analysis_new'], {}, function(res) {
-				if (res && res.data && res.data.data) {
-					res.data.data.score = Math.round(res.data.data.score * 10) / 10;
-					$scope.data = res.data.data;
-				}
+
+
+			util.getOpenId().then(function() {
+				var type = $routeParams.type;
+				$scope.type = $routeParams.type;
+				$scope.getUserInfo();
+				$scope.educationPromise = getHttpPromise($http, $rootScope, 'GET', api['get_score_analysis_new'], {}, function(res) {
+					if (res && res.data && res.data.data) {
+						res.data.data.score = Math.round(res.data.data.score * 10) / 10;
+						$scope.data = res.data.data;
+					}
+				})
 			});
 		}
 		$scope.goDingzhi = function() {

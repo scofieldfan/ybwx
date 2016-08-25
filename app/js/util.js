@@ -99,9 +99,9 @@ var util = {
 		$(document).on('mousewheel', util.preventDefault);
 		$(document).on('touchmove', util.preventDefault);
 	},
-	getOpenId: function(code) {
-	    return '--';
-		//return $.when();
+	getOpenId: function() {
+	    //return '--';
+		return $.when();
 	},
 
 	share: function(shareObj) {
@@ -307,19 +307,19 @@ var util = {
         }
 	},
 	whiteOpenIds: [{
-		openid: "omP9dwb6u-lamgwOhFqFIcU3QLPk",
+		openid: "Pw4KDg8ICwgGCglgDA0KDw9cDw5gUExmVU9Icw9IWUxvXAtLdmx0bHRodQ1yaU4Hag==",
 		name: "巴信军"
 	}, {
-		openid: "omP9dwbQiEkPbFE0K6NtVa4d5bF0",
+		openid: "iLm9ubi/vL+xvb7Xu7q9uLjruLnX5/vR4vj/xbz9vrjk/tD5sL/kpaXXxd/S0NnayQ==",
 		name: "Fan"
 	}, {
-		openid: "omP9dwThw9op485Y-6NMp6HywJ0M",
+		openid: "Snt/e3p9fn1zf3wVeXh/enopensVJTkTIDo9AQMOJzwjPB8hIh95fzApfSJ5ciEnLQ==",
 		name: "郭渊敏"
 	}, {
-		openid: "omP9dwSdKKzWA4D9j1I1Lr1EbHMg",
+		openid: "AzI2MjM0NzQ6NjVcMDE2MzNgMzJcbHBaaXN0TzJWR0Jtb0RkQDVxVkQ7MmxXN1ExMw==",
 		name: "许文科"
 	}, {
-		openid: "omP9dwSHJtzwyRFBCBc3z-jpxwj8",
+		openid: "yPn9+fj//P/x/f6X+/r9+Pir+PmXp7uRori/gYyyhpKp/Yyir/ifoPud+aKwnKD//A==",
 		name: "岳文甲"
 	}],
 	relationShip: [{

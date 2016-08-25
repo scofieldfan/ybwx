@@ -15,8 +15,9 @@ mainControllers.controller('ybwxTargetCtrl', ['$scope', '$filter', '$routeParams
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 
 		$scope.relation = 1;
-		var code = util.getParameterByName("code") || $routeParams.code;
+		util.getOpenId().then(function() {
 
+		});
 		// 临时的后期还会变动 start
 		// $("#relation .column .column_btn").click(function() {
 		$("#relation .column .linshi").click(function() {
