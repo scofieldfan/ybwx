@@ -21,6 +21,8 @@ input {
   border: qpx solid #ccc; }
   .recognizee_compile_ctrl .head img {
     width: 10px; }
+.recognizee_compile_ctrl .head:active {
+  background: #266ada; }
 .recognizee_compile_ctrl .bor {
   border-top: 1px solid #e2e2e2;
   height: 1px; }

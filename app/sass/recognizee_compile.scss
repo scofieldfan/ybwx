@@ -30,6 +30,9 @@ input {
 		 width: 10px;
 		}
 	}
+	.head:active {
+		background: #266ada;
+	}
 	.bor {
 		border-top: 1px solid #e2e2e2;
 		height: 1px;
