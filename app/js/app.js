@@ -77,7 +77,7 @@ ybwxApp.config(['$routeProvider',
       css:'css/solution.css?rev=51c8bd3f32be358917967d55dc053768'
     }).when('/sx_bzts', {
       templateUrl: 'partials/sx_bzts.html?v=12dsdsfdf543',
-      controller: 'ybwxHealthCtrl',
+      controller: 'ybwxAgeInsuranceCtrl',
       title: "寿险定制修改",
       css:'css/ring.css?rev=179f15d8ae7a0af028b0e7ec7f839246'
     }).when('/jk_bzts', {

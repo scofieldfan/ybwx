@@ -423,15 +423,54 @@ function updateSumScore() {
 }
 
 
-mainControllers.controller('ybwxHealthCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+mainControllers.controller('ybwxAgeInsuranceCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
 
 		$scope.type = $routeParams.type;
+		$scope.coverageScore = 9;
+		$scope.insuredMoney = $routeParams.insuredMoney || 200000;
 
+		$scope.init = function(){
+			$scope.getMoney();
+		}
+		$scope.choose = function($event,score){
+			var element = $event.currentTarget;
+			$(".sx-bzts_tit_choose_year").find(".miss").removeClass("blue");
+			$(element).addClass("blue");
+			$scope.coverageScore = score;
+			console.log($scope.coverageScore);
+		}
+		$scope.getMoney = function(){
+				var openId = sessionStorage.getItem("openId");
+				var postData = {
+					"open_id": openId,
+					"insurance_type": $routeParams.type, // 保险类型
+					"coverage_score": $scope.coverageScore, // 保障分
+					"sum_insured": $scope.insuredMoney // 保额分
+
+				};
+				
+				$scope.moneyPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_suggestion'], postData, function(res) {
+					if (res && res.data && res.data.data) {
+						if (res.data.data.score > 0) {
+							res.data.data.sumScore = Math.round(res.data.data.score * 10) / 10;
+						}
+						$scope.premium = res.data.data.premium;
+					}
+				})	
+		}
 		$scope.goModify = function() {
 			$location.path("/jk_bzts").search({
 				type:$scope.type
+			});
+		}
+		$scope.submit = function(){
+			$location.path('/solution').search({
+				'type': $routeParams.type,
+				'coverage_score': $scope.coverageScore,
+				'sum_insured': $scope.insuredMoney,
+				'estimate_money': $scope.premium
 			});
 		}
 	}
@@ -466,11 +505,19 @@ mainControllers.controller('ybwxMoneyDurationCtrl', ['$scope', '$routeParams', '
 	
 
 		$scope.goBack = function(){
+			if(parseInt($routeParams.type)===3){
+				$location.path("/sx_bzts").search({
+					type:$routeParams.type,
+					insuredMoney:$scope.insuredMoney
+				});
+			}else{
 				$location.path("/select").search({
 					type:$routeParams.type,
 					insuredMoney:$scope.insuredMoney,
 					coveragePeriod:$scope.coveragePeriod
 				});
+			}
+			
 		}
 	}
 ]);
@@ -486,12 +533,27 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 			CIRCLE.init();
 			$scope.type = $routeParams.type;
 			$scope.estimateMoney = 0;
-			$scope.insuredMoney = $routeParams.insuredMoney/10000 || 30;
-			$scope.coveragePeriod = $routeParams.coveragePeriod || 20;
-			scoreObj.insuranceType = $routeParams.type;
-			scoreObj.coveragePeriod =  $routeParams.coveragePeriod || 0;
-			scoreObj.insuredMoney =  $routeParams.insuredMoney || 0;
+			var defaultMoney = 300000;
+			var defaultPeriod = 20;
+			if(parseInt($scope.type) === 2){
+				defaultMoney = 300000;
+				defaultPeriod = 20;
+			}else if( parseInt($scope.type) === 4 ){
+				defaultMoney = 0;//意外险默认保额是0
+			}
+			
+			$scope.insuredMoney = $routeParams.insuredMoney || defaultMoney;
+			$scope.coveragePeriod = $routeParams.coveragePeriod || defaultPeriod;
+			
+			
 
+
+			scoreObj.insuranceType = $routeParams.type;
+			scoreObj.coveragePeriod =  $scope.coveragePeriod;
+			scoreObj.insuredMoney =  $scope.insuredMoney ;
+		
+
+			console.log(scoreObj);
 			var openId = sessionStorage.getItem("openId");
 			$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_view'], {
 				insurance_type: $routeParams.type
@@ -595,19 +657,22 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 
 		$scope.goBz = function() {
 			_hmt.push(['_trackEvent', 'dingzhi', 'dingzhi_subBtn']);
+			console.log(scoreObj);
 			if ( scoreObj.fanweiScore === 0) {
-				util.showToast($rootScope, "请选择保障期间");
+				util.showToast($rootScope, "请选择保障范围");
 				return false;
 			}
 
-			if ( parseInt($routeParams.type) === 4  &&  scoreObj.insuredMoney == 0) {
-				util.showToast($rootScope, "请选择保障范围和保障额度");
+			if ( parseInt($routeParams.type) === 4  &&  (scoreObj.insuredMoney == 0)  ) {
+				util.showToast($rootScope, "请选择保障额度");
 				return false;
 			}
-			if ( scoreObj.coveragePeriod === 0) {
-				util.showToast($rootScope, "请选择保障期间");
-				return false;
-			}
+
+
+			// if ( scoreObj.coveragePeriod === 0) {
+			// 	util.showToast($rootScope, "请选择保障期间");
+			// 	return false;
+			// }
 			$location.path('/solution').search({
 				'type': $routeParams.type,
 				'coverage_score': scoreObj.fanweiScore,
