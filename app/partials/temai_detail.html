@@ -81,6 +81,12 @@
 			<span class="money_size">{{detailMoney | number}}</span>元<span ng-show="plan.premium_type==2">起</span>
 		</a>
 	</div>
+	<!-- <div class="sx-bzts_bottom">
+		<div class="sx-bzts_bottom-word" style="">
+			应交保费 <span class="buttom_money">{{detailMoney | number}}</span> 元<span ng-show="plan.premium_type==2">起</span>
+		</div>
+		<div class="sx-bzts_bottom-btn back_color liji right" ng-click="showMask()" id="showMask">立即投保</div>
+	</div> -->
 </div>
 <div  class="mask" id="detail_mask_container"  style="display: none;z-index:900">
 	    <div style="height: 20%"></div>
@@ -152,8 +158,8 @@
 			
 		</div>
     </div>
-    <div class="fix_container">
-		<a href="javascript:void(0)"  style="height:45px;line-height: 45px;"  ng-click="submit()"  class="btn btn_n_primary">确定</a>
+	<div class="bottom_ctrl">
+		<div class="finish"  ng-click="submit()">确定</div>
 	</div>
 </div>
 
