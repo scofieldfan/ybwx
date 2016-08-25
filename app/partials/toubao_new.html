@@ -37,11 +37,11 @@
 				</li>
 			</ul>
 
-			<div class="supply-info" ng-show="data.address || data.car_no || data.destination || data.flight_no || data.bank">
+			<div class="supply-info" ng-show="data.address || data.car_no  || data.email   || data.address || data.destination || data.flight_no  || data.height  || data.weight || data.bank_account || data.bank_card_no || data.jobs.length>0">
 
 			<!-- <div class="supply-info" > -->
 			<div class="title" ><i class="iconfont" style="color: #999;font-size: 17px;margin-right: 5px;vertical-align: -1px;">&#xe611;</i>补充信息</div>
-			<div class="new-supply-item" ng-show="data.jobs">
+			<div class="new-supply-item" ng-show="data.jobs.length>0">
 				<div class="introd">职业</div>
 				<div class="content" id="job"><select class="content" ><option id="first_option_color">请选择职业</option><option data-value="{{jobs.job_id}}" ng-repeat="jobs in data.jobs">{{jobs.job_name}}</option></select></div>
 				<div class="danwei"><i class="iconfont" style="color: #ccc;font-size: 17px;margin-left: 10px;">&#xe60f;</i></div>
