@@ -65,6 +65,10 @@ ybwxApp.config(['$routeProvider',
       controller: 'ybwxBdEducationNewCtrl',
       title: "保障评分",
       css:'css/bd_education_new.css?rev=c090302fe12effaffef898248bb51b54'
+    }).when('/bd_education_family', {
+      templateUrl: 'partials/bd_education_family.html',
+      controller: 'ybwxBdEducationNewCtrl',
+      title: "保障评分"
     }).when('/select', {
       templateUrl: 'partials/select_part.html?v=123',
       controller: 'ybwxSelectCtrl',
@@ -193,7 +197,7 @@ ybwxApp.config(['$routeProvider',
       title: "投保成功"
     }).when('/pay_success', {
       templateUrl: 'partials/pay_success.html',
-      title: "交易完成提示"
+      title: "支付成功"
     }).when('/information', {
       templateUrl: 'partials/information.html',
       controller: 'ybwxInfoCtrl',

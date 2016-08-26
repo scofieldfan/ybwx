@@ -35,8 +35,6 @@ body {
   .people-container .name {
     margin-bottom: 12px;
     font-size: 18px; }
-  .people-container .insured {
-    color: #ff5c00; }
   .people-container .tag {
     color: #999;
     vertical-align: -1px;
@@ -71,12 +69,9 @@ body {
       border-bottom: 1px solid #e2e2e2;
       font-size: 13px;
       line-height: 20px; }
-    .toubao-container li .reason {
-      color: #ff5c00; }
     .toubao-container li .money {
       color: #999; }
     .toubao-container li .fee {
-      color: #ff5c00;
       font-weight: bold; }
     .toubao-container li .money-container {
       padding: 0 15px;
