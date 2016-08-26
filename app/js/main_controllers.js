@@ -1397,6 +1397,10 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 					destination: $scope.user.destination,// 目的地
 					car_no: $scope.user.car_no,// 车牌号
 					flight_no: $scope.user.flight_no,
+					hospital: $scope.user.hospital,
+					eng_name: $scope.user.eng_name,
+					destination: $scope.user.destination,
+					visa_city: $scope.user.visa_city,
 					plans: plans,
 					effective_date: effectiveDate//生效日期
 				}, function(res) {
@@ -1454,6 +1458,19 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				}
 				if ($scope.data.flight_no && $scope.tbform.flight_no && 　$scope.tbform.flight_no.$invalid) {
 					util.showToast($rootScope, "航班号填写错误，请修改");
+				}
+
+				if ($scope.data.hospital && $scope.tbform.hospital && 　$scope.tbform.hospital.$invalid) {
+					util.showToast($rootScope, "就诊医院填写错误，请修改");
+				}
+				if ($scope.data.eng_name && $scope.tbform.eng_name && 　$scope.tbform.eng_name.$invalid) {
+					util.showToast($rootScope, "英文名或者拼音填写错误，请修改");
+				}
+				if ($scope.data.destination && $scope.tbform.destination && 　$scope.tbform.destination.$invalid) {
+					util.showToast($rootScope, "出行目的填写错误，请修改");
+				}
+				if ($scope.data.visa_city && $scope.tbform.visa_city && 　$scope.tbform.visa_city.$invalid) {
+					util.showToast($rootScope, "签证办理城市填写错误，请修改");
 				}
 				
 				if (isBankInvalid) {

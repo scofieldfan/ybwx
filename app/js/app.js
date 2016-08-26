@@ -17,18 +17,7 @@ var ybwxApp = angular.module('ybwxApp', [
   message: '正在加载....',
   templateUrl: 'template/loading.html'
 });
-/*
-ybwxApp.service('sharedRestrictions', function () {
-        var restrictions = {};
-        return {
-            getIntrods: function () {
-                return introds;
-            },
-            setIntrods: function(value) {
-                introds = value;
-            }
-        };
-});*/
+
 ybwxApp.filter('range', function() {
   return function(input, total) {
     total = parseInt(total);
@@ -304,34 +293,3 @@ ybwxApp.run(['$rootScope',
   }
 ]);
 
-/*
-ybwxApp.run(['$rootScope', '$location', '$routeParams',
-  function($rootScope, $location, $routeParams) {
-    $rootScope.$on('$routeChangeStart', function(event, next, current) {
-      if (!$rootScope.isLogin) {
-
-        //console.log('...code:'+$routeParams.code);
-        // console.log(util.domain);
-        // var paramStr = $location.url().replace(/.*\?/, "");
-        // var url = util.domain +"#"+ $location.path() +"?"+ paramStr.replace(/code=[^&]*&{0,1}/i, "").replace(/&$/i, "");
-        //console.log("url:" + url);
-        // console.log(current);
-        // console.log(next);
-        // console.log("test:" + next.params.test);
-        var params = {};
-        for(var key in next.params){
-          if(key != "code"){
-             params[key] = next.params[key];
-          }
-        }
-        var url = util.domain +"#"+ $location.path() +"?"+ util.genParameters(params);
-         console.log(url);
-
-         util.checkCodeAndOpenId(next.params.code,url,function(){
-          $rootScope.isLogin = true;
-         });
-        
-      }
-    });
-  }
-]);*/
