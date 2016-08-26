@@ -189,7 +189,7 @@ window.Dashboard = (function() {
 			// ctx.fillRect(keduX-100, keduY-100,300,300);
 			// ctx.restore();
 			clearCircle(ctx, keduX, keduY, 100 * this.radio);
-			preLoadImg('/img/index/fire.png', function() {
+			preLoadImg('http://static.nuobei.cn/img/index/fire.png', function() {
 				ctx.beginPath();
 				ctx.save();
 				// console.log("keduX:"+keduX);
@@ -211,7 +211,7 @@ window.Dashboard = (function() {
 			 console.log("drawing....");
 			if (this._angle >= this.maxAngle || vx<0.0001) {
 				clearCircle(ctx, keduX, keduY, 100 * this.radio);
-				preLoadImg('/img/index/fixFire.png', function() {
+				preLoadImg('http://static.nuobei.cn/img/index/fixFire.png', function() {
 					ctx.beginPath();
 					ctx.save();
 					ctx.translate(keduX, keduY);

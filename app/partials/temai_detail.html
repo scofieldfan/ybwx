@@ -1,7 +1,7 @@
 <link rel="stylesheet" type="text/css" href="/css/temai_detail.css?rev=a707a05ad4b889277f94e33590642d5a">
 <div class="nuobei_header">
-	<div class="img_ctrl"><img src="img/nuobei_header/logo640.png"></div>
-	<div class="back_homePage"><a href="http://wechat.nuobei.cn/#/index">回首页</a></div>
+	<div class="img_ctrl"><img src="http://static.nuobei.cn/img/nuobei_header/logo640.png"></div>
+	<div class="back_homePage"><a href="/#/index">回首页</a></div>
 	<div class="concern" id="foucs_button">关 注</div>
 </div>
 <div  cg-busy="myPromise" class="temaidetail-wrapper" >
@@ -14,7 +14,7 @@
 			<div class="text-container">
 				<div class="title">{{data.insurance_name}}</div>
 				<div class="sub-title" >
-					<img src="img/temai/dun.png">&nbsp;{{data.insurance_feature}} </div>
+					<img src="http://static.nuobei.cn/img/temai/dun.png">&nbsp;{{data.insurance_feature}} </div>
 			</div>
 		</div>
 		<div class="bottom-container">
@@ -42,7 +42,7 @@
 				<tr ng-repeat="item in plan.main_coverage_beans">
 					<td class="td-left" style="cursor: pointer;">
 						{{item.name}}
-						<img src="img/temai/wen.png"  class="help-img" title="{{item.description}}"/>
+						<img src="http://static.nuobei.cn/img/temai/wen.png"  class="help-img" title="{{item.description}}"/>
 						<br/>
 						<span class="gray" >{{item.overview}}</span>
 					</td>
@@ -59,7 +59,7 @@
 				<tr ng-repeat="item in plan.second_coverage_beans" ng-show="$index<6">
 					<td class="td-left" style="cursor: pointer;">
 						{{item.name}}
-						<img src="img/temai/wen.png"  class="help-img" title="{{item.description}}"/>
+						<img src="http://static.nuobei.cn/img/temai/wen.png"  class="help-img" title="{{item.description}}"/>
 						<br/>
 						<span class="gray" >{{item.overview}}</span>
 					</td>
@@ -67,7 +67,7 @@
 					<td ng-if="item.sum_insured==0">赠送</td>
 				</tr>
 
-				<!-- <tr  class="more_coverages_button" ng-show="plan.second_coverage_beans.length>6" data-switch='on' ng-click="more($event)"><td colspan="2" class=" word_color"><span>查看更多</span><img src="img/temai/blue_arrow.jpg" class="arrow"></td></tr> -->
+				<!-- <tr  class="more_coverages_button" ng-show="plan.second_coverage_beans.length>6" data-switch='on' ng-click="more($event)"><td colspan="2" class=" word_color"><span>查看更多</span><img src="http://static.nuobei.cn/img/temai/blue_arrow.jpg" class="arrow"></td></tr> -->
 				<tr  class="more_coverages_button" ng-show="plan.second_coverage_beans.length>6" data-switch='on' ng-click="more($event)"><td colspan="2" class=" word_color"><span>查看更多</span><div class="icon-arrow"></div></td></tr>
 			</table>
 		</div>
@@ -149,9 +149,9 @@
 			<!-- <div class="select-container">
 				<h4>份数</h4>
 				<ul class="grade">
-					<li ng-click="stopPro($event)"><img src="img/minus-2.jpg" ></li>
+					<li ng-click="stopPro($event)"><img src="http://static.nuobei.cn/img/minus-2.jpg" ></li>
 					<li id="number">1</li>
-					<li ng-click="stopPro($event)"><img src="img/plus.jpg"></li>
+					<li ng-click="stopPro($event)"><img src="http://static.nuobei.cn/img/plus.jpg"></li>
 				</ul>
 			</div> -->
 		</div>

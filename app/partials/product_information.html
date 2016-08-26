@@ -1,15 +1,15 @@
 <!-- 投保须知 -->
-<link rel="stylesheet" href="css/information.css?rev=df8c42dcbfa1e0439ce2580f141a9261">
+<link rel="stylesheet" href="http://static.nuobei.cn/css/information.css?rev=df8c42dcbfa1e0439ce2580f141a9261">
 <div  data-ng-init="init()" cg-busy="myPromise" style="margin-bottom: 50px;">
 	<ul class="claim_controller">
 		<li ng-if="data.age_notice">
-			<p><img src="img/claim_information/logo.jpg" alt=""><span class="font_size29">年龄限制</span></p>
+			<p><img src="http://static.nuobei.cn/img/claim_information/logo.jpg" alt=""><span class="font_size29">年龄限制</span></p>
 			<a class="content"  >{{data.age_notice}}</a>
 		</li>
 	
 		<li ng-if="data.locales">
 			<p >
-				<img src="img/claim_information/logo.jpg" >
+				<img src="http://static.nuobei.cn/img/claim_information/logo.jpg" >
 				<span>区域限制</span>
 			</p>
 			<a class="content" ng-repeat="notice in data.locales">
@@ -19,7 +19,7 @@
 
 		<li ng-if="data.healths">
 			<p>
-				<img src="img/claim_information/logo.jpg" >
+				<img src="http://static.nuobei.cn/img/claim_information/logo.jpg" >
 				<span>健康限制</span>
 			</p>
 			<a class="content" ng-repeat="notice in data.healths">
@@ -28,7 +28,7 @@
 		</li>
 		<li  ng-if="data.extras">
 			<p >
-				<img src="img/claim_information/logo.jpg" >
+				<img src="http://static.nuobei.cn/img/claim_information/logo.jpg" >
 				<span>其他限制</span>
 			</p>
 			<a class="content" ng-repeat="notice in data.extras">

@@ -1,17 +1,17 @@
-<link rel="stylesheet" href="css/recognizee_compile.css?rev=9312f57c3611c13fa313f79fd7c2a425">
+<link rel="stylesheet" href="http://static.nuobei.cn/css/recognizee_compile.css?rev=9312f57c3611c13fa313f79fd7c2a425">
 <div class="recognizee_compile_ctrl" data-ng-init="init()"  cg-busy="secondPromise">
 	<div class="head_ctrl">
-		<div class="head" ng-click="addPeople()"><img src="wx_share/img/rc/jia.png" >  新增被保险人</div>
+		<div class="head" ng-click="addPeople()"><img src="http://static.nuobei.cn/wx_share/img/rc/jia.png" >  新增被保险人</div>
 	</div>
 	<div class="bor"></div>
 	<div class="main" ng-repeat="item in data" ng-click="choose($event,item)">
 		<div class="main_head">
 			<div class="head_left">{{item.username}}</div>
 			<div class="head_right">{{getRelation(item.relation)}} <!--<span class="moren" ng-if="item.is_default==true">默认</span> --></div>
-			<div class="head_bottom" ng-click="editUserInfo(item.id)" ng-show="item.relation!=1"><img src="img/pianji.png" ></div>
+			<div class="head_bottom" ng-click="editUserInfo(item.id)" ng-show="item.relation!=1"><img src="http://static.nuobei.cn/img/pianji.png" ></div>
 		</div>
 		<div class="status">身份证号：<div style="display: inline-block">{{item.social_id}}</div></div>
-		<div class="phone">手机号码：<div style="display: inline-block">{{item.mobile}}</div><span class="right" ng-if="item.is_current===true"> <img src="img/gou.png"></span></div>
+		<div class="phone">手机号码：<div style="display: inline-block">{{item.mobile}}</div><span class="right" ng-if="item.is_current===true"> <img src="http://static.nuobei.cn/img/gou.png"></span></div>
 	</div>
 
 	<div class="head_ctrl">
