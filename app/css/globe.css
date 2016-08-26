@@ -59,9 +59,9 @@ input::-webkit-input-speech-button {
 .blue {
   color: #247ad1; }
 .red {
-  color: #f13838; }
+  color: #ff9000; }
 .orange {
-  color: #ff5c00; }
+  color: #ff9000; }
 .line {
   position: static;
   bottom: 0;
@@ -542,6 +542,8 @@ h5 {
   color: #444;
   border: 1px solid #ccc;
   margin-right: 10px; }
+.bottom_right:active {
+  background: #266ada; }
 .sx-bzts_bottom {
   position: relative;
   position: fixed;
@@ -586,7 +588,7 @@ h5 {
         -webkit-transform: scale(1/3);
         transform: scale(1/3); } }
 .buttom_money {
-  color: #ff5c00;
+  color: #ff9c00;
   font-weight: bold;
   font-size: 18px;
   margin-left: 6px; }
@@ -616,7 +618,6 @@ h5 {
   display: inline-block; }
 .sx-bzts_bottom-word--Right {
   margin-left: 5px;
-  color: #ff9000;
   line-height: 40px;
   display: inline-block; }
 .liji {

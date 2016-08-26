@@ -8,9 +8,9 @@
   <meta name="viewport"content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>微信支付</title>
   <link rel="stylesheet" type="text/css" href="/bower_components/normalize-css/normalize.css">
-  <link rel="stylesheet" type="text/css" href="/css/globe.css?rev=1af26559ec99aa1d38f2e7795942e610">
+  <link rel="stylesheet" type="text/css" href="/css/globe.css?rev=038ae4d50632be39d5adb283404c745b">
   <link rel="stylesheet" type="text/css" href="/css/app.css?rev=b290d9420b78a2f2670c6412a3efdb5a">
-  <link rel="stylesheet" type="text/css" href="pay.css?rev=a913092f839117740e98a30e411ff544">
+  <link rel="stylesheet" type="text/css" href="pay.css?rev=416d7936c80fccc98663a6c8582e6f0f">
   <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 </head>
 
@@ -30,7 +30,7 @@
 	<div class="name">产品方案</div>
 
 	<div class="item" ng-repeat="plan in plans">{{plan.name}}<span ng-if="plan.premium" style="float:right">{{plan.premium}}元</span></div>
-	<div>支付金额：<span class="pay-money">{{order_amount | number}}</span>元</div>
+	<div>支付金额：<span class="pay-money orange">{{order_amount | number}}</span>元</div>
 </div>
 
 <div class="introd">

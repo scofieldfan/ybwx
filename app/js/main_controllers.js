@@ -326,8 +326,10 @@ mainControllers.controller('ybwxNewIndexCtrl', ['$scope', '$routeParams', '$loca
 		$scope.goTarget = function() {
 			$location.path("/target");
 		}
-		$scope.goContinue = function() {
-			$location.path("/continue");
+		$scope.gofamily_education = function(type) {
+			$location.path("/bd_education_family").search({
+				type: type
+			});
 		}
 		$scope.init = function() {
 			//获得openId
@@ -772,7 +774,7 @@ mainControllers.controller('ybwxBdEducationNewCtrl', ['$scope', '$routeParams', 
 				"type": $routeParams.type
 			});
 		}
-
+        
 
 		$scope.isHaveUserInfo = false;
 
@@ -820,6 +822,9 @@ mainControllers.controller('ybwxBdEducationNewCtrl', ['$scope', '$routeParams', 
 				});
 			}
 
+		}
+		$scope.goTarget = function() {
+			$location.path("/target");
 		}
 		$scope.goDaodan = function() {
 			$location.path("/bd_index");

@@ -53,7 +53,11 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/bd_education_new.html',
       controller: 'ybwxBdEducationNewCtrl',
       title: "保障评分",
-      css:'css/bd_education_new.css?rev=c090302fe12effaffef898248bb51b54'
+      css:'css/bd_education_new.css?rev=d41d8cd98f00b204e9800998ecf8427e'
+    }).when('/bd_education_family', {
+      templateUrl: 'partials/bd_education_family.html',
+      controller: 'ybwxBdEducationNewCtrl',
+      title: "保障评分"
     }).when('/select', {
       templateUrl: 'partials/select_part.html?v=123',
       controller: 'ybwxSelectCtrl',
@@ -63,7 +67,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/solution.html',
       controller: 'ybwxSolutionCtrl',
       title: "保障方案",
-      css:'css/solution.css?rev=51c8bd3f32be358917967d55dc053768'
+      css:'css/solution.css?rev=301af2db72788480204b9873d4530cdd'
     }).when('/sx_bzts', {
       templateUrl: 'partials/sx_bzts.html?v=12dsdsfdf543',
       controller: 'ybwxAgeInsuranceCtrl',
@@ -77,7 +81,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/toubao_new.html',
       controller: 'ybwxToubaoNewCtrl',
       title: "投保确认",
-      css:'css/toubao_new.css?rev=9c38cbf065d413909ddd050d17f7bdf1'
+      css:'css/toubao_new.css?rev=71c6a1543e6e1a7e22ffb0050bff9c30'
     }).when('/promote', {
       templateUrl: 'partials/bz_ts.html',
       controller: 'ybwxPromoteCtrl',
@@ -106,7 +110,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/key_solution.html',
       controller: 'ybwxKeySolutionCtrl',
       title: "保障方案",
-      css:'css/solution.css?rev=51c8bd3f32be358917967d55dc053768'
+      css:'css/solution.css?rev=301af2db72788480204b9873d4530cdd'
     }).when('/service', {
       templateUrl: 'partials/service.html',
       controller: 'ybwxServiceCtrl',
@@ -157,12 +161,12 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/temai_detail.html',
       controller: 'wxDetailNewCtrl',
       title: "诺贝严选",
-      css:'css/temai_detail.css?rev=a707a05ad4b889277f94e33590642d5a'
+      css:'css/temai_detail.css?rev=5eaa44fc55e6267e6a76d71af6cf6246'
     }).when('/temaiindex', {
       templateUrl: 'partials/temai_index.html',
       controller: 'wxTemaiIndexCtrl',
       title: "诺贝严选",
-      css:'css/temai_index.css?rev=11b1591a379185d1ba3b2d1f9405a2d7'
+      css:'css/temai_index.css?rev=6f0efffeeee9c01550c5619f39f3b847'
     }).when('/temailist', {
       templateUrl: 'partials/temai_list.html',
       controller: 'wxTemaiListCtrl',
@@ -182,7 +186,7 @@ ybwxApp.config(['$routeProvider',
       title: "投保成功"
     }).when('/pay_success', {
       templateUrl: 'partials/pay_success.html',
-      title: "交易完成提示"
+      title: "支付成功"
     }).when('/information', {
       templateUrl: 'partials/information.html',
       controller: 'ybwxInfoCtrl',

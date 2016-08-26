@@ -23,16 +23,17 @@ header {
 		line-height: 0;
 
 		.company {
-			background-color: #fff;
-			color: #588dd4;
-			padding:.02rem .1rem;
+			background-color: #6282a6;
+			color: #fff;
+			padding:.03rem .09rem;
 			text-align: center;
 			position:absolute;
-			top:0;
-			right:10px;
-			border-bottom-left-radius: 3px;
-			border-bottom-right-radius: 3px;
+			top: .13rem;
+			right:0;
+			border-radius: 5px 0 0 5px;
 			line-height: .2rem;
+			font-size: .019rem;
+			// opacity: .3;
 		}
 		.title {
 			font-size: 18px;
@@ -286,7 +287,6 @@ header {
 }
 .money_size {
 	font-size: .27rem;
-	color: #ff5c00;
 }
 
 .head_ctrl {

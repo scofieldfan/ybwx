@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="/css/temai_detail.css?rev=a707a05ad4b889277f94e33590642d5a">
+<link rel="stylesheet" type="text/css" href="/css/temai_detail.css?rev=5eaa44fc55e6267e6a76d71af6cf6246">
 <div class="nuobei_header">
 	<div class="img_ctrl"><img src="img/nuobei_header/logo640.png"></div>
 	<div class="back_homePage"><a href="http://wechat.nuobei.cn/#/index">回首页</a></div>
@@ -78,7 +78,7 @@
 		<a href="javascript:void(0)" class="btn btn_n_primary right" id="showMask"   ng-click="showMask()" >立即投保</a>
 		<a href="javascript:void(0)" class="btn btn_n_primary left tg_dz_fr" >
 			<span>{{plan.name }}</span>&nbsp;
-			<span class="money_size">{{detailMoney | number}}</span>元<span ng-show="plan.premium_type==2">起</span>
+			<span class="money_size orange">{{detailMoney | number}}</span>元<span ng-show="plan.premium_type==2">起</span>
 		</a>
 	</div>
 	<!-- <div class="sx-bzts_bottom">
@@ -97,7 +97,7 @@
 			</div>
 			<div class="fl">
 				<p >
-					<span  style="font-size:18px;color:#ff5c00;">{{money | number}}元</span>
+					<span  class="orange" style="font-size:18px;">{{money | number}}元</span>
 				</p>
 				<p><span style="color: #ff5c00">*</span>最终购买价格</p>
 				<p>以被保险人身份信息测算为准</p>
