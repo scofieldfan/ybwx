@@ -1399,7 +1399,6 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 					flight_no: $scope.user.flight_no,
 					hospital: $scope.user.hospital,
 					eng_name: $scope.user.eng_name,
-					destination: $scope.user.destination,
 					visa_city: $scope.user.visa_city,
 					plans: plans,
 					effective_date: effectiveDate//生效日期
