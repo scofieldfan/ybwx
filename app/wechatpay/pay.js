@@ -73,7 +73,7 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 
 			return $.when($.ajax({
 				type: 'GET',
-				url: util.api["signature"],
+				url: util.api["signature"] + '?__f=pay',
 				data: {
 					"url": location.href.split('#')[0],
 					type: 2

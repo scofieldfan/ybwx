@@ -112,7 +112,7 @@ var util = {
 		var shareObj = shareObj || {};
 		return $.when($.ajax({
 			type: 'GET',
-			url: util.api["signature"],
+			url: util.api["signature"]+'?__f=share',
 			data: {
 				url: location.href.split('#')[0],
 				type: 2
@@ -178,7 +178,7 @@ var util = {
 
 		return $.when($.ajax({
 			type: 'GET',
-			url: util.api["signature"],
+			url: util.api["signature"]+'?__f=image',
 			data: {
 				"url": location.href.split('#')[0],
 				type: 2
