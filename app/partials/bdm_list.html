@@ -45,8 +45,8 @@
 	</div>
 </div>
 
-<div class="container"  cg-busy="loadingPromise">
-	<ul >
+<div class="container"  cg-busy="loadingPromise" >
+	<ul id="decide">
 
 		<li class="default-li"  ng-if="data.un_settled_policies_amount > 0">
 			<div class="wrapper" style="padding:0.2rem 0">
@@ -129,7 +129,12 @@
 		</div>
 	</li>
 </ul>
-
+<!-- 零保单-->
+<!-- <div  class="cell_font" style=" text-align: center;padding-top:60px;" >
+   <img src="img/qidai.png" >
+   <div style="font-size: 15px;color:#999;padding-top: 10px">你还没有任何意外保障</div>
+</div> -->
+<!--  -->
 <div class="offer" ng-if="data.policies.length == 0">
 	<div class="tigong">上传已有的保单照片，我们为您提供:</div>
 	<div class="lei">
@@ -144,5 +149,6 @@
 	<div></div>
 </div> -->
 <div class="bottom_ctrl">
-	<div class="finish" ng-click="goBdUpload();"><i class="iconfont"  style="font-size: 16px;color:#95b9e8">&#xe621;</i> 上传保单</div>
+	<div class="finish" ng-click="goBdUpload();"><i class="iconfont"  style="font-size: 16px;color:#fff">&#xe621;</i> 上传保单</div>
 </div>
+

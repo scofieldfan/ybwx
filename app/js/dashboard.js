@@ -2,7 +2,7 @@
  * @Author: fanzhang
  * @Date:   2016-08-15 19:09:31
  * @Last Modified by:   fanzhang
- * @Last Modified time: 2016-08-26 15:49:29
+ * @Last Modified time: 2016-08-26 18:57:07
  */
 
 'use strict';
@@ -31,7 +31,8 @@ window.Dashboard = (function() {
 		var config = config || {};
 		this.maxScore = parseFloat(config.score) || 0;
 		//this.maxScore = 8;
-		console.log("maxScore:" + this.maxScore);
+		// console.log("maxScore:" + this.maxScore);
+
 		this.maxAngle = (MAX_ANGLE - MIN_ANGLE) * this.maxScore / 10 + MIN_ANGLE;
 		this.init();
 		this.bindEvent();
@@ -183,7 +184,7 @@ window.Dashboard = (function() {
 			console.log("mainArcRaidus:" + this.mainArcRaidus);
 			var questionRadius = (this.mainArcRaidus - this.radio * 80) * DPR;
 
-			drawWord(ctx, -Math.PI / 10, "normal " + 70 * this.radio + "px iconfont", "#fff", questionRadius, "\ue620", 0);
+			drawWord(ctx, -Math.PI / 10, "normal " + 60 * this.radio + "px iconfont", "#fff", questionRadius, "\ue620", 0);//？号
 			drawWord(ctx, -Math.PI / 2, "normal " + 200 * this.radio + "px Arial,Microsoft YaHei", "#fff", scoreRadius, score, 0);
 
 			score = (parseFloat(score) + 0.1).toFixed(1);

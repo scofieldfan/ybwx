@@ -1,4 +1,10 @@
 <!-- <link rel="stylesheet" type="text/css" href="http://static.nuobei.cn/wx_share/css/coupon.css?rev=492e306aeafe61aeeceb1ffcf3c3dc63"> -->
+<link rel="stylesheet" type="text/css" href="http://static.nuobei.cn/css/globe.css?rev=09dec9183075ce9777b201001c70929d">
+<div class="nuobei_header">
+  <div class="img_ctrl"><img src="http://static.nuobei.cn/img/nuobei_header/logo640.png"></div>
+  <div class="back_homePage"><a href="/#/index">回首页</a></div>
+  <div class="concern" id="foucs_button">关 注</div>
+</div>
 <div id="wrapper" class="wrapper">
     <ul class="ul_container" style="background-color:#f3f3f3;margin-top:0;padding-left:0;display:none">
       <li class="list_item"  style="" ng-click="goDetail(coupon.coupon_no,coupon.coupon_status,coupon.order_no,coupon.coupon_id,coupon.expiry_date)"   ng-repeat="coupon in coupons" >
@@ -18,3 +24,16 @@
     </ul>
     <p class="default_text" id="reason_container" >保险劵暂无，您可以<span ng-click="goShare()" style="color:blue;text-decoration: underline;">参与活动免费领取</span>哦！</p>
 </div>
+
+<script>
+  $("body").on("click","#foucs_button",function(event){
+      $(".qrcode-wrapper").show();
+      event.preventDefault();
+      event.stopPropagation();
+    }).on("click",".qrcode-container",function(){
+      event.preventDefault();
+      event.stopPropagation();
+    }).on("click",".qrcode-wrapper",function(){
+       $(".qrcode-wrapper").hide();
+    });
+</script>

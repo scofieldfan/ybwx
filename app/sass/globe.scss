@@ -103,10 +103,10 @@ input::-webkit-input-speech-button {
   color: #247ad1;
 }
 .red {
-  color: #f13838;
+  color: #ff9000;
 }
 .orange {
-  color: #ff5c00;
+  color: #ff9000;
 }
 .line {
   position: static;
@@ -648,6 +648,9 @@ font-size:22px;font-style:normal;}
     border: 1px solid #ccc;
     margin-right: 10px;
   }
+  .bottom_right:active {
+    background: #266ada;
+  }
   // 底部按钮 生成方案
   .sx-bzts_bottom {
   @include border(1px 0 0 0,#ccc);
@@ -664,7 +667,7 @@ font-size:22px;font-style:normal;}
   z-index: 9999;
  }
  .buttom_money {
-    color: #ff5c00;
+    color: #ff9c00;
     font-weight: bold;
     font-size: 18px;
     margin-left: 6px;
@@ -697,7 +700,7 @@ font-size:22px;font-style:normal;}
  }
  .sx-bzts_bottom-word--Right {
   margin-left: 5px;
-  color: #ff9000;
+  // color: #ff9000;
   line-height: 40px;
   display: inline-block;
  }

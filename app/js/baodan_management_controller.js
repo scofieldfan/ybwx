@@ -97,6 +97,7 @@ bdControllers.controller('ybwxbaodanVerifyListCtrl', ['$scope', '$routeParams', 
 		$scope.setType = function(type) {
 			_hmt.push(['_trackEvent', 'bdm_verifylist', 'bdmVerifyList_nav']);
 			$scope.type = type;
+			
 		}
 		$scope.init();
 
@@ -135,6 +136,7 @@ bdControllers.controller('ybwxbaodanManageListCtrl', ['$scope', '$routeParams', 
 				})
 			})
 		}
+		
 		$scope.setType = function(type) {
 			_hmt.push(['_trackEvent', 'bdm_list', 'bdmList_nav']);
 			$scope.type = type;

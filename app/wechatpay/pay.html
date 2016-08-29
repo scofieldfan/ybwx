@@ -32,7 +32,7 @@
 	<div class="name">产品方案</div>
 
 	<div class="item" ng-repeat="plan in plans">{{plan.name}}<span ng-if="plan.premium" style="float:right">{{plan.premium}}元</span></div>
-	<div>支付金额：<span class="pay-money">{{order_amount | number}}</span>元</div>
+	<div>支付金额：<span class="pay-money orange">{{order_amount | number}}</span>元</div>
 </div>
 
 <div class="introd">

@@ -1,10 +1,5 @@
 
-<script src="js/slider_component.js?rev=afafafafafafafafsaffafaa"></script>
-<div class="nuobei_header">
-	<div class="img_ctrl"><img src="http://static.nuobei.cn/img/nuobei_header/logo640.png"></div>
-	<div class="back_homePage"><a href="/#/index">回首页</a></div>
-	<div class="concern" id="foucs_button">关 注</div>
-</div>
+<script src="http://static.nuobei.cn/js/slider_component.js?rev=afafafafafafafafsaffafaa"></script>
 <div  class="select-contrl"  data-ng-init="init()" style="overflow: hidden;"  cg-busy="selectPromise" >
 	<!--
 	<div  class="head-container" style="overflow: hidden;" >
@@ -111,11 +106,17 @@
 	</div>
 <div class="sx-bzts_bottom" >
 	<div class="sx-bzts_bottom-word">
-		<div class="sx-bzts_bottom-word--Left" id="sum_score">总 <span>{{data.scoreFix }}</span> 分</div>
-		<div class="sx-bzts_bottom-word--Right" id="estimateMoneyContainer dzSbButton"><span>{{data.premium}}</span> 元</div>
+		<div class="sx-bzts_bottom-word--Left" id="sum_score">总 <span class="buttom_money" style='margin:0;'>{{data.scoreFix }}</span> 分</div>
+		<div class="sx-bzts_bottom-word--Right" id="estimateMoneyContainer dzSbButton"><span class="buttom_money"  style='margin:0;'>{{data.premium}}</span> 元</div>
 	</div>
 	<div class="sx-bzts_bottom-btn btn_n_primary_default"  id="dzSbButton" ng-click="goBz()">生成方案</div>
 </div>
+<!-- <div class="sx-bzts_bottom">
+	<div class="sx-bzts_bottom-word">
+		应交保费 <span class="buttom_money">{{sumMoney}}</span> 元
+	</div>
+	<div class="sx-bzts_bottom-btn back_color liji right" ng-click="goInfo()">立即投保</div>
+</div> -->
 <!-- end -->
 
 <!-- <div class="fix_container select_btn" ng-hide="type==2">

@@ -1,8 +1,16 @@
-<header class="icon_{{type}}"  data-ng-init="init()"  cg-busy="educationPromise">
+<link rel="stylesheet" href="css/bd_education_new.css">
+<header class="icon_1"  data-ng-init="init()"  cg-busy="educationPromise">
 	<span>我的{{getInsuranceCNname()}}保障</span> <span class="score" ng-click="goScoreReading()">{{data.score}}</span>分
 	<!-- <span   class="how" ng-click="goOldEducation()">如何投保?</span> -->
 </header>
 <style>
+    header.icon_1 {
+        background: #006ee9 url("../img/scheme/family.png") no-repeat 18px center;
+        background-size: 20px;
+    }
+    header {
+        background: #4285f4;
+    }
     .rangeslider{
         display:block;
         border-radius: 4px;
@@ -49,23 +57,18 @@
         content:none;
     }
     .noresult{
-      height: 150px;
+     /* height: 150px;
       line-height: 150px;
       text-align: center;
-      font-size:15px;
-    }
-    .age-insurance{
-        background-color: #fff;
-        padding:15px 10px;
-        color:#555;
-        font-size:13px;
+      font-size:15px;*/
+      padding: 38px 0;
     }
     .img-container{
-        margin-top:10px;
+        margin-top:15px;
         text-align: center;
     }
     .img-container img{
-        width:200px;
+        width:100%;
     }
       .more {
         border-bottom: 1px solid #cccccc;
@@ -80,20 +83,29 @@
         -webkit-appearance: none; -moz-appearance: none; -o-appearance: none; appearance: none;
 
     }
-    
+    .bd_word {
+        width: 91px;
+        height: 34px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        text-align: center;
+        line-height: 31px;
+        color: #4285f4;
+        border-radius: 5px;
+        font-size: 13px;
+        margin: 0 auto;
+    }
     </style>
-    <div class="slider-container" ng-if="type!=3">
-        <div class="slider-item" ng-repeat="item in data.elements" on-finish-render="ngRepeatFinished"><div><div class="type">{{item.name}}<div class="percent">{{item.percent}}%</div></div><input type="range" id="rangeInput{{$index}}" data-orientation="vertical" value="{{item.percent}}" disabled=""></div></div>
-    </div>
-    <div  ng-if="type==3" class="age-insurance">
-        寿险是转嫁死亡风险的工具，应对家庭支柱突然身故造成的收入损失风险。
-        <div class="img-container"><img src="http://static.nuobei.cn/img/index/age.jpg" /></div>
+    <div  class="age-insurance">
+        <div style="color: #444;font-size: 13px;line-height: 13px;margin-bottom: 10px;">建议配置</div>
+        <div style="color: #999;font-size: 12px;line-height: 12px;">为家庭提升保障时，先大人后小孩</div>
+        <div class="img-container"><img src="img/index/family.jpg" /></div>
     </div>
 
 <div class="table-container" style="margin-bottom:70px;">
     <div class="table-title">
         <div class="bd_mx"> <i class="iconfont" style="font-size: 17px;color:#006ee9;">&#xe601;</i>保障明细</div>
-        <div class="bd_word" ng-click="goBdmList()">查看保单</div>
+     
     </div>
 
     <div class="table-wrapper">
@@ -107,8 +119,8 @@
      <div class="more"  ng-show=" data.coverages.length > 7" data-switch="on"  ng-click="more($event)">
          <span>查看更多</span><div class="icon-arrow" ></div>
       </div>
-    <div class="noresult" ng-if="!data.coverages || data.coverages.length==0">
-      您暂时没有任何保障 
+    <div class="noresult" >
+         <div class="bd_word" ng-click="goBdmList()">查看保单</div>
     </div>
 </div>
 
@@ -116,7 +128,7 @@
 	<div class="bottom_left " ng-click="goDaodan()" id="submitButton" >
         <i class="iconfont" style="font-size: 15px;color:#999;vertical-align:-1px;">&#xe621;</i> 上传保单
     </div>
-    <div class="bottom_right " ng-click="goDingzhi()" id="submitButton" >
+    <div class="bottom_right " ng-click="goTarget()" id="submitButton" >
         <i class="iconfont" style="font-size: 15px;color:#fff;vertical-align:-1px;">&#xe602;</i> 提升保障
     </div>
 </div>
