@@ -40,11 +40,10 @@ select {
 		padding: 0 10px;
 		border-bottom: 1px solid #c4c4c4;
 		.cell {
-			padding: 0 0 10px .96rem;
+			padding: 0 0 10px 96px;
 			margin-left: 3px;
 			box-sizing: border-box;
 			small {
-				color: #ff5c00;
 			    font-size: 13px;
 			}
 		}
