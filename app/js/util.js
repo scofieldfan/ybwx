@@ -322,7 +322,11 @@ var util = {
 	}, {
 		openid: "yPn9+fj//P/x/f6X+/r9+Pir+PmXp7uRori/gYyyhpKp/Yyir/ifoPud+aKwnKD//A==",
 		name: "岳文甲"
-	}],
+	},{
+		openid: "fUxITE1KSUpESEsiTk9ITU0eTUwiEg4kFw0KPBpNTQ0PTx4TTg0oHk8fFAwyHkgQPA==",
+		name: "s"
+	}
+	],
 	relationShip: [{
 			id: 1,
 			name: '本人'

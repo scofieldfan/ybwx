@@ -308,7 +308,7 @@ wxShareControllers.controller('wxMoneyBdCtrl', ['$scope', '$filter', '$routePara
 						// TODO: openid和白名单匹配的时候,支付0.1元
 
 						var filterResult = util.whiteOpenIds.filter(function(item) {
-							return item.openid === window.NBCONF.USER_CONFIG['unionid']
+							return item.openid === window.NBCONF.USER['unionid']
 						});
 						if (filterResult && filterResult.length > 0) {
 							payRequest["order_amount"] = 0.1;
