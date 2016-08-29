@@ -37,7 +37,7 @@
 				</li>
 			</ul>
 
-			<div class="supply-info" ng-show="data.address || data.car_no  || data.email   || data.address || data.destination || data.flight_no  || data.height  || data.weight || data.bank_account || data.bank_card_no || data.jobs.length>0">
+			<div class="supply-info" ng-show="data.address || data.car_no  || data.email   || data.address || data.destination || data.flight_no  || data.height  || data.weight || data.bank_account || data.bank_card_no || data.jobs.length>0 || data.hospital || data.hospital || data.eng_name || data.visa_city ">
 
 			<!-- <div class="supply-info" > -->
 
@@ -110,12 +110,25 @@
 				<div class="content"><input type="text" name="qcode" ng-model="qcode" class="new-input" placeholder="请填写手机验证码"  required></div>
 				<div class="introd" style="color:#55a5ff">获取验证码</div>
 			</div> -->
-			<!-- <div class="supply-item" ng-if="data.address">
-				<div class="introd">地址</div>
-				<div class="content"><input type="text" name="address" ng-model="user.address" class="ipt"   placeholder="请输入地址" required></div>
-			</div> -->
+		
 			<div class="supply-item"  style="color:red" ng-show="tbform.address.$dirty && tbform.address.$invalid ">
 				<small class="error" ng-show="tbform.address.$error.required">地址必填</small>
+			</div>
+			<div class="supply-item" ng-if="data.hospital">
+				<div class="introd">就诊医院</div>
+				<div class="content"><input type="text" name="hospital" ng-model="user.hospital" class="ipt"   placeholder="请输入糖尿病就诊医院" required></div>
+			</div>
+			<div class="supply-item" ng-if="data.eng_name">
+				<div class="introd">拼音/英文名</div>
+				<div class="content"><input type="text" name="eng_name" ng-model="user.eng_name" class="ipt"   placeholder="请输入名字的全拼或英文名" required></div>
+			</div>
+			<div class="supply-item" ng-if="data.destination">
+				<div class="introd">出行目的</div>
+				<div class="content"><input type="text" name="destination" ng-model="user.destination" class="ipt"   placeholder="请输入出行目的" required></div>
+			</div>
+			<div class="supply-item" ng-if="data.visa_city">
+				<div class="introd">签证办理城市</div>
+				<div class="content"><input type="text" name="visa_city" ng-model="user.visa_city" class="ipt"   placeholder="请输入出行签证办理城市" required></div>
 			</div>
 			<div class="supply-item" ng-if="data.flight_no">
 				<div class="introd">航班号</div>

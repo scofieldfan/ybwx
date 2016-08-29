@@ -2,7 +2,7 @@
  * @Author: fanzhang
  * @Date:   2016-08-15 19:09:31
  * @Last Modified by:   fanzhang
- * @Last Modified time: 2016-08-25 17:33:41
+ * @Last Modified time: 2016-08-26 18:57:07
  */
 
 'use strict';
@@ -30,9 +30,12 @@ window.Dashboard = (function() {
 
 		var config = config || {};
 		this.maxScore = parseFloat(config.score) || 0;
-		console.log("maxScore:" + this.maxScore);
+		//this.maxScore = 8;
+		// console.log("maxScore:" + this.maxScore);
+
 		this.maxAngle = (MAX_ANGLE - MIN_ANGLE) * this.maxScore / 10 + MIN_ANGLE;
 		this.init();
+		this.bindEvent();
 
 	}
 
@@ -111,8 +114,10 @@ window.Dashboard = (function() {
 
 		init: function() {
 
+			
 			var width = document.body.clientWidth;
-			var sum_width = $(document).width() > 640 ? 640 : $(document).width();
+			var sum_width = document.body.clientWidth > 640 ? 640 : document.body.clientWidth;
+		//	var sum_width = $(document).width() ;
 			this.radio = sum_width / 414;
 			var radius = width / 2 - PADDING_SIDE * this.radio;
 			var height = radius * 1.5;
@@ -143,29 +148,45 @@ window.Dashboard = (function() {
 				_this.draw();
 				_this.scoreAnimation();
 			}, 200)
-			$("#"+CONTAINER_ID).bind('click',function(e){
-					window.location.href="#/score_reading"				
+			$("#" + CONTAINER_ID).bind('click', function(e) {
+				window.location.href = "#/score_reading"
 			});
 
+		},
+		bindEvent: function() {
+			var _this = this;
+			window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function() {
+				//_this.init();	
+				if (window.orientation === 180 || window.orientation === 0) {
+					// alert('竖屏状态！');
+					// alert($(document).width());
+					_this.init();	
+				}
+				if (window.orientation === 90 || window.orientation === -90) {
+					// alert('横屏状态！');
+					// alert($(document).width());
+					_this.init();	
+				}
+			}, false);
 		},
 		scoreAnimation: function() {
 			var score = this.score;
 			var ctx = this.canvas.getContext("2d");
 			var scoreRadius = (this.mainArcRaidus - this.radio * 150) * DPR;
-			
+
 			ctx.fillStyle = "#4285f4"; //白色为例子；
 			//ctx.fillStyle = "#fff"; //白色为例子；
 			var rectWidth = 370;
 			var rectHeight = 220;
-			ctx.fillRect( - (rectWidth/2) * this.radio,  - scoreRadius - (rectHeight/2) * this.radio-60*this.radio, rectWidth * this.radio, rectHeight * this.radio);
-			
-			console.log("scoreRadius:"+scoreRadius);
-			console.log("mainArcRaidus:"+this.mainArcRaidus);
+			ctx.fillRect(-(rectWidth / 2) * this.radio, -scoreRadius - (rectHeight / 2) * this.radio - 60 * this.radio, rectWidth * this.radio, rectHeight * this.radio);
+
+			console.log("scoreRadius:" + scoreRadius);
+			console.log("mainArcRaidus:" + this.mainArcRaidus);
 			var questionRadius = (this.mainArcRaidus - this.radio * 80) * DPR;
 
-			drawWord(ctx, -Math.PI / 10, "normal "+70*this.radio+"px iconfont", "#fff", questionRadius, "\ue620", 0);
-			drawWord(ctx, -Math.PI / 2, "normal "+200*this.radio+"px Arial,Microsoft YaHei", "#fff", scoreRadius, score, 0);
-			
+			drawWord(ctx, -Math.PI / 10, "normal " + 60 * this.radio + "px iconfont", "#fff", questionRadius, "\ue620", 0);//？号
+			drawWord(ctx, -Math.PI / 2, "normal " + 200 * this.radio + "px Arial,Microsoft YaHei", "#fff", scoreRadius, score, 0);
+
 			score = (parseFloat(score) + 0.1).toFixed(1);
 			this.score = score;
 
@@ -199,24 +220,25 @@ window.Dashboard = (function() {
 				// ctx.rotate(Math.PI * (215 + ang) / 180);
 
 				var ang = (angle - MIN_ANGLE);
-				ctx.rotate(3.7524578 + ang);
+				//ctx.rotate(3.7524578 + ang);
+				ctx.rotate(3.514578 + ang);
 
 				ctx.drawImage(this, -26, -33, 52, 66);
 				ctx.restore();
 			})
 			var vx = (this.maxAngle - this._angle) * this.easing;
 
-			 //this._angle += vx;
-			 this._angle += 0.01;
-			 console.log("drawing....");
-			if (this._angle >= this.maxAngle || vx<0.0001) {
+			//this._angle += vx;
+			this._angle += 0.01;
+			console.log("drawing....");
+			if (this._angle >= this.maxAngle || vx < 0.0001) {
 				clearCircle(ctx, keduX, keduY, 100 * this.radio);
 				preLoadImg('/img/index/fixFire.png', function() {
 					ctx.beginPath();
 					ctx.save();
 					ctx.translate(keduX, keduY);
 					var ang = (angle - MIN_ANGLE);
-					ctx.rotate(3.7524578 + ang);
+					//ctx.rotate(3.7524578 + ang);
 					ctx.drawImage(this, -26, -33, 52, 66);
 					ctx.restore();
 				})
@@ -299,7 +321,7 @@ window.Dashboard = (function() {
 			var baozhangRadius = (mainArcRaidus - this.radio * 90) * DPR;
 
 			var textRadius = (mainArcRaidus - this.radio * 190) * DPR;
-			
+
 			drawWord(ctx, -Math.PI / 2, "normal " + this.radio * 45 + "px Arial,Microsoft YaHei", "#90baff", baozhangRadius, "您的保障评分", 0);
 			var word = "";
 			if (this.maxScore >= 0 && this.maxScore < 6) {
