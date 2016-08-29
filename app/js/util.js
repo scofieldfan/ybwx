@@ -1,5 +1,6 @@
 var util = {
 	domain: 'http://wechat.nuobei.cn/',
+	static_domain: 'http://static.nuobei.cn/',
 	appId: 'wxe797ac4e18b99078',
 	api: {
 		"signature": "/ybwx-web/wechat/js_signature"
@@ -137,7 +138,7 @@ var util = {
 				var shareTitle = shareObj.shareTitle || "诺贝保险管家！";
 				var url = shareObj.shareUrl || shareUrl;
 				var shareDesc = shareObj.shareDesc || "诺贝保险管家，为您定制保险！";
-				var shareImg = shareObj.shareImg || util.domain + "http://static.nuobei.cn/img/icon.jpg";
+				var shareImg = shareObj.shareImg || util.static_domain + "/img/icon.jpg";
 
 				var shareLink = url;
 				wx.onMenuShareTimeline({

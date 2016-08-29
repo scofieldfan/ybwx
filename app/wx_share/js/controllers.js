@@ -97,7 +97,7 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 
 				util.share({
 					shareUrl: util.domain + "wx_share.html#/jixian?rec_id=" + rec_id,
-					shareImg: util.domain + "http://static.nuobei.cn/wx_share/img/share_sport.png",
+					shareImg: util.static_domain + "/wx_share/img/share_sport.png",
 					shareTitle: "免费领取10万元极限运动险！要酷，更要安全！",
 					shareDesc: "每月均可领取1份，每邀请1位好友，即可再免费领取1份。约上朋友一起突破极限吧！"
 				});
@@ -308,7 +308,7 @@ wxShareControllers.controller('wxMoneyBdCtrl', ['$scope', '$filter', '$routePara
 						// TODO: openid和白名单匹配的时候,支付0.1元
 
 						var filterResult = util.whiteOpenIds.filter(function(item) {
-							return item.openid === openId
+							return item.openid === window.NBCONF.USER_CONFIG['unionid']
 						});
 						if (filterResult && filterResult.length > 0) {
 							payRequest["order_amount"] = 0.1;

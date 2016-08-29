@@ -334,7 +334,7 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 				"shareTitle": "我的保单",
 				"shareUrl": shareUrl,
 				"shareDesc": "这是我在诺贝保险管家的保单。诺贝保险管家，保险本该如此!",
-				"shareImg": util.domain + "http://static.nuobei.cn/img/icon.jpg"
+				"shareImg": util.static_domain + "/img/icon.jpg"
 			});
 
 		}

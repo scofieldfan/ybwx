@@ -45,8 +45,6 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 			$scope.CHANNEL_BANK_CARD  = "1";
 			$scope.CHANNEL_WECHAT  = "4";
 
-			//测试 sessionStorage.setItem("openId","osYjpwM4u60lvXq87l--_MWZXQRA");
-
 			$scope.plans = {};
 			var paramObj = $location.search();
 			$scope.insurance_name = paramObj.insurance_name;

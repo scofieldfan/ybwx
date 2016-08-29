@@ -1,4 +1,4 @@
-<!-- <link rel="stylesheet" href="http://static.nuobei.cn/wx_share/css/bd_part.css?rev=54d969bdfbc160147bf0b8f9a93acca1"> -->
+<!-- <link rel="stylesheet" href="/wx_share/css/bd_part.css?rev=54d969bdfbc160147bf0b8f9a93acca1"> -->
 <div id="wrapper" class="wrapper"  data-ng-init="init()">
 	<div class="bd_part_controller">
 		<div class="ul_contrl" >
@@ -51,7 +51,7 @@
 				    <small class="error" ng-show="card_numer_server_reason">{{card_numer_server_reason}}</small>
 				</div>
 				<div class="date_tit" >生效时间</div>
-					<input class="last_input" style="background:url(http://static.nuobei.cn/wx_share/img/jian.jpg) no-repeat 95% center #fff;background-size: .17rem .17rem; -webkit-appearance:none;line-height: .48rem;" type="date" placeholder="保障期间" onfocus="_hmt.push(['_trackEvent', 'toubao', 'toubao_effective_date_focus']);" min="{{minDate | date:'yyyy-MM-dd'}}" max="{{maxDate | date:'yyyy-MM-dd'}}" name="insurance_date" ng-change="genInEffectiveDate()" ng-model="user.insurance_date" placeholder="yyyy/MM/dd" required >
+					<input class="last_input" style="background:url(/wx_share/img/jian.jpg) no-repeat 95% center #fff;background-size: .17rem .17rem; -webkit-appearance:none;line-height: .48rem;" type="date" placeholder="保障期间" onfocus="_hmt.push(['_trackEvent', 'toubao', 'toubao_effective_date_focus']);" min="{{minDate | date:'yyyy-MM-dd'}}" max="{{maxDate | date:'yyyy-MM-dd'}}" name="insurance_date" ng-change="genInEffectiveDate()" ng-model="user.insurance_date" placeholder="yyyy/MM/dd" required >
 
 
 				<div class="cell"  style="color:#ff5c00" ng-show="registration.insurance_date.$dirty && registration.insurance_date.$invalid || insurance_date_server_reason">

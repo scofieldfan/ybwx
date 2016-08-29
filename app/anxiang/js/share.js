@@ -38,7 +38,7 @@ var SHARE = (function() {
         var shareTitle = "天寿助富您安享";
         var shareLink = shareUrl;
         var shareDesc = "即交快领高返还，满5年折合年化单利约4.5%";
-        var shareImg = "http://static.nuobei.cn/anxiang/img/money.jpg";
+        var shareImg = "/anxiang/img/money.jpg";
 
         wx.onMenuShareTimeline({
           title: shareTitle,

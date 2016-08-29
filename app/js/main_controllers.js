@@ -327,7 +327,6 @@ mainControllers.controller('ybwxNewIndexCtrl', ['$scope', '$routeParams', '$loca
 			});
 		}
 		$scope.init = function() {
-			//获得openId
 			$scope.pannelId = 0;
 			$scope.isLoadOk = false;
 			var currentUrl = util.domain + "#/index";
