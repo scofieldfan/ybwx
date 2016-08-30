@@ -2,7 +2,7 @@
 * @Author: fanzhang
 * @Date:   2016-08-30 15:59:00
 * @Last Modified by:   fanzhang
-* @Last Modified time: 2016-08-30 17:15:33
+* @Last Modified time: 2016-08-30 19:17:20
 */
 
 @import "base/classes.scss";
@@ -10,11 +10,13 @@
 
 .teeth-detail-wrapper{
 	background-color: #f5f5f5;
+	height:100%;
 }
 .teeth-title-container{
 	padding: 15px 10px;
 	background-color: #FFF;
 	@include border(0 0 1px 0, #c4c4c4);
+	margin-bottom:15px;
 }
 .teeth-title-contaienr_title{
 	position:relative;
@@ -40,9 +42,66 @@
 	color:#999;
 }
 
-.reservation-footer{
-	position:fixed;
-	bottom:0;
+.reservation-body{
+	@include border(0 0 1px 0, #ccc);
+	background-color: #FFF;
+	margin-bottom:15px;
+}
+
+
+.reservation-body_title{
+	padding-left:10px;
 	height:50px;
 	line-height:50px;
+	@include border(0 0 1px 0, #ccc);
+}
+
+.reservation-body-container{
+
+}
+
+.reservation-body-item{
+	padding:0px 40px;
+	line-height:1.9;
+	@include flexbox;
+}
+
+.reservation-body-item_left{
+	width:40px;
+	padding:10px;
+	// margin-top:10px;
+	// .tip{
+	// 	border-left:1px solid #ccc;
+	// 	height:100%;
+	// }
+	 @include border(0 0 0 1px, #e2e2e2);
+	 position:relative;
+}
+.showtip{
+	width:15px;
+	height:15px;
+	border-radius:100%;
+	background-color: #4285f4;
+	position:absolute;
+	left:-7.5px;
+	top:0;
+	z-index:1000;
+}
+.reservation-body-item_right{
+	@include flex(1);
+}
+.reservation-body-item_title{
+	color:#4285f4;
+}
+
+
+
+
+
+.reservation-footer{
+	@include border(1px 0 0 0, #e2e2e2);
+	position:fixed;
+	bottom:0;
+	width:100%;
+	padding:10px;
 }
