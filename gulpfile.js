@@ -13,6 +13,8 @@ var clean = require('gulp-clean');
 var sass = require('gulp-sass');
 var stripCssComments = require('gulp-strip-css-comments');
 var removeEmptyLines = require('gulp-remove-empty-lines');
+var webserver = require('gulp-webserver');
+
 
 gulp.task('rev', ['sass','cssMin', 'jsMin', 'deltmp'], function() {
 	return gulp.src('app/*.html')
@@ -227,4 +229,16 @@ gulp.task('wx_jsMin', function() {
 		.pipe(gp_sourcemaps.init())
 		.pipe(uglify())
 		.pipe(gulp.dest('app/wx_share/js/output'));
+});
+
+gulp.task('webserver', function() {
+	gulp.src('app')
+		.pipe(debug())
+		.pipe(webserver({
+			//path: "app/",
+			fallback: 'index.html',
+			livereload: true,
+			directoryListing: false,
+			open: true
+		}));
 });
