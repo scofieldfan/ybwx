@@ -126,7 +126,7 @@ transControllers.controller('wxBaoDanDetailCtrl', ['$scope', '$routeParams', '$l
 	}
 ]);
 
-/**/
+/*
 
 transControllers.controller('ybwxIPayNowCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
@@ -221,4 +221,4 @@ transControllers.controller('ybwxIPayNowCtrl', ['$scope', '$filter', '$routePara
 	}
 
 
-]);
+]);*/

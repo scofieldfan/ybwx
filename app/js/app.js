@@ -276,8 +276,11 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/teeth_reservation_list.html',
       title: "齿科预约记录",
       controller: 'ybwxTeethReservationCtrl'
-    }) 
-    .otherwise({
+    }).when('/teeth_reservation_detail',{
+      templateUrl: 'partials/teeth_reservation_detail.html',
+      title: "齿科预约记录",
+      controller: 'ybwxTeethReservationDetailCtrl'
+    }).otherwise({
       redirectTo: '/index'
     });
   }
