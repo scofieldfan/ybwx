@@ -65,14 +65,14 @@
 			</div>
 			<div class="new-supply-item" ng-if="data.address">
 				<div class="introd">详细地址</div>
-				<div class="content"><input type="text" placeholder="请输入详细地址,具体到门牌号" name="address" ng-model="user.address" class="new-input"  required></div>
+				<div class="content"><input type="text" placeholder="请输入详细地址，具体到门牌号" name="address" ng-model="user.address" class="new-input"  required></div>
 			</div>
 			<div class="new-supply-item new-supply-item--last" ng-if="data.post">
 				<div class="introd">邮政编码</div>
 				<div class="content"><input type="text" ng-minlength="6" ng-maxlength="6" placeholder="请输入邮政编码" name="post" ng-model="user.post" class="new-input"  required></div>
 			</div>
 			<div class="kong"></div>
-			<div class="title" ><i class="iconfont" style="color: #999;font-size: 17px;margin-right: 5px;vertical-align: -1px;">&#xe611;</i>补充信息</div>
+			<div class="title" ng-show="data.jobs.length>0"><i class="iconfont" style="color: #999;font-size: 17px;margin-right: 5px;vertical-align: -1px;">&#xe611;</i>补充信息</div>
 			<div class="new-supply-item"  ng-show="data.jobs.length>0">
 				<div class="introd">职业</div>
 				<div class="content" id="job"><select class="content" ><option id="first_option_color">请选择职业</option><option data-value="{{jobs.job_id}}" ng-repeat="jobs in data.jobs">{{jobs.job_name}}</option></select></div>
@@ -85,7 +85,7 @@
 			</div>
 	 		<div class="new-supply-item" ng-if="data.height">
 				<div class="introd">身高</div>
-				<div class="content"><input type="number" name="height" placeholder="请如实填写身高,方便后续理赔" ng-model="user.height" class="new-input"  required></div>
+				<div class="content"><input type="number" name="height" placeholder="请如实填写身高，方便后续理赔" ng-model="user.height" class="new-input"  required></div>
 				<div class="danwei" style="color: #999;">CM</div>
 			</div>
 			<div class="wrong-item"   ng-show="tbform.height.$dirty && tbform.height.$invalid ">
@@ -94,7 +94,7 @@
 			</div>
 			<div class="new-supply-item new-supply-item--last" ng-if="data.weight">
 				<div class="introd">体重</div>
-				<div class="content"><input type="number" name="weight"  placeholder="请如实填写体重,方便后续理赔" ng-model="user.weight" class="new-input"  required></div>
+				<div class="content"><input type="number" name="weight"  placeholder="请如实填写体重，方便后续理赔" ng-model="user.weight" class="new-input"  required></div>
 				<div class="danwei" style="color: #999;">KG</div>
 			</div>
 			<div class="wrong-item"   ng-show="tbform.weight.$dirty && tbform.weight.$invalid ">
@@ -151,7 +151,7 @@
 			<div class="supply-item"  style="color:red" ng-show="tbform.destination.$dirty && tbform.destination.$invalid ">
 				<small class="error" ng-show="tbform.destination.$error.required">地址必填</small>
 			</div>
-	        <div class="title" ng-if="data.bank_account"><i class="iconfont" style="color: #999;font-size: 17px;margin-right: 8px;vertical-align: -1px;">&#xe631;</i>续期缴费信息<span class="state">仅支持借记卡</span></div>
+	        <div class="title" ng-if="data.bank_account"><i class="iconfont" style="color: #999;font-size: 17px;margin-right: 8px;vertical-align: -1px;">&#xe631;</i>续期缴费<span class="state">仅支持借记卡</span></div>
 			<div class="new-title" ng-if="data.bank"></div>
 	 		<div class="new-supply-item" ng-if="data.bank_account">
 				<div class="introd">银行</div>
@@ -167,7 +167,7 @@
 				<div class="content"><input type="text" name="bankcardno" ng-model="user.bankcardno" class="new-input" placeholder="请输入银行账号"  required></div>
 			</div>
 			<div class="card_word new-supply-item--last" ng-if="data.bank_card_no" style="overflow: none">
-				请详细阅读条款中的转账授权书，保险公司会在续期交费前，从投保人账号中扣除续期保险费
+				每次续期缴费时，保险公司会自动从该银行账号中扣除相应保费
 			</div>
 		</div></div>
 

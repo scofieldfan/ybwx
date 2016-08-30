@@ -48,13 +48,23 @@ transControllers.controller('wxBaoDanListCtrl', ['$scope', '$routeParams', '$loc
 
 		$scope.goPay = function(order_id, order_no, order_amount) {
 			_hmt.push(['_trackEvent', 'bd_list', 'bdlist_gopay']);
-			$location.path('/pay_select').search({
+			var payRequest = {
 				"insurance_name": "诺贝保险管家定制产品套餐",
 				"insurance_plan_name": "诺贝保险管家定制产品套餐",
 				"order_id": order_id,
 				"order_no": order_no,
 				"order_amount": order_amount
-			});
+			};
+			var paramters = util.genParameters(payRequest);
+			window.location.href = "/wechatpay/pay.html#?"+paramters;
+
+			// $location.path('/pay_select').search({
+			// 	"insurance_name": "诺贝保险管家定制产品套餐",
+			// 	"insurance_plan_name": "诺贝保险管家定制产品套餐",
+			// 	"order_id": order_id,
+			// 	"order_no": order_no,
+			// 	"order_amount": order_amount
+			// });
 		}
 		$scope.goDetail = function(order_no, order_status) {
 			_hmt.push(['_trackEvent', 'bd_list', 'bdlist_godetail']);

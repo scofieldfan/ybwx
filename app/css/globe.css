@@ -348,7 +348,9 @@ h5 {
 .iconfont {
   font-family: "iconfont";
   font-size: 22px;
-  font-style: normal; }
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px; }
 .nuobei_header {
   padding: 7.5px 10px;
   background: #4285f4;
@@ -485,6 +487,8 @@ h5 {
 .finish:active {
   background: #266ada; }
 .bd_education_bottom {
+  background: #fff;
+  z-index: 9999;
   width: 100%;
   position: relative;
   position: fixed;

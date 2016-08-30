@@ -12,6 +12,7 @@ var ybwxApp = angular.module('ybwxApp', [
   'serviceControllers',
   'transactionControllers',
   'autoPromoteControllers',
+  'teethControllers',
   'routeStyles'
 ]).value('cgBusyDefaults', {
   message: '正在加载....',
@@ -257,15 +258,26 @@ ybwxApp.config(['$routeProvider',
       title: "产品条款列表"
     }).when('/yixiangsu', {
       templateUrl: 'partials/yixiangsu.html',
-      title: "一像素"
+      title: "一像素",
+      controller: 'ybwxChild_dentailCtrl'
     }).when('/test', {
       templateUrl: 'partials/test.html',
-      title: "一像素"
+      title: "一像素",
     }).when('/score_reading', {
       templateUrl: 'partials/score_reading.html',
       title: "评分解读",
       controller: 'ybwxscoreReadingCtrl'
-    }).otherwise({
+    }).when('/child_dental', {
+      templateUrl: 'partials/child_dental.html',
+      title: "齿科保险"
+      // controller: 'ybwxChild_dentailCtrl'
+    })
+    .when('/teeth_reservation_list',{
+      templateUrl: 'partials/teeth_reservation_list.html',
+      title: "齿科预约记录",
+      controller: 'ybwxTeethReservationCtrl'
+    }) 
+    .otherwise({
       redirectTo: '/index'
     });
   }
