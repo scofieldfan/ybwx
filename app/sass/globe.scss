@@ -628,6 +628,8 @@ overflow: hidden;
 }
 // 底部按钮 左右两个button
 .bd_education_bottom {
+    background: #fff;
+    z-index: 9999;
     width: 100%;
     @include border(1px 0 0 0,#ccc);
     position: fixed;

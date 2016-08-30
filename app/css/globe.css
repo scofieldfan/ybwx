@@ -487,6 +487,8 @@ h5 {
 .finish:active {
   background: #266ada; }
 .bd_education_bottom {
+  background: #fff;
+  z-index: 9999;
   width: 100%;
   position: relative;
   position: fixed;

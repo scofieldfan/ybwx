@@ -1,37 +1,203 @@
 @import "base/classes.scss";
 @import "base/variables.scss";
-
-.box1{
-    height: 100px;
-	width: 100%;
-	border-bottom: 1px solid #ccc;
-}
-.box2 {
-	  height: 10px;
-	width: 100%;
-	@include border(0 0 1px 0,#ccc);
-}
-.box3{
-    position: relative;
-    // margin-bottom: 20px;
-    border:none;
-    height: 10px;
-}
-.box3:after{
-    content: '';
-    position: absolute;
-    top: 0;
+.m-find-header {
+    height: .44rem;
+    background: #fff;
+    position:absolute;
     left: 0;
-    border-bottom: 1px solid #ccc;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 200%;
-    height: 200%;
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-    -webkit-transform-origin: left top;
-    transform-origin: left top;
+    top: 0;
+    z-index: 9999;
+    display: none !important;
+    @include flexbox(flex);
+    /*position: relative;*/
+    ul {
+        position: absolute;
+        @include flex(1);
+        @include flexbox(flex);
+        position: relative;
+        .findLeft {
+            position: absolute;
+            left: .24rem;
+            width: .55rem;
+            height: .44rem;
+            font-size: .14rem;
+            color: #222222;
+            line-height: .4rem;
+            b {
+                width: 2rem;
+                height: .4rem;
+            }
+        }
+        .find {
+            @include flex(1);
+            font-size: .18rem;
+            text-align: center;
+            line-height: .44rem;
+        }
+    }
 }
+.m-find-body {
+    @include flex(1);
+    overflow: hidden;
+    width:100%;
+    >section {
+        width: 100%;
+        .head {
+            text-align: center;
+            height: .35rem;
+            line-height: .35rem;
+            img {
+                width: .2rem;
+                height: .2rem;
+                display: inline-block;
+                transform: rotate(180deg);
+                -webkit-transform: rotate(180deg);
+                transition: transform 150ms;
+                -webkit-transition: transform 150ms;
+             }
+        }
+        .swiper-slide {
+            height: 3.75rem;
+            img {
+                width: 100%;
+            }
+        }
+
+        .Delicacy {
+            position: absolute;
+            top: 297px;
+            height: 1.12rem;
+            width: 100%;
+            background: #000;
+            opacity: .6;
+            z-index: 9999;
+        }
+
+        ul {
+            img {
+                width: 100%;
+            }
+        }
+        .loading {
+            .height16 {
+            height: .08rem;
+            }
+            .lianjie {
+                height: .47rem;
+                background: #fff;
+                @include flexbox(flex);
+                @include align-items(center);
+                li:not(:nth-child(2)) {
+                    @include flex(1);
+                    height: .26rem;
+                    @include box-sizing(border-box);
+                    text-align: center;
+                    line-height: .26rem;
+                    .fontbig{
+                        font-size: .2rem;
+                    }
+                }
+                li:nth-child(2) {
+                    width: .01rem;
+                    height: .26rem;
+                    background: #ccc;               
+                }       
+            }
+        }
+        .foot {
+            text-align: center;
+            height: .35rem;
+            line-height: .35rem;
+        }
+        .foot img {
+            width: .2rem;
+            height: .2rem;
+            margin-bottom: -7px;
+            display: inline-block;
+            transition: transform 150ms;
+            -webkit-transition: transform 150ms;
+        }
+        
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// .box1{
+//     height: 100px;
+// 	width: 100%;
+// 	border-bottom: 1px solid #ccc;
+// }
+// .box2 {
+// 	  height: 10px;
+// 	width: 100%;
+// 	@include border(0 0 1px 0,#ccc);
+// }
+// .box3{
+//     position: relative;
+//     // margin-bottom: 20px;
+//     border:none;
+//     height: 10px;
+// }
+// .box3:after{
+//     content: '';
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     border-bottom: 1px solid #ccc;
+//     -webkit-box-sizing: border-box;
+//     box-sizing: border-box;
+//     width: 200%;
+//     height: 200%;
+//     -webkit-transform: scale(0.5);
+//     transform: scale(0.5);
+//     -webkit-transform-origin: left top;
+//     transform-origin: left top;
+// }
 // td {
 // 	height: 30px;
 // 	background: blue;
