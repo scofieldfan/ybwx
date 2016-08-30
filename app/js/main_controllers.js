@@ -1648,3 +1648,4 @@ mainControllers.controller('ybwxscoreReadingCtrl', ['$scope', '$filter', '$route
 
 	}
 ]);
+

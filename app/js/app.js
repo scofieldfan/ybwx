@@ -257,14 +257,19 @@ ybwxApp.config(['$routeProvider',
       title: "产品条款列表"
     }).when('/yixiangsu', {
       templateUrl: 'partials/yixiangsu.html',
-      title: "一像素"
+      title: "一像素",
+      controller: 'ybwxChild_dentailCtrl'
     }).when('/test', {
       templateUrl: 'partials/test.html',
-      title: "一像素"
+      title: "一像素",
     }).when('/score_reading', {
       templateUrl: 'partials/score_reading.html',
       title: "评分解读",
       controller: 'ybwxscoreReadingCtrl'
+    }).when('/child_dental', {
+      templateUrl: 'partials/child_dental.html',
+      title: "齿科保险"
+      // controller: 'ybwxChild_dentailCtrl'
     }).otherwise({
       redirectTo: '/index'
     });
