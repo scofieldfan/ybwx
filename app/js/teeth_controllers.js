@@ -2,7 +2,7 @@
 * @Author: fanzhang
 * @Date:   2016-08-30 10:34:57
 * @Last Modified by:   fanzhang
-* @Last Modified time: 2016-08-30 10:54:53
+* @Last Modified time: 2016-08-30 15:56:51
 */
 
 'use strict';
@@ -20,3 +20,14 @@ teethControllers.controller('ybwxTeethReservationCtrl', ['$scope', '$routeParams
 	
 	}
 ]);
+//牙齿预约的详情
+teethControllers.controller('ybwxTeethReservationDetailCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $routeParams, $location, $http, $rootScope) {
+
+		_hmt.push(['_trackPageview', $location.path()]);
+
+	
+	}
+]);
+
+
