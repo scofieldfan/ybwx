@@ -13,17 +13,17 @@ var clean = require('gulp-clean');
 var sass = require('gulp-sass');
 var stripCssComments = require('gulp-strip-css-comments');
 var removeEmptyLines = require('gulp-remove-empty-lines');
+var webserver = require('gulp-webserver');
+
 
 gulp.task('rev', ['sass','cssMin', 'jsMin', 'deltmp'], function() {
-
-
-
 	return gulp.src('app/*.html')
 		.pipe(debug())
 		.pipe(rev())
 		.pipe(gulp.dest('app'));
 
 });
+
 gulp.task('copycss', function() {
 	 gulp.src('app/css/*.css')
 		.pipe(gulp.dest('app/js/css/'));
@@ -39,7 +39,6 @@ gulp.task('copycss', function() {
 });
 
 
-
 gulp.task('addVersion', ['copycss'], function() {
 
 	  gulp.src('app/js/*.js')
@@ -51,7 +50,7 @@ gulp.task('addVersion', ['copycss'], function() {
 		.pipe(debug())
 		.pipe(rev())
 		.pipe(gulp.dest('app/wechatpay'));
-		
+
 	return gulp.src('app/partials/*.html')
 		.pipe(rev())
 		.pipe(gulp.dest('app/partials'));
@@ -198,6 +197,7 @@ gulp.task('wx_deltmp', ['wx_add_version'], function() {
 	//gulp.src('app/partials/css', {read: false}).pipe(clean());
 })
 
+// minify css
 gulp.task('wx_cssMin', function() {
 	return gulp.src([
 			'app/bower_components/normalize-css/normalize.css',
@@ -208,6 +208,8 @@ gulp.task('wx_cssMin', function() {
 		.pipe(concat('wx_share.min.css'))
 		.pipe(gulp.dest('app/wx_share/css'))
 })
+
+// minify js file
 gulp.task('wx_jsMin', function() {
 	return gulp.src([
 			'app/js/util.js',
@@ -219,7 +221,6 @@ gulp.task('wx_jsMin', function() {
 			'app/wx_share/js/app.js',
 			'app/wx_share/js/controllers.js',
 			'app/wx_share/js/directives.js'
-
 		], {
 			base: 'app/'
 		})
@@ -228,4 +229,16 @@ gulp.task('wx_jsMin', function() {
 		.pipe(gp_sourcemaps.init())
 		.pipe(uglify())
 		.pipe(gulp.dest('app/wx_share/js/output'));
+});
+
+gulp.task('webserver', function() {
+	gulp.src('app')
+		.pipe(debug())
+		.pipe(webserver({
+			//path: "app/",
+			fallback: 'index.html',
+			livereload: true,
+			directoryListing: false,
+			open: true
+		}));
 });

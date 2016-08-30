@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="css/bdm_list.css?rev=bded96c36402269b1b66868cf4e8af62">
+<link rel="stylesheet" type="text/css" href="/css/bdm_list.css?rev=bded96c36402269b1b66868cf4e8af62">
 <style>
 
 .pei_button{
@@ -77,8 +77,8 @@
 }
 </style>
 <div class="nuobei_header">
-	<div class="img_ctrl"><img src="img/nuobei_header/logo640.png"></div>
-	<div class="back_homePage"><a href="http://wechat.nuobei.cn/#/index">回首页</a></div>
+	<div class="img_ctrl"><img src="/img/nuobei_header/logo640.png"></div>
+	<div class="back_homePage"><a href="/#/index">回首页</a></div>
 	<div class="concern" id="foucs_button">关 注</div>
 </div>
 <div class="container"  cg-busy="loadingPromise">
@@ -86,7 +86,7 @@
 
 	
 	<div class="default_tip"  ng-if="data.policies.length==0">
-		<img src="img/verify.png">
+		<img src="/img/verify.png">
 		<div >新买的保险不知道真假？</div>
 		<div>上传保单 立即验真</div>
 	</div>
@@ -96,7 +96,7 @@
 			<div class="wrapper" style="padding:0.2rem 0">
 				<div class="bg"></div>
 				<div class="process-container-left">
-					<img src="img/loadding.png" >
+					<img src="/img/loadding.png" >
 				</div>	
 				<div class="process-container-right">
 					<p class="name"><span class="blue">{{data.un_settled_policies_amount}}</span>份保单待验真</p>
@@ -113,15 +113,15 @@
 					<img class="logo" ng-src="{{policy.icon}}"   />
 					<div style="margin-right: 50px;">
 						<div class="product">{{policy.name}}</div>
-						<div class="time"><img src="img/clock.jpg"/>{{policy.coverageDate}}</div>
+						<div class="time"><img src="/img/clock.jpg"/>{{policy.coverageDate}}</div>
 						<div class="tip-text"  ng-show="policy.status==='4'" >未查到您的保单信息，请尝试其他方式验真</div>
 					</div>
 					<div style="clear:both;"></div>
 
 					<div class="bd-effective">
-								<img src="img/wsx.png"  ng-show="policy.insure_status==0 " />
-								<img src="img/cover.png"  ng-show="policy.insure_status==1 " />
-								<img src="img/shixiao.png"  ng-show="policy.insure_status==2" />
+								<img src="/img/wsx.png"  ng-show="policy.insure_status==0 " />
+								<img src="/img/cover.png"  ng-show="policy.insure_status==1 " />
+								<img src="/img/shixiao.png"  ng-show="policy.insure_status==2" />
 					</div>
 					<!--
 					<div class="status success"></div>
@@ -136,8 +136,8 @@
 					<div class="pei_button" ng-click="goClaimInfo(policy.claim_info_id )">理&nbsp;赔</div>
 						-->
 						<!--
-						<div class="daiyanzhen"  ng-show="policy.status=='1' "><img src="img/daiyanzhen.png" /></div>
-						<div class="daiyanzhen"  ng-show="policy.status=='2' "><img src="img/daiyanzhen.png" /></div>
+						<div class="daiyanzhen"  ng-show="policy.status=='1' "><img src="/img/daiyanzhen.png" /></div>
+						<div class="daiyanzhen"  ng-show="policy.status=='2' "><img src="/img/daiyanzhen.png" /></div>
 						-->
 					<div class="yanzhen-btn fr fail"  ng-show="policy.status=='1' ">待验真</div>
 					<div class="yanzhen-btn fr fail"  ng-show="policy.status=='2' ">验真中</div>
@@ -158,6 +158,6 @@
 
 <div class="cell pay_container">
   <a href="javascript:void(0)" class="btn btn_dark_2_primary" ng-click="goBdUpload();" style="border-radius: 0px;">
-<img src="img/upload.png">&nbsp;上传保单</a>
+<img src="/img/upload.png">&nbsp;上传保单</a>
 </div>
 

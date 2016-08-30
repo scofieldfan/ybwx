@@ -84,11 +84,8 @@ bdControllers.controller('ybwxbaodanVerifyListCtrl', ['$scope', '$routeParams', 
 		$scope.type = "4";
 		$scope.init = function() {
 
-			var code = util.getParameterByName("code") || code;
-
-			util.getOpenId(code).then(function() {
-				var openId = sessionStorage.getItem("openId");
-				$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_verfiy_policy'] + "?open_id=" + openId+"&wechat_type=2", {}, function(res) {
+			util.getOpenId().then(function() {
+				$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_verfiy_policy'], {}, function(res) {
 					$scope.data = res.data.data;
 					$scope.typeGroup = _.groupBy(res.data.data.policies, function(item) {
 						return item.insurance_type;
@@ -130,10 +127,8 @@ bdControllers.controller('ybwxbaodanManageListCtrl', ['$scope', '$routeParams', 
 		}
 		$scope.type = $routeParams.type || "4";
 		$scope.init = function() {
-			var code = util.getParameterByName("code") || $routeParams.code;
-			util.getOpenId(code).then(function() {
-				var openId = sessionStorage.getItem("openId");
-				$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_policies_list'] + "?open_id=" + openId+"&wechat_type=2", {}, function(res) {
+			util.getOpenId().then(function() {
+				$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_policies_list'], {}, function(res) {
 					$scope.data = res.data.data;
 					$scope.typeGroup = _.groupBy(res.data.data.policies, function(item) {
 						return item.insurance_type;
@@ -187,8 +182,7 @@ bdControllers.controller('ybwxbaodaninsurancePolicyCtrl', ['$scope', '$routePara
 		$scope.send_bd = function() {
 			// console.log($scope.sendForm);
 			if (!$scope.sendForm.email.$invalid) {
-				var openId = sessionStorage.getItem("openId");
-				util.sendMail($http, $rootScope, api['send_bd'], openId, $scope.user.email, $location.search().order_no,function(res){
+				util.sendMail($http, $rootScope, api['send_bd'], $scope.user.email, $location.search().order_no,function(res){
 					console.log("res");
 					
 				});
@@ -222,40 +216,35 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 		}
 		$scope.init = function() {
 
-			var code = util.getParameterByName("code") || $routeParams.code;
-
 			if ($routeParams.policy_id && $routeParams.policy_id == 'test') {
 				$scope.isTest = true;
 				$("#test_baodan").show();
 			} else {
 				$("#my_baodan").show();
 			}
-			util.getOpenId(code).then(function() {
+			util.getOpenId().then(function() {
 
-				if (!$scope.isTest) {
-					var openId = sessionStorage.getItem("openId");
-					if ($routeParams.share_id) {
-						openId = $routeParams.share_id;
-					}
-					var parameters = {
-						'open_id': openId,
-						'policy_id': $routeParams.policy_id
-					}
-					$scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_policy_detail'] + "?" + util.genParameters(parameters), {}, function(res) {
-						$scope.data = res.data.data;
-						$scope.data.coverageDateHead = res.data.data.coverageDate.substring(0, 19).trim();
-						$scope.data.coverageDateTail = res.data.data.coverageDate.substring(19).trim();
-						console.log($scope.data.coverageDateHead);
-						console.log($scope.data.coverageDateTail);
-						console.log(res.data.data);
-						$(".bd-wrapper").show();
-						console.log("order_no");
-						$scope.order_no = res.data.data.order_no;
-						console.log($scope.order_no);
-					})
-				}
-				$scope.shareConfig();
-			});
+                if (!$scope.isTest) {
+                    var parameters = {
+                        'open_id': window.NBCONF.USER['unionid'] || '',
+                        'policy_id': $routeParams.policy_id
+                    }
+
+                    $scope.loadingPromise = getHttpPromise($http, $rootScope, 'GET', api['get_policy_detail'] + "?" + util.genParameters(parameters), {}, function (res) {
+                        $scope.data = res.data.data;
+                        $scope.data.coverageDateHead = res.data.data.coverageDate.substring(0, 19).trim();
+                        $scope.data.coverageDateTail = res.data.data.coverageDate.substring(19).trim();
+                        console.log($scope.data.coverageDateHead);
+                        console.log($scope.data.coverageDateTail);
+                        console.log(res.data.data);
+                        $(".bd-wrapper").show();
+                        console.log("order_no");
+                        $scope.order_no = res.data.data.order_no;
+                        console.log($scope.order_no);
+                    })
+                }
+                $scope.shareConfig();
+            });
 			//util.uploadImgConfig(function() {
 			//alert("choose...");
 			//});
@@ -309,10 +298,8 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 			if ($scope.data.status != 1) {
 				return;
 			}
-			var openId = sessionStorage.getItem("openId");
 
 			var parameters = {
-				'open_id': openId,
 				'policy_id': $routeParams.policy_id
 			};
 			getHttpPromise($http, $rootScope, 'GET', api['policy_verfiy'] + "?" + util.genParameters(parameters), {}, function(res) {
@@ -337,10 +324,9 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 		}
 		$scope.shareConfig = function() {
 
-			var openId = sessionStorage.getItem("openId");
 			var params = {
 				'policy_id': $routeParams.policy_id,
-				'share_id': openId
+				'share_id': window.NBCONF.USER['unionid'] || ''
 			}
 			var paramStr = util.genParameters(params);
 			var shareUrl = util.domain + "#bdm_detail?" + paramStr;
@@ -348,7 +334,7 @@ bdControllers.controller('ybwxbaodanMDetailSiteCtrl', ['$scope', '$routeParams',
 				"shareTitle": "我的保单",
 				"shareUrl": shareUrl,
 				"shareDesc": "这是我在诺贝保险管家的保单。诺贝保险管家，保险本该如此!",
-				"shareImg": util.domain + "img/icon.jpg"
+				"shareImg": util.static_domain + "/img/icon.jpg"
 			});
 
 		}
@@ -382,7 +368,6 @@ bdControllers.controller('ybwxUpdateAddContactCtrl', ['$scope', '$routeParams', 
 			$scope.state = document.getElementById("checkbox").checked;
 			// console.log($scope.state);
 		}
-		var openId = sessionStorage.getItem("openId");
 		var userId = $routeParams.user_id;
 		$scope.method = $routeParams.method;
 		var isUpdate = false;
@@ -407,7 +392,6 @@ bdControllers.controller('ybwxUpdateAddContactCtrl', ['$scope', '$routeParams', 
 			// 新增被保险人
 
 			$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['addContact'], {
-				open_id: openId,
 				relation: $scope.relation.id,
 				is_default: $scope.state,
 				username: $scope.username,
@@ -432,7 +416,6 @@ bdControllers.controller('ybwxUpdateAddContactCtrl', ['$scope', '$routeParams', 
 			$("#dialog1").show(function() {
 				$scope.sure = function() {
 					$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['deleteContact'], {
-						'open_id': openId,
 						'insured_id': userId
 					}, function(res) {
 						// if(res && res.data && res.data.data.){
@@ -461,7 +444,6 @@ bdControllers.controller('ybwxUpdateAddContactCtrl', ['$scope', '$routeParams', 
 		// 获取被保险人资料
 		$scope.getUserInfo = function(userId) {
 			$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['getData'], {
-				'open_id': openId,
 				"insured_id": userId
 			}, function(res) {
 				if (res && res.data && res.data.data.relations) {
@@ -496,7 +478,6 @@ bdControllers.controller('ybwxUpdateAddContactCtrl', ['$scope', '$routeParams', 
 		$scope.editUserInfo = function(insured_id) {
 			_hmt.push(['_trackEvent', 'update_add_contact', 'update_add_contact_edit']);
 			$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['update'], {
-				'open_id': openId,
 				"insured_id": insured_id,
 				'relation': $scope.relation.id,
 				'is_default': $scope.state,
@@ -585,10 +566,8 @@ bdControllers.controller('ybwxContactListCtrl', ['$scope', '$routeParams', '$loc
 			});
 		}
 
-		var openId = sessionStorage.getItem("openId");
 		$scope.init = function() {
 			$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['recognizee_compile'], {
-				'open_id': openId
 			}, function(res) {
 				if (res && res.data && res.data.data.relations) {
 					$scope.data = res.data.data.relations;
@@ -660,11 +639,8 @@ bdControllers.controller('ybwxBDPicCtrl', ['$scope', '$routeParams', '$location'
 			serverIds: []
 		};
 		$("#loading").show();
-		var code = util.getParameterByName("code");
-		if (!code) {
-			code = $routeParams.code;
-		}
-		util.getOpenId(code).then(function() {
+
+		util.getOpenId().then(function() {
 			util.uploadImgConfig(function() {
 				//alert("choose...");
 				$("#loading").hide();
@@ -674,9 +650,7 @@ bdControllers.controller('ybwxBDPicCtrl', ['$scope', '$routeParams', '$location'
 
 
 		function uploadImg2Server(mediaIds, source) {
-			var openId = sessionStorage.getItem("openId");
 			$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['upload_policy_image'], {
-				'open_id': openId,
 				'media_ids': mediaIds,
 				'source': source
 			}, function(res) {

@@ -1,9 +1,8 @@
 var util = {
 	domain: 'http://wechat.nuobei.cn/',
+	static_domain: 'http://static.nuobei.cn/',
 	appId: 'wxe797ac4e18b99078',
-	shareScope: 'snsapi_userinfo',
 	api: {
-		"openid": "/ybwx-web/wechat/open_id",
 		"signature": "/ybwx-web/wechat/js_signature"
 	},
 	getParameterByName: function(name) {
@@ -22,7 +21,7 @@ var util = {
 	genParameters: function(obj) {
 		var str = [];
 		for (var key in obj) {
-			str.push(key + "=" + obj[key]);
+			str.push(key + "=" + encodeURIComponent(obj[key]));
 		}
 		return str.join("&");
 	},
@@ -101,32 +100,20 @@ var util = {
 		$(document).on('mousewheel', util.preventDefault);
 		$(document).on('touchmove', util.preventDefault);
 	},
-	getOpenId: function(code) {
-		if (!sessionStorage.getItem("openId")) {
-			return $.when($.ajax({
-				type: 'GET',
-				url: util.api["openid"],
-				data: {
-					code: code,
-					type: 2
-				},
-				dataType: "json"
-			})).done(function(res) {
-				if (res && res.data && res.data["openid"]) {
-					sessionStorage.setItem("openId", res.data["openid"]);
-				} else {
-					console.error("invalid code......");
-				}
-			});
-		}
+	getOpenId: function() {
+	    //return '--';
 		return $.when();
 	},
 
-	share: function(shareObj, isNotEncode) {
+	share: function(shareObj) {
+	    if (window.navigator.userAgent.indexOf('MicroMessenger') == -1) {
+	        return;
+        }
+
 		var shareObj = shareObj || {};
 		return $.when($.ajax({
 			type: 'GET',
-			url: util.api["signature"],
+			url: util.api["signature"]+'?__f=share',
 			data: {
 				url: location.href.split('#')[0],
 				type: 2
@@ -151,9 +138,9 @@ var util = {
 				var shareTitle = shareObj.shareTitle || "诺贝保险管家！";
 				var url = shareObj.shareUrl || shareUrl;
 				var shareDesc = shareObj.shareDesc || "诺贝保险管家，为您定制保险！";
-				var shareImg = shareObj.shareImg || util.domain + "img/icon.jpg";
+				var shareImg = shareObj.shareImg || util.static_domain + "/img/icon.jpg";
 
-				var shareLink = isNotEncode ? url : 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + util.appId + '&redirect_uri=' + encodeURIComponent(url) + '&response_type=code&scope=' + util.shareScope + '&state=123#wechat_redirect';
+				var shareLink = url;
 				wx.onMenuShareTimeline({
 					title: shareTitle,
 					link: shareLink,
@@ -192,7 +179,7 @@ var util = {
 
 		return $.when($.ajax({
 			type: 'GET',
-			url: util.api["signature"],
+			url: util.api["signature"]+'?__f=image',
 			data: {
 				"url": location.href.split('#')[0],
 				type: 2
@@ -217,18 +204,18 @@ var util = {
 
 		})
 	},
-	sendMail: function($http, $rootScope, url, openId, email, order_no) {
+	sendMail: function($http, $rootScope, url, email, order_no) {
 		$http({
 			method: 'POST',
 			headers: {
-				"Content-Type": "application/json;charset:UTF-8"
+				"Content-Type": "application/json;charset=UTF-8"
 			},
 			url: url,
 			data: {
-				"open_id": openId,
+				"open_id": '--',
 				"email": email,
 				"order_no": order_no,
-				wechat_type: 1
+				wechat_type: 2
 			}
 		}).then(function(res) {
 			console.log(res);
@@ -314,48 +301,32 @@ var util = {
 	getTaoCanStatus: function(status) {
 		return util.taocan_status[status];
 	},
-	redirectWeChatUrl: function(redirectUrl) {
-		if (typeof redirectUrl === "string" && redirectUrl.indexOf("http") == 0) {
-			var WE_CHAT_URL = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + util.appId + '&redirect_uri=' + encodeURIComponent(redirectUrl) + '&response_type=code&scope=' + util.shareScope + '&state=123#wechat_redirect';
-			window.location.href = WE_CHAT_URL;
-		}
-	},
-	checkCodeAndOpenId: function(angularCode, currentUrl, callback) {
-		var code = util.getParameterByName("code") || angularCode;
-		if (!sessionStorage.getItem("openId") && !code) {
-			//如果没有openId,也没有code，那么就跳转一次
-			util.redirectWeChatUrl(currentUrl);
-		} else {
-			util.getOpenId(code).then(function() {
-				var openId = sessionStorage.getItem("openId");
-				if (!openId) {
-					//如果用当前的code如法获得openId，那么就重新跳转获得一次openId
-					util.redirectWeChatUrl(currentUrl);
-				} else {
-					if (typeof callback === "function") {
-						callback();
-					}
-				}
-			});
-		}
 
+	checkCodeAndOpenId: function(angularCode, currentUrl, callback) {
+        if (typeof callback === "function") {
+            callback();
+        }
 	},
 	whiteOpenIds: [{
-		openid: "omP9dwb6u-lamgwOhFqFIcU3QLPk",
+		openid: "Pw4KDg8ICwgGCglgDA0KDw9cDw5gUExmVU9Icw9IWUxvXAtLdmx0bHRodQ1yaU4Hag==",
 		name: "巴信军"
 	}, {
-		openid: "omP9dwbQiEkPbFE0K6NtVa4d5bF0",
+		openid: "iLm9ubi/vL+xvb7Xu7q9uLjruLnX5/vR4vj/xbz9vrjk/tD5sL/kpaXXxd/S0NnayQ==",
 		name: "Fan"
 	}, {
-		openid: "omP9dwThw9op485Y-6NMp6HywJ0M",
+		openid: "Snt/e3p9fn1zf3wVeXh/enopensVJTkTIDo9AQMOJzwjPB8hIh95fzApfSJ5ciEnLQ==",
 		name: "郭渊敏"
 	}, {
-		openid: "omP9dwSdKKzWA4D9j1I1Lr1EbHMg",
+		openid: "AzI2MjM0NzQ6NjVcMDE2MzNgMzJcbHBaaXN0TzJWR0Jtb0RkQDVxVkQ7MmxXN1ExMw==",
 		name: "许文科"
 	}, {
-		openid: "omP9dwSHJtzwyRFBCBc3z-jpxwj8",
+		openid: "yPn9+fj//P/x/f6X+/r9+Pir+PmXp7uRori/gYyyhpKp/Yyir/ifoPud+aKwnKD//A==",
 		name: "岳文甲"
-	}],
+	},{
+		openid: "fUxITE1KSUpESEsiTk9ITU0eTUwiEg4kFw0KPBpNTQ0PTx4TTg0oHk8fFAwyHkgQPA==",
+		name: "s"
+	}
+	],
 	relationShip: [{
 			id: 1,
 			name: '本人'

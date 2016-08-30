@@ -441,7 +441,7 @@ var CIRCLE = (function() {
 
 		
 		
-		preLoadImg("img/slider-btn.png", function() {
+		preLoadImg("/img/slider-btn.png", function() {
             ctx.drawImage(this, keduX-33, keduY-33, 66,66);
         });
 		/*
