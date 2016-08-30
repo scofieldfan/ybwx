@@ -12,6 +12,7 @@ var ybwxApp = angular.module('ybwxApp', [
   'serviceControllers',
   'transactionControllers',
   'autoPromoteControllers',
+  'teethControllers',
   'routeStyles'
 ]).value('cgBusyDefaults', {
   message: '正在加载....',
@@ -270,7 +271,13 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/child_dental.html',
       title: "齿科保险"
       // controller: 'ybwxChild_dentailCtrl'
-    }).otherwise({
+    })
+    .when('/teeth_reservation_list',{
+      templateUrl: 'partials/teeth_reservation_list.html',
+      title: "齿科预约记录",
+      controller: 'ybwxTeethReservationCtrl'
+    }) 
+    .otherwise({
       redirectTo: '/index'
     });
   }
