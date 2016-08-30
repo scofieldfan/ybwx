@@ -255,7 +255,7 @@ gulp.task('rsync:dev', ['sass', 'wx_sass'], function() {
 	gulp.src('app')
 		.pipe(rsync({
 			root: 'app',
-			hostname: 'a.h.nuobei.cn',
+			hostname: 'b.h.nuobei.cn',
 			username: 'dev',
 			destination: '/www/' + getSystemUser(),
 			archive: true,
