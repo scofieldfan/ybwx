@@ -2,7 +2,7 @@
 * @Author: fanzhang
 * @Date:   2016-08-30 15:59:00
 * @Last Modified by:   fanzhang
-* @Last Modified time: 2016-08-30 19:17:20
+* @Last Modified time: 2016-08-31 11:17:33
 */
 
 @import "base/classes.scss";
@@ -57,7 +57,7 @@
 }
 
 .reservation-body-container{
-
+	padding-top:10px;
 }
 
 .reservation-body-item{
@@ -77,18 +77,22 @@
 	 @include border(0 0 0 1px, #e2e2e2);
 	 position:relative;
 }
+.reservation-body-item_left:after{
+	top:20px;
+}
 .showtip{
-	width:15px;
-	height:15px;
+	width:8px;
+	height:8px;
 	border-radius:100%;
 	background-color: #4285f4;
 	position:absolute;
-	left:-7.5px;
-	top:0;
+	left:-3px;
+	top:10px;
 	z-index:1000;
 }
 .reservation-body-item_right{
 	@include flex(1);
+	margin-bottom:10px;
 }
 .reservation-body-item_title{
 	color:#4285f4;
