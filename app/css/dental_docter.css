@@ -1,0 +1,53 @@
+@charset "UTF-8";
+.dental-docter {
+  background: #f5f5f5;
+  color: #444; }
+  .dental-docter .dental-docter_header {
+    height: 70px;
+    position: relative;
+    background: #fff;
+    margin-bottom: 10px; }
+    .dental-docter .dental-docter_header::after {
+      pointer-events: none;
+      position: absolute;
+      z-index: 999;
+      top: 0;
+      left: 0;
+      content: "\0020";
+      border-color: #ccc;
+      border-style: solid;
+      border-width: 0 0 1px 0;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      -webkit-transform-origin: 0 0;
+      transform-origin: 0 0; }
+      @media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+        .dental-docter .dental-docter_header::after {
+          width: 200%;
+          height: 200%;
+          -webkit-transform: scale(0.5);
+          transform: scale(0.5); } }
+      @media (min--moz-device-pixel-ratio: 2.5), (-webkit-min-device-pixel-ratio: 2.5), (min-device-pixel-ratio: 2.5), (min-resolution: 240dpi), (min-resolution: 2.5dppx) {
+        .dental-docter .dental-docter_header::after {
+          width: 200%;
+          height: 200%;
+          -webkit-transform: scale(1/3);
+          transform: scale(1/3); } }
+  .dental-docter .dental-docter_main {
+    background: #fff;
+    padding: 20px 10px; }
+    .dental-docter .dental-docter_main .dental-docter_main_tit {
+      font-size: 18px;
+      text-align: center;
+      line-height: 18px; }
+    .dental-docter .dental-docter_main .dental-docter_main_user-name {
+      color: #999;
+      font-size: 15px;
+      text-align: center;
+      line-height: 15px;
+      margin: 15px 0 20px; }
+    .dental-docter .dental-docter_main .dental-docter_main_has {
+      padding: 15px 17px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background: #f9f9f9; }

@@ -264,12 +264,16 @@ ybwxApp.config(['$routeProvider',
       title: "一像素",
     }).when('/score_reading', {
       templateUrl: 'partials/score_reading.html',
-      title: "评分解读",
+      title: "保障评分是如何计算的？",
       controller: 'ybwxscoreReadingCtrl'
-    }).when('/child_dental', {
+    }).when('/dental', {
       templateUrl: 'partials/child_dental.html',
       title: "齿科保险"
       // controller: 'ybwxChild_dentailCtrl'
+    }).when('/dental_docter', {
+      templateUrl: 'partials/dental_docter.html',
+      title: "齿科诊所医生"
+      // controller: 'ybwxDetal_docterCtrl'
     }).otherwise({
       redirectTo: '/index'
     });

@@ -1,0 +1,40 @@
+@import "base/classes.scss";
+@import "base/variables.scss";
+
+.dental-docter {
+	background: #f5f5f5;
+	color: #444;
+	.dental-docter_header {
+		height: 70px;
+		@include border(0 0 1px 0,#ccc);
+		background: #fff;
+		margin-bottom: 10px;
+		// padding: 15px 30px;
+		.dental-docter_header_list {
+
+
+		}
+	}
+	.dental-docter_main {
+		background: #fff;
+		padding: 20px 10px;
+		.dental-docter_main_tit {
+			font-size: 18px;
+			text-align: center;
+			line-height: 18px;
+		}
+		.dental-docter_main_user-name {
+			color: #999;
+			font-size: 15px;
+			text-align: center;
+			line-height: 15px;
+			margin: 15px 0 20px;
+		}
+		.dental-docter_main_has {
+			padding: 15px 17px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			background: #f9f9f9;
+		}
+	}
+}
