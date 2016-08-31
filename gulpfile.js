@@ -258,12 +258,15 @@ gulp.task('rsync:dev', ['rev', 'wx_rev'], function() {
 			dest: 'rsync://deploy@b.h.nuobei.cn/' + getSystemUser() + '/',
 			recursive: true,
 			exclude: ['node_modules/*'],
-			args: ['-a', '-v']
+			args: ['-a', '-v', '--progress']
 		}, function(error, stdout, stderr, cmd) {
 			if (error){
 				console.log("Command: " + cmd);
 				console.log(error.message);
 			}
+
+			console.log("Stdout: \n" + stdout);
+			console.log("Stderr: \n" + stderr);
 		});
 	} catch (ex) {
 	}
