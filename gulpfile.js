@@ -13,9 +13,7 @@ var clean = require('gulp-clean');
 var sass = require('gulp-sass');
 var stripCssComments = require('gulp-strip-css-comments');
 var removeEmptyLines = require('gulp-remove-empty-lines');
-var webserver = require('gulp-webserver');
-var rsync = require('gulp-rsync')
-
+var rsync = require('rsyncwrapper');
 
 var getSystemUser = function() {
 	return process.env.USER || process.env.USERNAME || "nuobei";
@@ -236,41 +234,67 @@ gulp.task('wx_jsMin', function() {
 		.pipe(gulp.dest('app/wx_share/js/output'));
 });
 
-gulp.task('webserver', function() {
-	gulp.src('app')
-		.pipe(debug())
-		.pipe(webserver({
-			//path: "app/",
-			fallback: 'index.html',
-			livereload: true,
-			directoryListing: false,
-			open: true
-		}));
-});
+// 执行推送
+var do_sync = function(opt) {
+	var include = [];
+	var exclude = ['node_modules/*'];
+	if (typeof opt['include'] == 'object') {
+		include = opt['include']
+	}
 
-
-gulp.task('rsync:dev', ['sass', 'wx_sass'], function() {
 	console.log("Current User: " + getSystemUser() );
+	try {
+		rsync({
+			ssh: false,
+			src: 'app/*',
+			dest: 'rsync://deploy@b.h.nuobei.cn/' + getSystemUser() + '/',
+			exclude: exclude,
+			include: include,
+			args: ['-rltD', '-v', '--progress']
+		}, function(error, stdout, stderr, cmd) {
+			if (error){
+				console.log("Command: " + cmd);
+				console.log(error.message);
+			}
 
-	gulp.src('app')
-		.pipe(rsync({
-			root: 'app',
-			hostname: 'b.h.nuobei.cn',
-			username: 'dev',
-			destination: '/www/' + getSystemUser(),
-			archive: true,
-			recursive: true,
-			compress: true,
-			exclude: ['node_modules/*'],
-			silent: true,
-			verbose: false
-		}));
+			console.log("Stdout: \n" + stdout);
+			console.log("Stderr: \n" + stderr);
+		});
+	} catch (ex) {
+	}
+}
+
+// 监听的文件列表
+var dev_sync_files = [
+	'app/css/**',
+	'app/wx_share/css/**',
+	'app/wx_share/partials/wx_share/css/**',
+	'app/partials/**',
+	'app/template/**',
+	'app/wx_share/partials/**',
+	'app/wechatpay/**',
+	'app/*.*',
+	'app/css/output/**',
+	'app/js/output/**',
+	'app/wx_share/js/output/**'
+]
+
+// 只同步待监听的文件
+gulp.task('deploy:sync:dev', function() {
+	do_sync({
+		include: dev_sync_files
+	});
 });
 
-gulp.task('deploy:dev', function() {
-	gulp.watch('app/sass/*.scss',          ['sass', 'rsync:dev']);
-	gulp.watch('app/sass/wx_share/*.scss', ['wx_sass', 'rsync:dev']);
-	gulp.watch('app/**',                   ['rsync:dev']);
+// 监听 scss, html 改动, 发送同步
+gulp.task('sync:dev', ['sass:watch', 'wx_sass:watch'], function() {
+	gulp.watch(
+		dev_sync_files,
+		['deploy:sync:dev']
+	);
 });
 
-gulp.task('nil', function() {});
+// 打包发送到dev
+gulp.task('deploy:dev', ['rev', 'wx_rev'], function() {
+	do_sync({});
+});
