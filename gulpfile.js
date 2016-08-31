@@ -14,8 +14,8 @@ var sass = require('gulp-sass');
 var stripCssComments = require('gulp-strip-css-comments');
 var removeEmptyLines = require('gulp-remove-empty-lines');
 var webserver = require('gulp-webserver');
-var rsync = require('gulp-rsync')
-
+//var rsync = require('gulp-rsync')
+var rsync = require('rsyncwrapper');
 
 var getSystemUser = function() {
 	return process.env.USER || process.env.USERNAME || "nuobei";
@@ -249,27 +249,32 @@ gulp.task('webserver', function() {
 });
 
 
-gulp.task('rsync:dev', ['sass', 'wx_sass'], function() {
+gulp.task('rsync:dev', ['rev', 'wx_rev'], function() {
 	console.log("Current User: " + getSystemUser() );
-
-	gulp.src('app')
-		.pipe(rsync({
-			root: 'app',
-			hostname: 'b.h.nuobei.cn',
-			username: 'dev',
-			destination: '/www/' + getSystemUser(),
-			archive: true,
+	try {
+		rsync({
+			ssh: false,
+			src: 'app/*',
+			dest: 'rsync://deploy@b.h.nuobei.cn/' + getSystemUser() + '/',
 			recursive: true,
-			compress: true,
 			exclude: ['node_modules/*'],
-			silent: true,
-			verbose: false
-		}));
+			args: ['-a', '-v', '--progress']
+		}, function(error, stdout, stderr, cmd) {
+			if (error){
+				console.log("Command: " + cmd);
+				console.log(error.message);
+			}
+
+			console.log("Stdout: \n" + stdout);
+			console.log("Stderr: \n" + stderr);
+		});
+	} catch (ex) {
+	}
 });
 
 gulp.task('deploy:dev', function() {
-	gulp.watch('app/sass/*.scss',          ['sass', 'rsync:dev']);
-	gulp.watch('app/sass/wx_share/*.scss', ['wx_sass', 'rsync:dev']);
+	//gulp.watch('app/sass/*.scss',          ['sass', 'rsync:dev']);
+	//gulp.watch('app/sass/wx_share/*.scss', ['wx_sass', 'rsync:dev']);
 	gulp.watch('app/**',                   ['rsync:dev']);
 });
 
