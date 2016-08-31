@@ -54,7 +54,8 @@
 .reservation-body {
   position: relative;
   background-color: #FFF;
-  margin-bottom: 15px; }
+  margin-bottom: 15px;
+  overflow: hidden; }
   .reservation-body::after {
     pointer-events: none;
     position: absolute;
@@ -175,6 +176,7 @@
   color: #4285f4; }
 .reservation-footer {
   position: relative;
+  box-sizing: border-box;
   position: fixed;
   bottom: 0;
   width: 100%;
