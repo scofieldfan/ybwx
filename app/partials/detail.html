@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="css/product_detail.css?rev=059061230515fd7b8a12901871e30d08">
+<link rel="stylesheet" type="text/css" href="/css/product_detail.css?rev=059061230515fd7b8a12901871e30d08">
 
 <div class="mask " id="detail_mask_container"  style="display: none;z-index:100000">
   <div class="head-container">
@@ -76,7 +76,7 @@
     <span class="subtitle">&nbsp;{{data.insurance_second_type}}&nbsp;&nbsp;</span>
     <span class="fr">
       查看
-      <a href="ybwx-web/api/web_page/{{data.information_page_id}}" target="_blank">
+      <a href="/ybwx-web/api/web_page/{{data.information_page_id}}" target="_blank">
         <span class="blue">投保须知</span>
       </a>
     </span>
@@ -97,7 +97,7 @@
     <tr ng-repeat="item in plan.coverage_beans">
       <td class="td-left" style="cursor: pointer;">
         {{item.name}}
-        <img src="wx_share/img/help.jpg"  class="help-img" title="{{item.description}}"></td>
+        <img src="/wx_share/img/help.jpg"  class="help-img" title="{{item.description}}"></td>
       <td ng-if="item.sum_insured>0">{{item.sum_insured | number}}元{{item.danwei}}</td>
       <td ng-if="item.sum_insured==0">赠送</td>
     </tr>

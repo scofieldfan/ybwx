@@ -15,8 +15,7 @@ mainControllers.controller('ybwxTargetCtrl', ['$scope', '$filter', '$routeParams
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 
 		$scope.relation = 1;
-		var code = util.getParameterByName("code") || $routeParams.code;
-		util.getOpenId(code).then(function() {
+		util.getOpenId().then(function() {
 
 		});
 		// 临时的后期还会变动 start
@@ -179,9 +178,7 @@ mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeP
 mainControllers.controller('ybwxHobbyCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 		$scope.init = function() {
-			var openId = sessionStorage.getItem("openId");
 			$scope.hobbyPromise = getHttpPromise($http, $rootScope, 'POST', api['get_scheme_questions'], {
-				"open_id": openId,
 				"age": $routeParams.age
 			}, function(res) {
 				$scope.data = res.data.data.questions;
@@ -199,10 +196,11 @@ mainControllers.controller('ybwxHobbyCtrl', ['$scope', '$filter', '$routeParams'
 	 //    });
 		$scope.goScheme = function() {
 			$scope.piont_type = parseInt($(".piont_type").is(':checked') ? 2 : 1);
-			$ele = $("#relation").find(".blue");
+			var ele = $("#relation").find(".blue");
 			var questions = [];
-			for (i = 0; i < $ele.length; i++) {
-				questions.push(parseInt($($ele[i]).attr("data-main")));
+			var i;
+			for (i = 0; i < ele.length; i++) {
+				questions.push(parseInt($(ele[i]).attr("data-main")));
 			}
 			$location.path("/scheme").search({
 				relation: $routeParams.relation,
@@ -221,10 +219,8 @@ mainControllers.controller('ybwxHobbyCtrl', ['$scope', '$filter', '$routeParams'
 mainControllers.controller('ybwxSchemeCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 		$scope.init = function() {
-			var openId = sessionStorage.getItem("openId");
 			console.log($routeParams.piont_type);
 			$scope.schemaPromise = getHttpPromise($http, $rootScope, 'POST', api['get_scheme'], {
-				"open_id": openId,
 				"relation": $routeParams.relation,
 				"primary_income": $routeParams.primary_income,
 				"gender": $routeParams.sex,
@@ -276,9 +272,7 @@ mainControllers.controller('ybwxKeySolutionCtrl', ['$scope', '$filter', '$routeP
         
 			console.log($routeParams.annual_income);
             
-			var openId = sessionStorage.getItem("openId");
 			$scope.solutionPromise = getHttpPromise($http, $rootScope, 'POST', api['get_scheme_plans'], {
-				"open_id": openId,
 				"scheme_id": $routeParams.scheme_id, //方案id
 				"gender": $routeParams.sex,
 				"age": $routeParams.age,
@@ -431,9 +425,7 @@ mainControllers.controller('ybwxKeySolutionCtrl', ['$scope', '$filter', '$routeP
 		$scope.isHaveRestrictions = false;
 
 		$scope.getRestrictions = function() {
-			var openId = sessionStorage.getItem("openId");
 			$scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_restrictions'], {
-				open_id: openId,
 				plan_ids: $scope.choosePlansIds
 
 			}, function(res) {

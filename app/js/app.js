@@ -12,6 +12,7 @@ var ybwxApp = angular.module('ybwxApp', [
   'serviceControllers',
   'transactionControllers',
   'autoPromoteControllers',
+  'teethControllers',
   'routeStyles'
 ]).value('cgBusyDefaults', {
   message: '正在加载....',
@@ -48,12 +49,12 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/newindex_part.html?v=123',
       controller: 'ybwxNewIndexCtrl',
       title: '诺贝保险管家',
-      css:'css/newindex_part.css?rev=db9ade35cbbcf5aebbbdb2ee62c40e77'
+      css:'/css/newindex_part.css?rev=db9ade35cbbcf5aebbbdb2ee62c40e77'
     }).when('/bd_education_new', {
       templateUrl: 'partials/bd_education_new.html',
       controller: 'ybwxBdEducationNewCtrl',
       title: "保障评分",
-      css:'css/bd_education_new.css?rev=a7b78b121f810c0eb3c8d32eb72074b5'
+      css:'/css/bd_education_new.css?rev=0fbdb77be4ebe5f22d73198ca483db74'
     }).when('/bd_education_family', {
       templateUrl: 'partials/bd_education_family.html',
       controller: 'ybwxBdEducationNewCtrl',
@@ -62,17 +63,17 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/select_part.html?v=123',
       controller: 'ybwxSelectCtrl',
       title: "保障提升",
-      css:'css/ring.css?rev=c63a06ceedb5b686280a30dbca14c419'
+      css:'/css/ring.css?rev=c63a06ceedb5b686280a30dbca14c419'
     }).when('/solution', {
       templateUrl: 'partials/solution.html',
       controller: 'ybwxSolutionCtrl',
       title: "保障方案",
-      css:'css/solution.css?rev=301af2db72788480204b9873d4530cdd'
+      css:'/css/solution.css?rev=b2c9fedac0f535639ffe3450b2403685'
     }).when('/sx_bzts', {
       templateUrl: 'partials/sx_bzts.html?v=12dsdsfdf543',
       controller: 'ybwxAgeInsuranceCtrl',
       title: "寿险保障提升",
-      css:'css/ring.css?rev=c63a06ceedb5b686280a30dbca14c419'
+      css:'/css/ring.css?rev=c63a06ceedb5b686280a30dbca14c419'
     }).when('/jk_bzts', {
       templateUrl: 'partials/jk_bzts.html?v=12dsdsfdf543',
       controller: 'ybwxMoneyDurationCtrl',
@@ -81,7 +82,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/toubao_new.html',
       controller: 'ybwxToubaoNewCtrl',
       title: "投保确认",
-      css:'css/toubao_new.css?rev=71c6a1543e6e1a7e22ffb0050bff9c30'
+      css:'/css/toubao_new.css?rev=2ca2302e80c43de79081afb5df058893'
     }).when('/promote', {
       templateUrl: 'partials/bz_ts.html',
       controller: 'ybwxPromoteCtrl',
@@ -90,40 +91,40 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/target.html',
       controller: 'ybwxTargetCtrl',
       title: "保障对象",
-      css:'css/ensuring_target.css?rev=fa3114468d3b3a8c3179231731b05e6d'
+      css:'/css/ensuring_target.css?rev=fa3114468d3b3a8c3179231731b05e6d'
     }).when('/hobby', {
       templateUrl: 'partials/hobby.html',
       controller: 'ybwxHobbyCtrl',
       title: "偏好设定",
-      // css: 'css/preference.css?rev=dgfdgdfgdfgdfg65fdgfd'
+      // css: '/css/preference.css?rev=dgfdgdfgdfgdfg65fdgfd'
     }).when('/userinfo_new', {
       templateUrl: 'partials/userinfo_new.html',
       controller: 'ybwxUserInfoNewCtrl',
       title: "资料设定",
-      css:'css/userinfo_new.css?rev=432ce1d5947e69931411b158c31e432c'
+      css:'/css/userinfo_new.css?rev=432ce1d5947e69931411b158c31e432c'
     }).when('/scheme', {
       templateUrl: 'partials/scheme.html',
       controller: 'ybwxSchemeCtrl',
       title: "方案解读"
-      // css: 'css/scheme.css'
+      // css: '/css/scheme.css'
     }).when('/key_solution', {
       templateUrl: 'partials/key_solution.html',
       controller: 'ybwxKeySolutionCtrl',
       title: "保障方案",
-      css:'css/solution.css?rev=301af2db72788480204b9873d4530cdd'
+      css:'/css/solution.css?rev=b2c9fedac0f535639ffe3450b2403685'
     }).when('/service', {
       templateUrl: 'partials/service.html',
       controller: 'ybwxServiceCtrl',
       title: "服务",
-      css:'css/service.css?rev=ccb7b72ecdc803068fa76ac098ed10f2'
+      css:'/css/service.css?rev=a0a10104e9771bb22adad66b5d4ab010'
     }).when('/about_nuobei', {
       templateUrl: 'partials/about_nuobei.html',
       title: "关于诺贝",
-      css:'css/about_nuobei.css?rev=ae4ad37c360dd52474bee1c696a3c0da'
+      css:'/css/about_nuobei.css?rev=ae4ad37c360dd52474bee1c696a3c0da'
     }).when('/contact', {
       templateUrl: 'partials/contact.html',
       title: "联系我们",
-      css: 'css/contact.css?rev=8e0e23f4630665fec18595ec646adb41'
+      css: '/css/contact.css?rev=8e0e23f4630665fec18595ec646adb41'
     }).when('/collection', {
       templateUrl: 'partials/collection.html',
       title: "我的收藏"
@@ -131,12 +132,12 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/bz_list.html?v=123',
       controller: 'ybwxBzCtrl',
       title: "定制保障说明",
-      css:'css/bz.css?rev=bce3af9d845381e3dc7cfd8fd513b4c9'
+      css:'/css/bz.css?rev=bce3af9d845381e3dc7cfd8fd513b4c9'
     }).when('/tb_dz', {
       templateUrl: 'partials/toubao_dingzhi_all.html',
       controller: 'ybwxToubaoDingzhiAllCtrl',
       title: "确认投保",
-      css:'css/toubao.css?rev=jsdhfjhsd'
+      css:'/css/toubao.css?rev=jsdhfjhsd'
     }).when('/verify_information', {
       templateUrl: 'partials/verify_information.html',
       controller: 'ybwxverify_informationCtrl',
@@ -161,17 +162,17 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/temai_detail.html',
       controller: 'wxDetailNewCtrl',
       title: "诺贝严选",
-      css:'css/temai_detail.css?rev=5eaa44fc55e6267e6a76d71af6cf6246'
+      css:'/css/temai_detail.css?rev=1b7ba81bbe3232dccabdf8310570f251'
     }).when('/temaiindex', {
       templateUrl: 'partials/temai_index.html',
       controller: 'wxTemaiIndexCtrl',
       title: "诺贝严选",
-      css:'css/temai_index.css?rev=6f0efffeeee9c01550c5619f39f3b847'
+      css:'/css/temai_index.css?rev=6f0efffeeee9c01550c5619f39f3b847'
     }).when('/temailist', {
       templateUrl: 'partials/temai_list.html',
       controller: 'wxTemaiListCtrl',
       title: "诺贝严选",
-      css:'css/temai_list.css?rev=0e539480736a12281b466e8fa72795cb'
+      css:'/css/temai_list.css?rev=0e539480736a12281b466e8fa72795cb'
     }).when('/bd_list', {
       templateUrl: 'partials/bd_list.html',
       controller: 'wxBaoDanListCtrl',
@@ -199,7 +200,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/education.html',
       controller: 'ybwxEducationCtrl',
       title: "如何投保",
-      css:"css/education.css?rev=893734c647381c2bdc4b6b133c497b7b"
+      css:"/css/education.css?rev=893734c647381c2bdc4b6b133c497b7b"
     }).when('/edindex', {
       templateUrl: 'partials/ed_index.html',
       controller: 'ybwxEdIndexCtrl',
@@ -274,6 +275,15 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/dental_docter.html',
       title: "齿科诊所医生"
       // controller: 'ybwxDetal_docterCtrl'
+    })
+    .when('/teeth_reservation_list',{
+      templateUrl: 'partials/teeth_reservation_list.html',
+      title: "齿科预约记录",
+      controller: 'ybwxTeethReservationCtrl'
+    }).when('/teeth_reservation_detail',{
+      templateUrl: 'partials/teeth_reservation_detail.html',
+      title: "齿科预约记录",
+      controller: 'ybwxTeethReservationDetailCtrl'
     }).otherwise({
       redirectTo: '/index'
     });

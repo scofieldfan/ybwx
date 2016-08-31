@@ -20,9 +20,7 @@ transControllers.controller('wxBaoDanListCtrl', ['$scope', '$routeParams', '$loc
 		$scope.init = function() {
 
 			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
-				var openId = sessionStorage.getItem("openId");
 				$scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurances'], {
-					'open_id': openId
 				}, function(res) {
 					console.log("result ......");
 					$scope.orders = res.data.data.orders;
@@ -50,13 +48,23 @@ transControllers.controller('wxBaoDanListCtrl', ['$scope', '$routeParams', '$loc
 
 		$scope.goPay = function(order_id, order_no, order_amount) {
 			_hmt.push(['_trackEvent', 'bd_list', 'bdlist_gopay']);
-			$location.path('/pay_select').search({
+			var payRequest = {
 				"insurance_name": "诺贝保险管家定制产品套餐",
 				"insurance_plan_name": "诺贝保险管家定制产品套餐",
 				"order_id": order_id,
 				"order_no": order_no,
 				"order_amount": order_amount
-			});
+			};
+			var paramters = util.genParameters(payRequest);
+			window.location.href = "/wechatpay/pay.html#?"+paramters;
+
+			// $location.path('/pay_select').search({
+			// 	"insurance_name": "诺贝保险管家定制产品套餐",
+			// 	"insurance_plan_name": "诺贝保险管家定制产品套餐",
+			// 	"order_id": order_id,
+			// 	"order_no": order_no,
+			// 	"order_amount": order_amount
+			// });
 		}
 		$scope.goDetail = function(order_no, order_status) {
 			_hmt.push(['_trackEvent', 'bd_list', 'bdlist_godetail']);
@@ -81,11 +89,9 @@ transControllers.controller('wxBaoDanDetailCtrl', ['$scope', '$routeParams', '$l
 			return insuranceColorMap[status]
 		}
 		$scope.init = function() {
-			var openId = sessionStorage.getItem("openId");
 			$scope.status = $routeParams.order_status;
 
 			$scope.myPromise = getHttpPromise($http, $rootScope, 'POST', api['get_insurance_detail'], {
-				"open_id": openId,
 				'order_no': $routeParams.order_no
 			}, function(res) {
 				console.log(res);
@@ -101,8 +107,7 @@ transControllers.controller('wxBaoDanDetailCtrl', ['$scope', '$routeParams', '$l
 
 		$scope.send_bd = function() {
 			if (!sendForm.email.$invalid) {
-				var openId = sessionStorage.getItem("openId");
-				util.sendMail($http, $rootScope, api['send_bd'], openId, $scope.user.email, $location.search().order_no);
+				util.sendMail($http, $rootScope, api['send_bd'], $scope.user.email, $location.search().order_no);
 				$scope.hideDialog();
 			}
 		}
@@ -116,7 +121,7 @@ transControllers.controller('wxBaoDanDetailCtrl', ['$scope', '$routeParams', '$l
 	}
 ]);
 
-/**/
+/*
 
 transControllers.controller('ybwxIPayNowCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
@@ -163,9 +168,7 @@ transControllers.controller('ybwxIPayNowCtrl', ['$scope', '$filter', '$routePara
 
 		}
 		$scope.ajaxPayInfo = function(channelType) {
-			var openId = sessionStorage.getItem("openId");
 			$scope.payPromise = getHttpPromise($http, $rootScope, 'POST', api['pay_new'], {
-				open_id: openId,
 				pay_order_id: $routeParams.order_id,
 				pay_channel_type: channelType,
 				wechat_type: 2
@@ -211,4 +214,4 @@ transControllers.controller('ybwxIPayNowCtrl', ['$scope', '$filter', '$routePara
 	}
 
 
-]);
+]);*/

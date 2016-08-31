@@ -431,3 +431,21 @@ footer {
   background: url('../../img/temai/arrow.jpg') no-repeat center;
   background-size: 10px;
 }
+
+
+
+
+.ybwx-btn{
+   height: 40px;
+   width: 100%;
+   color: #fff;
+   font-size: 15px;
+   text-align: center;
+   line-height: 40px;
+   border-radius: 5px;
+   margin: 0 auto;
+}
+
+.ybwx-btn--primary{
+  background-color: #4285f4;
+}

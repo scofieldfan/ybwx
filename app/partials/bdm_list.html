@@ -1,7 +1,7 @@
-<link rel="stylesheet" type="text/css" href="css/bdm_list.css?rev=bded96c36402269b1b66868cf4e8af62">
+<link rel="stylesheet" type="text/css" href="/css/bdm_list.css?rev=bded96c36402269b1b66868cf4e8af62">
 <div class="nuobei_header">
-	<div class="img_ctrl"><img src="img/nuobei_header/logo640.png"></div>
-	<div class="back_homePage"><a href="http://wechat.nuobei.cn/#/index">回首页</a></div>
+	<div class="img_ctrl"><img src="/img/nuobei_header/logo640.png"></div>
+	<div class="back_homePage"><a href="/#/index">回首页</a></div>
 	<div class="concern" id="foucs_button">关 注</div>
 </div>
 <header>
@@ -52,7 +52,7 @@
 			<div class="wrapper" style="padding:0.2rem 0">
 				<div class="bg"></div>
 				<div class="process-container-left">
-					<img src="img/loadding.png" >
+					<img src="/img/loadding.png" >
 				</div>	
 				<div class="process-container-right">
 					<p class="name"><span class="blue">{{data.un_settled_policies_amount}}</span>份保单待处理</p>
@@ -70,14 +70,14 @@
 					<img class="logo" ng-src="{{policy.icon}}"   />
 					<div style="margin-right: 1rem;">
 						<div class="product">{{policy.name}}</div>
-						<div class="time" ><img src="img/clock.jpg"/>  <span >{{policy.coverageDate.substring(0,11)}} <span style="font-size: 12px;">至</span> {{policy.coverageDate.substring(20,30)}}</span> </div>
+						<div class="time" ><img src="/img/clock.jpg"/>  <span >{{policy.coverageDate.substring(0,11)}} <span style="font-size: 12px;">至</span> {{policy.coverageDate.substring(20,30)}}</span> </div>
 					</div>
 					<div style="clear:both;"></div>
 
 					<div class="bd-effective">
-						<img src="img/wsx.png"  ng-show="policy.insure_status==0 " />
-						<img src="img/cover.png"  ng-show="policy.insure_status==1 " />
-						<img src="img/shixiao.png"  ng-show="policy.insure_status==2" />
+						<img src="/img/wsx.png"  ng-show="policy.insure_status==0 " />
+						<img src="/img/cover.png"  ng-show="policy.insure_status==1 " />
+						<img src="/img/shixiao.png"  ng-show="policy.insure_status==2" />
 					</div>
 					<!--
 					<div class="status success"></div>
@@ -108,10 +108,10 @@
 			<div class="bg"></div>
 			<div class="title">保单号:22000000001528 </div>
 			<div class="des ">
-				<img class="logo" src="img/picc_logo.jpg" />
+				<img class="logo" src="/img/picc_logo.jpg" />
 				<div style="margin-right: 1rem;">
 					<div class="product">中国人保|爱心天使7天综合意外险</div>
-					<div class="time"><img  src="img/clock.jpg"/> 2016.03.03 至 2016.03.10</div>
+					<div class="time"><img  src="/img/clock.jpg"/> 2016.03.03 至 2016.03.10</div>
 				</div>
 				<div style="clear:both;"></div>
 				<div class="status success"></div>
@@ -138,10 +138,10 @@
 <div class="offer" ng-if="data.policies.length == 0">
 	<div class="tigong">上传已有的保单照片，我们为您提供:</div>
 	<div class="lei">
-		<div class="word"><span  class="marRight_20"><img  src="img/bdm_list/baozhang.png"> 保障评估</span><span ><img  src="img/bdm_list/tisheng.png"> 保障提升</span></div>
+		<div class="word"><span  class="marRight_20"><img  src="/img/bdm_list/baozhang.png"> 保障评估</span><span ><img  src="/img/bdm_list/tisheng.png"> 保障提升</span></div>
 	</div>
 	<div class="lei">
-		<div class="word"><span class="marRight_20"><img src="img/bdm_list/xubao.png"> 续保提醒</span><span ><img src="img/bdm_list/lipei.png"> 理赔服务</span></div>
+		<div class="word"><span class="marRight_20"><img src="/img/bdm_list/xubao.png"> 续保提醒</span><span ><img src="/img/bdm_list/lipei.png"> 理赔服务</span></div>
 	</div>
 </div>
 <!-- <div class="tip"  ng-if="data.policies.length == 0" >

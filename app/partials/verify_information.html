@@ -1,17 +1,17 @@
-<link rel="stylesheet" href="css/claim_information.css">
+<link rel="stylesheet" href="/css/claim_information.css">
 
 <ul class="claim_controller" data-ng-init="init()" >
 
 
 
 	<li>
-		<p><img src="img/claim_information/logo.jpg" ><span>北京保险行业协会验真查询</span></p>
+		<p><img src="/img/claim_information/logo.jpg" ><span>北京保险行业协会验真查询</span></p>
 		<a   href="http://211.151.140.69/SearchPolicy/index.jsp" >北京保险行业协会验真查询</a>
 	</li>
 
 
 	<li ng-repeat="item in data.items">
-		<p><img src="img/claim_information/logo.jpg" ><span>{{item.title}}</span></p>
+		<p><img src="/img/claim_information/logo.jpg" ><span>{{item.title}}</span></p>
 		<a  ng-class='{"content":!item.url}' href="javascript:void(0)" ng-repeat="description in item.processData">{{description}}</a>
 	</li>
 </ul>
