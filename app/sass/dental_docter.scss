@@ -1,20 +1,47 @@
 @import "base/classes.scss";
 @import "base/variables.scss";
+// 环境修复好移到globe
+.dental-docter_header {
+	// height: 70px;
+	@include border(0 0 1px 0,#ccc);
+	background: #fff;
+	margin-bottom: 10px;
+	padding: 15px 9px;
+	@include flexbox();
+	// padding: 15px 30px;
+	.dental-docter_header_list {
+		@include flex(1);
+		// padding: 0 9px;
+		.dental-docter_header_list-word {
+			font-size: 15px;
+			text-align: center;
+			line-height: 15px;
+		}
+		.dental-docter_header_list_steps {
+			@include flexbox();
+			margin-bottom: 5px;
+			.padd_18 {
+				margin: 9px 0;
+				background: #4285f3;
+			}
+			.color_ccc {
+				background: #f0f0f0;
+			}
+			img {
+				height: 20px;
+			}
+			.flex1 {
+				@include flex(1);
+			}
+		}
+	}
+}
+
+// end
 
 .dental-docter {
 	background: #f5f5f5;
-	color: #444;
-	.dental-docter_header {
-		height: 70px;
-		@include border(0 0 1px 0,#ccc);
-		background: #fff;
-		margin-bottom: 10px;
-		// padding: 15px 30px;
-		.dental-docter_header_list {
-
-
-		}
-	}
+	color: #555;
 	.dental-docter_main {
 		background: #fff;
 		padding: 20px 10px;
@@ -30,11 +57,96 @@
 			line-height: 15px;
 			margin: 15px 0 20px;
 		}
+		
 		.dental-docter_main_has {
 			padding: 15px 17px;
 			border: 1px solid #ccc;
 			border-radius: 5px;
+			background: #fff;
+			margin-bottom: 10px;
+			.dental-docter_main_has_box {
+				@include flexbox();
+				.dental-docter_main_has_box--left {
+					@include flex(1);
+				}
+				.dental-docter_main_has_box--right {
+					line-height: 38px;
+					i{
+						display: inline-block;
+						transform:rotate(90deg);
+						-ms-transform:rotate(90deg); /* Internet Explorer */
+						-moz-transform:rotate(90deg); /* Firefox */
+						-webkit-transform:rotate(90deg); /* Safari 和 Chrome */
+						-o-transform:rotate(90deg); /* Opera */
+					}
+					.io {
+						display: inline-block;
+						// @include transform(rotate(90deg));
+						transform:rotate(270deg);
+						-ms-transform:rotate(270deg); /* Internet Explorer */
+						-moz-transform:rotate(270deg); /* Firefox */
+						-webkit-transform:rotate(270deg); /* Safari 和 Chrome */
+						-o-transform:rotate(270deg); /* Opera */
+					}
+				}
+			}
+			.dental-docter_main_has_tit {
+			  font-size: 15px;
+			  line-height: 15px;
+			  margin-bottom: 11px;
+			}
+			border-radius: 5px;
+			.dental-docter_main_has_address {
+			  color: #999;
+			  font-size: 12px;
+			  line-height: 12px;
+			}
+			.dental-docter_main_has_docter {
+			  @include flexbox();
+			  margin-top: 15px;
+			  .docter_pic {
+			  	background: #fff;
+				  min-height: 175px;
+				  @include flex(1);
+				  border-radius: 5px;
+				  img {
+				  	width: 100%;
+				  	vertical-align: middle;
+				  }
+				  .docter_pic_name-word {
+				  	border: 1px solid #d4d4d4;
+				  	background: #fff;
+				  	border-radius: 0 0 5px 5px;
+				  }
+				  .docter_pic_name-word:active {
+				  	background: #eee;
+				  }
+				  .docter_pic_name {
+				  	text-align: center;
+				  	font-size: 15px;
+				  	line-height: 15px;
+				  	margin: 10px 0;
+				  }
+				  .docter_pic_detail {
+				  	text-align: center;
+				  	font-size: 12px;
+				  	color: #999;
+				  	padding: 0 5px;
+				  	margin-bottom: 10px;
+				  }
+				}
+				.docter_pic:active {
+					z-index: 9999;
+				  	background: red;
+			  	}
+				.marRight {
+					margin-right: 5px;
+				}
+			}
+		}
+		.background {
 			background: #f9f9f9;
 		}
+		
 	}
 }

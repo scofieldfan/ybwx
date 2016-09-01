@@ -13,8 +13,6 @@ var clean = require('gulp-clean');
 var sass = require('gulp-sass');
 var stripCssComments = require('gulp-strip-css-comments');
 var removeEmptyLines = require('gulp-remove-empty-lines');
-var webserver = require('gulp-webserver');
-//var rsync = require('gulp-rsync')
 var rsync = require('rsyncwrapper');
 
 var getSystemUser = function() {
@@ -236,29 +234,22 @@ gulp.task('wx_jsMin', function() {
 		.pipe(gulp.dest('app/wx_share/js/output'));
 });
 
-gulp.task('webserver', function() {
-	gulp.src('app')
-		.pipe(debug())
-		.pipe(webserver({
-			//path: "app/",
-			fallback: 'index.html',
-			livereload: true,
-			directoryListing: false,
-			open: true
-		}));
-});
+var do_sync = function(opt) {
+	var include = [];
+	var exclude = ['node_modules/*'];
+	if (typeof opt['include'] == 'object') {
+		include = opt['include']
+	}
 
-
-gulp.task('rsync:dev', ['rev', 'wx_rev'], function() {
 	console.log("Current User: " + getSystemUser() );
 	try {
 		rsync({
 			ssh: false,
 			src: 'app/*',
 			dest: 'rsync://deploy@b.h.nuobei.cn/' + getSystemUser() + '/',
-			recursive: true,
-			exclude: ['node_modules/*'],
-			args: ['-a', '-v', '--progress']
+			exclude: exclude,
+			include: include,
+			args: ['-rltD', '-v', '--progress']
 		}, function(error, stdout, stderr, cmd) {
 			if (error){
 				console.log("Command: " + cmd);
@@ -270,12 +261,47 @@ gulp.task('rsync:dev', ['rev', 'wx_rev'], function() {
 		});
 	} catch (ex) {
 	}
+}
+
+gulp.task('deploy:dev:d', function() {
+	do_sync({
+		include: [
+			'app/css/**',
+			'app/wx_share/css/**',
+			'app/wx_share/partials/wx_share/css/**',
+			'app/partials/**',
+			'app/template/**',
+			'app/wx_share/partials/**',
+			'app/wechatpay/**',
+			'app/*.*',
+			'app/css/output/**',
+			'app/js/output/**',
+			'app/wx_share/js/output/**'
+		]
+	});
 });
 
-gulp.task('deploy:dev', function() {
-	//gulp.watch('app/sass/*.scss',          ['sass', 'rsync:dev']);
-	//gulp.watch('app/sass/wx_share/*.scss', ['wx_sass', 'rsync:dev']);
-	gulp.watch('app/**',                   ['rsync:dev']);
+// 监听 scss, html 改动, 发送同步
+gulp.task('sync:watch:d', ['sass:watch', 'wx_sass:watch'], function() {
+	gulp.watch(
+		[
+			'app/css/**',
+			'app/wx_share/css/**',
+			'app/wx_share/partials/wx_share/css/**',
+			'app/partials/**',
+			'app/template/**',
+			'app/wx_share/partials/**',
+			'app/wechatpay/**',
+			'app/*.*',
+			'app/css/output/**',
+			'app/js/output/**',
+			'app/wx_share/js/output/**'
+		],
+		['deploy:dev:d']
+	);
 });
 
-gulp.task('nil', function() {});
+// 打包发送到dev
+gulp.task('deploy:dev', ['rev', 'wx_rev'], function() {
+	do_sync({});
+});
