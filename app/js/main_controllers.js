@@ -1339,7 +1339,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				$location.path('/contact_list').search($routeParams);
 			}
 		}
-		
+
 		$scope.submit = function(isYangguang) {
 			_hmt.push(['_trackEvent', 'toubaonew', 'toubaonew_submit']);
 			var isBankInvalid = $scope.data.bank_account && $scope.user.bank_account.id == 0;
@@ -1409,26 +1409,33 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 					effective_date: effectiveDate //生效日期
 				}
 				if ($scope.data.mobile && !isYangguang) { //阳光需要手机号的需要发送到另外的接口
-					$scope.securityCodePromise = getHttpPromise($http, $rootScope, 'POST', api['yangguang_get_security_code'], toubaoRequest, function(res) {
 
-							if(res && !res.data.data.status &&  res.data.data.error_message){
+					if ($("#securityCodeContainer").attr("data-qrcode-sended") == "false") {
+
+						$scope.securityCodePromise = getHttpPromise($http, $rootScope, 'POST', api['yangguang_get_security_code'], toubaoRequest, function(res) {
+
+							if (res && !res.data.data.status && res.data.data.error_message) {
 								util.showToast($rootScope, res.data.data.error_message);
-							}else{
+							} else {
 								$scope.securityData = res.data.data;
 								var seconds = 30;
-								var interval = setInterval(function(){
-									if(seconds === 0){
+								var interval = setInterval(function() {
+									if (seconds === 0) {
 										clearInterval(interval);
+										$("#securityCodeContainer").css("color", "#55a5ff");
 										$("#securityCodeContainer").html("获取验证码");
-									}else{
-
-										$("#securityCodeContainer").html(seconds+"秒");
+										$("#securityCodeContainer").attr("data-qrcode-sended", false);
+									} else {
+										$("#securityCodeContainer").css("color", "#999")
+										$("#securityCodeContainer").html(seconds + "秒");
+										$("#securityCodeContainer").attr("data-qrcode-sended", true);
 									}
 									seconds--;
 								}, 1000);
 							}
 
-					});
+						});
+					}
 				} else if ($scope.data.mobile && isYangguang) { //阳光投保需要发送到特殊接口
 
 					toubaoRequest["order_id"] = $scope.securityData["order_id"];
@@ -1436,19 +1443,19 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 					toubaoRequest["insurance_order_id"] = $scope.securityData["insurance_order_id"];
 					toubaoRequest["premium"] = $scope.money;
 					toubaoRequest["security_code"] = $scope.securityCode;
-					
-					
+
+
 					$scope.submitPromise = getHttpPromise($http, $rootScope, 'POST', api['yangguang_purchase'], toubaoRequest, function(res) {
 
-						if(res && !res.data.data.status &&  res.data.data.error_message){
+						if (res && !res.data.data.status && res.data.data.error_message) {
 							util.showToast($rootScope, res.data.data.error_message);
 						}
-						if(res.data.data.status===true){
+						if (res.data.data.status === true) {
 							$location.path("/pay_success");
 						}
 
 					});
-				}else {
+				} else {
 					$scope.submitPromise = getHttpPromise($http, $rootScope, 'POST', api['toubao_purchase'], toubaoRequest, function(res) {
 
 						// "insured_id": $routeParams.user_id, 
@@ -1549,12 +1556,12 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 			$scope.banks = util.banks;
 			$scope.minDate = effectiveDate;
 			$scope.user = {};
-			// $scope.user = {
-			// 	email:"test@nuobei.cn",
-			// 	bankcardno: "6227001291082482730",
-			// 	address:"中南海",
-			// 	post:213000
-			// };
+			$scope.user = {
+				email: "test@nuobei.cn",
+				bankcardno: "6227001291082482730",
+				address: "中南海",
+				post: 213000
+			};
 
 			$scope.user.effective_date = effectiveDate;
 			$scope.paramPlans = JSON.parse($routeParams.new_choose_plans);

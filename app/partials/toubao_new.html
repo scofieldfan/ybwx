@@ -41,7 +41,7 @@
 
 			<!-- <div class="supply-info" > -->
 
-			<div class="title" ><i class="iconfont" style="color: #999;font-size: 17px;margin-right: 5px;vertical-align: -1px;">&#xe611;</i>联系信息</div>
+			<div class="title" ng-if="data.address"><i class="iconfont" style="color: #999;font-size: 17px;margin-right: 5px;vertical-align: -1px;">&#xe611;</i>联系信息</div>
 			<div class="new-supply-item" ng-if="data.email">
 				<div class="introd">电子邮箱</div>
 				<div class="content"><input type="email" placeholder="例：example@nuobei.cn" name="email" ng-model="user.email" class="new-input"  required></div>
@@ -169,9 +169,9 @@
 				<div class="introd">手机号</div>
 				<div class="content"><input type="number" name="mobilenumber" ng-model="mobilenumber" class="new-input" placeholder="银行开卡时预留手机号"  required></div>
 			</div>
-			<div class="new-supply-item">
+			<div class="new-supply-item"  ng-if="data.mobile">
 				<div class="content"><input type="number" name="securityCode" ng-model="securityCode" class="new-input" placeholder="请填写手机验证码"  ></div>
-				<div class="introd" style="color:#55a5ff"  ng-click="submit()" id="securityCodeContainer">获取验证码</div>
+				<div class="introd" style="color:#55a5ff;text-align:center;"  ng-click="submit()" data-qrcode-sended="false" id="securityCodeContainer">获取验证码</div>
 			</div> 
 		</div></div>
 
