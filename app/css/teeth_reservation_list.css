@@ -87,7 +87,12 @@
   border-radius: 100%;
   background-color: #4285f4;
   vertical-align: 2px;
-  margin-right: 5px; }
+  margin: 0 7px; }
+.teeth-content_item--gray {
+  color: #ccc; }
+.teeth-content_item_ok {
+  font-size: 13px;
+  margin: 0 3px; }
 .teeth-reservationinfo {
   position: relative;
   padding: 15px 0 0;

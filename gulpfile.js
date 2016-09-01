@@ -234,6 +234,7 @@ gulp.task('wx_jsMin', function() {
 		.pipe(gulp.dest('app/wx_share/js/output'));
 });
 
+// 执行推送
 var do_sync = function(opt) {
 	var include = [];
 	var exclude = ['node_modules/*'];

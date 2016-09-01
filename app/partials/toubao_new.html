@@ -41,7 +41,7 @@
 
 			<!-- <div class="supply-info" > -->
 
-			<div class="title" ><i class="iconfont" style="color: #999;font-size: 17px;margin-right: 5px;vertical-align: -1px;">&#xe611;</i>联系信息</div>
+			<div class="title" ng-if="data.address"><i class="iconfont" style="color: #999;font-size: 17px;margin-right: 5px;vertical-align: -1px;">&#xe611;</i>联系信息</div>
 			<div class="new-supply-item" ng-if="data.email">
 				<div class="introd">电子邮箱</div>
 				<div class="content"><input type="email" placeholder="例：example@nuobei.cn" name="email" ng-model="user.email" class="new-input"  required></div>
@@ -71,6 +71,11 @@
 				<div class="introd">邮政编码</div>
 				<div class="content"><input type="text" ng-minlength="6" ng-maxlength="6" placeholder="请输入邮政编码" name="post" ng-model="user.post" class="new-input"  required></div>
 			</div>
+			<div class="wrong-item"  ng-show="tbform.post.$dirty && tbform.post.$invalid ">
+				<small class="error" ng-show="tbform.post.$error.required">邮政编码必填</small>
+				<small class="error" ng-show="tbform.post.$error.minlength">邮政编码必须是6位</small>
+				<small class="error" ng-show="tbform.post.$error.maxlength">邮政编码必须是6位</small>
+			</div>
 			<div class="kong"></div>
 			<div class="title" ng-show="data.jobs.length>0"><i class="iconfont" style="color: #999;font-size: 17px;margin-right: 5px;vertical-align: -1px;">&#xe611;</i>补充信息</div>
 			<div class="new-supply-item"  ng-show="data.jobs.length>0">
@@ -78,11 +83,7 @@
 				<div class="content" id="job"><select class="content" ><option id="first_option_color">请选择职业</option><option data-value="{{jobs.job_id}}" ng-repeat="jobs in data.jobs">{{jobs.job_name}}</option></select></div>
 				<div class="danwei"><i class="iconfont" style="color: #ccc;font-size: 17px;margin-left: 10px;">&#xe60f;</i></div>
 			</div>
-			<div class="wrong-item"  ng-show="tbform.post.$dirty && tbform.post.$invalid ">
-				<small class="error" ng-show="tbform.post.$error.required">邮政编码必填</small>
-				<small class="error" ng-show="tbform.post.$error.minlength">邮政编码必须是6位</small>
-				<small class="error" ng-show="tbform.post.$error.maxlength">邮政编码必须是6位</small>
-			</div>
+		
 	 		<div class="new-supply-item" ng-if="data.height">
 				<div class="introd">身高</div>
 				<div class="content"><input type="number" name="height" placeholder="请如实填写身高，方便后续理赔" ng-model="user.height" class="new-input"  required></div>
@@ -100,17 +101,9 @@
 			<div class="wrong-item"   ng-show="tbform.weight.$dirty && tbform.weight.$invalid ">
 				<small class="error" ng-show="tbform.weight.$error.required">身高必填</small>
 			</div>
-			<div class="kong"></div>
-			<!--
-			<div class="new-supply-item" >
-				<div class="introd">手机号</div>
-				<div class="content"><input type="text" name="mobile-number" ng-model="mobilenumber" class="new-input" placeholder="银行开卡时预留手机号"  required></div>
-			</div>
-			<div class="new-supply-item" >
-				<div class="content"><input type="text" name="qcode" ng-model="qcode" class="new-input" placeholder="请填写手机验证码"  required></div>
-				<div class="introd" style="color:#55a5ff">获取验证码</div>
-			</div> -->
 		
+
+
 			<div class="supply-item"  style="color:red" ng-show="tbform.address.$dirty && tbform.address.$invalid ">
 				<small class="error" ng-show="tbform.address.$error.required">地址必填</small>
 			</div>
@@ -151,6 +144,7 @@
 			<div class="supply-item"  style="color:red" ng-show="tbform.destination.$dirty && tbform.destination.$invalid ">
 				<small class="error" ng-show="tbform.destination.$error.required">地址必填</small>
 			</div>
+				<div class="kong"></div>
 	        <div class="title" ng-if="data.bank_account"><i class="iconfont" style="color: #999;font-size: 17px;margin-right: 8px;vertical-align: -1px;">&#xe631;</i>续期缴费<span class="state">仅支持借记卡</span></div>
 			<div class="new-title" ng-if="data.bank"></div>
 	 		<div class="new-supply-item" ng-if="data.bank_account">
@@ -169,6 +163,16 @@
 			<div class="card_word new-supply-item--last" ng-if="data.bank_card_no" style="overflow: none">
 				每次续期缴费时，保险公司会自动从该银行账号中扣除相应保费
 			</div>
+
+			
+			<div class="new-supply-item"  ng-if="data.mobile">
+				<div class="introd">手机号</div>
+				<div class="content"><input type="number" name="mobilenumber" ng-model="mobilenumber" class="new-input" placeholder="银行开卡时预留手机号"  required></div>
+			</div>
+			<div class="new-supply-item"  ng-if="data.mobile">
+				<div class="content"><input type="number" name="securityCode" ng-model="securityCode" class="new-input" placeholder="请填写手机验证码"  ></div>
+				<div class="introd" style="color:#55a5ff;text-align:center;"  ng-click="submit()" data-qrcode-sended="false" id="securityCodeContainer">获取验证码</div>
+			</div> 
 		</div></div>
 
 	<div class="tip">
@@ -186,10 +190,18 @@
 		<a href="javascript:void(0)" class="btn btn_n_primary right" ng-click="submit()">立即投保</a>
 		</div>
 </div> -->
-<div class="sx-bzts_bottom">
+<div class="sx-bzts_bottom" ng-if="!data.mobile">
 	<div class="sx-bzts_bottom-word" style="">
 		投保金额 <span class="buttom_money">{{money}}</span> 元
 	</div>
-	<div class="sx-bzts_bottom-btn btn_n_primary liji right" ng-click="submit()">立即投保</div>
+	<!-- <div class="sx-bzts_bottom-btn btn_n_primary liji right"  style="background-color:#999">立即投保</div> -->
+	<div class="sx-bzts_bottom-btn btn_n_primary liji right" ng-click="submit()" >立即投保</div>
+</div>
+<!-- 如果是阳光的保险，投保需要走特殊接口。。。。。。-->
+<div class="sx-bzts_bottom" ng-if="data.mobile">
+	<div class="sx-bzts_bottom-word" style="">
+		投保金额 <span class="buttom_money">{{money}}</span> 元
+	</div>
+	<div class="sx-bzts_bottom-btn btn_n_primary liji right" ng-click="submit(true)">立即投保</div>
 </div>
 <script  src="/js/city.js"></script>
