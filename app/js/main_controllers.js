@@ -1415,6 +1415,17 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 								util.showToast($rootScope, res.data.data.error_message);
 							}else{
 								$scope.securityData = res.data.data;
+								var seconds = 30;
+								var interval = setInterval(function(){
+									if(seconds === 0){
+										clearInterval(interval);
+										$("#securityCodeContainer").html("获取验证码");
+									}else{
+
+										$("#securityCodeContainer").html(seconds+"秒");
+									}
+									seconds--;
+								}, 1000);
 							}
 
 					});
@@ -1424,7 +1435,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 					toubaoRequest["proposal_no"] = $scope.securityData["proposal_no"];
 					toubaoRequest["insurance_order_id"] = $scope.securityData["insurance_order_id"];
 					toubaoRequest["premium"] = $scope.money;
-					toubaoRequest["security_code"] = $scope.qcode;
+					toubaoRequest["security_code"] = $scope.securityCode;
 					
 					
 					$scope.submitPromise = getHttpPromise($http, $rootScope, 'POST', api['yangguang_purchase'], toubaoRequest, function(res) {
@@ -1449,7 +1460,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 							"order_no": res.data.data.pay_order_no
 						}
 						var param = util.genParameters(payRequest);
-						window.location.href = "/wechatpay/pay.html#?" + param
+						window.location.href = "/wechatpay/pay.html#?" + param;
 						//$location.path("/pay_select").search(payRequest);
 					});
 				}
@@ -1537,13 +1548,13 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 
 			$scope.banks = util.banks;
 			$scope.minDate = effectiveDate;
-//			$scope.user = {};
-			$scope.user = {
-				email:"test@nuobei.cn",
-				bankcardno: "6227001291082482730",
-				address:"中南海",
-				post:213000
-			};
+			$scope.user = {};
+			// $scope.user = {
+			// 	email:"test@nuobei.cn",
+			// 	bankcardno: "6227001291082482730",
+			// 	address:"中南海",
+			// 	post:213000
+			// };
 
 			$scope.user.effective_date = effectiveDate;
 			$scope.paramPlans = JSON.parse($routeParams.new_choose_plans);

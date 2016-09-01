@@ -170,8 +170,8 @@
 				<div class="content"><input type="number" name="mobilenumber" ng-model="mobilenumber" class="new-input" placeholder="银行开卡时预留手机号"  required></div>
 			</div>
 			<div class="new-supply-item">
-				<div class="content"><input type="number" name="qcode" ng-model="qcode" class="new-input" placeholder="请填写手机验证码"  ></div>
-				<div class="introd" style="color:#55a5ff"  ng-click="submit()">获取验证码</div>
+				<div class="content"><input type="number" name="securityCode" ng-model="securityCode" class="new-input" placeholder="请填写手机验证码"  ></div>
+				<div class="introd" style="color:#55a5ff"  ng-click="submit()" id="securityCodeContainer">获取验证码</div>
 			</div> 
 		</div></div>
 
@@ -194,7 +194,8 @@
 	<div class="sx-bzts_bottom-word" style="">
 		投保金额 <span class="buttom_money">{{money}}</span> 元
 	</div>
-	<div class="sx-bzts_bottom-btn btn_n_primary liji right" ng-click="submit()">立即投保</div>
+	<div class="sx-bzts_bottom-btn btn_n_primary liji right"  style="background-color:#999">立即投保</div>
+	<!-- <div class="sx-bzts_bottom-btn btn_n_primary liji right" ng-click="submit()" style="background-color:#999">立即投保</div> -->
 </div>
 <!-- 如果是阳光的保险，投保需要走特殊接口。。。。。。-->
 <div class="sx-bzts_bottom" ng-if="data.mobile">

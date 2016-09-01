@@ -247,7 +247,7 @@ var do_sync = function(opt) {
 	return	rsync({
 			ssh: false,
 			src: 'app/*',
-			dest: 'rsync://deploy@b.h.nuobei.cn/' + getSystemUser() + '/',
+			dest: 'rsync://deploy@s.dev.nuobei.cn/' + getSystemUser() + '/',
 			exclude: exclude,
 			include: include,
 			args: ['-rltD', '-v', '--progress']
