@@ -2,7 +2,7 @@
 * @Author: fanzhang
 * @Date:   2016-08-30 11:05:30
 * @Last Modified by:   fanzhang
-* @Last Modified time: 2016-08-30 15:38:45
+* @Last Modified time: 2016-09-01 17:48:44
 */
    @import "base/classes.scss";
    @import "base/variables.scss";
@@ -72,7 +72,14 @@
 	border-radius:100%;
 	background-color: #4285f4;
 	vertical-align:2px;	
-	margin-right:5px;
+	margin:0 7px;
+}
+.teeth-content_item--gray{
+	color:#ccc;
+}
+.teeth-content_item_ok{
+	font-size:13px;
+	margin:0 3px;
 }
 .teeth-reservationinfo{
 	@include border(1px 0 0 0,#e2e2e2);
