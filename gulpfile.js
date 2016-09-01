@@ -244,7 +244,7 @@ var do_sync = function(opt) {
 
 	console.log("Current User: " + getSystemUser() );
 	try {
-		rsync({
+	return	rsync({
 			ssh: false,
 			src: 'app/*',
 			dest: 'rsync://deploy@b.h.nuobei.cn/' + getSystemUser() + '/',
@@ -252,8 +252,9 @@ var do_sync = function(opt) {
 			include: include,
 			args: ['-rltD', '-v', '--progress']
 		}, function(error, stdout, stderr, cmd) {
-			if (error){
+
 				console.log("Command: " + cmd);
+			if (error){
 				console.log(error.message);
 			}
 
@@ -261,6 +262,7 @@ var do_sync = function(opt) {
 			console.log("Stderr: \n" + stderr);
 		});
 	} catch (ex) {
+			console.log("ex" + ex);
 	}
 }
 
@@ -281,7 +283,7 @@ var dev_sync_files = [
 
 // 只同步待监听的文件
 gulp.task('deploy:sync:dev', function() {
-	do_sync({
+	return do_sync({
 		include: dev_sync_files
 	});
 });
@@ -296,5 +298,5 @@ gulp.task('sync:dev', ['sass:watch', 'wx_sass:watch'], function() {
 
 // 打包发送到dev
 gulp.task('deploy:dev', ['rev', 'wx_rev'], function() {
-	do_sync({});
+	return do_sync({});
 });
