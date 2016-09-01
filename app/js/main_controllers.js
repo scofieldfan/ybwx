@@ -1556,12 +1556,12 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 			$scope.banks = util.banks;
 			$scope.minDate = effectiveDate;
 			$scope.user = {};
-			$scope.user = {
-				email: "test@nuobei.cn",
-				bankcardno: "6227001291082482730",
-				address: "中南海",
-				post: 213000
-			};
+			// $scope.user = {
+			// 	email: "test@nuobei.cn",
+			// 	bankcardno: "6227001291082482730",
+			// 	address: "中南海",
+			// 	post: 213000
+			// };
 
 			$scope.user.effective_date = effectiveDate;
 			$scope.paramPlans = JSON.parse($routeParams.new_choose_plans);
