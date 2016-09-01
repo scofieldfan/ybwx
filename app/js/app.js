@@ -273,7 +273,11 @@ ybwxApp.config(['$routeProvider',
       // controller: 'ybwxChild_dentailCtrl'
     })
     .when('/teeth_reservation_list',{
-      templateUrl: 'partials/teeth_reservation_list.html',
+      templateUrl:function(params){
+        // return"templates/connection/"+a.provider+".html"
+        return 'partials/teeth_reservation_list.html?test='+params.name;
+      },
+   
       title: "齿科预约记录",
       controller: 'ybwxTeethReservationCtrl'
     }).when('/teeth_reservation_detail',{

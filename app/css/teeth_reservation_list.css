@@ -8,6 +8,9 @@
     border-radius: 5px;
     padding: 8px 10px 15px;
     margin-bottom: 10px; }
+.teech-btn-wrapper {
+  width: 80px;
+  float: right; }
 .teeth-title-container {
   height: 50px;
   line-height: 50px;
