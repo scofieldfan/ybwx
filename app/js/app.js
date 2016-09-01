@@ -267,16 +267,16 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/score_reading.html',
       title: "保障评分是如何计算的？",
       controller: 'ybwxscoreReadingCtrl'
-    }).when('/child_dental', {
-      templateUrl: 'partials/child_dental.html',
+    }).when('/dental/child_dental', {
+      templateUrl: 'partials/dental/child_dental.html',
       title: "齿科保险"
       // controller: 'ybwxChild_dentailCtrl'
     }).when('/dental_docter', {
       templateUrl: 'partials/dental_docter.html',
       title: "选择诊所医生"
       // controller: 'ybwxChild_dentailCtrl'
-    }).when('/docter_detail', {
-      templateUrl: 'partials/docter_detail.html',
+    }).when('/dental/docter_detail', {
+      templateUrl: 'partials/dental/docter_detail.html?doc_id=1',
       title: "选择诊所医生"
       // controller: 'ybwxChild_dentailCtrl'
     }).when('/dental_confirm', {

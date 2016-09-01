@@ -4,7 +4,8 @@ body {
 .docter-detail {
   color: #444;
   font-size: 15px;
-  background: #f5f5f5; }
+  background: #f5f5f5;
+  padding-bottom: 49px; }
   .docter-detail .docter-detail-main {
     background: #fff;
     padding: 0 20px;
