@@ -1,16 +1,17 @@
 @charset "UTF-8";
 .child-dental-container {
   line-height: normal;
-  padding-bottom: 49px; }
+  padding-bottom: 49px;
+  color: #444; }
   .child-dental-container img {
     width: 100%;
     vertical-align: middle; }
   .child-dental-container .child-dental-container_introl {
-    margin: 0 7.5px;
+    margin: 0 10px;
     padding: 10px 0;
     color: #444;
-    line-height: 18px;
-    font-size: 18px;
+    line-height: 15px;
+    font-size: 15px;
     position: relative; }
     .child-dental-container .child-dental-container_introl::after {
       pointer-events: none;
@@ -40,6 +41,82 @@
           transform: scale(1/3); } }
     .child-dental-container .child-dental-container_introl .child-dental-container_introl--company {
       margin-bottom: 10px; }
+  .child-dental-container .child-dental-container_word {
+    padding: 10px;
+    font-size: 12px;
+    line-height: 20px;
+    position: relative; }
+    .child-dental-container .child-dental-container_word::after {
+      pointer-events: none;
+      position: absolute;
+      z-index: 999;
+      top: 0;
+      left: 0;
+      content: "\0020";
+      border-color: #ccc;
+      border-style: solid;
+      border-width: 0 0 1px 0;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      -webkit-transform-origin: 0 0;
+      transform-origin: 0 0; }
+      @media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+        .child-dental-container .child-dental-container_word::after {
+          width: 200%;
+          height: 200%;
+          -webkit-transform: scale(0.5);
+          transform: scale(0.5); } }
+      @media (min--moz-device-pixel-ratio: 2.5), (-webkit-min-device-pixel-ratio: 2.5), (min-device-pixel-ratio: 2.5), (min-resolution: 240dpi), (min-resolution: 2.5dppx) {
+        .child-dental-container .child-dental-container_word::after {
+          width: 200%;
+          height: 200%;
+          -webkit-transform: scale(1/3);
+          transform: scale(1/3); } }
+  .child-dental-container .child-dental-container_setMeal {
+    padding: 15px 10px;
+    font-size: 12px;
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex; }
+    .child-dental-container .child-dental-container_setMeal::after {
+      pointer-events: none;
+      position: absolute;
+      z-index: 999;
+      top: 0;
+      left: 0;
+      content: "\0020";
+      border-color: #ccc;
+      border-style: solid;
+      border-width: 0 0 1px 0;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      -webkit-transform-origin: 0 0;
+      transform-origin: 0 0; }
+      @media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+        .child-dental-container .child-dental-container_setMeal::after {
+          width: 200%;
+          height: 200%;
+          -webkit-transform: scale(0.5);
+          transform: scale(0.5); } }
+      @media (min--moz-device-pixel-ratio: 2.5), (-webkit-min-device-pixel-ratio: 2.5), (min-device-pixel-ratio: 2.5), (min-resolution: 240dpi), (min-resolution: 2.5dppx) {
+        .child-dental-container .child-dental-container_setMeal::after {
+          width: 200%;
+          height: 200%;
+          -webkit-transform: scale(1/3);
+          transform: scale(1/3); } }
+    .child-dental-container .child-dental-container_setMeal .child-dental-container_setMeal--word {
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+      -moz-box-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+      line-height: 12px; }
+  .child-dental-container .kong {
+    background: #f5f5f5;
+    height: 10px; }
   .child-dental-container .main-list {
     background: #f5f5f5; }
     .child-dental-container .main-list .switch {
@@ -84,23 +161,52 @@
             height: 200%;
             -webkit-transform: scale(1/3);
             transform: scale(1/3); } }
-      .child-dental-container .main-list .switch li {
+      .child-dental-container .main-list .switch .switch-child {
         -webkit-box-flex: 1;
         -webkit-flex: 1;
         -moz-box-flex: 1;
         -ms-flex: 1;
         flex: 1;
          }
-      .child-dental-container .main-list .switch li:nth-child(1), .child-dental-container .main-list .switch li:nth-child(2) {
+      .child-dental-container .main-list .switch .switch-child:nth-child(1), .child-dental-container .main-list .switch .switch-child:nth-child(2) {
         margin-right: 42px; }
       .child-dental-container .main-list .switch .border_3px {
         border-bottom: 3px solid #4285f4;
         color: #444; }
+    .child-dental-container .main-list .position {
+      width: 100%;
+      position: fixed;
+      left: 0;
+      top: 0; }
+    .child-dental-container .main-list .main-list-profile {
+      margin-top: 10px;
+      font-size: 15px; }
+      .child-dental-container .main-list .main-list-profile .main-list-profile_professor {
+        font-size: 13px;
+        background: #fff;
+        text-align: center;
+        line-height: 55px;
+        height: 55px; }
+      .child-dental-container .main-list .main-list-profile .main-list-profile_word {
+        height: 60px;
+        background: #fdff40;
+        text-align: center;
+        padding: 11px 0;
+        box-sizing: border-box; }
+      .child-dental-container .main-list .main-list-profile .main-list-profile_word--padd {
+        padding: 0;
+        line-height: 60px; }
+      .child-dental-container .main-list .main-list-profile .main-list-profile_problem {
+        background: #fff;
+        padding: 42px 0;
+        font-size: 13px;
+        text-align: center; }
+        .child-dental-container .main-list .main-list-profile .main-list-profile_problem .main-list-profile_problem_paddBottom {
+          padding-bottom: 20px; }
     .child-dental-container .main-list .main-list_intro {
       margin-top: 10px;
       background: #fff;
-      padding: 20px 20px 10px 20px;
-      margin-bottom: 10px; }
+      padding: 20px 20px 10px 20px; }
       .child-dental-container .main-list .main-list_intro img:nth-child(2n) {
         margin-bottom: 30px; }
     .child-dental-container .main-list .border_bottom {
@@ -132,9 +238,180 @@
             height: 200%;
             -webkit-transform: scale(1/3);
             transform: scale(1/3); } }
+    .child-dental-container .main-list .main-list {
+      background: #f5f5f5; }
+    .child-dental-container .main-list .main-list_hospital {
+      background: #f5f5f5;
+      margin-bottom: 5px; }
+    .child-dental-container .main-list .main-list_hospital_box {
+      padding: 20px  20px 15px;
+      background: #fff;
+      margin-bottom: 5px;
+      position: relative; }
+      .child-dental-container .main-list .main-list_hospital_box::after {
+        pointer-events: none;
+        position: absolute;
+        z-index: 999;
+        top: 0;
+        left: 0;
+        content: "\0020";
+        border-color: #ccc;
+        border-style: solid;
+        border-width: 0 0 1px 0;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0; }
+        @media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+          .child-dental-container .main-list .main-list_hospital_box::after {
+            width: 200%;
+            height: 200%;
+            -webkit-transform: scale(0.5);
+            transform: scale(0.5); } }
+        @media (min--moz-device-pixel-ratio: 2.5), (-webkit-min-device-pixel-ratio: 2.5), (min-device-pixel-ratio: 2.5), (min-resolution: 240dpi), (min-resolution: 2.5dppx) {
+          .child-dental-container .main-list .main-list_hospital_box::after {
+            width: 200%;
+            height: 200%;
+            -webkit-transform: scale(1/3);
+            transform: scale(1/3); } }
+      .child-dental-container .main-list .main-list_hospital_box .main-list_hospital_box_tit {
+        font-size: 17px;
+        font-weight: bold;
+        text-align: center;
+        padding-bottom: 5px; }
+      .child-dental-container .main-list .main-list_hospital_box .num_blue {
+        color: #4285f4;
+        font-weight: bold;
+        font-size: 18px; }
+      .child-dental-container .main-list .main-list_hospital_box .main-list_hospital_list {
+        padding-top: 15px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex; }
+        .child-dental-container .main-list .main-list_hospital_box .main-list_hospital_list img {
+          width: 85px;
+          height: 85px;
+          margin-right: 10px; }
+        .child-dental-container .main-list .main-list_hospital_box .main-list_hospital_list .hospital_name {
+          font-size: 13px;
+          line-height: 13px;
+          margin-bottom: 10px; }
+        .child-dental-container .main-list .main-list_hospital_box .main-list_hospital_list .hospital_name_detail {
+          font-size: 12px; }
+      .child-dental-container .main-list .main-list_hospital_box .shop_detail {
+        height: 37px;
+        line-height: 37px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        position: relative;
+        font-size: 12px;
+        color: #4285f4; }
+        .child-dental-container .main-list .main-list_hospital_box .shop_detail::after {
+          pointer-events: none;
+          position: absolute;
+          z-index: 999;
+          top: 0;
+          left: 0;
+          content: "\0020";
+          border-color: #ccc;
+          border-style: solid;
+          border-width: 0 0 1px 0;
+          -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+          -webkit-transform-origin: 0 0;
+          transform-origin: 0 0; }
+          @media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+            .child-dental-container .main-list .main-list_hospital_box .shop_detail::after {
+              width: 200%;
+              height: 200%;
+              -webkit-transform: scale(0.5);
+              transform: scale(0.5); } }
+          @media (min--moz-device-pixel-ratio: 2.5), (-webkit-min-device-pixel-ratio: 2.5), (min-device-pixel-ratio: 2.5), (min-resolution: 240dpi), (min-resolution: 2.5dppx) {
+            .child-dental-container .main-list .main-list_hospital_box .shop_detail::after {
+              width: 200%;
+              height: 200%;
+              -webkit-transform: scale(1/3);
+              transform: scale(1/3); } }
+        .child-dental-container .main-list .main-list_hospital_box .shop_detail .shop {
+          padding-right: 6px;
+          -webkit-box-flex: 1;
+          -webkit-flex: 1;
+          -moz-box-flex: 1;
+          -ms-flex: 1;
+          flex: 1;
+          color: #999;
+          text-align: right; }
+    .child-dental-container .main-list .main-list_hospital_doctor {
+      background: #fff;
+      padding: 20px 20px 30px;
+      position: relative; }
+      .child-dental-container .main-list .main-list_hospital_doctor::after {
+        pointer-events: none;
+        position: absolute;
+        z-index: 999;
+        top: 0;
+        left: 0;
+        content: "\0020";
+        border-color: #ccc;
+        border-style: solid;
+        border-width: 0 0 1px 0;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0; }
+        @media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+          .child-dental-container .main-list .main-list_hospital_doctor::after {
+            width: 200%;
+            height: 200%;
+            -webkit-transform: scale(0.5);
+            transform: scale(0.5); } }
+        @media (min--moz-device-pixel-ratio: 2.5), (-webkit-min-device-pixel-ratio: 2.5), (min-device-pixel-ratio: 2.5), (min-resolution: 240dpi), (min-resolution: 2.5dppx) {
+          .child-dental-container .main-list .main-list_hospital_doctor::after {
+            width: 200%;
+            height: 200%;
+            -webkit-transform: scale(1/3);
+            transform: scale(1/3); } }
+      .child-dental-container .main-list .main-list_hospital_doctor .main-list_hospital_doctor_tit {
+        text-align: center;
+        font-size: 17px;
+        font-weight: bold;
+        line-height: 17px;
+        margin-bottom: 20px; }
+      .child-dental-container .main-list .main-list_hospital_doctor .main-list_hospital_doctor_pic {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex; }
+        .child-dental-container .main-list .main-list_hospital_doctor .main-list_hospital_doctor_pic .docter_detail {
+          -webkit-box-flex: 1;
+          -webkit-flex: 1;
+          -moz-box-flex: 1;
+          -ms-flex: 1;
+          flex: 1;
+          margin-right: 12px;
+          text-align: center; }
+          .child-dental-container .main-list .main-list_hospital_doctor .main-list_hospital_doctor_pic .docter_detail .docter_pic img {
+            width: 100%; }
+          .child-dental-container .main-list .main-list_hospital_doctor .main-list_hospital_doctor_pic .docter_detail .docter_name {
+            text-align: center;
+            font-size: 13px;
+            font-weight: bold;
+            margin: 10px 0 5px; }
+          .child-dental-container .main-list .main-list_hospital_doctor .main-list_hospital_doctor_pic .docter_detail .docter_detail-word {
+            font-size: 12px; }
+        .child-dental-container .main-list .main-list_hospital_doctor .main-list_hospital_doctor_pic .docter_detail--last {
+          margin: 0; }
   .child-dental-container footer {
+    z-index: 999;
     width: 100%;
     height: 49px;
+    background: #fff;
     position: relative;
     display: -webkit-box;
     display: -webkit-flex;

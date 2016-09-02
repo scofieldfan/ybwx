@@ -1,0 +1,45 @@
+@import "base/classes.scss";
+@import "base/variables.scss";
+
+body {
+	background: #f5f5f5;
+}
+.dental-confirm {
+	color: #444;
+	font-size: 15px;
+	.dental-confirm_main {
+		background: #fff;
+		@include border(0 0 1px 0,#c4c4c4);
+		padding: 40px .42rem 55px;
+		img {
+			width: 33px;
+			margin-right: 10px;
+			vertical-align: middle;
+		}
+		.dental-confirm_main-tit {
+			margin: 0 auto 15px;
+			width: 115px;
+			font-size: 18px;
+			color: #4285f4; 
+			line-height: 33px;
+		}
+		.hint {
+			text-align: center;
+			margin-bottom: 15px;
+		}
+		.hint-word {
+			color: #999;
+			font-size: 13px;
+			margin-bottom: 15px;
+			span {
+				width: 5px;
+				height: 5px;
+				display: inline-block;
+				vertical-align: -3px;
+				background: #4285f4;
+				border-radius: 50%;
+				margin: 0 10px 5px 0;
+			}
+		}
+	}
+}

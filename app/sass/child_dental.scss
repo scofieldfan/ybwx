@@ -4,25 +4,46 @@
 .child-dental-container {
 	line-height:normal;
 	padding-bottom: 49px;
+	color: #444;
 	img {
 		width: 100%;
 		// 解决img和div的默认3px的间距
 		vertical-align: middle;
 	}
 	.child-dental-container_introl {
-		margin: 0 7.5px;
+		margin: 0 10px;
 		padding: 10px 0;
 		color: #444;
-		line-height: 18px;
-		font-size: 18px;
+		line-height: 15px;
+		font-size: 15px;
 		@include border(0 0 1px 0,#ccc);
 		.child-dental-container_introl--company {
 			margin-bottom: 10px;
 		}
 	}
-
+    .child-dental-container_word {
+    	padding: 10px;
+    	font-size: 12px;
+    	line-height: 20px;
+    	@include border(0 0 1px 0,#ccc);
+    }
+    .child-dental-container_setMeal {
+    	padding: 15px 10px;
+    	font-size: 12px;
+		@include border(0 0 1px 0,#ccc);
+    	@include flexbox();
+    	.child-dental-container_setMeal--word {
+    		@include flex(1);
+    		line-height: 12px;
+    	}
+    }
+    .kong {
+    	background: #f5f5f5;
+    	height: 10px;
+    }
 	.main-list {
 		background: #f5f5f5;
+		// tab切换
 		.switch {
             width: 100%;
 			height: 50px;
@@ -38,11 +59,10 @@
 			// position: fixed;
 			// left: 0;
 			// top: 0;
-			li {
+			.switch-child {
 				@include flex(1);
 			}
-			li:nth-child(1),li:nth-child(2) {
-				
+			.switch-child:nth-child(1),.switch-child:nth-child(2) {
 				margin-right: 42px;
 			}
 			.border_3px {
@@ -50,23 +70,157 @@
 				color: #444;
 			}
 		}
+		.position {
+			width: 100%;
+			position: fixed;
+			left: 0;
+			top: 0;
+		}
+		// 简介
+		.main-list-profile {
+			margin-top: 10px;
+			font-size: 15px;
+	     	.main-list-profile_professor{
+		     	font-size: 13px;
+				background: #fff;
+				text-align: center;
+				line-height: 55px;
+				height: 55px;
+		    }
+		    .main-list-profile_word {
+		    	height: 60px;
+		    	background: #fdff40;
+		    	text-align: center;
+		    	padding: 11px 0;
+		    	box-sizing: border-box;
+		    }
+		   .main-list-profile_word--padd {
+		   	padding: 0;
+		   	line-height: 60px;
+		   }
+		   .main-list-profile_problem {
+			   	background: #fff;
+			   	padding: 42px 0;
+			   	font-size: 13px;
+			   	text-align: center;
+			   	.main-list-profile_problem_paddBottom {
+			   		padding-bottom: 20px;
+			   	}
+		   	}
+		}
 		.main-list_intro {
 			margin-top: 10px;
 			background: #fff;
 			padding: 20px 20px 10px 20px;
-			margin-bottom: 10px;
 			img:nth-child(2n) {
 				margin-bottom: 30px;
 			}
 		}
+		// 套餐
+		
+		// 合作医院
 		.border_bottom {
 			@include border(0 0 1px 0,#ccc);
 			margin-bottom: 10px;
 		}
+		.main-list {
+			background: #f5f5f5;
+		}
+		.main-list_hospital {
+			background: #f5f5f5;
+			margin-bottom: 5px;
+		}
+		.main-list_hospital_box {
+			padding: 20px  20px 15px;
+			background: #fff;
+			margin-bottom: 5px;
+			@include border(0 0 1px 0,#ccc);
+			.main-list_hospital_box_tit {
+				font-size: 17px;
+				font-weight: bold;
+				text-align: center;
+				padding-bottom: 5px;
+			}
+			.num_blue {
+				color: #4285f4;
+				font-weight: bold;
+				font-size: 18px;
+			}
+			.main-list_hospital_list {
+				padding-top: 15px;
+				img {
+					width: 85px;
+					height: 85px;
+					margin-right: 10px;
+				}
+				.hospital_name {
+					font-size: 13px;
+					line-height: 13px;
+					margin-bottom: 10px;
+				}
+				.hospital_name_detail {
+					font-size: 12px;
+				}
+				@include flexbox();
+			}
+			.shop_detail {
+				height: 37px;
+				line-height: 37px;
+				@include flexbox();
+				@include border(0 0 1px 0,#ccc);
+				font-size: 12px;
+				color: #4285f4;
+				.shop{
+					padding-right: 6px;
+					@include flex(1);
+					color: #999;
+					text-align: right;
+				}
+			}
+		}
+		.main-list_hospital_doctor {
+			background: #fff;
+			padding: 20px 20px 30px;
+			@include border(0 0 1px 0,#ccc);
+			.main-list_hospital_doctor_tit {
+				text-align: center;
+				font-size: 17px;
+				font-weight: bold;
+				line-height: 17px;
+				margin-bottom: 20px;
+			}
+			.main-list_hospital_doctor_pic {
+				@include flexbox();
+				.docter_detail {
+					@include flex(1);
+					margin-right: 12px;
+					text-align: center;
+					.docter_pic {
+						img {
+							width: 100%;
+						}
+					}
+					.docter_name {
+						text-align: center;
+						font-size: 13px;
+						font-weight: bold;
+						margin: 10px 0 5px; 
+					}
+					.docter_detail-word {
+						font-size: 12px;
+					}
+				}
+				.docter_detail--last {
+					margin: 0;
+				}
+			}
+		}
 	}
 	footer {
+		z-index: 999;
 		width: 100%;
 		height: 49px;
+		background: #fff;
 		@include border(1px 0 0 0,#e2e2e2);
 		@include flexbox();
 		background: #fff;

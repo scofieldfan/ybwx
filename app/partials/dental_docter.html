@@ -1,0 +1,111 @@
+
+<link rel="stylesheet" href="css/dental_docter.css?rev=67aa8fdf5b772f01f87cc0d70b162934">
+
+<div class="dental-docter">
+	<div class="dental-docter_header">
+		<div class="dental-docter_header_list">
+			<div class="dental-docter_header_list_steps">
+				<div class=" flex1"></div>
+				<img src="img/child_dental/yi.jpg">
+				<div class="padd_18 flex1"></div>
+			</div>
+			<div class="dental-docter_header_list-word">选择诊所</div>
+		</div>
+		<div class="dental-docter_header_list">
+			<div class="dental-docter_header_list_steps">
+				<div class="padd_18 flex1 color_ccc"></div>
+				<img src="img/child_dental/er.jpg">
+				<div class="padd_18 flex1 color_ccc"></div>
+			</div>
+			<div class="dental-docter_header_list-word">电话确认</div>
+		</div>
+		<div class="dental-docter_header_list">
+			<div class="dental-docter_header_list_steps">
+				<div class="padd_18 flex1 color_ccc"></div>
+				<img src="img/child_dental/san.jpg">
+				<div class="flex1"></div>
+			</div>
+			<div class="dental-docter_header_list-word">按时就诊</div>
+		</div>
+	</div>
+	<div class="dental-docter_main">
+		<div class="dental-docter_main_tit">少儿齿科保险保健套餐预约</div>
+		<div class="dental-docter_main_user-name">被保人：<span>王宝宝</span></div>
+		<div class="dental-docter_main_has background" id="docter_box">
+			<div class="dental-docter_main_has_box">
+				<div class="dental-docter_main_has_box--left">
+					<div class="dental-docter_main_has_tit"><i class="iconfont" style="color: #4285f4;font-size: 15px;">&#xe632;</i>瑞泰口腔医院总院</div>
+					<div class="dental-docter_main_has_address"><i class="iconfont" style="color: #999;font-size: 15px;">&#xe633;</i>北京市朝阳区北苑路媒体村天居园1号楼</div>
+				</div>
+				<div class="dental-docter_main_has_box--right"><i class="iconfont io" id="jian" style="font-size: 14px;color: #ccc;">&#xe60f;</i></div>
+			</div>
+			
+			<div class="dental-docter_main_has_docter background" id="docter_has">
+				<div class="docter_pic marRight">
+					<img src="img/child_dental/meinv.jpg">
+					<div class="docter_pic_name-word">
+						<div class="docter_pic_name">刘文婷</div>
+						<div class="docter_pic_detail">擅长儿童各类疾病治疗</div>
+					</div>
+				</div>
+				<div class="docter_pic marRight">
+					<img src="img/child_dental/meinv.jpg">
+					<div class="docter_pic_name-word">
+						<div class="docter_pic_name">刘文婷</div>
+						<div class="docter_pic_detail">擅长儿童各类疾病治疗</div>
+					</div>
+				</div>
+				<div class="docter_pic">
+					<img src="img/child_dental/meinv.jpg">
+					<div class="docter_pic_name-word">
+						<div class="docter_pic_name">刘文婷</div>
+						<div class="docter_pic_detail">擅长儿童各类疾病治疗</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="dental-docter_main_has"  id="docter_box">
+			<div class="dental-docter_main_has_box">
+				<div class="dental-docter_main_has_box--left">
+					<div class="dental-docter_main_has_tit">瑞泰口腔医院总院</div>
+					<div class="dental-docter_main_has_address">北京市朝阳区北苑路媒体村天居园1号楼</div>
+				</div>
+				<div class="dental-docter_main_has_box--right"><i class="iconfont" id="jian" style="font-size: 14px;color: #ccc;">&#xe60f;</i></div>
+			</div>
+			<div class="dental-docter_main_has_docter" id="docter_has" style="display: none">
+				<div class="docter_pic marRight">
+					<img src="img/child_dental/meinv.jpg">
+					<div class="docter_pic_name-word">
+						<div class="docter_pic_name">刘文婷</div>
+						<div class="docter_pic_detail">擅长儿童各类疾病治疗</div>
+					</div>
+				</div>
+				<div class="docter_pic marRight">
+					<img src="img/child_dental/meinv.jpg">
+					<div class="docter_pic_name-word">
+						<div class="docter_pic_name">刘文婷</div>
+						<div class="docter_pic_detail">擅长儿童各类疾病治疗</div>
+					</div>
+				</div>
+				<div class="docter_pic">
+					<img src="img/child_dental/meinv.jpg">
+					<div class="docter_pic_name-word">
+						<div class="docter_pic_name">刘文婷</div>
+						<div class="docter_pic_detail">擅长儿童各类疾病治疗</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$(".dental-docter_main #docter_box").click(function(){
+		$(".dental-docter_main #docter_box").find("#docter_has").hide();
+		$(".dental-docter_main #docter_box").removeClass("background");
+		$(".dental-docter_main #docter_box").find("#jian").removeClass("io");
+		$(this).find("#jian").addClass("io");
+		$("#docter_box").find("#docter_has").hide();
+		$(this).find("#docter_has").show();
+		$(this).addClass("background");
+	});
+</script>

@@ -234,7 +234,6 @@ gulp.task('wx_jsMin', function() {
 		.pipe(gulp.dest('app/wx_share/js/output'));
 });
 
-// 执行推送
 var do_sync = function(opt) {
 	var include = [];
 	var exclude = ['node_modules/*'];
@@ -244,7 +243,8 @@ var do_sync = function(opt) {
 
 	console.log("Current User: " + getSystemUser() );
 	try {
-	return	rsync({
+
+		rsync({
 			ssh: false,
 			src: 'app/*',
 			dest: 'rsync://deploy@s.dev.nuobei.cn/' + getSystemUser() + '/',
@@ -253,8 +253,8 @@ var do_sync = function(opt) {
 			args: ['-rltD', '-v', '--progress']
 		}, function(error, stdout, stderr, cmd) {
 
-				console.log("Command: " + cmd);
 			if (error){
+				console.log("Command: " + cmd);
 				console.log(error.message);
 			}
 
@@ -285,18 +285,20 @@ var dev_sync_files = [
 gulp.task('deploy:sync:dev', function() {
 	return do_sync({
 		include: dev_sync_files
-	});
-});
+	}
+}
+
+
 
 // 监听 scss, html 改动, 发送同步
 gulp.task('sync:dev', ['sass:watch', 'wx_sass:watch'], function() {
 	gulp.watch(
 		dev_sync_files,
 		['deploy:sync:dev']
-	);
+		);
 });
 
 // 打包发送到dev
 gulp.task('deploy:dev', ['rev', 'wx_rev'], function() {
-	return do_sync({});
+	 do_sync({});
 });
