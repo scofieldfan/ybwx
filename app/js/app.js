@@ -268,7 +268,7 @@ ybwxApp.config(['$routeProvider',
       title: "评分解读",
       controller: 'ybwxscoreReadingCtrl'
     }).when('/child_dental', {
-      templateUrl: 'partials/dental/child_dental.html',
+      templateUrl: 'partials/child_dental.html',
       title: "齿科保险"
       // controller: 'ybwxChild_dentailCtrl'
      }).when('/dental_docter', {
@@ -276,7 +276,7 @@ ybwxApp.config(['$routeProvider',
        title: "选择诊所医生"
        // controller: 'ybwxChild_dentailCtrl'
      }).when('/docter_detail', {
-       templateUrl: 'partials/dental/docter_detail.html?doc_id=1',
+       templateUrl: 'partials/docter_detail.html?doc_id=1',
        title: "选择诊所医生"
        // controller: 'ybwxChild_dentailCtrl'
      }).when('/dental_confirm', {
