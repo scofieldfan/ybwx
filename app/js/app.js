@@ -270,7 +270,8 @@ ybwxApp.config(['$routeProvider',
     }).when('/child_dental', {
       templateUrl: 'partials/child_dental.html',
       title: "齿科保险",
-       controller: 'ybwxChildDentailCtrl'
+      css:"/css/child_dental.css?rev=e44c929e7cfda59913479c60af4b6375",
+      controller: 'ybwxChildDentailCtrl'
     }).when('/dental_docter', {
       templateUrl: 'partials/dental_docter.html',
       title: "选择诊所医生"

@@ -2,7 +2,7 @@
  * @Author: fanzhang
  * @Date:   2016-08-23 13:18:46
  * @Last Modified by:   fanzhang
- * @Last Modified time: 2016-09-02 13:30:40
+ * @Last Modified time: 2016-09-02 16:55:25
  */
 
 'use strict';
@@ -54,7 +54,7 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 			$scope.plans = JSON.parse(sessionStorage.getItem("sell_plan"));
 			$scope.order_id = paramObj.order_id;
 			$scope.order_no = paramObj.order_no;
-			$scope.channels = paramObj.channels || ["1","4"];
+			$scope.channels = paramObj.channels || [$scope.CHANNEL_BANK_CARD,$scope.CHANNEL_WECHAT];
 			$scope.isHaveWechat = $scope.channels.indexOf($scope.CHANNEL_WECHAT) >=0;
 			$scope.isHaveDtb = $scope.channels.indexOf($scope.CHANNEL_DTB_PAY) >=0;
 			$scope.isHaveBankCard = $scope.channels.indexOf($scope.CHANNEL_BANK_CARD) >=0;
@@ -137,7 +137,7 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 							// 支付成功后的回调函数
 							//alert("支付成功");
 							//alert(JSON.stringify(res));
-							window.location.href = "/#/pay_success";
+							window.location.href = "/#/pay_success?plans="+sessionStorage.getItem("sell_plan");
 
 							
 						},
