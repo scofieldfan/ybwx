@@ -12,7 +12,7 @@ var ybwxApp = angular.module('ybwxApp', [
   'serviceControllers',
   'transactionControllers',
   'autoPromoteControllers',
-  'teethControllers',
+  'dentalControllers',
   'routeStyles'
 ]).value('cgBusyDefaults', {
   message: '正在加载....',
@@ -284,18 +284,18 @@ ybwxApp.config(['$routeProvider',
       title: "确认预约"
       // controller: 'ybwxChild_dentailCtrl'
     })
-    .when('/teeth_reservation_list',{
+    .when('/dental_reservation_list',{
       templateUrl:function(params){
         // return"templates/connection/"+a.provider+".html"
-        return 'partials/teeth_reservation_list.html?test='+params.name;
+        return 'partials/dental_reservation_list.html?test='+params.name;
       },
    
       title: "齿科预约记录",
-      controller: 'ybwxTeethReservationCtrl'
-    }).when('/teeth_reservation_detail',{
-      templateUrl: 'partials/teeth_reservation_detail.html',
+      controller: 'ybwxDentalReservationCtrl'
+    }).when('/dental_reservation_detail',{
+      templateUrl: 'partials/dental_reservation_detail.html',
       title: "齿科预约记录",
-      controller: 'ybwxTeethReservationDetailCtrl'
+      controller: 'ybwxDentalReservationDetailCtrl'
     }).otherwise({
       redirectTo: '/index'
     });

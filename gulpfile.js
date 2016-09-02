@@ -146,7 +146,7 @@ gulp.task('jsMin', function() {
 			'app/js/service_controllers.js',
 			'app/js/transaction_controllers.js',
 			'app/js/auto_promote_controllers.js',
-			'app/js/teeth_controllers.js'
+			'app/js/dental_controllers.js'
 
 		], {
 			base: 'app/'
