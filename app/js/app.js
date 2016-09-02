@@ -269,7 +269,7 @@ ybwxApp.config(['$routeProvider',
       controller: 'ybwxscoreReadingCtrl'
     })
     .when('/child_dental', {
-      templateUrl: 'partials/dental/child_dental.html',
+      templateUrl: 'partials/child_dental.html',
       title: "齿科保险"
       // controller: 'ybwxChild_dentailCtrl'
      })
