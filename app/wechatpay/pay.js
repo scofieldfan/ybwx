@@ -2,7 +2,7 @@
  * @Author: fanzhang
  * @Date:   2016-08-23 13:18:46
  * @Last Modified by:   fanzhang
- * @Last Modified time: 2016-09-02 12:14:11
+ * @Last Modified time: 2016-09-02 13:30:40
  */
 
 'use strict';
@@ -58,6 +58,9 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 			$scope.isHaveWechat = $scope.channels.indexOf($scope.CHANNEL_WECHAT) >=0;
 			$scope.isHaveDtb = $scope.channels.indexOf($scope.CHANNEL_DTB_PAY) >=0;
 			$scope.isHaveBankCard = $scope.channels.indexOf($scope.CHANNEL_BANK_CARD) >=0;
+			
+			// alert("$scope.channels:"+$scope.channels);
+			// alert("isHaveDtb:"+$scope.isHaveDtb);
 			if( $scope.isHaveWechat){
 				getPayInfoAll($scope.order_id,$scope.CHANNEL_WECHAT);
 			}

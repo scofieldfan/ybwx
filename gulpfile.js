@@ -37,6 +37,9 @@ gulp.task('copycss', function() {
 	 gulp.src('app/js/util.js')
 		.pipe(gulp.dest('app/wechatpay/js/'));
 
+	gulp.src('app/wechatpay/pay.js')
+		.pipe(gulp.dest('app/wechatpay/wechatpay/'));
+
 	return gulp.src('app/css/*.css')
 		.pipe(gulp.dest('app/partials/css/'));
 });
@@ -92,7 +95,11 @@ gulp.task('deltmp', ['addVersion'], function() {
 	}).pipe(clean({
 		force: true
 	}));
-
+	gulp.src('app/wechatpay/wechatpay', {
+		read: false
+	}).pipe(clean({
+		force: true
+	}));
 	gulp.src('app/wechatpay/js', {
 		read: false
 	}).pipe(clean({
