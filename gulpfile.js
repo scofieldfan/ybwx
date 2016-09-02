@@ -279,14 +279,14 @@ var dev_sync_files = [
 	'app/css/output/**',
 	'app/js/output/**',
 	'app/wx_share/js/output/**'
-]
+];
 
 // 只同步待监听的文件
 gulp.task('deploy:sync:dev', function() {
-	return do_sync({
+	 do_sync({
 		include: dev_sync_files
-	}
-}
+	});
+});
 
 
 
