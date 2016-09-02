@@ -281,7 +281,6 @@ ybwxApp.config(['$routeProvider',
     }).when('/no_shop', {
       templateUrl: 'partials/dental/dental_no_shop.html',
       title: "齿科保险"
-   
     }).when('/dental_docter', {
        templateUrl:  function(params){
          return 'partials/dental/dental_docter.html?docter_id='+params.docter_id;
