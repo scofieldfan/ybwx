@@ -1,0 +1,249 @@
+@charset "UTF-8";
+.teeth-detail-wrapper {
+  background-color: #f5f5f5;
+  height: 100%; }
+.teeth-title-container {
+  padding: 15px 10px;
+  background-color: #FFF;
+  position: relative;
+  margin-bottom: 15px; }
+  .teeth-title-container::after {
+    pointer-events: none;
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    content: "\0020";
+    border-color: #c4c4c4;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0; }
+    @media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+      .teeth-title-container::after {
+        width: 200%;
+        height: 200%;
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5); } }
+    @media (min--moz-device-pixel-ratio: 2.5), (-webkit-min-device-pixel-ratio: 2.5), (min-device-pixel-ratio: 2.5), (min-resolution: 240dpi), (min-resolution: 2.5dppx) {
+      .teeth-title-container::after {
+        width: 200%;
+        height: 200%;
+        -webkit-transform: scale(1/3);
+        transform: scale(1/3); } }
+.teeth-title-contaienr_title {
+  position: relative;
+  padding: 5px 10px;
+  font-size: 16px; }
+.teeth-tip {
+  position: absolute;
+  width: 10px;
+  height: 20px;
+  background-color: #4285f4;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  left: -10px;
+  top: 7px; }
+.teeth-title-contaienr_des {
+  line-height: 1.9;
+  font-size: 13px; }
+.teeth-gray {
+  color: #999; }
+.reservation-body {
+  position: relative;
+  background-color: #FFF;
+  margin-bottom: 15px;
+  overflow: hidden; }
+  .reservation-body::after {
+    pointer-events: none;
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    content: "\0020";
+    border-color: #ccc;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0; }
+    @media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+      .reservation-body::after {
+        width: 200%;
+        height: 200%;
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5); } }
+    @media (min--moz-device-pixel-ratio: 2.5), (-webkit-min-device-pixel-ratio: 2.5), (min-device-pixel-ratio: 2.5), (min-resolution: 240dpi), (min-resolution: 2.5dppx) {
+      .reservation-body::after {
+        width: 200%;
+        height: 200%;
+        -webkit-transform: scale(1/3);
+        transform: scale(1/3); } }
+.reservation-body_title {
+  padding-left: 10px;
+  height: 50px;
+  line-height: 50px;
+  position: relative; }
+  .reservation-body_title::after {
+    pointer-events: none;
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    content: "\0020";
+    border-color: #ccc;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0; }
+    @media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+      .reservation-body_title::after {
+        width: 200%;
+        height: 200%;
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5); } }
+    @media (min--moz-device-pixel-ratio: 2.5), (-webkit-min-device-pixel-ratio: 2.5), (min-device-pixel-ratio: 2.5), (min-resolution: 240dpi), (min-resolution: 2.5dppx) {
+      .reservation-body_title::after {
+        width: 200%;
+        height: 200%;
+        -webkit-transform: scale(1/3);
+        transform: scale(1/3); } }
+.reservation-body-container {
+  padding-top: 10px; }
+.reservation-body-item {
+  padding: 0px 40px;
+  line-height: 1.9;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex; }
+.reservation-body-item_left {
+  width: 40px;
+  padding: 10px;
+  position: relative;
+  position: relative; }
+  .reservation-body-item_left::after {
+    pointer-events: none;
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    content: "\0020";
+    border-color: #e2e2e2;
+    border-style: solid;
+    border-width: 0 0 0 1px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0; }
+    @media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+      .reservation-body-item_left::after {
+        width: 200%;
+        height: 200%;
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5); } }
+    @media (min--moz-device-pixel-ratio: 2.5), (-webkit-min-device-pixel-ratio: 2.5), (min-device-pixel-ratio: 2.5), (min-resolution: 240dpi), (min-resolution: 2.5dppx) {
+      .reservation-body-item_left::after {
+        width: 200%;
+        height: 200%;
+        -webkit-transform: scale(1/3);
+        transform: scale(1/3); } }
+  .reservation-body-item_left .showtip {
+    width: 8px;
+    height: 8px;
+    border-radius: 100%;
+    background-color: #4285f4;
+    position: absolute;
+    left: -3px;
+    top: 10px;
+    z-index: 1000; }
+.reservation-body-item_gray {
+  width: 40px;
+  padding: 10px;
+  position: relative;
+  position: relative; }
+  .reservation-body-item_gray::after {
+    pointer-events: none;
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    content: "\0020";
+    border-color: #ccc;
+    border-style: solid;
+    border-width: 0 0 0 1px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0; }
+    @media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+      .reservation-body-item_gray::after {
+        width: 200%;
+        height: 200%;
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5); } }
+    @media (min--moz-device-pixel-ratio: 2.5), (-webkit-min-device-pixel-ratio: 2.5), (min-device-pixel-ratio: 2.5), (min-resolution: 240dpi), (min-resolution: 2.5dppx) {
+      .reservation-body-item_gray::after {
+        width: 200%;
+        height: 200%;
+        -webkit-transform: scale(1/3);
+        transform: scale(1/3); } }
+  .reservation-body-item_gray .showtip {
+    width: 8px;
+    height: 8px;
+    border-radius: 100%;
+    background-color: #ccc;
+    position: absolute;
+    left: -3px;
+    top: 10px;
+    z-index: 1000; }
+.reservation-body-item_left:after {
+  top: 20px; }
+.reservation-body-item_right {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-bottom: 10px; }
+.reservation-body-item_title {
+  color: #4285f4; }
+.reservation-footer {
+  position: relative;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 10px 20px; }
+  .reservation-footer::after {
+    pointer-events: none;
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    content: "\0020";
+    border-color: #e2e2e2;
+    border-style: solid;
+    border-width: 1px 0 0 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0; }
+    @media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+      .reservation-footer::after {
+        width: 200%;
+        height: 200%;
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5); } }
+    @media (min--moz-device-pixel-ratio: 2.5), (-webkit-min-device-pixel-ratio: 2.5), (min-device-pixel-ratio: 2.5), (min-resolution: 240dpi), (min-resolution: 2.5dppx) {
+      .reservation-footer::after {
+        width: 200%;
+        height: 200%;
+        -webkit-transform: scale(1/3);
+        transform: scale(1/3); } }

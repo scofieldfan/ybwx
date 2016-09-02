@@ -146,7 +146,7 @@ gulp.task('jsMin', function() {
 			'app/js/service_controllers.js',
 			'app/js/transaction_controllers.js',
 			'app/js/auto_promote_controllers.js',
-			'app/js/teeth_controllers.js'
+			'app/js/dental_controllers.js'
 
 		], {
 			base: 'app/'
@@ -234,6 +234,7 @@ gulp.task('wx_jsMin', function() {
 		.pipe(gulp.dest('app/wx_share/js/output'));
 });
 
+
 // 执行推送
 var do_sync = function(opt) {
 	var include = [];
@@ -244,6 +245,7 @@ var do_sync = function(opt) {
 
 	console.log("Current User: " + getSystemUser() );
 	try {
+
 		rsync({
 			ssh: false,
 			src: 'app/*',
@@ -252,6 +254,8 @@ var do_sync = function(opt) {
 			include: include,
 			args: ['-rltD', '-v', '--progress']
 		}, function(error, stdout, stderr, cmd) {
+
+
 			if (error){
 				console.log("Command: " + cmd);
 				console.log(error.message);
@@ -261,48 +265,43 @@ var do_sync = function(opt) {
 			console.log("Stderr: \n" + stderr);
 		});
 	} catch (ex) {
+			console.log("ex" + ex);
 	}
 }
 
-gulp.task('deploy:dev:d', function() {
-	do_sync({
-		include: [
-			'app/css/**',
-			'app/wx_share/css/**',
-			'app/wx_share/partials/wx_share/css/**',
-			'app/partials/**',
-			'app/template/**',
-			'app/wx_share/partials/**',
-			'app/wechatpay/**',
-			'app/*.*',
-			'app/css/output/**',
-			'app/js/output/**',
-			'app/wx_share/js/output/**'
-		]
+// 监听的文件列表
+var dev_sync_files = [
+	'app/css/**',
+	'app/wx_share/css/**',
+	'app/wx_share/partials/wx_share/css/**',
+	'app/partials/**',
+	'app/template/**',
+	'app/wx_share/partials/**',
+	'app/wechatpay/**',
+	'app/*.*',
+	'app/css/output/**',
+	'app/js/output/**',
+	'app/wx_share/js/output/**'
+];
+
+// 只同步待监听的文件
+gulp.task('deploy:sync:dev', function() {
+	 do_sync({
+		include: dev_sync_files
 	});
 });
 
+
+
 // 监听 scss, html 改动, 发送同步
-gulp.task('sync:watch:d', ['sass:watch', 'wx_sass:watch'], function() {
+gulp.task('sync:dev', ['sass:watch', 'wx_sass:watch'], function() {
 	gulp.watch(
-		[
-			'app/css/**',
-			'app/wx_share/css/**',
-			'app/wx_share/partials/wx_share/css/**',
-			'app/partials/**',
-			'app/template/**',
-			'app/wx_share/partials/**',
-			'app/wechatpay/**',
-			'app/*.*',
-			'app/css/output/**',
-			'app/js/output/**',
-			'app/wx_share/js/output/**'
-		],
-		['deploy:dev:d']
-	);
+		dev_sync_files,
+		['deploy:sync:dev']
+		);
 });
 
 // 打包发送到dev
 gulp.task('deploy:dev', ['rev', 'wx_rev'], function() {
-	do_sync({});
+	 do_sync({});
 });
