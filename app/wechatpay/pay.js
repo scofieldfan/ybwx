@@ -2,7 +2,7 @@
  * @Author: fanzhang
  * @Date:   2016-08-23 13:18:46
  * @Last Modified by:   fanzhang
- * @Last Modified time: 2016-08-30 11:59:26
+ * @Last Modified time: 2016-09-02 12:14:11
  */
 
 'use strict';
@@ -44,6 +44,7 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 
 			$scope.CHANNEL_BANK_CARD = "1";
 			$scope.CHANNEL_WECHAT = "4";
+			$scope.CHANNEL_DTB_PAY = "5";
 
 			$scope.plans = {};
 			var paramObj = $location.search();
@@ -53,15 +54,20 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 			$scope.plans = JSON.parse(sessionStorage.getItem("sell_plan"));
 			$scope.order_id = paramObj.order_id;
 			$scope.order_no = paramObj.order_no;
-
-			getPayInfoAll($scope.order_id,$scope.CHANNEL_WECHAT);
-			// $scope.ajaxPayInfo($scope.CHANNEL_WECHAT);
-			// $scope.ajaxPayInfo($scope.CHANNEL_BANK_CARD);
-			// if (wechat_response) {
-			// 	$scope.wechat_response = wechat_response;
-			// } else {
-			// 	$scope.ajaxPayInfo($scope.CHANNEL_WECHAT);
+			$scope.channels = paramObj.channels || ["1","4"];
+			$scope.isHaveWechat = $scope.channels.indexOf($scope.CHANNEL_WECHAT) >=0;
+			$scope.isHaveDtb = $scope.channels.indexOf($scope.CHANNEL_DTB_PAY) >=0;
+			$scope.isHaveBankCard = $scope.channels.indexOf($scope.CHANNEL_BANK_CARD) >=0;
+			if( $scope.isHaveWechat){
+				getPayInfoAll($scope.order_id,$scope.CHANNEL_WECHAT);
+			}
+			if( $scope.isHaveDtb){
+				getPayInfoAll($scope.order_id,$scope.CHANNEL_DTB_PAY);
+			}
+			// if( $scope.isHaveBankCard){
+			// 	getPayInfoAll($scope.order_id,$scope.CHANNEL_BANK_CARD);
 			// }
+			
 		}
 
 
@@ -129,6 +135,8 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 							//alert("支付成功");
 							//alert(JSON.stringify(res));
 							window.location.href = "/#/pay_success";
+
+							
 						},
 						cencel: function(res) {　　　　　　　　　　　　　　 // 支付取消回调函数
 							//alert('cencel pay');
@@ -142,6 +150,12 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 					});
 				})
 
+			}else if (channelType === $scope.CHANNEL_DTB_PAY) { //银行卡支付
+				if ($scope.redirectUrl) {
+					window.location.href = $scope.redirectUrl;
+				} else {
+					util.showToastJQ("微信支付 ，暂时无法使用");
+				}
 			}
 		}
 		function getPayInfoAll(order_id, channelType) {
@@ -153,13 +167,22 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 				} else {
 					$scope.ajaxPayInfo($scope.CHANNEL_WECHAT);
 				}
-			} else {
+			} else if (channelType == $scope.CHANNEL_BANK_CARD) {
 				var url = getPayInfo(order_id, $scope.CHANNEL_BANK_CARD);
 
 				if (url) {
 					$scope.redirectUrl = url;
 				} else {
 					$scope.ajaxPayInfo($scope.CHANNEL_BANK_CARD);
+				}
+
+			}else if (channelType == $scope.CHANNEL_DTB_PAY) {
+				var url = getPayInfo(order_id, $scope.CHANNEL_DTB_PAY);
+
+				if (url) {
+					$scope.redirectUrl = url;
+				} else {
+					$scope.ajaxPayInfo($scope.CHANNEL_DTB_PAY);
 				}
 
 			}
@@ -178,10 +201,15 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 					if (channelType == $scope.CHANNEL_BANK_CARD) { //银行卡
 						$scope.redirectUrl = res.data.data.pp_response.pp_url;
 						setPayInfo($scope.order_id, $scope.CHANNEL_BANK_CARD, $scope.redirectUrl)
-					} else if (channelType == $scope.CHANNEL_WECHAT) { //现在支付微信
+					} else if (channelType == $scope.CHANNEL_WECHAT) { //微信
+
 						$scope.wechat_response = res.data.data.wechat_response;
 						setPayInfo($scope.order_id, $scope.CHANNEL_WECHAT, $scope.wechat_response);
 
+					}else if (channelType == $scope.CHANNEL_DTB_PAY) { //大特保微信
+
+						$scope.redirectUrl = res.data.data.dtb_pay_response.pay_url;
+						setPayInfo($scope.order_id, $scope.CHANNEL_DTB_PAY, $scope.redirectUrl)
 					}
 				} else {
 					util.showToastJQ(res.data.reason);

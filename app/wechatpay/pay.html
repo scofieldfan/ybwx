@@ -39,11 +39,15 @@
 		选择支付方式：
 </div>
 <div class="pay_container">
-	<div  class="pay_item choose" style="" data-channel-type="{{CHANNEL_WECHAT}}" ng-click="pay($event)">
+	<div  class="pay_item choose" style="" data-channel-type="5" ng-click="pay($event)" ng-if="isHaveDtb">
 		<img src="/img/weixin_2.jpg" class="weixin_logo"/>
 		微信支付
 	</div>
-	<div  class="pay_item "  data-channel-type="{{CHANNEL_BANK_CARD}}" ng-click="pay($event)">
+	<div  class="pay_item choose" style="" data-channel-type="4" ng-click="pay($event)" ng-if="isHaveWechat">
+		<img src="/img/weixin_2.jpg" class="weixin_logo"/>
+		微信支付
+	</div>
+	<div  class="pay_item "  data-channel-type="1" ng-click="pay($event)"  ng-if="isHaveBankCard">
 		<img src="/img/back_crad.jpg" class="union_logo"/>
 		银行卡快捷
 	</div>

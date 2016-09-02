@@ -1458,17 +1458,23 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				} else {
 					$scope.submitPromise = getHttpPromise($http, $rootScope, 'POST', api['toubao_purchase'], toubaoRequest, function(res) {
 
-						// "insured_id": $routeParams.user_id, 
-						var payRequest = {
-							"insurance_name": res.data.data.insurance_name,
-							"insurance_plan_name": res.data.data.insurance_plan_name,
-							"order_amount": res.data.data.order_amount,
-							"order_id": res.data.data.pay_order_id,
-							"order_no": res.data.data.pay_order_no
+						if (res.data.data.status === false) {
+
+							util.showToast($rootScope,res.data.data.error_message);
+
+						} else {
+							var payRequest = {
+								channels: res.data.data.channels,
+								insurance_name: res.data.data.insurance_name,
+								insurance_plan_name: res.data.data.insurance_plan_name,
+								order_amount: res.data.data.order_amount,
+								order_id: res.data.data.pay_order_id,
+								order_no: res.data.data.pay_order_no
+							}
+							var param = util.genParameters(payRequest);
+							 window.location.href = "/wechatpay/pay.html#?" + param;
 						}
-						var param = util.genParameters(payRequest);
-						window.location.href = "/wechatpay/pay.html#?" + param;
-						//$location.path("/pay_select").search(payRequest);
+
 					});
 				}
 
