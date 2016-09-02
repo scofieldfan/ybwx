@@ -265,36 +265,39 @@ ybwxApp.config(['$routeProvider',
       title: "一像素",
     }).when('/score_reading', {
       templateUrl: 'partials/score_reading.html',
-      title: "保障评分是如何计算的？",
+      title: "评分解读",
       controller: 'ybwxscoreReadingCtrl'
     }).when('/child_dental', {
       templateUrl: 'partials/child_dental.html',
       title: "齿科保险",
       css:"/css/child_dental.css?rev=e44c929e7cfda59913479c60af4b6375",
       controller: 'ybwxChildDentailCtrl'
-    }).when('/dental_docter', {
-      templateUrl: 'partials/dental_docter.html',
-      title: "选择诊所医生"
-      // controller: 'ybwxChild_dentailCtrl'
-    }).when('/docter_detail', {
-      templateUrl: 'partials/docter_detail.html',
-      title: "选择诊所医生"
-      // controller: 'ybwxChild_dentailCtrl'
-    }).when('/dental_confirm', {
-      templateUrl: 'partials/dental_confirm.html',
-      title: "确认预约"
-      // controller: 'ybwxChild_dentailCtrl'
-    })
-    .when('/dental_reservation_list',{
+     }) .when('/dental_reservation_list',{
       templateUrl:function(params){
-        // return"templates/connection/"+a.provider+".html"
-        return 'partials/dental_reservation_list.html?test='+params.name;
+        return 'partials/dental/dental_reservation_list.html?test='+params.name;
       },
-   
       title: "齿科预约记录",
       controller: 'ybwxDentalReservationCtrl'
+    }).when('/no_shop', {
+      templateUrl: 'partials/dental/dental_no_shop.html',
+      title: "齿科保险"
+   
+    }).when('/dental_docter', {
+       templateUrl:  function(params){
+         return 'partials/dental/dental_docter.html?docter_id='+params.docter_id;
+       },
+       title: "选择诊所医生",
+       controller: 'ybwxDental_docterCtrl'
+     }).when('/docter_detail', {
+       templateUrl:  function(params){
+         return 'partials/dental/docter_detail.html?docter_id='+params.docter_id+'&docter_detail_id1='+params.docter_id1;
+       },
+       title: "选择诊所医生"
+     }).when('/dental_confirm', {
+       templateUrl: 'partials/dental/dental_confirm.html',
+       title: "确认预约"
     }).when('/dental_reservation_detail',{
-      templateUrl: 'partials/dental_reservation_detail.html',
+      templateUrl: 'partials/dental/dental_reservation_detail.html',
       title: "齿科预约记录",
       controller: 'ybwxDentalReservationDetailCtrl'
     }).otherwise({
