@@ -271,8 +271,22 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/dental/child_dental.html',
       title: "齿科保险"
       // controller: 'ybwxChild_dentailCtrl'
-    })
-    .when('/teeth_reservation_list',{
+     }).when('/dental_docter', {
+       templateUrl: 'partials/dental_docter.html',
+       title: "选择诊所医生"
+       // controller: 'ybwxChild_dentailCtrl'
+     }).when('/docter_detail', {
+       templateUrl: 'partials/dental/docter_detail.html?doc_id=1',
+       title: "选择诊所医生"
+       // controller: 'ybwxChild_dentailCtrl'
+     }).when('/dental_confirm', {
+       templateUrl: 'partials/dental_confirm.html',
+       title: "确认预约"
+    }).when('/no_shop', {
+      templateUrl: 'partials/dental_no_shop.html',
+      title: "齿科保险"
+      // controller: 'ybwxChild_dentailCtrl'
+    }).when('/teeth_reservation_list',{
       templateUrl: 'partials/teeth_reservation_list.html',
       title: "齿科预约记录",
       controller: 'ybwxTeethReservationCtrl'
