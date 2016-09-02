@@ -2,7 +2,7 @@
  * @Author: fanzhang
  * @Date:   2016-08-23 13:18:46
  * @Last Modified by:   fanzhang
- * @Last Modified time: 2016-09-02 16:55:25
+ * @Last Modified time: 2016-09-02 19:24:27
  */
 
 'use strict';
@@ -137,7 +137,8 @@ app.controller('wechatPayCtrl', ['$scope', '$filter', '$routeParams', '$location
 							// 支付成功后的回调函数
 							//alert("支付成功");
 							//alert(JSON.stringify(res));
-							window.location.href = "/#/pay_success?plans="+sessionStorage.getItem("sell_plan");
+							// window.location.href = "/#/pay_success?plans="+sessionStorage.getItem("sell_plan");
+							window.location.href = "/#/pay_success";
 
 							
 						},

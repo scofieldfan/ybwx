@@ -187,6 +187,7 @@ ybwxApp.config(['$routeProvider',
       title: "投保成功"
     }).when('/pay_success', {
       templateUrl: 'partials/pay_success.html',
+      controller: 'ybwxPaySuccessCtrl',
       title: "支付成功"
     }).when('/information', {
       templateUrl: 'partials/information.html',

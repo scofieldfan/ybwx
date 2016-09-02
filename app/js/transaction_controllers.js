@@ -121,6 +121,17 @@ transControllers.controller('wxBaoDanDetailCtrl', ['$scope', '$routeParams', '$l
 	}
 ]);
 
+transControllers.controller('ybwxPaySuccessCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
+
+		$scope.plans = JSON.parse(sessionStorage.getItem("sell_plan"));
+		$scope.isChildDental =  false;
+		if($scope.plans.length>0){
+			$scope.isChildDental = _.contains([577,578,579,580], $scope.plans[0].id);
+		}
+
+	}
+])
 /*
 
 transControllers.controller('ybwxIPayNowCtrl', ['$scope', '$filter', '$routeParams', '$location', '$http', '$rootScope',
