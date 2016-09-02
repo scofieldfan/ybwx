@@ -407,6 +407,27 @@
             font-size: 12px; }
         .child-dental-container .main-list .main-list_hospital_doctor .main-list_hospital_doctor_pic .docter_detail--last {
           margin: 0; }
+  .child-dental-container .mask .head-container {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box; }
+  .child-dental-container .mask .taocan {
+    padding: 40px 45px 50px;
+    text-align: center;
+    -webkit-overflow-scrolling: touch;
+    background-color: #f5f5f5; }
+  .child-dental-container .mask .title {
+    font-size: 15px;
+    margin-bottom: 20px; }
+  .child-dental-container .mask .submit-wrapper {
+    height: 54px;
+    line-height: 54px;
+    background-color: #FFF;
+    padding: 7px 45px;
+    box-sizing: border-box; }
+  .child-dental-container .mask .mask_des {
+    margin-top: 30px; }
   .child-dental-container footer {
     z-index: 999;
     width: 100%;

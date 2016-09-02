@@ -54,7 +54,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/bd_education_new.html',
       controller: 'ybwxBdEducationNewCtrl',
       title: "保障评分",
-      css:'/css/bd_education_new.css?rev=0fbdb77be4ebe5f22d73198ca483db74'
+      css:'/css/bd_education_new.css?rev=d41d8cd98f00b204e9800998ecf8427e'
     }).when('/bd_education_family', {
       templateUrl: 'partials/bd_education_family.html',
       controller: 'ybwxBdEducationNewCtrl',
@@ -269,8 +269,8 @@ ybwxApp.config(['$routeProvider',
       controller: 'ybwxscoreReadingCtrl'
     }).when('/child_dental', {
       templateUrl: 'partials/child_dental.html',
-      title: "齿科保险"
-      // controller: 'ybwxChild_dentailCtrl'
+      title: "齿科保险",
+       controller: 'ybwxChildDentailCtrl'
     }).when('/dental_docter', {
       templateUrl: 'partials/dental_docter.html',
       title: "选择诊所医生"

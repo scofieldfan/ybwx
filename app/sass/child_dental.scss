@@ -216,6 +216,37 @@
 			}
 		}
 	}
+	.mask{
+		.head-container {
+		  position: fixed;
+		  // height: 77%;
+		  bottom: 0;
+		  width: 100%;
+		 
+		
+		  box-sizing:border-box;
+  		 }
+  		 .taocan{
+  		 	 padding:40px 45px 50px;
+  		 	   text-align:center;
+		  -webkit-overflow-scrolling: touch;
+		  background-color: #f5f5f5;
+  		 }
+		.title{
+			font-size:15px;
+			margin-bottom:20px;
+		}
+		.submit-wrapper{
+			height:54px;
+			line-height: 54px;
+			background-color: #FFF;
+			padding:7px 45px;
+			box-sizing:border-box;
+		}
+		.mask_des{
+			margin-top:30px;
+		}
+	}
 	footer {
 		z-index: 999;
 		width: 100%;

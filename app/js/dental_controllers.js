@@ -2,7 +2,7 @@
 * @Author: fanzhang
 * @Date:   2016-08-30 10:34:57
 * @Last Modified by:   fanzhang
-* @Last Modified time: 2016-09-02 10:38:51
+* @Last Modified time: 2016-09-02 16:04:13
 */
 
 'use strict';
@@ -29,5 +29,46 @@ teethControllers.controller('ybwxDentalReservationDetailCtrl', ['$scope', '$rout
 	
 	}
 ]);
+
+//齿科首页
+teethControllers.controller('ybwxChildDentailCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $routeParams, $location, $http, $rootScope) {
+
+		_hmt.push(['_trackPageview', $location.path()]);
+
+		$scope.taocan = 577;
+		
+		$scope.close = function(){
+			$("#dental_mask_container").hide();	
+		}
+		$scope.home = function(){
+			$location.path("/index");
+		}
+		$scope.showMask = function(){
+			$("#dental_mask_container").show();	
+		}
+		$scope.showQrcode = function(){
+			$(".qrcode-wrapper").toggle();
+		}
+		$scope.choose  = function($event,taocanId){
+			var element = $event.currentTarget;
+			$(element).parents(".taocan").find(".ybwx-btn").removeClass("ybwx-btn--primary").addClass("ybwx-btn--white");
+			$(element).removeClass("ybwx-btn--white").addClass("ybwx-btn--primary");
+			$scope.taocan = taocanId;
+
+		}
+		$scope.submit = function(){
+			$location.path("/toubao_new").search({
+				plan_id:$scope.taocan,
+				new_choose_plans:JSON.stringify([{
+					id:$scope.taocan,
+					coverage_period:1
+				}])
+			});
+		}
+	}
+]);
+
+
 
 

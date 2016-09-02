@@ -449,3 +449,10 @@ footer {
 .ybwx-btn--primary:active{
    background-color: #266ada;
 }
+
+.ybwx-btn--white{
+   border:1px solid #ccc ;
+   border-radius: 5px;
+   color:#444;
+   background-color: #fff;
+}
