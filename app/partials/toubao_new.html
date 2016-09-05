@@ -167,12 +167,12 @@
 			</div>
 
 			
-			<div class="new-supply-item"  ng-if="data.mobile">
+			<div class="new-supply-item"  ng-show="data.mobile">
 				<div class="introd">手机号</div>
 				<div class="content"><input type="number" name="mobilenumber" ng-model="mobilenumber" class="new-input" placeholder="银行开卡时预留手机号"  required></div>
 			</div>
-			<div class="new-supply-item"  ng-if="data.mobile">
-				<div class="content"><input type="number" name="securityCode" ng-model="securityCode" class="new-input" placeholder="请填写手机验证码"  ></div>
+			<div class="new-supply-item"  ng-show="data.mobile">
+				<div class="content"><input type="text" name="securityCode" ng-model="security_code" class="new-input" placeholder="请填写手机验证码"  ></div>
 				<div class="introd" style="color:#55a5ff;text-align:center;"  ng-click="submit()" data-qrcode-sended="false" id="securityCodeContainer">获取验证码</div>
 			</div> 
 		</div></div>
