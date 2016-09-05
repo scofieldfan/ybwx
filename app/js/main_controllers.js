@@ -1443,6 +1443,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 					toubaoRequest["insurance_order_id"] = $scope.securityData["insurance_order_id"];
 					toubaoRequest["premium"] = $scope.money;
 					toubaoRequest["security_code"] = $scope.securityCode;
+					alert("security_code:"+$scope.securityCode);
 
 
 					$scope.submitPromise = getHttpPromise($http, $rootScope, 'POST', api['yangguang_purchase'], toubaoRequest, function(res) {
