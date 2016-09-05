@@ -495,3 +495,70 @@
     .child-dental-container footer .footer-about-mai {
       background: #4285f4;
       color: #fff; }
+.child-dental-container_mask {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  z-index: 1000; }
+  .child-dental-container_mask .child-dental-container_toast {
+    box-sizing: border-box;
+    width: 86%;
+    background: #fff;
+    margin: auto;
+    min-height: 50px;
+    max-height: 400px;
+    overflow: auto;
+    border-radius: 5px;
+    position: fixed;
+    top: 90px;
+    z-index: 9999;
+    right: 0;
+    left: 0;
+    padding: 0 20px;
+    border-top: 20px solid #fff;
+    border-bottom: 20px solid #fff; }
+    .child-dental-container_mask .child-dental-container_toast .toast-tit {
+      font-size: 15px;
+      text-align: center;
+      line-height: 15px;
+      padding-bottom: 20px;
+      position: relative; }
+      .child-dental-container_mask .child-dental-container_toast .toast-tit::after {
+        pointer-events: none;
+        position: absolute;
+        z-index: 999;
+        top: 0;
+        left: 0;
+        content: "\0020";
+        border-color: #e2e2e2;
+        border-style: solid;
+        border-width: 0 0 1px 0;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transform-origin: 0 0;
+        transform-origin: 0 0; }
+        @media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+          .child-dental-container_mask .child-dental-container_toast .toast-tit::after {
+            width: 200%;
+            height: 200%;
+            -webkit-transform: scale(0.5);
+            transform: scale(0.5); } }
+        @media (min--moz-device-pixel-ratio: 2.5), (-webkit-min-device-pixel-ratio: 2.5), (min-device-pixel-ratio: 2.5), (min-resolution: 240dpi), (min-resolution: 2.5dppx) {
+          .child-dental-container_mask .child-dental-container_toast .toast-tit::after {
+            width: 200%;
+            height: 200%;
+            -webkit-transform: scale(1/3);
+            transform: scale(1/3); } }
+    .child-dental-container_mask .child-dental-container_toast .toast-main {
+      padding-top: 10px; }
+      .child-dental-container_mask .child-dental-container_toast .toast-main .toast-main_tit {
+        font-size: 13px;
+        padding: 10px 0 5px; }
+      .child-dental-container_mask .child-dental-container_toast .toast-main .toast-main_word {
+        color: #999;
+        font-size: 12px; }

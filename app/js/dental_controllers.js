@@ -86,6 +86,20 @@ teethControllers.controller('ybwxChildDentailCtrl', ['$scope', '$routeParams', '
 				}])
 			});
 		}
+		$scope.showToast = function(type) {
+			console.log(type);
+			$("#toast_"+type).show();
+			$("#toast_"+type).click(function(event) {
+				// event.preventDefault();
+   	// 		 	event.stopPropagation();
+    // 			return false;
+				
+				if(event.target==this){
+					$(this).hide();
+					console.log("................");
+				}
+			})
+		}
 	}
 ]);
 
