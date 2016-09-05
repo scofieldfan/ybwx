@@ -1,15 +1,64 @@
-<link rel="stylesheet" href="css/teeth_reservation_list.css?rev=421b4f8e794c1f31ecf792c2d272de00">
+<link rel="stylesheet" href="/css/dental/teeth_reservation_list.css?rev=421b4f8e794c1f31ecf792c2d272de00">
 
 
 <div class="teeth_reservation_container" data-ng-init="init()"  cg-busy="secondPromise">
 	<ul>
+
+<?php foreach ($reservations as $res): ?>
+
+		<li>
+			<div class="teeth-title-container" ng-click="goReservationDetail()" data-appointment="<?=$res['id']?>"><?=$res['package_name']?>
+				<div class="teeth-tip"></div>
+				<?php if ($res['can_reserve']): ?>
+				<div class="teech-btn-wrapper">
+				<div class="ybwx-btn ybwx-btn--primary" ng-click="goDentalDoctor()" data-id="<?=$res['id']?>">预约</div>
+				</div>
+				<?php else: ?>
+				<div class="teeth-status"><?=$res['status_text']?></div>
+				<?php endif; ?>
+			</div>
+			<div class="teeth-content">
+
+				<div class="teeth-content_des">就诊客户: <?=$res['insurant_name']?></div>
+				<div class="teeth-content_title">包含项目：</div>
+				<div class="teeth-content_items">
+					<?php foreach ($res['items'] as $item): ?>
+					<div class="teeth-content_item<?php if ($item['status']=='disabled') echo 'teeth-content_item--gray'; ?>">
+						<?php if ($item['finished']): ?>
+						<i class="iconfont teeth-content_item_ok " >&#xe634;</i>
+						<?php else: ?>
+						<div class="teeth-content_item_pointer"></div>
+						<?php endif; ?>
+						<?=$item['item_name'];?>
+					</div>
+					<?php endforeach; ?>
+				</div>
+			</div>
+
+			<?php if (isset($res['detail']['status_text'])): ?>
+			<div class="teeth-reservationinfo" data-id="<?=$res['id']?>">
+				<div class="teeth-reservationinfo_content" >
+					<div class="teeth-reservationinfo_info"><?=$res['detail']['status_text']?></div>
+					<div class="teeth-reservationinfo_date"><?=$res['detail']['datetime']?></div>
+				</div>
+				<div class="teeth-reservationinfo_tip">
+
+					<i class="iconfont" style="color:#ccc;font-size:13px;">&#xe60f;</i>
+				</div>
+			</div>
+			<?php endif; ?>
+		</li>
+
+<?php endforeach; ?>
+
+		<?php if (0): ?>
 		<li>
 			<div class="teeth-title-container">少儿齿科保险保健套餐
 				<div class="teeth-tip"></div>
 				<div class="teech-btn-wrapper">
-					<div class="ybwx-btn ybwx-btn--primary" ng-click="goDentalDocter()" data-id="1">预约</div>
+					<div class="ybwx-btn ybwx-btn--primary" ng-click="goDentalDoctor()" data-id="1">预约</div>
 				</div>
-			<!-- <div class="teeth-status">预约成功</div> -->
+				<!-- <div class="teeth-status">预约成功</div> -->
 			</div>
 			<div class="teeth-content">
 
@@ -23,18 +72,18 @@
 					<div class="teeth-content_item"><div class="teeth-content_item_pointer"></div>乳牙拔出1颗</div>
 					<div class="teeth-content_item"><div class="teeth-content_item_pointer"></div>虫牙填充1颗</div>
 					<div class="teeth-content_item"><div class="teeth-content_item_pointer"></div>根管治疗(深龋)2颗</div>
-						<div class="teeth-content_item"><div class="teeth-content_item_pointer"></div>根管治疗(深龋)2颗</div>
+					<div class="teeth-content_item"><div class="teeth-content_item_pointer"></div>根管治疗(深龋)2颗</div>
 				</div>
 			</div>
 
 			<div class="teeth-reservationinfo">
 				<div class="teeth-reservationinfo_content" >
 					<div class="teeth-reservationinfo_info">【已治疗】涂氟、窝沟封闭2颗</div>
-					<div class="teeth-reservationinfo_date">2016-09-28</div>		
+					<div class="teeth-reservationinfo_date">2016-09-28</div>
 				</div>
 				<div class="teeth-reservationinfo_tip">
-						
-						<i class="iconfont" style="color:#ccc;font-size:13px;">&#xe60f;</i>
+
+					<i class="iconfont" style="color:#ccc;font-size:13px;">&#xe60f;</i>
 				</div>
 			</div>
 		</li>
@@ -44,7 +93,7 @@
 			<div class="teeth-title-container">少儿齿科保险保健套餐
 				<div class="teeth-tip"></div>
 				<!-- <div class="ybwx-btn ybwx-btn--primary" style="float:right">预约</div> -->
-			<div class="teeth-status">预约成功</div>
+				<div class="teeth-status">预约成功</div>
 			</div>
 			<div class="teeth-content">
 
@@ -58,21 +107,21 @@
 					<div class="teeth-content_item"><div class="teeth-content_item_pointer"></div>乳牙拔出1颗</div>
 					<div class="teeth-content_item"><div class="teeth-content_item_pointer"></div>虫牙填充1颗</div>
 					<div class="teeth-content_item teeth-content_item--gray"><i class="iconfont teeth-content_item_ok " >&#xe634;</i>根管治疗(深龋)2颗</div>
-						<div class="teeth-content_item"><div class="teeth-content_item_pointer"></div>根管治疗(深龋)2颗</div>
+					<div class="teeth-content_item"><div class="teeth-content_item_pointer"></div>根管治疗(深龋)2颗</div>
 				</div>
 			</div>
 
 			<div class="teeth-reservationinfo">
 				<div class="teeth-reservationinfo_content" >
 					<div class="teeth-reservationinfo_info">【已治疗】涂氟、窝沟封闭2颗</div>
-					<div class="teeth-reservationinfo_date">2016-09-28</div>		
+					<div class="teeth-reservationinfo_date">2016-09-28</div>
 				</div>
 				<div class="teeth-reservationinfo_tip">
-						
-						<i class="iconfont" style="color:#ccc;font-size:13px;">&#xe60f;</i>
+
+					<i class="iconfont" style="color:#ccc;font-size:13px;">&#xe60f;</i>
 				</div>
 			</div>
 		</li>
-
+		<?php endif; ?>
 	</ul>
 </div>

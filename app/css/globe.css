@@ -311,7 +311,7 @@ h5 {
   cursor: pointer;
   right: 0.2rem;
   bottom: 1rem;
-  z-index: 1000000; }
+  z-index: 999; }
 .weui_btn {
   position: relative;
   display: block;

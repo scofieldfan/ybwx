@@ -1,0 +1,112 @@
+
+<link rel="stylesheet" href="/css/dental_doctor.css?rev=67aa8fdf5b772f01f87cc0d70b162934">
+
+<div class="dental-doctor">
+	<div class="dental-doctor_header">
+		<div class="dental-doctor_header_list">
+			<div class="dental-doctor_header_list_steps">
+				<div class=" flex1"></div>
+				<img src="/img/child_dental/yi.jpg">
+				<div class="padd_18 flex1"></div>
+			</div>
+			<div class="dental-doctor_header_list-word">选择诊所</div>
+		</div>
+		<div class="dental-doctor_header_list">
+			<div class="dental-doctor_header_list_steps">
+				<div class="padd_18 flex1 color_ccc"></div>
+				<img src="/img/child_dental/er.jpg">
+				<div class="padd_18 flex1 color_ccc"></div>
+			</div>
+			<div class="dental-doctor_header_list-word">电话确认</div>
+		</div>
+		<div class="dental-doctor_header_list">
+			<div class="dental-doctor_header_list_steps">
+				<div class="padd_18 flex1 color_ccc"></div>
+				<img src="/img/child_dental/san.jpg">
+				<div class="flex1"></div>
+			</div>
+			<div class="dental-doctor_header_list-word">按时就诊</div>
+		</div>
+	</div>
+	<div class="dental-doctor_main">
+		<div class="dental-doctor_main_tit"><?=$package_name?></div>
+		<div class="dental-doctor_main_user-name">被保人：<span><?=$insurant_name?></span></div>
+        <div class="docter_main_user-hint">
+            <span></span>医院按用户综合评分由高到底排序
+        </div>
+        <div class="docter_main_user-hint mar_10">
+            <span></span>您选择的医生将为您提供所有项目的服务
+        </div>
+
+		<?php foreach ($hospitals as $k=>$hospital): ?>
+		<div class="dental-doctor_main_has<?php if ($k==0):?> background<?php endif;?>" id="doctor_box">
+			<div class="dental-doctor_main_has_box">
+				<div class="dental-doctor_main_has_box--left">
+					<div class="dental-doctor_main_has_tit"><i class="iconfont" style="color: #4285f4;font-size: 15px;margin-right: 5px;">&#xe632;</i><?=$hospital['name']?></div>
+					<div class="dental-doctor_main_has_address"><i class="iconfont" style="color: #999;font-size: 15px;margin-right: 5px;">&#xe633;</i><?=$hospital['addr']?></div>
+				</div>
+				<div class="dental-doctor_main_has_box--right"><i class="iconfont io" id="jian" style="font-size: 14px;color: #ccc;">&#xe60f;</i></div>
+			</div>
+			
+			<div class="dental-doctor_main_has_doctor<?php if ($k==0):?>  background<?php endif; ?>" id="doctor_has" <?php if ($k!=0):?>style="display: none"<?php endif; ?>>
+				<?php foreach ($hospital['doctors'] as $doctor): ?>
+				<div class="doctor_pic marRight"  ng-click="goDoctor_detail()" data-hospital-id="<?=$hospital['id']?>" data-doctor-id="<?=$doctor['id']?>">
+					<img src="<?=$doctor['pic']?>">
+					<div class="doctor_pic_name-word">
+						<div class="doctor_pic_name"><?=$doctor['name']?></div>
+						<div class="doctor_pic_detail"><?=$doctor['specialty']?></div>
+					</div>
+				</div>
+				<?php endforeach; ?>
+			</div>
+		</div>
+		<?php endforeach; ?>
+
+<?php if (0): ?>
+		<div class="dental-doctor_main_has"  id="doctor_box">
+			<div class="dental-doctor_main_has_box">
+				<div class="dental-doctor_main_has_box--left">
+					<div class="dental-doctor_main_has_tit">瑞泰口腔医院总院</div>
+					<div class="dental-doctor_main_has_address">北京市朝阳区北苑路媒体村天居园1号楼</div>
+				</div>
+				<div class="dental-doctor_main_has_box--right"><i class="iconfont" id="jian" style="font-size: 14px;color: #ccc;">&#xe60f;</i></div>
+			</div>
+			<div class="dental-doctor_main_has_doctor" id="doctor_has" style="display: none">
+				<div class="doctor_pic marRight">
+					<img src="/img/child_dental/meinv.jpg">
+					<div class="doctor_pic_name-word">
+						<div class="doctor_pic_name">刘文婷</div>
+						<div class="doctor_pic_detail">擅长儿童各类疾病治疗</div>
+					</div>
+				</div>
+				<div class="doctor_pic marRight">
+					<img src="/img/child_dental/meinv.jpg">
+					<div class="doctor_pic_name-word">
+						<div class="doctor_pic_name">刘文婷</div>
+						<div class="doctor_pic_detail">擅长儿童各类疾病治疗</div>
+					</div>
+				</div>
+				<div class="doctor_pic">
+					<img src="/img/child_dental/meinv.jpg">
+					<div class="doctor_pic_name-word">
+						<div class="doctor_pic_name">刘文婷</div>
+						<div class="doctor_pic_detail">擅长儿童各类疾病治疗</div>
+					</div>
+				</div>
+			</div>
+		</div>
+<?php endif; ?>
+	</div>
+</div>
+
+<script>
+	$(".dental-doctor_main #doctor_box").click(function(){
+		$(".dental-doctor_main #doctor_box").find("#doctor_has").hide();
+		$(".dental-doctor_main #doctor_box").removeClass("background");
+		$(".dental-doctor_main #doctor_box").find("#jian").removeClass("io");
+		$(this).find("#jian").addClass("io");
+		$("#doctor_box").find("#doctor_has").hide();
+		$(this).find("#doctor_has").show();
+		$(this).addClass("background");
+	});
+</script>

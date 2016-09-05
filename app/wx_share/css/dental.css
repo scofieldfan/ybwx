@@ -1,0 +1,146 @@
+img{
+    width: 100%;
+    vertical-align: middle;
+}
+.mt10{
+    margin-top: 10px;
+}
+.mt20{
+    margin-top: 20px;
+}
+
+.main-content{
+    padding:  0 .1rem;
+}
+
+.row {
+  overflow: hidden;
+  margin-left: -4%;
+}
+.row > [class*="col-"] {
+  box-sizing: border-box;
+  float: left;
+}
+.row .col-50 {
+  width: 46%;
+  margin-left: 4%;
+}
+
+.goods-box{
+    text-align: center;
+    color: #444;
+}
+.goods-box .goods-type{
+    border-bottom: 1px #444 solid;
+    margin-bottom: 0.08rem;
+}
+.goods-box .goods-type strong{
+    background-color: #fff;
+    padding: 0 10px;
+    font-size: .15rem;
+    position: relative;
+    bottom: -10px;
+}
+.goods-box .goods-type strong span{
+    font-size: .28rem;
+}
+.goods-box .goods-picture{
+}
+.goods-box .goods-picture p{
+    height: .4rem;
+    line-height: .4rem;
+    font-size: .18rem;
+    color: #fcff00;
+    background-color: #444;
+}
+.goods-box .goods-content{
+    border: 1px #999 solid;
+    padding: .1rem 5px;
+}
+.goods-box .goods-content .goods-title{
+    font-size: .13rem;
+    line-height: .15rem;
+    min-height: .35rem;
+}
+.goods-box .goods-content del{
+    font-size: .12rem;
+}
+.goods-box .goods-content h2{
+    color: #ff008b;
+    font-size: .15rem;
+}
+.goods-box .goods-content .goods-btn{
+    height: .25rem;
+    line-height: .25rem;
+    border: 1px #999 solid;
+    border-radius: .25rem;
+    display: inline-block;
+    margin-top: .1rem;
+    width: 60%;
+    font-size: .12rem;
+    color: #444;
+}
+
+.pyq-box{
+    text-align: center;
+}
+.pyq-box .pyq-title h2{
+    background-color: #fcff00;
+    color: #444;
+    padding: 5px 0;
+}
+.pyq-box .pyq-title p{
+    background-color: #444;
+    color: #fff;
+    padding: 5px 0;
+}
+.pyq-box .pyq-info{
+    padding: 15px 0;
+    font-size: .15rem;
+}
+.pyq-box .pyq-info span{
+    color: #ff008b;
+}
+.pyq-box .pyq-btn{
+    width: 75%;
+    display: inline-block;
+    border: 3px #444 solid;
+    background-color: #fcff00;
+    color: #444;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 40px;
+    font-weight: bold;
+    font-size: .18rem;
+}
+.pyq-box .pyq-stats{
+    margin-top: 5px;
+}
+.pyq-box .pyq-stats span{
+    color: #ff008b;
+}
+
+.rule-box{
+    text-align: center;
+}
+.rule-box .rule-title{
+    background-color: #444;
+    color: #fff;
+    padding: 5px 0;
+}
+.rule-box p{
+    padding: .1rem .35rem 0;
+}
+.rule-box p span{
+    color: #ff008b;
+}
+.rule-box img{
+    width: 50%;
+    margin: .2rem 0;
+}
+.rule-box hr{
+    height: 5px;
+    background-color: #444;
+    border: 0;
+    margin-bottom: 20px;
+}

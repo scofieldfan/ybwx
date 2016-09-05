@@ -16,7 +16,8 @@ var api = {
 	'prepare_insure': '/ybwx-web/api/insurance/prepare',
 	'purchase': '/ybwx-web/api/insurance/purchase',
 	'share_callback': '/ybwx-web/api/insurance/share',
-	'is_share': '/ybwx-web/api/insurance/share/status'
+	'is_share': '/ybwx-web/api/insurance/share/status',
+	'getStats': '/event/dental1609/stats'
 }
 
 
@@ -683,5 +684,49 @@ wxShareControllers.controller('myCouponListCtrl', ['$scope', '$routeParams', '$h
 			}
 		}
 		$scope.init();
+	}
+]);
+
+
+// 牙科
+wxShareControllers.controller('dentalCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
+	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
+		$scope.init = function(argument) {
+			$scope.data = {
+				invited: 0,
+				valid: 0
+			}
+
+			var currentUrl = util.domain + "wx_share.html#/dental1609";
+
+			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
+				$("#loadingToastCommon").hide();
+				var rec_id = window.NBCONF.USER['unionid'] || '';
+
+				util.share({
+					shareUrl: util.domain + "wx_share.html#/dental1609?rec_id=" + rec_id,
+					shareImg: util.domain + "wx_share/img/dental/header.jpg",
+					shareTitle: "一顿饭的价格解决宝宝乳牙期所有问题",
+					shareDesc: "一顿饭的价格解决宝宝乳牙期所有问题"
+
+				});
+
+				if(rec_id){
+					$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['getStats'], {
+						"rec_id": rec_id
+					}, function (res) {
+						if(res.data.code === 0) {
+							$scope.data = res.data.data;
+						}
+					});
+				}
+			});
+		}
+		$scope.init();
+
+		$scope.showShareTip = function() {
+			_hmt.push(['_trackEvent', 'wx_share_dental', 'wx_share_button']);
+			shareTip();
+		}
 	}
 ]);

@@ -54,7 +54,38 @@ function($routeProvider) {
     templateUrl: 'wx_share/partials/special_offer.html',
     controller: 'specialCtrl',
     css:'/wx_share/css/special_offer.css?rev=7ddcb904c4df46ffa6bef3dc56ef0'
+  }).when('/dental1609', {
+    templateUrl: 'wx_share/partials/dental.html',
+    controller: 'dentalCtrl',
+    title: '齿科保险',
+    css:'/wx_share/css/dental.css?rev=7ddcb904c4df46ffa6bef3dc56ef0'
   }).otherwise({
     redirectTo: '/index'
   });
 }]);
+
+wxShareApp.run(['$rootScope',
+  function($rootScope) {
+    $rootScope.$on('$routeChangeSuccess', function(event, current, previous) {
+      //if (current.$$route) {
+      /*
+        if (current.hasOwnProperty('$$route')) {
+           $rootScope.title = current.$$route.title;
+
+        }*/
+      if (current && current.title) {
+        // document.title = current.title;
+        var $body = $('body');
+        document.title = current.title;
+        // hack在微信等webview中无法修改document.title的情况
+        var $iframe = $('<iframe src="/favicon.ico" style="display:none"></iframe>');
+        $iframe.on('load', function() {
+          setTimeout(function() {
+            $iframe.off('load').remove();
+          }, 0);
+        }).appendTo($body);
+      }
+      // }
+    });
+  }
+]);
