@@ -242,6 +242,9 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/contact_list.html',
       controller: 'ybwxContactListCtrl',
       title: "常用被保人"
+    }).when('/error', {
+      templateUrl: 'partials/error.html',
+      title: "遇到问题啦"
     }).when('/update_add_contact', {
       templateUrl: 'partials/update_add_contact.html',
       controller: 'ybwxUpdateAddContactCtrl',
