@@ -286,8 +286,8 @@ ybwxApp.config(['$routeProvider',
     }).when('/dental/no_shop', {
       // 直接服务端跳转
       templateUrl: 'partials/dental/dental_no_shop.html',
-      title: "齿科保险"
-
+      title: "齿科保险",
+      controller: 'ybwxDentalNoShopCtrl'
     }).when('/dental/select_hospital', {
       templateUrl:  function(params){
         return 'partials/dental/select_hospital.html?appointment_id='+params.appointment_id;
@@ -298,10 +298,12 @@ ybwxApp.config(['$routeProvider',
       templateUrl:  function(params){
         return 'partials/dental/select_doctor.html?appointment_id='+params.appointment_id+'&doctor_id='+params.doctor_id;
       },
-      title: "选择诊所医生"
+      title: "选择诊所医生",
+      controller: 'ybwxSelectDoctor'
     }).when('/dental/confirm', {
       templateUrl: 'partials/dental/confirm.html',
-      title: "确认预约"
+      title: "确认预约",
+      controller: 'ybwxDentalConfirmCtrl'
     }).when('/dental/reservation_detail',{
       templateUrl:  function(params){
         return 'partials/dental/reservation_detail.html?appointment_id='+params.appointment_id;

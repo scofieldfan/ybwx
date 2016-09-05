@@ -24,6 +24,17 @@ teethControllers.controller('ybwxDentalReservationCtrl', ['$scope', '$routeParam
                 appointment_id: $scope.appointment_id,
 			});
 		}
+		$scope.goReservationDetail = function() {
+			console.log("?????????????");
+            $scope.appoint_id = $(".teeth-title-container").attr("data-appointment");
+			$location.path("/dental/reservation_detail").search({
+                appointment_id: $scope.appoint_id
+			});
+		}
+		$scope.goChildDental = function () {
+		 	console.log("/////");
+		 	$location.path("/child_dental");
+		 }
 	}
 ]);
 teethControllers.controller('ybwxDental_doctorCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
@@ -37,6 +48,7 @@ teethControllers.controller('ybwxDental_doctorCtrl', ['$scope', '$routeParams', 
                 doctor_id: $scope.doctor_id
 			});
 		}
+		
 	}
 ]);
 //牙齿预约的详情
@@ -48,7 +60,43 @@ teethControllers.controller('ybwxDentalReservationDetailCtrl', ['$scope', '$rout
 	
 	}
 ]);
+// 选择医生跳转后的页面
+teethControllers.controller('ybwxSelectDoctor', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $routeParams, $location, $http, $rootScope) {
 
+		$scope.goConfirm = function() {
+			console.log("docter");
+			$scope.postPrime = getHttpPromise($http, $rootScope, 'POST', api['submit_reservation'], {
+				appointment_id: $routeParams.appointment_id,
+				doctor_id: $routeParams.doctor_id
+			}, function(res) {
+				if(res.data.code !== 0) {
+					util.showToast($rootScope, res.data.msg);
+				}else{
+					console.log("docterSelect");
+					$location.path("/dental/confirm");
+				};
+			})
+		}
+	}
+]);
+// 未购买页 立即购买
+// teethControllers.controller('ybwxDentalNoShopCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+// 	function($scope, $routeParams, $location, $http, $rootScope) {
+// 	 $scope.goChildDental = function () {
+// 	 	console.log("/////");
+// 	 	$location.path("/child_dental");
+// 	 }
+// 	}
+// ]);
+teethControllers.controller('ybwxDentalConfirmCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+	function($scope, $routeParams, $location, $http, $rootScope) {
+	 $scope.goReservationList = function () {
+	 	console.log("确定");
+	 	$location.path("/dental/reservation_list");
+	 }
+	}
+]);
 //齿科首页
 teethControllers.controller('ybwxChildDentailCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {

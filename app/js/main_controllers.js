@@ -58,6 +58,7 @@ var api = {
 	'toubao_purchase': '/ybwx-web/api/insurance/extended/purchase',
 	'yangguang_get_security_code': '/ybwx-web/api/insurance/extended/get_security_code',
 	'yangguang_purchase': '/ybwx-web/api/insurance/extended/purchase_and_pay',
+	'submit_reservation': '/api/dental/submit_reservation',
 }
 
 var isNew = true;

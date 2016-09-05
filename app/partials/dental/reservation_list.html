@@ -7,7 +7,7 @@
 <?php foreach ($reservations as $res): ?>
 
 		<li>
-			<div class="teeth-title-container"><?=$res['package_name']?>
+			<div class="teeth-title-container" ng-click="goReservationDetail()" data-appointment="<?=$res['id']?>"><?=$res['package_name']?>
 				<div class="teeth-tip"></div>
 				<?php if ($res['can_reserve']): ?>
 				<div class="teech-btn-wrapper">
@@ -36,7 +36,7 @@
 			</div>
 
 			<?php if (isset($res['detail']['status_text'])): ?>
-			<div class="teeth-reservationinfo">
+			<div class="teeth-reservationinfo" data-id="<?=$res['id']?>">
 				<div class="teeth-reservationinfo_content" >
 					<div class="teeth-reservationinfo_info"><?=$res['detail']['status_text']?></div>
 					<div class="teeth-reservationinfo_date"><?=$res['detail']['datetime']?></div>
