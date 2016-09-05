@@ -388,7 +388,7 @@
         display: -moz-box;
         display: -ms-flexbox;
         display: flex; }
-        .child-dental-container .main-list .main-list_hospital_doctor .main-list_hospital_doctor_pic .docter_detail {
+        .child-dental-container .main-list .main-list_hospital_doctor .main-list_hospital_doctor_pic .doctor_detail {
           -webkit-box-flex: 1;
           -webkit-flex: 1;
           -moz-box-flex: 1;
@@ -396,16 +396,16 @@
           flex: 1;
           margin-right: 12px;
           text-align: center; }
-          .child-dental-container .main-list .main-list_hospital_doctor .main-list_hospital_doctor_pic .docter_detail .docter_pic img {
+          .child-dental-container .main-list .main-list_hospital_doctor .main-list_hospital_doctor_pic .doctor_detail .doctor_pic img {
             width: 100%; }
-          .child-dental-container .main-list .main-list_hospital_doctor .main-list_hospital_doctor_pic .docter_detail .docter_name {
+          .child-dental-container .main-list .main-list_hospital_doctor .main-list_hospital_doctor_pic .doctor_detail .doctor_name {
             text-align: center;
             font-size: 13px;
             font-weight: bold;
             margin: 10px 0 5px; }
-          .child-dental-container .main-list .main-list_hospital_doctor .main-list_hospital_doctor_pic .docter_detail .docter_detail-word {
+          .child-dental-container .main-list .main-list_hospital_doctor .main-list_hospital_doctor_pic .doctor_detail .doctor_detail-word {
             font-size: 12px; }
-        .child-dental-container .main-list .main-list_hospital_doctor .main-list_hospital_doctor_pic .docter_detail--last {
+        .child-dental-container .main-list .main-list_hospital_doctor .main-list_hospital_doctor_pic .doctor_detail--last {
           margin: 0; }
   .child-dental-container .mask .head-container {
     position: fixed;
@@ -558,6 +558,7 @@
       padding-top: 10px; }
       .child-dental-container_mask .child-dental-container_toast .toast-main .toast-main_tit {
         font-size: 13px;
+        line-height: 13px;
         padding: 10px 0 5px; }
       .child-dental-container_mask .child-dental-container_toast .toast-main .toast-main_word {
         color: #999;

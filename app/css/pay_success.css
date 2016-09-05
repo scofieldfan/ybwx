@@ -2,7 +2,8 @@
 .pay_success_ctrl {
   padding: 0 .5rem; }
   .pay_success_ctrl .win {
-    line-height: 82px;
+    padding-top: 20px;
+    height: 82px;
     font-size: 15px;
     color: 555;
     text-align: center; }

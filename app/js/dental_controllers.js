@@ -17,25 +17,24 @@ teethControllers.controller('ybwxDentalReservationCtrl', ['$scope', '$routeParam
         
 		_hmt.push(['_trackPageview', $location.path()]);
 		
-		$scope.goDentalDocter = function() {
-			$scope.dentalId = $(".ybwx-btn").attr("data-id");
-			// console.log($scope.dentalId);
-			$location.path("/dental_docter").search({
-				docter_id:$scope.dentalId
+		$scope.goDentalDoctor = function() {
+            $scope.appointment_id = $(".ybwx-btn").attr("data-id");
+
+			$location.path("/dental/select_hospital").search({
+                appointment_id: $scope.appointment_id,
 			});
 		}
 	}
 ]);
-teethControllers.controller('ybwxDental_docterCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
+teethControllers.controller('ybwxDental_doctorCtrl', ['$scope', '$routeParams', '$location', '$http', '$rootScope',
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
 		_hmt.push(['_trackPageview', $location.path()]);
-		$scope.goDocter_detail = function() {
-			$scope.dentalId = $(".docter_pic").attr("data-id");
-			console.log($scope.dentalId);
-			$location.path("/docter_detail").search({
-				docter_id:$routeParams.docter_id,
-				docter_id1:$scope.dentalId
+		$scope.goDoctor_detail = function() {
+			$scope.doctor_id = $(".doctor_pic").attr("data-doctor-id");
+			$location.path("/dental/select_doctor").search({
+				appointment_id: $routeParams.appointment_id,
+                doctor_id: $scope.doctor_id
 			});
 		}
 	}

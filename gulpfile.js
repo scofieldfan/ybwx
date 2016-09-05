@@ -134,6 +134,7 @@ gulp.task('cssMin', function() {
 })
 gulp.task('jsMin', function() {
 	return gulp.src([
+			'app/js/config.js',
 			'app/bower_components/jquery/dist/jquery.min.js',
 			//'app/js/lcalendar/dist/js/LCalendar.js',
 			'app/js/fastclick.js',
@@ -222,6 +223,7 @@ gulp.task('wx_cssMin', function() {
 // minify js file
 gulp.task('wx_jsMin', function() {
 	return gulp.src([
+			'app/js/config.js',
 			'app/js/util.js',
 			'app/bower_components/jquery/dist/jquery.min.js',
 			'app/bower_components/angular/angular.min.js',
@@ -307,6 +309,9 @@ gulp.task('sync:dev', ['sass:watch', 'wx_sass:watch'], function() {
 		['deploy:sync:dev']
 		);
 });
+
+// 打包dev
+gulp.task('dist', ['rev', 'wx_rev']);
 
 // 打包发送到dev
 gulp.task('deploy:dev', ['rev', 'wx_rev'], function() {

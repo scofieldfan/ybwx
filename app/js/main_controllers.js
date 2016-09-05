@@ -1293,7 +1293,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 	function($scope, $filter, $routeParams, $location, $http, $rootScope) {
 		//得兼容定制页投保，特卖投保
 		_hmt.push(['_trackPageview', $location.path()]);
-
+		
 		$scope.getTaocanReason = function(reasonEnum) {
 			return util.taocan_reason[reasonEnum] || "";
 		}
@@ -1343,7 +1343,6 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 		$scope.submit = function(isYangguang) {
 			_hmt.push(['_trackEvent', 'toubaonew', 'toubaonew_submit']);
 			var isBankInvalid = $scope.data.bank_account && $scope.user.bank_account.id == 0;
-
 			// 省 市 县/区
 			$scope.district = $("#district1 option:selected").attr("data-code");
 			$scope.job = $("#job option:selected").attr("data-value");
@@ -1442,7 +1441,8 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 					toubaoRequest["proposal_no"] = $scope.securityData["proposal_no"];
 					toubaoRequest["insurance_order_id"] = $scope.securityData["insurance_order_id"];
 					toubaoRequest["premium"] = $scope.money;
-					toubaoRequest["security_code"] = $scope.securityCode;
+					toubaoRequest["security_code"] = $scope.security_code;
+				
 
 
 					$scope.submitPromise = getHttpPromise($http, $rootScope, 'POST', api['yangguang_purchase'], toubaoRequest, function(res) {

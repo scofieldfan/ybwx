@@ -191,26 +191,26 @@
 			}
 			.main-list_hospital_doctor_pic {
 				@include flexbox();
-				.docter_detail {
+				.doctor_detail {
 					@include flex(1);
 					margin-right: 12px;
 					text-align: center;
-					.docter_pic {
+					.doctor_pic {
 						img {
 							width: 100%;
 						}
 					}
-					.docter_name {
+					.doctor_name {
 						text-align: center;
 						font-size: 13px;
 						font-weight: bold;
 						margin: 10px 0 5px; 
 					}
-					.docter_detail-word {
+					.doctor_detail-word {
 						font-size: 12px;
 					}
 				}
-				.docter_detail--last {
+				.doctor_detail--last {
 					margin: 0;
 				}
 			}
