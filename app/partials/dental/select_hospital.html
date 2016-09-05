@@ -31,6 +31,13 @@
 	<div class="dental-doctor_main">
 		<div class="dental-doctor_main_tit"><?=$package_name?></div>
 		<div class="dental-doctor_main_user-name">被保人：<span><?=$insurant_name?></span></div>
+        <div class="docter_main_user-hint">
+            <span></span>医院按用户综合评分由高到底排序
+        </div>
+        <div class="docter_main_user-hint mar_10">
+            <span></span>您选择的医生将为您提供所有项目的服务
+        </div>
+
 		<?php foreach ($hospitals as $k=>$hospital): ?>
 		<div class="dental-doctor_main_has<?php if ($k==0):?> background<?php endif;?>" id="doctor_box">
 			<div class="dental-doctor_main_has_box">

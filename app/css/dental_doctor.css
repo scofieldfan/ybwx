@@ -83,6 +83,21 @@
       text-align: center;
       line-height: 15px;
       margin: 15px 0 20px; }
+    .dental-doctor .dental-doctor_main .docter_main_user-hint {
+      font-size: 12px;
+      color: #999;
+      line-height: 12px;
+      margin-bottom: 7px; }
+      .dental-doctor .dental-doctor_main .docter_main_user-hint span {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        background: #ccc;
+        border-radius: 50%;
+        margin-right: 10px;
+        vertical-align: 1px; }
+    .dental-doctor .dental-doctor_main .mar_10 {
+      margin-bottom: 10px; }
     .dental-doctor .dental-doctor_main .dental-doctor_main_has {
       padding: 15px 17px;
       border: 1px solid #ccc;

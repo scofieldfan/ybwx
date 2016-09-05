@@ -300,7 +300,9 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/dental/confirm.html',
       title: "确认预约"
     }).when('/dental/reservation_detail',{
-      templateUrl: 'partials/dental/reservation_detail.html',
+      templateUrl:  function(params){
+        return 'partials/dental/reservation_detail.html?appointment_id='+params.appointment_id;
+      },
       title: "齿科预约记录",
       controller: 'ybwxDentalReservationDetailCtrl'
     }).otherwise({
