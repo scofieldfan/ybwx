@@ -1343,7 +1343,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 		$scope.submit = function(isYangguang) {
 			_hmt.push(['_trackEvent', 'toubaonew', 'toubaonew_submit']);
 			var isBankInvalid = $scope.data.bank_account && $scope.user.bank_account.id == 0;
-
+			alert("security_code:"+$scope.securityCode);
 			// 省 市 县/区
 			$scope.district = $("#district1 option:selected").attr("data-code");
 			$scope.job = $("#job option:selected").attr("data-value");
@@ -1443,7 +1443,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 					toubaoRequest["insurance_order_id"] = $scope.securityData["insurance_order_id"];
 					toubaoRequest["premium"] = $scope.money;
 					toubaoRequest["security_code"] = $scope.securityCode;
-					alert("security_code:"+$scope.securityCode);
+				
 
 
 					$scope.submitPromise = getHttpPromise($http, $rootScope, 'POST', api['yangguang_purchase'], toubaoRequest, function(res) {
