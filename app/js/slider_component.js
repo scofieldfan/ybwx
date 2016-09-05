@@ -115,9 +115,11 @@
 				var newWidth = xishu * number * this.barMax / 100;
 				$(this.get("id")).find(".progress_inner_bar").width(newWidth);
 				$(this.get("id")).find(".zhizhen").css("left", newWidth - ZHIZHEN_OFFSET);
+				if( newWidth !== this.lastWidth)
 				if (typeof this.get("callback") == "function" ) {
 					this.get("callback")(this.get("text")[xishu],isEnd);
 				}
+				this.lastWidth = newWidth;
 			}
 
 		},
