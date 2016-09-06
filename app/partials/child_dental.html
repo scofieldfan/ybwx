@@ -66,7 +66,7 @@
     	<!-- 合作医院 -->
         <div class="main-list_hospital" id="yiyuan" style="display: none;">
             <div class="main-list_hospital_box">
-                <div class="main-list_hospital_box_tit"><span class="num_blue">3</span>家知名口腔医院 <span class="num_blue">24</span>家诊所</div>
+                <div class="main-list_hospital_box_tit"><span class="num_blue">3</span>家知名口腔医院 <span class="num_blue">24</span>家分院</div>
                 <!-- 医院logo and detail -->
                 <div class="main-list_hospital_list">
                     <img src="/img/child_dental/hospital/hos_logo_1.png">
@@ -175,7 +175,7 @@
 <!-- 普洱 -->
 <div class="child-dental-container_mask" id="toast_2">
     <div class="child-dental-container_toast"> 
-        <div class="toast-tit">北京拜博口腔医院地址</div>
+        <div class="toast-tit">北京拜博口腔各分院地址</div>
         <div class="toast-main">
             <div class="toast-main_tit">1、北京拜博拜尔口腔医院（总部）</div>
             <div class="toast-main_word">北京市东城区祈年大街兴隆国际18号院4号楼</div>
@@ -216,7 +216,7 @@
 <!-- 拜博 -->
 <div class="child-dental-container_mask" id="toast_3" >
     <div class="child-dental-container_toast"> 
-        <div class="toast-tit">普尔口腔医院地址</div>
+        <div class="toast-tit">普尔口腔各分院地址</div>
         <div class="toast-main">
             <div class="toast-main_tit">1、普尔口腔北京</div>
             <div class="toast-main_word">北京市朝阳区建国路88号SOHO现代城A座0324室</div>
@@ -225,42 +225,3 @@
         </div>
     </div>
 </div>
-<script>
-	$("#switch .switch-child").click(function(){
-		$("#switch").find(".switch-child").removeClass("border_3px");
-		$(this).addClass("border_3px").show();
-        $(document).scrollTop(424);
-		// $("#switch").find("li").addClass("blue");
-
-	});
-      $("body").on("click",".head-container",function(event){
-        event.preventDefault();
-        event.stopPropagation();
-        return false;
-    }); 
-   $(window).scroll(function(){
-      var y=$(document).scrollTop();
-      if(y> $(window).height()){
-        $('#switch').addClass('position');
-      }else{
-        $('#switch').removeClass('position');
-      }  
-      // console.log(y);
-      // console.log($(window).height());
-    })
-    $("#switch .switch-child:eq(1)").click(function(){
-        $("#taocan").show();
-        $("#jianjie").hide();
-        $("#yiyuan").hide();
-    });
-    $("#switch .switch-child:eq(2)").click(function(){
-        $("#yiyuan").show();
-        $("#jianjie").hide();
-        $("#taocan").hide();
-    });
-    $("#switch .switch-child:eq(0)").click(function(){
-        $("#jianjie").show();
-        $("#yiyuan").hide();
-        $("#taocan").hide();
-    });
-</script>

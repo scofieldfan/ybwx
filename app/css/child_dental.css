@@ -130,7 +130,7 @@
       color: #999;
       text-align: center;
       line-height: 50px;
-      z-index: 99999;
+      z-index: 1000;
       display: -webkit-box;
       display: -webkit-flex;
       display: -moz-box;
@@ -564,3 +564,6 @@
       .child-dental-container_mask .child-dental-container_toast .toast-main .toast-main_word {
         color: #999;
         font-size: 12px; }
+.hospital-address {
+  background: #fff;
+  padding: 20px; }
