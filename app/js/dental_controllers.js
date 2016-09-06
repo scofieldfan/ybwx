@@ -147,6 +147,52 @@ teethControllers.controller('ybwxChildDentailCtrl', ['$scope', '$routeParams', '
 				}
 			})
 		}
+		$("#switch .switch-child").click(function(){
+			$("#switch").find(".switch-child").removeClass("border_3px");
+			$(this).addClass("border_3px").show();
+	        $(document).scrollTop(424);
+			// $("#switch").find("li").addClass("blue");
+
+		});
+	    $("body").on("click",".head-container",function(event){
+	        event.preventDefault();
+	        event.stopPropagation();
+	        return false;
+	    }); 
+	   	$(window).scroll(function(){
+	      var y=$(document).scrollTop();
+	      if(y> $(window).height()){
+	        $('#switch').addClass('position');
+	      }else{
+	        $('#switch').removeClass('position');
+	      }  
+	      // console.log(y);
+	      // console.log($(window).height());
+	    })
+	    $("#switch .switch-child:eq(1)").click(function(){
+	        $("#taocan").show();
+	        $("#jianjie").hide();
+	        $("#yiyuan").hide();
+	    });
+	    $("#switch .switch-child:eq(2)").click(function(){
+	        $("#yiyuan").show();
+	        $("#jianjie").hide();
+	        $("#taocan").hide();
+	    });
+	    $("#switch .switch-child:eq(0)").click(function(){
+	        $("#jianjie").show();
+	        $("#yiyuan").hide();
+	        $("#taocan").hide();
+	    });
+		if($routeParams.package_id == 1) {
+			$(document).scrollTop($(".main-list").offset().top);
+			$("#switch").find(".switch-child").removeClass("border_3px");
+			$("#switch").find(".switch-child:eq(1)").addClass("border_3px");
+			$("#taocan").show();
+			$("#jianjie").hide();
+		}
+		// console.log($routeParams.package_id);
+		// console.log("package_id");
 	}
 ]);
 

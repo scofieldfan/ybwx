@@ -728,5 +728,12 @@ wxShareControllers.controller('dentalCtrl', ['$scope', '$filter', '$routeParams'
 			_hmt.push(['_trackEvent', 'wx_share_dental', 'wx_share_button']);
 			shareTip();
 		}
+		$scope.goChildDentel = function(package_id){
+			console.log(package_id);
+			$scope.package_id = package_id;
+			console.log($scope.package_id);
+			
+			window.location = "/#/child_dental?package_id="+ $scope.package_id;
+		}
 	}
 ]);
