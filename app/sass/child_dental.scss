@@ -55,7 +55,7 @@
 			color: #999;
 			text-align: center;
 			line-height: 50px;
-			z-index: 99999;
+			z-index: 1000;
 			@include flexbox;
 			// position: fixed;
 			// left: 0;
@@ -338,4 +338,9 @@
 			}
 		}
 	}
+}
+// 医院地址
+.hospital-address {
+	background: #fff;
+	padding: 20px;
 }
