@@ -164,6 +164,9 @@
 				}
 				@include flexbox();
 			}
+			.main-list_hospital_list >div{
+				@include flex(1);
+			}
 			.shop_detail {
 				height: 37px;
 				line-height: 37px;
