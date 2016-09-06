@@ -130,7 +130,7 @@
       color: #999;
       text-align: center;
       line-height: 50px;
-      z-index: 1000;
+      z-index: 800;
       display: -webkit-box;
       display: -webkit-flex;
       display: -moz-box;
