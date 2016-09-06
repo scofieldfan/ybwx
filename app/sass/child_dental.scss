@@ -55,6 +55,7 @@
 			color: #999;
 			text-align: center;
 			line-height: 50px;
+			z-index: 99999;
 			@include flexbox;
 			// position: fixed;
 			// left: 0;
@@ -100,7 +101,7 @@
 		   }
 		   .main-list-profile_problem {
 			   	background: #fff;
-			   	padding: 42px 0;
+			   	padding: 42px 20px;
 			   	font-size: 13px;
 			   	text-align: center;
 			   	.main-list-profile_problem_paddBottom {
@@ -191,26 +192,27 @@
 			}
 			.main-list_hospital_doctor_pic {
 				@include flexbox();
-				.doctor_detail {
+				.docter_detail {
 					@include flex(1);
 					margin-right: 12px;
 					text-align: center;
-					.doctor_pic {
+					.docter_pic {
+						// margin-right: 10px;
 						img {
 							width: 100%;
 						}
 					}
-					.doctor_name {
+					.docter_name {
 						text-align: center;
 						font-size: 13px;
 						font-weight: bold;
 						margin: 10px 0 5px; 
 					}
-					.doctor_detail-word {
+					.docter_detail-word {
 						font-size: 12px;
 					}
 				}
-				.doctor_detail--last {
+				.docter_detail--last {
 					margin: 0;
 				}
 			}

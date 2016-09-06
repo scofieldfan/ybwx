@@ -266,7 +266,7 @@ ybwxApp.config(['$routeProvider',
       controller: 'ybwxChild_dentailCtrl'
     }).when('/test', {
       templateUrl: 'partials/test.html',
-      title: "一像素",
+      title: "一像素"
     }).when('/score_reading', {
       templateUrl: 'partials/score_reading.html',
       title: "评分解读",
@@ -310,6 +310,22 @@ ybwxApp.config(['$routeProvider',
       },
       title: "齿科预约记录",
       controller: 'ybwxDentalReservationDetailCtrl'
+    }).when('/dental/dental_meal_a',{
+      templateUrl: 'partials/dental/dental_meal_a.html',
+      title: "齿科保险",
+      controller: 'ybwxChildDentailCtrl'
+    }).when('/dental/dental_meal_b',{
+      templateUrl: 'partials/dental/dental_meal_b.html',
+      title: "齿科保险",
+      controller: 'ybwxChildDentailCtrl'
+    }).when('/dental/dental_meal_c',{
+      templateUrl: 'partials/dental/dental_meal_c.html',
+      title: "齿科保险",
+      controller: 'ybwxChildDentailCtrl'
+    }).when('/dental/dental_meal_d',{
+      templateUrl: 'partials/dental/dental_meal_d.html',
+      title: "齿科保险",
+      controller: 'ybwxChildDentailCtrl'
     }).otherwise({
       redirectTo: '/index'
     });

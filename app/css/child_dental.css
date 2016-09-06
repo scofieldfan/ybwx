@@ -130,6 +130,7 @@
       color: #999;
       text-align: center;
       line-height: 50px;
+      z-index: 99999;
       display: -webkit-box;
       display: -webkit-flex;
       display: -moz-box;
@@ -198,7 +199,7 @@
         line-height: 60px; }
       .child-dental-container .main-list .main-list-profile .main-list-profile_problem {
         background: #fff;
-        padding: 42px 0;
+        padding: 42px 20px;
         font-size: 13px;
         text-align: center; }
         .child-dental-container .main-list .main-list-profile .main-list-profile_problem .main-list-profile_problem_paddBottom {
@@ -388,7 +389,7 @@
         display: -moz-box;
         display: -ms-flexbox;
         display: flex; }
-        .child-dental-container .main-list .main-list_hospital_doctor .main-list_hospital_doctor_pic .doctor_detail {
+        .child-dental-container .main-list .main-list_hospital_doctor .main-list_hospital_doctor_pic .docter_detail {
           -webkit-box-flex: 1;
           -webkit-flex: 1;
           -moz-box-flex: 1;
@@ -396,16 +397,16 @@
           flex: 1;
           margin-right: 12px;
           text-align: center; }
-          .child-dental-container .main-list .main-list_hospital_doctor .main-list_hospital_doctor_pic .doctor_detail .doctor_pic img {
+          .child-dental-container .main-list .main-list_hospital_doctor .main-list_hospital_doctor_pic .docter_detail .docter_pic img {
             width: 100%; }
-          .child-dental-container .main-list .main-list_hospital_doctor .main-list_hospital_doctor_pic .doctor_detail .doctor_name {
+          .child-dental-container .main-list .main-list_hospital_doctor .main-list_hospital_doctor_pic .docter_detail .docter_name {
             text-align: center;
             font-size: 13px;
             font-weight: bold;
             margin: 10px 0 5px; }
-          .child-dental-container .main-list .main-list_hospital_doctor .main-list_hospital_doctor_pic .doctor_detail .doctor_detail-word {
+          .child-dental-container .main-list .main-list_hospital_doctor .main-list_hospital_doctor_pic .docter_detail .docter_detail-word {
             font-size: 12px; }
-        .child-dental-container .main-list .main-list_hospital_doctor .main-list_hospital_doctor_pic .doctor_detail--last {
+        .child-dental-container .main-list .main-list_hospital_doctor .main-list_hospital_doctor_pic .docter_detail--last {
           margin: 0; }
   .child-dental-container .mask .head-container {
     position: fixed;
