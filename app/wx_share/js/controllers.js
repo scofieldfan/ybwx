@@ -705,7 +705,7 @@ wxShareControllers.controller('dentalCtrl', ['$scope', '$filter', '$routeParams'
 					shareUrl: util.domain + "wx_share.html#/dental1609?rec_id=" + encodeURIComponent(window.NBCONF.USER['unionid'] || ''),
 					shareImg: util.domain + "wx_share/img/dental/dental1609.png",
 					shareTitle: "一顿饭的价格解决宝宝乳牙期所有问题",
-					shareDesc: "一顿饭的价格解决宝宝乳牙期所有问题"
+					shareDesc: "瑞泰+拜博+普尔专业品牌口腔联合支持"
 
 				});
 
