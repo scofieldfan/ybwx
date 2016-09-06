@@ -1,0 +1,10 @@
+   @import "base/classes.scss";
+   @import "base/variables.scss";
+   .main-list_hospital_list {
+	   	@include border(0 0 1px 0,#e2e2e2);
+	   	padding-bottom: 20px;
+   }
+   .main-list_hospital_list:nth-child(last) {
+	   	padding-bottom: 0;
+	   	border: none;
+   }
