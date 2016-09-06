@@ -274,7 +274,7 @@ ybwxApp.config(['$routeProvider',
     }).when('/child_dental', {
       templateUrl: 'partials/child_dental.html',
       title: "齿科保险",
-      css:"/css/child_dental.css?rev=3784e449a3be788835a7bacc34816dd2",
+      css:"/css/child_dental.css?rev=5679f6261646e1f2fe9a3ebeb3b518ee",
       controller: 'ybwxChildDentailCtrl'
 
     }).when('/dental/reservation_list',{
