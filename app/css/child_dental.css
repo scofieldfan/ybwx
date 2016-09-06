@@ -293,6 +293,7 @@
         display: flex; }
         .child-dental-container .main-list .main-list_hospital_box .main-list_hospital_list img {
           width: 85px;
+          height: 85px;
           margin-right: 10px; }
         .child-dental-container .main-list .main-list_hospital_box .main-list_hospital_list .hospital_name {
           font-size: 13px;
