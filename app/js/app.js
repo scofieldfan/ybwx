@@ -63,7 +63,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/select_part.html?v=123',
       controller: 'ybwxSelectCtrl',
       title: "保障提升",
-      css:'/css/ring.css?rev=cdbf1e1a4f2888c1eb261b421ab0a467'
+      css:'/css/ring.css?rev=16765f3f77ae40d34a0f5e0417353f65'
     }).when('/solution', {
       templateUrl: 'partials/solution.html',
       controller: 'ybwxSolutionCtrl',
@@ -73,7 +73,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/sx_bzts.html?v=12dsdsfdf543',
       controller: 'ybwxAgeInsuranceCtrl',
       title: "寿险保障提升",
-      css:'/css/ring.css?rev=cdbf1e1a4f2888c1eb261b421ab0a467'
+      css:'/css/ring.css?rev=16765f3f77ae40d34a0f5e0417353f65'
     }).when('/jk_bzts', {
       templateUrl: 'partials/jk_bzts.html?v=12dsdsfdf543',
       controller: 'ybwxMoneyDurationCtrl',
