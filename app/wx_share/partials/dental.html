@@ -12,10 +12,10 @@
                         <p>2-13岁的宝宝</p>
                     </div>
                     <div class="goods-content">
-                        <div class="goods-title">预防虫牙-乳牙保护</div>
+                        <div class="goods-title">预防虫牙，乳牙保护</div>
                         <del>市场价：2310元</del>
                         <h2>仅售：318元</h2>
-                        <a href="" class="goods-btn">查看详情</a>
+                        <div class="goods-btn" ng-click="goChildDentel(1)">查看详情</div>
                     </div>
                 </div>
             </div>
@@ -29,10 +29,10 @@
                         <p>乳牙期+换牙期</p>
                     </div>
                     <div class="goods-content">
-                        <div class="goods-title">坚持购买不得虫牙 一旦发生，免费治疗</div>
+                        <div class="goods-title">定期护理，不得虫牙<br/>一旦发生，免费治疗</div>
                         <del>市场价：4480元</del>
                         <h2>仅售：498元</h2>
-                        <a href="" class="goods-btn">查看详情</a>
+                        <a href="javascript:" class="goods-btn" ng-click="goChildDentel(2)">查看详情</a>
                     </div>
                 </div>
             </div>
@@ -48,10 +48,10 @@
                         <p>已有多处虫牙</p>
                     </div>
                     <div class="goods-content">
-                        <div class="goods-title">治疗项目全面</div>
+                        <div class="goods-title">浅龋、深龋全治疗</div>
                         <del>市场价：5515元</del>
                         <h2>仅售：1138元</h2>
-                        <a href="" class="goods-btn">查看详情</a>
+                        <a href="javascript:" class="goods-btn" ng-click="goChildDentel(3)">查看详情</a>
                     </div>
                 </div>
             </div>
@@ -65,23 +65,23 @@
                         <p>牙齿咬合畸形</p>
                     </div>
                     <div class="goods-content">
-                        <div class="goods-title">全面筛查</div>
+                        <div class="goods-title">全面筛查，治疗享优惠</div>
                         <del>市场价：2310元</del>
                         <h2>仅售：418元</h2>
-                        <a href="" class="goods-btn">查看详情</a>
+                        <a href="javascript:" class="goods-btn" ng-click="goChildDentel(4)">查看详情</a>
                     </div>
                 </div>
             </div>
         </div>
         <img src="/wx_share/img/dental/section-01.jpg" class="mt20" />
         <div class="pyq-box mt20">
-            <div class="pyq-title">
+            <div class="pyq-title"> 
                 <h2>爆款！</h2>
                 <p>活动仅限北京、上海、广州的宝宝</p>
             </div>
             <div class="pyq-info">购买套餐并分享至朋友圈，即得<span>18.8元现金</span>红包，有朋友购买再得<span>30元现金</span>红包。</div>
-            <a href="javascript:;" ng-click="showShareTip()" class="pyq-btn">免费领取</a>
-            <p class="pyq-stats">已有<span>{{data.invited}}</span>位好友领取</p>
+            <a href="javascript:;" ng-click="showShareTip()" class="pyq-btn">立即分享</a>
+            <p class="pyq-stats">已有 <span>{{data.valid}}</span> 位好友购买</p>
         </div>
         <div class="rule-box mt20">
             <div class="rule-title">活动规则</div>
