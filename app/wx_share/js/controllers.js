@@ -16,7 +16,8 @@ var api = {
 	'prepare_insure': '/ybwx-web/api/insurance/prepare',
 	'purchase': '/ybwx-web/api/insurance/purchase',
 	'share_callback': '/ybwx-web/api/insurance/share',
-	'is_share': '/ybwx-web/api/insurance/share/status'
+	'is_share': '/ybwx-web/api/insurance/share/status',
+	'getStats': '/event/dental1609/stats'
 }
 
 
@@ -96,7 +97,7 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 				var rec_id = window.NBCONF.USER['unionid'] || '';
 
 				util.share({
-					shareUrl: util.domain + "wx_share.html#/jixian?rec_id=" + rec_id,
+					shareUrl: util.domain + "wx_share.html#/jixian?rec_id=" + encodeURIComponent(rec_id),
 					shareImg: util.static_domain + "/wx_share/img/share_sport.png",
 					shareTitle: "免费领取10万元极限运动险！要酷，更要安全！",
 					shareDesc: "每月均可领取1份，每邀请1位好友，即可再免费领取1份。约上朋友一起突破极限吧！"
@@ -533,7 +534,7 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 				$("#loadingToastCommon").hide();
 				var rec_id = window.NBCONF.USER['unionid'] || '';
 				util.share({
-					shareUrl: util.domain + "wx_share.html#/index?rec_id=" + rec_id,
+					shareUrl: util.domain + "wx_share.html#/index?rec_id=" + encodeURIComponent(rec_id),
 					shareImg: "/wx_share/img/share61.jpg",
 					shareTitle: "送你一份500万航空意外险，买机票立省30元！",
 					shareDesc: "集齐3份航空意外险保险券，即可免费兑换一份航班延误险保险券！"
@@ -683,5 +684,49 @@ wxShareControllers.controller('myCouponListCtrl', ['$scope', '$routeParams', '$h
 			}
 		}
 		$scope.init();
+	}
+]);
+
+
+// 牙科
+wxShareControllers.controller('dentalCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
+	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
+		$scope.init = function(argument) {
+			$scope.data = {
+				invited: 0,
+				valid: 0
+			}
+
+			var currentUrl = util.domain + "wx_share.html#/dental1609";
+
+			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
+				$("#loadingToastCommon").hide();
+				util.share({
+					shareUrl: util.domain + "wx_share.html#/dental1609?rec_id=" + encodeURIComponent(window.NBCONF.USER['unionid'] || ''),
+					shareImg: util.domain + "wx_share/img/dental/header.jpg",
+					shareTitle: "一顿饭的价格解决宝宝乳牙期所有问题",
+					shareDesc: "一顿饭的价格解决宝宝乳牙期所有问题"
+
+				});
+
+				var rec_id = $routeParams.rec_id;
+
+				if(rec_id){
+					$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['getStats'], {
+						"rec_id": rec_id
+					}, function (res) {
+						if(res.data.code === 0) {
+							$scope.data = res.data.data;
+						}
+					});
+				}
+			});
+		}
+		$scope.init();
+
+		$scope.showShareTip = function() {
+			_hmt.push(['_trackEvent', 'wx_share_dental', 'wx_share_button']);
+			shareTip();
+		}
 	}
 ]);

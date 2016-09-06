@@ -3,16 +3,16 @@
 body {
 	background: #f5f5f5;
 }
-.docter-detail {
+.doctor-detail {
 	color: #444;
 	font-size: 15px;
 	background: #f5f5f5;
 	padding-bottom: 49px;
-   .docter-detail-main {
+   .doctor-detail-main {
    		background: #fff;
    		padding: 0 20px;
    		@include border(0 0 01px 0,#c4c4c4);
-   		.docter-detail-main_docter {
+   		.doctor-detail-main_doctor {
    			padding: 15px 42px;
    			@include border(0 0 1px 0,#e2e2e2);
 	   		img {
@@ -22,12 +22,12 @@ body {
 	   			vertical-align: middle;
 	   			margin-bottom: 15px;
 	   		}
-	   		.docter-detail-main_docter_name {
+	   		.doctor-detail-main_doctor_name {
 	   			text-align: center;
 	   			line-height: 15px;
 	   			margin-bottom: 10px;
 	   		}
-	   		.docter-detail-main_docter_detail {
+	   		.doctor-detail-main_doctor_detail {
 	   			text-align: center;
 	   			color: #999;
 	   			font-size: 12px;
@@ -37,11 +37,11 @@ body {
 	   			}
 	   		}
 	   	}
-	   	.docter-detail-main_docter_intro {
+	   	.doctor-detail-main_doctor_intro {
 	   		padding-bottom: 20px;
-	   		.docter-detail-main_docter_intro_detail {
+	   		.doctor-detail-main_doctor_intro_detail {
 	   			margin-top: 20px;
-	   			.docter-detail-main_docter_intro_detail_tit {
+	   			.doctor-detail-main_doctor_intro_detail_tit {
 	   				margin-bottom: 10px;
 	   				line-height: 15px;
 	   				font-weight: bold;
@@ -55,7 +55,7 @@ body {
 	   				background: #4285f4;
 	   				border-radius: 50%;
 	   			}
-	   			.docter-detail-main_docter_intro_detail_word {
+	   			.doctor-detail-main_doctor_intro_detail_word {
 	   				font-size: 13px;
 	   			}
 	   		}
