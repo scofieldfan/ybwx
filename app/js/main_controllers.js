@@ -1660,7 +1660,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				if ($scope.data.max_effective_days) {
 					$scope.maxDate = util.addDays(new Date(), $scope.data.max_effective_days);
 				}
-				$("#testpicker").distpicker();
+				// $("#testpicker").distpicker();
 
 				$scope.genPlansInEffectiveDate();
 			});
