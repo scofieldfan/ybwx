@@ -68,7 +68,7 @@ var util = {
 			isTail = true;
 		}
 		if (ret >= 10000) {
-			ret = ret / 100000;
+			ret = ret / 10000;
 			tail = '万'
 		} else {
 			ret = ret;
