@@ -525,7 +525,7 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 
 		var moneySlider;
 		$scope.init = function() {
-			CIRCLE.init();
+		
 			$scope.type = $routeParams.type;
 			$scope.estimateMoney = 0;
 			var defaultMoney = 300000;
@@ -568,7 +568,7 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 					// 	sumInsuredView[key] = objKey[1];
 					// });
 
-
+					CIRCLE.init();
 					CIRCLE.updateData(res.data.data.coverage_scores, res.data.data.coverage_views, [], $routeParams.type);
 					res.data.data.coverage_periods.unshift(0);
 
