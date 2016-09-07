@@ -26,17 +26,21 @@
 <script type="text/javascript">
     var redirect_url = '<?=$redirect_url?>';
     var direction = '<?=$direction?>'; // OUT/IN
-
+    var KEY_NAME = "hash";
+    console.log("redirectUrl:"+redirect_url);
     if (direction == 'in') {
         // read saved hash tag
 
-
+        var hash = sessionStorage.getItem(KEY_NAME);
         // update url with hashtag
-        location.href = redirect_url;
+        var finalUrl = redirect_url+hash;
+        console.log("finalUrl:"+finalUrl);
+        location.href = finalUrl ;
 
     } else { // out
         // save hash tag
 
+        sessionStorage.setItem(KEY_NAME,document.location.hash);
         // perform redirect
         location.href = redirect_url;
     }
