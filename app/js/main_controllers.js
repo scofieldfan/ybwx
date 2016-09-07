@@ -547,7 +547,7 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 			scoreObj.insuredMoney = $scope.insuredMoney;
 
 
-			$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_view'], {
+			$scope.selectPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_view'], {
 				insurance_type: $routeParams.type
 			}, function(res) {
 
