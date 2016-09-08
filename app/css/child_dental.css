@@ -567,3 +567,8 @@
 .hospital-address {
   background: #fff;
   padding: 20px; }
+  .hospital-address .hospital-address-tit {
+    font-size: 15px;
+    color: #444;
+    line-height: 15px;
+    margin-bottom: 30px; }
