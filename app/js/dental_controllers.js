@@ -127,6 +127,7 @@ teethControllers.controller('ybwxChildDentailCtrl', ['$scope', '$routeParams', '
 		$scope.submit = function(){
 			$location.path("/toubao_new").search({
 				plan_id:$scope.taocan,
+				child:1,
 				new_choose_plans:JSON.stringify([{
 					id:$scope.taocan,
 					coverage_period:1

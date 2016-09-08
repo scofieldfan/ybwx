@@ -1215,20 +1215,38 @@ mainControllers.controller('ybwxSupplyInfoCtrl', ['$scope', '$routeParams', '$lo
 				name: '父亲'
 			}
 		};
-		$scope.init = function() {
+		$scope.insured_id_type = 1;
+		$scope.id_type = 1;
 
+		if($routeParams.child == 1) {
+			$scope.data.relation.id = 3;
+			$scope.data.relation.name = '子女';
+			$scope.for = 'other';
+
+			$('#sel_relation').prop('disabled', true);
+		}
+		$scope.init = function() {
 		}
 
-
+		$scope.isChild = function() {
+			return $routeParams.child == 1;
+		}
+        
 		$scope.submit = function() {
 			_hmt.push(['_trackEvent', 'supplyinfo', 'supplyinfo_submit']);
+           	$scope.insured_id_type = $("#insured_id_type").find("option:selected").val();
+           	$scope.id_type = $("#id_type").find("option:selected").val();
+
+            console.log( $scope.id_type);
 			if (baseValid()) {
 
 				var postData = {
 					"insured_username": $scope.insured_username,
 					"insured_social_id": $scope.insured_social_id,
 					"insured_mobile": $scope.insured_mobile,
-					"relation": "1"
+					"relation": "1",
+					"insured_id_type": $scope.insured_id_type,
+					"id_type": $scope.id_type
 				};
 
 
@@ -1240,16 +1258,29 @@ mainControllers.controller('ybwxSupplyInfoCtrl', ['$scope', '$routeParams', '$lo
 				}
 
 				$scope.firstToubao = getHttpPromise($http, $rootScope, 'POST', api['firstToubao'], postData, function(res) {
-					$location.path('/toubao_new').search({
-						type: $routeParams.type,
-						new_choose_plans: $routeParams.new_choose_plans,
+					$location.path('/toubao_new').search(
+						jQuery.extend($routeParams, {
 						user_id: res.data.data.user.id
-					});
+					}));
 				});
-			}
+			}	
 		}
 
 
+        $scope.$on('$viewContentLoaded', function() {  
+        	$scope.child = $routeParams.child;
+        	console.log($scope.child == 1);
+			if($routeParams.child == 1) {
+				$('#for_self').prop("checked",false);
+				$("#for_other").prop("checked",true);
+				$('#for_other').trigger('click');
+				$(".choose").hide();
+				$("#user_tit_1").html("孩子资料");
+				$("#user_tit_2").html("家长资料");
+				$('#sel_relation').prop('disabled', true);
+			}
+        });  
+        
 		function baseValid() {
 			if (!$scope.userform) {
 				util.showToast($rootScope, "表单错误");
@@ -1287,6 +1318,8 @@ mainControllers.controller('ybwxSupplyInfoCtrl', ['$scope', '$routeParams', '$lo
 
 			return true;
 		}
+		
+		
 	}
 ]);
 
@@ -1334,7 +1367,12 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 			_hmt.push(['_trackEvent', 'toubaonew', 'toubaonew_toubaoren']);
 			if ($scope.isFirst) {
 				//去补充信息页
-				$location.path('/supply_userinfo').search($routeParams);
+				console.log("孩子孩纸2");
+				console.log($routeParams.child);
+				$location.path('/supply_userinfo').search({
+					$routeParams:$routeParams,
+					child:$routeParams.child
+				});
 			} else {
 				//去list页
 				$location.path('/contact_list').search($routeParams);

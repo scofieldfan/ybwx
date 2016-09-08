@@ -42,8 +42,8 @@ body {
     padding: 0 15px;
     line-height: .58rem;
     border-bottom: 1px solid #e2e2e2;
-    font-size: 15px;
-    color: #555;
+    font-size: 17px;
+    color: #444;
     background: #fff; }
   .recognizee_first_ctrl .main {
     padding: 0 10px;
@@ -52,6 +52,11 @@ body {
       border-bottom: 1px solid #e2e2e2; }
     .recognizee_first_ctrl .main .cell {
       padding: 0 0 10px 75px; }
+    .recognizee_first_ctrl .main .del {
+      line-height: normal;
+      padding: .18rem 0; }
+      .recognizee_first_ctrl .main .del input {
+        height: 10px; }
     .recognizee_first_ctrl .main .line-box {
       display: -webkit-box;
       display: -webkit-flex;
@@ -61,9 +66,11 @@ body {
       line-height: .58rem; }
       .recognizee_first_ctrl .main .line-box .lable {
         padding-left: 5px;
-        width: 70px;
-        color: #999;
-        font-size: 13px; }
+        width: 98px;
+        color: #444;
+        font-size: 15px; }
+      .recognizee_first_ctrl .main .line-box .between {
+        line-height: normal; }
       .recognizee_first_ctrl .main .line-box input {
         -webkit-box-flex: 1;
         -webkit-flex: 1;
