@@ -325,3 +325,39 @@ body {
 
 .finish:active {
   background: #266ada; }
+
+.ul_contrl {
+  background-color: #4285f4; }
+
+.description {
+  font-size: 12px;
+  color: #999; }
+
+.baofei {
+  padding-top: .1rem;
+  text-align: left; }
+
+.cell-dental {
+  margin-top: .15rem;
+  border: 1px solid #e2e2e2;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex; }
+
+.cell-dental_lable {
+  width: 70px;
+  height: .44rem;
+  line-height: .44rem;
+  padding-left: 14px;
+  color: #ccc;
+  background-color: #FFF; }
+
+.cell-dental_select {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+   }

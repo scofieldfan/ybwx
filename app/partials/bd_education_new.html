@@ -1,4 +1,6 @@
-<header class="icon_{{type}}"  data-ng-init="init()"  cg-busy="educationPromise">
+
+    <div data-ng-init="init()"  cg-busy="educationPromise">
+<header class="icon_{{type}}"  >
 	<span>我的{{getInsuranceCNname()}}保障</span> <span class="score" ng-click="goScoreReading()">{{data.score}}</span>分
 	<!-- <span   class="how" ng-click="goOldEducation()">如何投保?</span> -->
 </header>
@@ -111,7 +113,7 @@
       您暂时没有任何保障 
     </div>
 </div>
-
+</div>
 <div class="bd_education_bottom" >
 	<div class="bottom_left " ng-click="goDaodan()" id="submitButton" >
         <i class="iconfont" style="font-size: 15px;color:#999;vertical-align:-1px;">&#xe621;</i> 上传保单

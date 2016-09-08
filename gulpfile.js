@@ -180,7 +180,7 @@ gulp.task('wx_sass:watch', function () {
 });
 
 
-gulp.task('wx_rev', ['wx_cssMin', 'wx_jsMin','wx_deltmp'], function() {
+gulp.task('wx_rev', ['wx_sass','wx_cssMin', 'wx_jsMin','wx_deltmp'], function() {
 	gulp.src('app/*.html')
 		.pipe(debug())
 		.pipe(rev())

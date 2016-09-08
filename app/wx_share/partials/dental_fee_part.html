@@ -1,0 +1,127 @@
+<!-- <link rel="stylesheet" href="/wx_share/css/bd_part.css?rev=faceaba9a528f07439d7d1abefed6ec5"> -->
+
+<div id="wrapper" class="wrapper"  data-ng-init="init()">
+	<div class="bd_part_controller">
+		<div class="ul_contrl" >
+			<p class="chanpin_name">瑞泰/普尔-乳牙保障套餐</p>
+			<p class="pei_300">套餐全年有效，套餐外治疗项目可享9折</p>
+		</div>
+
+		<div class="bd_part_main paddLeft">
+			<form class="" role="form" name="registration" novalidate>
+			<ul class="layout bd_part_tit">
+				<li class="left" >孩子信息  <span class="description">&nbsp;&nbsp;被保险人年龄为1-17周岁</span></li>
+				
+			</ul>
+			<div class="bd_part_input ">
+				<input type="text" style="margin-top: none" placeholder="姓名"    ng-minlength="1"  name="childname" ng-model="user.childname" required chinese >
+				<div class="cell"  style="color:#ff5c00" ng-show="registration.childname.$dirty && registration.childname.$invalid || username_server_reason">
+					<small class="error" ng-show="registration.childname.$error.required">姓名必填</small>
+            		<small class="error" ng-show="registration.childname.$error.chinese">姓名必须是汉字!</small>
+                    <small class="error" ng-show="username_server_reason">{{username_server_reason}}</small>
+		        </div>
+				
+		        <div class="cell-dental">
+		        		<div  class="cell-dental_lable" >
+		        			证件类型
+		        		</div>
+		        	
+		        		<select class="cell-dental_select"   style="border:none;height:.44rem;line-height:.44rem;" >
+								<option label="身份证" value="1" selected="selected">身份证</option>
+								<option label="护照" value="2">护照</option>
+								<option label="军官证" value="3">军官证</option>
+						</select>	
+		        </div>
+			
+			<!-- 	
+	<input type="text" style="margin-top: none" placeholder="姓名"    ng-minlength="1"  name="childname" ng-model="user.childname" required chinese >
+
+			<div class="cell"  style="color:#ff5c00" ng-show="registration.childname.$dirty && registration.childname.$invalid || username_server_reason">
+					<small class="error" ng-show="registration.childname.$error.required">姓名必填</small>
+            		<small class="error" ng-show="registration.childname.$error.chinese">姓名必须是汉字!</small>
+                    <small class="error" ng-show="username_server_reason">{{username_server_reason}}</small>
+		        </div> -->
+
+
+				<input type="text" class="input_top_padd" placeholder="身份证"  ng-minlength="18" ng-maxlength="18"  name="social_id" ng-model="user.social_id" required >
+				<div class="cell" style="color:#ff5c00" ng-show="registration.social_id.$dirty && registration.social_id.$invalid || card_numer_server_reason">
+					<small class="error" ng-show="registration.social_id.$error.required">身份证必填</small>
+					<small class="error" ng-show="registration.social_id.$error.minlength">身份证必须是18位</small>
+					<small class="error" ng-show="registration.social_id.$error.maxlength">身份证必须是18位</small>
+                    <small class="error" ng-show="card_numer_server_reason">{{card_numer_server_reason}}</small>
+				</div>
+
+
+
+				<ul class="layout bd_part_tit" style="margin:auto;padding:0.1rem;">
+					<li class="left" >家长信息  <span class="description">&nbsp;&nbsp;投保人须年满18周岁</span></li>
+				</ul>
+
+				<input type="text" style="margin-top: none" placeholder="姓名"    ng-minlength="1"  name="username" ng-model="user.username" required chinese >
+				<div class="cell"  style="color:#ff5c00" ng-show="registration.username.$dirty && registration.username.$invalid || username_server_reason">
+					<small class="error" ng-show="registration.username.$error.required">姓名必填</small>
+            		<small class="error" ng-show="registration.username.$error.chinese">姓名必须是汉字!</small>
+                    <small class="error" ng-show="username_server_reason">{{username_server_reason}}</small>
+		        </div>	
+
+					
+
+				 <div class="cell-dental">
+		        		<div  class="cell-dental_lable" >
+		        			证件类型
+		        		</div>
+		        	
+		        		<select class="cell-dental_select"   style="border:none;height:.44rem;line-height:.44rem;" >
+								<option label="身份证" value="1" selected="selected">身份证</option>
+								<option label="护照" value="2">护照</option>
+								<option label="军官证" value="3">军官证</option>
+						</select>	
+		        </div>
+
+				<input type="text" class="input_top_padd" placeholder="证件号码"  ng-minlength="18" ng-maxlength="18"  name="social_id" ng-model="user.cardno" required >
+				<div class="cell" style="color:#ff5c00" ng-show="registration.social_id.$dirty && registration.social_id.$invalid || card_numer_server_reason">
+					<small class="error" ng-show="registration.social_id.$error.required">身份证必填</small>
+					<small class="error" ng-show="registration.social_id.$error.minlength">身份证必须是18位</small>
+					<small class="error" ng-show="registration.social_id.$error.maxlength">身份证必须是18位</small>
+                    <small class="error" ng-show="card_numer_server_reason">{{card_numer_server_reason}}</small>
+				</div>
+
+				<input type="number" class="input_top_padd" placeholder="手机号"  ng-minlength="11" ng-maxlength="11" name="mobile" ng-model="user.mobile" required>
+				<div class="cell"  style="color:#ff5c00" ng-show="registration.mobile.$dirty && registration.mobile.$invalid || mobile_server_reason">
+					<small class="error" ng-show="registration.mobile.$error.required">手机号必填</small>
+					<small class="error" ng-show="registration.mobile.$error.minlength">手机号必须是11位数字</small>
+					<small class="error" ng-show="registration.mobile.$error.maxlength">手机号必须是11位数字</small>
+                    <small class="error" ng-show="mobile_server_reason">{{mobile_server_reason}}</small>
+		        </div>
+					
+				<input type="email" class="input_top_padd" placeholder="电子邮箱"   name="email" ng-model="user.email" required>
+				<div class="cell"  style="color:#ff5c00" ng-show="registration.email.$dirty && registration.email.$invalid || mobile_server_reason">
+					<small class="error" ng-show="registration.email.$error.required">手机号必填</small>
+					<small class="error" ng-show="registration.email.$error.minlength">手机号必须是11位数字</small>
+					<small class="error" ng-show="registration.email.$error.maxlength">手机号必须是11位数字</small>
+                    <small class="error" ng-show="mobile_server_reason">{{mobile_server_reason}}</small>
+		        </div>
+
+				<div class="baofei" >
+					<span >保费:</span> <span style="color:#ff0000">￥{{money}}元</span>
+				</div>
+			</div>
+			<div class="item">
+				<input type="checkbox" id="chek" checked="checked" ng-model="user.know_contract" name="know_contract" required >
+					我已阅读
+				<a href="/ybwx-web/api/web_page/16" class="blue"  >
+					产品条款及投保须知
+				</a>
+				
+			</div>
+			<form>
+		   <!--  <div class="cell"  style="color:red" >
+          	  <small class="error" ng-show="server_reason">{{server_reason}}</small>
+		    </div> -->
+		</div>
+		
+    </div>
+</div>
+<footer class="bottom_ctrl">
+	<div class="finish" ng-click='submit()' id="submitButton">立即投保</div>
+</footer>

@@ -63,7 +63,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/select_part.html?v=123',
       controller: 'ybwxSelectCtrl',
       title: "保障提升",
-      css:'/css/ring.css?rev=c63a06ceedb5b686280a30dbca14c419'
+      css:'/css/ring.css?rev=16765f3f77ae40d34a0f5e0417353f65'
     }).when('/solution', {
       templateUrl: 'partials/solution.html',
       controller: 'ybwxSolutionCtrl',
@@ -73,7 +73,7 @@ ybwxApp.config(['$routeProvider',
       templateUrl: 'partials/sx_bzts.html?v=12dsdsfdf543',
       controller: 'ybwxAgeInsuranceCtrl',
       title: "寿险保障提升",
-      css:'/css/ring.css?rev=c63a06ceedb5b686280a30dbca14c419'
+      css:'/css/ring.css?rev=16765f3f77ae40d34a0f5e0417353f65'
     }).when('/jk_bzts', {
       templateUrl: 'partials/jk_bzts.html?v=12dsdsfdf543',
       controller: 'ybwxMoneyDurationCtrl',
@@ -270,13 +270,13 @@ ybwxApp.config(['$routeProvider',
     }).when('/score_reading', {
       templateUrl: 'partials/score_reading.html',
       title: "评分解读",
-      controller: 'ybwxscoreReadingCtrl'
+      controller: 'ybwxscoreReadingCtrl',
+      css:'/css/score_reading.css?rev=fe5f1133f617fc007a6d15f620de987d'
     }).when('/child_dental', {
       templateUrl: 'partials/child_dental.html',
       title: "齿科保险",
-      css: "/css/child_dental.css?rev=e44c929e7cfda59913479c60af4b6375",
+      css:"/css/child_dental.css?rev=8a973d6df95aafc0fe5326279260e79d",
       controller: 'ybwxChildDentailCtrl'
-
     }).when('/dental/reservation_list',{
       templateUrl:function(params){
         return 'partials/dental/reservation_list.html';

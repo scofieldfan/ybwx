@@ -67,7 +67,7 @@ var util = {
 			ret = parseInt(moneyStr.substring(0, moneyStr.length - 1));
 			isTail = true;
 		}
-		if (ret >= 1000) {
+		if (ret >= 10000) {
 			ret = ret / 10000;
 			tail = '万'
 		} else {

@@ -59,6 +59,10 @@ function($routeProvider) {
     controller: 'dentalCtrl',
     title: '齿科保险',
     css:'/wx_share/css/dental.css?rev=7ddcb904c4df46ffa6bef3dc56ef0'
+  }).when('/dental_feebd', {
+    templateUrl: 'wx_share/partials/dental_fee_part.html',
+    controller: 'wxDentalMoneyBdCtrl',
+    css:'/wx_share/css/bd_part.css?rev=asdasdfasdfasdfsd'
   }).otherwise({
     redirectTo: '/index'
   });

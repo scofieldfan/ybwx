@@ -3,12 +3,14 @@ var CIRCLE = (function() {
 
 	var config = {
 		marginTop: 20,
-		paddingSum: 20,//wrapper的padding 左右各10
-		padding:30,//绘图区域左右各隔开30px
-		lineWidth: 45,//3倍 (dpr) 乘以15
+		paddingSum: 20, //wrapper的padding 左右各10
+		padding: 30, //绘图区域左右各隔开30px
+		lineWidth: 45, //3倍 (dpr) 乘以15
 		closePadding: 40,
 		dpr: 3
 	};
+
+
 	var baozhang_tiaojian = {
 		//0:["顺时针滑动提升分数"]
 
@@ -37,37 +39,99 @@ var CIRCLE = (function() {
 	}
 
 	*/
-	function updateKedu(data){
-		if(data && data.length>0){
+	function updateKedu(data) {
+		if (data && data.length > 0) {
 			var kedus = $("#customerSlider").find(".kedu").find("p");
 			for (var i = 1; i < kedus.length; i++) {
-				
-				if(i== (kedus.length-1)){
-						$(kedus[i]).html(data[i - 1] + "(万)");
-				}else{
-						$(kedus[i]).html(data[i - 1] );
+
+				if (i == (kedus.length - 1)) {
+					$(kedus[i]).html(data[i - 1] + "(万)");
+				} else {
+					$(kedus[i]).html(data[i - 1]);
 				}
 			}
 
 		}
 
 	}
+
 	function updateMoney(score) {
 		if (baozhang_money && baozhang_money[score] && baozhang_money[score] != "") {
 			updateKedu(baozhang_money[score]);
-			
+
 		}
 	}
-	function updateData (coverageScores, tiaojian, money,type){
+
+	function updateData(coverageScores, tiaojian, money, type) {
 		baozhang_score = coverageScores;
 		baozhang_tiaojian = tiaojian;
 		baozhang_money = money;
 		insuranceType = type;
 		init();
 	}
+
+
+	var MIN_ANGLE = -Math.PI * 4 / 3;
+	var MAX_ANGLE = Math.PI / 3;
+	var TWO_PI = 2 * Math.PI;
+	var PI2 = Math.PI / 180;
+	var MIN_ANGLE_DEGREE = 210; //12点钟为0度为开始计算
+	var MAX_ANGLE_DEGREE = 150;
+	var smallRadius = 0;
+	var bigRadius = 0;
+	var radiusX =0 ;
+	var radiusY = 0;
+	var radius = 0 ;
+	var angle = 0;
+	var ctx ; 
+	var ctxBg;
+
 	function init() {
 
-		//$scope = scope;
+		var bgCanvas = document.getElementById("bgchartContainer");
+		var canvas = document.getElementById("chartContainer");
+		var width = document.body.clientWidth - config.paddingSum;
+		//console.log("document width:" + $(document).width());
+		//if (width > 500) {
+		//	width = 500;
+		//}
+		var height = parseInt(width);
+
+		radius = width; //一共可绘图的半径
+		bgCanvas.setAttribute('width', width * config.dpr);
+		bgCanvas.setAttribute('height', height * config.dpr);
+		$(bgCanvas).css({
+			width: width,
+			height: height,
+			display: "block"
+		})
+
+		canvas.setAttribute('width', width * config.dpr);
+		canvas.setAttribute('height', height * config.dpr);
+		$(canvas).css({
+			width: width,
+			height: height,
+			display: "block"
+		})
+
+		 ctx = canvas.getContext("2d");
+		 ctxBg = bgCanvas.getContext("2d");
+		 radius = canvas.width / 2;
+		 radiusX = radius;
+		 radiusY = radius;
+		var mHold = 0;
+		ctx.translate(radiusX, radiusY);
+		ctxBg.translate(radiusX, radiusY);
+		radius = radius * 0.75;
+		//radius = radius - config.dpr*config.padding  -config.lineWidth;//
+		smallRadius = radius;
+		bigRadius = radius + config.lineWidth / 2;
+		 angle = MIN_ANGLE_DEGREE;
+		drawFace(ctx, radius, angle,true);
+		load(); //初始化
+		setTimeout(function() {
+			$("#default_text").fadeIn();
+		}, 20);
 		changeText(0);
 		drawBg(ctxBg); //绘制背景
 
@@ -81,56 +145,6 @@ var CIRCLE = (function() {
 
 	}
 
-	var MIN_ANGLE = -Math.PI * 4 / 3;
-	var MAX_ANGLE = Math.PI / 3;
-	var TWO_PI = 2 * Math.PI;
-	var PI2 = Math.PI / 180;
-	var MIN_ANGLE_DEGREE = 210; //12点钟为0度为开始计算
-	var MAX_ANGLE_DEGREE = 150;
-	var bgCanvas = document.getElementById("bgchartContainer");
-	var canvas = document.getElementById("chartContainer");
-	var width = document.body.clientWidth  - config.paddingSum;
-	//console.log("document width:" + $(document).width());
-	//if (width > 500) {
-	//	width = 500;
-	//}
-	var height = parseInt(width);
-
-	var radius = width; //一共可绘图的半径
-	bgCanvas.setAttribute('width', width * config.dpr);
-	bgCanvas.setAttribute('height', height * config.dpr);
-	$(bgCanvas).css({
-		width: width,
-		height: height,
-		display: "block"
-	})
-
-	canvas.setAttribute('width', width * config.dpr);
-	canvas.setAttribute('height', height * config.dpr);
-	$(canvas).css({
-		width: width,
-		height: height,
-		display: "block"
-	})
-
-	var ctx = canvas.getContext("2d");
-	var ctxBg = bgCanvas.getContext("2d");
-	var radius = canvas.width / 2;
-	var radiusX = radius;
-	var radiusY = radius;
-	var mHold = 0;
-	ctx.translate(radiusX, radiusY);
-	ctxBg.translate(radiusX, radiusY);
-	radius = radius * 0.75;
-	//radius = radius - config.dpr*config.padding  -config.lineWidth;//
-	var smallRadius = radius;
-	var bigRadius = radius + config.lineWidth / 2;
-	var angle = MIN_ANGLE_DEGREE;
-	drawFace(ctx, radius, angle);
-	load(); //初始化
-	setTimeout(function(){
-		$("#default_text").fadeIn();
-	}, 20);
 
 	function log(ary) {
 		$("#log").html(ary.join("<br/>"));
@@ -175,7 +189,7 @@ var CIRCLE = (function() {
 					var keduY = (bigRadius / config.dpr) * Math.sin(angFrom90);
 					var distance = Math.round(Math.sqrt(Math.pow(currentX - keduX, 2) + Math.pow(currentY - keduY, 2)));
 					var logAry = [];
-			
+
 					if (distance < 50) {
 						mHold = 1;
 						event.preventDefault();
@@ -284,12 +298,12 @@ var CIRCLE = (function() {
 		ctx.restore();
 	}
 
-	function drawIntrod(ctx){
+	function drawIntrod(ctx) {
 		//画蓝色指示按钮
 		var tipRadius = bigRadius - 80;
 		var tipMaxAngle = MIN_ANGLE + 0.7;
 		ctx.beginPath();
-		ctx.arc(0, 0,tipRadius, MIN_ANGLE, tipMaxAngle);
+		ctx.arc(0, 0, tipRadius, MIN_ANGLE, tipMaxAngle);
 		ctx.lineWidth = 8;
 		ctx.strokeStyle = "#588dd4";
 		ctx.stroke();
@@ -298,9 +312,10 @@ var CIRCLE = (function() {
 		ctx.lineWidth = 9;
 		ctx.strokeStyle = "#588dd4";
 		ctx.moveTo(tipRadius * Math.cos(tipMaxAngle), tipRadius * Math.sin(tipMaxAngle));
-		ctx.lineTo((tipRadius-9) * Math.cos(tipMaxAngle-0.15), (tipRadius-9) * Math.sin(tipMaxAngle-0.15));
+		ctx.lineTo((tipRadius - 9) * Math.cos(tipMaxAngle - 0.15), (tipRadius - 9) * Math.sin(tipMaxAngle - 0.15));
 		ctx.stroke();
 	}
+
 	function drawBg(ctx) { //背景是指示标
 
 		//画灰色圆环
@@ -315,7 +330,7 @@ var CIRCLE = (function() {
 		ctx.beginPath();
 		var textX = (radius + config.lineWidth / 2) * Math.cos(MIN_ANGLE);
 		var textY = (radius + config.lineWidth / 2) * Math.sin(MIN_ANGLE);
-		ctx.arc(textX, textY,config.lineWidth / 2, 0, TWO_PI, false);
+		ctx.arc(textX, textY, config.lineWidth / 2, 0, TWO_PI, false);
 		ctx.fillStyle = "#eeeeee";
 		ctx.fill();
 
@@ -326,11 +341,6 @@ var CIRCLE = (function() {
 		ctx.arc(textX, textY, config.lineWidth / 2, 0, TWO_PI, false);
 		ctx.fillStyle = "#eeeeee";
 		ctx.fill();
-
-		
-
-	
-
 
 
 
@@ -346,21 +356,21 @@ var CIRCLE = (function() {
 		}
 
 		//画文字
-		
-		if(insuranceType == 4){
+
+		if (insuranceType == 4) {
 			drawWord(ctx, MIN_ANGLE + 24 * dur, "#ff7550", smallRadius - 80, "基本", 30 * Math.PI / 180);
-			drawWord(ctx, MIN_ANGLE + 32 * dur+0.03, "#ff7550", smallRadius - 80, "推荐", 0);
+			drawWord(ctx, MIN_ANGLE + 32 * dur + 0.03, "#ff7550", smallRadius - 80, "推荐", 0);
 			drawWord(ctx, MIN_ANGLE + 40 * dur, "#ff7550", smallRadius - 50, "无忧", -30 * Math.PI / 180);
-		}else if(insuranceType == 3){
+		} else if (insuranceType == 3) {
 			drawWord(ctx, MIN_ANGLE + 16 * dur, "#ff7550", smallRadius - 80, "基本", -30 * Math.PI / 180);
 			drawWord(ctx, MIN_ANGLE + 24 * dur, "#ff7550", smallRadius - 80, "推荐", 30 * Math.PI / 180);
-			drawWord(ctx, MIN_ANGLE + 32 * dur+0.03, "#ff7550", smallRadius - 80, "无忧", 0 * Math.PI / 180);
-		}else if(insuranceType == 2){
+			drawWord(ctx, MIN_ANGLE + 32 * dur + 0.03, "#ff7550", smallRadius - 80, "无忧", 0 * Math.PI / 180);
+		} else if (insuranceType == 2) {
 			drawWord(ctx, MIN_ANGLE + 16 * dur, "#ff7550", smallRadius - 80, "基本", -30 * Math.PI / 180);
-			drawWord(ctx, MIN_ANGLE + 24 * dur+0.03, "#ff7550", smallRadius - 80, "推荐", 30 * Math.PI / 180);
+			drawWord(ctx, MIN_ANGLE + 24 * dur + 0.03, "#ff7550", smallRadius - 80, "推荐", 30 * Math.PI / 180);
 			drawWord(ctx, MIN_ANGLE + 40 * dur, "#ff7550", smallRadius - 50, "无忧", -30 * Math.PI / 180);
 		}
-		
+
 
 
 	}
@@ -375,31 +385,33 @@ var CIRCLE = (function() {
 	};
 
 	var lastScore;
- 	 function preLoadImg(url, callback) {
- 	 			var img=document.getElementById("tip-img");
-               // var img = new Image(); //创建一个Image对象，实现图片的预下载  
-               // img.src = url;
 
-                if (img.complete) { // 如果图片已经存在于浏览器缓存，直接调用回调函数  
-                    callback.call(img);
-                    return; // 直接返回，不用再处理onload事件  
-                }
+	function preLoadImg(url, callback) {
+		var img = document.getElementById("tip-img");
+		// var img = new Image(); //创建一个Image对象，实现图片的预下载  
+		// img.src = url;
 
-                img.onload = function() { //图片下载完毕时异步调用callback函数。  
-                    callback.call(img); //将回调函数的this替换为Image对象  
-                    return;
-                };
-      }
-	function drawFace(ctx, radius, angle) {
+		if (img.complete) { // 如果图片已经存在于浏览器缓存，直接调用回调函数  
+			callback.call(img);
+			return; // 直接返回，不用再处理onload事件  
+		}
 
-	
+		img.onload = function() { //图片下载完毕时异步调用callback函数。  
+			callback.call(img); //将回调函数的this替换为Image对象  
+			return;
+		};
+	}
+
+	function drawFace(ctx, radius, angle,isInit) {
+
+
 
 		clearCircle(ctx, 0, 0, radius + 100);
 
-		if(angle==MIN_ANGLE_DEGREE){
-			drawIntrod(ctx);//画指示箭头
+		if (angle == MIN_ANGLE_DEGREE) {
+			drawIntrod(ctx); //画指示箭头
 		}
-		
+
 
 		var ang = angle * Math.PI / 180; //弧度单位，以12点作为起始 
 		var angFrom90 = -Math.PI / 2 + ang; //弧度单位，以3点钟作为的起始
@@ -437,13 +449,10 @@ var CIRCLE = (function() {
 		var keduY = keduRadius * sinX;
 
 
-		
 
-		
-		
 		preLoadImg("/img/slider-btn.png", function() {
-            ctx.drawImage(this, keduX-33, keduY-33, 66,66);
-        });
+			ctx.drawImage(this, keduX - 33, keduY - 33, 66, 66);
+		});
 		/*
 		ctx.beginPath();
 		ctx.arc(keduX, keduY, 34, 0, TWO_PI, false); //当前刻度
@@ -474,7 +483,9 @@ var CIRCLE = (function() {
 
 			console.log("...........");
 			scoreObj.fanweiScore = score;
-			updateSumScore(insuranceType);
+			if(!isInit){
+				updateSumScore(insuranceType);
+			}
 			var showScore = baozhang_score[score] || 0;
 			if (showScore > 0 && showScore < 10) {
 				showScore = showScore.toFixed(1);
@@ -558,9 +569,9 @@ var CIRCLE = (function() {
 
 	return {
 		init: init,
-		updateData:updateData,
-		updateKedu:updateKedu,
-		updateMoney:updateMoney
+		updateData: updateData,
+		updateKedu: updateKedu,
+		updateMoney: updateMoney
 	}
 
 })();

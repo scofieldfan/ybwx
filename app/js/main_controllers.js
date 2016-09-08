@@ -525,7 +525,7 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 
 		var moneySlider;
 		$scope.init = function() {
-			CIRCLE.init();
+		
 			$scope.type = $routeParams.type;
 			$scope.estimateMoney = 0;
 			var defaultMoney = 300000;
@@ -547,7 +547,7 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 			scoreObj.insuredMoney = $scope.insuredMoney;
 
 
-			$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_view'], {
+			$scope.selectPromise = getHttpPromise($http, $rootScope, 'POST', api['get_recommend_view'], {
 				insurance_type: $routeParams.type
 			}, function(res) {
 
@@ -568,7 +568,7 @@ mainControllers.controller('ybwxSelectCtrl', ['$scope', '$routeParams', '$locati
 					// 	sumInsuredView[key] = objKey[1];
 					// });
 
-
+					CIRCLE.init();
 					CIRCLE.updateData(res.data.data.coverage_scores, res.data.data.coverage_views, [], $routeParams.type);
 					res.data.data.coverage_periods.unshift(0);
 
@@ -1660,7 +1660,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 				if ($scope.data.max_effective_days) {
 					$scope.maxDate = util.addDays(new Date(), $scope.data.max_effective_days);
 				}
-				$("#testpicker").distpicker();
+				// $("#testpicker").distpicker();
 
 				$scope.genPlansInEffectiveDate();
 			});

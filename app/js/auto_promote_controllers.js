@@ -2,7 +2,7 @@
 * @Author: fanzhang
 * @Date:   2016-08-18 13:57:26
 * @Last Modified by:   fanzhang
-* @Last Modified time: 2016-08-23 18:35:57
+* @Last Modified time: 2016-09-07 14:22:37
 */
 
 'use strict';
@@ -74,7 +74,7 @@ mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeP
 			var ageComponent = new AgeComponent({
 				containerId: "ageContainer",
 				minAge: 0,
-				maxAge: 45,
+				maxAge: 75,
 				startAge: 8,
 				yearDis: 7.5,
 				changeCallback: function(age) {
@@ -82,7 +82,7 @@ mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeP
 					call();
 				},
 				beyondLeftCallback:function(){
-					util.showToastJQ("目前仅支持0-45岁");
+					util.showToastJQ("目前仅支持0-75岁");
 				},
 				// beyondRightCallback:function(){
 				// 	util.showToastJQ("目前仅支持0-45岁");
@@ -92,7 +92,7 @@ mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeP
 			var ageComponent = new AgeComponent({
 			containerId: "ageContainer",
 			minAge: 0,
-			maxAge: 45,
+			maxAge: 75,
 			startAge: 30,
 			yearDis: 7.5,
 			changeCallback: function(age) {
@@ -100,7 +100,7 @@ mainControllers.controller('ybwxUserInfoNewCtrl', ['$scope', '$filter', '$routeP
 				call();
 			},
 			beyondLeftCallback:function(){
-				util.showToastJQ("目前仅支持0-45岁");
+				util.showToastJQ("目前仅支持0-75岁");
 			},
 			// beyondRightCallback:function(){
 			// 	util.showToastJQ("目前仅支持0-45岁");

@@ -97,7 +97,7 @@ wxShareControllers.controller('sportsCtrl', ['$scope', '$filter', '$routeParams'
 				var rec_id = window.NBCONF.USER['unionid'] || '';
 
 				util.share({
-					shareUrl: util.domain + "wx_share.html#/jixian?rec_id=" + rec_id,
+					shareUrl: util.domain + "wx_share.html#/jixian?rec_id=" + encodeURIComponent(rec_id),
 					shareImg: util.static_domain + "/wx_share/img/share_sport.png",
 					shareTitle: "免费领取10万元极限运动险！要酷，更要安全！",
 					shareDesc: "每月均可领取1份，每邀请1位好友，即可再免费领取1份。约上朋友一起突破极限吧！"
@@ -327,8 +327,6 @@ wxShareControllers.controller('wxMoneyBdCtrl', ['$scope', '$filter', '$routePara
 						util.showToast($rootScope, res.data.description);
 					}
 				});
-
-
 			} else { //表单错误
 				if ($scope.registration.username.$invalid) {
 					util.showToast($rootScope, "姓名填写有误，请修改");
@@ -355,6 +353,126 @@ wxShareControllers.controller('wxMoneyBdCtrl', ['$scope', '$filter', '$routePara
 	}
 ]);
 
+
+
+//齿科投保
+wxShareControllers.controller('wxDentalMoneyBdCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
+	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
+		_hmt.push(['_trackPageview', "/wx_share_toubao"]);
+
+		$scope.money = $routeParams.money;
+
+		var tomorrow = new Date();
+		tomorrow.setDate(tomorrow.getDate() + 1);
+		$scope.user = {};
+		$scope.user.insurance_date = tomorrow;
+
+		$scope.user.know_contract = true;
+
+		$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['prepare_insure'], {
+			"plans": [$routeParams.plan]
+		}, function(res) {
+			var minDate = new Date();
+			minDate.setDate(minDate.getDate() + res.data.data.min_effective_days);
+			$scope.minDate = minDate;
+			var maxDate = new Date();
+			maxDate.setDate(maxDate.getDate() + res.data.data.max_effective_days);
+			$scope.maxDate = maxDate;
+			$scope.user.username = res.data.data.insured.username;
+			$scope.user.mobile = parseInt(res.data.data.insured.mobile);
+			$scope.user.social_id = res.data.data.insured.social_id;
+			sessionStorage.setItem("sell_plan", JSON.stringify(res.data.data.plans)); //存储需要支付的订单
+		});
+
+
+		$scope.submit = function() {
+			_hmt.push(['_trackEvent', 'wx_share_toubao', 'wx_share_toubao_subtn']);
+			var socialId = $scope.user.social_id;
+			var age = 0;
+			if (socialId && socialId.length === 18) {
+				var birthday = socialId.substring(6, 14);
+				var birthMonth = birthday.substring(4, 6);
+				var birthDay = birthday.substring(6, 8);
+				var birthYear = birthday.substring(0, 4);
+				age = util.calculate_age(birthMonth, birthDay, birthYear);
+			}
+
+			if (!$scope.registration.$invalid && age >= 18) {
+
+				//$("#loadingToast").show();
+
+				var insuranceDate = $filter('date')($scope.user.insurance_date, "yyyyMMdd");
+				var plans = {};
+				plans[$routeParams.plan] = $routeParams.money;
+
+				$scope.insurePromise = getHttpPromise($http, $rootScope, 'POST', api['purchase'], {
+					plans: plans,
+					username: $scope.user.username,
+					social_id: $scope.user.social_id,
+					mobile: $scope.user.mobile,
+					effective_date: insuranceDate
+
+				}, function(res) {
+
+					$("#loadingToast").hide();
+					//存储用户信息
+					if (res.data.code === 0) {
+						var orderId = res.data.data.order_no; //支付
+						var payRequest = {
+							"insurance_name": res.data.data.insurance_name,
+							"insurance_plan_name": res.data.data.insurance_plan_name,
+							"order_amount": res.data.data.order_amount,
+							"order_id": res.data.data.pay_order_id,
+							"order_no": res.data.data.pay_order_no
+
+						}
+
+						// TODO: openid和白名单匹配的时候,支付0.1元
+
+						var filterResult = util.whiteOpenIds.filter(function(item) {
+							return item.openid === window.NBCONF.USER['unionid']
+						});
+						if (filterResult && filterResult.length > 0) {
+							payRequest["order_amount"] = 0.1;
+						}
+
+
+						var paramters = util.genParameters(payRequest);
+						window.location.href = "/wechatpay/pay.html#?"+paramters;
+
+						//window.location.href = "/index.html#pay_select?" + paramters;
+						//$location.path("/pay_select").search(payRequest);
+					}
+					if (res && res.data && res.data.description) {
+						//$("#loadingToast").hide();
+						util.showToast($rootScope, res.data.description);
+					}
+				});
+			} else { //表单错误
+				if ($scope.registration.username.$invalid) {
+					util.showToast($rootScope, "姓名填写有误，请修改");
+				}
+				if ($scope.registration.social_id.$invalid) {
+					util.showToast($rootScope, "身份证填写有误，请修改");
+				}
+				if (age < 18) {
+					util.showToast($rootScope, "投保人年龄必须大于18岁");
+				}
+				if ($scope.registration.mobile.$invalid) {
+					util.showToast($rootScope, "手机号码填写有误，请修改");
+				}
+				if ($scope.registration.insurance_date.$invalid) {
+					util.showToast($rootScope, "保险生效时间不正确");
+				}
+				if ($scope.registration.flight_no && $scope.registration.flight_no.$invalid) {
+					util.showToast($rootScope, "航班号必须填写");
+				}
+			}
+		}
+
+
+	}
+]);
 //免费投保
 wxShareControllers.controller('wxShareBdCtrl', ['$scope', '$filter', '$routeParams', '$http', '$location', '$rootScope',
 	function($scope, $filter, $routeParams, $http, $location, $rootScope) {
@@ -534,7 +652,7 @@ wxShareControllers.controller('wxShareIndexCtrl', ['$scope', '$routeParams', '$h
 				$("#loadingToastCommon").hide();
 				var rec_id = window.NBCONF.USER['unionid'] || '';
 				util.share({
-					shareUrl: util.domain + "wx_share.html#/index?rec_id=" + rec_id,
+					shareUrl: util.domain + "wx_share.html#/index?rec_id=" + encodeURIComponent(rec_id),
 					shareImg: "/wx_share/img/share61.jpg",
 					shareTitle: "送你一份500万航空意外险，买机票立省30元！",
 					shareDesc: "集齐3份航空意外险保险券，即可免费兑换一份航班延误险保险券！"
@@ -699,17 +817,17 @@ wxShareControllers.controller('dentalCtrl', ['$scope', '$filter', '$routeParams'
 
 			var currentUrl = util.domain + "wx_share.html#/dental1609";
 
-			util.checkCodeAndOpenId($routeParams.code, currentUrl, function() {
+			
 				$("#loadingToastCommon").hide();
-				var rec_id = window.NBCONF.USER['unionid'] || '';
-
 				util.share({
-					shareUrl: util.domain + "wx_share.html#/dental1609?rec_id=" + rec_id,
-					shareImg: util.domain + "wx_share/img/dental/header.jpg",
+					shareUrl: util.domain + "wx_share.html#/dental1609?rec_id=" + encodeURIComponent(window.NBCONF.USER['unionid'] || ''),
+					shareImg: util.domain + "wx_share/img/dental/dental1609.png",
 					shareTitle: "一顿饭的价格解决宝宝乳牙期所有问题",
-					shareDesc: "一顿饭的价格解决宝宝乳牙期所有问题"
+					shareDesc: "瑞泰+拜博+普尔专业品牌口腔联合支持"
 
 				});
+
+				var rec_id = $routeParams.rec_id;
 
 				if(rec_id){
 					$scope.prePromise = getHttpPromise($http, $rootScope, 'POST', api['getStats'], {
@@ -720,7 +838,7 @@ wxShareControllers.controller('dentalCtrl', ['$scope', '$filter', '$routeParams'
 						}
 					});
 				}
-			});
+			
 		}
 		$scope.init();
 

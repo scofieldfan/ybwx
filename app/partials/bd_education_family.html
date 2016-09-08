@@ -1,5 +1,7 @@
-<link rel="stylesheet" href="/css/bd_education_new.css">
-<header class="icon_1"  data-ng-init="init()"  cg-busy="educationPromise">
+<link rel="stylesheet" href="/css/bd_education_new.css?rev=0fbdb77be4ebe5f22d73198ca483db74">
+
+    <div data-ng-init="init()"  cg-busy="educationPromise">
+<header class="icon_1"  >
 	<span>我的{{getInsuranceCNname()}}保障</span> <span class="score" ng-click="goScoreReading()">{{data.score}}</span>分
 	<!-- <span   class="how" ng-click="goOldEducation()">如何投保?</span> -->
 </header>
@@ -123,7 +125,7 @@
          <div class="bd_word" ng-click="goBdmList()">查看保单</div>
     </div>
 </div>
-
+</div>
 <div class="bd_education_bottom" >
 	<div class="bottom_left " ng-click="goDaodan()" id="submitButton" >
         <i class="iconfont" style="font-size: 15px;color:#999;vertical-align:-1px;">&#xe621;</i> 上传保单

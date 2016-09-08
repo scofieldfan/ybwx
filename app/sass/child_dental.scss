@@ -55,7 +55,7 @@
 			color: #999;
 			text-align: center;
 			line-height: 50px;
-			z-index: 1000;
+			z-index: 800;
 			@include flexbox;
 			// position: fixed;
 			// left: 0;
@@ -163,6 +163,9 @@
 					font-size: 12px;
 				}
 				@include flexbox();
+			}
+			.main-list_hospital_list >div{
+				@include flex(1);
 			}
 			.shop_detail {
 				height: 37px;
