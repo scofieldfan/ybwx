@@ -56,8 +56,9 @@ teethControllers.controller('ybwxDentalReservationDetailCtrl', ['$scope', '$rout
 	function($scope, $routeParams, $location, $http, $rootScope) {
 
 		_hmt.push(['_trackPageview', $location.path()]);
-
-	
+		$scope.goReservation_list = function(){
+			$location.path("/dental/reservation_list");
+		}
 	}
 ]);
 // 选择医生跳转后的页面

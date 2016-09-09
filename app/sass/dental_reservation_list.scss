@@ -21,14 +21,20 @@
 	width:80px;
 	float:right;
 }
+.box-container {
+	@include flexbox();
+	@include border(0 0 1px 0,#ccc);
+
+}
+
 .teeth-title-container{
 		height:	50px;
 		line-height: 50px;
 		color:#444;
 		font-size:15px;
-		@include border(0 0 1px 0,#ccc);
 		position:relative;
 		padding-left:10px;
+		@include flex(1);
 }
 .teeth-status{
 	color:#4285f4;
@@ -51,9 +57,10 @@
 	@include flex-wrap(wrap);
 }
 .teeth-content_item{
-	@include flex(0 1 50%);
-	font-size:14px;
+	// @include flex(0 1 50%);
+	font-size: 15px;
 	line-height:1.9;
+	min-width: 1.6rem;
 }
 
 .teeth-tip{

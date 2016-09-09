@@ -1,5 +1,5 @@
 
-<link rel="stylesheet" href="/css/dental_doctor.css?rev=67aa8fdf5b772f01f87cc0d70b162934">
+<link rel="stylesheet" href="css/dental_doctor.css?rev=sdfds">
 
 <div class="dental-doctor">
 	<div class="dental-doctor_header">
@@ -9,7 +9,7 @@
 				<img src="/img/child_dental/yi.jpg">
 				<div class="padd_18 flex1"></div>
 			</div>
-			<div class="dental-doctor_header_list-word">选择诊所</div>
+			<div class="dental-doctor_header_list-word">选择医院</div>
 		</div>
 		<div class="dental-doctor_header_list">
 			<div class="dental-doctor_header_list_steps">
@@ -17,7 +17,7 @@
 				<img src="/img/child_dental/er.jpg">
 				<div class="padd_18 flex1 color_ccc"></div>
 			</div>
-			<div class="dental-doctor_header_list-word">电话确认</div>
+			<div class="dental-doctor_header_list-word">选择医生</div>
 		</div>
 		<div class="dental-doctor_header_list">
 			<div class="dental-doctor_header_list_steps">
@@ -25,7 +25,7 @@
 				<img src="/img/child_dental/san.jpg">
 				<div class="flex1"></div>
 			</div>
-			<div class="dental-doctor_header_list-word">按时就诊</div>
+			<div class="dental-doctor_header_list-word">电话确认</div>
 		</div>
 	</div>
 	<div class="dental-doctor_main">
@@ -43,7 +43,7 @@
 			<div class="dental-doctor_main_has_box">
 				<div class="dental-doctor_main_has_box--left">
 					<div class="dental-doctor_main_has_tit"><i class="iconfont" style="color: #4285f4;font-size: 15px;margin-right: 5px;">&#xe632;</i><?=$hospital['name']?></div>
-					<div class="dental-doctor_main_has_address"><i class="iconfont" style="color: #999;font-size: 15px;margin-right: 5px;">&#xe633;</i><?=$hospital['addr']?></div>
+					<div class="dental-doctor_main_has_address"><i class="iconfont" style="color: #999;font-size: 15px;margin-right: 5px;">&#xe633;</i><?=isset($hospital['addr'])?$hospital['addr']:''?></div>
 				</div>
 				<div class="dental-doctor_main_has_box--right"><i class="iconfont io" id="jian" style="font-size: 14px;color: #ccc;">&#xe60f;</i></div>
 			</div>
@@ -59,7 +59,7 @@
 				</div>
 				<?php endforeach; ?>
 			</div>
-		</div>
+	</div>
 		<?php endforeach; ?>
 
 <?php if (0): ?>
@@ -96,7 +96,6 @@
 			</div>
 		</div>
 <?php endif; ?>
-	</div>
 </div>
 
 <script>
@@ -104,6 +103,8 @@
 		$(".dental-doctor_main #doctor_box").find("#doctor_has").hide();
 		$(".dental-doctor_main #doctor_box").removeClass("background");
 		$(".dental-doctor_main #doctor_box").find("#jian").removeClass("io");
+		$(".doctor_pic:last-child").removeClass("marRight");
+
 		$(this).find("#jian").addClass("io");
 		$("#doctor_box").find("#doctor_has").hide();
 		$(this).find("#doctor_has").show();
