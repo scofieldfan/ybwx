@@ -886,7 +886,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 					}
 					var parmStr = util.genParameters(param);
 					window.location.href = "/ybwx-web/api/webPage?" + parmStr;
-				} else {
+				} else if(plan.official_site){
 					window.location.href = plan.official_site;
 				}
 				_hmt.push(['_trackEvent', 'solution', 'solution_goDetail']);
@@ -1348,7 +1348,9 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 					effDate = util.addDays(startDate, parseInt(coverage_period));
 				}
 				if (coverage_period_type == 2) {
-					effDate = util.addDays(startDate, 365 * parseInt(coverage_period));
+					var copiedDate = new Date(startDate.getTime());
+					effDate = copiedDate.setFullYear(copiedDate.getFullYear() +  parseInt(coverage_period));
+					//effDate = util.addDays(startDate, 365 * parseInt(coverage_period));
 				}
 				return effDate;
 			}
