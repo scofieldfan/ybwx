@@ -399,6 +399,11 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       updateFee();
       _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_changefee']);
     }
+    $scope.getCoverageType = function(coverage_type) {
+     
+      return util.getCoverageType(coverage_type);
+    }
+
     $scope.headSelect = function($event, plan) {
       var element = $event.currentTarget;
       $(".btn-container").find("a").removeClass("weui_btn_primary")
@@ -424,10 +429,12 @@ ybwxControllers.controller('wxDetailNewCtrl', ['$scope', '$q', '$filter', '$rout
       (3, "按年龄限保"),
       (4, "按月保"),
       (5, "按天保");*/
-
+       var   birthDayScroll = new IScroll('#birthdayScrollContainer');
     $scope.showMask = function() {
       if ($scope.haveMask) {
+
         $("#detail_mask_container").show();
+         birthDayScroll.refresh();
         // var   maskScroll = new IScroll('#birthdayScrollContainer',{click:true, tap: true });
       } else {
         $scope.submit();

@@ -103,7 +103,7 @@
 				<p>以被保险人身份信息测算为准</p>
 			</div>
 			<div  style="clear:both;height: 10px;border-bottom: 1px solid #ccc;margin: 0 18px;"></div>
-	        <div class="head_ctrl" id="birthdayScrollContainer"  style="position: relative;overflow: auto;height:270px">
+	        <div class="head_ctrl" id="birthdayScrollContainer"  style="position: relative;overflow: hidden;height:3.1rem">
 	        <div>
 	        <div class="select-container"  ng-show="maskData.show_birthday">
 	        	<h4>出生日期</h4>
@@ -144,7 +144,7 @@
 				<h4>缴费期间</h4>
 				<a href="javascript:void(0)" class="button button_primary" ng-if="charge_period_type==1 || charge_period_type==4 || charge_period_type==5"  ng-click="changeFee($event,null)"   ng-class="charge_period==null?'button_hover':''">一次交清</a>
 
-				<a href="javascript:void(0)" class="button button_primary"  ng-click="changeFee($event,item)"   ng-class="item==charge_period?'button_hover':''"  ng-repeat="item in maskSelectPlan.charge_periods">{{item}}</a>
+				<a href="javascript:void(0)" class="button button_primary"  ng-click="changeFee($event,item)"   ng-class="item==charge_period?'button_hover':''"  ng-repeat="item in maskSelectPlan.charge_periods">{{item}}{{getCoverageType(maskSelectPlan.charge_period_type)}}</a>
 			</div>
 			<!-- <div class="select-container">
 				<h4>份数</h4>
@@ -177,7 +177,6 @@
 
 $(function(){
  var   popupScroll = new IScroll('#popup-container');
-
 
  $("body").on("click",".td-left",function(){
     _hmt.push(['_trackEvent', 'temai_detail', 'temai_detail_showMask']);

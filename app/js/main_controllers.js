@@ -946,9 +946,14 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 				$scope.isHaveRestrictions = (res.data.data.job_notice && Object.keys(res.data.data.job_notice).length > 0) || res.data.data.locale_notice || res.data.data.notices.length > 0;
 			})
 		}
+		
 		$scope.init = function() {
 			$scope.showNum = 4;
 			$scope.sumMoney = 0;
+
+			
+
+
 			var postData = {
 				"insurance_type": $routeParams.type,
 				"coverage_score": $routeParams.coverage_score,
@@ -979,6 +984,7 @@ mainControllers.controller('ybwxSolutionCtrl', ['$scope', '$routeParams', '$loca
 						})
 					}
 					$scope.choosePlan();
+					
 					//$scope.getRestrictions();
 
 				}
@@ -1555,6 +1561,7 @@ mainControllers.controller('ybwxToubaoNewCtrl', ['$scope', '$filter', '$routePar
 			console.log('type:' + type);
 			return util.getCoverageType(type);
 		}
+		
 		$scope.init = function() {
 
 			$scope.isFirst = true;
