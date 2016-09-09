@@ -15,9 +15,9 @@
 		</div>
 		<div class="dental-doctor_header_list">
 			<div class="dental-doctor_header_list_steps">
-				<div class="padd_18 flex1 color_ccc"></div>
-				<img src="/img/child_dental/er.jpg">
-				<div class="padd_18 flex1 color_ccc"></div>
+				<div class="padd_18 flex1"></div>
+				<img src="/img/child_dental/blue_er.jpg">
+				<div class="padd_18 flex1"></div>
 			</div>
 			<div class="dental-doctor_header_list-word">电话确认</div>
 		</div>
@@ -34,11 +34,23 @@
 		<div class="doctor-detail-main_doctor">
 			<img src="<?=$headimg?>">
 			<div class="doctor-detail-main_doctor_name"><?=$doctor_name?></div>
-			<div class="doctor-detail-main_doctor_detail"><span><?=$hospital_name?></span><!--<span>{BRANCH}</span>--></div>
+			<div class="doctor-detail-main_doctor_detail"><span><?=$hospital_name?></span><span><?=$description?></span></div>
 		</div>
 		<div class="doctor-detail-main_doctor_intro">
 			<div class="doctor-detail-main_doctor_intro_detail">
-				<div class="doctor-detail-main_doctor_intro_detail_tit"><span></span>经历</div>
+				<div class="doctor-detail-main_doctor_intro_detail_tit"><span></span>学历资质</div>
+				<div class="doctor-detail-main_doctor_intro_detail_word"><?=$education?></div>
+			</div>
+		</div>
+		<div class="doctor-detail-main_doctor_intro">
+			<div class="doctor-detail-main_doctor_intro_detail">
+				<div class="doctor-detail-main_doctor_intro_detail_tit"><span></span>工作经验</div>
+				<div class="doctor-detail-main_doctor_intro_detail_word"><?=$experience?></div>
+			</div>
+		</div>
+		<div class="doctor-detail-main_doctor_intro">
+			<div class="doctor-detail-main_doctor_intro_detail">
+				<div class="doctor-detail-main_doctor_intro_detail_tit"><span></span>擅长病症</div>
 				<div class="doctor-detail-main_doctor_intro_detail_word"><?=$specialty?></div>
 			</div>
 		</div>

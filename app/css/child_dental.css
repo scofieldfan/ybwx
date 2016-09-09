@@ -200,7 +200,7 @@
       .child-dental-container .main-list .main-list-profile .main-list-profile_problem {
         background: #fff;
         padding: 42px 20px;
-        font-size: 13px;
+        font-size: 15px;
         text-align: center; }
         .child-dental-container .main-list .main-list-profile .main-list-profile_problem .main-list-profile_problem_paddBottom {
           padding-bottom: 20px; }
@@ -242,8 +242,7 @@
     .child-dental-container .main-list .main-list {
       background: #f5f5f5; }
     .child-dental-container .main-list .main-list_hospital {
-      background: #f5f5f5;
-      margin-bottom: 5px; }
+      background: #f5f5f5; }
     .child-dental-container .main-list .main-list_hospital_box {
       padding: 20px  20px 15px;
       background: #fff;
@@ -571,6 +570,48 @@
       .child-dental-container_mask .child-dental-container_toast .toast-main .toast-main_word {
         color: #999;
         font-size: 12px; }
-.hospital-address {
+.hospital-address-controller {
   background: #fff;
-  padding: 20px; }
+  padding: 20px;
+  position: relative; }
+  .hospital-address-controller::after {
+    pointer-events: none;
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    content: "\0020";
+    border-color: #ccc;
+    border-style: solid;
+    border-width: 0 0 1px 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0; }
+    @media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+      .hospital-address-controller::after {
+        width: 200%;
+        height: 200%;
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5); } }
+    @media (min--moz-device-pixel-ratio: 2.5), (-webkit-min-device-pixel-ratio: 2.5), (min-device-pixel-ratio: 2.5), (min-resolution: 240dpi), (min-resolution: 2.5dppx) {
+      .hospital-address-controller::after {
+        width: 200%;
+        height: 200%;
+        -webkit-transform: scale(1/3);
+        transform: scale(1/3); } }
+  .hospital-address-controller .hospital-address-tit {
+    font-size: 15px;
+    color: #444;
+    line-height: 15px;
+    margin-bottom: 15px; }
+  .hospital-address-controller .meal-ac-hospital_on div:nth-child(odd) {
+    font-size: 13px;
+    line-height: 13px;
+    margin-bottom: 8px; }
+  .hospital-address-controller .meal-ac-hospital_on div:nth-child(2n) {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 15px; }
+  .hospital-address-controller .meal-ac-hospital_tw {
+    padding-top: 15px; }

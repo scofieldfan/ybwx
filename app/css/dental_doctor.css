@@ -98,29 +98,29 @@
         vertical-align: 1px; }
     .dental-doctor .dental-doctor_main .mar_10 {
       margin-bottom: 10px; }
-    .dental-doctor .dental-doctor_main .dental-docter_main_has {
+    .dental-doctor .dental-doctor_main .dental-doctor_main_has {
       padding: 15px 17px;
       border: 1px solid #ccc;
       border-radius: 5px;
       background: #fff;
       margin-bottom: 10px;
       border-radius: 5px; }
-      .dental-doctor .dental-doctor_main .dental-docter_main_has .dental-doctor_main_has_box {
+      .dental-doctor .dental-doctor_main .dental-doctor_main_has .dental-doctor_main_has_box {
         display: -webkit-box;
         display: -webkit-flex;
         display: -moz-box;
         display: -ms-flexbox;
         display: flex; }
-        .dental-doctor .dental-doctor_main .dental-docter_main_has .dental-doctor_main_has_box .dental-doctor_main_has_box--left {
+        .dental-doctor .dental-doctor_main .dental-doctor_main_has .dental-doctor_main_has_box .dental-doctor_main_has_box--left {
           -webkit-box-flex: 1;
           -webkit-flex: 1;
           -moz-box-flex: 1;
           -ms-flex: 1;
           flex: 1;
            }
-        .dental-doctor .dental-doctor_main .dental-docter_main_has .dental-doctor_main_has_box .dental-doctor_main_has_box--right {
+        .dental-doctor .dental-doctor_main .dental-doctor_main_has .dental-doctor_main_has_box .dental-doctor_main_has_box--right {
           line-height: 38px; }
-          .dental-doctor .dental-doctor_main .dental-docter_main_has .dental-doctor_main_has_box .dental-doctor_main_has_box--right i {
+          .dental-doctor .dental-doctor_main .dental-doctor_main_has .dental-doctor_main_has_box .dental-doctor_main_has_box--right i {
             display: inline-block;
             transform: rotate(90deg);
             -ms-transform: rotate(90deg);
@@ -128,7 +128,7 @@
             -webkit-transform: rotate(90deg);
             -o-transform: rotate(90deg);
              }
-          .dental-doctor .dental-doctor_main .dental-docter_main_has .dental-doctor_main_has_box .dental-doctor_main_has_box--right .io {
+          .dental-doctor .dental-doctor_main .dental-doctor_main_has .dental-doctor_main_has_box .dental-doctor_main_has_box--right .io {
             display: inline-block;
             transform: rotate(270deg);
             -ms-transform: rotate(270deg);
@@ -136,54 +136,53 @@
             -webkit-transform: rotate(270deg);
             -o-transform: rotate(270deg);
              }
-      .dental-doctor .dental-doctor_main .dental-docter_main_has .dental-doctor_main_has_tit {
+      .dental-doctor .dental-doctor_main .dental-doctor_main_has .dental-doctor_main_has_tit {
         font-size: 15px;
         line-height: 15px;
         margin-bottom: 11px; }
-      .dental-doctor .dental-doctor_main .dental-docter_main_has .dental-doctor_main_has_address {
+      .dental-doctor .dental-doctor_main .dental-doctor_main_has .dental-doctor_main_has_address {
         color: #999;
         font-size: 12px;
         line-height: 12px; }
-      .dental-doctor .dental-doctor_main .dental-docter_main_has .dental-doctor_main_has_doctor {
+      .dental-doctor .dental-doctor_main .dental-doctor_main_has .dental-doctor_main_has_doctor {
         display: -webkit-box;
         display: -webkit-flex;
         display: -moz-box;
         display: -ms-flexbox;
         display: flex;
+        flex-flow: wrap;
         margin-top: 15px; }
-        .dental-doctor .dental-doctor_main .dental-docter_main_has .dental-doctor_main_has_doctor .doctor_pic {
+        .dental-doctor .dental-doctor_main .dental-doctor_main_has .dental-doctor_main_has_doctor .doctor_pic {
           background: #fff;
           min-height: 175px;
-          -webkit-box-flex: 1;
-          -webkit-flex: 1;
-          -moz-box-flex: 1;
-          -ms-flex: 1;
-          flex: 1;
+          width: 1.07rem;
           border-radius: 5px; }
-          .dental-doctor .dental-doctor_main .dental-docter_main_has .dental-doctor_main_has_doctor .doctor_pic img {
+          .dental-doctor .dental-doctor_main .dental-doctor_main_has .dental-doctor_main_has_doctor .doctor_pic img {
             width: 100%;
             vertical-align: middle; }
-          .dental-doctor .dental-doctor_main .dental-docter_main_has .dental-doctor_main_has_doctor .doctor_pic .doctor_pic_name-word {
+          .dental-doctor .dental-doctor_main .dental-doctor_main_has .dental-doctor_main_has_doctor .doctor_pic .doctor_pic_name-word {
             border: 1px solid #d4d4d4;
+            border-top: none;
             background: #fff;
-            border-radius: 0 0 5px 5px; }
-          .dental-doctor .dental-doctor_main .dental-docter_main_has .dental-doctor_main_has_doctor .doctor_pic .doctor_pic_name-word:active {
+            border-radius: 0 0 5px 5px;
+            padding: 10px 0; }
+          .dental-doctor .dental-doctor_main .dental-doctor_main_has .dental-doctor_main_has_doctor .doctor_pic .doctor_pic_name-word:active {
             background: #eee; }
-          .dental-doctor .dental-doctor_main .dental-docter_main_has .dental-doctor_main_has_doctor .doctor_pic .doctor_pic_name {
+          .dental-doctor .dental-doctor_main .dental-doctor_main_has .dental-doctor_main_has_doctor .doctor_pic .doctor_pic_name {
             text-align: center;
             font-size: 15px;
             line-height: 15px;
-            margin: 10px 0; }
-          .dental-doctor .dental-doctor_main .dental-docter_main_has .dental-doctor_main_has_doctor .doctor_pic .doctor_pic_detail {
+            margin-bottom: 10px; }
+          .dental-doctor .dental-doctor_main .dental-doctor_main_has .dental-doctor_main_has_doctor .doctor_pic .doctor_pic_detail {
             text-align: center;
             font-size: 12px;
             color: #999;
             padding: 0 5px;
             margin-bottom: 10px; }
-        .dental-doctor .dental-doctor_main .dental-docter_main_has .dental-doctor_main_has_doctor .doctor_pic:active {
+        .dental-doctor .dental-doctor_main .dental-doctor_main_has .dental-doctor_main_has_doctor .doctor_pic:active {
           z-index: 9999;
           background: red; }
-        .dental-doctor .dental-doctor_main .dental-docter_main_has .dental-doctor_main_has_doctor .marRight {
+        .dental-doctor .dental-doctor_main .dental-doctor_main_has .dental-doctor_main_has_doctor .marRight {
           margin-right: 5px; }
     .dental-doctor .dental-doctor_main .background {
       background: #f9f9f9; }

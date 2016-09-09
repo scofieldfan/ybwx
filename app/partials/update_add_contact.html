@@ -17,16 +17,24 @@
 					<small class="error orange"  ng-show="userform.username.$error.chinese">姓名必须是汉字</small>
 				</div>
 			</div>
+			<ul class="weui_cell" style="border-bottom:1px solid #e2e2e2">
+			<li>证件类型</li>
+		
 			
+			<select  style="border:none;width:100%;" id="id_type">
+	          	<option value="1">身份证</option>
+	          	<option value="2">护照</option>
+          	</select>
+		</ul>
 			<div class="bottom_line">
 				<ul>
-					<li>身份证号</li><input type="text"  onclick="_hmt.push(['_trackEvent', 'update_add_contact', 'update_add_contact_id'])" ng-model="social_id" name="social_id" onfocus="this.placeholder=''" onblur="this.placeholder='请输入投保人的身份证号'" placeholder="请输入被保人身份证号" required  ng-minlength="18" ng-maxlength="18" >
+					<li>证件号码</li><input type="text"  onclick="_hmt.push(['_trackEvent', 'update_add_contact', 'update_add_contact_id'])" ng-model="social_id" name="social_id" onfocus="this.placeholder=''" onblur="this.placeholder='请输入投保人的证件号'" placeholder="请输入被保人证件号" required  ng-minlength="4" ng-maxlength="18" >
 				</ul>
-				<div class="cell"  style="color:red" ng-show="userform.social_id.$dirty && userform.social_id.$invalid ">
+				<!-- <div class="cell"  style="color:red" ng-show="userform.social_id.$dirty && userform.social_id.$invalid ">
 						<small class="error orange" ng-show="userform.social_id.$error.required">身份证必填</small>
 						<small class="error orange" ng-show="userform.social_id.$error.minlength">身份证必须是18位</small>
 						<small class="error orange" ng-show="userform.social_id.$error.maxlength">身份证必须是18位</small>
-				</div>
+				</div> -->
 		    </div>
 			<div class="bottom_line">
 				<ul>
@@ -42,7 +50,7 @@
 				</div>
 			</div>
 	    </form>
-		<ul class="weui_cell">
+		<ul class="weui_cell" >
 			<li>他是您的</li>
 		
 			

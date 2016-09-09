@@ -76,7 +76,7 @@
 			margin-bottom: 10px;
 		}
 		
-		.dental-docter_main_has {
+		.dental-doctor_main_has {
 			padding: 15px 17px;
 			border: 1px solid #ccc;
 			border-radius: 5px;
@@ -121,11 +121,15 @@
 			}
 			.dental-doctor_main_has_doctor {
 			  @include flexbox();
+		   		// @include justify-content(space-between);
+			  // @include flex-wrap(wrap);
+				  flex-flow: wrap;
 			  margin-top: 15px;
 			  .doctor_pic {
 			  	background: #fff;
 				  min-height: 175px;
-				  @include flex(1);
+				  // @include flex(1);
+				  width: 1.07rem;
 				  border-radius: 5px;
 				  img {
 				  	width: 100%;
@@ -133,8 +137,11 @@
 				  }
 				  .doctor_pic_name-word {
 				  	border: 1px solid #d4d4d4;
+				  	border-top: none;
 				  	background: #fff;
 				  	border-radius: 0 0 5px 5px;
+				  	padding: 10px 0;
+
 				  }
 				  .doctor_pic_name-word:active {
 				  	background: #eee;
@@ -143,7 +150,7 @@
 				  	text-align: center;
 				  	font-size: 15px;
 				  	line-height: 15px;
-				  	margin: 10px 0;
+				  	margin-bottom: 10px;
 				  }
 				  .doctor_pic_detail {
 				  	text-align: center;
@@ -153,6 +160,7 @@
 				  	margin-bottom: 10px;
 				  }
 				}
+
 				.doctor_pic:active {
 					z-index: 9999;
 				  	background: red;
@@ -160,6 +168,9 @@
 				.marRight {
 					margin-right: 5px;
 				}
+				// .doctor_pic:nth-child(last) {
+				// 	margin: 0;
+				// }
 			}
 		}
 		.background {

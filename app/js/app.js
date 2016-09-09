@@ -269,9 +269,8 @@ ybwxApp.config(['$routeProvider',
       title: "一像素"
     }).when('/score_reading', {
       templateUrl: 'partials/score_reading.html',
-      title: "评分解读",
-      controller: 'ybwxscoreReadingCtrl',
-      css:'/css/score_reading.css?rev=fe5f1133f617fc007a6d15f620de987d'
+      title: "如何计算评分？",
+      controller: 'ybwxscoreReadingCtrl'
     }).when('/child_dental', {
       templateUrl: 'partials/child_dental.html',
       title: "齿科保险",

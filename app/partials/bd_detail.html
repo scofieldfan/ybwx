@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="/css/baodan_detail.css?rev=37d34aa029c2857ca76d246bae14782a">
+<link rel="stylesheet" type="text/css" href="/css/baodan_detail.css?rev=a39df9fa40afc250ed0c9948e5160cff">
 <link rel="stylesheet" type="text/css" href="/css/bd_detail.css?rev=e576478700e21ff7bd956af5a0af5cd2">
 <div class="nuobei_header">
   <div class="img_ctrl"><img src="/img/nuobei_header/logo640.png"></div>
@@ -24,14 +24,14 @@
 <div  class="detail_container bottm_border" >
 	<h4>投保人信息</h4>
 	<p>姓名：{{order.name}}</p>	
-	<p>身份证号:{{order.social_id}}</p>	
+	<p>证件号码:{{order.social_id}}</p>
 	<p class="padd_bot">手机号码:{{order.mobile}}</p>
 	<div class="line"></div>
 	<h4>被保险人信息</h4>	
 
 	<div ng-repeat="person in order.insured_peoples" class="padd_bot">
 	<p>姓名：{{person.name}}</p>	
-	<p>身份证号:{{person.social_id}}</p>	
+	<p>证件号码:{{person.social_id}}</p>
 	<p>手机号码:{{person.mobile}}</p>	
 	</div>
 	

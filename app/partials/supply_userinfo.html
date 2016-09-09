@@ -1,16 +1,16 @@
-<link rel="stylesheet" href="/css/recognizee_first.css?rev=ac540e4aceeaecc54edc820de0ebcda3">
+<link rel="stylesheet" href="/css/recognizee_first.css?rev=34ddcb5204fb6bf1ce10353ad4e3149b">
 <div class="recognizee_first_ctrl">
 	<div class="rgn_head">选择被保险人</div>
 	<div class="choose">
 		<div class="self">
 			<label class="demo--label">
-		        <input class="demo--radio" type="radio"  checked="checked" ng-model='for'  value="self">
+		        <input class="demo--radio" type="radio" id="for_self" checked="checked" ng-model='for'  value="self">
 		        <span class="demo--radioInput"></span> 为本人投保
 		    </label>
 		</div>
         <div class="others">
         	<label class="demo--label">
-		        <input class="demo--radio" type="radio"   ng-model='for' value='other'>
+		        <input class="demo--radio" type="radio"   ng-model='for' id="for_other" value='other'>
 		        <span class="demo--radioInput"></span>为他人投保
 		    </label>
         </div>
@@ -20,7 +20,8 @@
 	<!-- 为本人 -->
 	<form  role="form" name="userform" novalidate >
 	<div class="self_people">
-		<div class="ziliao">完善被保人资料
+		<div class="ziliao">
+			<i class="iconfont" style="color: #4285f4;font-size: 17px;margin-right: 5px;">&#xe635;</i><span  id="user_tit_1">完善被保人资料</span>
 		</div>
 		<div class="main">
 			<div class="line-box">
@@ -33,18 +34,26 @@
 		            ng-show="userform.insured_username.$error.required">姓名必填</small>
 				<small class="error"  ng-show="userform.insured_username.$error.chinese">姓名必须是汉字!</small>
 			</div>
+			<div class="line-box noBor">
+                  <div class="lable" >证件类型</div>
+                  <select  style="border:none;width:100%;" id="insured_id_type">
+                  	<option value="1">身份证</option>
+                  	<option value="2">护照</option>
+                  </select>
+           </div>
 			<div class="line-box">
-				<div class="lable">身份证号</div><input type="text" onfocus="this.placeholder=''" onblur="this.placeholder='请输入被保人身份证号'" placeholder="请输入被保人身份证号"   required  ng-minlength="18" ng-maxlength="18" ng-model="insured_social_id" name="insured_social_id">
+				<div class="lable">证件号码</div><input type="text" onfocus="this.placeholder=''" onblur="this.placeholder='请输入被保人证件号'" placeholder="请输入被保人证件号"   required  ng-minlength="18" ng-maxlength="18" ng-model="insured_social_id" name="insured_social_id">
 					
 			</div>
-			<div class="cell"  style="color:red" 
+			<!-- <div class="cell"  style="color:red" 
          				   ng-show="userform.insured_social_id.$dirty && userform.insured_social_id.$invalid ">
 				<small class="error" ng-show="userform.insured_social_id.$error.required">身份证必填</small>
 				<small class="error" 
 		                ng-show="userform.insured_social_id.$error.minlength">身份证必须是18位</small>
 				<small class="error" 
 		                ng-show="userform.insured_social_id.$error.maxlength">身份证必须是18位</small>
-			</div>
+			</div> -->
+
 			<div class="line-box noBor">
 
 
@@ -62,18 +71,17 @@
 					<small class="error" 
 			                ng-show="userform.insured_mobile.$error.maxlength" >手机号必须是11位数字</small>
 				</div>
-			<div class="line-box noBor"  ng-if="for=='other'" >
-                  <div class="lable ">他是您的</div>
-                  <select  ng-model="data.relation" name="relation"    ng-options="option.name for option in relations track by option.id" style="border:none;width:100%;" >
+			<div class="line-box noBor del"  ng-if="for=='other' && !isChild()">
+                  <div class="lable between" >被保险人是您的</div>
+                  <select  ng-model="data.relation" name="relation"   id="sel_relation" ng-options="option.name for option in relations track by option.id" style="border:none;width:100%;" >
                   </select>
            </div>
-
 		</div>
 	</div>
 		
-	<div class="others_people" ng-show="for=='other'">
+	<div class="others_people" id="delNgShow" ng-show="for=='other'">
 			
-			<div class="ziliao">完善投保人资料</div>
+			<div class="ziliao"><i class="iconfont" style="color: #4285f4;font-size: 17px;margin-right: 5px;">&#xe635;</i><span id="user_tit_2">完善投保人资料</span></div>
 			<div class="main">
 				<div class="line-box">
 					<div class="lable">姓名</div>
@@ -85,7 +93,14 @@
 					<small class="error" ng-show="userform.username.$error.chinese">姓名必须是汉字!</small>
 				</div>
 				<div class="line-box noBor">
-					<div class="lable">身份证号</div><input type="text" onfocus="this.placeholder=''" onblur="this.placeholder='请输入投保人的身份证号'" placeholder="请输入投保人的身份证号"  ng-model="social_id" name="social_id"  required  ng-minlength="18" ng-maxlength="18" >
+                  <div class="lable" >证件类型</div>
+                  <select  style="border:none;width:100%;" id="id_type">
+                  	<option value="1">身份证</option>
+                  	<option value="2">护照</option>
+                  </select>
+       			</div>
+				<div class="line-box noBor">
+					<div class="lable">证件号码</div><input type="text" onfocus="this.placeholder=''" onblur="this.placeholder='请输入投保人的证件号'" placeholder="请输入投保人的证件号"  ng-model="social_id" name="social_id"  required  ng-minlength="4" ng-maxlength="18" >
 				</div>
 				<div class="cell"  style="color:red" 
          				   ng-show="userform.social_id.$dirty && userform.social_id.$invalid ">
@@ -110,6 +125,7 @@
 				</div>
 			</div>
 	</div>
+
 	</form>
 	<!-- 为他人 -->
 

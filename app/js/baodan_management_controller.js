@@ -364,6 +364,14 @@ bdControllers.controller('ybwxUpdateAddContactCtrl', ['$scope', '$routeParams', 
 			name: '子女'
 
 		};
+		// 齿科儿童 默认是子女
+		if($routeParams.child == 1) {
+			$scope.relation.id = 3;
+			$scope.relation.name = '子女';
+
+			$('#relation').prop('disabled', true);
+		}
+		$scope.id_type = $("#id_type").find("option:selected").val();
 		$scope.getState = function() {
 			$scope.state = document.getElementById("checkbox").checked;
 			// console.log($scope.state);
@@ -390,13 +398,15 @@ bdControllers.controller('ybwxUpdateAddContactCtrl', ['$scope', '$routeParams', 
 		}
 		$scope.addPeople = function() {
 			// 新增被保险人
-
+            console.log(".......");
+            console.log( $scope.social_id);
 			$scope.secondPromise = getHttpPromise($http, $rootScope, 'POST', api['addContact'], {
 				relation: $scope.relation.id,
 				is_default: $scope.state,
 				username: $scope.username,
 				social_id: $scope.social_id,
-				mobile: $scope.mobile
+				mobile: $scope.mobile,
+				id_type:$scope.id_type
 			}, function(res) {
 				console.log(res.data.data);
 				$location.path('/contact_list').search({
@@ -516,15 +526,14 @@ bdControllers.controller('ybwxContactListCtrl', ['$scope', '$routeParams', '$loc
 			if (Array.isArray(relationAry) && relationAry[0]) {
 				return relationAry[0].name;
 			}
-
 		}
 		// var curUserId = "";
 		$scope.
 		return = function() {
 			_hmt.push(['_trackEvent', 'contact_list', 'contact_list_return']);
 
-			$location.path('/toubao_new').search({
-				'type': $routeParams.type,
+			$location.path('/toubao_new').search(
+				jQuery.extend($routeParams, {
 				new_choose_plans: $routeParams.new_choose_plans,
 				// 'choose_plans': $routeParams.choose_plans,
 				user_id: $scope.chooseUser.id
@@ -532,9 +541,7 @@ bdControllers.controller('ybwxContactListCtrl', ['$scope', '$routeParams', '$loc
 				// coverage_period: $routeParams.coverage_period,
 				// charge_period_type: $routeParams.charge_period_type,
 				// charge_period: $routeParams.charge_period
-			});
-
-
+			}));
 		}
 		$scope.choose = function($event, item) {
 
@@ -619,7 +626,10 @@ bdControllers.controller('ybwxContactListCtrl', ['$scope', '$routeParams', '$loc
 		// 跳转and新增被保险人
 		$scope.addPeople = function() {
 			_hmt.push(['_trackEvent', 'contact_list', 'contact_list_add']);
-			$location.path('/update_add_contact').search({
+
+			$location.path('/update_add_contact').search(
+				jQuery.extend($routeParams, {method: "add"})
+				/*{
 				method: "add",
 				// 'choose_plans': $routeParams.choose_plans,
 				new_choose_plans: $routeParams.new_choose_plans
@@ -627,7 +637,9 @@ bdControllers.controller('ybwxContactListCtrl', ['$scope', '$routeParams', '$loc
 				// coverage_period: $routeParams.coverage_period,
 				// charge_period_type: $routeParams.charge_period_type,
 				// charge_period: $routeParams.charge_period
-			});
+			}
+			*/
+				);
 		}
 	}
 ]);

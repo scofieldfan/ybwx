@@ -10,7 +10,7 @@
 			<div class="head_right">{{getRelation(item.relation)}} <!--<span class="moren" ng-if="item.is_default==true">默认</span> --></div>
 			<div class="head_bottom" ng-click="editUserInfo(item.id)" ng-show="item.relation!=1"><img src="/img/pianji.png" ></div>
 		</div>
-		<div class="status">身份证号：<div style="display: inline-block">{{item.social_id}}</div></div>
+		<div class="status">证件号码：<div style="display: inline-block">{{item.social_id}}</div></div>
 		<div class="phone">手机号码：<div style="display: inline-block">{{item.mobile}}</div><span class="right" ng-if="item.is_current===true"> <img src="/img/gou.png"></span></div>
 	</div>
 

@@ -11,15 +11,14 @@
 .teech-btn-wrapper {
   width: 80px;
   float: right; }
-.teeth-title-container {
-  height: 50px;
-  line-height: 50px;
-  color: #444;
-  font-size: 15px;
-  position: relative;
-  position: relative;
-  padding-left: 10px; }
-  .teeth-title-container::after {
+.box-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative; }
+  .box-container::after {
     pointer-events: none;
     position: absolute;
     z-index: 999;
@@ -34,17 +33,30 @@
     -webkit-transform-origin: 0 0;
     transform-origin: 0 0; }
     @media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
-      .teeth-title-container::after {
+      .box-container::after {
         width: 200%;
         height: 200%;
         -webkit-transform: scale(0.5);
         transform: scale(0.5); } }
     @media (min--moz-device-pixel-ratio: 2.5), (-webkit-min-device-pixel-ratio: 2.5), (min-device-pixel-ratio: 2.5), (min-resolution: 240dpi), (min-resolution: 2.5dppx) {
-      .teeth-title-container::after {
+      .box-container::after {
         width: 200%;
         height: 200%;
         -webkit-transform: scale(1/3);
         transform: scale(1/3); } }
+.teeth-title-container {
+  height: 50px;
+  line-height: 50px;
+  color: #444;
+  font-size: 15px;
+  position: relative;
+  padding-left: 10px;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+   }
 .teeth-status {
   color: #4285f4;
   float: right; }
@@ -67,13 +79,9 @@
   -webkit-flex-wrap: wrap;
   flex-wrap: wrap; }
 .teeth-content_item {
-  -webkit-box-flex: 0 1 50%;
-  -webkit-flex: 0 1 50%;
-  -moz-box-flex: 0 1 50%;
-  -ms-flex: 0 1 50%;
-  flex: 0 1 50%;
-  font-size: 14px;
-  line-height: 1.9; }
+  font-size: 15px;
+  line-height: 1.9;
+  min-width: 1.6rem; }
 .teeth-tip {
   position: absolute;
   width: 10px;
