@@ -13,8 +13,7 @@
   .pay_success_ctrl .hint {
     box-sizing: border-box;
     padding: 5px 18px;
-    height: 50px;
-    font-size: 13px;
+    font-size: .16rem;
     color: #fff;
     background: url(../img/win_hint/back_big.png) no-repeat;
     background-size: 100% 100%; }
